@@ -1,13 +1,11 @@
 ﻿/**
- * jQuery EasyUI 1.3.2
+ * jQuery EasyUI 1.2.4
  * 
- * Copyright (c) 2009-2013 www.jeasyui.com. All rights reserved.
+ * Licensed under the GPL terms
+ * To use it on other terms please contact us
  *
- * Licensed under the GPL or commercial licenses
- * To use it on other terms please contact us: jeasyui@gmail.com
- * http://www.gnu.org/licenses/gpl.txt
- * http://www.jeasyui.com/license_commercial.php
- *
+ * Copyright(c) 2009-2011 stworthy [ stworthy@gmail.com ] 
+ * 
  */
 (function($){
 function _1(_2){
@@ -22,120 +20,105 @@ $(_2).removeAttr("name").attr("searchboxName",_5);
 }
 return _3;
 };
-function _6(_7,_8){
-var _9=$.data(_7,"searchbox").options;
+function _6(_7){
+var _8=$.data(_7,"searchbox").options;
 var sb=$.data(_7,"searchbox").searchbox;
-if(_8){
-_9.width=_8;
+if(_9){
+_8.width=_9;
 }
 sb.appendTo("body");
-if(isNaN(_9.width)){
-_9.width=sb._outerWidth();
+if(isNaN(_8.width)){
+_8.width=sb.find("input.searchbox.text").outerWidth();
 }
-var _a=sb.find("span.searchbox-button");
-var _b=sb.find("a.searchbox-menu");
-var _c=sb.find("input.searchbox-text");
-sb._outerWidth(_9.width)._outerHeight(_9.height);
-_c._outerWidth(sb.width()-_b._outerWidth()-_a._outerWidth());
-_c.css({height:sb.height()+"px",lineHeight:sb.height()+"px"});
-_b._outerHeight(sb.height());
-_a._outerHeight(sb.height());
-var _d=_b.find("span.l-btn-left");
-_d._outerHeight(sb.height());
-_d.find("span.l-btn-text,span.m-btn-downarrow").css({height:_d.height()+"px",lineHeight:_d.height()+"px"});
+var _9=_8.width-sb.find("a.searchbox-menu").outerWidth()-sb.find("span.searchbox-button").outerWidth();
+if($.boxModel==true){
+_9-=sb.outerWidth()-sb.width();
+}
+sb.find("input.searchbox-text").width(_9);
 sb.insertAfter(_7);
 };
-function _e(_f){
-var _10=$.data(_f,"searchbox");
-var _11=_10.options;
-if(_11.menu){
-_10.menu=$(_11.menu).menu({onClick:function(_12){
-_13(_12);
+function _a(_b){
+var _c=$.data(_b,"searchbox");
+var _d=_c.options;
+if(_d.menu){
+_c.menu=$(_d.menu).menu({onClick:function(_e){
+_f(_e);
 }});
-var _14=_10.menu.children("div.menu-item:first");
-_10.menu.children("div.menu-item").each(function(){
-var _15=$.extend({},$.parser.parseOptions(this),{selected:($(this).attr("selected")?true:undefined)});
-if(_15.selected){
-_14=$(this);
-return false;
-}
-});
-_14.triggerHandler("click");
+var _10=_c.menu.menu("getItem",_c.menu.children("div.menu-item")[0]);
+_c.menu.children("div.menu-item").triggerHandler("click");
 }else{
-_10.searchbox.find("a.searchbox-menu").remove();
-_10.menu=null;
+_c.searchbox.find("a.searchbox-menu").remove();
+_c.menu=null;
 }
-function _13(_16){
-_10.searchbox.find("a.searchbox-menu").remove();
-var mb=$("<a class=\"searchbox-menu\" href=\"javascript:void(0)\"></a>").html(_16.text);
-mb.prependTo(_10.searchbox).menubutton({menu:_10.menu,iconCls:_16.iconCls});
-_10.searchbox.find("input.searchbox-text").attr("name",$(_16.target).attr("name")||_16.text);
-_6(_f);
+function _f(_11){
+_c.searchbox.find("a.searchbox-menu").remove();
+var mb=$("<a class=\"searchbox-menu\" href=\"javascript:void(0)\"></a>").html(_11.text);
+mb.prependTo(_c.searchbox).menubutton({menu:_c.menu,iconCls:_11.iconCls});
+_c.searchbox.find("input.searchbox-text").attr("name",$(_11.target).attr("name")||_11.text);
+_6(_b);
 };
 };
-function _17(_18){
-var _19=$.data(_18,"searchbox");
-var _1a=_19.options;
-var _1b=_19.searchbox.find("input.searchbox-text");
-var _1c=_19.searchbox.find(".searchbox-button");
-_1b.unbind(".searchbox").bind("blur.searchbox",function(e){
-_1a.value=$(this).val();
-if(_1a.value==""){
-$(this).val(_1a.prompt);
+function _12(_13){
+var _14=$.data(_13,"searchbox");
+var _15=_14.options;
+var _16=_14.searchbox.find("input.searchbox-text");
+var _17=_14.searchbox.find(".searchbox-button");
+_16.unbind(".searchbox").bind("blur.searchbox",function(e){
+_15.value=$(this).val();
+if(_15.value==""){
+$(this).val(_15.prompt);
 $(this).addClass("searchbox-prompt");
 }else{
 $(this).removeClass("searchbox-prompt");
 }
 }).bind("focus.searchbox",function(e){
-if($(this).val()!=_1a.value){
-$(this).val(_1a.value);
+if($(this).val()!=_15.value){
+$(this).val(_15.value);
 }
 $(this).removeClass("searchbox-prompt");
 }).bind("keydown.searchbox",function(e){
 if(e.keyCode==13){
 e.preventDefault();
-var _1d=$.fn.prop?_1b.prop("name"):_1b.attr("name");
-_1a.value=$(this).val();
-_1a.searcher.call(_18,_1a.value,_1d);
+_15.value=$(this).val();
+_15.searcher.call(_13,_15.value,_16.attr("name"));
 return false;
 }
 });
-_1c.unbind(".searchbox").bind("click.searchbox",function(){
-var _1e=$.fn.prop?_1b.prop("name"):_1b.attr("name");
-_1a.searcher.call(_18,_1a.value,_1e);
+_17.unbind(".searchbox").bind("click.searchbox",function(){
+_15.searcher.call(_13,_15.value,_16.attr("name"));
 }).bind("mouseenter.searchbox",function(){
 $(this).addClass("searchbox-button-hover");
 }).bind("mouseleave.searchbox",function(){
 $(this).removeClass("searchbox-button-hover");
 });
 };
-function _1f(_20){
-var _21=$.data(_20,"searchbox");
-var _22=_21.options;
-var _23=_21.searchbox.find("input.searchbox-text");
-if(_22.value==""){
-_23.val(_22.prompt);
-_23.addClass("searchbox-prompt");
+function _18(_19){
+var _1a=$.data(_19,"searchbox");
+var _1b=_1a.options;
+var _1c=_1a.searchbox.find("input.searchbox-text");
+if(_1b.value==""){
+_1c.val(_1b.prompt);
+_1c.addClass("searchbox-prompt");
 }else{
-_23.val(_22.value);
-_23.removeClass("searchbox-prompt");
+_1c.val(_1b.value);
+_1c.removeClass("searchbox-prompt");
 }
 };
-$.fn.searchbox=function(_24,_25){
-if(typeof _24=="string"){
-return $.fn.searchbox.methods[_24](this,_25);
+$.fn.searchbox=function(_1d,_1e){
+if(typeof _1d=="string"){
+return $.fn.searchbox.methods[_1d](this,_1e);
 }
-_24=_24||{};
+_1d=_1d||{};
 return this.each(function(){
-var _26=$.data(this,"searchbox");
-if(_26){
-$.extend(_26.options,_24);
+var _1f=$.data(this,"searchbox");
+if(_1f){
+$.extend(_1f.options,_1d);
 }else{
-_26=$.data(this,"searchbox",{options:$.extend({},$.fn.searchbox.defaults,$.fn.searchbox.parseOptions(this),_24),searchbox:_1(this)});
+_1f=$.data(this,"searchbox",{options:$.extend({},$.fn.searchbox.defaults,$.fn.searchbox.parseOptions(this),_1d),searchbox:_1(this)});
 }
-_e(this);
-_1f(this);
-_17(this);
+_a(this);
+_18(this);
+_12(this);
 _6(this);
 });
 };
@@ -147,40 +130,33 @@ return $.data(jq[0],"searchbox").menu;
 return $.data(jq[0],"searchbox").searchbox.find("input.searchbox-text");
 },getValue:function(jq){
 return $.data(jq[0],"searchbox").options.value;
-},setValue:function(jq,_27){
+},setValue:function(jq,_20){
 return jq.each(function(){
-$(this).searchbox("options").value=_27;
-$(this).searchbox("textbox").val(_27);
+$(this).searchbox("options").value=_20;
+$(this).searchbox("textbox").val(_20);
 $(this).searchbox("textbox").blur();
 });
 },getName:function(jq){
 return $.data(jq[0],"searchbox").searchbox.find("input.searchbox-text").attr("name");
-},selectName:function(jq,_28){
-return jq.each(function(){
-var _29=$.data(this,"searchbox").menu;
-if(_29){
-_29.children("div.menu-item[name=\""+_28+"\"]").triggerHandler("click");
-}
-});
 },destroy:function(jq){
 return jq.each(function(){
-var _2a=$(this).searchbox("menu");
-if(_2a){
-_2a.menu("destroy");
+var _21=$(this).searchbox("menu");
+if(_21){
+_21.menu("destroy");
 }
 $.data(this,"searchbox").searchbox.remove();
 $(this).remove();
 });
-},resize:function(jq,_2b){
+},resize:function(jq,_22){
 return jq.each(function(){
-_6(this,_2b);
+_6(this,_22);
 });
 }};
-$.fn.searchbox.parseOptions=function(_2c){
-var t=$(_2c);
-return $.extend({},$.parser.parseOptions(_2c,["width","height","prompt","menu"]),{value:t.val(),searcher:(t.attr("searcher")?eval(t.attr("searcher")):undefined)});
+$.fn.searchbox.parseOptions=function(_23){
+var t=$(_23);
+return {width:(parseInt(_23.style.width)||undefined),prompt:t.attr("prompt"),value:t.val(),menu:t.attr("menu"),searcher:(t.attr("searcher")?eval(t.attr("searcher")):undefined)};
 };
-$.fn.searchbox.defaults={width:"auto",height:22,prompt:"",value:"",menu:null,searcher:function(_2d,_2e){
+$.fn.searchbox.defaults={width:"auto",prompt:"",value:"",menu:null,searcher:function(_24,_25){
 }};
 })(jQuery);
 

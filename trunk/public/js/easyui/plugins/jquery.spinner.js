@@ -1,18 +1,16 @@
 ﻿/**
- * jQuery EasyUI 1.3.2
+ * jQuery EasyUI 1.2.4
  * 
- * Copyright (c) 2009-2013 www.jeasyui.com. All rights reserved.
+ * Licensed under the GPL terms
+ * To use it on other terms please contact us
  *
- * Licensed under the GPL or commercial licenses
- * To use it on other terms please contact us: jeasyui@gmail.com
- * http://www.gnu.org/licenses/gpl.txt
- * http://www.jeasyui.com/license_commercial.php
- *
+ * Copyright(c) 2009-2011 stworthy [ stworthy@gmail.com ] 
+ * 
  */
 (function($){
 function _1(_2){
 var _3=$("<span class=\"spinner\">"+"<span class=\"spinner-arrow\">"+"<span class=\"spinner-arrow-up\"></span>"+"<span class=\"spinner-arrow-down\"></span>"+"</span>"+"</span>").insertAfter(_2);
-$(_2).addClass("spinner-text spinner-f").prependTo(_3);
+$(_2).addClass("spinner-text").prependTo(_3);
 return _3;
 };
 function _4(_5,_6){
@@ -26,12 +24,12 @@ _8.appendTo("body");
 if(isNaN(_7.width)){
 _7.width=$(_5).outerWidth();
 }
-var _a=_8.find(".spinner-arrow");
-_8._outerWidth(_7.width)._outerHeight(_7.height);
-$(_5)._outerWidth(_8.width()-_a.outerWidth());
-$(_5).css({height:_8.height()+"px",lineHeight:_8.height()+"px"});
-_a._outerHeight(_8.height());
-_a.find("span")._outerHeight(_a.height()/2);
+var _a=_8.find(".spinner-arrow").outerWidth();
+var _6=_7.width-_a;
+if($.boxModel==true){
+_6-=_8.outerWidth()-_8.width();
+}
+$(_5).width(_6);
 _8.insertAfter(_9);
 _9.remove();
 };
@@ -88,7 +86,6 @@ $.extend(_16.options,_13);
 _16=$.data(this,"spinner",{options:$.extend({},$.fn.spinner.defaults,$.fn.spinner.parseOptions(this),_13),spinner:_1(this)});
 $(this).removeAttr("disabled");
 }
-_16.options.originalValue=_16.options.value;
 $(this).val(_16.options.value);
 $(this).attr("readonly",!_16.options.editable);
 _f(this,_16.options.disabled);
@@ -134,17 +131,12 @@ var _1c=$.data(this,"spinner").options;
 _1c.value="";
 $(this).val("");
 });
-},reset:function(jq){
-return jq.each(function(){
-var _1d=$(this).spinner("options");
-$(this).spinner("setValue",_1d.originalValue);
-});
 }};
-$.fn.spinner.parseOptions=function(_1e){
-var t=$(_1e);
-return $.extend({},$.fn.validatebox.parseOptions(_1e),$.parser.parseOptions(_1e,["width","height","min","max",{increment:"number",editable:"boolean"}]),{value:(t.val()||undefined),disabled:(t.attr("disabled")?true:undefined)});
+$.fn.spinner.parseOptions=function(_1d){
+var t=$(_1d);
+return $.extend({},$.fn.validatebox.parseOptions(_1d),{width:(parseInt(_1d.style.width)||undefined),value:(t.val()||undefined),min:t.attr("min"),max:t.attr("max"),increment:(parseFloat(t.attr("increment"))||undefined),editable:(t.attr("editable")?t.attr("editable")=="true":undefined),disabled:(t.attr("disabled")?true:undefined)});
 };
-$.fn.spinner.defaults=$.extend({},$.fn.validatebox.defaults,{width:"auto",height:22,value:"",min:null,max:null,increment:1,editable:true,disabled:false,spin:function(_1f){
+$.fn.spinner.defaults=$.extend({},$.fn.validatebox.defaults,{width:"auto",value:"",min:null,max:null,increment:1,editable:true,disabled:false,spin:function(_1e){
 },onSpinUp:function(){
 },onSpinDown:function(){
 }});

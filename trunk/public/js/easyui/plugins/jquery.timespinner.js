@@ -1,18 +1,15 @@
 ﻿/**
- * jQuery EasyUI 1.3.2
+ * jQuery EasyUI 1.2.4
  * 
- * Copyright (c) 2009-2013 www.jeasyui.com. All rights reserved.
+ * Licensed under the GPL terms
+ * To use it on other terms please contact us
  *
- * Licensed under the GPL or commercial licenses
- * To use it on other terms please contact us: jeasyui@gmail.com
- * http://www.gnu.org/licenses/gpl.txt
- * http://www.jeasyui.com/license_commercial.php
- *
+ * Copyright(c) 2009-2011 stworthy [ stworthy@gmail.com ] 
+ * 
  */
 (function($){
 function _1(_2){
 var _3=$.data(_2,"timespinner").options;
-$(_2).addClass("timespinner-f");
 $(_2).spinner(_3);
 $(_2).unbind(".timespinner");
 $(_2).bind("click.timespinner",function(){
@@ -161,7 +158,7 @@ _1(this);
 };
 $.fn.timespinner.methods={options:function(jq){
 var _21=$.data(jq[0],"timespinner").options;
-return $.extend(_21,{value:jq.val(),originalValue:jq.spinner("options").originalValue});
+return $.extend(_21,{value:jq.val()});
 },setValue:function(jq,_22){
 return jq.each(function(){
 $(this).val(_22);
@@ -181,7 +178,8 @@ var vv=jq.val().split(_25.separator);
 return parseInt(vv[2],10)||0;
 }};
 $.fn.timespinner.parseOptions=function(_26){
-return $.extend({},$.fn.spinner.parseOptions(_26),$.parser.parseOptions(_26,["separator",{showSeconds:"boolean",highlight:"number"}]));
+var t=$(_26);
+return $.extend({},$.fn.spinner.parseOptions(_26),{separator:t.attr("separator"),showSeconds:(t.attr("showSeconds")?t.attr("showSeconds")=="true":undefined),highlight:(parseInt(t.attr("highlight"))||undefined)});
 };
 $.fn.timespinner.defaults=$.extend({},$.fn.spinner.defaults,{separator:":",showSeconds:false,highlight:0,spin:function(_27){
 _19(this,_27);

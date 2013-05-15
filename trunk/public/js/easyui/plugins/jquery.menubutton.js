@@ -1,19 +1,17 @@
 ﻿/**
- * jQuery EasyUI 1.3.2
+ * jQuery EasyUI 1.2.4
  * 
- * Copyright (c) 2009-2013 www.jeasyui.com. All rights reserved.
+ * Licensed under the GPL terms
+ * To use it on other terms please contact us
  *
- * Licensed under the GPL or commercial licenses
- * To use it on other terms please contact us: jeasyui@gmail.com
- * http://www.gnu.org/licenses/gpl.txt
- * http://www.jeasyui.com/license_commercial.php
- *
+ * Copyright(c) 2009-2011 stworthy [ stworthy@gmail.com ] 
+ * 
  */
 (function($){
 function _1(_2){
 var _3=$.data(_2,"menubutton").options;
 var _4=$(_2);
-_4.removeClass("m-btn-active m-btn-plain-active").addClass("m-btn");
+_4.removeClass("m-btn-active m-btn-plain-active");
 _4.linkbutton($.extend({},_3,{text:_3.text+"<span class=\"m-btn-downarrow\">&nbsp;</span>"}));
 if(_3.menu){
 $(_3.menu).menu({onShow:function(){
@@ -54,22 +52,26 @@ function _a(){
 if(!_8.menu){
 return;
 }
+var _c=_9.offset().left;
+if(_c+$(_8.menu).outerWidth()+5>$(window).width()){
+_c=$(window).width()-$(_8.menu).outerWidth()-5;
+}
 $("body>div.menu-top").menu("hide");
-$(_8.menu).menu("show",{alignTo:_9});
+$(_8.menu).menu("show",{left:_c,top:_9.offset().top+_9.outerHeight()});
 _9.blur();
 };
 };
-$.fn.menubutton=function(_c,_d){
-if(typeof _c=="string"){
-return $.fn.menubutton.methods[_c](this,_d);
+$.fn.menubutton=function(_d,_e){
+if(typeof _d=="string"){
+return $.fn.menubutton.methods[_d](this,_e);
 }
-_c=_c||{};
+_d=_d||{};
 return this.each(function(){
-var _e=$.data(this,"menubutton");
-if(_e){
-$.extend(_e.options,_c);
+var _f=$.data(this,"menubutton");
+if(_f){
+$.extend(_f.options,_d);
 }else{
-$.data(this,"menubutton",{options:$.extend({},$.fn.menubutton.defaults,$.fn.menubutton.parseOptions(this),_c)});
+$.data(this,"menubutton",{options:$.extend({},$.fn.menubutton.defaults,$.fn.menubutton.parseOptions(this),_d)});
 $(this).removeAttr("disabled");
 }
 _1(this);
@@ -85,18 +87,10 @@ _5(this,false);
 return jq.each(function(){
 _5(this,true);
 });
-},destroy:function(jq){
-return jq.each(function(){
-var _f=$(this).menubutton("options");
-if(_f.menu){
-$(_f.menu).menu("destroy");
-}
-$(this).remove();
-});
 }};
 $.fn.menubutton.parseOptions=function(_10){
 var t=$(_10);
-return $.extend({},$.fn.linkbutton.parseOptions(_10),$.parser.parseOptions(_10,["menu",{plain:"boolean",duration:"number"}]));
+return $.extend({},$.fn.linkbutton.parseOptions(_10),{menu:t.attr("menu"),duration:t.attr("duration")});
 };
 $.fn.menubutton.defaults=$.extend({},$.fn.linkbutton.defaults,{plain:true,menu:null,duration:100});
 })(jQuery);
