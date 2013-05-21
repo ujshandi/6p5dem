@@ -360,6 +360,15 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+/*
+---------------------------------------------------------------------------
+| Mode Autentikasi
+---------------------------------------------------------------------------
+| jika autentikasi menggunakan Active Directory : AD
+| jika autentikasi menggunakan Database Oracle : ORACLE
+*/
+$config['mode_autentikasi'] = 'ORACLE';//keterangan AD:Active Directory | ORACLE: database Oracle
+
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
