@@ -22,7 +22,7 @@ if ( ! function_exists('is_login'))
 		*/
 		//echo  "masuk is login: "; echo $_SESSION['login']; exit;
 		//var_dump($_SESSION);exit;
-		/*
+		
 		if(isset($_SESSION['login'])){
 		  return TRUE;
 		}
@@ -30,9 +30,6 @@ if ( ! function_exists('is_login'))
 		  return FALSE;
 		}
 		return FALSE;
-		*/
-		
-		return get_instance()->session->userdata('login')=="1"?TRUE:FALSE;
 	}
 }
 
