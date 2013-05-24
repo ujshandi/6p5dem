@@ -5,13 +5,15 @@ class mdl_satker extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData(){
+	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('MST_INDUKUPT');
+		$this->db->limit($num, $offset);
 		$this->db->order_by('KODE_INDUK');
 		
 		return $this->db->get();
+		
 	}
 	
 	function getDataEdit($id){
@@ -25,8 +27,8 @@ class mdl_satker extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
-		$this->db->set('KODE_INDUK', $data['kode']);
-		$this->db->set('NAMA_INDUK', $data['nama']);
+		$this->db->set('KODE_INDUK', $data['kode_induk']);
+		$this->db->set('NAMA_INDUK', $data['nama_induk']);
 		$result = $this->db->insert('MST_INDUKUPT');
 		
 		if($result) {
@@ -39,8 +41,8 @@ class mdl_satker extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-		$this->db->set('KODE_INDUK', $data['kode']);
-		$this->db->set('NAMA_INDUK', $data['nama']);
+		$this->db->set('KODE_INDUK', $data['kode_induk']);
+		$this->db->set('NAMA_INDUK', $data['nama_induk']);
 		$this->db->where('KODE_INDUK', $data['id']);
 		$result = $this->db->update('MST_INDUKUPT');
 		

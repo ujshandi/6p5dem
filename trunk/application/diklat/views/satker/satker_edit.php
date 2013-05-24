@@ -1,54 +1,27 @@
-
-<html>
-<head>
-<style>
-
-th {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	font-style: normal;
-	height: 25px;
-	background-color: #FFFFFF;	
-}
-table {
-	border-collapse:collapse;
-	
-}
-hr{
- color:#FFFF99;
-
-}
-</style>
-
-<body>
-<body id="demo">
-	<table cellpadding="0" cellspacing="1" border="1"  class="display dataTable" width='100%'>
-		<form method="post" action="<?=site_url().'/satker/proses_edit'?>">
-		<input type="hidden" name="id" value="<?=$id?>">
-		<p>Isi data satuan kerja>><a href='<?=site_url().'/satker'?>'>Index page</a></p>
-		  <table width="100%" border="1">
-			<tr bgcolor="#FFFF99">
-			  <td width="16%">Kode</td>
-			  <td width="1%">:</td>
-			  <td width="83%"><label>
-				<input name="kode" type="text" id="kode" size="20" value="<?=$result->row()->kode_induk?>" required>
-			  </label></td>
-			</tr>
-			<tr bgcolor="#FFFFCC">
-			  <td>Nama</td>
-			  <td>:</td>
-			  <td><label>
-				<input name="nama" type="text" id="nama" size="80" value="<?=$result->row()->nama_induk?>" required>
-			  </label></td>
-			</tr>
-			<tr bgcolor="#FFFF99">
-			  <td colspan="3"><label>
-				<input type="submit" name="simpan" id="simpan" value="Simpan">
-			  </label></td>
-			</tr>
-		  </table>
-		</form> 
-	</table>
-</body>
-</head>
-</html>
+<!-- contenna -->
+<div class="wrap_right bgcontent">
+	<h1 class="heading">Data Satuan Kerja</h1>
+	<hr/>
+	<?=form_open('satker/proses_edit', array('class'=>'sform'))?>
+	<fieldset>
+		<?php 
+			if(validation_errors())
+			{
+		?>
+				<ul class="message error grid_12">
+					<li><?=validation_errors()?></li>
+					<li class="close-bt"></li>
+				</ul>	
+		<?php
+			} 
+		?>
+		<ol>
+			<li><label for="">Kode Satker <em>*</em></label> <input name="kode_induk" value="<?=$result->row()->kode_induk?>" type="text" class="five"/></li>
+			<li><label for="">Nama Satker <em>*</em></label> <input name="nama_induk" value="<?=$result->row()->nama_induk?>" type="text" class="five"/></li>
+			<div class="clearfix">&nbsp;</div>
+			<hr/>
+			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>
+		</ol>
+	</fieldset>
+	<?=form_close()?>
+</div><!-- end wrap right content-->
