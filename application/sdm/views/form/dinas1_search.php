@@ -52,7 +52,7 @@
 		<td><?= $row->tahun_pengangkatan ?></a></td>
 		<td><?= $row->nama_jabatan ?></a></td>
 		<td><?= $row->nama_golongan ?></a></td>
-        <td><a href="<?=site_url('dinas/detail/'.$row->id_peg_dinas)?>">Detail</a></td>
+        <td><a href="<?//=site_url('dinas/detail/'.$row->id_peg_dinas)?>">Detail</a></td>
 	  </tr>
       <?
 			$i++;
