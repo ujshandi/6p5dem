@@ -1,7 +1,7 @@
 <?php
 /*
- * author : Ade Sugiandi (adesugiandi@yahoo.com)
- * cdate : 16 Okt 2009
+ * author :abah
+ * cdate : 17 mei 2013
  * 
  * */
 //class Authentikasi extends Model{
@@ -14,7 +14,7 @@ class Authentikasi extends CI_Model{
 		//parent::CI_Model();
 		parent::__construct();
 		//$this->obj =& get_instance();
-		//$this->load->model('RefBatasRekon');             			 		
+          			 		
 	}
 	
 	function userExist($data){
@@ -61,10 +61,10 @@ class Authentikasi extends CI_Model{
 		}		
 	}
 	
-	function listMenuUser($userid){
-		$sql = "SELECT d.menu_id, d.menu_grouping_name, d.menu_name, d.menu_url, d.menu_grouping_id, d.icon_name FROM users a,            
+	function listMenuUserAsli($userid){
+		$sql = "SELECT d.menu_id, d.menu_grouping_name, d.menu_name, d.menu_url, d.menu_grouping_id, d.menu_grouping_url, d.icon_name FROM users a,            
 				  user_group b, user_group_menu c, (
-				  	SELECT a.*, UPPER(b.menu_grouping_name) AS menu_grouping_name, b.icon_name as icon_name FROM menu a, menu_grouping b
+				  	SELECT a.*, UPPER(b.menu_grouping_name) AS menu_grouping_name, b.menu_grouping_url as menu_grouping_url, b.icon_name as icon_name FROM menu a, menu_grouping b
 						WHERE a.menu_grouping_id = b.menu_grouping_id" .
 								" order by a.menu_id asc 
 					) d      
@@ -73,8 +73,19 @@ class Authentikasi extends CI_Model{
 					AND c.menu_id = d.menu_id        
 					AND a.user_id = '".$userid."' ORDER BY d.menu_grouping_id,d.menu_id";
 					
-													
+		//echo "$sql"; exit;											
 		return $this->db->query($sql);		
+	}
+	
+	function listMenuUser($userid){
+	    $sql = "SELECT d.menu_id, d.menu_name, d.menu_url, d.menu_grouping_id FROM users a,            
+				  user_group b, user_group_menu c, menu d
+	               WHERE a.user_group_id = b.user_group_id        
+					AND b.user_group_id = c.user_group_id
+                    AND c.menu_id = d.menu_id					
+					AND a.user_id = '".$userid."' ORDER BY d.menu_grouping_id,d.menu_id";
+		//echo "$sql"; exit;
+	    return $this->db->query($sql);		
 	}
 	
 	function getGroup($data){	
@@ -137,6 +148,51 @@ class Authentikasi extends CI_Model{
 		return $this->db->query($sql);		
    
    }
+   
+    // Cek data user sesuai data di active directory
+   	function userExistAD($data){
+		$data_array = array_merge($data,array("USERS.STAT"=>"A"));	
+		$this->db->select(array('USERNAME','USER_ID','NAME','KD_LOKASI','USER_GROUP_ID','SCOPE', 'USER_FOTO','KDKPKNL'));						
+		$query = $this->db->get_where('USERS',$data_array);				
+												
+		if($query->num_rows() > 0){
+			foreach($query->result_array() as $item){
+				$dataUser = array(
+								 "USER_NAME"=>$item["USERNAME"],
+								 "USER_ID"=>$item["USER_ID"],
+								 "NAMA_LENGKAP"=>$item["NAME"],
+								 "KD_LOKASI"=>$item["KD_LOKASI"],
+								 "USER_GROUP_ID"=>$item["USER_GROUP_ID"],
+								 "SCOPE"=>$item["SCOPE"], // keterangan dinotes
+								 "USER_FOTO"=>$item["USER_FOTO"], //foto											 								
+								 "LOGIN"=>TRUE,
+								 "KDKPKNL"=>$item["KDKPKNL"]
+								 );
+			}
+			
+			### call masa akhir rekonsiliasi per level pengelola
+			/*
+			if($dataUser["SCOPE"] == "5" || $dataUser["SCOPE"] == "6" || $dataUser["SCOPE"] == "7"){
+				$dataperiode = switch_periode_rekon(date("Y"),switch_periode(date("m")));	
+				$tglmaxrekon = $this->RefBatasRekon->callTglRekon($dataperiode["thnang"], $dataperiode["periode"], $dataUser["SCOPE"]);
+				$arrmaxtgl = array("TGLMAXREKON"=>$tglmaxrekon);				
+				if($tglmaxrekon != 0) $dataUser = array_merge($dataUser,$arrmaxtgl);
+			}	
+			*/			
+			return $dataUser;
+		}else{
+			$query = $this->db->get_where('USERS',$data);					
+			if($query->num_rows() > 0){
+				foreach($query->result_array() as $item){
+					$this->stat = $item["STAT"];				
+				}
+				if($this->stat == "P") return 1;
+				elseif($this->stat == "D") return 2;
+			}else{												
+				return 0;
+			}
+		}		
+	}
    
    
 }
