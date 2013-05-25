@@ -1,0 +1,15 @@
+html,body{height:100%;width:100%;}
+body{text-align: center;min-height:400px;min-width:500px;margin:0 auto;background: #ddd url(../images/tl_page.png) repeat-x center left;}
+#outer {height:100%;width:100%;display:table;vertical-align:middle;background:url(../images/bg_page.png) no-repeat top center;}
+#container{text-align: center;position:relative;vertical-align:middle;display:table-cell;}	
+#inner {width:285px;text-align: center;margin-left:auto;margin-right:auto;}
+.input {background: #fff;box-shadow:0 0 3px rgba(0,0,0,.3) inset;border-radius:4px;font: 12px/14px "Lucida Grande", "Trebuchet MS", Arial, Helvetica, sans-serif;color: #5A698B;margin: 4px 0 5px 0;padding: 5px;border: 1px solid #8595B2;width:180px;}
+.input:focus {background:#FFFFCC;border-color:#FF6600}
+input.btn {color:#663300;font: bold 12px 'trebuchet ms',helvetica,sans-serif;background:#FFCC00;border: 1px solid;padding:3px 15px;border-radius:4px;border-color: #696 #363 #363 #696;filter:progid:DXImageTransform.Microsoft.Gradient (GradientType=0,StartColorStr='#ffffffff',EndColorStr='#FFCC00');} 
+.bgform{width:285px;height:333px;padding:0;background: url(../images/form1.png) no-repeat;text-align:center;color:#666;text-shadow:0 1px 0 #fff;font:bold 12px tahoma}
+.bgform p{padding:80px 0 0 0;}
+.bgform1{float:left;width:285px;height:74px;background: url(../images/form2.png) no-repeat;text-align:center;}
+.bgform1 p{padding:30px 0 0 0;}
+.text{color:#666;font:normal 11px tahoma;line-height:15px}
+a.link{COLOR:#666;FONT:bold 11px tahoma;text-decoration:none;}
+a.link:hover{COLOR:black;FONT:bold 11px tahoma;text-decoration:underline;}
