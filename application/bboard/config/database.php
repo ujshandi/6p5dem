@@ -60,7 +60,7 @@ $db['default']['stricton'] = FALSE;
 */
 
 //seting oracle
-$db['default']['hostname'] = "//LOCALHOST/XE";
+$db['default']['hostname'] = "192.168.10.1";
 $db['default']['username'] = "BPSDM";
 $db['default']['password'] = "BPSDM";
 $db['default']['database'] = "BPSDM";
