@@ -1,10 +1,1 @@
-</article>
-	
-	<footer>
-	<div class="float-center">
-			<a href="#top" class="button"><img src="images/icons/fugue/navigation-090.png" width="16" height="16">Aplikasi ini optimal ditampilkan pada browser Mozilla versi 5 dan IE versi 9</a>
-		</div>
-	</footer>
-	
-</body>
-</html>
+<div id="footer">	<div class="footer_content">                <div class="footer_bottom">            <div class="copyrights">            &copy; BPSDM Perhubungan - <a href="#" target="_blank">Kementerian Perhubungan RI.</a> 2013            </div>            <div class="footer_right_links">            <ul>                <li class="selected"><a href="index.html">HOME</a></li>                <li><a href="#">KONTAK</a></li>                <li><a href="#">WEB MAIL</a></li>            </ul>            </div>        </div>     <div class="clear"></div>   	</div><!--end footer content--></div><!--end all footer--> </body></html>

@@ -2,7 +2,7 @@
 
 class MY_Controller extends CI_Controller{
 	
-	var $privilage_x;
+	var $privilage_x;	
 	
 	public function __construct()
 	{
@@ -68,7 +68,7 @@ class MY_Controller extends CI_Controller{
 		}
 		
 		$this->privilage_x = $privilage;
-	}	  //abah: set user privelege	function set_privilage(){	    //$data = $_SESSION['dataUser'];			$data = $this->session->userdata('dataUser');		$fields = $this->Authentikasi->getUserPrivelege($data["USER_GROUP_ID"]);		    //var_dump($fields);exit;		//foreach($query->result() as		foreach($fields->result() as $field){				     		       // var_dump($field);								//echo $field->MENU_URL;				   			    //$tmp_pri = str_split($field->PRIVILEGE);                 $privilage[$field->MENU_URL][0] = SUBSTR($field->PRIVILEGE,0,1);				 $privilage[$field->MENU_URL][1] = SUBSTR($field->PRIVILEGE,1,1);				 $privilage[$field->MENU_URL][2] = SUBSTR($field->PRIVILEGE,2,1);				 $privilage[$field->MENU_URL][3] = SUBSTR($field->PRIVILEGE,3,1);				 $privilage[$field->MENU_URL][4] = SUBSTR($field->PRIVILEGE,4,1);				//$privilage[$field->MENU_URL][0] = $tmp_pri[0];				//$privilage[$field->MENU_URL][1] = $tmp_pri[1];				//$privilage[$field->MENU_URL][2] = $tmp_pri[2];				//$privilage[$field->MENU_URL][3] = $tmp_pri[3];				//$privilage[$field->MENU_URL][4] = $tmp_pri[4];				}				//var_dump($privilage);exit;       $this->privilage_x = $privilage;	}
+	}	  //abah: set user privelege	function set_privilage(){	    //$data = $_SESSION['dataUser'];			$data = $this->session->userdata('dataUser');		$fields = $this->Authentikasi->getUserPrivelege($data["USER_GROUP_ID"]);		    //var_dump($fields);exit;		//foreach($query->result() as		$privilage=null;		foreach($fields->result() as $field){				     		       // var_dump($field);								//echo $field->MENU_URL;				   			    //$tmp_pri = str_split($field->PRIVILEGE);                 $privilage[$field->MENU_URL][0] = SUBSTR($field->PRIVILEGE,0,1);				 $privilage[$field->MENU_URL][1] = SUBSTR($field->PRIVILEGE,1,1);				 $privilage[$field->MENU_URL][2] = SUBSTR($field->PRIVILEGE,2,1);				 $privilage[$field->MENU_URL][3] = SUBSTR($field->PRIVILEGE,3,1);				 $privilage[$field->MENU_URL][4] = SUBSTR($field->PRIVILEGE,4,1);				//$privilage[$field->MENU_URL][0] = $tmp_pri[0];				//$privilage[$field->MENU_URL][1] = $tmp_pri[1];				//$privilage[$field->MENU_URL][2] = $tmp_pri[2];				//$privilage[$field->MENU_URL][3] = $tmp_pri[3];				//$privilage[$field->MENU_URL][4] = $tmp_pri[4];				}				//var_dump($privilage);exit;       $this->privilage_x = $privilage;	}
 	
 	function can_access($ctr='')
 	{	
