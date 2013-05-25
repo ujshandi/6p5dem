@@ -14,7 +14,7 @@ class satker extends My_Controller {
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/satker/index/';
 		$config['total_rows'] = $this->db->count_all('MST_INDUKUPT');
-		$config['per_page'] = '2';
+		$config['per_page'] = '10';
 		$config['num_links'] = '3';
 		// $config['uri_segment'] = '3';
 		// $config['full_tag_open'] = '';

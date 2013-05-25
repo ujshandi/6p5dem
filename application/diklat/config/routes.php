@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "satker"; //"welcome"
+$route['default_controller'] = "selamatdatang"; //"welcome"
 $route['404_override'] = '';
 
 
