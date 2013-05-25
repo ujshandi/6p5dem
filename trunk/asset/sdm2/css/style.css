@@ -24,30 +24,37 @@ html,body {height:100%;width:100%;font:normal 11px Arial, Helvetica, sans-serif;
 html[xmlns] .clearfix {display: block;}
 * html .clearfix {height: 1%;}
 hr {display:inline-block;height:0;width:100%;border-top:solid 1px #ececec;border-bottom:solid 1px #fff;border-left:none;border-right:none;margin:7px 0 10px}
+.left {float:left}
+.right {float:right}
+.tr {text-align:right}
 #container {width:100%;min-height:100%;height:auto !important;height:100%;position:relative;}
 /* TOP */
-#header {background:url(../images/tl_header.jpg) repeat-x left top;height:124px;}
-.header-img {width:100%;height:125px;background:url(../images/img_header.jpg) no-repeat left top;}
-#title {float:left;margin:10px 0 0 400px;}
-#title h1 {color:#DDEEBD;text-shadow:0 1px 0 #111;font-family:'Jockey One',sans-serif;font-size:24px;font-weight:normal;text-transform:uppercase;}
-#title h2 {color:#A9DC47;text-shadow:0 1px 0 #000;font-size:14px;text-transform:uppercase;}
-#title h3 {color:#000;text-shadow:0 1px 0 #99CC33;font-size:11px}
+#header {height:124px;}
+.bg_green {background:url(../images/tl_header_green.jpg) repeat-x left top}
+.bg_brown {background:url(../images/tl_header_brown.jpg) repeat-x left top}
+.header-img {width:100%;height:125px;}
+.green {background:url(../images/img_header_green.jpg) no-repeat left top;}
+.brown {background:url(../images/img_header_brown.jpg) no-repeat left top;}
+#title {float:left;margin:10px 0 0 380px;}
+#title h1 {color:#fff;text-shadow:0 1px 0 #111;font-family:'Jockey One',sans-serif;font-size:24px;font-weight:normal;text-transform:uppercase;}
+#title h2 {color:#FFFF99;text-shadow:0 1px 0 #000;font-size:14px;text-transform:uppercase;}
+#title h3 {color:#fff;text-shadow:0 1px 0 #111;font-size:11px;}
 h2.heading {color:#999999;text-shadow:0 1px 0 #fff;font-family:'Jockey One',sans-serif;font-weight:normal;font-size:17px}
 h1.heading {color:#999999;text-shadow:0 1px 0 #fff;font-family:'Jockey One',sans-serif;font-weight:normal;font-size:20px;text-transform:capitalize}
 p.text {color:#999;text-shadow:0 1px 0 #fff;font-size:12px;line-height:1.6em;margin:0 0 10px 0;padding:0}
 .hublogo {float:right;margin:10px 20px 0 0;text-align:center}
 .hublogo a{display:block;width:61px;height:70px;background:url(../images/dephub-logo.png) no-repeat top center;}
-.bread {float:left;width:500px;margin:0 0 0 400px;padding-top:18px}
+.bread {float:left;width:500px;margin:0 0 0 150px;padding-top:18px}
 ul.breadcrumbs {display:block;margin-left:0;overflow: hidden;padding:0}
 ul.breadcrumbs li {float:left;list-style:none;margin:0;padding:0 12px 0 0;}
 ul.breadcrumbs li a, ul.breadcrumbs li span {font-size:11px;color:#555;text-shadow:0 1px 0 #f3f3f3;text-decoration:none;padding-left:12px;text-transform:uppercase;}
 ul.breadcrumbs li:first-child a, ul.breadcrumbs li:first-child span {padding-left:0;}
 ul.breadcrumbs li:before {color:#336633;content: "/";}
 ul.breadcrumbs li:first-child:before {content: " ";}
-ul.breadcrumbs li.current a {font-weight:bold;color:#336633;text-shadow:0 1px 0 #ccffcc;cursor:default;}
+ul.breadcrumbs li.current a {font-weight:bold;color:#222;text-shadow:0 1px 0 #ccffcc;cursor:default;}
 ul.breadcrumbs li:hover a, ul.breadcrumbs li a:focus {text-decoration:none;}
 ul.breadcrumbs li.current:hover a, ul.breadcrumbs li.current a:focus {text-decoration:none;}
-ul.breadcrumbs li.unavailable a {color:#548954;text-shadow:0 1px 0 #ccffcc}
+ul.breadcrumbs li.unavailable a {color:#ddd;text-shadow:0 1px 0 #ccffcc}
 ul.breadcrumbs li.unavailable:hover a, ul.breadcrumbs li.unavailable a:focus {color:#999999;cursor:default;text-decoration:none;}
 .usr {float:right;margin:20px 20px 0 0;padding:2px 10px;background:#fff;background:rgba(255,255,255,.4);border-radius:4px 4px 0 0;color:#006633;text-shadow:0 1px 0 #fff;font-size:12px}
 .usr a {font-weight:bold;color:#999933;text-decoration:none}
@@ -64,7 +71,7 @@ ul.homout li a img {float:left;border:none;margin:0 5px 0 0}
 .submenu ul {font-size:13px;font-weight:normal;text-shadow:0 1px 0 #fff;}
 .submenu ul li {display:inline;text-align:center;}
 .submenu ul li a {float:left;color:#999933;padding:6px 10px 5px;text-decoration:none;border-right:dotted 1px #CCCC66;}
-.submenu ul li a:hover {color:#fff;text-shadow:0 1px 1px #333;background:#99CC66;}
+.submenu ul li a:hover {color:#fff;text-shadow:0 1px 1px #333;background:#CCCC66;}
 .submenu .current a {background:#f3f3f3;color:#666633;font-weight:bold;text-shadow:0 1px 0 #fff;}
 /*CONTENT*/
 #content {clear:both;width:100%;height:100%;margin:0;padding:0 0 40px 0;background:url(../images/bg-content.png) no-repeat left top;overflow:hidden}
