@@ -12,11 +12,11 @@
 	  <tbody>
 		<?foreach($result->result() AS $r){?>
 			<tr class='gradeC'>
-				<td width='5%'><?=$r->kode_induk?></td>
-				<td width='30%'><?=$r->nama_induk?></td>
+				<td width='5%'><?=$r->KODE_INDUK?></td>
+				<td width='30%'><?=$r->NAMA_INDUK?></td>
 				<td width='10%'>
-					<a href="<?=site_url().'/satker/edit/'.$r->kode_induk?>" >Ubah </a> |
-					<a href="<?=site_url().'/satker/proses_delete/'.$r->kode_induk?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" >Hapus</a>
+					<a href="<?=site_url().'/satker/edit/'.$r->KODE_INDUK?>" >Ubah </a> |
+					<a href="<?=site_url().'/satker/proses_delete/'.$r->KODE_INDUK?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" >Hapus</a>
 				</td>
 			</tr>
 		<?}?>

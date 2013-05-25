@@ -16,8 +16,9 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">Kode Satker <em>*</em></label> <input name="kode_induk" value="<?=$result->row()->kode_induk?>" type="text" class="five"/></li>
-			<li><label for="">Nama Satker <em>*</em></label> <input name="nama_induk" value="<?=$result->row()->nama_induk?>" type="text" class="five"/></li>
+		    <input type="hidden" name="id" value="<?=$id?>">
+			<li><label for="">Kode Satker <em>*</em></label> <input name="kode_induk" value="<?=$result->row()->KODE_INDUK?>" type="text" class="five"/></li>
+			<li><label for="">Nama Satker <em>*</em></label> <input name="nama_induk" value="<?=$result->row()->NAMA_INDUK?>" type="text" class="five"/></li>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

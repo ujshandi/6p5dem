@@ -25,7 +25,7 @@
       <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"></a></div>
       <div class="clear"></div>
       
-      <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
+      <div class="usr"><span>Selamat Datang: </span><a href="#"><?=$NAMA_LENGKAP?></a></div>
     </div><!-- end image headers -->
     
 </div><!-- end header -->

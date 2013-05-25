@@ -2,6 +2,7 @@
 <div id="top"> 
     
 <div class="menu-title">Basis Data Diklat</div><!-- end page title -->
+<!--
 <div class="submenu">
     <ul>
         <li><a href="#">Submenu 1</a>
@@ -12,6 +13,7 @@
         <li><a href="#">Submenu 5</a></li>
     </ul>
 </div><!-- end submenu -->
+
 <ul class="homout">
   <li><a href="#"><img src="images/icon_home_16x16.png" />HOME</a></li>
   <li><a href="#"><img src="images/icon_logout_16x16.png" />LOGOUT</a></li>
@@ -22,9 +24,12 @@
   <div id="content">
     <div id="contentwrap">
     	<div class="wrap_left bgtrans">
-			<h2 class="heading">Menu Title</h2>
+			<h2 class="heading">Menu</h2>
 			<hr/>
+			
 			<ul id="vmenu">
+			 <? echo $menuUser ?> 
+			<!--
 				<li>
 					<a href="#">Submenu Child 1</a>
 					<ul>
@@ -44,6 +49,7 @@
 					</ul>
 				</li>
 				<li><a href="#">Submenu Child 3</a></li>
+				-->
 			</ul><!-- end vmenu -->
 		</div><!-- end wrap left-->
     
