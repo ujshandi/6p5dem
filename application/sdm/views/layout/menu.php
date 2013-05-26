@@ -27,6 +27,8 @@
 			<h2 class="heading">Menu Title</h2>
 			<hr/>
 			<ul id="vmenu">
+				<? echo $menuUser ?>
+				<!--
 				<li>
 					<a href="#">Submenu Child 1</a>
 					<ul>
@@ -46,6 +48,7 @@
 					</ul>
 				</li>
 				<li><a href="#">Submenu Child 3</a></li>
+				-->
 			</ul><!-- end vmenu -->
 		</div><!-- end wrap left-->
     

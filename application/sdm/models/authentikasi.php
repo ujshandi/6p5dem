@@ -8,7 +8,10 @@
 
 class Authentikasi extends CI_Model{
 	
-	var $table = "USERS";
+	var $table_users = "SDM_USERS";
+	var $table_user_group = "SDM_USER_GROUP";
+	var $table_user_group_menu = "SDM_USER_GROUP_MENU";
+	var $table_menu = "SDM_MENU";
 		
 	function __construct(){
 		//parent::CI_Model();
@@ -62,19 +65,14 @@ class Authentikasi extends CI_Model{
 	}
 	
 	function listMenuUser($userid){
-		$sql = "SELECT d.menu_id, d.menu_grouping_name, d.menu_name, d.menu_url, d.menu_grouping_id, d.icon_name FROM users a,            
-				  user_group b, user_group_menu c, (
-				  	SELECT a.*, UPPER(b.menu_grouping_name) AS menu_grouping_name, b.icon_name as icon_name FROM menu a, menu_grouping b
-						WHERE a.menu_grouping_id = b.menu_grouping_id" .
-								" order by a.menu_id asc 
-					) d      
-					WHERE a.user_group_id = b.user_group_id        
-					AND b.user_group_id = c.user_group_id        
-					AND c.menu_id = d.menu_id        
+		$sql = "SELECT d.menu_id, d.menu_name, d.menu_url, d.menu_grouping_id FROM $this->table_users a,            
+				  $this->table_user_group b, $this->table_user_group_menu c, $this->table_menu d
+	               WHERE a.user_group_id = b.user_group_id        
+					AND b.user_group_id = c.user_group_id
+                    AND c.menu_id = d.menu_id					
 					AND a.user_id = '".$userid."' ORDER BY d.menu_grouping_id,d.menu_id";
-					
-													
-		return $this->db->query($sql);		
+		//echo "$sql"; exit;
+	    return $this->db->query($sql);			
 	}
 	
 	function getGroup($data){	

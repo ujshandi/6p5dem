@@ -1,9 +1,7 @@
 <?php
 
 class MY_Controller extends CI_Controller{
-	
-	var $privilage_x;	
-	
+	var $privilage_x;	
 	public function __construct()
 	{
 		parent::__construct();
@@ -27,7 +25,7 @@ class MY_Controller extends CI_Controller{
 	
 	function open()
 	{			//$data = $this->_extract_data_session($_SESSION);				//$data['privilage'] = $this->privilage_x;				
-		//$data = $this->_extract_data_session($_SESSION);						        //$data = $_SESSION['dataUser'];					$data = $this->session->userdata('dataUser');					//echo"mycontroler";		        //var_dump($data);exit;							    $query = $this->Authentikasi->listMenuUser($data["USER_ID"]);													$arrGroupingMenu = $this->_listMenuUser($query);																							#print_r($arrGroupingMenu);exit;				$menuUser = $this->build_menu($arrGroupingMenu);				$data['menuUser'] = $menuUser;					//get menu sesuai otoritas user
+		//$data = $this->_extract_data_session($_SESSION);						        //$data = $_SESSION['dataUser'];					$data = $this->session->userdata('dataUser');					//echo"mycontroler";		        //var_dump($data);exit;							    //$query = $this->Authentikasi->listMenuUser($data["USER_ID"]);													//$arrGroupingMenu = $this->_listMenuUser($query);																							#print_r($arrGroupingMenu);exit;				//$menuUser = $this->build_menu($arrGroupingMenu);				//$data['menuUser'] = $menuUser;					//get menu sesuai otoritas user
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/menu', $data);
 	}

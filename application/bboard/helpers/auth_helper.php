@@ -5,31 +5,7 @@ if ( ! function_exists('is_login'))
 {
 	function is_login()
 	{
-		//print_r(get_instance()->session->userdata('privilage'));
-		//echo $_SESSION['login'];exit;
-		/*
-		$token = get_instance()->session->userdata('token');
-		
-		if ($token){
-			$row = get_instance()->mdl_auth->get_userByToken($token);
-			
-			if ($row->num_rows() > 0){
-				return TRUE;
-			}else{
-				return FALSE;
-			}
-		}
-		*/
-		//echo  "masuk is login: "; echo $_SESSION['login']; exit;
-		//var_dump($_SESSION);exit;
-		
-		if(isset($_SESSION['login'])){
-		  return TRUE;
-		}
-		else{
-		  return FALSE;
-		}
-		return FALSE;
+		return get_instance()->session->userdata('login')?TRUE:FALSE;
 	}
 }
 
