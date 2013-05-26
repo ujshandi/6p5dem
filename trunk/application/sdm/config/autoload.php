@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('authentikasi');
+$autoload['model'] = array('Authentikasi');
 
 
 /* End of file autoload.php */
