@@ -3,7 +3,7 @@
 <head>
 <title>Sistem Informasi Management Sumber Daya Manusia Bid. Transportasi - BPSDM Perhubungan - Kementerian Perhubungan Republik Indonesia</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="<?=base_url()?>/asset/board/asset/login/css/login_style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?=base_url()?>asset/board/asset/login/css/login_style.css" type="text/css" media="screen" />
 <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
