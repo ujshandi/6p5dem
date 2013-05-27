@@ -15,7 +15,7 @@
       <div class="feat_details">
       <h4>Basis Data SDM</h4>
       <a href="<?php echo base_url();?>sdm.php" class="inlink clear">ENTER</a>
-      <p>Duis aute irure dolor in reprehenderit in voluptate esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Pengelolaan Data SDM.</p>
       </div>
     </div>
     
@@ -24,7 +24,7 @@
       <div class="feat_details">
       <h4>Basis Data Diklat</h4>
       <a href="<?php echo base_url();?>diklat.php" class="inlink clear">ENTER</a>
-      <p>Duis aute irure dolor in reprehenderit in voluptate esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Pengelolaan Data Diklat.</p>
       </div>
     </div>
     
@@ -33,7 +33,7 @@
       <div class="feat_details">
       <h4>Manajemen Kompetensi</h4>
       <a href="<?php echo base_url();?>mpp.php" class="inlink clear">ENTER</a>
-      <p>Duis aute irure dolor in reprehenderit in voluptate esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Pengelolaan Data Kompetensi.</p>
       </div>
     </div>
     
@@ -42,7 +42,7 @@
       <div class="feat_details">
       <h4>GIS SDM Transportasi</h4>
       <a href="<?php echo base_url();?>gis.php" class="inlink clear">ENTER</a>
-      <p>Duis aute irure dolor in reprehenderit in voluptate esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Sistem Informasi geografis.</p>
       </div>
     </div>
     
@@ -51,7 +51,7 @@
       <div class="feat_details">
       <h4>Dashboard Monitoring</h4>
       <a href="<?php echo base_url();?>dashbaord.php" class="inlink clear">ENTER</a>
-      <p>Duis aute irure dolor in reprehenderit in voluptate esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Dashboard Monitoring SDM dan Diklat.</p>
       </div>
     </div>
     
@@ -60,7 +60,7 @@
       <div class="feat_details">
       <h4>Basis Data Peraturan Transportasi</h4>
       <a href="#" class="inlink clear">ENTER</a>
-      <p>Duis aute irure dolor in reprehenderit in voluptate esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Pengelolaan data peraturan.</p>
       </div>
     </div>
     
@@ -72,6 +72,7 @@
     
     <div class="section_23">
     <h2>File Sharing</h2>
+	<!--
     <div class="file_box">
     <h3>File Explorer</h3>
     <hr/>
@@ -112,12 +113,14 @@
             </li>
         </ul>
     </div><!--end file box-->
+	
+	     <div id="elfinder"></div>
     </div>
     
     <div class="section_14">
     	<h2>Calendar</h2>
         <hr/>
-        <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+        <p>Kalender Kegiatan</p>
         <hr/>
         <div id="calendar_box"></div>
     </div>
