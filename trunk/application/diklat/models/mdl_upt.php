@@ -21,6 +21,7 @@ class mdl_upt extends CI_Model{
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_UPT');
+		//$this->db->where('TRIM(KODE_UPT)', $id);
 		$this->db->where('KODE_UPT', $id);
 		
 		return $this->db->get();
@@ -41,7 +42,6 @@ class mdl_upt extends CI_Model{
 		}else {
 			return FALSE;
 		}
-		
 	}
 	
 	function update($data){

@@ -81,7 +81,7 @@ class mdl_satker extends CI_Model{
 		
 		$out = '<select name="'.$name.'" id="'.$id.'">';
 		foreach($res->result() as $r){
-			if($r->KODE_INDUK == $value){
+			if($r->KODE_INDUK == trim($value)){
 				$out .= '<option value="'.$r->KODE_INDUK.'" selected="selected">'.$r->NAMA_INDUK.'</option>';
 			}else{
 				$out .= '<option value="'.$r->KODE_INDUK.'">'.$r->NAMA_INDUK.'</option>';
