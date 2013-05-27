@@ -1,10 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class selamatdatang extends My_Controller {
+class upt extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		//$this->load->model('mdl_satker');
+		$this->load->model('mdl_satker');
+		$this->load->model('mdl_upt');
 	}
 	
 	public function index()
@@ -12,10 +13,10 @@ class selamatdatang extends My_Controller {
 		$this->open();
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/satker/index/';
-		//$config['total_rows'] = $this->db->count_all('MST_INDUKUPT');
-		//$config['per_page'] = '10';
-		//$config['num_links'] = '3';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/upt/index/';
+		$config['total_rows'] = $this->db->count_all('DIKLAT_MST_UPT');
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
 		// $config['uri_segment'] = '3';
 		// $config['full_tag_open'] = '';
 		// $config['full_tag_close'] = '';
@@ -36,37 +37,43 @@ class selamatdatang extends My_Controller {
 		// $config['first_tag_open'] = '<li>';
 		// $config['first_tag_close'] = '</li>';
 
-		//$this->pagination->initialize($config);	
+		$this->pagination->initialize($config);	
 		
-		//$data['result'] = $this->mdl_satker->getData($config['per_page'], $this->uri->segment(3));
-		$this->load->view('selamatdatang/selamatdatang_list');
+		$data['result'] = $this->mdl_upt->getData($config['per_page'], $this->uri->segment(3));
+		$this->load->view('upt/upt_list', $data);
 		
 		$this->close();
 	}
 	
 	public function add(){
 		$this->open();
-		$this->load->view('satker/satker_add');
+		$this->load->view('upt/upt_add');
 		$this->close();
 	}
 	
 	public function proses_add(){
 		$this->open();
 		
-		$data['kode_induk'] = $this->input->post('kode_induk');
-		$data['nama_induk'] = $this->input->post('nama_induk');
+		# get post data
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['NAMA_UPT'] = $this->input->post('NAMA_UPT');
+        $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+        $data['URUTAN'] = $this->input->post('URUTAN');
 		
 		# set rules validation
-		$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
-		$this->form_validation->set_rules('nama_induk', 'Nama Satker', 'required');
+		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
+        $this->form_validation->set_rules('NAMA_UPT', 'NAMA UPT', 'required');
+        $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
+        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
+		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('satker/satker_add',$data);
+			$this->load->view('upt/upt_add',$data);
 		}else{
-			$this->mdl_satker->insert($data);
-			redirect('satker');
+			$this->mdl_upt->insert($data);
+			redirect('upt');
 		}
 		
 		$this->close();
@@ -76,8 +83,8 @@ class selamatdatang extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->mdl_satker->getDataEdit($id);
-		$this->load->view('satker/satker_edit', $data);
+		$data['result'] = $this->mdl_upt->getDataEdit($id);
+		$this->load->view('upt/upt_edit', $data);
 		
 		$this->close();
 	}
@@ -86,28 +93,30 @@ class selamatdatang extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $this->input->post('id');
-		$data['kode_induk'] = $this->input->post('kode_induk');
-		$data['nama_induk'] = $this->input->post('nama_induk');
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['NAMA_UPT'] = $this->input->post('NAMA_UPT');
+        $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+        $data['URUTAN'] = $this->input->post('URUTAN');
 		
 		# set rules validation
-		$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
-		$this->form_validation->set_rules('nama_induk', 'Nama Satker', 'required');
+		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
+        $this->form_validation->set_rules('NAMA_UPT', 'NAMA UPT', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('satker/satker_edit',$data);
+			$this->load->view('upt/upt_edit',$data);
 		}else{
-			$this->mdl_satker->update($data);
-			redirect('satker');
+			$this->mdl_upt->update($data);
+			redirect('upt');
 		}
 		
 		$this->close();
 	}
 	
 	public function proses_delete($id){
-		if($this->mdl_satker->delete($id)){
-			redirect('satker');
+		if($this->mdl_upt->delete($id)){
+			redirect('upt');
 		}else{
 			// code u/ gagal simpan
 		}
