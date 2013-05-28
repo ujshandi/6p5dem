@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "sdmmon"; //"welcome"
+$route['default_controller'] = "sdm"; //"welcome"
 $route['404_override'] = '';
 
 
