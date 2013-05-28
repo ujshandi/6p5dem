@@ -1,19 +1,31 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Komposisi SDM Dinas Provinsi</h1>
+	<h1 class="heading">Komposisi SDM <?=$title;?></h1>
 	<hr/>
 
-    <div id="chart2" style="margin-top:13px; margin-left:20px; width:48%; min-height:800px; float:right"></div>
+    <div id="chart2" style="margin-top:13px; margin-right:15px; width:48%; min-height:800px; float:right"></div>
     <pre class="code brush:js"></pre>
 
-	<div id="chart1" style="margin-top:10px; margin-left:20px; width:48%; min-height:800px;"></div>
+	<div id="chart1" style="margin-top:10px; margin-left:15px; width:48%; min-height:800px;"></div>
 	<pre class="code brush:js"></pre>
 
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 			$.jqplot.config.enablePlugins = true;
-			var s1 = [200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800];
-			var ticks = ['Jawa Barat', 'Jawa Timur', 'Jawa Tengah', 'Jakarta', 'Yogya','Jawa Barat', 'Jawa Timur', 'Jawa Tengah', 'Jakarta', 'Yogya','Jawa Barat', 'Jawa Timur', 'Jawa Tengah', 'Jakarta', 'Yogya','Jawa Barat', 'Jawa Timur', 'Jawa Tengah', 'Jakarta', 'Yogya','Jawa Barat', 'Jawa Timur', 'Jawa Tengah', 'Jakarta', 'Yogya','Jawa Barat', 'Jawa Timur', 'Jawa Tengah', 'Jakarta', 'Yogya'];
+			var s1 = [
+				<?php
+					foreach($stat->result() as $point){
+						echo "'".$point->jumlah_sdm."', ";
+					}
+				?>
+			];
+			var ticks = [
+					<?php
+						foreach($stat->result() as $point){
+							echo "'".$point->namaprovin."', ";
+						}
+					?>
+				];
 			
 			plot1 = $.jqplot('chart1', [s1], {
 				// Only animate if we're not using excanvas (not in IE 7 or IE 8)..
@@ -47,36 +59,12 @@
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 		  var s2 = [
-		  	['Jawa Barat', 200],
-		  	['Jawa Tengah', 700], 
-		  	['Jawa Timur', 600], 
-		    ['Jakarta', 1000],
-		    ['Yogya', 800],
-		  	['Jawa Barat', 200],
-		  	['Jawa Tengah', 700], 
-		  	['Jawa Timur', 600], 
-		    ['Jakarta', 1000],
-		    ['Yogya', 800],
-		  	['Jawa Barat', 200],
-		  	['Jawa Tengah', 700], 
-		  	['Jawa Timur', 600], 
-		    ['Jakarta', 1000],
-		    ['Yogya', 800],
-		  	['Jawa Barat', 200],
-		  	['Jawa Tengah', 700], 
-		  	['Jawa Timur', 600], 
-		    ['Jakarta', 1000],
-		    ['Yogya', 800],
-		  	['Jawa Barat', 200],
-		  	['Jawa Tengah', 700], 
-		  	['Jawa Timur', 600], 
-		    ['Jakarta', 1000],
-		    ['Yogya', 800],
-		  	['Jawa Barat', 200],
-		  	['Jawa Tengah', 700], 
-		  	['Jawa Timur', 600], 
-		    ['Jakarta', 1000],
-		    ['Yogya', 800]
+		  	
+				<?php
+					foreach($stat->result() as $point){
+						echo "['".$point->namaprovin."', ".$point->jumlah_sdm."],";
+					}
+				?>
 		  ];
 
 		  plot2 = jQuery.jqplot('chart2', [s2], 
