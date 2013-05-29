@@ -72,6 +72,9 @@
     
     <div class="section_23">
     <h2>File Sharing</h2>
+	
+	
+	<div id="elfinder"></div>
 	<!--
     <div class="file_box">
     <h3>File Explorer</h3>
