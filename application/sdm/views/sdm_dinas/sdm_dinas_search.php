@@ -24,6 +24,7 @@
 	<li style="float:right">
 	<a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>" class="control"> <span class="add">Tambah Data</span></a>
 	</li>
+    <hr/>
 	<table width="100%">
 	  <thead>
 		<th>No</th>

@@ -1,5 +1,5 @@
 
-    <div id="content" class="page-brown">
+ <div id="content" class="page-brown">
     <div id="contentwrap">
 	<div class="wrap_left bgtrans">
 			<h2 class="heading">Menu Title</h2>
@@ -29,6 +29,5 @@
 				-->
 			</ul><!-- end vmenu -->
 		</div><!-- end wrap left-->
-	</div>
 
     
