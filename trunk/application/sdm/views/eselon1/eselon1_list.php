@@ -2,7 +2,10 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Eselon I</h1>
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/eselon1/add'?>">Tambah Data</a>
+	<li style="float:left">
+	<a href="<?=base_url().$this->config->item('index_page').'/eselon1/add'?>" class="control"> <span class="add">Tambah Data</span></a>
+	</li>
+	<hr/>
 	<table width="100%">
 	  <thead>
 		<th>No</th>
@@ -19,8 +22,12 @@
 				<td width='5%'><?=$r->ID_ESELON_1?></td>
 				<td width='30%'><?=$r->NAMA_ESELON_1?></td>
 				<td width='10%'>
-					<a href="<?=site_url().'/golongan/edit/'.$r->ID_ESELON_1?>" >Ubah </a> |
-					<a href="<?=site_url().'/golongan/proses_delete/'.$r->ID_ESELON_1?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" >Hapus</a>
+					<a href="<?=site_url().'/eselon1/edit/'.$r->ID_ESELON_1?>" class="control">
+						<span class="edit">edit</span>
+					</a>
+					<a href="<?=site_url().'/eselon1/proses_delete/'.$r->ID_ESELON_1?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
+						<span class="delete">hapus</span>
+					</a>
 				</td>
 			</tr>
 		<?
