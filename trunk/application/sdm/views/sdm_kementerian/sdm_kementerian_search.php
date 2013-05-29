@@ -37,7 +37,9 @@
 	<tr><td></td></tr>
     <?=form_close() ?>
 	<table>
-	<td><a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>">Tambah Data</a></td>
+	<td style="float:right">
+	<a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>" class="control"> <span class="add">Tambah Data</span></a>
+	</td>
 	</table>
 	<table width="100%">
 	  <thead>
@@ -64,8 +66,8 @@
 				<td width='15%'><?=$row->NAMA_JABATAN?></td>
 				<td width='5%'><?=$row->NAMA_GOLONGAN?></td>
 				<td width='10%'>
-					<a href="<?=site_url().'/sdm_kementerian/detail/'.$row->ID_PEG_KEMENTRIAN?>" >Detail </a> |
-					<a href="<?=site_url().'/sdm_kementerian/edit/'.$row->ID_PEG_KEMENTRIAN?>" >Ubah </a>
+					<a href="<?=site_url().'/sdm_kementerian/detail/'.$row->ID_PEG_KEMENTRIAN?>" class="control"><span class="detail"> </span></a>
+					<a href="<?=site_url().'/sdm_kementerian/edit/'.$row->ID_PEG_KEMENTRIAN?>" class="control"><span class="edit"> </span></a>
 				</td>
 			</tr>
       <?

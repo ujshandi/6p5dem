@@ -4,7 +4,7 @@ class Provinsi extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('Mdl_Provinsi');
+		$this->load->model('mdl_provinsi');
 	}
 	
 	public function test(){
@@ -23,7 +23,7 @@ class Provinsi extends My_Controller {
 
 		$this->pagination->initialize($config);	
 		
-		$data['result'] = $this->Mdl_Provinsi->getData($config['per_page'], $this->uri->segment(3));
+		$data['result'] = $this->mdl_provinsi->getData($config['per_page'], $this->uri->segment(3));
 		$this->load->view('provinsi/provinsi_list', $data);
 		
 		
@@ -32,27 +32,27 @@ class Provinsi extends My_Controller {
 
 	public function add(){
 		$this->open();
-		$this->load->view('golongan/golongan_add');
+		$this->load->view('provinsi/provinsi_add');
 		$this->close();
 	}
 	
 	public function proses_add(){
 		$this->open();
 		
-		$data['ID_GOLONGAN'] = $this->input->post('ID_GOLONGAN');
-		$data['NAMA_GOLONGAN'] = $this->input->post('NAMA_GOLONGAN');
+		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
+		$data['NAMAPROVIN'] = $this->input->post('NAMAPROVIN');
 		
 		# set rules validation
-		$this->form_validation->set_rules('ID_GOLONGAN', 'Id Golongan', 'required');
-		$this->form_validation->set_rules('NAMA_GOLONGAN', 'Nama Golongan', 'required');
+		$this->form_validation->set_rules('KODEPROVIN', 'Kode Provinsi', 'required');
+		$this->form_validation->set_rules('NAMAPROVIN', 'Nama Provinsi', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('golongan/golongan_add',$data);
+			$this->load->view('provinsi/provinsi_add',$data);
 		}else{
-			$this->mdl_golongan->insert($data);
-			redirect('golongan');
+			$this->mdl_provinsi->insert($data);
+			redirect('provinsi');
 		}
 		
 		$this->close();
@@ -61,9 +61,9 @@ class Provinsi extends My_Controller {
 	public function edit($id){
 		$this->open();
 		
-		$data['ID_GOLONGAN'] = $id;
-		$data['result'] = $this->mdl_golongan->getDataEdit($id);
-		$this->load->view('golongan/golongan_edit', $data);
+		$data['KODEPROVIN'] = $id;
+		$data['result'] = $this->mdl_provinsi->getDataEdit($id);
+		$this->load->view('provinsi/provinsi_edit', $data);
 		
 		$this->close();
 	}
@@ -71,29 +71,29 @@ class Provinsi extends My_Controller {
 	public function proses_edit(){
 		$this->open();
 		
-		$data['ID_GOLONGAN'] = $this->input->post('ID_GOLONGAN');
+		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
 		//$data['kode_induk'] = $this->input->post('kode_induk');
-		$data['NAMA_GOLONGAN'] = $this->input->post('NAMA_GOLONGAN');
+		$data['NAMAPROVIN'] = $this->input->post('NAMAPROVIN');
 		
 		# set rules validation
 		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
-		$this->form_validation->set_rules('NAMA_GOLONGAN', 'Nama Golongan', 'required');
+		$this->form_validation->set_rules('NAMAPROVIN', 'Nama Golongan', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('golongan/golongan_edit',$data);
+			$this->load->view('provinsi/provinsi_edit',$data);
 		}else{
-			$this->mdl_golongan->update($data);
-			redirect('golongan');
+			$this->mdl_provinsi->update($data);
+			redirect('provinsi');
 		}
 		
 		$this->close();
 	}
 	
 	public function proses_delete($id){
-		if($this->mdl_golongan->delete($id)){
-			redirect('golongan');
+		if($this->mdl_provinsi->delete($id)){
+			redirect('provinsi');
 		}else{
 			// code u/ gagal simpan
 		}

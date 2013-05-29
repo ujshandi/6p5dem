@@ -136,6 +136,15 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		
 	}
 	
+	public function get_data_duk_detail_pangkat($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_KEMENTRIAN');
+		$this->db->where('ID_PEG_KEMENTRIAN', $id);
+		return $this->db->get();
+		
+	}
+	
 	public function get_data_duk_detail($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
