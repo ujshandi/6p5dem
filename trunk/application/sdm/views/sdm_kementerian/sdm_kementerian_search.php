@@ -33,14 +33,11 @@
  
     <td></td>
 		<td><input class="greenbutton" type="submit" value="Tampilkan" style="Right"/></td>
- 	</tr>
-	<tr><td></td></tr>
+ 	<hr/>
     <?=form_close() ?>
-	<table>
-	<td style="float:right">
-	<a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>" class="control"> <span class="add">Tambah Data</span></a>
-	</td>
-	</table>
+	<li style="float:left">
+	<a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add'?>" class="control"> <span class="add">Tambah Data</span></a>
+	</li>
 	<table width="100%">
 	  <thead>
 		<th>No</th>
@@ -66,8 +63,15 @@
 				<td width='15%'><?=$row->NAMA_JABATAN?></td>
 				<td width='5%'><?=$row->NAMA_GOLONGAN?></td>
 				<td width='10%'>
-					<a href="<?=site_url().'/sdm_kementerian/detail/'.$row->ID_PEG_KEMENTRIAN?>" class="control"><span class="detail"> </span></a>
-					<a href="<?=site_url().'/sdm_kementerian/edit/'.$row->ID_PEG_KEMENTRIAN?>" class="control"><span class="edit"> </span></a>
+					<a href="<?=site_url().'/sdm_kementerian/add_diklat/'.$row->ID_PEG_KEMENTRIAN?>">
+						<img src="<?=base_url()?>asset/sdm2/images/ic-add.png" />&nbsp;
+					</a>
+					<a href="<?=site_url().'/sdm_kementerian/edit/'.$row->ID_PEG_KEMENTRIAN?>">
+						<img src="<?=base_url()?>asset/sdm2/images/ic-edit.png" />&nbsp; 
+					</a>
+					<a href="<?=site_url().'/sdm_kementerian/detail/'.$row->ID_PEG_KEMENTRIAN?>">
+						<img src="<?=base_url()?>asset/sdm2/images/check.png" />
+					</a>
 				</td>
 			</tr>
       <?

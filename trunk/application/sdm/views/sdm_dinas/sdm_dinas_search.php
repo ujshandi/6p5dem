@@ -19,12 +19,12 @@
  
     <td></td>
 		<td><input class="greenbutton" type="submit" value="Tampilkan" style="float:left"/></td>
- 	</tr>
+ 	<hr/>
     <?=form_close() ?>
-	<li style="float:right">
-	<a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>" class="control"> <span class="add">Tambah Data</span></a>
+	<li style="float:left">
+	<a href="<?=base_url().$this->config->item('index_page').'/sdm_dinas/add'?>" class="control"> <span class="add">Tambah Data</span></a>
 	</li>
-    <hr/>
+    
 	<table width="100%">
 	  <thead>
 		<th>No</th>
