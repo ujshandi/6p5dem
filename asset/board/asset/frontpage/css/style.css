@@ -136,7 +136,7 @@ img.feat_thumb{float:left;}
 .feat_details{width:180px;float:left;padding:0 0 0 10px;}
 .feat_details h4 {font-size:15px;font-weight:bold;color:#cc6600;text-shadow:0 1px 1px #f9f9f9}
 .test_right{width:155px;float:left;padding:0 0 0 10px;}
-p.feat_text{text-shadow:0 1px 0 #fff}
+p.feat_text{text-shadow:0 1px 0 #fff; text-align:justify;}
 p.feat_text span.meta {display:inline-block;font-size:11px;font-style:normal;font-weight:bold;color:#663300}
 .testimonial{ border-bottom:1px solid #ccc; padding:0 0 10px 0; margin:10px 0 0px 0; clear:both; float:left;}
 .apl_box {background:#fff;background:rgba(255,255,255,.8);border:solid 1px #FFCC00;overflow:auto;padding:15px;border-radius:4px;text-align:center;margin:5px 0 15px;box-shadow:0 0 10px rgba(255,204,0,.6) inset}
