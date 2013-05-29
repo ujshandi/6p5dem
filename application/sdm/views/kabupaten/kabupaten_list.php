@@ -1,8 +1,8 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Golongan</h1>
+	<h1 class="heading">Data Kabupaten</h1>
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/provinsi/add'?>">Tambah Data</a>
+	<a href="<?=base_url().$this->config->item('index_page').'/kabupaten/add'?>">Tambah Data</a>
 	<table width="100%">
 	  <thead>
 		<th>No</th>
@@ -17,11 +17,11 @@
 		?>
 			<tr class='gradeC'>
 				<td width='5%'><?=$i?></td>
-				<td width='5%'><?=$row->KODEPROVIN?></td>
-				<td width='30%'><?=$row->NAMAPROVIN?></td>
+				<td width='5%'><?=$row->KODEKABUP?></td>
+				<td width='30%'><?=$row->NAMAKABUP?></td>
 				<td width='10%'>
-					<a href="<?=site_url().'/provinsi/edit/'.$row->KODEPROVIN?>" >Ubah </a> |
-					<a href="<?=site_url().'/provinsi/proses_delete/'.$row->KODEPROVIN?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" >Hapus</a>
+					<a href="<?=site_url().'/kabupaten/edit/'.$row->KODEKABUP?>" >Ubah </a> |
+					<a href="<?=site_url().'/kabupaten/proses_delete/'.$row->KODEKABUP?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" >Hapus</a>
 				</td>
 			</tr>
 		<?

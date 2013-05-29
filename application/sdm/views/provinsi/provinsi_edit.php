@@ -1,8 +1,8 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Golongan</h1>
+	<h1 class="heading">Data Provinsi</h1>
 	<hr/>
-	<?=form_open('golongan/proses_edit', array('class'=>'sform'))?>
+	<?=form_open('provinsi/proses_edit', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -16,8 +16,8 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">Id Golongan <em>*</em></label> <input name="ID_GOLONGAN" value="<?=$result->row()->ID_GOLONGAN?>" type="text" class="five" readonly="yes"/></li>
-			<li><label for="">Nama Satker <em>*</em></label> <input name="NAMA_GOLONGAN" value="<?=$result->row()->NAMA_GOLONGAN?>" type="text" class="five"/></li>
+			<li><label for="">Kode Provinsi <em>*</em></label> <input name="KODEPROVIN" value="<?=$result->row()->KODEPROVIN?>" type="text" class="five"/></li>
+			<li><label for="">Nama Provinsi <em>*</em></label> <input name="NAMAPROVIN" value="<?=$result->row()->NAMAPROVIN?>" type="text" class="five"/></li>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

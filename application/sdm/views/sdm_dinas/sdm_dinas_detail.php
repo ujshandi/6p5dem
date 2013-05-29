@@ -1,6 +1,6 @@
 <style>
 #tabbed_box {  
-    margin: 0px auto 0px auto 0px auto;  
+    margin: 0px auto 0px auto;  
     width:300px;  
 }
 .tabbed_box h4 {  
@@ -43,12 +43,11 @@ ul.tabs li a.active {
 .content {  
     background-color:#ffffff;       
 }  
-#content_2, #content_3, #content_4 {
+#content_2, #content_3 {
  display:none; 
-}  
-ul.tabs {  
-    margin:0px; 
-	padding:0px;  
+ }  
+ ul.tabs {  
+    margin:0px; padding:0px;  
     margin-top:5px;  
     margin-bottom:6px;  
 }
@@ -93,8 +92,7 @@ ul.tabs {
 	<ul class="tabs">  
 		<li><a href="javascript:tabSwitch('tab_1', 'content_1');" id="tab_1" class="active">Profil</a></li>  
 		<li><a href="javascript:tabSwitch('tab_2', 'content_2');" id="tab_2">Diklat & Pelatihan</a></li>  
-		<li><a href="javascript:tabSwitch('tab_3', 'content_3');" id="tab_3">Pendidikan</a></li>
-		<!--li><a href="javascript:tabSwitch('tab_4', 'content_4');" id="tab_4">Pangkat</a></li-->
+		<li><a href="javascript:tabSwitch('tab_3', 'content_3');" id="tab_3">Pendidikan</a></li>  
 	</ul>   
           
         <div id="content_1" class="content">
@@ -142,15 +140,12 @@ ul.tabs {
 	</table>
 		</div>  
         <div id="content_2" class="content">
-			<table>
-				<td><a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add_diklat'?>">Tambah Data</a></td>
-			</table>
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
 				<tr>
 					<td>No</td>
-					<td>Tahun Diklat</td>
+					<td>Kode Diklat</td>
 					<td>Nama Diklat</td>
-					<td>Jenis Pelatihan</td>
+					<td>Tahun Diklat</td>
 				</tr>
 				<?
 					$i=1;
@@ -158,9 +153,9 @@ ul.tabs {
 				?>
 				<tr>
 					<td><?=$i?></td>
-					<td><?=$row->TAHUN_DIKLAT?></td>
+					<td><?=$row->KODE_DIKLAT?></td>
 					<td><?=$row->NAMA_DIKLAT?></td>
-					<td><?=$row->NAMA_PELATIHAN?></td>
+					<td><?=$row->TAHUN_DIKLAT?></td>
 				</tr>
 				<?
 					$i++;
@@ -169,15 +164,12 @@ ul.tabs {
 			</table>
 		</div>  
         <div id="content_3" class="content">
-			<table>
-				<td><a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add_pendidikan'?>">Tambah Data</a></td>
-			</table>
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
 				<tr>
 					<td>No</td>
-					<td>Nama Pendidikan</td>
 					<td>Jenjang</td>
-					<td>Tahun</td>
+					<td>Nama Sekolah/Universitas</td>
+					<td>Tahun Lulus</td>
 				</tr>
 				<?
 					$i=1;
@@ -185,8 +177,8 @@ ul.tabs {
 				?>
 				<tr>
 					<td><?=$i?></td>
-					<td><?=$row->NAMA_PENDIDIKAN?></td>
 					<td><?=$row->NAMA_JENJANG?></td>
+					<td><?=$row->NAMA_SEKOLAH?></td>
 					<td><?=$row->TAHUN_PENDIDIKAN?></td>
 				</tr>
 				<?
@@ -194,11 +186,13 @@ ul.tabs {
 					}
 				?>
 			</table>
-		</div> 
-		<div id="content_4" class="content">
-			adhjsdha
-		</div>     
-    </div>  
+		</div>  
+      
+    </div> 
+<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
+<hr/>
+			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
+<?=form_close()?>	
   
 </div>  
 </body>  

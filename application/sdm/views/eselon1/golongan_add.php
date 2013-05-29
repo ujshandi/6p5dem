@@ -2,7 +2,7 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Golongan</h1>
 	<hr/>
-	<?=form_open('golongan/proses_edit', array('class'=>'sform'))?>
+	<?=form_open('golongan/proses_add', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -16,8 +16,8 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">Id Golongan <em>*</em></label> <input name="ID_GOLONGAN" value="<?=$result->row()->ID_GOLONGAN?>" type="text" class="five" readonly="yes"/></li>
-			<li><label for="">Nama Satker <em>*</em></label> <input name="NAMA_GOLONGAN" value="<?=$result->row()->NAMA_GOLONGAN?>" type="text" class="five"/></li>
+			<li><label for="">Id Golongan <em>*</em></label> <input name="ID_GOLONGAN" value="<?=set_value('ID_GOLONGAN')?>" type="text" class="five"/></li>
+			<li><label for="">Nama Golongan <em>*</em></label> <input name="NAMA_GOLONGAN" value="<?=set_value('NAMA_GOLONGAN')?>" type="text" class="five"/></li>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

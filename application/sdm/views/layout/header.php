@@ -25,7 +25,11 @@
       <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"></a></div>
       <div class="clear"></div>
       
-      <div class="usr"><span>welcome user</span><a href="#"><?=$NAMA_LENGKAP?></a></div>
+		<ul class="homout">
+			<li><a href="<?=base_url()?>index.php"><img src="<?=base_url()?>asset/sdm2/images/icon_home_16x16.png" />HOME</a></li>
+			<li><a href="#"><img src="<?=base_url()?>asset/sdm2/images/icon_logout_16x16.png" />LOGOUT</a></li>
+		</ul>
+		<div class="usr"><span>welcome user</span><a href="#"><?=$NAMA_LENGKAP?></a></div>
     </div><!-- end image headers -->
     
 </div><!-- end header -->
