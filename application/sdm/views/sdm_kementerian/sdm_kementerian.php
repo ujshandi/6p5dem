@@ -50,7 +50,11 @@
 	  </thead>
 	</table>
 	<div class="clear">&nbsp;</div>
-	<?=$this->pagination->create_links()?>
+	<div class="paging right">
+          <ul>
+            <li><?=$this->pagination->create_links()?></li>
+          </ul>
+        </div>
 </div>
     
     <script type="text/javascript">
