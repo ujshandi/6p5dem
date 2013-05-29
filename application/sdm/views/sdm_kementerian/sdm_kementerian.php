@@ -33,11 +33,11 @@
  
     <td></td>
 		<td><input class="greenbutton" type="submit" value="TAMPILKAN" style="float:LEFT"/></td>
- 	</tr>
+ 	<hr/>
     <?=form_close() ?>
-
-	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>">Tambah Data</a>
+	<li style="float:left">
+	<a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add'?>" class="control"> <span class="add">Tambah Data</span></a>
+	</li>
 	<table width="100%">
 	  <thead>
 		<th>NIP</th>
