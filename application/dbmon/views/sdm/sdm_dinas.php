@@ -12,6 +12,16 @@
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 			$.jqplot.config.enablePlugins = true;
+<<<<<<< .mine
+			var s1 = [200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800,200, 600, 700, 1000, 800, 700, 1000, 800];
+			var ticks = [
+					<?php
+						foreach($stat->result() as $point){
+							echo "'".$point->namaprovin."', ";
+						}
+					?>
+				];
+=======
 			var s1 = [
 				<?php
 					foreach($stat->result() as $point){
@@ -26,6 +36,7 @@
 						}
 					?>
 				];
+>>>>>>> .r52
 			
 			plot1 = $.jqplot('chart1', [s1], {
 				// Only animate if we're not using excanvas (not in IE 7 or IE 8)..
