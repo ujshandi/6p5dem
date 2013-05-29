@@ -5,7 +5,7 @@
 	<title>Sistem Informasi Manajemen SDM Perhubungan - BPSDM Perhubungan - Kementerian Perhubungan RI</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	
-	<link rel="shortcut icon" href="<?=base_url()?>asset/sdm2/images/favicon.ico" />
+	<link rel="shortcut icon" href="<?=base_url()?>asset/sdm2/favicon.ico" />
 	<link type="text/css" href="<?=base_url()?>asset/sdm2/css/style.css" rel="stylesheet"  />
 	<script type="text/javascript" src="<?=base_url()?>asset/sdm2/js/jquery-min.js" ></script>
 	<script type="text/javascript" src="<?=base_url()?>asset/sdm2/js/custom.js" ></script>
