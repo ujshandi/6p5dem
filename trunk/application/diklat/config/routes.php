@@ -38,7 +38,8 @@
 |
 */
 
-$route['default_controller'] = "satker"; //"welcome"
+$route['default_controller'] = "home"; //"welcome"
+//$route['default_controller'] = "satker"; 
 $route['404_override'] = '';
 
 
