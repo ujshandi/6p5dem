@@ -18,8 +18,28 @@ class golongan extends My_Controller {
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/golongan/index/';
 		$config['total_rows'] = $this->db->count_all('SDM_GOLONGAN');
-		$config['per_page'] = '10';
+		$config['per_page'] = '2';
 		$config['num_links'] = '3';
+		
+		$config['uri_segment'] = '3';
+		// $config['full_tag_open'] = '';
+		// $config['full_tag_close'] = '';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
 
 		$this->pagination->initialize($config);	
 		
