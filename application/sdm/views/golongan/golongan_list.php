@@ -29,10 +29,11 @@
 		<?}?>
 	  </tbody>
 	</table>
-	<div class="clear">&nbsp;</div>
+	<div class="clearfix"></div>
 	<div class="paging right">
-          <ul>
-            <li><?=$this->pagination->create_links()?></li>
-          </ul>
-        </div>
+	  <ul>
+		<li><?=$this->pagination->create_links()?></li>
+	  </ul>
+	</div>
+	<div class="clearfix"></div>
 </div><!-- end wrap right content-->
