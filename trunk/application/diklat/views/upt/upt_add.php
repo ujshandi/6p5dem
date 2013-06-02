@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Satuan Kerja</h1>
+	<h1 class="heading">Data UPT</h1>
 	<hr/>
 	<?=form_open('upt/proses_add', array('class'=>'sform'))?>
 	<fieldset>
