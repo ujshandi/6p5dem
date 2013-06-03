@@ -38,7 +38,7 @@ class mdl_dosen extends CI_Model{
 		$this->db->set('TAHUN', $data['TAHUN']);
 		$this->db->set('PENDIDIKAN', $data['PENDIDIKAN']);
 		$this->db->set('JENIS_DOSEN', $data['JENIS_DOSEN']);
-		$this->db->set('KODE_UPT', $data['KODE_UPT']);
+		$this->db->set('KODE_UPT', $data['KODE_INDUK']);
 
         $result = $this->db->insert('DIKLAT_MST_DOSEN');
 

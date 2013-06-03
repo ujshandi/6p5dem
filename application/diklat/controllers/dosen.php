@@ -65,7 +65,7 @@ class dosen extends My_Controller {
 		$data['TAHUN'] = $this->input->post('TAHUN');
 		$data['PENDIDIKAN'] = $this->input->post('PENDIDIKAN');
 		$data['JENIS_DOSEN'] = $this->input->post('JENIS_DOSEN');
-		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+		$data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
 		
 		# set rules validation
 		$this->form_validation->set_rules('IDDOSEN', 'ID DOSEN', 'required');
@@ -78,8 +78,8 @@ class dosen extends My_Controller {
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
 		$this->form_validation->set_rules('PENDIDIKAN', 'PENDIDIKAN', 'required');
 		$this->form_validation->set_rules('JENIS_DOSEN', 'JENIS DOSEN', 'required');
-		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
-		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
+		$this->form_validation->set_rules('KODE_INDUK', 'KODE UPT', 'required');
+		//$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
         //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
 		
 		# set message validation
