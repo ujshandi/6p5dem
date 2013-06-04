@@ -14,6 +14,40 @@
 <script type="text/javascript" src="<?=base_url()?>asset/board/asset/frontpage/js/jtree.js"></script>
 <script type="text/javascript" src="<?=base_url()?>asset/board/asset/frontpage/js/jquery.simpleCalendar.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<?=base_url()?>asset/board/asset/frontpage/js/custom.js"></script>
+<script type="text/javascript" charset="utf-8" src="<?=base_url()?>asset/board/asset/frontpage/js/app.js"></script>
+<script type='text/javascript'>
+	function show(page,div){
+		do_scroll(0);
+		var site = "<?php echo site_url()?>";
+		$.ajax({
+		  url: site+"/"+page,
+		  success: function(response){			
+			$(div).html(response);
+		  },
+		  dataType:"html"  		
+		});
+		return false;
+	}
+	function load(page,div){
+		do_scroll(0);
+		var site = "<?php echo site_url()?>";
+		$.ajax({
+		  url: site+"/"+page,
+		  success: function(response){			
+		  $(div).html(response);
+		  },
+		dataType:"html"  		
+		});
+		return false;
+  }
+</script>
+	
+	<script type="text/javascript">	
+	$(document).ready(function () {
+		load("news/index","#berita");
+	});
+	</script>
+	
 </head>
 <body>
 
@@ -83,37 +117,8 @@
     </div><!--end infos1-->
    </div><!--end pengumuman-->
    
-   <div class="infos" style="margin-top:17px">
-   	<h3>Berita Update</h3>
-   	<div id="infos2">
-        <ul>
-            <li>
-                <div>
-                    <span>15 April 2013 | 09:39 WIB</span>
-                    <h5><a href="#">Menteri Perhubungan Resmikan Pembangunan Kampus Transportasi Terpadu Pertama di Indonesia</a></h5>
-                    <img src="<?=base_url()?>asset/board/asset/frontpage/images/pic-small.jpg" />
-                    <h6><a href="#">Jumat, 10 Mei 2013, pembangunan tahap I Kampus Transportasi Terpadu di Makassar diresmikan oleh Menteri Perhubungan, E. E. Mangindaan lewat peletakan batu pertama di Jalan Untia, Salodong, Makassar, pada pukul 09.00 Wita.</a></h6>
-                </div>
-            </li> 
-            <li>
-                <div>
-                    <span>15 Pebruari 2013 | 09:39 WIB</span>
-                    <h5><a href="#">Peresmian Balai Pendidikan Dan Pelatihan Ilmu Pelayaran (Bp2ip) Malahayati Aceh </a></h5>
-                    <img src="<?=base_url()?>asset/board/asset/frontpage/images/pic-small.jpg" />
-                    <h6><a href="#">Dunia pelayaran telah lama akrab dan menjadi topik utama yang hangat di telinga kita.  Sejarah maupun eksistensinya sudah menjadi bagian dari berdirinya republik kita tercinta ini. Dunia pelayaran di Indonesia memang sudah tercatat sejak abad ke-VII M.  Semua berawal karena bentuk geografis Indonesia yang berbentuk kepulauan sehingga melaut merupakan kebudayaan bagi nenek moyang bangsa Indonesia yang sudah tersohor di dunia</a></h6>
-                </div>
-            </li> 
-            <li>
-                <div>
-                    <span>15 Pebruari 2013 | 09:39 WIB</span>
-                    <h5><a href="#">International Education and Training Expo 2012 </a></h5>
-                    <img src="<?=base_url()?>asset/board/asset/frontpage/images/pic-small.jpg" />
-                    <h6><a href="#">Badan Pengembangan Sumber Daya Manusia Perhubungan, ikut hadir memeriahkan Pameran Pendidikan dan Pelatihan Internasional 2012 di Surabaya dan Makassar. Dalam pameran ini Badan Pengembangan SDM Perhubungan mengenalkan kepada masyarakat luas tentang Pendidikan dan Pelatihan Transportasi Darat, Laut dan Udara.
-Maksud dan tujuan adanya pameran pendidikan dan pelatihan Internasional ini adalah untuk memberikan informasi kepada masyarakat mengenai program-progran pendidikan dan pelatihan yang ada, baik di Indonesia maupun Internasional. Banyak Unversitas yang ikut juga dalam pameran ini, bahkan Univesitas Malaysia juga ikut serta dalam mengenalkan program pendidikannya.</a></h6>
-                </div>
-            </li>   
-        </ul>
-    </div><!--end infos2-->
+   <div class="infos" id="berita" style="margin-top:17px">
+   	   	
    </div><!--end berita-->
    <div class="clear"></div>
    
