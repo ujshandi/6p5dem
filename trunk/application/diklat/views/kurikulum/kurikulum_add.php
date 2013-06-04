@@ -2,7 +2,7 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Program</h1>
 	<hr/>
-	<?=form_open('program/proses_add', array('class'=>'sform'))?>
+	<?=form_open('kurikulum/proses_add', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -16,15 +16,15 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">KODE PROGRAM <em>*</em></label> <input name="KODE_PROGRAM" value="<?=set_value('KODE_PROGRAM')?>" type="text" class="three"/></li>
-			<li><label for="">NAMA PROGRAM <em>*</em></label> <input name="NAMA_PROGRAM" value="<?=set_value('NAMA_PROGRAM')?>" type="text" class="five"/></li>
-			<li><label for="">SATKER <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_INDUK';
-					$opti['value'] = set_value('KODE_INDUK');
-					echo $this->mdl_satker->getOptionUPT($opti);
-				?>
-			</li>
+			<li><label for="">KODE UPT <em>*</em></label> <input name="KODE_UPT" value="" type="text" class="five"/></li>
+			<li><label for="">KODE DIKLAT <em>*</em></label> <input name="KODE_DIKLAT" value="" type="text" class="five"/></li>
+			<li><label for="">KODE KURIKULUM <em>*</em></label> <input name="KODE_KURIKULUM" value="" type="text" class="five"/></li>
+			<li><label for="">NAMA KURIKULUM <em>*</em></label> <input name="NAMA_KURIKULUM" value="" type="text" class="five"/></li>
+			<li><label for="">SKS TEORI <em>*</em></label> <input name="SKS_TEORI" value="" type="text" class="five"/></li>
+			<li><label for="">SKS PRAKTEK <em>*</em></label> <input name="SKS_PRAKTEK" value="" type="text" class="five"/></li>
+			<li><label for="">JAM <em>*</em></label> <input name="JAM" value="" type="text" class="five"/></li>
+			<li><label for="">SEMESTER <em>*</em></label> <input name="SEMESTER" value="" type="text" class="five"/></li>
+			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

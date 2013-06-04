@@ -13,7 +13,7 @@
 		<th>SKS Praktek</th>
 		<th>jam</th>
 		<th>Semester</th>
-		<th>aksi</th>
+		<th width="140px">aksi</th>
 	  </thead>
 	  <tbody>
 		<?foreach($result->result() AS $r){?>
@@ -29,7 +29,7 @@
 				<td >
 					<a href="<?=site_url().'/kurikulum/edit/'.$r->KODE_KURIKULUM?>" class="control" >
 						<span class="edit">edit</span></a> |
-					<a href="<?=site_url().'/kurikulum/proses_delete/'.$r->KODE_PROGRAM?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
+					<a href="<?=site_url().'/kurikulum/proses_delete/'.$r->KODE_KURIKULUM?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
 				</td>
 			</tr>
