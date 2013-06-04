@@ -1,7 +1,7 @@
-
+<!--
 <div id="top"> 
     
-<div class="menu-title">Dashboard Monitoring</div><!-- end page title -->
+<div class="menu-title">Dashboard Monitoring</div>
 <div class="submenu">
     <ul>
         <li class="current"><a href="#">Dashboard Monitoring SDM</a>
@@ -9,13 +9,13 @@
         <li><a href="#">Dashboard Monitoring Diklat</a></li>
         <li><a href="#">Dashboard Monitoring Kompetensi</a></li>
     </ul>
-</div><!-- end submenu -->
+</div>
 <ul class="homout">
   <li><a href="#"><img src="<?=base_url()?>asset/diklat/images/icon_home_16x16.png" />HOME</a></li>
   <li><a href="#"><img src="<?=base_url()?>asset/diklat/images/icon_logout_16x16.png" />LOGOUT</a></li>
 </ul>
-
-</div><!-- end topmenu -->
+</div>
+--><!-- end page title --><!-- end submenu --><!-- end topmenu -->
 
   <div id="content">
     <div id="contentwrap">
@@ -24,11 +24,11 @@
 			<hr/>
 			<ul id="vmenu">
 				<li>
-					<a href="#">Dashboard Monitoring SDM</a>
+					<a href="">Dashboard Monitoring SDM</a>
 					<ul>
-						<li><a href="#">Komposisi SDM Dinas</a></li>
-						<li><a href="#">Komposisi SDM Kementrian</a></li>
-						<li><a href="#">Komposisi SDM Non-Aparatur</a></li>
+						<li><a href="<?=base_url()?>dbmon.php/sdm/dinas">Komposisi SDM Dinas</a></li>
+						<li><a href="<?=base_url()?>dbmon.php/sdm/kementrian">Komposisi SDM Kementrian</a></li>
+						<li><a href="<?=base_url()?>dbmon.php/sdm/nonaparatur">Komposisi SDM Non-Aparatur</a></li>
 					</ul>
 				</li>
 				<li>

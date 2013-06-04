@@ -50,7 +50,7 @@
       <img src="<?=base_url()?>asset/board/asset/frontpage/images/icon5.png" alt="" title="" border="0" class="feat_thumb" />
       <div class="feat_details">
       <h4>Dashboard Monitoring</h4>
-      <a href="<?php echo base_url();?>dashbaord.php" class="inlink clear">ENTER</a>
+      <a href="<?php echo base_url();?>dbmon.php" class="inlink clear">ENTER</a>
       <p>Dashboard Monitoring SDM dan Diklat.</p>
       </div>
     </div>
