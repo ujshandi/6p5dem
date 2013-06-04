@@ -50,6 +50,11 @@
 	$(document).ready(function () {
 		load("pengumuman/index","#pengumuman");
 	});
+	
+	$(document).ready(function () {
+		load("agenda/index","#agenda_kegiatan");
+	});
+	
 	</script>
 	
 </head>
@@ -115,24 +120,8 @@
         <a href="<?php echo site_url() . '/auth/login' ?>" class="more_bgcolor more_rounded centered">LOGIN</a>
     </div>
     
-    <div class="section_14">
-        <h2>Agenda Kegiatan</h2>
-        <hr/>
-        <div class="testimonial">
-        <img src="<?=base_url()?>asset/board/asset/frontpage/images/agenda_icon.png" alt="" title="" border="0" class="left" />
-        <div class="test_right">
-        <p class="feat_text"><span class="meta">Jum'at,31 September 2013</span>Menteri Perhubungan Resmikan Pembangunan Kampus Transportasi Terpadu Pertama di Indonesia </p>
-        </div>
-        <a href="#" class="read_more right">Detail</a>
-        </div>
-        
-        <div class="testimonial">
-        <img src="<?=base_url()?>asset/board/asset/frontpage/images/agenda_icon.png" alt="" title="" border="0" class="left" />
-        <div class="test_right">
-        <p class="feat_text"><span class="meta">Jum'at,31 September 2013</span>Pengumuman Pemenang Kajian Man Power Planning SDM Perhubungan (Lanjutan)</p>
-        </div>
-        <a href="#" class="read_more right">Detail</a>
-        </div>
+    <div class="section_14" id="agenda_kegiatan">
+       
         <div class="clear">&nbsp;</div>
         <a href="#" class="inlink right">agenda lainnya</a>
     </div>
