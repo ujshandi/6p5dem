@@ -1,12 +1,12 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Edit Data Aparatur Dinas</h1>
-	<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
+	<h1 class="heading">Edit Data Aparatur Kementerian</h1>
+	<?=form_open('sdm_kementerian/search', array('class'=>'sform'))?>
 	<hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>
 	<hr/>
-	<?=form_open('sdm_dinas/proses_edit', array('class'=>'sform'))?>
+	<?=form_open('sdm_kementerian/proses_edit', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -20,7 +20,7 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">Id Peg Dinas <em>*</em></label> <input name="ID_PEG_DINAS" value="<?=$result->row()->ID_PEG_DINAS?>" type="text" class="five" readonly="yes"/></li>
+			<li><label for="">Id Peg Kementerian <em>*</em></label> <input name="ID_PEG_KEMENTRIAN" value="<?=$result->row()->ID_PEG_KEMENTRIAN?>" type="text" class="five" readonly="yes"/></li>
 			<li><label for="">NIP <em>*</em></label> <input name="NIP" value="<?=$result->row()->NIP?>" type="text" class="five" readonly="yes"/></li>
 			<li><label for="">Alamat <em>*</em></label> <input name="ALAMAT" value="<?=$result->row()->ALAMAT?>" type="text" class="five"/></li>
 			<li><label for="">Golongan   <em>*</em></label>

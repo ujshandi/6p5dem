@@ -5,10 +5,10 @@
 	<title>Sistem Informasi Manajemen SDM Perhubungan - BPSDM Perhubungan - Kementerian Perhubungan RI</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	
-	<link rel="shortcut icon" href="<?=base_url()?>asset/globalstyle/favicon.ico" />
-	<link type="text/css" href="<?=base_url()?>asset/globalstyle/css/style.css" rel="stylesheet"  />
-	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery-min.js" ></script>
-	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/custom.js" ></script>
+	<link rel="shortcut icon" href="<?=base_url()?>asset/sdm2/favicon.ico" />
+	<link type="text/css" href="<?=base_url()?>asset/sdm2/css/style.css" rel="stylesheet"  />
+	<script type="text/javascript" src="<?=base_url()?>asset/sdm2/js/jquery-min.js" ></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/sdm2/js/custom.js" ></script>
 </head>
 
 <body>
@@ -27,8 +27,8 @@
       <div class="right">
           <div class="usr"><span>welcome user</span><a href="#"><?=$NAMA_LENGKAP?></a></div>
             <ul class="homout">
-                <li><a href="<?=base_url()?>index.php"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
-                <li><a href="<?=base_url()?>index.php/auth/logout"><img src="<?=base_url()?>asset/globalstyle/images/icon_logout_16x16.png" />LOGOUT</a></li>
+                <li><a href="<?=base_url()?>index.php"><img src="<?=base_url()?>asset/sdm2/images/icon_home_16x16.png" />HOME</a></li>
+                <li><a href="#"><img src="<?=base_url()?>asset/sdm2/images/icon_logout_16x16.png" />LOGOUT</a></li>
             </ul>
       </div>
     </div><!-- end image headers -->

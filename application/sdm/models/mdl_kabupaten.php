@@ -59,10 +59,11 @@ class Mdl_Kabupaten extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
-		$this->db->set('NAMA_GOLONGAN', $data['NAMA_GOLONGAN']);
-		$this->db->where('ID_GOLONGAN', $data['ID_GOLONGAN']);
-		$result = $this->db->update('SDM_GOLONGAN');
+		$this->db->set('KODEPROVIN', $data['KODEPROVIN']);
+		$this->db->set('KODEKABUP', $data['KODEKABUP']);
+		$this->db->set('NAMAKABUP', $data['NAMAKABUP']);
+		$this->db->where('KODEKABUP', $data['KODEKABUP']);
+		$result = $this->db->update('SDM_KABUPATEN');
 		
 		if($result) {
 			return TRUE;
@@ -74,8 +75,8 @@ class Mdl_Kabupaten extends CI_Model{
 	
 	function delete($data){
 		$this->db->flush_cache();
-		$this->db->where('ID_GOLONGAN', $data['id']);
-		$result = $this->db->delete('SDM_GOLONGAN');
+		$this->db->where('KODEKABUP', $data['id']);
+		$result = $this->db->delete('SDM_KABUPATEN');
 		
 		if($result) {
 			return TRUE;

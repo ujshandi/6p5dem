@@ -49,7 +49,7 @@ class Kabupaten extends My_Controller {
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('kabupaten/kabupaten_add',$data);
 		}else{
-			$this->mdl_golongan->insert($data);
+			$this->mdl_kabupaten->insert($data);
 			redirect('kabupaten');
 		}
 		
@@ -58,8 +58,8 @@ class Kabupaten extends My_Controller {
 	
 	public function edit($id){
 		$this->open();
-		
 		$data['KODEKABUP'] = $id;
+		$data['option_provin'] = $this->mdl_kabupaten->getprovin();
 		$data['result'] = $this->mdl_kabupaten->getDataEdit($id);
 		$this->load->view('kabupaten/kabupaten_edit', $data);
 		
@@ -68,13 +68,14 @@ class Kabupaten extends My_Controller {
 	
 	public function proses_edit(){
 		$this->open();
-		
+		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
 		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
-		//$data['kode_induk'] = $this->input->post('kode_induk');
 		$data['NAMAKABUP'] = $this->input->post('NAMAKABUP');
 		
 		# set rules validation
 		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
+		$this->form_validation->set_rules('KODEPROVIN', 'Provinsi', 'required');
+		$this->form_validation->set_rules('KODEKABUP', 'Kode Kabupaten', 'required');
 		$this->form_validation->set_rules('NAMAKABUP', 'Nama Kabupaten', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -82,7 +83,7 @@ class Kabupaten extends My_Controller {
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('kabupaten/kabupaten_edit',$data);
 		}else{
-			$this->mdl_golongan->update($data);
+			$this->mdl_kabupaten->update($data);
 			redirect('kabupaten');
 		}
 		

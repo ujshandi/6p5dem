@@ -113,24 +113,24 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 	public function get_data_duk($e1, $e2, $e3, $e4){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('pegawai_kementrian a');
-		$this->db->join('golongan b', 'b.id_golongan = a.id_golongan');
-		$this->db->join('jabatan c', 'c.id_jabatan = a.id_jabatan');
+		$this->db->from('SDM_PEG_KEMENTRIAN');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_KEMENTRIAN.ID_GOLONGAN');
+		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_KEMENTRIAN.ID_JABATAN');
 		
 		if($e1 != '0'){
-			$this->db->where('id_eselon_1', $e1);	
+			$this->db->where('ID_ESELON_1', $e1);	
 		}
 		if($e2 != '0'){
-			$this->db->where('id_eselon_2', $e2);	
+			$this->db->where('ID_ESELON_2', $e2);	
 		}
 		if($e3 != '0'){
-			$this->db->where('id_eselon_3', $e3);	
+			$this->db->where('ID_ESELON_3', $e3);	
 		}
 		if($e4 != '0'){
-			$this->db->where('id_eselon_4', $e4);	
+			$this->db->where('ID_ESELON_4', $e4);	
 		}
 		
-		$this->db->order_by('a.id_golongan', 'ASC');
+		$this->db->order_by('SDM_PEG_KEMENTRIAN.ID_GOLONGAN', 'ASC');
 		
 		return $this->db->get();
 		
@@ -160,8 +160,7 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('SDM_DIKLAT_PEG_KEMENTRIAN');
-		$this->db->join('SDM_PELATIHAN', 'SDM_PELATIHAN.ID_PELATIHAN = SDM_DIKLAT_PEG_KEMENTRIAN.ID_PELATIHAN');
-		$this->db->join('SDM_DIKLAT', 'SDM_DIKLAT.ID_DIKLAT = SDM_DIKLAT_PEG_KEMENTRIAN.ID_DIKLAT');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_DIKLAT.KODE_DIKLAT = SDM_DIKLAT_PEG_KEMENTRIAN.KODE_DIKLAT');
 		$this->db->where('ID_PEG_KEMENTRIAN', $id);
 		return $this->db->get();
 		
@@ -176,32 +175,17 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		return $this->db->get();
 		
 	}
-	
-	public function update($id){
-		$id_peg_kem = $this->input->post('id_peg_kementrian');
-		$nip	 	= $this->input->post('nip');
-		$nama	 	= $this->input->post('nama');
-		$alamat	 	= $this->input->post('alamat');
-		$data=array(
-			'nip'	 => $nip,
-			'nama'	 => $nama,
-			'alamat' => $alamat	
-		);
 		
-		$this->db->where('id_peg_kementrian', $id);
-		$this->db->update('pegawai_kementrian', $data);
-	}
-	
 	public function getgolongan(){
 		$result = array();
 		$this->db->select('*');
-		$this->db->from('golongan');
-		$this->db->order_by('id_golongan','ASC');
+		$this->db->from('SDM_GOLONGAN');
+		$this->db->order_by('ID_GOLONGAN','ASC');
 		$array_keys_values = $this->db->get();
     	foreach ($array_keys_values->result() as $row)
         {
             $result[0]= '-Pilih Golongan-';
-            $result[$row->id_golongan]= $row->nama_golongan;
+            $result[$row->ID_GOLONGAN]= $row->NAMA_GOLONGAN;
         }
  
         return $result;
@@ -210,53 +194,151 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 	public function getjabatan(){
 		$result = array();
 		$this->db->select('*');
-		$this->db->from('jabatan');
-		$this->db->order_by('id_jabatan','ASC');
+		$this->db->from('SDM_JABATAN');
+		$this->db->order_by('ID_JABATAN','ASC');
 		$array_keys_values = $this->db->get();
     	foreach ($array_keys_values->result() as $row)
         {
             $result[0]= '-Pilih Jabatan-';
-            $result[$row->id_jabatan]= $row->nama_jabatan;
+            $result[$row->ID_JABATAN]= $row->NAMA_JABATAN;
         }
  
         return $result;
 	}
 	
-	public function add_peg($nip,$nama,$alamat,$tmptLahir,$tglLahir,$agama,$jenisKelamin,$status,$jmlAnak,$id_eselon_1,$id_eselon_2,$id_eselon_3,$id_eselon_4,$id_golongan,$id_jabatan,$TMT,$statusPeg,$keterangan)
-	{
-		$add =  array(
-                    'id_peg_kementrian' => '',
-                    'nip' => $nip,
-					'nama' => $nama,
-					'alamat' => $alamat,
-					'tempat_lahir' => $tmptLahir,
-					'tgl_lahir' => $tglLahir,
-					'agama' => $agama,
-					'jenis_kelamin' => $jenisKelamin,
-					'status' => $status,
-                    'jml_anak' => $jmlAnak,
-                    'id_eselon_1' => $id_eselon_1,
-					'id_eselon_2' => $id_eselon_2,
-					'id_eselon_3' => $id_eselon_3,
-					'id_eselon_4' => $id_eselon_4,
-					'id_golongan' => $id_golongan,
-					'id_jabatan'  => $id_jabatan,
-					'tahun_pengangkatan' => $TMT,
-					'status_peg' => $statusPeg,
-					'keterangan' => $keterangan
-                );
- 
-        $input = $this->db->insert('pegawai_kementerian', $add);
- 
-        if($input)
+	function insert($data){
+		$this->db->flush_cache();
+		
+		$this->db->set('NIP',  $data['NIP']);
+		$this->db->set('NAMA', $data['NAMA']);
+		$this->db->set('ID_ESELON_1', $data['ID_ESELON_1']);
+		$this->db->set('ID_ESELON_2', $data['ID_ESELON_2']);
+		$this->db->set('ID_ESELON_3', $data['ID_ESELON_3']);
+		$this->db->set('ID_ESELON_4', $data['ID_ESELON_4']);
+		$this->db->set('ALAMAT', $data['ALAMAT']);
+		$this->db->set('TMPT_LAHIR', $data['TMPT_LAHIR']);
+		$this->db->set('TGL_LAHIR', 'TO_TIMESTAMP(\''.$data['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
+		$this->db->set('AGAMA', $data['AGAMA']);
+		$this->db->set('JENIS_KELAMIN', $data['JENIS_KELAMIN']);
+		$this->db->set('STATUS', $data['STATUS']);
+		$this->db->set('JML_ANAK', $data['JML_ANAK']);
+		$this->db->set('STATUS_PEG', $data['STATUS_PEG']);
+		$this->db->set('TMT', $data['TMT']);
+		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
+		$this->db->set('TMT_GOLONGAN', $data['TMT_GOLONGAN']);
+		$this->db->set('ID_JABATAN', $data['ID_JABATAN']);
+		$this->db->set('TMT_JABATAN', $data['TMT_JABATAN']);
+		$this->db->set('KETERANGAN', $data['KETERANGAN']);
+		
+		$result = $this->db->insert('SDM_PEG_KEMENTRIAN');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	//edit data
+	
+	function getDataEdit($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_KEMENTRIAN');
+		$this->db->where('ID_PEG_KEMENTRIAN', $id);
+		
+		return $this->db->get();
+	}
+	
+	function update($data){
+		$this->db->flush_cache();
+		$this->db->set('ALAMAT', $data['ALAMAT']);
+		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
+		$this->db->set('TMT_GOLONGAN', $data['TMT_GOLONGAN']);
+		$this->db->set('ID_JABATAN', $data['ID_JABATAN']);
+		$this->db->set('TMT_JABATAN', $data['TMT_JABATAN']);
+		$this->db->where('ID_PEG_KEMENTRIAN', $data['ID_PEG_KEMENTRIAN']);
+		$result = $this->db->update('SDM_PEG_KEMENTRIAN');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	//add diklat & add pendidikan
+	
+	function getData1($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_KEMENTRIAN');
+		$this->db->where('ID_PEG_KEMENTRIAN', $id);
+		
+		return $this->db->get();
+	}
+	
+	public function getjenjang(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('SDM_JENJANG_PENDIDIKAN');
+		$this->db->order_by('ID_JENJANG','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
         {
-            return TRUE;
+            $result[0]= '-Pilih Jenjang-';
+            $result[$row->ID_JENJANG]= $row->NAMA_JENJANG;
         }
-        else
+ 
+        return $result;
+	}
+	
+	public function getdiklat(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_DIKLAT');
+		$this->db->order_by('KODE_DIKLAT','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
         {
-            return FALSE;
+            $result[0]= '-Pilih Diklat-';
+            $result[$row->KODE_DIKLAT]= $row->NAMA_DIKLAT;
         }
-	   //return $this->db->insert($this->peg_kementrian,$data);
- 	}
+ 
+        return $result;
+	}
+	
+	function insert_diklat($data){
+		$this->db->flush_cache();
+		$this->db->set('ID_PEG_KEMENTRIAN', $data['ID_PEG_KEMENTRIAN']);
+		$this->db->set('KODE_DIKLAT',  trim($data['KODE_DIKLAT']));
+		$this->db->set('TAHUN_DIKLAT', $data['TAHUN_DIKLAT']);
+		$result = $this->db->insert('SDM_DIKLAT_PEG_KEMENTRIAN');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function insert_pendidikan($data){
+		$this->db->flush_cache();
+		$this->db->set('ID_PEG_KEMENTRIAN', $data['ID_PEG_KEMENTRIAN']);
+		$this->db->set('ID_JENJANG',  trim($data['ID_JENJANG']));
+		$this->db->set('TAHUN_PENDIDIKAN', $data['TAHUN_PENDIDIKAN']);
+		$this->db->set('NAMA_SEKOLAH', $data['NAMA_SEKOLAH']);
+		$result = $this->db->insert('SDM_PEND_FORMAL_KEM');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
 }
 ?>

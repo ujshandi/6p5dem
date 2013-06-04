@@ -35,6 +35,8 @@
 					<input type="hidden" name="data[<?=$x?>][KODEKABUP]" value="<?=$r->KODEKABUP?>" />
 					
 					<input type="hidden" name="data[<?=$x?>][KODEPROVIN]" value="<?=$r->KODEPROVIN?>" />
+					<input type="hidden" name="data[<?=$x?>][TMT_GOLONGAN]" value="<?=$r->TMT_GOLONGAN?>" />
+					<input type="hidden" name="data[<?=$x?>][TMT_JABATAN]" value="<?=$r->TMT_JABATAN?>" />
 
 					<tr>
 						<td><?=$x+1?></td>

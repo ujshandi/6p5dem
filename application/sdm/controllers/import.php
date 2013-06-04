@@ -76,9 +76,11 @@ class Import extends MY_Controller {
 					$data_tmp[$x]['KETERANGAN'] 		= $this->excel->val($i, 10);
 					$data_tmp[$x]['JUMLAH_ANAK'] 		= $this->excel->val($i, 11);
 					$data_tmp[$x]['KODEKABUP'] 			= $this->excel->val($i, 12);
-					$data_tmp[$x]['ID_GOLONGAN'] 		= $this->golongan($this->excel->val($i, 13), $dt_golongan);
+					$data_tmp[$x]['KODEPROVIN'] 		= $this->excel->val($i, 13);
 					$data_tmp[$x]['ID_JABATAN'] 		= $this->jabatan($this->excel->val($i, 14), $dt_jabatan);
-					$data_tmp[$x]['KODEPROVIN'] 		= $this->excel->val($i, 15);
+					$data_tmp[$x]['ID_GOLONGAN'] 		= $this->golongan($this->excel->val($i, 15), $dt_golongan);
+					$data_tmp[$x]['TMT_GOLONGAN'] 		= $this->excel->val($i, 16);
+					$data_tmp[$x]['TMT_JABATAN'] 		= $this->excel->val($i, 17);
 					
 					$data_tmp[$x]['LENGKAP'] = TRUE;
 					
@@ -145,7 +147,7 @@ class Import extends MY_Controller {
 	}
 	
 	function import_sukses(){
-		echo 'import sukses';
+		redirect('sdm_dinas/search');
 	}
 	
 	function verifikasi(){

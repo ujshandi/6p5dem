@@ -85,7 +85,7 @@ ul.tabs li a.active {
 <h1 class="heading">Tambah Data Diklat & Pendidikan Pegawai</h1>
 <hr/>
 <body>
-<div id="tabbed_box_1" class="tabbed_box">
+<div id="tabbed_box_1" class="tabbed_box">  
 	<div class="tabbed_area">  
 	<script src="<?=base_url()?>asset/sdm2/js/function2.js" type="text/javascript"></script>   
 	<ul class="tabs">  
@@ -93,7 +93,7 @@ ul.tabs li a.active {
 		<li><a href="javascript:tabSwitch('tab_2', 'content_2');" id="tab_2">Pendidikan</a></li>    
 	</ul>
 	<div id="content_1" class="content">
-	<?=form_open('sdm_dinas/proses_add_diklat', array('class'=>'sform'))?>
+	<?=form_open('sdm_kementerian/proses_add_diklat', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -107,7 +107,7 @@ ul.tabs li a.active {
 			} 
 		?>
 		<ol>
-			<li><label for="">Id Pegawai <em>*</em></label> <input name="ID_PEG_DINAS" value="<?=$result->row()->ID_PEG_DINAS?>" type="text" class="five" readonly="yes"/></li>
+			<li><label for="">Id Pegawai <em>*</em></label> <input name="ID_PEG_KEMENTRIAN" value="<?=$result->row()->ID_PEG_KEMENTRIAN?>" type="text" class="five" readonly="yes"/></li>
 			<li><label for="">Diklat   <em>*</em></label>
 				<?php
 					echo form_dropdown("KODE_DIKLAT", $option_diklat, $this->input->post('KODE_DIKLAT'),"id='KODE_DIKLAT'");
@@ -121,7 +121,7 @@ ul.tabs li a.active {
 	<?=form_close()?>
 	</div>
 	<div id="content_2" class="content">
-	<?=form_open('sdm_dinas/proses_add_pendidikan', array('class'=>'sform'))?>
+	<?=form_open('sdm_kementerian/proses_add_pendidikan', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -135,7 +135,7 @@ ul.tabs li a.active {
 			} 
 		?>
 		<ol>
-			<li><label for="">Id Pegawai <em>*</em></label> <input name="ID_PEG_DINAS" value="<?=$result->row()->ID_PEG_DINAS?>" type="text" class="five" readonly="yes"/></li>
+			<li><label for="">Id Pegawai <em>*</em></label> <input name="ID_PEG_KEMENTRIAN" value="<?=$result->row()->ID_PEG_KEMENTRIAN?>" type="text" class="five" readonly="yes"/></li>
 			<li><label for="">Jenjang Pendidikan   <em>*</em></label>
 				<?php
 					echo form_dropdown("ID_JENJANG", $option_jenjang, $this->input->post('ID_JENJANG'),"id='ID_JENJANG'");
@@ -150,7 +150,7 @@ ul.tabs li a.active {
 	<?=form_close()?>
 	</div>
 </div>
-<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
+<?=form_open('sdm_kementerian/search', array('class'=>'sform'))?>
 <hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>

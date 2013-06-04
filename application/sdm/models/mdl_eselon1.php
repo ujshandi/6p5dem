@@ -19,18 +19,18 @@ class mdl_eselon1 extends CI_Model{
 	function getDataEdit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('SDM_GOLONGAN');
-		$this->db->where('ID_GOLONGAN', $id);
+		$this->db->from('SDM_ESELON1');
+		$this->db->where('ID_ESELON_1', $id);
 		
 		return $this->db->get();
 	}
 
 	function insert($data){
 		$this->db->flush_cache();
-		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
-		$this->db->set('NAMA_GOLONGAN', $data['NAMA_GOLONGAN']);
+		$this->db->set('ID_ESELON_1', $data['ID_ESELON_1']);
+		$this->db->set('NAMA_ESELON_1', $data['NAMA_ESELON_1']);
 		//$this->db->set('KETERANGAN', $data['']);
-		$result = $this->db->insert('SDM_GOLONGAN');
+		$result = $this->db->insert('SDM_ESELON1');
 		
 		if($result) {
 			return TRUE;
@@ -42,10 +42,10 @@ class mdl_eselon1 extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
-		$this->db->set('NAMA_GOLONGAN', $data['NAMA_GOLONGAN']);
-		$this->db->where('ID_GOLONGAN', $data['ID_GOLONGAN']);
-		$result = $this->db->update('SDM_GOLONGAN');
+		$this->db->set('ID_ESELON_1', $data['ID_ESELON_1']);
+		$this->db->set('NAMA_ESELON_1', $data['NAMA_ESELON_1']);
+		$this->db->where('ID_ESELON_1', $data['ID_ESELON_1']);
+		$result = $this->db->update('SDM_ESELON1');
 		
 		if($result) {
 			return TRUE;
@@ -57,8 +57,8 @@ class mdl_eselon1 extends CI_Model{
 	
 	function delete($data){
 		$this->db->flush_cache();
-		$this->db->where('ID_GOLONGAN', $data['id']);
-		$result = $this->db->delete('SDM_GOLONGAN');
+		$this->db->where('ID_ESELON_1', $data['id']);
+		$result = $this->db->delete('SDM_ESELON1');
 		
 		if($result) {
 			return TRUE;

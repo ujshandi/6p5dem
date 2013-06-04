@@ -1,8 +1,8 @@
 <!-- page content -->
 	<div class="wrap_right bgcontent">
-	<h1 class="heading">Data Aparatur Kementerian</h1>
+	<h1 class="heading">Data Aparatur Kementerian Berdasarkan Duk</h1>
     <hr/>
-	<?=form_open('sdm_kementerian/search')?>
+	<?=form_open('sdm_kementerian/search_duk')?>
 	<div id="eselon1">
    Eselon I : <br/>
     <?php
@@ -13,82 +13,49 @@
     <div id="eselon2">
     Eselon II :<br/>
     <?php
-        echo form_dropdown("ID_ESELON_2", $option_eselon2, $this->input->post('ID_ESELON_2'),"id='ID_ESELON_2'");
+        echo form_dropdown("ID_ESELON_2",array('0'=>'Pilih Eselon I Dahulu'),'',"id='ID_ESELON_2'",$this->input->post('ID_ESELON_2'));
     ?>
     </div>
  
     <div id="eselon3">
     Eselon III :<br/>
     <?php
-        echo form_dropdown("ID_ESELON_3", $option_eselon3, $this->input->post('ID_ESELON_3'),"id='ID_ESELON_3'");
+        echo form_dropdown("ID_ESELON_3",array('0'=>'Pilih Eselon II Dahulu'),'',"id='ID_ESELON_3'",$this->input->post('ID_ESELON_3'));
     ?>
     </div>
     
     <div id="eselon4">
     Eselon IV :<br/>
     <?php
-       echo form_dropdown("ID_ESELON_4", $option_eselon4, $this->input->post('ID_ESELON_4'),"id='ID_ESELON_4'");
+        echo form_dropdown("ID_ESELON_4",array('0'=>'Pilih Eselon III Dahulu'),'',"id='ID_ESELON_4'",$this->input->post('ID_ESELON_4') );
     ?>
     </div>
  
     <td></td>
-		<td><input class="greenbutton" type="submit" value="Tampilkan" style="Right"/></td>
+		<td><input class="greenbutton" type="submit" value="TAMPILKAN" style="float:LEFT"/></td>
  	<hr/>
     <?=form_close() ?>
-	<li style="float:left">
-	<a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add'?>" class="control"> <span class="add">Tambah Data</span></a>
-	</li>
-	<table width="100%">
-	  <thead>
-		<th>No</th>
-		<th>Nip</th>
-		<th>Nama</th>
-		<th>Alamat</th>
-		<th>TMT</th>
-		<th>Jabatan</th>
-		<th>Golongan</th>
-		<th>aksi</th>
-	  </thead>
-	  <tbody>
-	  <?
-		$i=1;
-		foreach($result->result() as $row){
-	  ?>
-		<tr class='gradeC'>
-				<td width='5%'><?=$i?></td>
-				<td width='5%'><?=$row->NIP?></td>
-				<td width='10%'><?=$row->NAMA?></td>
-				<td width='10%'><?=$row->ALAMAT?></td>
-				<td width='5%'><?=$row->TMT?></td>
-				<td width='10%'><?=$row->NAMA_JABATAN?></td>
-				<td width='5%'><?=$row->NAMA_GOLONGAN?></td>
-				<td width='7%'>
-					<a href="<?=site_url().'/sdm_kementerian/add_diklat/'.$row->ID_PEG_KEMENTRIAN?>">
-						<img src="<?=base_url()?>asset/sdm2/images/ic-add.png" />&nbsp;
-					</a>
-					<a href="<?=site_url().'/sdm_kementerian/edit/'.$row->ID_PEG_KEMENTRIAN?>">
-						<img src="<?=base_url()?>asset/sdm2/images/ic-edit.png" />&nbsp; 
-					</a>
-					<a href="<?=site_url().'/sdm_kementerian/detail/'.$row->ID_PEG_KEMENTRIAN?>">
-						<img src="<?=base_url()?>asset/sdm2/images/check.png" />&nbsp;
-					</a>
-					<a href="<?=site_url().'/sdm_kementerian/detail/'.$row->ID_PEG_KEMENTRIAN?>">
-						<img src="<?=base_url()?>asset/sdm2/images/ic-delete.png" />
-					</a>
-				</td>
-			</tr>
-      <?
-		$i++;
-		}
-	  ?>
-	  </tbody>
-	</table>
+
+	<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
+    <thead>
+	<tr>
+      <th width="4%" rowspan="2">No</th>
+      <th width="12%" rowspan="2">Nip</th>
+	  <th width="21%" rowspan="2">Nama</th>
+      <th colspan="2" align="center">Pangkat</th>
+      <th colspan="2" align="center">Jabatan</th>
+      <th width="15%" rowspan="2" align="center"> Tahun Pengangkatan</th>
+    </tr>
+    <tr>
+      <th width="6%" align="center">Gol</th>
+      <th width="6%" align="center">TMT</th>
+      <th width="20%">Jabatan</th>
+      <th width="8%" align="center">TMT</th>
+    </tr>
+	</thead>
+ </table>
 	<div class="clear">&nbsp;</div>
-	<div class="paging right">
-          <ul>
-            <li><?=$this->pagination->create_links()?></li>
-          </ul>
-        </div>
+	<?=$this->pagination->create_links()?>
 </div>
     
     <script type="text/javascript">
@@ -146,4 +113,4 @@
                     });
                 }
         });
-       </script>
+    </script>

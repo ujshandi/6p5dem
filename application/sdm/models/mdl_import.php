@@ -29,9 +29,11 @@ class mdl_import extends CI_Model
 			$this->db->set('KETERANGAN', 		$data[$i]['KETERANGAN']);
 			$this->db->set('JML_ANAK', 			$data[$i]['JUMLAH_ANAK']);
 			$this->db->set('KODEKABUP', 		$data[$i]['KODEKABUP']);
-			$this->db->set('ID_GOLONGAN', 		$data[$i]['ID_GOLONGAN']);
-			$this->db->set('ID_JABATAN', 		$data[$i]['ID_JABATAN']);
 			$this->db->set('KODEPROVIN', 		$data[$i]['KODEPROVIN']);
+			$this->db->set('ID_JABATAN', 		$data[$i]['ID_JABATAN']);
+			$this->db->set('ID_GOLONGAN', 		$data[$i]['ID_GOLONGAN']);
+			$this->db->set('TMT_GOLONGAN', 		$data[$i]['TMT_GOLONGAN']);
+			$this->db->set('TMT_JABATAN', 		$data[$i]['TMT_JABATAN']);
 			
 			//$this->db->set('userid', 		$data[$i]['kodeprovin']);
 			
@@ -65,9 +67,11 @@ class mdl_import extends CI_Model
 			$this->db->set('KETERANGAN', 		$data[$i]['KETERANGAN']);
 			$this->db->set('JML_ANAK', 			$data[$i]['JML_ANAK']);
 			$this->db->set('KODEKABUP', 		$data[$i]['KODEKABUP']);
-			$this->db->set('ID_GOLONGAN', 		$data[$i]['ID_GOLONGAN']);
-			$this->db->set('ID_JABATAN', 		$data[$i]['ID_JABATAN']);
 			$this->db->set('KODEPROVIN', 		$data[$i]['KODEPROVIN']);
+			$this->db->set('ID_JABATAN', 		$data[$i]['ID_JABATAN']);
+			$this->db->set('ID_GOLONGAN', 		$data[$i]['ID_GOLONGAN']);
+			$this->db->set('TMT_GOLONGAN', 		$data[$i]['TMT_GOLONGAN']);
+			$this->db->set('TMT_JABATAN', 		$data[$i]['TMT_JABATAN']);
 			
 			$this->db->insert('SDM_PEG_DINAS');
 			
