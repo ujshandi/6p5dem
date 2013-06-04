@@ -4,6 +4,7 @@ class Sdm_dinas extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
+		$this->load->library('excel');
 		$this->load->model('mdl_sdm_dinas');
 	}
 	
@@ -32,6 +33,14 @@ class Sdm_dinas extends My_Controller {
 			if('IS_AJAX') {
             $data['option_kabupkota'] = $this->mdl_sdm_dinas->getkabupkota();
        		$this->load->view('sdm_dinas/kabupkota',$data);
+            }
+    }
+	
+	public function select_kabupkota2(){
+    			
+			if('IS_AJAX') {
+            $data['option_kabupkota'] = $this->mdl_sdm_dinas->getkabupkota();
+       		$this->load->view('sdm_dinas/kabupkota2',$data);
             }
     }
 
@@ -95,7 +104,7 @@ class Sdm_dinas extends My_Controller {
 			$this->load->view('sdm_dinas/diklat_add',$data);
 		}else{
 			$this->mdl_sdm_dinas->insert_diklat($data);
-			redirect('sdm_dinas');
+			redirect('sdm_dinas/search');
 		}
 		
 		$this->close();
@@ -204,6 +213,57 @@ class Sdm_dinas extends My_Controller {
 			$this->load->view('sdm_dinas/sdm_dinas_edit',$data);
 		}else{
 			$this->mdl_sdm_dinas->update($data);
+			redirect('sdm_dinas');
+		}
+		
+		$this->close();
+	}
+	
+	public function add(){
+		$this->open();
+		$data['option_golongan'] = $this->mdl_sdm_dinas->getgolongan();
+		$data['option_jabatan'] = $this->mdl_sdm_dinas->getjabatan();
+		$data['option_provin'] = $this->mdl_sdm_dinas->getprovin();
+		$this->load->view('sdm_dinas/dinas_add',$data);
+		$this->close();
+	}
+	
+	public function proses_add(){
+		$this->open();
+		//$data['ID_PEG_DINAS'] = $this->input->post('ID_PEG_DINAS');
+		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
+		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
+		$data['NIP'] = $this->input->post('NIP');
+		$data['NAMA'] = $this->input->post('NAMA');
+		$data['ALAMAT'] = $this->input->post('ALAMAT');
+		$data['JENIS_KELAMIN'] = $this->input->post('JENIS_KELAMIN');
+		$data['AGAMA'] = $this->input->post('AGAMA');
+		$data['STATUS'] = $this->input->post('STATUS');
+		$data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+		$data['TMPT_LAHIR'] = $this->input->post('TMPT_LAHIR');
+		$data['JML_ANAK'] = $this->input->post('JML_ANAK');
+		$data['TMT'] = $this->input->post('TMT');
+		$data['ID_GOLONGAN'] = $this->input->post('ID_GOLONGAN');
+		$data['TMT_GOLONGAN'] = $this->input->post('TMT_GOLONGAN');
+		$data['ID_JABATAN'] = $this->input->post('ID_JABATAN');
+		$data['TMT_JABATAN'] = $this->input->post('TMT_JABATAN');
+		$data['KETERANGAN'] = $this->input->post('KETERANGAN');
+		$data['STATUS_PEG'] = $this->input->post('STATUS_PEG');
+		# set rules validation
+		$this->form_validation->set_rules('NIP', 'NIP', 'required');
+		$this->form_validation->set_rules('NAMA', 'NAMA', 'required');
+		$this->form_validation->set_rules('ALAMAT', 'ALAMAT', 'required');
+		$this->form_validation->set_rules('TMT', 'Tahun Pengangkatan', 'required');
+		$this->form_validation->set_rules('TMT_GOLONGAN', 'Tahun Golongan', 'required');
+		$this->form_validation->set_rules('TMT_JABATAN', 'Tahun Jabatan', 'required');
+		
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('sdm_dinas/dinas_add',$data);
+		}else{
+			$this->mdl_sdm_dinas->insert($data);
 			redirect('sdm_dinas');
 		}
 		

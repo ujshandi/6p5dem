@@ -11,7 +11,7 @@
     margin-bottom:10px;  
 } 
 .tabbed_area {  
-    border:1px solid #494e52;  
+    border:1px solid #cccccc;  
     padding:8px;      
 }   
 ul.tabs {  
@@ -22,7 +22,7 @@ ul.tabs li {
     display:inline;  
 }  
 ul.tabs li a {  
-    background-color:#464c54;  
+    background-color:#666666;  
     color:#ffffff;  
     padding:8px 14px 8px 14px;  
     text-decoration:none;  
@@ -83,10 +83,15 @@ ul.tabs {
 </style>
 <!-- contenna -->
 <div class="wrap_right bgcontent">
+<h1 class="heading">Detail Data Pegawai</h1>
+	<?=form_open('sdm_kementerian/search', array('class'=>'sform'))?>
+	<hr/>
+			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
+<?=form_close()?>
+	<hr/>
 <body>  
   
-<div id="tabbed_box_1" class="tabbed_box">  
-    <h4>Detail Data Pegawai</h4>  
+<div id="tabbed_box_1" class="tabbed_box">    
     <div class="tabbed_area">  
       
     <script src="<?=base_url()?>asset/sdm2/js/function.js" type="text/javascript"></script>   
@@ -142,25 +147,22 @@ ul.tabs {
 	</table>
 		</div>  
         <div id="content_2" class="content">
-			<table>
-				<td><a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add_diklat'?>">Tambah Data</a></td>
-			</table>
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
-				<tr>
+				<thead>
 					<td>No</td>
-					<td>Tahun Diklat</td>
+					<td>Kode Diklat</td>
 					<td>Nama Diklat</td>
-					<td>Jenis Pelatihan</td>
-				</tr>
+					<td>Tahun Diklat</td>
+				</thead>
 				<?
 					$i=1;
 					foreach($result2->result() as $row){
 				?>
 				<tr>
 					<td><?=$i?></td>
-					<td><?=$row->TAHUN_DIKLAT?></td>
+					<td><?=$row->KODE_DIKLAT?></td>
 					<td><?=$row->NAMA_DIKLAT?></td>
-					<td><?=$row->NAMA_PELATIHAN?></td>
+					<td><?=$row->TAHUN_DIKLAT?></td>
 				</tr>
 				<?
 					$i++;
@@ -169,23 +171,20 @@ ul.tabs {
 			</table>
 		</div>  
         <div id="content_3" class="content">
-			<table>
-				<td><a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add_pendidikan'?>">Tambah Data</a></td>
-			</table>
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
-				<tr>
+				<thead>
 					<td>No</td>
 					<td>Nama Pendidikan</td>
 					<td>Jenjang</td>
 					<td>Tahun</td>
-				</tr>
+				</thead>
 				<?
 					$i=1;
 					foreach($result3->result() as $row){
 				?>
 				<tr>
 					<td><?=$i?></td>
-					<td><?=$row->NAMA_PENDIDIKAN?></td>
+					<td><?=$row->NAMA_SEKOLAH?></td>
 					<td><?=$row->NAMA_JENJANG?></td>
 					<td><?=$row->TAHUN_PENDIDIKAN?></td>
 				</tr>

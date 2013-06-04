@@ -35,12 +35,12 @@ class Eselon1 extends My_Controller {
 	public function proses_add(){
 		$this->open();
 		
-		$data['ID_eselon1'] = $this->input->post('ID_eselon1');
-		$data['NAMA_eselon1'] = $this->input->post('NAMA_eselon1');
+		$data['ID_ESELON_1'] = $this->input->post('ID_ESELON_1');
+		$data['NAMA_ESELON_1'] = $this->input->post('NAMA_ESELON_1');
 		
 		# set rules validation
-		$this->form_validation->set_rules('ID_eselon1', 'Id eselon1', 'required');
-		$this->form_validation->set_rules('NAMA_eselon1', 'Nama eselon1', 'required');
+		$this->form_validation->set_rules('ID_ESELON_1', 'Id Eselon 1', 'required');
+		$this->form_validation->set_rules('NAMA_ESELON_1', 'Nama Eselon 1', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
@@ -57,7 +57,7 @@ class Eselon1 extends My_Controller {
 	public function edit($id){
 		$this->open();
 		
-		$data['ID_eselon1'] = $id;
+		$data['ID_ESELON_1'] = $id;
 		$data['result'] = $this->mdl_eselon1->getDataEdit($id);
 		$this->load->view('eselon1/eselon1_edit', $data);
 		
@@ -67,13 +67,12 @@ class Eselon1 extends My_Controller {
 	public function proses_edit(){
 		$this->open();
 		
-		$data['ID_eselon1'] = $this->input->post('ID_eselon1');
-		//$data['kode_induk'] = $this->input->post('kode_induk');
-		$data['NAMA_eselon1'] = $this->input->post('NAMA_eselon1');
+		$data['ID_ESELON_1'] = $this->input->post('ID_ESELON_1');
+		$data['NAMA_ESELON_1'] = $this->input->post('NAMA_ESELON_1');
 		
 		# set rules validation
 		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
-		$this->form_validation->set_rules('NAMA_eselon1', 'Nama eselon1', 'required');
+		$this->form_validation->set_rules('NAMA_ESELON_1', 'Nama ESELON 1', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		

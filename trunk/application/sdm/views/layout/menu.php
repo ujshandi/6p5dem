@@ -2,7 +2,7 @@
  <div id="content" class="page-brown">
     <div id="contentwrap">
 	<div class="wrap_left bgtrans">
-			<h2 class="heading">Menu Title</h2>
+			<h2 class="heading">Menu Basis Data SDM</h2>
 			<hr/>
 			<ul id="vmenu">
 				<? echo $menuUser ?>

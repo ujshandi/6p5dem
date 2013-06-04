@@ -11,7 +11,7 @@
     margin-bottom:10px;  
 } 
 .tabbed_area {  
-    border:1px solid #494e52;  
+    border:1px solid #cccccc;  
     padding:8px;      
 }   
 ul.tabs {  
@@ -82,10 +82,15 @@ ul.tabs li a.active {
 </style>
 <!-- contenna -->
 <div class="wrap_right bgcontent">
+<h1 class="heading">Detail Data Pegawai</h1>
+	<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
+	<hr/>
+			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
+<?=form_close()?>
+	<hr/>
 <body>  
   
 <div id="tabbed_box_1" class="tabbed_box">  
-    <h4>Detail Data Pegawai</h4>  
     <div class="tabbed_area">  
       
     <script src="<?=base_url()?>asset/sdm2/js/function.js" type="text/javascript"></script>   
@@ -141,12 +146,12 @@ ul.tabs li a.active {
 		</div>  
         <div id="content_2" class="content">
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
-				<tr>
+				<thead>
 					<td>No</td>
 					<td>Kode Diklat</td>
 					<td>Nama Diklat</td>
 					<td>Tahun Diklat</td>
-				</tr>
+				</thead>
 				<?
 					$i=1;
 					foreach($result2->result() as $row){
@@ -165,12 +170,12 @@ ul.tabs li a.active {
 		</div>  
         <div id="content_3" class="content">
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
-				<tr>
+				<thead>
 					<td>No</td>
 					<td>Jenjang</td>
 					<td>Nama Sekolah/Universitas</td>
 					<td>Tahun Lulus</td>
-				</tr>
+				</thead>
 				<?
 					$i=1;
 					foreach($result3->result() as $row){
@@ -188,12 +193,7 @@ ul.tabs li a.active {
 			</table>
 		</div>  
       
-    </div> 
-<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
-<hr/>
-			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
-<?=form_close()?>	
-  
+    </div>   
 </div>  
 </body>  
 </div>

@@ -35,6 +35,7 @@
 		<th>Jabatan</th>
 		<th>Golongan</th>
 		<th>aksi</th>
+	  </thead>
 	  <?
 		$i=1;
 		foreach($result->result() as $row){
@@ -55,7 +56,10 @@
 						<img src="<?=base_url()?>asset/sdm2/images/ic-edit.png" />&nbsp; 
 					</a>
 					<a href="<?=site_url().'/sdm_dinas/detail/'.$row->ID_PEG_DINAS?>">
-						<img src="<?=base_url()?>asset/sdm2/images/check.png" />
+						<img src="<?=base_url()?>asset/sdm2/images/check.png" />&nbsp;
+					</a>
+					<a href="<?=site_url().'/sdm_dinas/detail/'.$row->ID_PEG_DINAS?>">
+						<img src="<?=base_url()?>asset/sdm2/images/ic-delete.png" />
 					</a>
 				</td>
 			</tr>
@@ -63,7 +67,6 @@
 		$i++;
 		}
 	  ?>
-	</thead>
 
 	</table>
 	

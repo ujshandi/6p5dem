@@ -28,19 +28,20 @@ class Eselon2 extends My_Controller {
 
 	public function add(){
 		$this->open();
-		$this->load->view('eselon2/eselon2_add');
+		$data['option_eselon1'] = $this->mdl_eselon2->geteselon1();
+		$this->load->view('eselon2/eselon2_add',$data);
 		$this->close();
 	}
 	
 	public function proses_add(){
 		$this->open();
-		
-		$data['ID_eselon2'] = $this->input->post('ID_eselon2');
-		$data['NAMA_eselon2'] = $this->input->post('NAMA_eselon2');
+		$data['ID_ESELON_1'] = $this->input->post('ID_ESELON_1');
+		$data['ID_ESELON_2'] = $this->input->post('ID_ESELON_2');
+		$data['NAMA_ESELON_2'] = $this->input->post('NAMA_ESELON_2');
 		
 		# set rules validation
-		$this->form_validation->set_rules('ID_eselon2', 'Id eselon2', 'required');
-		$this->form_validation->set_rules('NAMA_eselon2', 'Nama eselon2', 'required');
+		$this->form_validation->set_rules('ID_ESELON_2', 'Id Eselon II', 'required');
+		$this->form_validation->set_rules('NAMA_ESELON_2', 'Nama Eselon II', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
@@ -57,7 +58,8 @@ class Eselon2 extends My_Controller {
 	public function edit($id){
 		$this->open();
 		
-		$data['ID_eselon2'] = $id;
+		$data['ID_ESELON_2'] = $id;
+		$data['option_eselon1'] = $this->mdl_eselon2->geteselon1();
 		$data['result'] = $this->mdl_eselon2->getDataEdit($id);
 		$this->load->view('eselon2/eselon2_edit', $data);
 		
@@ -66,14 +68,13 @@ class Eselon2 extends My_Controller {
 	
 	public function proses_edit(){
 		$this->open();
-		
-		$data['ID_eselon2'] = $this->input->post('ID_eselon2');
-		//$data['kode_induk'] = $this->input->post('kode_induk');
-		$data['NAMA_eselon2'] = $this->input->post('NAMA_eselon2');
+		$data['ID_ESELON_1'] = $this->input->post('ID_ESELON_1');
+		$data['ID_ESELON_2'] = $this->input->post('ID_ESELON_2');
+		$data['NAMA_ESELON_2'] = $this->input->post('NAMA_ESELON_2');
 		
 		# set rules validation
 		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
-		$this->form_validation->set_rules('NAMA_eselon2', 'Nama eselon2', 'required');
+		$this->form_validation->set_rules('NAMA_ESELON_2', 'Nama Eselon II', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		

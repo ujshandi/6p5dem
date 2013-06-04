@@ -3,7 +3,7 @@
 	<h1 class="heading">Data Eselon II</h1>
 	<hr/>
 	<li style="float:left">
-	<a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>" class="control"> <span class="add">Tambah Data</span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/eselon2/add'?>" class="control"> <span class="add">Tambah Data</span></a>
 	</li>
 	<hr/>
 	<table width="100%">

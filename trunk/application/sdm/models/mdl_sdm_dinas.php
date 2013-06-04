@@ -240,5 +240,38 @@ class Mdl_Sdm_Dinas extends CI_Model{
 		}
 		
 	}
+	
+	function insert($data){
+		$this->db->flush_cache();
+		//$this->db->set('ID_PEG_DINAS', $data['ID_PEG_DINAS']);
+		$this->db->set('NIP',  $data['NIP']);
+		$this->db->set('NAMA', $data['NAMA']);
+		$this->db->set('KODEPROVIN', $data['KODEPROVIN']);
+		$this->db->set('KODEKABUP', $data['KODEKABUP']);
+		$this->db->set('ALAMAT', $data['ALAMAT']);
+		$this->db->set('TMPT_LAHIR', $data['TMPT_LAHIR']);
+		$this->db->set('TGL_LAHIR', 'TO_TIMESTAMP(\''.$data['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
+		$this->db->set('AGAMA', $data['AGAMA']);
+		$this->db->set('JENIS_KELAMIN', $data['JENIS_KELAMIN']);
+		$this->db->set('STATUS', $data['STATUS']);
+		$this->db->set('JML_ANAK', $data['JML_ANAK']);
+		$this->db->set('STATUS_PEG', $data['STATUS_PEG']);
+		$this->db->set('TMT', $data['TMT']);
+		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
+		$this->db->set('TMT_GOLONGAN', $data['TMT_GOLONGAN']);
+		$this->db->set('ID_JABATAN', $data['ID_JABATAN']);
+		$this->db->set('TMT_JABATAN', $data['TMT_JABATAN']);
+		$this->db->set('KETERANGAN', $data['KETERANGAN']);
+		
+		$result = $this->db->insert('SDM_PEG_DINAS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+
 }
 ?>

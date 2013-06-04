@@ -1,7 +1,7 @@
 <!-- page content -->
 	<div class="wrap_right bgcontent">
 	<h1 class="heading">Data Aparatur Dinas Berdasarkan Duk</h1>
-    
+    <hr/>
 	<?=form_open('sdm_dinas/search_duk')?>
 	<div id="provin">
    Provinsi : <br/>
@@ -23,23 +23,21 @@
     <?=form_close() ?>
 
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/golongan/add'?>">Tambah Data</a>
 	<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
     <thead>
 	<tr>
       <th width="4%" rowspan="2">No</th>
-      <th width="21%" rowspan="2">Nama</th>
       <th width="12%" rowspan="2">Nip</th>
-      <th colspan="2">Pangkat</th>
-      <th colspan="2">Jabatan</th>
-      <th width="10%" rowspan="2">TMT</th>
-      <th width="6%" rowspan="2">Aksi</th>
+	  <th width="21%" rowspan="2">Nama</th>
+      <th colspan="2" align="center">Pangkat</th>
+      <th colspan="2" align="center">Jabatan</th>
+      <th width="15%" rowspan="2" align="center"> Tahun Pengangkatan</th>
     </tr>
     <tr>
-      <th width="6%">Gol</th>
-      <th width="6%">TMT</th>
-      <th width="27%">Jabatan</th>
-      <th width="8%">TMT</th>
+      <th width="6%" align="center">Gol</th>
+      <th width="6%" align="center">TMT</th>
+      <th width="20%">Jabatan</th>
+      <th width="8%" align="center">TMT</th>
     </tr>
 	</thead>
  </table>
