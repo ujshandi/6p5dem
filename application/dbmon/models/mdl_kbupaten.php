@@ -17,6 +17,15 @@ class mdl_kbupaten extends CI_Model{
 		return $this->db->get();
 		
 	}
+
+	function getKabByID($kodekabup){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_KABUPATEN');
+		//$this->db->limit($num, $offset);
+		$this->db->where('KODEKABUP', $kodekabup);
+		return $this->db->get()->row();
+	}
 	
 }
 ?>
