@@ -46,6 +46,10 @@
 	$(document).ready(function () {
 		load("news/index","#berita");
 	});
+	
+	$(document).ready(function () {
+		load("pengumuman/index","#pengumuman");
+	});
 	</script>
 	
 </head>
@@ -91,30 +95,8 @@
 	  	</div>
    </div><!--end slider-->
    
-   <div class="infos">
-   	<h3>Pengumuman</h3>
-    <div id="infos1">
-        <ul>
-            <li>
-                <div>
-                    <h6><a href="#">Pemanggilan Peserta Seleksi Beasiswa BPSDMP Program Rintisan Pendidikan Gelar Pascasarjana S2 UB Tahun 2013</a></h6>
-                    <span>Release : 19 Mei 2013</span>
-                </div>
-            </li> 
-            <li>
-                <div>
-                    <h6><a href="#">Pengumuman Lelang _Pembangunan BPPTD Kalimantan Tahap I (Lelang Ulang) </a></h6>
-                    <span>Release : 16 Mei 2013</span>
-                </div>
-            </li> 
-            <li>
-                <div>
-                    <h6><a href="#">Pengumuman Beasiswa Badan Pengembangan SDM Perhubungan Program Rintisan Pendidikan Gelar Pascasarjana Magister (S2) dan Doktor (S3) Tahun 2013  </a></h6>
-                    <span>Release : 15 Mei 2013</span>
-                </div>
-            </li>   
-        </ul>
-    </div><!--end infos1-->
+   <div class="infos"  id="pengumuman">
+		
    </div><!--end pengumuman-->
    
    <div class="infos" id="berita" style="margin-top:17px">
