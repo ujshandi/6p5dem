@@ -5,10 +5,10 @@
 	<title>Sistem Informasi Manajemen DIKLAT Perhubungan - BPSDM Perhubungan - Kementerian Perhubungan RI</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	
-	<link rel="shortcut icon" href="<?=base_url()?>asset/diklat/favicon.ico" />
-	<link type="text/css" href="<?=base_url()?>asset/diklat/css/style.css" rel="stylesheet"  type="text/css"  />
-	<script type="text/javascript" src="<?=base_url()?>asset/diklat/js/jquery-min.js" ></script>
-	<script type="text/javascript" src="<?=base_url()?>asset/diklat/js/custom.js" ></script>
+  <link rel="shortcut icon" href="<?=base_url()?>asset/globalstyle/images/favicon.ico" />
+	<link type="text/css" href="<?=base_url()?>asset/globalstyle/css/style.css" rel="stylesheet"  type="text/css"  />
+	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery-min.js" ></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/custom.js" ></script>
 </head>
 
 <body>
@@ -37,8 +37,8 @@
       <div class="right">
           <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
             <ul class="homout">
-                <li><a href="#"><img src="<?=base_url()?>asset/diklat/images/icon_home_16x16.png" />HOME</a></li>
-                <li><a href="#"><img src="<?=base_url()?>asset/diklat/images/icon_logout_16x16.png" />LOGOUT</a></li>
+                <li><a href="#"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
+                <li><a href="#"><img src="<?=base_url()?>asset/globalstyle/images/icon_logout_16x16.png" />LOGOUT</a></li>
             </ul>
       </div>
       
