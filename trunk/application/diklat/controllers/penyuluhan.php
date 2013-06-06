@@ -55,7 +55,7 @@ class penyuluhan extends My_Controller {
 		$this->open();
 		
 		# get post data
-		$data['IDDATA'] = $this->input->post('IDDATA');
+		//$data['IDDATA'] = $this->input->post('IDDATA');
         $data['NAMA_PENYULUHAN'] = $this->input->post('NAMA_PENYULUHAN');
         $data['JML_PESERTA'] = $this->input->post('JML_PESERTA');
         $data['TEMPAT'] = $this->input->post('TEMPAT');
@@ -96,7 +96,7 @@ class penyuluhan extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $this->input->post('id');
-		$data['IDDATA'] = $this->input->post('IDDATA');
+		//$data['IDDATA'] = $this->input->post('IDDATA');
         $data['NAMA_PENYULUHAN'] = $this->input->post('NAMA_PENYULUHAN');
         $data['JML_PESERTA'] = $this->input->post('JML_PESERTA');
         $data['TEMPAT'] = $this->input->post('TEMPAT');
@@ -104,7 +104,6 @@ class penyuluhan extends My_Controller {
         $data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
 		# set rules validation
-		$this->form_validation->set_rules('IDDATA', 'KODE PENYULUHAN', 'required');
 		$this->form_validation->set_rules('NAMA_PENYULUHAN', 'NAMA PENYULUHAN', 'required');
 		$this->form_validation->set_rules('JML_PESERTA', 'JUMLAH PESERTA', 'required');
 		$this->form_validation->set_rules('TEMPAT', 'TEMPAT', 'required');

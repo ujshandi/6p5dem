@@ -28,7 +28,7 @@ class mdl_penyuluhan extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
-        $this->db->set('IDDATA', $data['IDDATA']);
+        //$this->db->set('IDDATA', $data['IDDATA']);
         $this->db->set('NAMA_PENYULUHAN', $data['NAMA_PENYULUHAN']);
         $this->db->set('JML_PESERTA', $data['JML_PESERTA']);
 		$this->db->set('TEMPAT', $data['TEMPAT']);
@@ -47,7 +47,7 @@ class mdl_penyuluhan extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-        $this->db->set('IDDATA', $data['IDDATA']);
+        //$this->db->set('IDDATA', $data['IDDATA']);
         $this->db->set('NAMA_PENYULUHAN', $data['NAMA_PENYULUHAN']);
         $this->db->set('JML_PESERTA', $data['JML_PESERTA']);
 		$this->db->set('TEMPAT', $data['TEMPAT']);

@@ -16,7 +16,6 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">ID DOSEN <em>*</em></label> <input name="IDDOSEN" value="<?=set_value('IDDOSEN')?>" type="text" class="three"/></li>
 			
 			<li><label for="">NIP <em>*</em></label> <input name="NIP" value="<?=set_value('NIP')?>" type="text" class="five"/></li>
 			

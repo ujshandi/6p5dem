@@ -28,7 +28,6 @@ class mdl_sarana extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
-        $this->db->set('ID_SARANA', $data['ID_SARANA']);
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);
@@ -46,7 +45,6 @@ class mdl_sarana extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-        $this->db->set('ID_SARANA', $data['ID_SARANA']);
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);

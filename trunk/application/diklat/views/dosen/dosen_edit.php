@@ -16,7 +16,6 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">ID DOSEN <em>*</em></label> <input name="IDDOSEN" value="<?=$result->row()->IDDOSEN?>" type="text" class="three"/></li>
 			
 			<li><label for="">NIP <em>*</em></label> <input name="NIP" value="<?=$result->row()->NIP?>" type="text" class="five"/></li>
 			
@@ -24,7 +23,7 @@
 			
 			<li><label for="">Tempat Lahir <em>*</em></label> <input name="TEMPAT_LAHIR" value="<<?=$result->row()->TEMPAT_LAHIR?>" type="text" class="five"/></li>
 			
-			<li><label for="">Tanggal Lahir <em>*</em></label> <input name="TGL_LAHIR" value="<?=$result->row()->TGL_LAHIR?>" type="text" class="five"/></li>
+			<li><label for="">Tanggal Lahir <em>*</em></label> <input name="TGL_LAHIR" value="<?=$result->row()->TGL_LAHIR?>" type="text" class="five"/><em>DD-MM-YYYY</em></li>
 			
 			<li><label for="">Jenis Kelamin <em>*</em></label> <select id="JK" name="JK">
 			<option value="">- Pilih Jenis Kelamin -</option>

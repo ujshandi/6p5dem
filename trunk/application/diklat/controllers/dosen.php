@@ -55,7 +55,7 @@ class dosen extends My_Controller {
 		$this->open();
 		
 		# get post data
-		$data['IDDOSEN'] = $this->input->post('IDDOSEN');
+		//$data['IDDOSEN'] = $this->input->post('IDDOSEN');
         $data['NIP'] = $this->input->post('NIP');
         $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');
 		$data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
@@ -68,7 +68,7 @@ class dosen extends My_Controller {
 		$data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
 		
 		# set rules validation
-		$this->form_validation->set_rules('IDDOSEN', 'ID DOSEN', 'required');
+		//$this->form_validation->set_rules('IDDOSEN', 'ID DOSEN', 'required');
         $this->form_validation->set_rules('NIP', 'NIP', 'required');
         $this->form_validation->set_rules('NAMADOSEN', 'NAMA DOSEN', 'required');
 		$this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
@@ -109,7 +109,7 @@ class dosen extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $this->input->post('id');
-		$data['IDDOSEN'] = $this->input->post('IDDOSEN');
+		//$data['IDDOSEN'] = $this->input->post('IDDOSEN');
         $data['NIP'] = $this->input->post('NIP');
         $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');
 		$data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
@@ -122,7 +122,7 @@ class dosen extends My_Controller {
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
 		# set rules validation
-		$this->form_validation->set_rules('IDDOSEN', 'ID DOSEN', 'required');
+		//$this->form_validation->set_rules('IDDOSEN', 'ID DOSEN', 'required');
         $this->form_validation->set_rules('NIP', 'NIP', 'required');
         $this->form_validation->set_rules('NAMADOSEN', 'NAMA DOSEN', 'required');
 		$this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
