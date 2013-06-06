@@ -83,5 +83,37 @@ class mdl_kurikulum extends CI_Model{
 		
 	}
 	
+	function getProgram($kode_upt){
+		// get kode induk upt
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_UPT');
+		$this->db->where('KODE_UPT', $kode_upt);
+		$row = $this->db->get()->row_array();
+		$kode_induk = $row['KODE_INDUK'];
+		
+		// query ke program
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_PROGRAM');
+		$this->db->where('KODE_INDUK', $kode_induk);
+		$this->db->order_by('KODE_PROGRAM');
+		
+		return $this->db->get();
+		
+	}
+	
+	function getDiklat($kode_program, $kode_upt){
+		// query ke program
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_DIKLAT');
+		$this->db->where('KODE_PROGRAM', $kode_program);
+		$this->db->where('KODE_UPT', $kode_upt);
+		$this->db->order_by('KODE_DIKLAT');
+		
+		return $this->db->get();
+	}
+	
 }
 ?>
