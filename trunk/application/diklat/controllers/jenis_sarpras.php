@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class program extends My_Controller {
+class jenis_sarpras extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('mdl_satker');
-		$this->load->model('mdl_program');
+		//$this->load->model('mdl_satker');
+		$this->load->model('mdl_jenis_sarpras');
 	}
 	
 	public function index()
@@ -13,8 +13,8 @@ class program extends My_Controller {
 		$this->open();
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/program/index/';
-		$config['total_rows'] = $this->db->count_all('DIKLAT_MST_PROGRAM');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/jenis_sarpras/index/';
+		$config['total_rows'] = $this->db->count_all('DIKLAT_MST_SARPRAS');
 		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		// $config['uri_segment'] = '3';
@@ -39,15 +39,15 @@ class program extends My_Controller {
 
 		$this->pagination->initialize($config);	
 		
-		$data['result'] = $this->mdl_program->getData($config['per_page'], $this->uri->segment(3));
-		$this->load->view('program/program_list', $data);
+		$data['result'] = $this->mdl_jenis_sarpras->getData($config['per_page'], $this->uri->segment(3));
+		$this->load->view('jenis_sarpras/jenis_sarpras_list', $data);
 		
 		$this->close();
 	}
 	
 	public function add(){
 		$this->open();
-		$this->load->view('program/program_add');
+		$this->load->view('jenis_sarpras/jenis_sarpras_add');
 		$this->close();
 	}
 	
@@ -55,24 +55,23 @@ class program extends My_Controller {
 		$this->open();
 		
 		# get post data
-		$data['KODE_PROGRAM'] = $this->input->post('KODE_PROGRAM');
-        $data['NAMA_PROGRAM'] = $this->input->post('NAMA_PROGRAM');
-        $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		//$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
+        $data['NAMA_SARPRAS'] = $this->input->post('NAMA_SARPRAS');
+        $data['JENIS'] = $this->input->post('JENIS');
 		
 		# set rules validation
-		$this->form_validation->set_rules('KODE_PROGRAM', 'KODE PROGRAM', 'required');
-        $this->form_validation->set_rules('NAMA_PROGRAM', 'NAMA PROGRAM', 'required');
-        $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
-        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
+		//$this->form_validation->set_rules('ID_SARPRAS', 'ID SARPRAS', 'required');
+        $this->form_validation->set_rules('NAMA_SARPRAS', 'NAMA SARPRAS', 'required');
+        $this->form_validation->set_rules('JENIS', 'JENIS', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('program/program_add',$data);
+			$this->load->view('jenis_sarpras/jenis_sarpras_add',$data);
 		}else{
-			$this->mdl_program->insert($data);
-			redirect('program');
+			$this->mdl_jenis_sarpras->insert($data);
+			redirect('jenis_sarpras');
 		}
 		
 		$this->close();
@@ -82,8 +81,8 @@ class program extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->mdl_program->getDataEdit($id);
-		$this->load->view('program/program_edit', $data);
+		$data['result'] = $this->mdl_jenis_sarpras->getDataEdit($id);
+		$this->load->view('jenis_sarpras/jenis_sarpras_edit', $data);
 		
 		$this->close();
 	}
@@ -92,30 +91,31 @@ class program extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $this->input->post('id');
-		$data['KODE_PROGRAM'] = $this->input->post('KODE_PROGRAM');
-        $data['NAMA_PROGRAM'] = $this->input->post('NAMA_PROGRAM');
-        $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		//$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
+        $data['NAMA_SARPRAS'] = $this->input->post('NAMA_SARPRAS');
+        $data['JENIS'] = $this->input->post('JENIS');
 		
 		# set rules validation
-		$this->form_validation->set_rules('KODE_PROGRAM', 'KODE PROGRAM', 'required');
-        $this->form_validation->set_rules('NAMA_PROGRAM', 'NAMA PROGRAM', 'required');
-        $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
+		//$this->form_validation->set_rules('ID_SARPRAS', 'ID SARPRAS', 'required');
+        $this->form_validation->set_rules('NAMA_SARPRAS', 'NAMA SARPRAS', 'required');
+        $this->form_validation->set_rules('JENIS', 'JENIS', 'required');
+		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('program/program_edit',$data);
+			$this->load->view('jenis_sarpras/jenis_sarpras_edit',$data);
 		}else{
-			$this->mdl_program->update($data);
-			redirect('program');
+			$this->mdl_jenis_sarpras->update($data);
+			redirect('jenis_sarpras');
 		}
 		
 		$this->close();
 	}
 	
 	public function proses_delete($id){
-		if($this->mdl_program->delete($id)){
-			redirect('program');
+		if($this->mdl_jenis_sarpras->delete($id)){
+			redirect('jenis_sarpras');
 		}else{
 			// code u/ gagal simpan
 		}
