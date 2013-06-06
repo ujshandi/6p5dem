@@ -4,7 +4,7 @@ class penyuluhan extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('mdl_upt');
+		$this->load->model('mdl_satker');
 		$this->load->model('mdl_penyuluhan');
 	}
 	
@@ -45,81 +45,90 @@ class penyuluhan extends My_Controller {
 		$this->close();
 	}
 	
-	// public function add(){
-		// $this->open();
-		// $this->load->view('penyuluhan/penyuluhan_add');
-		// $this->close();
-	// }
+	public function add(){
+		$this->open();
+		$this->load->view('penyuluhan/penyuluhan_add');
+		$this->close();
+	}
 	
-	// public function proses_add(){
-		// $this->open();
+	public function proses_add(){
+		$this->open();
 		
-		// # get post data
-		// $data['KODE_UPT'] = $this->input->post('KODE_penyuluhan');
-        // $data['NAMA_penyuluhan'] = $this->input->post('NAMA_penyuluhan');
-        // $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		# get post data
+		$data['IDDATA'] = $this->input->post('IDDATA');
+        $data['NAMA_PENYULUHAN'] = $this->input->post('NAMA_PENYULUHAN');
+        $data['JML_PESERTA'] = $this->input->post('JML_PESERTA');
+        $data['TEMPAT'] = $this->input->post('TEMPAT');
+        $data['TANGGAL'] = $this->input->post('TANGGAL');
+        $data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
-		// # set rules validation
-		// $this->form_validation->set_rules('KODE_penyuluhan', 'KODE penyuluhan', 'required');
-        // $this->form_validation->set_rules('NAMA_penyuluhan', 'NAMA penyuluhan', 'required');
-        // $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
+		# set rules validation
+		$this->form_validation->set_rules('NAMA_PENYULUHAN', 'NAMA PENYULUHAN', 'required');
+        $this->form_validation->set_rules('JML_PESERTA', 'JUMLAH PESERTA', 'required');
+        $this->form_validation->set_rules('TEMPAT', 'TEMPAT', 'required');
+        $this->form_validation->set_rules('TANGGAL', 'TANGGAL', 'required');
+        $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		
-        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
-		// # set message validation
-		// $this->form_validation->set_message('required', 'Field %s harus diisi!');
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('penyuluhan/penyuluhan_add',$data);
+		}else{
+			$this->mdl_penyuluhan->insert($data);
+			redirect('penyuluhan');
+		}
 		
-		// if ($this->form_validation->run() == FALSE){
-			// $this->load->view('penyuluhan/penyuluhan_add',$data);
-		// }else{
-			// $this->mdl_penyuluhan->insert($data);
-			// redirect('penyuluhan');
-		// }
-		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
-	// public function edit($id){
-		// $this->open();
+	public function edit($id){
+		$this->open();
 		
-		// $data['id'] = $id;
-		// $data['result'] = $this->mdl_penyuluhan->getDataEdit($id);
-		// $this->load->view('penyuluhan/penyuluhan_edit', $data);
+		$data['id'] = $id;
+		$data['result'] = $this->mdl_penyuluhan->getDataEdit($id);
+		$this->load->view('penyuluhan/penyuluhan_edit', $data);
 		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
-	// public function proses_edit(){
-		// $this->open();
+	public function proses_edit(){
+		$this->open();
 		
-		// $data['id'] = $this->input->post('id');
-		// $data['KODE_penyuluhan'] = $this->input->post('KODE_penyuluhan');
-        // $data['NAMA_penyuluhan'] = $this->input->post('NAMA_penyuluhan');
-        // $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		$data['id'] = $this->input->post('id');
+		$data['IDDATA'] = $this->input->post('IDDATA');
+        $data['NAMA_PENYULUHAN'] = $this->input->post('NAMA_PENYULUHAN');
+        $data['JML_PESERTA'] = $this->input->post('JML_PESERTA');
+        $data['TEMPAT'] = $this->input->post('TEMPAT');
+        $data['TANGGAL'] = $this->input->post('TANGGAL');
+        $data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
-		// # set rules validation
-		// $this->form_validation->set_rules('KODE_penyuluhan', 'KODE penyuluhan', 'required');
-        // $this->form_validation->set_rules('NAMA_penyuluhan', 'NAMA penyuluhan', 'required');
-        // $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
-		// # set message validation
-		// $this->form_validation->set_message('required', 'Field %s harus diisi!');
+		# set rules validation
+		$this->form_validation->set_rules('IDDATA', 'KODE PENYULUHAN', 'required');
+		$this->form_validation->set_rules('NAMA_PENYULUHAN', 'NAMA PENYULUHAN', 'required');
+		$this->form_validation->set_rules('JML_PESERTA', 'JUMLAH PESERTA', 'required');
+		$this->form_validation->set_rules('TEMPAT', 'TEMPAT', 'required');
+        $this->form_validation->set_rules('TANGGAL', 'TANGGAL', 'required');
+        $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
-		// if ($this->form_validation->run() == FALSE){
-			// $this->load->view('penyuluhan/penyuluhan_edit',$data);
-		// }else{
-			// $this->mdl_penyuluhan->update($data);
-			// redirect('penyuluhan');
-		// }
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('penyuluhan/penyuluhan_edit',$data);
+		}else{
+			$this->mdl_penyuluhan->update($data);
+			redirect('penyuluhan');
+		}
 		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
-	// public function proses_delete($id){
-		// if($this->mdl_penyuluhan->delete($id)){
-			// redirect('penyuluhan');
-		// }else{
+	public function proses_delete($id){
+		if($this->mdl_penyuluhan->delete($id)){
+			redirect('penyuluhan');
+		}else{
 			//code u/ gagal simpan
-		// }
-	//}
+		}
+	}
 	
 }
