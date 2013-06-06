@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Sistem Informasi Manajemen SDM Perhubungan - BPSDM Perhubungan - Kementerian Perhubungan RI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--mine -->
+	<script type="text/javascript" src="ext-3.4.0/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="ext-3.4.0/ext-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="ext-3.4.0/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="ext-3.4.0/examples/shared/examples.css" />
+    <script type="text/javascript" src="lib/en/lib/OpenLayers.js"></script>
+    <script type="text/javascript" src="lib/script/GeoExt.js"></script>
+    <script src="http://maps.google.com/maps/api/js?v=3.5&amp;sensor=false"></script>
+    <script type="text/javascript" src="lib/jquery.min_2.js"></script>
+    <script type="text/javascript" src="lib/jquery.jsonp-2.1.4.js"></script>
+    <script type="text/javascript" src="lib/map.js"></script>
+<!--endmine -->
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico" />
+<!--<script type="text/javascript" src="js/jquery-min.js" ></script> -->
+<script type="text/javascript" src="js/custom.js" ></script>
+</head>
+
+<body>
+<div id="container">
+
+<div id="header" class="bg_orange"> 
+    <div class="header-img orange"> 
+      <div id="title">
+        <h3>BPSDM Perhubungan - Kementerian Perhubungan RI</h3>
+        <h2>Sistem Informasi Manajemen SDM Bidang Transportasi</h2>
+        <h1>Aplikasi GIS SDM Transportasi</h1>
+      </div><!-- end title -->
+      
+      <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"></a></div>
+      <div class="clear"></div>
+      
+      <div class="bread">
+      	<ul class="breadcrumbs">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Aplikasi title</a></li>
+          <li><span>Edit</span></li>
+          <li class="current"><a href="#">Add</a></li>
+        </ul>
+      </div><!-- end breadcrumbs -->
+      
+      <div class="right">
+          <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
+            <ul class="homout">
+                <li><a href="#"><img src="images/icon_home_16x16.png" />HOME</a></li>
+                <li><a href="#"><img src="images/icon_logout_16x16.png" />LOGOUT</a></li>
+            </ul>
+      </div>
+      
+      <div class="clear"></div>
+    </div><!-- end image headers -->
+    
+</div><!-- end header -->
+
+  <div id="content" class="page-orange">
+    <div id="contentwrap">
+    	<div class="wrap_left bgtrans">
+        <h2 class="heading">Menu Navigasi</h2>
+        <hr/>
+        <ul id="vmenu">
+		<li>
+			<a href="#">Diklat</a>
+			<ul>
+				<li><a><input type="checkbox" id="pelatihan" onClick="showMark('pelatihan')">&nbsp;Kegiatan Diklat</a></li>
+				<li><a><input type="checkbox">&nbsp;Matra Darat</a></a></li>
+                <li><a><input type="checkbox">&nbsp;Matra Laut</a></li>
+                <li><a><input type="checkbox">&nbsp;Matra Udara</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">Sebaran SDM Aparatur Kementerian</a>
+			<ul>
+				<li><a href="#">Matra Darat</a></li>
+                <li><a href="#">Matra Laut</a></li>
+                <li><a href="#">Matra Udara</a></li>        
+			</ul>
+		</li>
+		<li>
+			<a href="#">Sebaran SDM Aparatur Dinas</a>
+			<ul>
+				<li><a href="#">Provinsi</a></li>
+                <li><a href="#">Kabupaten Kota</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">Sebaran Alumni</a>
+			<ul>
+				<li><a href="#">Provinsi</a></li>
+                <li><a href="#">Kabupaten Kota</a></li>
+			</ul>
+		</li>
+	</ul><!-- end vmenu -->
+    </div><!-- end wrap left-->
+    
+    <div class="wrap_right bgcontent">
+    	<!--<h1 class="heading">main title heading</h1> -->
+        	<!--start GIS Panel start-->
+        	<div id="mappanel" style="width:100%;"></div>
+            <!--start GIS Panel end-->
+        <div class="clearfix"></div>
+    </div><!-- end wrap right content-->
+    <div class="clearfix"></div>
+    </div><!-- end content wrap -->
+  </div><!-- end content -->
+  
+  <div id="footer">
+    Copyright &copy; 2013 BPSDM Perhubungan - <a href="http://www.dephub.go.id/">Kementerian Perhubungan RI</a>
+  </div><!-- end footer -->
+
+</div><!-- end container -->
+</body>
+</html>
