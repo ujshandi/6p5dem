@@ -11,7 +11,7 @@ class mdl_peserta extends CI_Model{
 		$this->db->from('DIKLAT_MST_PESERTA');
 		//$this->db->join('DIKLAT_MST_INDUKprogram b', 'b.KODE_INDUK = a.KODE_INDUK');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('NO_PESERTA');
+		$this->db->order_by('IDPESERTA');
 		
 		return $this->db->get();
 		

@@ -25,7 +25,7 @@
 			
 			<li><label for="">TEMPAT <em>*</em></label> <input name="TEMPAT" value="<?=$result->row()->TEMPAT?>" type="text" class="five"/></li>
 			
-			<li><label for="">TANGGAL <em>*</em></label> <input name="TANGGAL" value="<?=$result->row()->TANGGAL?>" type="text" class="five"/></li>
+			<li><label for="">TANGGAL <em>*</em></label> <input name="TANGGAL" value="<?=$result->row()->TANGGAL?>" type="text" class="five"/><em>DD-MM-YYYY</em></li>
 			
 			<li><label for="">UPT <em>*</em></label>
 				<?php 

@@ -28,7 +28,7 @@ class mdl_dosen extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
-        $this->db->set('IDDOSEN', $data['IDDOSEN']);
+        //$this->db->set('IDDOSEN', $data['IDDOSEN']);
         $this->db->set('NIP', $data['NIP']);
         $this->db->set('NAMADOSEN', $data['NAMADOSEN']);
 		$this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
@@ -52,7 +52,7 @@ class mdl_dosen extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-        $this->db->set('IDDOSEN', $data['IDDOSEN']);
+        //$this->db->set('IDDOSEN', $data['IDDOSEN']);
         $this->db->set('NIP', $data['NIP']);
         $this->db->set('NAMADOSEN', $data['NAMADOSEN']);
 		$this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);

@@ -2,7 +2,7 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Kalender</h1>
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/kalender/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/underconstruction'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<table width="100%">
 	  <thead>
 		<th>UPT</th>

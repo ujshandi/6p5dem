@@ -16,7 +16,6 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">KODE PENYULUHAN <em>*</em></label> <input name="IDDATA" value="<?=set_value('IDDATA')?>" type="text" class="three"/></li>
 			
 			<li><label for="">NAMA PENYULUHAN <em>*</em></label> <input name="NAMA_PENYULUHAN" value="<?=set_value('NAMA_PENYULUHAN')?>" type="text" class="five"/></li>
 			
@@ -24,7 +23,7 @@
 			
 			<li><label for="">TEMPAT <em>*</em></label> <input name="TEMPAT" value="<?=set_value('TEMPAT')?>" type="text" class="five"/></li>
 			
-			<li><label for="">TANGGAL <em>*</em></label> <input name="TANGGAL" value="<?=set_value('TANGGAL')?>" type="text" class="five"/></li>
+			<li><label for="">TANGGAL <em>*</em></label> <input name="TANGGAL" value="<?=set_value('TANGGAL')?>" type="text" class="five"/> <em>DD-MM-YYYY</em></li>
 			
 			
 			

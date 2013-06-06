@@ -25,8 +25,6 @@
 				?>
 			</li>
 			
-			<li><label for="">ID Sarana <em>*</em></label> <input name="ID_SARANA" value="<?=set_value('ID_SARANA')?>" type="text" class="three"/></li>
-			
 			<li><label for="">TAHUN<em>*</em></label> <select id="TAHUN" name="TAHUN">
 			<option value="">- Pilih Tahun -</option>
 			<option value="2000">2000</option>
@@ -52,7 +50,14 @@
 			<option value="2020">2020</option>
 			</select></li>
 			
-			<li><label for="">NAMA SARANA <em>*</em></label> <input name="ID_SARPRAS" value="<?=set_value('ID_SARPRAS')?>" type="text" class="five"/></li>
+			<li><label for="">Nama Sarana <em>*</em></label>
+				<?php 
+					$opti['id'] = 'ID_SARPRAS';
+					$opti['name'] = 'ID_SARPRAS';
+					$opti['value'] = set_value('ID_SARPRAS');
+					echo $this->mdl_sarana->getOptionSarana($opti);
+				?>
+			</li>
 			
 			<li><label for="">JUMLAH <em>*</em></label> <input name="JUMLAH" value="<?=set_value('JUMLAH')?>" type="text" class="five"/></li>
 			

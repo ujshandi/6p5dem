@@ -47,7 +47,7 @@ class prasarana extends My_Controller {
 	
 	public function add(){
 		$this->open();
-		$this->load->view('sarpras/prasarana_add');
+		//$this->load->view('sarpras/prasarana_add');
 		$this->close();
 	}
 	
