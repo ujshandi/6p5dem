@@ -7,9 +7,9 @@ class mdl_program extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('DIKLAT_MST_PROGRAM.*, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
 		$this->db->from('DIKLAT_MST_PROGRAM');
-		//$this->db->join('DIKLAT_MST_INDUKprogram b', 'b.KODE_INDUK = a.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_PROGRAM.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('KODE_PROGRAM');
 		

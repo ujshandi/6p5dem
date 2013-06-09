@@ -5,7 +5,7 @@
 	<a href="<?=base_url().$this->config->item('index_page').'/penyuluhan/add'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<table width="100%">
 	  <thead>
-		<th>UPT</th>
+		<th width="20%">UPT</th>
 		<th>Nama Penyuluhan</th>
 		<th>Peserta</th>
 		<th>Tempat</th>
@@ -15,7 +15,7 @@
 	  <tbody>
 		<?foreach($result->result() AS $r){?>
 			<tr class='gradeC'>
-				<td><?=$r->KODE_UPT?></td>
+				<td><?=$r->NAMA_INDUK?></td>
 				<td><?=$r->NAMA_PENYULUHAN?></td>
 				<td><?=$r->JML_PESERTA?></td>
 				<td><?=$r->TEMPAT?></td>

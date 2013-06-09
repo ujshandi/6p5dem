@@ -16,10 +16,11 @@
 			} 
 		?>
 		<ol>
+			
 			<li><label for="">UPT <em>*</em></label>
 				<?php 
-					$opti['id'] = 'KODE_UPT';
-					$opti['name'] = 'KODE_UPT';
+					$opti['id'] = 'KODE_INDUK';
+					$opti['name'] = 'KODE_INDUK';
 					$opti['value'] = set_value('KODE_INDUK');
 					echo $this->mdl_satker->getOptionUPT($opti);
 				?>

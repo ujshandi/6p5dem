@@ -16,8 +16,16 @@
 			} 
 		?>
 		<ol>
+			<li><label for="">UPT <em>*</em></label>
+				<?php 
+					$opti['id'] = 'KODE_UPT';
+					$opti['name'] = 'KODE_UPT';
+					$opti['value'] = $result->row()->KODE_UPT;
+					echo $this->mdl_satker->getOptionUPT($opti);
+				?>
+			</li>
+			
 		    <input type="hidden" name="id" value="<?=$id?>">
-			<li><label for="">KODE PENYULUHAN <em>*</em></label> <input name="IDDATA" value="<?=$result->row()->IDDATA?>" type="text" class="five"/></li>
 			
 			<li><label for="">NAMA PENYULUHAN <em>*</em></label> <input name="NAMA_PENYULUHAN" value="<?=$result->row()->NAMA_PENYULUHAN?>" type="text" class="five"/></li>
 			
@@ -27,14 +35,7 @@
 			
 			<li><label for="">TANGGAL <em>*</em></label> <input name="TANGGAL" value="<?=$result->row()->TANGGAL?>" type="text" class="five"/><em>DD-MM-YYYY</em></li>
 			
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['id'] = 'KODE_UPT';
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_satker->getOptionUPT($opti);
-				?>
-			</li>
+			
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>

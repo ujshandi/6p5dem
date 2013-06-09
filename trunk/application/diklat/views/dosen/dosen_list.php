@@ -9,7 +9,7 @@
 		<th>Status Pengajar</th>
 		<th>Jenis Pengajar</th>
 		<th>Thn Mulai Mengajar</th>
-		<th>UPT</th>
+		<th width="20%">UPT</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -19,7 +19,7 @@
 				<td><?=$r->STATUS?></td>
 				<td><?=$r->JENIS_DOSEN?></td>
 				<td><?=$r->TAHUN?></td>
-				<td><?=$r->KODE_UPT?></td>
+				<td><?=$r->NAMA_INDUK?></td>
 				<td >
 					<a href="<?=site_url().'/underconstruction/'?>" class="control" >
 						<span class="edit">edit</span></a> |

@@ -16,9 +16,10 @@
 			} 
 		?>
 		<ol>
+			<input type="hidden" name="id" value="<?=$id?>">
 			<li><label for="">UPT <em>*</em></label>
 				<?php 
-					$opti['name'] = 'KODE_UPT';
+					$opti['name'] = 'KODE_INDUK';
 					$opti['value'] = $result->row()->KODE_UPT;
 					echo $this->mdl_satker->getOptionUPT($opti);
 				?>
@@ -31,8 +32,14 @@
 					echo $this->mdl_sarana->getOptionTahun($opti);
 				?>
 			</li>
-		
-			<li><label for="">NAMA SARANA<em>*</em></label> <input name="ID_SARANA" value="<?=$result->row()->ID_SARANA?>" type="text" class="five"/></li>
+			
+			<li><label for="">Nama Sarana <em>*</em></label>
+				<?php 
+					$opti['name'] = 'ID_SARPRAS';
+					$opti['value'] = $result->row()->ID_SARPRAS;
+					echo $this->mdl_sarana->getOptionSarana($opti);
+				?>
+			</li>
 			
 			<li><label for="">JUMLAH<em>*</em></label> <input name="JUMLAH" value="<?=$result->row()->JUMLAH?>" type="text" class="five"/></li>
 			

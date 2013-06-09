@@ -15,8 +15,8 @@
 	  <tbody>
 		<?foreach($result->result() AS $r){?>
 			<tr class='gradeC'>
-				<td><?=$r->KODE_UPT?></td>
-				<td><?=$r->ID_SARPRAS?></td>
+				<td width="25%"><?=$r->NAMA_INDUK?></td>
+				<td><?=$r->NAMA_SARPRAS?></td>
 				<td><?=$r->JUMLAH?></td>
 				<td><?=$r->TAHUN?></td>
 				<td >
