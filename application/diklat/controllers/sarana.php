@@ -56,17 +56,16 @@ class sarana extends My_Controller {
 		
 		# get post data
 		//$data['ID_SARANA'] = $this->input->post('ID_SARANA');
-        $data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
+		$data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
         $data['TAHUN'] = $this->input->post('TAHUN');
+		$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
         $data['JUMLAH'] = $this->input->post('JUMLAH');
-        $data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        
 		
 		# set rules validation
-		//$this->form_validation->set_rules('ID_SARANA', 'ID SARANA', 'required');
-        //$this->form_validation->set_rules('ID_SARPRAS', 'NAMA SARPRAS', 'required');
         $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
         $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-        $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
+        $this->form_validation->set_rules('KODE_INDUK', 'UPT', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -95,25 +94,22 @@ class sarana extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $this->input->post('id');
-		//$data['ID_SARANA'] = $this->input->post('ID_SARANA');
-        $data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
+		$data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
         $data['TAHUN'] = $this->input->post('TAHUN');
+		$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
         $data['JUMLAH'] = $this->input->post('JUMLAH');
-        $data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
 		# set rules validation
-		//$this->form_validation->set_rules('ID_SARANA', 'ID SARANA', 'required');
-        $this->form_validation->set_rules('ID_SARPRAS', 'NAMA SARPRAS', 'required');
-        $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
+		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
         $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-        $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
+        $this->form_validation->set_rules('KODE_INDUK', 'UPT', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('sarpras/sarana_edit',$data);
 		}else{
-			$this->mdl_sarpras->update($data);
+			$this->mdl_sarana->update($data);
 			redirect('sarana');
 		}
 		

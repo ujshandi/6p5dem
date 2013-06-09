@@ -7,9 +7,10 @@ class mdl_sarana extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_SARPRAS.NAMA_SARPRAS, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
 		$this->db->from('DIKLAT_MST_SARANA');
-		//$this->db->join('DIKLAT_MST_INDUKprogram b', 'b.KODE_INDUK = a.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
+		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_INDUKUPT.KODE_INDUK');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('ID_SARANA');
 		
@@ -31,7 +32,7 @@ class mdl_sarana extends CI_Model{
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);
-        $this->db->set('KODE_UPT', $data['KODE_UPT']);
+        $this->db->set('KODE_UPT', $data['KODE_INDUK']);
 
         $result = $this->db->insert('DIKLAT_MST_SARANA');
 
@@ -48,7 +49,7 @@ class mdl_sarana extends CI_Model{
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);
-        $this->db->set('KODE_UPT', $data['KODE_UPT']);
+        $this->db->set('KODE_UPT', $data['KODE_INDUK']);
 
 		$this->db->where('ID_SARANA', $data['id']);
 		
@@ -81,7 +82,7 @@ class mdl_sarana extends CI_Model{
 		$class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
-		$res = array(2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014);
+		$res = array(2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020);
 		
 		$out = '<select name="'.$name.'" id="'.$id.'">';
 		foreach($res as $r){
@@ -104,7 +105,7 @@ class mdl_sarana extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->from('DIKLAT_MST_SARPRAS');
-		$this->db->order_by('ID_SARPRAS');
+		$this->db->order_by('ID_SARPRAS');	
 		
 		$res = $this->db->get();
 		

@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery-min.js" ></script>
 	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/custom.js" ></script>
 	<script type="text/javascript" src="<?=base_url()?>asset/diklat/js/ui.datepicker.js" ></script>	
+	<script type="text/javascript" src="<?=base_url()?>asset/board/asset/frontpage/js/ui.datepicker.js"></script>
 </head>
 
 <body>

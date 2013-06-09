@@ -16,6 +16,14 @@
 			} 
 		?>
 		<ol>
+			<li><label for="">UPT <em>*</em></label>
+				<?php 
+					$opti['id'] = 'KODE_UPT';
+					$opti['name'] = 'KODE_UPT';
+					$opti['value'] = set_value('KODE_INDUK');
+					echo $this->mdl_satker->getOptionUPT($opti);
+				?>
+			</li>
 			
 			<li><label for="">NAMA PENYULUHAN <em>*</em></label> <input name="NAMA_PENYULUHAN" value="<?=set_value('NAMA_PENYULUHAN')?>" type="text" class="five"/></li>
 			
@@ -27,14 +35,7 @@
 			
 			
 			
-			<li><label for="">SATKER <em>*</em></label>
-				<?php 
-					$opti['id'] = 'KODE_UPT';
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = set_value('KODE_INDUK');
-					echo $this->mdl_satker->getOptionUPT($opti);
-				?>
-			</li>
+			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

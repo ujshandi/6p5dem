@@ -5,10 +5,10 @@
 	<a href="<?=base_url().$this->config->item('index_page').'/upt/add'?>"class="control"> <span class="add">Tambah Data</span></a>
 	<table width="100%">
 	  <thead>
-		<th>Urutan</th>
+		<th>No</th>
 		<th>Kode UPT</th>
 		<th>Nama UPT</th>
-		<th>Satker</th>
+		<th width="25%">Satker</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -17,7 +17,7 @@
 				<td ><?=$r->URUTAN?></td>
 				<td ><?=$r->KODE_UPT?></td>
 				<td ><?=$r->NAMA_UPT?></td>
-				<td ><?=$r->KODE_INDUK?></td>
+				<td ><?=$r->NAMA_INDUK?></td>
 				<td >
 					<a href="<?=site_url().'/upt/edit/'.$r->KODE_UPT?>" class="control" >
 						<span class="edit">edit</span></a> |

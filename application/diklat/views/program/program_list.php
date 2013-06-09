@@ -7,7 +7,7 @@
 	  <thead>
 		<th>Kode program</th>
 		<th>Nama program</th>
-		<th>Satker</th>
+		<th width="25%">Satker</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -15,7 +15,7 @@
 			<tr class='gradeC'>
 				<td><?=$r->KODE_PROGRAM?></td>
 				<td><?=$r->NAMA_PROGRAM?></td>
-				<td><?=$r->KODE_INDUK?></td>
+				<td><?=$r->NAMA_INDUK?></td>
 				<td >
 					<a href="<?=site_url().'/program/edit/'.$r->KODE_PROGRAM?>" class="control" >
 						<span class="edit">edit</span></a> |
