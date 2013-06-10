@@ -48,18 +48,18 @@
 				<td width='5%'><?=$row->TMT?></td>
 				<td width='15%'><?=$row->NAMA_JABATAN?></td>
 				<td width='5%'><?=$row->NAMA_GOLONGAN?></td>
-				<td width='7%'>
+				<td width='8%'>
 					<a href="<?=site_url().'/sdm_dinas/add_diklat/'.$row->ID_PEG_DINAS?>">
-						<img src="<?=base_url()?>asset/sdm2/images/ic-add.png" />&nbsp;
+						<img src="<?=base_url()?>asset/globalstyle/images/ic-add.png" />&nbsp;
 					</a>
 					<a href="<?=site_url().'/sdm_dinas/edit/'.$row->ID_PEG_DINAS?>">
-						<img src="<?=base_url()?>asset/sdm2/images/ic-edit.png" />&nbsp; 
+						<img src="<?=base_url()?>asset/globalstyle/images/ic-edit.png" />&nbsp; 
 					</a>
 					<a href="<?=site_url().'/sdm_dinas/detail/'.$row->ID_PEG_DINAS?>">
-						<img src="<?=base_url()?>asset/sdm2/images/check.png" />&nbsp;
+						<img src="<?=base_url()?>asset/globalstyle/images/check.png" />&nbsp;
 					</a>
 					<a href="<?=site_url().'/sdm_dinas/detail/'.$row->ID_PEG_DINAS?>">
-						<img src="<?=base_url()?>asset/sdm2/images/ic-delete.png" />
+						<img src="<?=base_url()?>asset/globalstyle/images/ic-delete.png" />
 					</a>
 				</td>
 			</tr>

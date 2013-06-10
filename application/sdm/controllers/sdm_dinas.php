@@ -202,6 +202,8 @@ class Sdm_dinas extends My_Controller {
 		
 		# set rules validation
 		$this->form_validation->set_rules('ALAMAT', 'ALAMAT', 'required');
+		$data['STATUS'] = $this->input->post('STATUS');
+		$data['JML_ANAK'] = $this->input->post('JML_ANAK');
 		$this->form_validation->set_rules('ID_GOLONGAN', 'Id Golongan', 'required');
 		$this->form_validation->set_rules('TMT_GOLONGAN', 'Tmt Golongan', 'required');
 		$this->form_validation->set_rules('ID_JABATAN', 'Id Jabatan', 'required');
