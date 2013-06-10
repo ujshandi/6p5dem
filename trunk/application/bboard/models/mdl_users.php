@@ -42,14 +42,16 @@ class mdl_users extends CI_Model{
 
 
 
-	function insert($data)
+	function insert($username,$password,$name,$user_group_id,$department,$position,$description,$nip)
 
 	{
 
 		$this->db->flush_cache();
 
-		$this->db->insert('USERS', $data);
-
+		//$this->db->insert('USERS', $data);
+		$query = $this->db->query('INSERT INTO "USERS" ("USER_ID", "USERNAME", "PASSWORD", "NAME", "USER_GROUP_ID", "DEPARTMENT", "POSITION", "DESCRIPTION", "NIP") 
+		VALUES (USER_AI_ID_SEQnextval, "' + $username + '", "' + $password + '", "' + $name + '","' + $user_group_id + '", "' + $department + '", "' + $position + '", "' + $description + '", ' + $nip + '")');
+		
 	}
 
 	

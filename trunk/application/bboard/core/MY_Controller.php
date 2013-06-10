@@ -28,12 +28,11 @@ class MY_Controller extends CI_Controller{
 		//$data = $this->_extract_data_session($_SESSION);						        //$data = $_SESSION['dataUser'];					$data = $this->session->userdata('dataUser');					//echo"mycontroler";		        //var_dump($data);exit;							    //$query = $this->Authentikasi->listMenuUser($data["USER_ID"]);													//$arrGroupingMenu = $this->_listMenuUser($query);																							#print_r($arrGroupingMenu);exit;				//$menuUser = $this->build_menu($arrGroupingMenu);				//$data['menuUser'] = $menuUser;					//get menu sesuai otoritas user
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/menu', $data);
-	}
-	
+	}	
 	function close()
 	{
 		$this->load->view('layouts/footer');
-	}
+	}			function open_backend(){		$this->load->view('layouts_backend/header');		$this->load->view('layouts_backend/menu');	}		function close_backend(){		$this->load->view('layouts_backend/footer');	}
 	
 	function set_privilage_asli(){
 		// cek user
