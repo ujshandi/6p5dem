@@ -17,6 +17,6 @@ class dashboard extends My_Controller
 		$this->load->view('dashboard/dashboard');
 		
 		$this->close();
-	}		function elfinder_init()	{	  $this->load->helper('path');	  $opts = array(		// 'debug' => true, 		'roots' => array(		  array( 			'driver' => 'LocalFileSystem', 			'path'   => set_realpath('D:/xampp/htdocs/6p5dem/upload/'), 			'URL'    => base_url() . 'upload'			// more elFinder options here		  ) 		)	  );	  $this->load->library('elfinder_lib', $opts);	}
+	}		function elfinder_init()	{	  $this->load->helper('path');	  $opts = array(		// 'debug' => true, 		'roots' => array(		  array( 			'driver' => 'LocalFileSystem', 			'path'   => set_realpath('upload/'), 			'URL'    => base_url() . 'upload'			// more elFinder options here		  ) 		)	  );	  $this->load->library('elfinder_lib', $opts);	}
 	
 }

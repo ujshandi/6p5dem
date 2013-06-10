@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '//LOCALHOST/XE';
 $db['default']['username'] = 'BPSDM';
 $db['default']['password'] = 'BPSDM';
 $db['default']['database'] = 'BPSDM';
