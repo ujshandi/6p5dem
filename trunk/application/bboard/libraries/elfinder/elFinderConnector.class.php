@@ -51,45 +51,28 @@ class elFinderConnector {
 	public function run() {
 		$isPost = $_SERVER["REQUEST_METHOD"] == 'POST';
 		$src    = $_SERVER["REQUEST_METHOD"] == 'POST' ? $_POST : $_GET;
-		//var_dump($_SERVER["REQUEST_METHOD"]);exit;
-		//var_dump($src);exit;
-		
-		//var_dump($_GET);exit;
-		
-		//$src['cmd']='open=> array('target' => false, 'tree' => false, 'init' => false, 'mimes' => false)';
-		//$src['name']='open';
-		//$args =array('target' => false, 'tree' => false, 'init' => false, 'mimes' => false);
 		$cmd    = isset($src['cmd']) ? $src['cmd'] : '';
 		$args   = array();
-		
-		//echo "run var ok";exit;
 		
 		if (!function_exists('json_encode')) {
 			$error = $this->elFinder->error(elFinder::ERROR_CONF, elFinder::ERROR_CONF_NO_JSON);
 			$this->output(array('error' => '{"error":["'.implode('","', $error).'"]}', 'raw' => true));
-			
 		}
-		//echo "cek json ok";exit;
+		
 		if (!$this->elFinder->loaded()) {
 			$this->output(array('error' => $this->elFinder->error(elFinder::ERROR_CONF, elFinder::ERROR_CONF_NO_VOL), 'debug' => $this->elFinder->mountErrors));
 		}
-		//echo "cek loaded ok";exit;
+		
 		// telepat_mode: on
 		if (!$cmd && $isPost) {
 			$this->output(array('error' => $this->elFinder->error(elFinder::ERROR_UPLOAD, elFinder::ERROR_UPLOAD_TOTAL_SIZE), 'header' => 'Content-Type: text/html'));
 		}
 		// telepat_mode: off
-		//echo "cek upload ok";exit;
-		//echo "cek command  : $cmd";exit;
 		
 		if (!$this->elFinder->commandExists($cmd)) {
-		//echo "cek command ok: $cmd";exit;
 			$this->output(array('error' => $this->elFinder->error(elFinder::ERROR_UNKNOWN_CMD)));
-			
 		}
 		
-		//echo "cek command exist ok";exit;
-	 
 		// collect required arguments to exec command
 		foreach ($this->elFinder->commandArgsList($cmd) as $name => $req) {
 			$arg = $name == 'FILES' 
