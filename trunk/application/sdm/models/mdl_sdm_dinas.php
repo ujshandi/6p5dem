@@ -226,6 +226,8 @@ class Mdl_Sdm_Dinas extends CI_Model{
 	function update($data){
 		$this->db->flush_cache();
 		$this->db->set('ALAMAT', $data['ALAMAT']);
+		$this->db->set('STATUS', $data['STATUS']);
+		$this->db->set('JML_ANAK', $data['JML_ANAK']);
 		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
 		$this->db->set('TMT_GOLONGAN', $data['TMT_GOLONGAN']);
 		$this->db->set('ID_JABATAN', $data['ID_JABATAN']);

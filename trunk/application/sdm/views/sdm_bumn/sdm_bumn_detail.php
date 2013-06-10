@@ -82,8 +82,8 @@ ul.tabs li a.active {
 </style>
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-<h1 class="heading">Detail Data Pegawai</h1>
-	<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
+<h1 class="heading">Detail Data Pegawai Non Aparatur</h1>
+	<?=form_open('sdm_bumn/search', array('class'=>'sform'))?>
 	<hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>
@@ -103,8 +103,8 @@ ul.tabs li a.active {
         <div id="content_1" class="content">
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
 		<tr>
-			<td width="125">NIP</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NIP?></td>
+			<td width="125">NIK</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NIK?></td>
 		</tr>
 		<tr>
 			<td width="125">Nama</td>
@@ -139,16 +139,16 @@ ul.tabs li a.active {
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->ALAMAT?></td>
 		</tr>
 		<tr>
-			<td width="125">Golongan</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA_GOLONGAN?></td>
+			<td width="125">Matra</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMAMATRA?></td>
+		</tr>
+		<tr>
+			<td width="125">BUMN</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA_BUMN?></td>
 		</tr>
 		<tr>
 			<td width="125">Jabatan</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA_JABATAN?></td>
-		</tr>
-		<tr>
-			<td width="125">TMT</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMT?></td>
 		</tr>
 	</table>
 		</div>  

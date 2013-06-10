@@ -27,8 +27,8 @@
       <div class="right">
           <div class="usr"><span>welcome user</span><a href="#"><?=$NAMA_LENGKAP?></a></div>
             <ul class="homout">
-                <li><a href="<?=base_url()?>index.php"><img src="<?=base_url()?>asset/sdm2/images/icon_home_16x16.png" />HOME</a></li>
-                <li><a href="#"><img src="<?=base_url()?>asset/sdm2/images/icon_logout_16x16.png" />LOGOUT</a></li>
+                <li><a href="<?=base_url()?>index.php"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
+                <li><a href="#"><img src="<?=base_url()?>asset/globalstyle/images/icon_logout_16x16.png" />LOGOUT</a></li>
             </ul>
       </div>
     </div><!-- end image headers -->
