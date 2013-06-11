@@ -2,7 +2,7 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Kalender</h1>
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/underconstruction'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/kalender/add'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<table width="100%">
 	  <thead>
 		<th>UPT</th>
@@ -14,10 +14,10 @@
 	  <tbody>
 		<?foreach($result->result() AS $r){?>
 			<tr class='gradeC'>
-				<td><?=$r->KODE_UPT?></td>
+				<td><?=$r->NAMA_INDUK?></td>
 				<td><?=$r->TGL_AWAL?></td>
 				<td><?=$r->TGL_AKHIR?></td>
-				<td><?=$r->KEGIATAN?></td>
+				<td><?=$r->KEGIATAN->load()?></td>
 				<td >
 					<a href="<?=site_url().'/kalender/edit/'.$r->IDKALENDER?>" class="control" >
 						<span class="edit">edit</span></a> |

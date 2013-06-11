@@ -7,71 +7,74 @@ class mdl_kalender extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('DIKLAT_KALENDER.*, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
 		$this->db->from('DIKLAT_KALENDER');
-		//$this->db->join('DIKLAT_MST_INDUKprogram b', 'b.KODE_INDUK = a.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_KALENDER.KODE_UPT = DIKLAT_MST_INDUKUPT.KODE_INDUK');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('IDKALENDER');
 		
 		return $this->db->get();
 		
+		
 	}
 	
-	// function getDataEdit($id){
-		// $this->db->flush_cache();
-		// $this->db->select('*');
-		// $this->db->from('DIKLAT_MST_PROGRAM');
-		// $this->db->where('KODE_PROGRAM', $id);
+	function getDataEdit($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_KALENDER');
+		$this->db->where('IDKALENDER', $id);
 		
-		// return $this->db->get();
-	// }
+		return $this->db->get();
+	}
 
-	// function insert($data){
-		// $this->db->flush_cache();
-        // $this->db->set('KODE_PROGRAM', $data['KODE_PROGRAM']);
-        // $this->db->set('NAMA_PROGRAM', $data['NAMA_PROGRAM']);
-        // $this->db->set('KODE_INDUK', $data['KODE_INDUK']);
+	function insert($data){
+		$this->db->flush_cache();
+        $this->db->set('KODE_UPT', $data['KODE_UPT']);
+        $this->db->set('TGL_AWAL', $data['TGL_AWAL'], false);
+        $this->db->set('TGL_AKHIR', $data['TGL_AKHIR'], false);
+        $this->db->set('KEGIATAN', $data['KEGIATAN']);
 
-        // $result = $this->db->insert('DIKLAT_MST_PROGRAM');
+        $result = $this->db->insert('DIKLAT_KALENDER');
 
-		// if($result) {
-			// return TRUE;
-		// }else {
-			// return FALSE;
-		// }
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
 		
-	// }
+	}
 	
-	// function update($data){
-		// $this->db->flush_cache();
-        // $this->db->set('KODE_PROGRAM', $data['KODE_PROGRAM']);
-        // $this->db->set('NAMA_PROGRAM', $data['NAMA_PROGRAM']);
-        // $this->db->set('KODE_INDUK', $data['KODE_INDUK']);
+	function update($data){
+		$this->db->flush_cache();
+		$this->db->set('KODE_UPT', $data['KODE_UPT']);
+        $this->db->set('TGL_AWAL', $data['TGL_AWAL'], false);
+        $this->db->set('TGL_AKHIR', $data['TGL_AKHIR'], false);
+        $this->db->set('KEGIATAN', $data['KEGIATAN']);
 
-		// $this->db->where('KODE_PROGRAM', $data['id']);
+		$this->db->where('IDKALENDER', $data['id']);
 		
-		// $result = $this->db->update('DIKLAT_MST_PROGRAM');
+		$result = $this->db->update('DIKLAT_KALENDER');
 		
-		// if($result) {
-			// return TRUE;
-		// }else {
-			// return FALSE;
-		// }
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
 		
-	// }
+	}
 	
-	// function delete($id){
-		// $this->db->flush_cache();
-		// $this->db->where('KODE_PROGRAM', $id);
-		// $result = $this->db->delete('DIKLAT_MST_PROGRAM');
+	function delete($id){
+		$this->db->flush_cache();
+		$this->db->where('IDKALENDER', $id);
+		$result = $this->db->delete('DIKLAT_KALENDER');
 		
-		// if($result) {
-			// return TRUE;
-		// }else {
-			// return FALSE;
-		// }
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
 		
-	// }
+	}
 	
 }
 ?>
