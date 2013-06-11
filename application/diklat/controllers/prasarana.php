@@ -4,6 +4,7 @@ class prasarana extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
+		$this->load->model('mdl_satker');
 		$this->load->model('mdl_upt');
 		$this->load->model('mdl_prasarana');
 	}
@@ -47,93 +48,107 @@ class prasarana extends My_Controller {
 	
 	public function add(){
 		$this->open();
-		//$this->load->view('sarpras/prasarana_add');
+		$this->load->view('sarpras/prasarana_add');
 		$this->close();
 	}
 	
 	public function proses_add(){
 		$this->open();
 		
-		# get post data
-		$data['ID_PRASARANA'] = $this->input->post('ID_PRASARANA');
-        $data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
-        $data['TAHUN'] = $this->input->post('TAHUN');
-        $data['JUMLAH'] = $this->input->post('JUMLAH');
-        $data['KAPASITAS'] = $this->input->post('KAPASITAS');
-        $data['GAMBAR_PRASARANA'] = $this->input->post('PRASARANA');
-        $data['DESKRIPSI_PRASARANA'] = $this->input->post('DESKRIPSI_PRASARANA');
-        $data['TANGGAL_UPLOAD'] = $this->input->post('TANGGAL_UPLOAD');
-        $data['KODE_UPT'] = $this->input->post('KODE_UPT');
-		
-		# set rules validation
-		$this->form_validation->set_rules('ID_PRASARANA', 'ID PRASARANA', 'required');
-        $this->form_validation->set_rules('ID_SARPRAS', 'ID SARPRAS', 'required');
-        $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
-        $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-        $this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
-        $this->form_validation->set_rules('GAMBAR_PRASARANA', 'GAMBAR_PRASARANA', 'required');
-        $this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
-        $this->form_validation->set_rules('TANGGAL_UPLOAD', 'TANGGAL_UPLOAD', 'required');
-        $this->form_validation->set_rules('KODE_UPT', 'KODE_UPT', 'required');
-		
-		# set message validation
-		$this->form_validation->set_message('required', 'Field %s harus diisi!');
-		
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('sarpras/prasarana_add',$data);
+		$config['upload_path'] = './file_upload/diklat/';
+		$config['allowed_types'] = 'gif|jpg|png|BMP|';
+		$config['max_size']	= '1000';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( $this->upload->do_upload()){
+			$data['GAMBAR_PRASARANA'] =  $this->upload->file_name;
+			# get post data
+			//$data['ID_PRASARANA'] = $this->input->post('ID_PRASARANA');
+			$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+			$data['TAHUN'] = $this->input->post('TAHUN');
+			$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
+			$data['JUMLAH'] = $this->input->post('JUMLAH');
+			$data['KAPASITAS'] = $this->input->post('KAPASITAS');
+			//$data['GAMBAR_PRASARANA'] = $this->input->post('GAMBAR_PRASARANA');
+			$data['DESKRIPSI_PRASARANA'] = $this->input->post('DESKRIPSI_PRASARANA');
+			$data['TANGGAL_UPLOAD'] = "to_date('".date('Y/m/d')."', 'yyyy/mm/dd')";
+			
+			# set rules validation
+			//$this->form_validation->set_rules('ID_PRASARANA', 'ID PRASARANA', 'required');
+			$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
+			$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
+			$this->form_validation->set_rules('ID_SARPRAS', 'NAMA PRASARANA', 'required');
+			$this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
+			$this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
+			//$this->form_validation->set_rules('GAMBAR_PRASARANA', 'GAMBAR_PRASARANA', 'required');
+			$this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
+			
+			# set message validation
+			$this->form_validation->set_message('required', 'Field %s harus diisi!');
+			
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('sarpras/prasarana_add',$data);
+			}else{
+				$this->mdl_prasarana->insert($data);
+				redirect('prasarana');
+			}
 		}else{
-			$this->mdl_sarpras->insert($data);
-			redirect('prasarana');
+			echo $this->upload->display_errors();
 		}
+		
+		
 		
 		$this->close();
 	}
 	
-	public function edit($id){
-		$this->open();
+	// public function edit($id){
+		// $this->open();
 		
-		$data['id'] = $id;
-		$data['result'] = $this->mdl_prasarana->getDataEdit($id);
-		$this->load->view('sarpras/prasarana_edit', $data);
+		// $data['id'] = $id;
+		// $data['result'] = $this->mdl_prasarana->getDataEdit($id);
+		// $this->load->view('sarpras/prasarana_edit', $data);
 		
-		$this->close();
-	}
+		// $this->close();
+	// }
 	
-	public function proses_edit(){
-		$this->open();
+	// public function proses_edit(){
+		// $this->open();
 		
-		$data['ID_PRASARANA'] = $this->input->post('ID_PRASARANA');
-        $data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
-        $data['TAHUN'] = $this->input->post('TAHUN');
-        $data['JUMLAH'] = $this->input->post('JUMLAH');
-        $data['KAPASITAS'] = $this->input->post('KAPASITAS');
-        $data['GAMBAR_PRASARANA'] = $this->input->post('PRASARANA');
-        $data['DESKRIPSI_PRASARANA'] = $this->input->post('DESKRIPSI_PRASARANA');
-        $data['TANGGAL_UPLOAD'] = $this->input->post('TANGGAL_UPLOAD');
-        $data['KODE_UPT'] = $this->input->post('KODE_UPT');
+		//$data['ID_PRASARANA'] = $this->input->post('ID_PRASARANA');
+        // $data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
+        // $data['TAHUN'] = $this->input->post('TAHUN');
+        // $data['JUMLAH'] = $this->input->post('JUMLAH');
+        // $data['KAPASITAS'] = $this->input->post('KAPASITAS');
+        // $data['GAMBAR_PRASARANA'] = $this->input->post('GAMBAR_PRASARANA');
+        // $data['DESKRIPSI_PRASARANA'] = $this->input->post('DESKRIPSI_PRASARANA');
+        // $data['TANGGAL_UPLOAD'] = date('YYYY-mm-dd');
+		// $data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        
 		
-		# set rules validation
-		$this->form_validation->set_rules('ID_PRASARANA', 'ID PRASARANA', 'required');
-        $this->form_validation->set_rules('ID_SARPRAS', 'ID SARPRAS', 'required');
-        $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
-        $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-        $this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
-        $this->form_validation->set_rules('GAMBAR_PRASARANA', 'GAMBAR_PRASARANA', 'required');
-        $this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
-        $this->form_validation->set_rules('TANGGAL_UPLOAD', 'TANGGAL_UPLOAD', 'required');
-        $this->form_validation->set_rules('KODE_UPT', 'KODE_UPT', 'required');
-		# set message validation
-		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		// # set rules validation
 		
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('sarpras/prasarana_edit',$data);
-		}else{
-			$this->mdl_sarpras->update($data);
-			redirect('prasarana');
-		}
+        // $this->form_validation->set_rules('ID_SARPRAS', 'ID SARPRAS', 'required');
+        // $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
+        // $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
+        // $this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
+        //$this->form_validation->set_rules('GAMBAR_PRASARANA', 'GAMBAR_PRASARANA', 'required');
+        // $this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
+        // $this->form_validation->set_rules('KODE_UPT', 'KODE_UPT', 'required');
+		// # set message validation
+		// $this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
-		$this->close();
-	}
+		// if ($this->form_validation->run() == FALSE){
+			// $this->load->view('sarpras/prasarana_edit',$data);
+		// }else{
+			// $this->mdl_prasarana->update($data);
+			// redirect('prasarana');
+		// }
+		
+		// $this->close();
+	// }
 	
 	public function proses_delete($id){
 		if($this->mdl_prasarana->delete($id)){
