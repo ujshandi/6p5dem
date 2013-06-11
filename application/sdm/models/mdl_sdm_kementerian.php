@@ -148,10 +148,10 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 	public function get_data_duk_detail($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('SDM_PEG_KEMENTRIAN');
-		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_KEMENTRIAN.ID_GOLONGAN');
-		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_KEMENTRIAN.ID_JABATAN');
-		$this->db->where('ID_PEG_KEMENTRIAN', $id);
+		$this->db->from('pegawai_kementrian a');
+		$this->db->join('golongan b', 'b.id_golongan = a.id_golongan');
+		$this->db->join('jabatan c', 'c.id_jabatan = a.id_jabatan');
+		$this->db->where('id_peg_kementrian', $id);
 		return $this->db->get();
 		
 	}
@@ -159,14 +159,22 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 	public function get_data_duk_detail_diklat($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
+/*<<<<<<< .mine
+		$this->db->from('diklat_peg_kem a');
+		$this->db->join('jenis_pelatihan b', 'b.id_jenis_pelatihan = a.id_jenis_pelatihan');
+		$this->db->join('diklat c', 'c.id_diklat = a.id_diklat');
+		$this->db->where('id_peg_kem', $id);
+=======*/
 		$this->db->from('SDM_DIKLAT_PEG_KEMENTRIAN');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_DIKLAT.KODE_DIKLAT = SDM_DIKLAT_PEG_KEMENTRIAN.KODE_DIKLAT');
 		$this->db->where('ID_PEG_KEMENTRIAN', $id);
+//>>>>>>> .r68
 		return $this->db->get();
 		
 	}
 	
-	public function get_data_duk_detail_pendidikan($id){
+
+		public function get_data_duk_detail_pendidikan($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('SDM_PEND_FORMAL_KEM');
