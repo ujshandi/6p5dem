@@ -32,7 +32,7 @@ class mdl_penyuluhan extends CI_Model{
         $this->db->set('NAMA_PENYULUHAN', $data['NAMA_PENYULUHAN']);
         $this->db->set('JML_PESERTA', $data['JML_PESERTA']);
 		$this->db->set('TEMPAT', $data['TEMPAT']);
-		$this->db->set('TANGGAL', $data['TANGGAL']);
+		$this->db->set('TANGGAL', $data['TANGGAL'], false);
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 
         $result = $this->db->insert('DIKLAT_PENYULUHAN');
@@ -51,7 +51,7 @@ class mdl_penyuluhan extends CI_Model{
         $this->db->set('NAMA_PENYULUHAN', $data['NAMA_PENYULUHAN']);
         $this->db->set('JML_PESERTA', $data['JML_PESERTA']);
 		$this->db->set('TEMPAT', $data['TEMPAT']);
-		$this->db->set('TANGGAL', $data['TANGGAL']);
+		$this->db->set('TANGGAL', $data['TANGGAL'], false);
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 
 		$this->db->where('IDDATA', $data['id']);

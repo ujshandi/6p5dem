@@ -1,4 +1,11 @@
 <!-- contenna -->
+<script>
+$(function() {
+$( "#TGL_AWAL" ).datepicker();
+$( "#TGL_AKHIR" ).datepicker();
+});
+</script>
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Kalender</h1>
 	<hr/>

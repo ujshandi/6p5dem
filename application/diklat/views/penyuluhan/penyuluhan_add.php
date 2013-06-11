@@ -1,4 +1,10 @@
 <!-- contenna -->
+<script>
+$(function() {
+$( "#TANGGAL" ).datepicker();
+});
+</script>
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Penyuluhan</h1>
 	<hr/>
@@ -27,11 +33,11 @@
 			
 			<li><label for="">NAMA PENYULUHAN <em>*</em></label> <input name="NAMA_PENYULUHAN" value="<?=set_value('NAMA_PENYULUHAN')?>" type="text" class="five"/></li>
 			
-			<li><label for="">JUMLAH PESERTA <em>*</em></label> <input name="JML_PESERTA" value="<?=set_value('JML_PESERTA')?>" type="text" class="five"/></li>
+			<li><label for="">JUMLAH PESERTA <em>*</em></label> <input name="JML_PESERTA" value="<?=set_value('JML_PESERTA')?>" type="text" class="one"/></li>
 			
-			<li><label for="">TEMPAT <em>*</em></label> <input name="TEMPAT" value="<?=set_value('TEMPAT')?>" type="text" class="five"/></li>
+			<li><label for="">TEMPAT <em>*</em></label> <input name="TEMPAT" value="<?=set_value('TEMPAT')?>" type="text" class="three"/></li>
 			
-			<li><label for="">TANGGAL <em>*</em></label> <input name="TANGGAL" value="<?=set_value('TANGGAL')?>" type="text" class="five"/> <em>DD-MM-YYYY</em></li>
+			<li><label for="">TANGGAL<em>*</em></label> <input name="TANGGAL" value="<?=set_value('TANGGAL')?>" type="text" class="one" id="TANGGAL"/></li>
 			
 			
 			

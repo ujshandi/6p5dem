@@ -1,4 +1,10 @@
 <!-- contenna -->
+<script>
+$(function() {
+$( "#TANGGAL" ).datepicker();
+});
+</script>
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Penyuluhan</h1>
 	<hr/>
@@ -29,11 +35,11 @@
 			
 			<li><label for="">NAMA PENYULUHAN <em>*</em></label> <input name="NAMA_PENYULUHAN" value="<?=$result->row()->NAMA_PENYULUHAN?>" type="text" class="five"/></li>
 			
-			<li><label for="">JUMLAH PESERTA <em>*</em></label> <input name="JML_PESERTA" value="<?=$result->row()->JML_PESERTA?>" type="text" class="five"/></li>
+			<li><label for="">JUMLAH PESERTA <em>*</em></label> <input name="JML_PESERTA" value="<?=$result->row()->JML_PESERTA?>" type="text" class="one"/></li>
 			
-			<li><label for="">TEMPAT <em>*</em></label> <input name="TEMPAT" value="<?=$result->row()->TEMPAT?>" type="text" class="five"/></li>
+			<li><label for="">TEMPAT <em>*</em></label> <input name="TEMPAT" value="<?=$result->row()->TEMPAT?>" type="text" class="three"/></li>
 			
-			<li><label for="">TANGGAL <em>*</em></label> <input name="TANGGAL" value="<?=$result->row()->TANGGAL?>" type="text" class="five"/><em>DD-MM-YYYY</em></li>
+			<li><label for="">TANGGAL<em>*</em></label> <input name="TANGGAL" value="<?=$result->row()->TANGGAL?>" type="text" class="one" id="TANGGAL"/></li>
 			
 			
 			
