@@ -20,7 +20,7 @@ class sdm_kementerian extends My_Controller {
 		$this->pagination->initialize($config);	
 		
 		$data['option_eselon1'] = $this->mdl_sdm_kementerian->geteselon1();
-		$this->load->view('sdm_kementerian/sdm_kementerian', $data);
+		$this->load->view('sdm_kementrian/sdm_kementrian', $data);
 		
 		
 		$this->close();
@@ -31,7 +31,7 @@ class sdm_kementerian extends My_Controller {
     			
 			if('IS_AJAX') {
             $data['option_eselon2'] = $this->mdl_sdm_kementerian->geteselon2();
-       		$this->load->view('sdm_kementerian/selecteselon2',$data);
+       		$this->load->view('sdm_kementrian/selecteselon2',$data);
             }
     }
 	
@@ -66,7 +66,7 @@ class sdm_kementerian extends My_Controller {
 			
 			if('IS_AJAX') {
             $data['option_eselon3'] = $this->mdl_sdm_kementerian->geteselon3();
-       		$this->load->view('sdm_kementerian/selecteselon3',$data);
+       		$this->load->view('sdm_kementrian/selecteselon3',$data);
             }
     }
 	
@@ -74,7 +74,7 @@ class sdm_kementerian extends My_Controller {
 			
 			if('IS_AJAX') {
             $data['option_eselon4'] = $this->mdl_sdm_kementerian->geteselon4();
-       		$this->load->view('sdm_kementerian/selecteselon4',$data);
+       		$this->load->view('sdm_kementrian/selecteselon4',$data);
             }
     }
  
@@ -100,20 +100,24 @@ class sdm_kementerian extends My_Controller {
 		$data['result'] = $this->mdl_sdm_kementerian->get_data($e1, $e2, $e3, $e4);
 		
 		
-		$this->load->view('sdm_kementerian/sdm_kementerian_search',$data);
+		$this->load->view('sdm_kementrian/sdm_kementrian_search',$data);
 		$this->close();
 	}
 	
 	function detail($id){
-		$this->open();
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_kementerian/index/';		
+		$data['title']	='DETAIL DATA PEGAWAI KEMENTERIAN ';
+		$data['home']	='selected';
+		$data['main']	='form/kementrian1_detail';
 		
+//<<<<<<< .mine
+		$data['result'] = $this->mdl_sdm_kementerian->get_data_duk_detail($id);
 		$data['result1'] = $this->mdl_sdm_kementerian->get_data_duk_detail($id);
 		$data['result2'] = $this->mdl_sdm_kementerian->get_data_duk_detail_diklat($id);
 		$data['result3'] = $this->mdl_sdm_kementerian->get_data_duk_detail_pendidikan($id);
 		$data['result4'] = $this->mdl_sdm_kementerian->get_data_duk_detail_pangkat($id);
 		$this->load->view('sdm_kementerian/sdm_kementerian_detail',$data);
 		$this->close();
+//>>>>>>> .r63
 	}
 	
 	
