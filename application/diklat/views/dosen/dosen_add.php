@@ -1,4 +1,10 @@
 <!-- contenna -->
+<script>
+$(function() {
+$( "#TGL_LAHIR" ).datepicker();
+});
+</script>
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Dosen</h1>
 	<hr/>
@@ -21,9 +27,9 @@
 			
 			<li><label for="">NAMA DOSEN <em>*</em></label> <input name="NAMADOSEN" value="<?=set_value('NAMADOSEN')?>" type="text" class="five"/></li>
 			
-			<li><label for="">Tempat Lahir <em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="five"/></li>
+			<li><label for="">Tempat Lahir <em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="two"/></li>
 			
-			<li><label for="">Tanggal Lahir <em>*</em></label> <input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="five"/></li>
+			<li><label for="">Tanggal Lahir<em>*</em></label> <input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="one" id="TGL_LAHIR"/></li>
 			
 			<li><label for="">Jenis Kelamin <em>*</em></label> <select id="JK" name="JK">
 			<option value="">- Pilih Jenis Kelamin -</option>
@@ -38,9 +44,9 @@
 			<option value="Luar Biasa">Luar Biasa</option>
 			</select></li>
 			
-			<li><label for="">Tahun Mulai Mengajar <em>*</em></label> <input name="TAHUN" value="<?=set_value('TAHUN')?>" type="text" class="three"/></li>
+			<li><label for="">Tahun Mulai Mengajar <em>*</em></label> <input name="TAHUN" value="<?=set_value('TAHUN')?>" type="text" class="one"/></li>
 			
-			<li><label for="">Pendidikan <em>*</em></label> <input name="PENDIDIKAN" value="<?=set_value('PENDIDIKAN')?>" type="text" class="three"/></li>
+			<li><label for="">Pendidikan <em>*</em></label> <input name="PENDIDIKAN" value="<?=set_value('PENDIDIKAN')?>" type="text" class="five"/></li>
 			
 			<li><label for="">Jenis Pengajar <em>*</em></label> <select id="JENIS_DOSEN" name="JENIS_DOSEN">
 			<option value="">- Pilih Jenis Pengajar -</option>

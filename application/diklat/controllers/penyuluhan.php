@@ -86,8 +86,8 @@ class penyuluhan extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->mdl_penyuluhan->getDataEdit($id);
-		$this->load->view('penyuluhan/penyuluhan_edit', $data);
+		$data['result'] = $this->mdl_dosen->getDataEdit($id);
+		$this->load->view('dosen/dosen_edit', $data);
 		
 		$this->close();
 	}
@@ -100,7 +100,7 @@ class penyuluhan extends My_Controller {
         $data['NAMA_PENYULUHAN'] = $this->input->post('NAMA_PENYULUHAN');
         $data['JML_PESERTA'] = $this->input->post('JML_PESERTA');
         $data['TEMPAT'] = $this->input->post('TEMPAT');
-        $data['TANGGAL'] = $this->input->post('TANGGAL');
+        $data['TANGGAL'] = "to_date('".$this->input->post('TANGGAL')."', 'mm/dd/yyyy')";
         $data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
 		# set rules validation

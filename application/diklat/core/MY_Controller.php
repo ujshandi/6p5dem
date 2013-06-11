@@ -4,7 +4,7 @@ class MY_Controller extends CI_Controller{
 	var $privilage_x;
 	public function __construct(){
 		parent::__construct();
-		$this->output->enable_profiler(false);
+		$this->output->enable_profiler(true);
 		# cek login
 		// if (is_login() == FALSE){
 			// redirect('auth');

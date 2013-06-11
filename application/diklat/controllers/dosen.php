@@ -59,7 +59,7 @@ class dosen extends My_Controller {
         $data['NIP'] = $this->input->post('NIP');
         $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');
 		$data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-		$data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+		$data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
 		$data['JK'] = $this->input->post('JK');
 		$data['STATUS'] = $this->input->post('STATUS');
 		$data['TAHUN'] = $this->input->post('TAHUN');
@@ -113,7 +113,7 @@ class dosen extends My_Controller {
         $data['NIP'] = $this->input->post('NIP');
         $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');
 		$data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-		$data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+		$data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
 		$data['JK'] = $this->input->post('JK');
 		$data['STATUS'] = $this->input->post('STATUS');
 		$data['TAHUN'] = $this->input->post('TAHUN');
