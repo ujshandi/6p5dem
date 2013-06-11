@@ -3,11 +3,12 @@
 	<h1 class="heading">Komposisi SDM <?=$title;?></h1>
 	<hr/>
 
-    <div id="chart2" style="margin-top:13px; margin-right:15px; width:48%; min-height:800px; float:right"></div>
-    <pre class="code brush:js"></pre>
 
-	<div id="chart1" style="margin-top:10px; margin-left:15px; width:48%; min-height:800px;"></div>
+	<div id="chart1" style="margin-top:10px; margin-left:15px; width:100%; min-height:800px;"></div>
 	<pre class="code brush:js"></pre>
+
+    <div id="chart2" style="margin-top:13px; margin-right:15px; width:100%; min-height:800px;"></div>
+    <pre class="code brush:js"></pre>
 
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
@@ -19,43 +20,8 @@
 					}
 				?>
 			];
-			var s1 = [
-				<?php
-					foreach($stat->result() as $point){
-						echo "'".$point->JUMLAH_SDM."', ";
-					}
-				?>
-			];
-			var ticks = [
-					<?php
-						foreach($stat->result() as $point){
-							echo "'".$point->NAMA_ESELON_2."', ";
-						}
-					?>
-				];
-			
-			plot1 = $.jqplot('chart1', [s1], {
-				// Only animate if we're not using excanvas (not in IE 7 or IE 8)..
-				animate: !$.jqplot.use_excanvas,
-				seriesDefaults:{
-					renderer:$.jqplot.BarRenderer,
-                    pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
-                    shadowAngle: 135,
-                    rendererOptions: {
-                        barDirection: 'horizontal',
-                        barMargin: 5
-                    }
-				},
-				axes: {
-					yaxis: {
-						renderer: $.jqplot.CategoryAxisRenderer,
-						ticks: ticks
-					}
-				},
-				highlighter: { show: false }
-			});
 
-			var s2 = [
+			var val = [
 				<?php
 					foreach($stat->result() as $point){
 						echo "['".$point->NAMA_ESELON_2."', ".$point->JUMLAH_SDM."],";
@@ -63,7 +29,23 @@
 				?>
 			];
 
-			plot2 = jQuery.jqplot('chart2', [s2], 
+			plot1 = $.jqplot('chart1', [val], {
+			    series:[{renderer:$.jqplot.BarRenderer}],
+			    axesDefaults: {
+			        tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
+			        tickOptions: {
+			          fontSize: '10pt',
+			          angle: -65
+			        }
+			    },
+			    axes: {
+			      xaxis: {
+			        renderer: $.jqplot.CategoryAxisRenderer
+			      }
+			    }
+			});
+
+			plot2 = jQuery.jqplot('chart2', [val], 
 			{
 			  title: ' ', 
 			  seriesDefaults: {
@@ -113,6 +95,8 @@
 
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.barRenderer.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.pieRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.categoryAxisRenderer.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.pointLabels.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.EnhancedLegendRenderer.min.js"></script>
