@@ -69,6 +69,33 @@ class Laporan_model extends CI_Model{
 		
 		return $data;
 	}
+	public function get_sdm_bumn($matra, $bumn){
+		
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_BUMN');
+		//$this->db->join('SDM_BUMN', 'SDM_BUMN.KODEBUMN = SDM_PEG_BUMN.KODEBUMN');
+		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_BUMN.ID_JABATAN');
+		
+		$this->db->where('KODEMATRA', $matra);
+		$this->db->where('KODEBUMN', $bumn);	
+		
+		$result = $this->db->get();
+		
+		$i=0;
+		foreach($result->result() as $r){
+			$data[$i][0] = $i + 1;
+			$data[$i][1] = $r->NIK;
+			$data[$i][2] = $r->NAMA;
+			$data[$i][3] = $r->ALAMAT;
+			$data[$i][4] = $r->NAMA_JABATAN;
+			//$data[$i][5] = $r->NAMA_BUMN;
+			$i++;
+		}
+		
+		return $data;
+	}
+
 	
 }
 ?>
