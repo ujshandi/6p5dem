@@ -20,7 +20,7 @@
       <div id="title">
         <h3>BPSDM Perhubungan - Kementerian Perhubungan RI</h3>
         <h2>Sistem Informasi Manajemen SDM Bidang Transportasi</h2>
-        <h1>Aplikasi Basis Data Diklat</h1>
+        <h1>Aplikasi Manajemen User dan Frontend</h1>
       </div><!-- end title -->
       
       <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"></a></div>

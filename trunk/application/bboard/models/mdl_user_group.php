@@ -2,7 +2,7 @@
 
 
 
-class mdl_users extends CI_Model{
+class mdl_user_group extends CI_Model{
 
 	
 
@@ -21,8 +21,8 @@ class mdl_users extends CI_Model{
 	{
 
 		$this->db->flush_cache();
-
-		return $this->db->get('USERS', $num, $offset);
+		$this->db->order_by('USER_GROUP_ID','asc');
+		return $this->db->get('USER_GROUP', $num, $offset);
 
 	}
 
@@ -34,9 +34,9 @@ class mdl_users extends CI_Model{
 
 		$this->db->flush_cache();
 
-		$this->db->where('USER_ID', $id);
+		$this->db->where('USER_GROUP_ID', $id);
 
-		return $this->db->get('USERS');
+		return $this->db->get('USER_GROUP');
 
 	}
 
@@ -53,7 +53,7 @@ class mdl_users extends CI_Model{
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
 			
-		$result = $this->db->insert('USERS');
+		$result = $this->db->insert('USER_GROUP');
 		
 		if($result) {
 			return TRUE;
@@ -65,8 +65,8 @@ class mdl_users extends CI_Model{
 	function get_data_edit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('USERS');
-		$this->db->where('USER_ID', $id);
+		$this->db->from('USER_GROUP');
+		$this->db->where('USER_GROUP_ID', $id);
 		
 		return $this->db->get();
 	}
@@ -81,8 +81,8 @@ class mdl_users extends CI_Model{
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
-		$this->db->where('USER_ID', $data['id']);
-		$result = $this->db->update('USERS');
+		$this->db->where('USER_GROUP_ID', $data['id']);
+		$result = $this->db->update('user_group');
 		
 		if($result) {
 			return TRUE;
@@ -94,8 +94,8 @@ class mdl_users extends CI_Model{
 	
 	function delete($data){
 		$this->db->flush_cache();
-		$this->db->where('USER_ID', $data['id']);
-		$result = $this->db->delete('USERS');
+		$this->db->where('USER_GROUP_ID', $data['id']);
+		$result = $this->db->delete('user_group');
 		
 		if($result) {
 			return TRUE;
