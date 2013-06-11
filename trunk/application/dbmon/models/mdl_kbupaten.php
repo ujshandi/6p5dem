@@ -12,7 +12,7 @@ class mdl_kbupaten extends CI_Model{
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('SDM_KABUPATEN.KODEKABUP');
 		if($kodeprovin!=0){
-			$this->db->where('SDM_KABUPATEN.KODEPROVIN',$kodeprovin);
+			$this->db->where('SDM_KABUPATEN.KODEPROVIN',$kodeprovin, false);
 		}
 		return $this->db->get();
 		
