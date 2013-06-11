@@ -45,80 +45,87 @@ class kalender extends My_Controller {
 		$this->close();
 	}
 	
-	// public function add(){
-		// $this->open();
-		// $this->load->view('kalender/kalender_add');
-		// $this->close();
-	// }
+	public function add(){
+		$this->open();
+		$this->load->view('kalender/kalender_add');
+		$this->close();
+	}
 	
-	// public function proses_add(){
-		// $this->open();
+	public function proses_add(){
+		$this->open();
 		
-		// # get post data
-		// $data['KODE_kalender'] = $this->input->post('KODE_kalender');
-        // $data['NAMA_kalender'] = $this->input->post('NAMA_kalender');
-        // $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		# get post data
+		//$data['IDKALENDER'] = $this->input->post('IDKALENDER');
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['TGL_AWAL'] = "to_date('".$this->input->post('TGL_AWAL')."', 'mm/dd/yyyy')";
+        $data['TGL_AKHIR'] = "to_date('".$this->input->post('TGL_AKHIR')."', 'mm/dd/yyyy')";
+        $data['KEGIATAN'] = $this->input->post('KEGIATAN');
 		
-		// # set rules validation
-		// $this->form_validation->set_rules('KODE_kalender', 'KODE kalender', 'required');
-        // $this->form_validation->set_rules('NAMA_kalender', 'NAMA kalender', 'required');
-        // $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
-        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
+		$data['TANGGAL_UPLOAD'] = "to_date('".date('Y/m/d')."', 'yyyy/mm/dd')";
 		
-		// # set message validation
-		// $this->form_validation->set_message('required', 'Field %s harus diisi!');
+		# set rules validation
+		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
+        $this->form_validation->set_rules('TGL_AWAL', 'TGL AWAL', 'required');
+        $this->form_validation->set_rules('TGL_AKHIR', 'TGL AWAL', 'required');
+        $this->form_validation->set_rules('KEGIATAN', 'KEGIATAN', 'required');
 		
-		// if ($this->form_validation->run() == FALSE){
-			// $this->load->view('kalender/kalender_add',$data);
-		// }else{
-			// $this->mdl_kalender->insert($data);
-			// redirect('kalender');
-		// }
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
-		// $this->close();
-	// }
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('kalender/kalender_add',$data);
+		}else{
+			$this->mdl_kalender->insert($data);
+			redirect('kalender');
+		}
+		
+		$this->close();
+	}
 	
-	// public function edit($id){
-		// $this->open();
+	public function edit($id){
+		$this->open();
 		
-		// $data['id'] = $id;
-		// $data['result'] = $this->mdl_kalender->getDataEdit($id);
-		// $this->load->view('kalender/kalender_edit', $data);
+		$data['id'] = $id;
+		$data['result'] = $this->mdl_kalender->getDataEdit($id);
+		$this->load->view('kalender/kalender_edit', $data);
 		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
-	// public function proses_edit(){
-		// $this->open();
+	public function proses_edit(){
+		$this->open();
 		
-		// $data['id'] = $this->input->post('id');
-		// $data['KODE_kalender'] = $this->input->post('KODE_kalender');
-        // $data['NAMA_kalender'] = $this->input->post('NAMA_kalender');
-        // $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		$data['id'] = $this->input->post('id');
+		//$data['IDKALENDER'] = $this->input->post('IDKALENDER');
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['TGL_AWAL'] = "to_date('".$this->input->post('TGL_AWAL')."', 'mm/dd/yyyy')";
+        $data['TGL_AKHIR'] = "to_date('".$this->input->post('TGL_AKHIR')."', 'mm/dd/yyyy')";
+        $data['KEGIATAN'] = $this->input->post('KEGIATAN');
 		
-		// # set rules validation
-		// $this->form_validation->set_rules('KODE_kalender', 'KODE kalender', 'required');
-        // $this->form_validation->set_rules('NAMA_kalender', 'NAMA kalender', 'required');
-        // $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
-		// # set message validation
-		// $this->form_validation->set_message('required', 'Field %s harus diisi!');
+		# set rules validation
+		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
+        $this->form_validation->set_rules('TGL_AWAL', 'TGL AWAL', 'required');
+        $this->form_validation->set_rules('TGL_AKHIR', 'TGL AWAL', 'required');
+        $this->form_validation->set_rules('KEGIATAN', 'KEGIATAN', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
-		// if ($this->form_validation->run() == FALSE){
-			// $this->load->view('kalender/kalender_edit',$data);
-		// }else{
-			// $this->mdl_kalender->update($data);
-			// redirect('kalender');
-		// }
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('kalender/kalender_edit',$data);
+		}else{
+			$this->mdl_kalender->update($data);
+			redirect('kalender');
+		}
 		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
-	// public function proses_delete($id){
-		// if($this->mdl_kalender->delete($id)){
-			// redirect('kalender');
-		// }else{
-			//code u/ gagal simpan
-		// }
-	// }
+	public function proses_delete($id){
+		if($this->mdl_kalender->delete($id)){
+			redirect('kalender');
+		}else{
+		
+		}
+	}
 	
 }
