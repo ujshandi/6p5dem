@@ -1,125 +1,1 @@
-<script type="text/javascript">
-	
-	function batal(){
-		document.location.href = '<?=base_url().'index.php/users'?>';
-	}
-	
-</script>
-
-<section class="grid_8">
-	<div class="block-border">
-		<?php
-			$attributes = array('name' => 'form1', 'id' => 'form1', 'class'=>'block-content form');
-			echo form_open('users/process_update', $attributes);
-		?>
-			<h1>Edit Data User</h1>
-			
-			<fieldset class="grey-bg">
-				
-				
-		<div class="columns">
-					<p class="colx2-left">
-						<label for="complex-en-url">Username :</label>
-						<input type="hidden" name="userid" value="<?=$userid?>">
-						<span class="relative">
-							<? 
-								if (form_error('username') != null)
-								{
-									echo '<input type="text" name="username" id="username" value="'.set_value('username').'" class="duapertiga-width">';
-									echo form_error('username');
-								}else
-								{
-									echo '<input type="text" name="username" id="username" value="'.$username.'" class="duapertiga-width">';
-								}
-							?>
-						</span>
-					</p>
-					<p class="colx2-right">
-						<label for="complex-en-url">Password :</label>
-						<span class="relative">
-							<? 
-								if (form_error('password') != null)
-								{
-									echo '<input type="password" name="password" id="password" value="'.set_value('password').'" class="duapertiga-width">';
-									echo form_error('password');
-								}else
-								{
-									echo '<input type="password" name="password" id="password" value="'.$password.'" class="duapertiga-width">';
-								}
-							?>
-						</span>
-					</p>
-				</div>
-				<div class="columns">
-					<p class="colx2-left">
-						<label for="complex-en-url">Nama :</label>
-						<span class="relative">
-							<? 
-								if (form_error('nama') != null)
-								{
-									echo '<input type="text" name="nama" id="nama" value="'.set_value('nama').'" class="duapertiga-width">';
-									echo form_error('nama');
-								}else
-								{
-									echo '<input type="text" name="nama" id="nama" value="'.$nama.'" class="duapertiga-width">';
-								}
-							?>
-						</span>
-					</p>
-					<p class="colx2-right">
-						<label for="complex-en-url">Level :</label>
-						<span class="relative">
-							<select name="level_id" id="level_id" class="duapertiga-width">
-								<?php
-									$query = $this->db->get('users_level');
-									if($query->num_rows() > 0)
-									{
-										foreach($query->result() as $row)
-										{
-											if($level_id == $row->level_id){
-												echo '<option value="'.$row->level_id.'" selected="selected">'.$row->nama.'</option>';
-											}else{
-												echo '<option value="'.$row->level_id.'" >'.$row->nama.'</option>';
-											}
-										}
-									}
-								?>
-							</select>
-						</span>
-					</p>
-				</div>
-				<div class="columns">
-					<p class="colx2-left">
-						<label for="complex-en-url">Cabang :</label>
-						<span class="relative">
-							<select name="id_cabang" id="id_cabang" class="duapertiga-width">
-								<?php
-									$query = $this->db->get('cabang');
-									if($query->num_rows() > 0)
-									{
-										foreach($query->result() as $row)
-										{
-											if($id_cabang == $row->id_cabang){
-												echo '<option value="'.$row->id_cabang.'" selected="selected">'.$row->nama_cabang.'</option>';
-											}else{
-												echo '<option value="'.$row->id_cabang.'" >'.$row->nama_cabang.'</option>';
-											}
-										}
-									}
-								?>
-							</select>
-						</span>
-					</p>
-				</div>
-		
-				
-			</fieldset>
-				
-			<div id="tab-settings" class="tabs-content">
-					<button type="submit"><img src="<?=base_url()?>asset/admin/images/icons/fugue/tick-circle.png" width="16" height="16"> Simpan</button>
-					<button type="button" onclick="javascript:batal();" class="red">Batal</button> 	
-			</div>
-			
-		</form>
-	</div>
-</section>
+<!-- contenna --><div class="wrap_right bgcontent">	<h1 class="heading">Data Program</h1>	<hr/>	<?=form_open('users/proses_edit', array('class'=>'sform'))?>	<fieldset>		<?php 			if(validation_errors())			{		?>				<ul class="message error grid_12">					<li><?=validation_errors()?></li>					<li class="close-bt"></li>				</ul>			<?php			} 					?>		<ol>		    <input type="hidden" name="id" value="<?=$id?>">			<li><label for="">NAME <em>*</em></label> <input name="NAME" value="<?=$result->row()->NAME?>" type="text" class="five"/></li>			<li><label for="">USERNAME <em>*</em></label> <input name="USERNAME" value="<?=$result->row()->USERNAME?>" type="text" class="five"/></li>			<li><label for="">PASSWORD <em>*</em></label> <input name="PASSWORD" value="<? echo $result->row()->PASSWORD?>" type="password" class="five"/></li>			<li><label for="">USER GROUP <em>*</em></label>				<?php 					$opti['name'] = 'USER_GROUP_ID';					$opti['value'] = $result->row()->USER_GROUP_ID;					echo $this->users->get_group_user($opti);				?>			</li>			<li><label for="">DEPARTMENT <em>*</em></label> <input name="DEPARTMENT" value="<?=$result->row()->DEPARTMENT?>" type="text" class="five"/></li>			<li><label for="">POSITION <em>*</em></label> <input name="POSITION" value="<?=$result->row()->POSITION?>" type="text" class="five"/></li>			<li><label for="">DESCRIPTION <em>*</em></label> <input name="DESCRIPTION" value="<?=$result->row()->DESCRIPTION?>" type="text" class="five"/></li>			<li><label for="">NIP <em>*</em></label> <input name="NIP" value="<?=$result->row()->NIP?>" type="text" class="five"/></li>			<li><label for="">EMAIL <em>*</em></label> <input name="EMAIL" value="<?=$result->row()->EMAIL?>" type="text" class="five"/></li>						<div class="clearfix">&nbsp;</div>			<hr/>			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>		</ol>	</fieldset>	<?=form_close()?></div><!-- end wrap right content-->

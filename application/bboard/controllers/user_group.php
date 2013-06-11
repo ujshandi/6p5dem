@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Users extends MY_Controller
+class user_group extends MY_Controller
 {
 	function __construct()
 	{
@@ -8,7 +8,7 @@ class Users extends MY_Controller
 
 		$this->load->helper('url');
 		$this->load->model('Authentikasi');
-		$this->load->model('mdl_users', 'users');
+		$this->load->model('mdl_user_group', 'user_group');
 		$this->load->library('auth_ad');
 	}
 
@@ -18,14 +18,14 @@ class Users extends MY_Controller
 		$this->open_backend();
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/index/';
-		$config['total_rows'] = $this->db->count_all('USERS');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_group/index/';
+		$config['total_rows'] = $this->db->count_all('USER_GROUP');
 		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$this->pagination->initialize($config);	
 		
-		$data['results'] = $this->users->getItem($config['per_page'], $this->uri->segment(3));
-		$this->load->view('users/users_list', $data);
+		$data['results'] = $this->user_group->getItem($config['per_page'], $this->uri->segment(3));
+		$this->load->view('user_group/user_group_list', $data);
 		
 		$this->close_backend();
 		
@@ -33,7 +33,7 @@ class Users extends MY_Controller
 	
 	public function add(){
 		$this->open_backend();
-		$this->load->view('users/users_add');
+		$this->load->view('user_group/user_group_add');
 		$this->close_backend();
 	}
 	
@@ -64,10 +64,10 @@ class Users extends MY_Controller
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('users/users_add',$data);
+			$this->load->view('user_group/user_group_add',$data);
 		}else{
-			$this->users->insert($data);
-			redirect('users');
+			$this->user_group->insert($data);
+			redirect('user_group');
 		}
 		
 		$this->close_backend();
@@ -77,9 +77,9 @@ class Users extends MY_Controller
 		$this->open_backend();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->users->get_data_edit($id);
+		$data['result'] = $this->user_group->get_data_edit($id);
 		
-		$this->load->view('users/users_edit', $data);
+		$this->load->view('user_group/user_group_edit', $data);
 		
 		$this->close_backend();
 	}
@@ -109,18 +109,18 @@ class Users extends MY_Controller
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('users/users_edit',$data);
+			$this->load->view('user_group/user_group_edit',$data);
 		}else{
-			$this->users->update($data);
-			redirect('users');
+			$this->user_group->update($data);
+			redirect('user_group');
 		}
 		
 		$this->close_backend();
 	}
 	
 	public function proses_delete($id){
-		if($this->users->delete($id)){
-			redirect('users');
+		if($this->user_group->delete($id)){
+			redirect('user_group');
 		}else{
 			// code u/ gagal simpan
 			
@@ -129,5 +129,5 @@ class Users extends MY_Controller
 	
 }
 
-/* End of file users.php */
-/* Location: ./application/controllers/users.php */
+/* End of file user_group.php */
+/* Location: ./application/controllers/user_group.php */

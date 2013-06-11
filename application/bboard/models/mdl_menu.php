@@ -2,7 +2,7 @@
 
 
 
-class mdl_users extends CI_Model{
+class mdl_menu extends CI_Model{
 
 	
 
@@ -21,8 +21,12 @@ class mdl_users extends CI_Model{
 	{
 
 		$this->db->flush_cache();
-
-		return $this->db->get('USERS', $num, $offset);
+		$this->db->select('USER_GROUP_MENU.*, MENU.MENU_NAME, MENU.MENU_URL');
+		$this->db->from('MENU');
+		$this->db->join('USER_GROUP_MENU','MENU.MENU_ID=USER_GROUP_MENU.MENU_ID');		
+		$this->db->order_by('MENU.MENU_ID','asc');
+		$this->db->limit($num, $offset);
+		return $this->db->get();
 
 	}
 
@@ -34,9 +38,9 @@ class mdl_users extends CI_Model{
 
 		$this->db->flush_cache();
 
-		$this->db->where('USER_ID', $id);
+		$this->db->where('USER_GROUP_ID', $id);
 
-		return $this->db->get('USERS');
+		return $this->db->get('USER_GROUP_MENU');
 
 	}
 
@@ -47,13 +51,13 @@ class mdl_users extends CI_Model{
 		$this->db->set('NAME', $data['NAME']);
 		$this->db->set('USERNAME', $data['USERNAME']);
 		$this->db->set('PASSWORD', md5($data['PASSWORD']));
-		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$this->db->set('USER_GROUP_MENU_ID', $data['USER_GROUP_MENU_ID']);
 		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
 			
-		$result = $this->db->insert('USERS');
+		$result = $this->db->insert('USER_GROUP_MENU');
 		
 		if($result) {
 			return TRUE;
@@ -65,8 +69,8 @@ class mdl_users extends CI_Model{
 	function get_data_edit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('USERS');
-		$this->db->where('USER_ID', $id);
+		$this->db->from('USER_GROUP_MENU');
+		$this->db->where('USER_GROUP_MENU_ID', $id);
 		
 		return $this->db->get();
 	}
@@ -76,13 +80,13 @@ class mdl_users extends CI_Model{
 		$this->db->set('NAME', $data['NAME']);
 		$this->db->set('USERNAME', $data['USERNAME']);
 		$this->db->set('PASSWORD', $data['PASSWORD']);
-		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$this->db->set('USER_GROUP_MENU_ID', $data['USER_GROUP_MENU_ID']);
 		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
-		$this->db->where('USER_ID', $data['id']);
-		$result = $this->db->update('USERS');
+		$this->db->where('USER_GROUP_MENU_ID', $data['id']);
+		$result = $this->db->update('USER_GROUP_MENU');
 		
 		if($result) {
 			return TRUE;
@@ -94,8 +98,8 @@ class mdl_users extends CI_Model{
 	
 	function delete($data){
 		$this->db->flush_cache();
-		$this->db->where('USER_ID', $data['id']);
-		$result = $this->db->delete('USERS');
+		$this->db->where('USER_GROUP_MENU_MENU_ID', $data['id']);
+		$result = $this->db->delete('USER_GROUP_MENU');
 		
 		if($result) {
 			return TRUE;
@@ -112,17 +116,17 @@ class mdl_users extends CI_Model{
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
-		$this->db->from('USER_GROUP');
-		$this->db->order_by('USER_GROUP_ID');
+		$this->db->from('USER_GROUP_MENU');
+		$this->db->order_by('USER_GROUP_MENU_ID');
 		
 		$res = $this->db->get();
 		
 		$out = '<select name="'.$name.'" id="'.$id.'">';
 		foreach($res->result() as $r){
-			if($r->USER_GROUP_ID == trim($value)){
-				$out .= '<option value="'.$r->USER_GROUP_ID.'" selected="selected">'.$r->USER_GROUP_NAME.'</option>';
+			if($r->USER_GROUP_MENU_ID == trim($value)){
+				$out .= '<option value="'.$r->USER_GROUP_MENU_ID.'" selected="selected">'.$r->USER_GROUP_MENU_NAME.'</option>';
 			}else{
-				$out .= '<option value="'.$r->USER_GROUP_ID.'">'.$r->USER_GROUP_NAME.'</option>';
+				$out .= '<option value="'.$r->USER_GROUP_MENU_ID.'">'.$r->USER_GROUP_MENU_NAME.'</option>';
 			}
 		}
 		$out .= '</select>';
