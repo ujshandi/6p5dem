@@ -27,7 +27,7 @@
 					<a href="">Dashboard Monitoring SDM</a>
 					<ul>
 						<li><a href="<?=base_url()?>dbmon.php/sdm/dinas">Komposisi SDM Dinas</a></li>
-						<li><a href="<?=base_url()?>dbmon.php/sdm/kementrian">Komposisi SDM Kementrian</a></li>
+						<li><a href="<?=base_url()?>dbmon.php/sdm/kementerian">Komposisi SDM Kementrian</a></li>
 						<li><a href="<?=base_url()?>dbmon.php/sdm/nonaparatur">Komposisi SDM Non-Aparatur</a></li>
 					</ul>
 				</li>
