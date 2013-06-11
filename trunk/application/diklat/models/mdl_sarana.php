@@ -106,6 +106,7 @@ class mdl_sarana extends CI_Model{
 		$this->db->flush_cache();
 		$this->db->from('DIKLAT_MST_SARPRAS');
 		$this->db->order_by('ID_SARPRAS');	
+		$this->db->where('JENIS', 'Sarana');
 		
 		$res = $this->db->get();
 		
