@@ -215,7 +215,8 @@ class Mdl_Sdm_bumn extends CI_Model{
 		$this->db->set('KODEBUMN', $data['KODEBUMN']);
 		$this->db->set('ALAMAT', $data['ALAMAT']);
 		$this->db->set('TMPT_LAHIR', $data['TMPT_LAHIR']);
-		$this->db->set('TGL_LAHIR', 'TO_TIMESTAMP(\''.$data['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
+		$this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
+		//$this->db->set('TGL_LAHIR', 'TO_TIMESTAMP(\''.$data['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
 		$this->db->set('AGAMA', $data['AGAMA']);
 		$this->db->set('JENIS_KELAMIN', $data['JENIS_KELAMIN']);
 		$this->db->set('STATUS', $data['STATUS']);

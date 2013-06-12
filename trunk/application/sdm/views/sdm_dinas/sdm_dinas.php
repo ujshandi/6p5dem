@@ -1,7 +1,7 @@
 <!-- page content -->
 	<div class="wrap_right bgcontent">
-	<h1 class="heading">Data Aparatur Dinas Berdasarkan Duk</h1>
-    
+	<h1 class="heading">Data Aparatur Dinas</h1>
+    <hr/>
 	<?=form_open('sdm_dinas/search')?>
 	<div id="provin">
    Provinsi : <br/>

@@ -1,17 +1,28 @@
-		<div class="wrap_right bgcontent">
-		<h1 class="heading">Tambah Data Pegawai Dinas</h1>
-		<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
+<div class="wrap_right bgcontent">
+<h1 class="heading">Tambah Data Pegawai Dinas</h1>
+<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
 <hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>
         <hr/>
         <?=form_open('sdm_dinas/proses_add', array('class'=>'sform'))?>
             <fieldset>
+			<?php 
+			if(validation_errors())
+			{
+		?>
+				<ul class="message error grid_12">
+					<li><?=validation_errors()?></li>
+					<li class="close-bt"></li>
+				</ul>	
+		<?php
+			} 
+		?>
                 <ol>
 					<li><label for="">NIP <em>*</em></label> <input name="NIP" value="<?=set_value('NIP')?>" type="text" class="five"/><small>*Format : 1234545644</small></li>
                     <li><label for="">Nama Lengkap <em>*</em></label> <input name="NAMA" value="<?=set_value('NAMA')?>" type="text" class="five"/></li>
                     <li><label for="">Tempat Lahir <em>*</em></label> <input name="TMPT_LAHIR" value="<?=set_value('TMPT_LAHIR')?>" type="text"/></li>
-					<li><label for="">Tanggal Lahir <em>*</em></label> <input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text"/><small>*Format : YYYY-MM-DD</small></li>
+					<li><label for="">Tanggal Lahir<em>*</em></label> <input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="one" id="TGL_LAHIR"/><small>*Format : MM/DD/YYYY</small></li>
                     <li><label for="">jenis kelamin <em>*</em></label> <select name="JENIS_KELAMIN">
 								<option value="Pria">Pria</option>
 								<option value="Wanita">Wanita</option>
@@ -56,6 +67,11 @@
 		
 		</div>
         <div class="clearfix">&nbsp;</div>
+<script>
+		$(function() {
+		$( "#TGL_LAHIR" ).datepicker();
+		});
+</script>
 <script type="text/javascript">
         $("#KODEPROVIN").change(function(){
                 var selectValues = $("#KODEPROVIN").val();

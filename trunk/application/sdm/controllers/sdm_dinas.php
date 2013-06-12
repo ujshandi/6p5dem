@@ -241,7 +241,8 @@ class Sdm_dinas extends My_Controller {
 		$data['JENIS_KELAMIN'] = $this->input->post('JENIS_KELAMIN');
 		$data['AGAMA'] = $this->input->post('AGAMA');
 		$data['STATUS'] = $this->input->post('STATUS');
-		$data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+		$data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
+		//$data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
 		$data['TMPT_LAHIR'] = $this->input->post('TMPT_LAHIR');
 		$data['JML_ANAK'] = $this->input->post('JML_ANAK');
 		$data['TMT'] = $this->input->post('TMT');

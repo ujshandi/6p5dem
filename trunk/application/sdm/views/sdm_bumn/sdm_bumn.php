@@ -1,7 +1,7 @@
 <!-- page content -->
 	<div class="wrap_right bgcontent">
 	<h1 class="heading">Data Pegawai BUMN</h1>
-    
+    <hr/>
 	<?=form_open('sdm_bumn/search')?>
 	<div id="matra">
    Matra : <br/>
