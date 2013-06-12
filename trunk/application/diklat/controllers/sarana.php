@@ -4,7 +4,7 @@ class sarana extends My_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('mdl_satker');
+		$this->load->model('mdl_upt');
 		$this->load->model('mdl_sarana');
 	}
 
@@ -56,7 +56,7 @@ class sarana extends My_Controller {
 		
 		# get post data
 		//$data['ID_SARANA'] = $this->input->post('ID_SARANA');
-		$data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['TAHUN'] = $this->input->post('TAHUN');
 		$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
         $data['JUMLAH'] = $this->input->post('JUMLAH');
@@ -65,7 +65,7 @@ class sarana extends My_Controller {
 		# set rules validation
         $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
         $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-        $this->form_validation->set_rules('KODE_INDUK', 'UPT', 'required');
+        $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -94,7 +94,7 @@ class sarana extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $this->input->post('id');
-		$data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['TAHUN'] = $this->input->post('TAHUN');
 		$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
         $data['JUMLAH'] = $this->input->post('JUMLAH');
@@ -102,7 +102,7 @@ class sarana extends My_Controller {
 		# set rules validation
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
         $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-        $this->form_validation->set_rules('KODE_INDUK', 'UPT', 'required');
+        $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		

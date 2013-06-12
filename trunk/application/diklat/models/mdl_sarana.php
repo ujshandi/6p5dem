@@ -7,12 +7,13 @@ class mdl_sarana extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_SARPRAS.NAMA_SARPRAS, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
+		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_SARPRAS.NAMA_SARPRAS, DIKLAT_MST_UPT.NAMA_UPT', false);
 		$this->db->from('DIKLAT_MST_SARANA');
 		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
-		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_INDUKUPT.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('ID_SARANA');
+		
+		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
 		
 		return $this->db->get();
 		
@@ -32,7 +33,7 @@ class mdl_sarana extends CI_Model{
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);
-        $this->db->set('KODE_UPT', $data['KODE_INDUK']);
+        $this->db->set('KODE_UPT', $data['KODE_UPT']);
 
         $result = $this->db->insert('DIKLAT_MST_SARANA');
 
@@ -49,7 +50,7 @@ class mdl_sarana extends CI_Model{
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);
-        $this->db->set('KODE_UPT', $data['KODE_INDUK']);
+        $this->db->set('KODE_UPT', $data['KODE_UPT']);
 
 		$this->db->where('ID_SARANA', $data['id']);
 		

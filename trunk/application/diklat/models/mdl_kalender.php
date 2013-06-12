@@ -7,11 +7,11 @@ class mdl_kalender extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_KALENDER.*, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
+		$this->db->select('DIKLAT_KALENDER.*, DIKLAT_MST_UPT.NAMA_UPT', false);
 		$this->db->from('DIKLAT_KALENDER');
-		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_KALENDER.KODE_UPT = DIKLAT_MST_INDUKUPT.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_KALENDER.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('IDKALENDER');
+		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
 		
 		return $this->db->get();
 		

@@ -20,11 +20,11 @@
 				<?php 
 					$opti['name'] = 'KODE_UPT';
 					$opti['value'] = set_value('KODE_UPT');
-					echo $this->mdl_satker->getOptionUPT($opti);
+					echo $this->mdl_upt->getOptionUPT($opti);
 				?>
 			</li> 
 			
-			<li><label for="">TAHUN <em>*</em></label> <input name="TAHUN" value="<?=set_value('TAHUN')?>" type="text" class="three"/></li>
+			<li><label for="">TAHUN <em>*</em></label> <input name="TAHUN" value="<?=set_value('TAHUN')?>" type="text" class="one"/></li>
 			
 			<li><label for="">NAMA PRASARANA <em>*</em></label>
 				<?php 

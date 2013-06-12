@@ -7,11 +7,12 @@ class mdl_prasarana extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_PRASARANA.*, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
+		$this->db->select('DIKLAT_MST_PRASARANA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_SARPRAS.NAMA_SARPRAS', false);
 		$this->db->from('DIKLAT_MST_PRASARANA');
-		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_PRASARANA.KODE_UPT = DIKLAT_MST_INDUKUPT.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PRASARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_PRASARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('ID_PRASARANA');
+		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
 		
 		return $this->db->get();
 		
@@ -28,7 +29,6 @@ class mdl_prasarana extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
-        // $this->db->set('ID_PRASARANA', $data['ID_PRASARANA']);
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 		$this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);        
@@ -51,15 +51,14 @@ class mdl_prasarana extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-        //$this->db->set('ID_PRASARANA', $data['ID_PRASARANA']);
-        $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
-        $this->db->set('TAHUN', $data['TAHUN']);
+        $this->db->set('KODE_UPT', $data['KODE_UPT']);
+		$this->db->set('TAHUN', $data['TAHUN']);
+        $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);        
         $this->db->set('JUMLAH', $data['JUMLAH']);
         $this->db->set('KAPASITAS', $data['KAPASITAS']);
         $this->db->set('GAMBAR_PRASARANA', $data['GAMBAR_PRASARANA']);
         $this->db->set('DESKRIPSI_PRASARANA', $data['DESKRIPSI_PRASARANA']);
-        $this->db->set('TANGGAL_UPLOAD', $data['TANGGAL_UPLOAD']);
-        $this->db->set('KODE_UPT', $data['KODE_UPT']);
+        $this->db->set('TANGGAL_UPLOAD', $data['TANGGAL_UPLOAD'], false);
 
 		$this->db->where('ID_PRASARANA', $data['id']);
 		

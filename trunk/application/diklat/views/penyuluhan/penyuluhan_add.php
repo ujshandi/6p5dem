@@ -26,8 +26,8 @@ $( "#TANGGAL" ).datepicker();
 				<?php 
 					$opti['id'] = 'KODE_UPT';
 					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = set_value('KODE_INDUK');
-					echo $this->mdl_satker->getOptionUPT($opti);
+					$opti['value'] = set_value('KODE_UPT');
+					echo $this->mdl_upt->getOptionUPT($opti);
 				?>
 			</li>
 			

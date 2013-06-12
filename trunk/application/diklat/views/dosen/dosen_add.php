@@ -60,7 +60,7 @@ $( "#TGL_LAHIR" ).datepicker();
 					$opti['id'] = 'KODE_INDUK';
 					$opti['name'] = 'KODE_INDUK';
 					$opti['value'] = set_value('KODE_INDUK');
-					echo $this->mdl_satker->getOptionUPT($opti);
+					echo $this->mdl_upt->getOptionUPT($opti);
 				?>
 			</li>
 			

@@ -7,14 +7,17 @@
 	  <thead>
 		<th>No</th>
 		<th>Kode UPT</th>
-		<th>Nama UPT</th>
-		<th width="25%">Satker</th>
+		<th width="35%">Nama UPT</th>
+		<th width="20%">Satker</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
-		<?foreach($result->result() AS $r){?>
+		<?
+		$i=1;
+		foreach($result->result() as $r){
+		?>
 			<tr class='gradeC'>
-				<td ><?=$r->URUTAN?></td>
+				<td width='2%'><?=$i?></td>
 				<td ><?=$r->KODE_UPT?></td>
 				<td ><?=$r->NAMA_UPT?></td>
 				<td ><?=$r->NAMA_INDUK?></td>
@@ -25,9 +28,18 @@
 						<span class="delete">hapus</span></a>
 				</td>
 			</tr>
-		<?}?>
+		<?
+		$i++;
+		}
+		?>
 	  </tbody>
 	</table>
-	<div class="clear">&nbsp;</div>
-	<?=$this->pagination->create_links()?>
+	<div class="clearfix">&nbsp;</div>        
+        <div class="paging right">
+          <ul>
+            <li class="active">
+				 <li><?=$this->pagination->create_links()?></li>
+          </ul>
+        </div><!--end pagination-->
+	<div class="clearfix"></div>
 </div><!-- end wrap right content-->
