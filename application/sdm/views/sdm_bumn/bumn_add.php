@@ -11,7 +11,7 @@
 					<li><label for="">NIK <em>*</em></label> <input name="NIK" value="<?=set_value('NIK')?>" type="text" class="five"/><small>*Format : 1234545644</small></li>
                     <li><label for="">Nama Lengkap <em>*</em></label> <input name="NAMA" value="<?=set_value('NAMA')?>" type="text" class="five"/></li>
                     <li><label for="">Tempat Lahir <em>*</em></label> <input name="TMPT_LAHIR" value="<?=set_value('TMPT_LAHIR')?>" type="text"/></li>
-					<li><label for="">Tanggal Lahir <em>*</em></label> <input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text"/><small>*Format : YYYY-MM-DD</small></li>
+					<li><label for="">Tanggal Lahir<em>*</em></label> <input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="one" id="TGL_LAHIR"/><small>*Format : MM/DD/YYYY</small></li>
                     <li><label for="">jenis kelamin <em>*</em></label> <select name="JENIS_KELAMIN">
 								<option value="Pria">Pria</option>
 								<option value="Wanita">Wanita</option>
@@ -45,7 +45,12 @@
 		
 		</div>
         <div class="clearfix">&nbsp;</div>
-<script type="text/javascript">
+<script>
+		$(function() {
+		$( "#TGL_LAHIR" ).datepicker();
+		});
+</script>
+		<script type="text/javascript">
         $("#KODEMATRA").change(function(){
                 var selectValues = $("#KODEMATRA").val();
                 if (selectValues == 0){

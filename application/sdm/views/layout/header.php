@@ -9,6 +9,11 @@
 	<link type="text/css" href="<?=base_url()?>asset/globalstyle/css/style.css" rel="stylesheet"  />
 	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery-min.js" ></script>
 	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/custom.js" ></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/diklat/js/ui.datepicker.js" ></script>	
+	<script type="text/javascript" src="<?=base_url()?>asset/board/asset/frontpage/js/ui.datepicker.js"></script>
+	<link href="<?=base_url()?>asset/globalstyle/css/jquery-ui-datepicker/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-1.9.1.js"></script>
+	<script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-ui-1.10.3.custom.js"></script>
 </head>
 
 <body>
