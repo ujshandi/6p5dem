@@ -2,22 +2,32 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta</h1>
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/underconstruction'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add'?>" class="control"> <span class="add">Tambah Registrasi Peserta</span></a>
+	
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta_lulus/add'?>" class="control"> <span class="add">Tambah Peserta Lulus Diklat</span></a>
+	
 	<table width="100%">
 	  <thead>
-		<th>UPT</th>
-		<th>Diklat</th>
+		<th>No</th>
+		<th width="22%">UPT</th>
+		<th width="15%">Diklat</th>
 		<th>No peserta</th>
-		<th>Nama peserta</th>
+		<th width="15%">Nama peserta</th>
 		<th>Angkatan</th>
 		<th>Status</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
-		<?foreach($result->result() AS $r){?>
+		
+		<?
+		$i=1;
+		foreach($result->result() as $r){
+		?>
+		
 			<tr class='gradeC'>
-				<td><?=$r->KODE_UPT?></td>
-				<td><?=$r->KODE_DIKLAT?></td>
+				<td width='2%'><?=$i?></td>
+				<td><?=$r->NAMA_UPT?></td>
+				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->NO_PESERTA?></td>
 				<td><?=$r->NAMA_PESERTA?></td>
 				<td><?=$r->THN_ANGKATAN?></td>
@@ -29,9 +39,18 @@
 						<span class="delete">hapus</span></a>
 				</td>
 			</tr>
-		<?}?>
+		<?
+		$i++;
+		}
+		?>
 	  </tbody>
 	</table>
-	<div class="clear">&nbsp;</div>
-	<?=$this->pagination->create_links()?>
+	<div class="clearfix">&nbsp;</div>        
+        <div class="paging right">
+          <ul>
+            <li class="active">
+				 <li><?=$this->pagination->create_links()?></li>
+          </ul>
+        </div><!--end pagination-->
+	<div class="clearfix"></div>
 </div><!-- end wrap right content-->

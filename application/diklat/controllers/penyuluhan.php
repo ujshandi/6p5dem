@@ -4,7 +4,7 @@ class penyuluhan extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('mdl_satker');
+		$this->load->model('mdl_upt');
 		$this->load->model('mdl_penyuluhan');
 	}
 	
@@ -86,8 +86,8 @@ class penyuluhan extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->mdl_dosen->getDataEdit($id);
-		$this->load->view('dosen/dosen_edit', $data);
+		$data['result'] = $this->mdl_penyuluhan->getDataEdit($id);
+		$this->load->view('penyuluhan/penyuluhan_edit', $data);
 		
 		$this->close();
 	}

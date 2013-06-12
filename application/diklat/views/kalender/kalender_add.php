@@ -27,7 +27,7 @@ $( "#TGL_AKHIR" ).datepicker();
 				<?php 
 					$opti['name'] = 'KODE_UPT';
 					$opti['value'] = set_value('KODE_UPT');
-					echo $this->mdl_satker->getOptionUPT($opti);
+					echo $this->mdl_upt->getOptionUPT($opti);
 				?>
 			</li>
 			

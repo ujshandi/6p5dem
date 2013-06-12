@@ -5,7 +5,8 @@
 	<a href="<?=base_url().$this->config->item('index_page').'/kurikulum/add'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<table width="100%">
 	  <thead>
-		<th>Kode UPT</th>
+		<th>No</th>
+		<th>UPT</th>
 		<th>Kode Diklat</th>		
 		<th>Kode kurikulum</th>
 		<th>Nama kurikulum</th>
@@ -16,9 +17,13 @@
 		<th width="140px">aksi</th>
 	  </thead>
 	  <tbody>
-		<?foreach($result->result() AS $r){?>
+		<?
+		$i=1;
+		foreach($result->result() as $r){
+		?>
 			<tr class='gradeC'>
-				<td><?=$r->KODE_UPT?></td>
+				<td width='2%'><?=$i?></td>
+				<td><?=$r->NAMA_UPT?></td>
 				<td><?=$r->KODE_DIKLAT?></td>
 				<td><?=$r->KODE_KURIKULUM?></td>
 				<td><?=$r->NAMA_KURIKULUM?></td>
@@ -33,9 +38,21 @@
 						<span class="delete">hapus</span></a>
 				</td>
 			</tr>
-		<?}?>
+		<?
+		$i++;
+		}
+		?>
 	  </tbody>
 	</table>
-	<div class="clear">&nbsp;</div>
-	<?=$this->pagination->create_links()?>
+	
+	
+	<div class="clearfix">&nbsp;</div>        
+        <div class="paging right">
+          <ul>
+            <li class="active">
+				 <li><?=$this->pagination->create_links()?></li>
+          </ul>
+        </div><!--end pagination-->
+	<div class="clearfix"></div>
+	
 </div><!-- end wrap right content-->

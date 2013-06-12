@@ -6,6 +6,7 @@
 	
 	<table width="100%">
 	  <thead>
+		<th>No</th>
 		<th>UPT</th>
 		<th>Nama Sarana</th>
 		<th>Jumlah</th>
@@ -13,9 +14,15 @@
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
-		<?foreach($result->result() AS $r){?>
+		
+		<?
+		$i=1;
+		foreach($result->result() as $r){
+		?>
+		
 			<tr class='gradeC'>
-				<td width="25%"><?=$r->NAMA_INDUK?></td>
+				<td width='2%'><?=$i?></td>
+				<td width="25%"><?=$r->NAMA_UPT?></td>
 				<td><?=$r->NAMA_SARPRAS?></td>
 				<td><?=$r->JUMLAH?></td>
 				<td><?=$r->TAHUN?></td>
@@ -26,9 +33,18 @@
 						<span class="delete">hapus</span></a>
 				</td>
 			</tr>
-		<?}?>
+		<?
+		$i++;
+		}
+		?>
 	  </tbody>
 	</table>
-	<div class="clear">&nbsp;</div>
-	<?=$this->pagination->create_links()?>
+	<div class="clearfix">&nbsp;</div>        
+        <div class="paging right">
+          <ul>
+            <li class="active">
+				 <li><?=$this->pagination->create_links()?></li>
+          </ul>
+        </div><!--end pagination-->
+	<div class="clearfix"></div>
 </div><!-- end wrap right content-->

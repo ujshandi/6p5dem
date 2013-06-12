@@ -7,6 +7,7 @@ class peserta extends My_Controller {
 		//$this->load->model('mdl_satker');
 		//$this->load->model('mdl_diklat');
 		$this->load->model('mdl_upt');
+		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_peserta');
 	}
 	
@@ -47,73 +48,102 @@ class peserta extends My_Controller {
 		$this->close();
 	}
 	
-	// public function add(){
-		// $this->open();
-		// $this->load->view('peserta/peserta_add');
-		// $this->close();
-	// }
+	public function add(){
+		$this->open();
+		$this->load->view('peserta/peserta_add');
+		$this->close();
+	}
 	
-	// public function proses_add(){
-		// $this->open();
+	public function proses_add(){
+		$this->open();
 		
-		// # get post data
-		// $data['KODE_peserta'] = $this->input->post('KODE_peserta');
-        // $data['NAMA_peserta'] = $this->input->post('NAMA_peserta');
-        // $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		# get post data
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
+        $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
+        $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
+        $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
+        $data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+        $data['JK'] = $this->input->post('JK');
+        $data['TGL_MASUK'] = $this->input->post('TGL_MASUK');
+        $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
+        $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
+        $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
-		// # set rules validation
-		// $this->form_validation->set_rules('KODE_peserta', 'KODE peserta', 'required');
-        // $this->form_validation->set_rules('NAMA_peserta', 'NAMA peserta', 'required');
-        // $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
-        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
+		# set rules validation
+		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
+        $this->form_validation->set_rules('KODE_DIKLAT', 'DIKLAT', 'required');
+        $this->form_validation->set_rules('NO_PESERTA', 'NO PESERTA', 'required');
+        $this->form_validation->set_rules('NAMA_PESERTA', 'NAMA PESERTA', 'required');
+        $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
+        $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
+        $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
+        $this->form_validation->set_rules('TGL_MASUK', 'TANGGAL MASUK', 'required');
+        $this->form_validation->set_rules('THN_ANGKATAN', 'TAHUN ANGKATAN', 'required');
+        $this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
 		
-		// # set message validation
-		// $this->form_validation->set_message('required', 'Field %s harus diisi!');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
-		// if ($this->form_validation->run() == FALSE){
-			// $this->load->view('peserta/peserta_add',$data);
-		// }else{
-			// $this->mdl_peserta->insert($data);
-			// redirect('peserta');
-		// }
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('peserta/peserta_add',$data);
+		}else{
+			$this->mdl_peserta->insert($data);
+			redirect('peserta');
+		}
 		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
-	// public function edit($id){
-		// $this->open();
+	public function edit($id){
+		$this->open();
 		
-		// $data['id'] = $id;
-		// $data['result'] = $this->mdl_peserta->getDataEdit($id);
-		// $this->load->view('peserta/peserta_edit', $data);
+		$data['id'] = $id;
+		$data['result'] = $this->mdl_peserta->getDataEdit($id);
+		$this->load->view('peserta/peserta_edit', $data);
 		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
-	// public function proses_edit(){
-		// $this->open();
+	public function proses_edit(){
+		$this->open();
 		
-		// $data['id'] = $this->input->post('id');
-		// $data['KODE_peserta'] = $this->input->post('KODE_peserta');
-        // $data['NAMA_peserta'] = $this->input->post('NAMA_peserta');
-        // $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
+		$data['id'] = $this->input->post('id');
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
+        $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
+        $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
+        $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
+        $data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+        $data['JK'] = $this->input->post('JK');
+        $data['TGL_MASUK'] = $this->input->post('TGL_MASUK');
+        $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
+        $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
+        $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
-		// # set rules validation
-		// $this->form_validation->set_rules('KODE_peserta', 'KODE peserta', 'required');
-        // $this->form_validation->set_rules('NAMA_peserta', 'NAMA peserta', 'required');
-        // $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
-		// # set message validation
-		// $this->form_validation->set_message('required', 'Field %s harus diisi!');
+		# set rules validation
+		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
+        $this->form_validation->set_rules('KODE_DIKLAT', 'DIKLAT', 'required');
+        $this->form_validation->set_rules('NO_PESERTA', 'NO PESERTA', 'required');
+        $this->form_validation->set_rules('NAMA_PESERTA', 'NAMA PESERTA', 'required');
+        $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
+        $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
+        $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
+        $this->form_validation->set_rules('TGL_MASUK', 'TANGGAL MASUK', 'required');
+        $this->form_validation->set_rules('THN_ANGKATAN', 'TAHUN ANGKATAN', 'required');
+        $this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
-		// if ($this->form_validation->run() == FALSE){
-			// $this->load->view('peserta/peserta_edit',$data);
-		// }else{
-			// $this->mdl_peserta->update($data);
-			// redirect('peserta');
-		// }
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('peserta/peserta_edit',$data);
+		}else{
+			$this->mdl_peserta->update($data);
+			redirect('peserta');
+		}
 		
-		// $this->close();
-	// }
+		$this->close();
+	}
 	
 	public function proses_delete($id){
 		if($this->mdl_peserta->delete($id)){

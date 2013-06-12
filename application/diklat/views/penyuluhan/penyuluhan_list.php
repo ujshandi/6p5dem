@@ -5,6 +5,7 @@
 	<a href="<?=base_url().$this->config->item('index_page').'/penyuluhan/add'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<table width="100%">
 	  <thead>
+		<th width="2%">No</th>
 		<th width="20%">UPT</th>
 		<th>Nama Penyuluhan</th>
 		<th>Peserta</th>
@@ -13,9 +14,15 @@
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
-		<?foreach($result->result() AS $r){?>
+	  
+		<?
+		$i=1;
+		foreach($result->result() as $r){
+		?>
+		
 			<tr class='gradeC'>
-				<td><?=$r->NAMA_INDUK?></td>
+				<td width='2%'><?=$i?></td>
+				<td><?=$r->NAMA_UPT?></td>
 				<td><?=$r->NAMA_PENYULUHAN?></td>
 				<td><?=$r->JML_PESERTA?></td>
 				<td><?=$r->TEMPAT?></td>
@@ -27,9 +34,20 @@
 						<span class="delete">hapus</span></a>
 				</td>
 			</tr>
-		<?}?>
+		<?
+		$i++;
+		}
+		?>
 	  </tbody>
 	</table>
-	<div class="clear">&nbsp;</div>
-	<?=$this->pagination->create_links()?>
+	
+	<div class="clearfix">&nbsp;</div>        
+        <div class="paging right">
+          <ul>
+            <li class="active">
+				 <li><?=$this->pagination->create_links()?></li>
+          </ul>
+        </div><!--end pagination-->
+	<div class="clearfix"></div>
+	
 </div><!-- end wrap right content-->

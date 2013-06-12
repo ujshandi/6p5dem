@@ -7,9 +7,9 @@ class mdl_upt extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_UPT.*, MST_INDUKUPT.NAMA_INDUK', false);
+		$this->db->select('DIKLAT_MST_UPT.*, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
 		$this->db->from('DIKLAT_MST_UPT');
-		$this->db->join('MST_INDUKUPT', 'DIKLAT_MST_UPT.KODE_INDUK = MST_INDUKUPT.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_UPT.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('KODE_UPT');
 		
@@ -76,6 +76,31 @@ class mdl_upt extends CI_Model{
 			return FALSE;
 		}
 		
+	}
+	
+	function getOptionUPT($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('DIKLAT_MST_UPT');
+		$this->db->order_by('URUTAN');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if(trim($r->KODE_UPT) == trim($value)){
+				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
+			}else{
+				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
 	}
 	
 }
