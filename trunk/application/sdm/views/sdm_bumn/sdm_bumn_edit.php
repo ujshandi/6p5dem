@@ -30,7 +30,7 @@
 			<li><label for="">Jumlah Anak <em>*</em></label> <input name="JML_ANAK" value="<?=$result->row()->JML_ANAK?>" type="text"/>
 			<li><label for="">Jabatan   <em>*</em></label>
 				<?php
-					echo form_dropdown("ID_JABATAN", $option_jabatan, $this->input->post('ID_JABATAN'),"id='ID_JABATAN'");
+					echo form_dropdown("ID_JABATAN", $option_jabatan, $result->row()->ID_JABATAN, $this->input->post('ID_JABATAN'),"id='ID_JABATAN'");
 				?>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
