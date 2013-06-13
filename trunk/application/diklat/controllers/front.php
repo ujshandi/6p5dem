@@ -51,5 +51,31 @@ class front extends My_Controller {
 		$this->closefront();
 	}
 	
+	public function widyaiswara($upt=""){
+		$this->load->model('mdl_dosen');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/widyaiswara_list', $data);
+		}else{
+			$this->load->view('front/widyaiswara_list');
+		}
+		$this->closefront();
+	}
+	
+	public function instruktur($upt=""){
+		$this->load->model('mdl_dosen');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/instruktur_list', $data);
+		}else{
+			$this->load->view('front/instruktur_list');
+		}
+		$this->closefront();
+	}
+	
 	
 }
