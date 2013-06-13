@@ -115,5 +115,17 @@ class mdl_kurikulum extends CI_Model{
 		return $this->db->get();
 	}
 	
+	function getKurikulumByDiklat($id){
+		$this->db->flush_cache();
+		$this->db->select('"a"."KODE_KURIKULUM", "a"."NAMA_KURIKULUM", "a".SKS_TEORI, "a".SKS_PRAKTEK, "a".JAM, "a".SEMESTER, ("a"."SKS_TEORI"+"a"."SKS_PRAKTEK") AS JUMLAH');
+		$this->db->from('DIKLAT_MST_KURIKULUM "a"');
+		//$this->db->join('DIKLAT_MST_DIKLAT "b"', 'b.KODE_DIKLAT = a.KODE_DIKLAT');
+		//$this->db->join('DIKLAT_MST_UPT "c"', 'c.KODE_UPT = b.KODE_UPT');
+		$this->db->where('a.KODE_DIKLAT', $id);
+		
+		return $this->db->get();
+		
+	}
+	
 }
 ?>

@@ -44,7 +44,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = "LOCALHOST/XE";
 
 /*seting oracle
-$db['default']['hostname'] = "192.168.10.1";
+$db['default']['hostname'] = "192.168.2.5";
 */
 $db['default']['username'] = "BPSDM";
 $db['default']['password'] = "BPSDM";

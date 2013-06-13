@@ -14,7 +14,17 @@ class mdl_program extends CI_Model{
 		$this->db->order_by('KODE_PROGRAM');
 		
 		return $this->db->get();
+
+	}
+	
+	function getDiklatbyId($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_DIKLAT "a"');
+		$this->db->join('DIKLAT_DETAIL_DIKLAT "b"', 'b.KODE_DIKLAT = a.KODE_DIKLAT');
+		$this->db->where('a.KODE_DIKLAT', $id);
 		
+		return $this->db->get();
 	}
 	
 	function getDataEdit($id){

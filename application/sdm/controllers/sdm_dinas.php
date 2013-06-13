@@ -264,11 +264,13 @@ class Sdm_dinas extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-		$data['option_golongan'] = $this->mdl_sdm_dinas->getgolongan();
-		$data['option_jabatan'] = $this->mdl_sdm_dinas->getjabatan();
-		$data['option_provin'] = $this->mdl_sdm_dinas->getprovin();
-		
-		$this->load->view('sdm_dinas/dinas_add',$data);
+
+			$data['option_golongan'] = $this->mdl_sdm_dinas->getgolongan();
+			$data['option_jabatan'] = $this->mdl_sdm_dinas->getjabatan();
+			$data['option_provin'] = $this->mdl_sdm_dinas->getprovin();
+			
+			$this->load->view('sdm_dinas/dinas_add',$data);
+
 		}else{
 			$this->mdl_sdm_dinas->insert($data);
 			redirect('sdm_dinas');

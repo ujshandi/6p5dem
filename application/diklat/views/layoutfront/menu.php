@@ -5,7 +5,7 @@
         <hr/>
         <ul id="vmenu">
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/kurikulum'?>">Kurikulum</a></li>
-			<li><a href="<?=base_url()?>">Dosen</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/dosen'?>">Dosen</a></li>
 			<li><a href="<?=base_url()?>">Widyaiswara</a></li>
 			<li><a href="<?=base_url()?>">Instruktur</a></li>
 			<li><a href="<?=base_url()?>">Peserta</a></li>
