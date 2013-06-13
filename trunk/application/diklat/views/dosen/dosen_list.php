@@ -14,12 +14,10 @@
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
-	  
 		<?
 		$i=1;
 		foreach($result->result() as $r){
 		?>
-		
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td><?=$r->NAMADOSEN?></td>
