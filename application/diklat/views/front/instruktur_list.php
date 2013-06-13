@@ -1,8 +1,8 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Dosen</h1>
+	<h1 class="heading">Instruktur</h1>
 	<hr/>
-	<?=form_open('front/dosen')?>
+	<?=form_open('front/instruktur')?>
 		<?
 			$opt['name'] = 'KODE_UPT';
 			$opt['value'] = isset($KODE_UPT)?$KODE_UPT:$this->input->post('KODE_UPT');
@@ -16,14 +16,14 @@
 		<table width="100%" border="1" cellspacing="1" cellpadding="1">
 			<tr>
 				<th scope="col">No</th>
-				<th scope="col">Nama Dosen</th>
+				<th scope="col">Nama Instruktur</th>
 				<th scope="col">Jenis Kelamin</th>
-				<th scope="col">Status Dosen</th>
+				<th scope="col">Status Instruktur</th>
 				<th scope="col">Tahun Mulai Mengajar</th>
 				<th scope="col">Pendidikan/Kualifikasi</th>
 			</tr>
 			<?
-				$result = $this->mdl_dosen->getDosenByUPT($opt['value'], 'Dosen');
+				$result = $this->mdl_dosen->getDosenByUPT($opt['value'], 'instruktur');
 				if($result->num_rows() > 0){
 					$i=1;
 					foreach($result->result() as $r){?>

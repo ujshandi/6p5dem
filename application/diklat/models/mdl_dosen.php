@@ -152,12 +152,12 @@ class mdl_dosen extends CI_Model{
 		return $out;
 	}
 	
-	function getDosenByUPT($upt){
+	function getDosenByUPT($upt, $jenis=""){
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_DOSEN');
 		$this->db->where('KODE_UPT', $upt);
-		$this->db->where('JENIS_DOSEN', 'Dosen');
+		$this->db->where('JENIS_DOSEN', $jenis);
 		$this->db->order_by('NAMADOSEN');
 		
 		return $this->db->get();
