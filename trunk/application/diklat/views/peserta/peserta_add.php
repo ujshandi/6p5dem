@@ -12,7 +12,7 @@ $( "#TGL_MASUK" ).datepicker();
             var KODE_UPT = $("#KODE_UPT").val();
             $.ajax({
                type : "POST",
-               url  : "<?php echo base_url(); ?>index.php/application/diklat/controllers/peserta/getDiklat",
+               url  : "<?=base_url().$this->config->item('index_page');?>/peserta/getDiklat",
                data : "KODE_UPT=" + KODE_UPT,
                success: function(data){
                    $("#KODE_DIKLAT").html(data);
@@ -39,19 +39,22 @@ $( "#TGL_MASUK" ).datepicker();
 			} 
 		?>
 		<ol>						
-			<li><label for="" name="KODE_UPT" id="KODE_UPT">UPT <em>*</em></label>
-				<option value="">--Pilih--</option>
-					<?php
-					foreach ($kelas as $k){
-						echo "<option value='$k[KODE_UPT]'>$k[NAMA_UPT]</option>";	
-					}			
-					?>
+			<li><label for="" >UPT <em>*</em></label>
+				<?
+					$opt_satker['id'] = 'KODE_UPT';
+					$opt_satker['name'] = 'KODE_UPT';
+					//$opt_satker[] = '';
+					echo $this->mdl_satker->getOptionUPTChild($opt_satker);
+					
+				?>
 			</li>
 			
 			<li><label for="">DIKLAT <em>*</em></label>
+				<div>
 				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
 					<option value="">--Pilih--</option>        	
 				</select>
+				</div>
 			</li>
 			
 			<li><label for="">NOMOR INDUK <em>*</em></label> <input name="NO_PESERTA" value="<?=set_value('NO_PESERTA')?>" type="text" class="two"/></li>

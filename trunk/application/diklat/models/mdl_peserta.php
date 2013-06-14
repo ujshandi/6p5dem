@@ -178,7 +178,7 @@ class mdl_peserta extends CI_Model{
 	}
 	
 	function getUPT(){
-		$result = this->db->get('DIKLAT_MST_UPT');
+		$result = $this->db->get('DIKLAT_MST_UPT');
 		if ($result->num_rows() > 0){
 			return $result->result_array();
 		}
@@ -187,16 +187,32 @@ class mdl_peserta extends CI_Model{
 		}
 	}
 	
-	function getDiklat($KODE_UPT){
-	$this->db->where('KODE_UPT', $KODE_UPT);
-	$result = %this->db->get('DIKLAT_MST_DIKLAT');
-	if ($result->num_rows() > 0){
-		return $result->result_array();
+	function getOptionDiklatByUPT($d){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		$KODE_UPT = isset($d['KODE_UPT'])?$d['KODE_UPT']:'';
+		
+		$this->db->flush_cache();
+		$this->db->where('KODE_UPT', $KODE_UPT);
+		$result = $this->db->get('DIKLAT_MST_DIKLAT');
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out .= '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($result->result() as $r){
+				if(trim($r->KODE_DIKLAT) == trim($value)){
+						$out .= '<option value="'.$r->KODE_DIKLAT.'" selected="selected">'.$r->NAMA_DIKLAT.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODE_DIKLAT.'">'.$r->NAMA_DIKLAT.'</option>';
+				}
 		}
-		else{
-			return array();
-		}
+		$out .= '</select>';
+		
+		return $out;
+	
 	}
+	
 
 }
 ?>
