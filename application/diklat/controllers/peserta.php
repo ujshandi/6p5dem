@@ -4,8 +4,6 @@ class peserta extends My_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		//$this->load->model('mdl_satker');
-		//$this->load->model('mdl_diklat');
 		$this->load->model('mdl_upt');
 		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_peserta');
@@ -50,7 +48,8 @@ class peserta extends My_Controller {
 	
 	public function add(){
 		$this->open();
-		$this->load->view('peserta/peserta_add');
+		$data['DIKLAT_MST_UPT'] = $this->mdl_peserta->getUPT();
+		$this->load->view('peserta/peserta_add', $data);
 		$this->close();
 	}
 	
@@ -63,9 +62,9 @@ class peserta extends My_Controller {
         $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
         $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-        $data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
         $data['JK'] = $this->input->post('JK');
-        $data['TGL_MASUK'] = $this->input->post('TGL_MASUK');
+        $data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'mm/dd/yyyy')";
         $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
         $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
@@ -114,9 +113,9 @@ class peserta extends My_Controller {
         $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
         $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-        $data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
         $data['JK'] = $this->input->post('JK');
-        $data['TGL_MASUK'] = $this->input->post('TGL_MASUK');
+        $data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'mm/dd/yyyy')";
         $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
         $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
@@ -151,6 +150,16 @@ class peserta extends My_Controller {
 		}else{
 			// code u/ gagal simpan
 		}
+	}
+	
+	function getDiklat(){
+		$KODE_UPT = $this->input->post('KODE_UPT');
+		$DIKLAT = $this->mdl_peserta->getDiklat($KODE_UPT);
+		$data .= "<option value=''>--Pilih--</option>";
+		foreach ($DIKLAT as $DKLT){
+			$data .="<option value='$DKLT[KODE_DIKLAT]'>$DKLT[NAMA_DIKLAT]</option>\n";
+		}
+		echo $data;
 	}
 	
 }

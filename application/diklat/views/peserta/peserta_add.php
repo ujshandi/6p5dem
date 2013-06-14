@@ -6,6 +6,22 @@ $( "#TGL_MASUK" ).datepicker();
 });
 </script>
 
+<script>
+    $(document).ready(function(){
+        $("#KODE_UPT").change(function(){
+            var KODE_UPT = $("#KODE_UPT").val();
+            $.ajax({
+               type : "POST",
+               url  : "<?php echo base_url(); ?>index.php/application/diklat/controllers/peserta/getDiklat",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#KODE_DIKLAT").html(data);
+               }
+            });
+        });
+    });
+</script>
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta</h1>
 	<hr/>
@@ -22,17 +38,20 @@ $( "#TGL_MASUK" ).datepicker();
 		<?php
 			} 
 		?>
-		<ol>			
-			<li><div id="KODE_UPT"><label>UPT  <em>*</em></label>
-					<?=$this->mdl_upt->getListFilterUPT($objectId,$this->session->userdata('unit_kerja_e1'))?>				
-				</div>
+		<ol>						
+			<li><label for="" name="KODE_UPT" id="KODE_UPT">UPT <em>*</em></label>
+				<option value="">--Pilih--</option>
+					<?php
+					foreach ($kelas as $k){
+						echo "<option value='$k[KODE_UPT]'>$k[NAMA_UPT]</option>";	
+					}			
+					?>
 			</li>
 			
-			<li><div id="KODE_DIKLAT"><label>DIKLAT  <em>*</em></label>
-					<span class="fitem" id="divUnitKerja<?=$objectId;?>">
-					<?=$this->eselon2_model->getListFilterEselon2($objectId,$this->session->userdata('unit_kerja_e1'),$this->session->userdata('unit_kerja_e2'))?>
-					</span>
-				</div>
+			<li><label for="">DIKLAT <em>*</em></label>
+				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+					<option value="">--Pilih--</option>        	
+				</select>
 			</li>
 			
 			<li><label for="">NOMOR INDUK <em>*</em></label> <input name="NO_PESERTA" value="<?=set_value('NO_PESERTA')?>" type="text" class="two"/></li>
