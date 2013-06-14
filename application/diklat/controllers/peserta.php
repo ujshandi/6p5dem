@@ -7,6 +7,7 @@ class peserta extends My_Controller {
 		$this->load->model('mdl_upt');
 		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_peserta');
+		$this->load->model('mdl_satker');
 	}
 	
 	public function index()
@@ -153,13 +154,10 @@ class peserta extends My_Controller {
 	}
 	
 	function getDiklat(){
-		$KODE_UPT = $this->input->post('KODE_UPT');
-		$DIKLAT = $this->mdl_peserta->getDiklat($KODE_UPT);
-		$data .= "<option value=''>--Pilih--</option>";
-		foreach ($DIKLAT as $DKLT){
-			$data .="<option value='$DKLT[KODE_DIKLAT]'>$DKLT[NAMA_DIKLAT]</option>\n";
-		}
-		echo $data;
+		$opt['name'] = 'KODE_UPT';
+		$opt['id'] = 'KODE_UPT';
+		$opt['KODE_UPT'] = $this->input->post('KODE_UPT');
+		echo $this->mdl_peserta->getOptionDiklatByUPT($opt);
 	}
 	
 }
