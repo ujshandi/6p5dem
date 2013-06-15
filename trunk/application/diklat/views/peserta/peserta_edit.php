@@ -6,6 +6,23 @@ $( "#TGL_MASUK" ).datepicker();
 });
 </script>
 
+<script>
+    $(document).ready(function(){
+        $("#KODE_UPT").change(function(){
+            var KODE_UPT = $("#KODE_UPT").val();
+            $.ajax({
+               type : "POST",
+               url  : "<?=base_url().$this->config->item('index_page');?>/peserta/getDiklat",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#KODE_DIKLAT").html(data);
+               }
+            });
+        });
+    });
+</script>
+
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta</h1>
 	<hr/>
@@ -25,22 +42,22 @@ $( "#TGL_MASUK" ).datepicker();
 		<ol>
 		    <input type="hidden" name="id" value="<?=$id?>">
 			
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['id'] = 'KODE_UPT';
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_upt->getOptionUPT($opti);
+			<li><label for="" >UPT <em>*</em></label>
+				<?
+					$opt_satker['id'] = 'KODE_UPT';
+					$opt_satker['name'] = 'KODE_UPT';
+					$opt_satker['value'] = $result->row()->KODE_UPT;
+					echo $this->mdl_satker->getOptionUPTChild($opt_satker);
+					
 				?>
 			</li>
 			
 			<li><label for="">DIKLAT <em>*</em></label>
-				<?php 
-					$opti['id'] = 'KODE_DIKLAT';
-					$opti['name'] = 'KODE_DIKLAT';
-					$opti['value'] = $result->row()->KODE_DIKLAT;
-					echo $this->mdl_diklat->getOptionDiklat($opti);
-				?>
+				<div>
+				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+					<option value="">--Pilih--</option>        	
+				</select>
+				</div>
 			</li>
 			
 			<li><label for="">NOMOR INDUK <em>*</em></label> <input name="NO_PESERTA" value="<?=$result->row()->NO_PESERTA?>" type="text" class="two"/></li>
