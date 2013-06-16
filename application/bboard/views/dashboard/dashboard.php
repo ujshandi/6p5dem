@@ -32,7 +32,7 @@
       <img src="<?=base_url()?>asset/board/asset/frontpage/images/icon3.png" alt="" title="" border="0" class="feat_thumb" />
       <div class="feat_details">
       <h4>Manajemen Kompetensi</h4>
-      <a href="<?php echo base_url();?>mpp.php" class="inlink clear">ENTER</a>
+      <a href="<?php echo base_url();?>kopetensi.php" class="inlink clear">ENTER</a>
       <p>Pengelolaan Data Kompetensi.</p>
       </div>
     </div>
