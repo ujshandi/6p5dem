@@ -9,8 +9,7 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th>Kode BUMN</th>
-		<th>Nama BUMN</th>
+		<th>Nama Matra</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -19,7 +18,6 @@
 		foreach($result->result() AS $r){?>
 			<tr class='gradeC'>
 				<td width='5%'><?=$i?></td>
-				<td width='5%'><?=$r->KODEMATRA?></td>
 				<td width='30%'><?=$r->NAMAMATRA?></td>
 				<td width='10%'>
 					<a href="<?=site_url().'/matra/edit/'.$r->KODEMATRA?>" class="control">
