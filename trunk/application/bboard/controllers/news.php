@@ -12,8 +12,10 @@ class News extends CI_Controller
 
 	function index()
 	{
+		
 		$data['results'] = $this->news->getItem();
 		$this->load->view('news/news_list', $data);
+		
 	}
 }
 

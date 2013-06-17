@@ -17,19 +17,19 @@
 				<li>
 					<a href="#">Berita</a>
 					<ul>
-						<li><a href="<?php echo site_url(); ?>/users">Berita List</a></li>
+						<li><a href="<?php echo site_url(); ?>/news_backend">Berita List</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#">Pengumuman</a>
 					<ul>
-						<li><a href="<?php echo site_url(); ?>/users">Pengumuman</a></li>
+						<li><a href="<?php echo site_url(); ?>/pengumuman_backend">Pengumuman</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#">Agenda Kegiatan</a>
 					<ul>
-						<li><a href="<?php echo site_url(); ?>/users">Pengumuman</a></li>
+						<li><a href="<?php echo site_url(); ?>/agenda_backend">Agenda Kegiatan</a></li>
 					</ul>
 				</li>
 			</ul><!-- end vmenu -->
