@@ -100,8 +100,9 @@ class mdl_alumni extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->where('KODE_UPT', $KODE_UPT);
+		$this->db->where('STATUS_PESERTA', 'Lulus');
 		$result = $this->db->get('DIKLAT_MST_PESERTA');
-		//$this->db->where('STATUS_PESERTA', 'Lulus');
+	
 		
 		$out = '<select name="'.$name.'" id="'.$id.'">';
 		$out .= '<option value="" selected="selected">-- Pilih --</option>';
@@ -116,6 +117,19 @@ class mdl_alumni extends CI_Model{
 		
 		return $out;
 	
+	}
+	
+	function getAlumniByUPT($upt){
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NO_PESERTA, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA', false);
+		$this->db->from('DIKLAT_MST_ALUMNI');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		//$this->db->join('DIKLAT_PESERTA_DIKLAT', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_PESERTA_DIKLAT.IDPESERTA');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $upt);
+		$this->db->order_by('NAMA_PESERTA');		
+		return $this->db->get();
+		
 	}
 	
 }

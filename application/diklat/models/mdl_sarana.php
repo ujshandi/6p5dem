@@ -124,5 +124,18 @@ class mdl_sarana extends CI_Model{
 		return $out;
 	}
 	
+	function getSaranaByUPT($upt){
+		$this->db->flush_cache();		
+		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_SARPRAS.NAMA_SARPRAS, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->from('DIKLAT_MST_SARANA');
+		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $upt);
+		$this->db->order_by('DIKLAT_MST_SARPRAS.NAMA_SARPRAS');
+		
+		return $this->db->get();
+		
+	}
+	
 }
 ?>

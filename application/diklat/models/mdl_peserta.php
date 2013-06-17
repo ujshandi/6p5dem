@@ -213,6 +213,21 @@ class mdl_peserta extends CI_Model{
 	
 	}
 	
+	function getPesertaByUPT($upt){
+		$this->db->flush_cache();
+		//$this->db->select('*');
+		$this->db->select('DIKLAT_MST_PESERTA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->from('DIKLAT_MST_PESERTA');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PESERTA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $upt);
+		//$this->db->where('JENIS_DOSEN', $jenis);
+		$this->db->order_by('NAMA_PESERTA');
+		
+		return $this->db->get();
+		
+	}
+	
 
 }
 ?>
