@@ -111,5 +111,18 @@ class mdl_prasarana extends CI_Model{
 		return $out;
 	}
 	
+	function getPrasaranaByUPT($upt){
+		$this->db->flush_cache();		
+		$this->db->select('DIKLAT_MST_PRASARANA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_SARPRAS.NAMA_SARPRAS', false);
+		$this->db->from('DIKLAT_MST_PRASARANA');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PRASARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_PRASARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
+		$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $upt);
+		$this->db->order_by('DIKLAT_MST_SARPRAS.NAMA_SARPRAS');
+		
+		return $this->db->get();
+		
+	}
+	
 }
 ?>

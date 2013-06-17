@@ -77,5 +77,83 @@ class front extends My_Controller {
 		$this->closefront();
 	}
 	
+	public function peserta($upt=""){
+		$this->load->model('mdl_peserta');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/peserta_list', $data);
+		}else{
+			$this->load->view('front/peserta_list');
+		}
+		$this->closefront();
+	}
+	
+	public function alumni($upt=""){
+		$this->load->model('mdl_alumni');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/alumni_list', $data);
+		}else{
+			$this->load->view('front/alumni_list');
+		}
+		$this->closefront();
+	}
+	
+	public function sarana($upt=""){
+		$this->load->model('mdl_sarana');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/sarana_list', $data);
+		}else{
+			$this->load->view('front/sarana_list');
+		}
+		$this->closefront();
+	}
+	
+	public function prasarana($upt=""){
+		$this->load->model('mdl_prasarana');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/prasarana_list', $data);
+		}else{
+			$this->load->view('front/prasarana_list');
+		}
+		$this->closefront();
+	}
+	
+	public function agenda($upt=""){
+		$this->load->model('mdl_kalender');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/kalender_list', $data);
+		}else{
+			$this->load->view('front/kalender_list');
+		}
+		$this->closefront();
+	}
+	
+	public function penyuluhan($upt=""){
+		$this->load->model('mdl_penyuluhan');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/penyuluhan_list', $data);
+		}else{
+			$this->load->view('front/penyuluhan_list');
+		}
+		$this->closefront();
+	}
+	
 	
 }

@@ -76,5 +76,17 @@ class mdl_kalender extends CI_Model{
 		
 	}
 	
+	function getKalenderByUPT($upt){
+		$this->db->flush_cache();		
+		$this->db->select('DIKLAT_KALENDER.*, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->from('DIKLAT_KALENDER');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_KALENDER.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $upt);
+		$this->db->order_by('DIKLAT_MST_UPT.NAMA_UPT');
+		
+		return $this->db->get();
+		
+	}
+	
 }
 ?>

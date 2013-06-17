@@ -8,12 +8,12 @@
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/dosen'?>">Dosen</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/widyaiswara'?>">Widyaiswara</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/instruktur'?>">Instruktur</a></li>
-			<li><a href="<?=base_url()?>">Peserta</a></li>
-			<li><a href="<?=base_url()?>">Alumni</a></li>
-			<li><a href="<?=base_url()?>">Sarana</a></li>
-			<li><a href="<?=base_url()?>">Prasarana</a></li>
-			<li><a href="<?=base_url()?>">Agenda</a></li>
-			<li><a href="<?=base_url()?>">Penyuluhan</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/peserta'?>">Peserta</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/alumni'?>">Alumni</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/sarana'?>">Sarana</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/prasarana'?>">Prasarana</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/agenda'?>">Agenda</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/penyuluhan'?>">Penyuluhan</a></li>
 		</ul><!-- end vmenu -->
 		</div><!-- end wrap left-->
     
