@@ -14,11 +14,10 @@ class Tingkat_kopetensi extends My_Controller {
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/tingkat_kopetensi/index/';
 		$config['total_rows'] = $this->db->count_all('KOPETEN_TINGKAT');
-		$config['per_page'] = '10';
+		$config['per_page'] = '11';
 		$config['num_links'] = '3';
 
 		$this->pagination->initialize($config);	
-		
 		$data['result'] = $this->mdl_tingkat_kopetensi->getData($config['per_page'], $this->uri->segment(3));
 		$this->load->view('tingkat_kopetensi/tingkat_kopetensi_list', $data);
 		
@@ -28,13 +27,15 @@ class Tingkat_kopetensi extends My_Controller {
 
 	public function add(){
 		$this->open();
-		$this->load->view('tingkat_kopetensi/tingkat_kopetensi_add');
+		$kategori = $this->input->post('KODE_KATEG_KOPETENSI');
+		$data['option_kategori'] = $this->mdl_tingkat_kopetensi->getkategori();
+		$this->load->view('tingkat_kopetensi/tingkat_kopetensi_add',$data);
 		$this->close();
 	}
 	
 	public function proses_add(){
 		$this->open();
-		
+		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');		
 		$data['KODE_TINGKAT'] = $this->input->post('KODE_TINGKAT');
 		$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
 		
