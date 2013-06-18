@@ -5,6 +5,21 @@ class mdl_tingkat_kopetensi extends CI_Model{
 		parent::__construct();
 	}
 	
+	function getkategori(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('KOPETEN_KATEGORI');
+		$this->db->order_by('KODE_KATEG_KOPETENSI','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Kategori-';
+            $result[$row->KODE_KATEG_KOPETENSI]= $row->NAMA_KATEGORI;
+        }
+ 
+        return $result;
+	}
+	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
 		$this->db->select('*');
