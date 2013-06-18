@@ -10,7 +10,8 @@
 					<a href="#">Users</a>
 					<ul>
 						<li><a href="<?php echo site_url(); ?>/users">User List</a></li>
-						<li><a href="<?php echo site_url(); ?>/user_group">User Group</a></li>
+						<li><a href="<?php echo site_url(); ?>/user_group">Group User</a></li>
+						<li><a href="<?php echo site_url(); ?>/user_group_menu">Hak Akses Group</a></li>
 						<li><a href="<?php echo site_url(); ?>/menu">Menu</a></li>
 					</ul>
 				</li>
