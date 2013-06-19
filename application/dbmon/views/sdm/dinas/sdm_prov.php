@@ -2,13 +2,26 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Komposisi SDM <?=$title;?></h1>
 	<hr/>
-
+	
+	<?=form_open('sdm/dinas')?>
+	<div id="provin">
+   	Jenis Kelamin : 
+    <?php
+        echo form_dropdown("JENIS_KELAMIN", array(''=>'Seluruhnya','Pria'=>'Pria','Wanita'=>'Wanita'), $this->input->post('JENIS_KELAMIN'),"id='JENIS_KELAMIN'");
+    ?>
+    </div>
+ 
+    <td></td>
+		<td><input class="greenbutton" type="submit" value="TAMPILKAN" style="float:LEFT"/></td>
+ 	<hr/>
+    <?=form_close() ?>
+    
     <div id="chart2" style="margin-top:13px; margin-right:15px; width:48%; min-height:800px; float:right"></div>
     <pre class="code brush:js"></pre>
 
 	<div id="chart1" style="margin-top:10px; margin-left:15px; width:48%; min-height:800px;"></div>
 	<pre class="code brush:js"></pre>
-
+	
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 			$.jqplot.config.enablePlugins = true;
