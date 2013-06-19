@@ -5,6 +5,7 @@ class dosen extends My_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('mdl_upt');
+		$this->load->model('mdl_satker');
 		$this->load->model('mdl_dosen');
 	}
 	
@@ -42,6 +43,19 @@ class dosen extends My_Controller {
 		$data['result'] = $this->mdl_dosen->getData($config['per_page'], $this->uri->segment(3));
 		$this->load->view('dosen/dosen_list', $data);
 		
+		$this->close();
+	}
+	
+	public function view($iddosen=""){
+		$this->load->model('mdl_dosen');
+		
+		$this->openfront();
+		if($iddosen != ""){
+			$data['IDDOSEN'] = $iddosen;
+			$this->load->view('dosen/dosen_view', $data);
+		}else{
+			$this->load->view('dosen/dosen_view');
+		}
 		$this->close();
 	}
 	

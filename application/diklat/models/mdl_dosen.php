@@ -17,6 +17,16 @@ class mdl_dosen extends CI_Model{
 		
 	}
 	
+	function getDataDetail($id){
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_DOSEN.*,DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->from('DIKLAT_MST_DOSEN');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_DOSEN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->where('IDDOSEN', $id);
+		
+		return $this->db->get();
+	}
+	
 	function getDataEdit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
