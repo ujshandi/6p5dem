@@ -26,6 +26,8 @@
 				<td><?=$r->TAHUN?></td>
 				<td><?=$r->NAMA_UPT?></td>
 				<td >
+					<a href="<?=site_url().'/dosen/view/'.$r->IDDOSEN?>" class="control" >
+						<span class="view">view</span></a> |
 					<a href="<?=site_url().'/dosen/edit/'.$r->IDDOSEN?>" class="control" >
 						<span class="edit">edit</span></a> |
 					<a href="<?=site_url().'/dosen/proses_delete/'.$r->IDDOSEN?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">

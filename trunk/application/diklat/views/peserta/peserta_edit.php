@@ -53,10 +53,14 @@ $( "#TGL_MASUK" ).datepicker();
 			</li>
 			
 			<li><label for="">DIKLAT <em>*</em></label>
-				<div>
-				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
-					<option value="">--Pilih--</option>        	
-				</select>
+				<div id="KODE_DIKLAT">
+				<?php
+					$opt['name'] = 'KODE_DIKLAT';
+					//$opt['id'] = 'KODE_UPT';
+					$opt['KODE_UPT'] = $result->row()->KODE_UPT;
+					$opt['value'] = $result->row()->KODE_DIKLAT;
+					echo $this->mdl_peserta->getOptionDiklatByUPT($opt);
+				?>
 				</div>
 			</li>
 			
