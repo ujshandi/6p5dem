@@ -2,9 +2,22 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Komposisi SDM <?=$title;?></h1>
 	<hr/>
+	
+	<?=form_open('')?>
+	<div id="provin">
+   	Jenis Kelamin : 
+    <?php
+        echo form_dropdown("JENIS_KELAMIN", array(''=>'Seluruhnya','Pria'=>'Pria','Wanita'=>'Wanita'), $this->input->post('JENIS_KELAMIN'),"id='JENIS_KELAMIN'");
+    ?>
+    </div>
+ 
+    <td></td>
+		<td><input class="greenbutton" type="submit" value="TAMPILKAN" style="float:LEFT"/></td>
+ 	<hr/>
+    <?=form_close() ?>
 
 
-	<div id="chart1" style="margin-top:10px; margin-left:15px; width:100%; min-height:800px;"></div>
+	<div id="chart1" style="margin-top:10px; margin-right:15px; width:100%; min-height:800px;"></div>
 	<pre class="code brush:js"></pre>
 
     <div id="chart2" style="margin-top:13px; margin-right:15px; width:100%; min-height:800px;"></div>
@@ -21,6 +34,21 @@
 				?>
 			];
 
+			var s1 = [
+				<?php
+					foreach($stat->result() as $point){
+						echo "'".$point->JUMLAH_SDM."', ";
+					}
+				?>
+			];
+			var ticks = [
+					<?php
+						foreach($stat->result() as $point){
+							echo "'".$point->NAMA_ESELON_2."', ";
+						}
+					?>
+				];
+
 			var val = [
 				<?php
 					foreach($stat->result() as $point){
@@ -28,21 +56,26 @@
 					}
 				?>
 			];
-
-			plot1 = $.jqplot('chart1', [val], {
-			    series:[{renderer:$.jqplot.BarRenderer}],
-			    axesDefaults: {
-			        tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
-			        tickOptions: {
-			          fontSize: '10pt',
-			          angle: -65
-			        }
-			    },
-			    axes: {
-			      xaxis: {
-			        renderer: $.jqplot.CategoryAxisRenderer
-			      }
-			    }
+			
+			plot1 = $.jqplot('chart1', [s1], {
+				// Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+				animate: !$.jqplot.use_excanvas,
+				seriesDefaults:{
+					renderer:$.jqplot.BarRenderer,
+                    pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
+                    shadowAngle: 135,
+                    rendererOptions: {
+                        barDirection: 'horizontal',
+                        barMargin: 5
+                    }
+				},
+				axes: {
+					yaxis: {
+						renderer: $.jqplot.CategoryAxisRenderer,
+						ticks: ticks
+					}
+				},
+				highlighter: { show: false }
 			});
 
 			plot2 = jQuery.jqplot('chart2', [val], 
@@ -66,17 +99,17 @@
 				}
 			});
 
-			$('#chart1').bind('jqplotDataClick', 
-				function (ev, seriesIndex, pointIndex, data) {
-					window.location.href = "<?=base_url().'dbmon.php/sdm/kementerian/'.$stat->row()->ID_ESELON_1.'/'?>"+key[pointIndex];
-				}
-			);
+			// $('#chart1').bind('jqplotDataClick', 
+			// 	function (ev, seriesIndex, pointIndex, data) {
+			// 		window.location.href = "<?=base_url().'dbmon.php/sdm/kementerian/'.$stat->row()->ID_ESELON_1.'/'?>"+key[pointIndex];
+			// 	}
+			// );
 
-			$('#chart2').bind('jqplotDataClick', 
-				function (ev, seriesIndex, pointIndex, data) {
-					window.location.href = "<?=base_url().'dbmon.php/sdm/kementerian/'.$stat->row()->ID_ESELON_1.'/'?>"+key[pointIndex];
-				}
-			);
+			// $('#chart2').bind('jqplotDataClick', 
+			// 	function (ev, seriesIndex, pointIndex, data) {
+			// 		window.location.href = "<?=base_url().'dbmon.php/sdm/kementerian/'.$stat->row()->ID_ESELON_1.'/'?>"+key[pointIndex];
+			// 	}
+			// );
 		});
 	</script>
 
@@ -95,8 +128,6 @@
 
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.barRenderer.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.pieRenderer.min.js"></script>
-<script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.canvasTextRenderer.min.js"></script>
-<script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.categoryAxisRenderer.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.pointLabels.min.js"></script>
 <script class="include" type="text/javascript" src="<?=base_url();?>asset/globalstyle/js/plugins/jqplot.EnhancedLegendRenderer.min.js"></script>

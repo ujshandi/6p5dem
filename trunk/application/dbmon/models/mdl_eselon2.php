@@ -5,9 +5,13 @@ class mdl_eselon2 extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($id=0){
+	function getData($id=0, $jenis_kelamin=''){
+		$subSql = "(SELECT count(*) FROM SDM_PEG_KEMENTRIAN WHERE ID_ESELON_2 = SDM_ESELON2.ID_ESELON_2";
+		if($jenis_kelamin!=''){$subSql .=" AND JENIS_KELAMIN = '{$jenis_kelamin}'";}
+		$subSql .= ")";
+
 		$this->db->flush_cache();
-		$this->db->select('SDM_ESELON2.*, (SELECT count(*) FROM SDM_PEG_KEMENTRIAN WHERE ID_ESELON_2 = SDM_ESELON2.ID_ESELON_2) as JUMLAH_SDM');
+		$this->db->select("SDM_ESELON2.*, ".$subSql." as JUMLAH_SDM");
 		$this->db->from('SDM_ESELON2');
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('SDM_ESELON2.ID_ESELON_2');
