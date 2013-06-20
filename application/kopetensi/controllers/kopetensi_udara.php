@@ -101,6 +101,8 @@ class Kopetensi_udara extends My_Controller {
 		$this->open();
 		
 		$data['KODE_KOPETENSI_UDARA'] = $id;
+		$data['option_kategori'] = $this->mdl_kopetensi_udara->getkategori();
+		$data['option_tingkat2'] = $this->mdl_kopetensi_udara->gettingkat2();
 		$data['result'] = $this->mdl_kopetensi_udara->getDataEdit($id);
 		$this->load->view('kopetensi_udara/kopetensi_udara_edit', $data);
 		
@@ -110,6 +112,8 @@ class Kopetensi_udara extends My_Controller {
 	public function proses_edit(){
 		$this->open();
 		
+		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');
+		$data['KODE_TINGKAT'] = $this->input->post('KODE_TINGKAT');
 		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');
 		$data['NAMA_KATEGORI'] = $this->input->post('NAMA_KATEGORI');
 		

@@ -60,6 +60,7 @@ class mdl_tingkat_kopetensi extends CI_Model{
 	function update($data){
 		$this->db->flush_cache();
 		$this->db->set('KODE_TINGKAT', $data['KODE_TINGKAT']);
+		$this->db->set('KODE_KATEG_KOPETENSI', $data['KODE_KATEG_KOPETENSI']);
 		$this->db->set('DESKRIPSI', $data['DESKRIPSI']);
 		$this->db->where('KODE_TINGKAT', $data['KODE_TINGKAT']);
 		$result = $this->db->update('KOPETEN_TINGKAT');

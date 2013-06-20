@@ -29,7 +29,8 @@ class Kategori_kopetensi extends My_Controller {
 
 	public function add(){
 		$this->open();
-		$this->load->view('kategori_kopetensi/kategori_kopetensi_add');
+		$data['option_matra'] = $this->mdl_kategori_kopetensi->getmatra();
+		$this->load->view('kategori_kopetensi/kategori_kopetensi_add',$data);
 		$this->close();
 	}
 	
@@ -38,7 +39,7 @@ class Kategori_kopetensi extends My_Controller {
 		
 		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');
 		$data['NAMA_KATEGORI'] = $this->input->post('NAMA_KATEGORI');
-		
+		$data['KODEMATRA'] = $this->input->post('KODEMATRA');
 		# set rules validation
 		$this->form_validation->set_rules('KODE_KATEG_KOPETENSI', 'Kode Bumn', 'required');
 		$this->form_validation->set_rules('NAMA_KATEGORI', 'Nama Bumn', 'required');
@@ -59,6 +60,7 @@ class Kategori_kopetensi extends My_Controller {
 		$this->open();
 		
 		$data['KODE_KATEG_KOPETENSI'] = $id;
+		$data['option_matra'] = $this->mdl_kategori_kopetensi->getmatra();
 		$data['result'] = $this->mdl_kategori_kopetensi->getDataEdit($id);
 		$this->load->view('kategori_kopetensi/kategori_kopetensi_edit', $data);
 		
@@ -69,6 +71,7 @@ class Kategori_kopetensi extends My_Controller {
 		$this->open();
 		
 		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');
+		$data['KODEMATRA'] = $this->input->post('KODEMATRA');
 		$data['NAMA_KATEGORI'] = $this->input->post('NAMA_KATEGORI');
 		
 		# set rules validation

@@ -20,6 +20,21 @@ class mdl_standar_udara extends CI_Model{
         return $result;
 	}
 	
+	function gettingkat2(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('KOPETEN_TINGKAT');
+		$this->db->order_by('KODE_TINGKAT','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Tingkat-';
+            $result[$row->KODE_TINGKAT]= $row->DESKRIPSI;
+        }
+ 
+        return $result;
+	}
+	
 	function gettingkat(){
 		if($KODE_KATEG_KOPETENSI = $this->input->post('KODE_KATEG_KOPETENSI')){
     	$result = array();

@@ -59,6 +59,7 @@ class Tingkat_kopetensi extends My_Controller {
 		$this->open();
 		
 		$data['KODE_TINGKAT'] = $id;
+		$data['option_kategori'] = $this->mdl_tingkat_kopetensi->getkategori();
 		$data['result'] = $this->mdl_tingkat_kopetensi->getDataEdit($id);
 		$this->load->view('tingkat_kopetensi/tingkat_kopetensi_edit', $data);
 		
@@ -70,7 +71,7 @@ class Tingkat_kopetensi extends My_Controller {
 		
 		$data['KODE_TINGKAT'] = $this->input->post('KODE_TINGKAT');
 		$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
-		
+		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');
 		# set rules validation
 		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
 		$this->form_validation->set_rules('DESKRIPSI', 'Nama Matra', 'required');

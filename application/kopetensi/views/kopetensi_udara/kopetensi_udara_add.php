@@ -39,7 +39,7 @@
 		
 		</div>
         <div class="clearfix">&nbsp;</div>
-		    <script type="text/javascript">
+		<script type="text/javascript">
         $("#KODE_KATEG_KOPETENSI").change(function(){
                 var selectValues = $("#KODE_KATEG_KOPETENSI").val();
                 if (selectValues == 0){

@@ -14,6 +14,26 @@ class Standar_udara extends My_Controller {
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/standar_udara/index/';
 		$config['total_rows'] = $this->db->count_all('KOPETEN_STDR_UDARA');
+		$config['per_page'] = '10';
+		$config['num_links'] = '3';
+
+		$this->pagination->initialize($config);	
+		
+		$data['option_kategori'] = $this->mdl_standar_udara->getkategori();
+		$data['option_tingkat'] = $this->mdl_standar_udara->gettingkat();
+		$this->load->view('standar_udara/standar_udara', $data);
+		
+		
+		$this->close();
+	}
+	
+	public function search()
+	{
+		$this->open();
+		
+		# config pagination
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/standar_udara/index/';
+		$config['total_rows'] = $this->db->count_all('KOPETEN_STDR_UDARA');
 		$config['per_page'] = '11';
 		$config['num_links'] = '3';
 
@@ -81,6 +101,8 @@ class Standar_udara extends My_Controller {
 		$this->open();
 		
 		$data['KODE_STANDAR_UDARA'] = $id;
+		$data['option_kategori'] = $this->mdl_standar_udara->getkategori();
+		$data['option_tingkat2'] = $this->mdl_standar_udara->gettingkat2();
 		$data['result'] = $this->mdl_standar_udara->getDataEdit($id);
 		$this->load->view('standar_udara/standar_udara_edit', $data);
 		
@@ -90,6 +112,8 @@ class Standar_udara extends My_Controller {
 	public function proses_edit(){
 		$this->open();
 		
+		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');
+		$data['KODE_TINGKAT'] = $this->input->post('KODE_TINGKAT');
 		$data['KODE_KATEG_KOPETENSI'] = $this->input->post('KODE_KATEG_KOPETENSI');
 		$data['NAMA_KATEGORI'] = $this->input->post('NAMA_KATEGORI');
 		
