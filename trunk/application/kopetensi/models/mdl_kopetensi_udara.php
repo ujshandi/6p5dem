@@ -20,6 +20,21 @@ class mdl_kopetensi_udara extends CI_Model{
         return $result;
 	}
 	
+	function gettingkat2(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('KOPETEN_TINGKAT');
+		$this->db->order_by('KODE_TINGKAT','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Tingkat-';
+            $result[$row->KODE_TINGKAT]= $row->DESKRIPSI;
+        }
+ 
+        return $result;
+	}
+	
 	function gettingkat(){
 		if($KODE_KATEG_KOPETENSI = $this->input->post('KODE_KATEG_KOPETENSI')){
     	$result = array();
@@ -91,9 +106,10 @@ class mdl_kopetensi_udara extends CI_Model{
 	function update($data){
 		$this->db->flush_cache();
 		$this->db->set('KODE_KATEG_KOPETENSI', $data['KODE_KATEG_KOPETENSI']);
-		$this->db->set('NAMA_KATEGORI', $data['NAMA_KATEGORI']);
-		$this->db->where('KODE_KATEG_KOPETENSI', $data['KODE_KATEG_KOPETENSI']);
-		$result = $this->db->update('KOPETEN_KATEGORI');
+		$this->db->set('KODE_TINGKAT', $data['KODE_TINGKAT']);
+		$this->db->set('NAMA_KOPETENSI', $data['NAMA_KOPETENSI']);
+		$this->db->where('KODE_KOPETENSI_UDARA', $data['KODE_KOPETENSI_UDARA']);
+		$result = $this->db->update('KOPETEN_UDARA');
 		
 		if($result) {
 			return TRUE;

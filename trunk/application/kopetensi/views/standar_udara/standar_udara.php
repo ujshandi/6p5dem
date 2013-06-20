@@ -2,7 +2,7 @@
 	<div class="wrap_right bgcontent">
 	<h1 class="heading">Daftar Standar Kompetensi Perhubungan Matra Udara</h1>
     <hr/>
-	<?=form_open('standar_udara')?>
+	<?=form_open('standar_udara/search')?>
 	<div id="kategori">
    Kategori Kompetensi : <br/>
     <?php
@@ -32,30 +32,7 @@
 		<th>Deskripsi</th>
 		<th align="center">aksi</th>
 	  </thead>
-	  <?
-		$i=1;
-		foreach($result->result() as $row){
-	  ?>
-		<tr>
-				<td width='5%'><?=$i?></td>
-				<td width='8%'><?=$row->KODE_STANDAR_UDARA?></td>
-				<td width='30%'><?=$row->NAMA_STANDAR?></td>
-				<td width='6%'>
-					<a href="<?=site_url().'/standar_udara/edit/'.$row->KODE_STANDAR_UDARA?>" class="control">
-						<span class="edit">edit</span>
-					</a>
-					<a href="<?=site_url().'/standar_udara/proses_delete/'.$row->KODE_STANDAR_UDARA?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
-						<span class="delete">hapus</span>
-					</a>
-				</td>
-			</tr>
-      <?
-		$i++;
-		}
-	  ?>
-
 	</table>
-	
 	<div class="clear">&nbsp;</div>
 </div>
     

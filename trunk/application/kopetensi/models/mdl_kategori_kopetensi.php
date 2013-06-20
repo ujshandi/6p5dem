@@ -63,6 +63,7 @@ class mdl_kategori_kopetensi extends CI_Model{
 	function update($data){
 		$this->db->flush_cache();
 		$this->db->set('KODE_KATEG_KOPETENSI', $data['KODE_KATEG_KOPETENSI']);
+		$this->db->set('KODEMATRA', $data['KODEMATRA']);
 		$this->db->set('NAMA_KATEGORI', $data['NAMA_KATEGORI']);
 		$this->db->where('KODE_KATEG_KOPETENSI', $data['KODE_KATEG_KOPETENSI']);
 		$result = $this->db->update('KOPETEN_KATEGORI');
