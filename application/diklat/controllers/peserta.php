@@ -47,6 +47,21 @@ class peserta extends My_Controller {
 		$this->close();
 	}
 	
+	public function view($id, $idpeserta=""){
+		$this->open();	
+		$data['id'] = $id;
+		$data['result'] = $this->mdl_peserta->getDataDetail($id);
+		$this->load->view('peserta/peserta_view', $data);
+		
+		if($idpeserta != ""){
+			$data['IDPESERTA'] = $idpeserta;
+			$this->load->view('peserta/peserta_view', $data);
+		}else{
+			$this->load->view('peserta/peserta_view');
+		}
+		$this->close();
+	}
+	
 	public function add(){
 		$this->open();
 		$data['DIKLAT_MST_UPT'] = $this->mdl_peserta->getUPT();

@@ -17,6 +17,19 @@ class mdl_peserta extends CI_Model{
 		return $this->db->get();
 		
 	}
+	
+	function getDataDetail($id){
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_PESERTA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->from('DIKLAT_MST_PESERTA');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PESERTA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		//$this->db->join('DIKLAT_PESERTA_PENDIDIKAN', 'DIKLAT_MST_PESERTA.IDPESERTA = DIKLAT_PESERTA_PENDIDIKAN.IDPESERTA');
+		
+		$this->db->where('DIKLAT_MST_PESERTA.IDPESERTA', $id);
+		
+		return $this->db->get();
+	}
 
 	function insert($data){
 		$this->db->flush_cache();
