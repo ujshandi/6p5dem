@@ -1,3 +1,4 @@
+<!-- contenna -->
 <script>
     $(document).ready(function(){
         $("#KODE_UPT").change(function(){
@@ -14,11 +15,10 @@
     });
 </script>
 
-<!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Tambah Kurikulum (1)</h1>
+	<h1 class="heading">Data Peserta</h1>
 	<hr/>
-	<?=form_open('kurikulum/add2', array('class'=>'sform'))?>
+	<?=form_open('peserta/proses_add_lulus', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -31,27 +31,34 @@
 		<?php
 			} 
 		?>
-		<ol>
+		
+		<ol>						
 			<li><label for="" >UPT <em>*</em></label>
+				<strong><?=$UPT->row()->NAMA_UPT?></strong>
+			</li>
+			<li><label for="" >DIKLAT <em>*</em></label>
+				<strong><?=$DIKLAT->row()->NAMA_DIKLAT?></strong>
+			</li>
+			<table width="69%" border="1" cellspacing="1" cellpadding="1">
+				<tr>
+					<th width="3%" scope="col">&nbsp;</th>
+					<th width="11%" scope="col">Nomor Peserta</th>
+					<th width="49%" scope="col">Nama Peserta</th>
+				</tr>
 				<?
-					$opt_satker['id'] = 'KODE_UPT';
-					$opt_satker['name'] = 'KODE_UPT';
-					//$opt_satker[] = '';
-					echo $this->mdl_satker->getOptionUPTChild($opt_satker);
-					
+					$i=0;
+					foreach($data->result() as $r){
 				?>
-			</li>
-			
-			<li><label for="">DIKLAT <em>*</em></label>
-				<div id="KODE_DIKLAT">
-				<select name="KODE_DIKLAT">
-					<option value="">--Pilih--</option>        	
-				</select>
-				</div>
-			</li>
-			
-			<li><label for="">Jumlah Data <em>*</em></label> <input name="JUMLAH" value="1" type="text" class="two"/></li>
-			
+				<tr>
+					<td><input name="DATA[<?=$i?>][IDPESERTA]" type="checkbox"  value="<?=$r->IDPESERTA?>" checked="checked" /></td>
+					<td><?=$r->NO_PESERTA?></td>
+					<td><?=$r->NAMA_PESERTA?></td>
+				</tr>
+				<?
+						$i++;
+					}
+				?>
+			</table>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

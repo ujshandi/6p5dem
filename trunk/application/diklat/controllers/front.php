@@ -34,7 +34,7 @@ class front extends My_Controller {
 		$data['diklat'] = $this->mdl_program->getDiklatbyId($diklat, $upt);
 		$data['upt'] = $this->mdl_satker->getUPTById($upt);
 		$data['kurikulum'] = $this->mdl_kurikulum->getKurikulumByDiklat($diklat);
-		//$this->load->view('front/kurikulum_list_detail', $data);
+		$this->load->view('front/kurikulum_list_detail', $data);
 		$this->closefront();
 	}
 	

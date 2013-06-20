@@ -26,25 +26,33 @@ class mdl_kurikulum extends CI_Model{
 		return $this->db->get();
 	}
 
-	function insert($data){
-		$this->db->flush_cache();
-        $this->db->set('KODE_KURIKULUM', $data['KODE_KURIKULUM']);
-        $this->db->set('NAMA_KURIKULUM', $data['NAMA_KURIKULUM']);
-        $this->db->set('SKS_TEORI', $data['SKS_TEORI']);
-		$this->db->set('SKS_PRAKTEK', $data['SKS_PRAKTEK']);
-		$this->db->set('JAM', $data['JAM']);
-		$this->db->set('SEMESTER', $data['SEMESTER']);
-		$this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
-		$this->db->set('KODE_UPT', $data['KODE_UPT']);
+	function insert($kd_diklat, $kd_upt, $data){
+		$this->db->trans_start();
+		
+		foreach($data as $r){
+			$this->db->flush_cache();
+			$this->db->set('KODE_KURIKULUM', $r['KODE_KURIKULUM']);
+			$this->db->set('NAMA_KURIKULUM', $r['NAMA_KURIKULUM']);
+			$this->db->set('SKS_TEORI', $r['SKS_TEORI']);
+			$this->db->set('SKS_PRAKTEK', $r['SKS_PRAKTEK']);
+			$this->db->set('JAM', $r['JAM']);
+			$this->db->set('SEMESTER', $r['SEMESTER']);
+			$this->db->set('KODE_DIKLAT', $kd_diklat);
+			$this->db->set('KODE_UPT', $kd_upt);
 
-        $result = $this->db->insert('DIKLAT_MST_KURIKULUM');
-
-		if($result) {
-			return TRUE;
-		}else {
-			return FALSE;
+			$result = $this->db->insert('DIKLAT_MST_KURIKULUM');
 		}
 		
+		// $errNo   = $this->db->_error_number();
+	    // $errMess = $this->db->_error_message();
+		// $error = $errMess;
+		
+		//var_dump($errMess);die;
+	    //log_message("error", "Problem Inserting to : ".$errMess." (".$errNo.")"); 
+		
+		//return
+		$this->db->trans_complete();
+	    return $this->db->trans_status();
 	}
 	
 	function update($data){
