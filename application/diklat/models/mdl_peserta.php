@@ -228,6 +228,44 @@ class mdl_peserta extends CI_Model{
 		
 	}
 	
+	function getPesertaRegister($upt, $diklat, $tahun){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_PESERTA');
+		$this->db->where('THN_ANGKATAN', $tahun);
+		$this->db->where('KODE_UPT', $upt);
+		$this->db->where('KODE_DIKLAT', $diklat);
+		$this->db->where('STATUS_PESERTA', 'Registrasi');
+		
+		$this->db->order_by('NAMA_PESERTA');
+		
+		return $this->db->get();
+		
+	}
 
+	function UpdatePesertaRegister($data){
+		$this->db->trans_start();
+		
+		foreach($data as $r){
+			$this->db->flush_cache();
+			$this->db->set('STATUS_PESERTA', 'Lulus');
+			
+			$this->db->where('IDPESERTA', $r['IDPESERTA']);
+
+			$result = $this->db->update('DIKLAT_MST_PESERTA');
+		}
+		
+		// $errNo   = $this->db->_error_number();
+	    // $errMess = $this->db->_error_message();
+		// $error = $errMess;
+		
+		//var_dump($errMess);die;
+	    //log_message("error", "Problem Inserting to : ".$errMess." (".$errNo.")"); 
+		
+		//return
+		$this->db->trans_complete();
+	    return $this->db->trans_status();
+	}
+	
 }
 ?>

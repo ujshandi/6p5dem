@@ -7,6 +7,7 @@ class kurikulum extends My_Controller {
 		//$this->load->model('mdl_diklat');
 		$this->load->model('mdl_upt');
 		$this->load->model('mdl_kurikulum');
+		$this->load->model('mdl_satker');
 	}
 	
 	public function index()
@@ -52,41 +53,48 @@ class kurikulum extends My_Controller {
 		$this->close();
 	}
 	
-	public function proses_add(){
+	public function add2(){
 		$this->open();
 		
 		# get post data
-		$data['KODE_KURIKULUM'] = $this->input->post('KODE_KURIKULUM');
-        $data['NAMA_KURIKULUM'] = $this->input->post('NAMA_KURIKULUM');
-        $data['SKS_TEORI'] = $this->input->post('SKS_TEORI');
-		$data['SKS_PRAKTEK'] = $this->input->post('SKS_PRAKTEK');
-		$data['JAM'] = $this->input->post('JAM');
-		$data['SEMESTER'] = $this->input->post('SEMESTER');
-		$data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
+        $data['JUMLAH'] = $this->input->post('JUMLAH');
 		
-		# set rules validation
-		$this->form_validation->set_rules('KODE_KURIKULUM', 'KODE KURIKULUM', 'required');
-        $this->form_validation->set_rules('NAMA_KURIKULUM', 'NAMA KURIKULUM', 'required');
-        $this->form_validation->set_rules('SKS_TEORI', 'SKS TEORI', 'required');
-		$this->form_validation->set_rules('SKS_PRAKTEK', 'SKS PRAKTEK', 'required');
-		$this->form_validation->set_rules('JAM', 'JAM', 'required');
-		$this->form_validation->set_rules('SEMESTER', 'SEMSTER', 'required');
-		$this->form_validation->set_rules('KODE_DIKLAT', 'KODE DIKLAT', 'required');
-		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
-        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
-		
-		# set message validation
-		$this->form_validation->set_message('required', 'Field %s harus diisi!');
-		
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('kurikulum/kurikulum_add',$data);
-		}else{
-			$this->mdl_kurikulum->insert($data);
-			redirect('kurikulum');
+		if($data['KODE_DIKLAT'] == ''){
+			redirect('kurikulum/add');
 		}
 		
+		$this->load->view('kurikulum/kurikulum_add2', $data);
+		
 		$this->close();
+	}
+	
+	public function proses_add(){
+		
+		# get post data
+		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
+        $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
+        $data['DATA'] = $this->input->post('DATA');
+		
+		# set rules validation
+		//$this->form_validation->set_rules('KODE_KURIKULUM', 'KODE KURIKULUM', 'required');
+        //$this->form_validation->set_rules('NAMA_KURIKULUM', 'NAMA KURIKULUM', 'required');
+        //$this->form_validation->set_rules('SKS_TEORI', 'SKS TEORI', 'required');
+		
+		# set message validation
+		//$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		//if ($this->form_validation->run() == FALSE){
+			//$this->load->view('kurikulum/kurikulum_add',$data);
+		//}else{
+			if($this->mdl_kurikulum->insert($data['KODE_DIKLAT'], $data['KODE_UPT'], $data['DATA'])){
+				redirect('kurikulum');
+			}else{
+				echo 'Error insert to DB';die;
+			}
+		//}
+		
 	}
 	
 	public function edit($id){

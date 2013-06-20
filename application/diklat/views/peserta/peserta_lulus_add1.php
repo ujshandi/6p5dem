@@ -1,3 +1,4 @@
+<!-- contenna -->
 <script>
     $(document).ready(function(){
         $("#KODE_UPT").change(function(){
@@ -14,11 +15,10 @@
     });
 </script>
 
-<!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Tambah Kurikulum (1)</h1>
+	<h1 class="heading">Data Peserta</h1>
 	<hr/>
-	<?=form_open('kurikulum/add2', array('class'=>'sform'))?>
+	<?=form_open('peserta/add_lulus2', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -31,7 +31,7 @@
 		<?php
 			} 
 		?>
-		<ol>
+		<ol>						
 			<li><label for="" >UPT <em>*</em></label>
 				<?
 					$opt_satker['id'] = 'KODE_UPT';
@@ -49,9 +49,18 @@
 				</select>
 				</div>
 			</li>
-			
-			<li><label for="">Jumlah Data <em>*</em></label> <input name="JUMLAH" value="1" type="text" class="two"/></li>
-			
+			<li><label for="">TAHUN <em>*</em></label>
+			<select id="THN_ANGKATAN" name="THN_ANGKATAN">
+			<option value="0">-- PILIH --</option>
+			<?
+				$date = date('Y');
+				for($i=$date, $c=$date-15; $i>$c; $i--){
+					echo '<option value="'.$i.'">'.$i.'</option>';
+				}
+			?>
+			</select>
+			</li>
+
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

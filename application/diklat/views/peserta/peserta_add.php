@@ -50,8 +50,8 @@ $( "#TGL_MASUK" ).datepicker();
 			</li>
 			
 			<li><label for="">DIKLAT <em>*</em></label>
-				<div>
-				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+				<div id="KODE_DIKLAT">
+				<select name="KODE_DIKLAT">
 					<option value="">--Pilih--</option>        	
 				</select>
 				</div>

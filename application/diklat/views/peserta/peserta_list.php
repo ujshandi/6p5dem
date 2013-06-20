@@ -4,7 +4,7 @@
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add'?>" class="control"> <span class="add">Tambah Registrasi Peserta</span></a>
 	
-	<a href="<?=base_url().$this->config->item('index_page').'/peserta_lulus/add'?>" class="control"> <span class="add">Tambah Peserta Lulus Diklat</span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add_lulus1'?>" class="control"> <span class="add">Tambah Peserta Lulus Diklat</span></a>
 	
 	<table width="100%">
 	  <thead>
