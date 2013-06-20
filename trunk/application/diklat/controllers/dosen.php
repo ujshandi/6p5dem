@@ -49,7 +49,7 @@ class dosen extends My_Controller {
 	public function view($iddosen=""){
 		$this->load->model('mdl_dosen');
 		
-		$this->openfront();
+		$this->open();
 		if($iddosen != ""){
 			$data['IDDOSEN'] = $iddosen;
 			$this->load->view('dosen/dosen_view', $data);

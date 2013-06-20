@@ -10,9 +10,9 @@
 	  <thead>
 		<th>No</th>
 		<th width="22%">UPT</th>
-		<th width="15%">Diklat</th>
+		<th width="12%">Diklat</th>
 		<th>No peserta</th>
-		<th width="15%">Nama peserta</th>
+		<th width="12%">Nama peserta</th>
 		<th>Angkatan</th>
 		<th>Status</th>
 		<th>aksi</th>
@@ -33,6 +33,8 @@
 				<td><?=$r->THN_ANGKATAN?></td>
 				<td><?=$r->STATUS_PESERTA?></td>
 				<td >
+					<a href="<?=site_url().'/peserta/view/'.$r->IDPESERTA?>" class="control" >
+						<span class="view">view</span></a> |
 					<a href="<?=site_url().'/peserta/edit/'.$r->IDPESERTA?>" class="control" >
 						<span class="edit">edit</span></a> |
 					<a href="<?=site_url().'/peserta/proses_delete/'.$r->IDPESERTA?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
