@@ -21,8 +21,10 @@ class mdl_users extends CI_Model{
 	{
 
 		$this->db->flush_cache();
-
-		return $this->db->get('USERS', $num, $offset);
+		$this->db->select('*');
+		$this->db->from('USERS');
+		$this->db->limit($num, $offset);
+		return $this->db->get();
 
 	}
 
@@ -46,7 +48,7 @@ class mdl_users extends CI_Model{
 		
 		$this->db->set('NAME', $data['NAME']);
 		$this->db->set('USERNAME', $data['USERNAME']);
-		$this->db->set('PASSWORD', md5($data['PASSWORD']));
+		$this->db->set('PASSWORD', $data['PASSWORD']);
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
 		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
@@ -113,7 +115,6 @@ class mdl_users extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->from('USER_GROUP');
-		$this->db->order_by('USER_GROUP_ID');
 		
 		$res = $this->db->get();
 		

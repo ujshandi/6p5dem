@@ -91,7 +91,8 @@ class Login extends Controller {
 				// query menu tergantung user login
 				$query = $this->Authentikasi->listMenuUser($data["USER_ID"]);		
 							
-				$arrGroupingMenu = $this->_listMenuUser($query);																			
+				$arrGroupingMenu = $this->_listMenuUser($query);		
+
 				#print_r($arrGroupingMenu);exit;
 				$menuUser = $this->build_menu($arrGroupingMenu);									
 				

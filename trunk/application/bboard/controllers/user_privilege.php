@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class user_group_menu extends MY_Controller
+class user_privilege extends MY_Controller
 {
 	function __construct()
 	{
@@ -8,7 +8,7 @@ class user_group_menu extends MY_Controller
 
 		$this->load->helper('url');
 		$this->load->model('Authentikasi');
-		$this->load->model('mdl_user_group_menu', 'user_group_menu');
+		$this->load->model('mdl_user_privilege', 'user_privilege');
 		$this->load->library('auth_ad');
 	}
 
@@ -18,14 +18,14 @@ class user_group_menu extends MY_Controller
 		$this->open_backend();
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_group_menu/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_privilege/index/';
 		$config['total_rows'] = $this->db->count_all('USER_GROUP_MENU');
 		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$this->pagination->initialize($config);	
 		
-		$data['results'] = $this->user_group_menu->getItem($config['per_page'], $this->uri->segment(3));
-		$this->load->view('user_group_menu/user_group_menu_list', $data);
+		$data['results'] = $this->user_privilege->getItem($config['per_page'], $this->uri->segment(3));
+		$this->load->view('user_privilege/user_privilege_list', $data);
 		
 		$this->close_backend();
 		
@@ -33,7 +33,7 @@ class user_group_menu extends MY_Controller
 	
 	public function add(){
 		$this->open_backend();
-		$this->load->view('user_group_menu/user_group_menu_add');
+		$this->load->view('user_privilege/user_privilege_add');
 		$this->close_backend();
 	}
 	
@@ -60,10 +60,10 @@ class user_group_menu extends MY_Controller
 		
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('user_group_menu/user_group_menu_add',$data);
+			$this->load->view('user_privilege/user_privilege_add',$data);
 		}else{
-			$this->user_group_menu->insert($data);
-			redirect('user_group_menu');
+			$this->user_privilege->insert($data);
+			redirect('user_privilege');
 		}
 		
 		$this->close_backend();
@@ -73,9 +73,9 @@ class user_group_menu extends MY_Controller
 		$this->open_backend();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->user_group_menu->get_data_edit($id);
+		$data['result'] = $this->user_privilege->get_data_edit($id);
 		
-		$this->load->view('user_group_menu/user_group_menu_edit', $data);
+		$this->load->view('user_privilege/user_privilege_edit', $data);
 		
 		$this->close_backend();
 	}
@@ -103,18 +103,18 @@ class user_group_menu extends MY_Controller
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('user_group_menu/user_group_menu_edit',$data);
+			$this->load->view('user_privilege/user_privilege_edit',$data);
 		}else{
-			$this->user_group_menu->update($data);
-			redirect('user_group_menu');
+			$this->user_privilege->update($data);
+			redirect('user_privilege');
 		}
 		
 		$this->close_backend();
 	}
 	
 	public function proses_delete($id){
-		if($this->user_group_menu->delete($id)){
-			redirect('user_group_menu');
+		if($this->user_privilege->delete($id)){
+			redirect('user_privilege');
 		}else{
 			// code u/ gagal simpan
 			
@@ -123,5 +123,5 @@ class user_group_menu extends MY_Controller
 	
 }
 
-/* End of file user_group_menu.php */
-/* Location: ./application/controllers/user_group_menu.php */
+/* End of file user_privilege.php */
+/* Location: ./application/controllers/user_privilege.php */

@@ -2,7 +2,7 @@
 
 
 
-class mdl_user_group_menu extends CI_Model{
+class mdl_user_privilege extends CI_Model{
 
 	
 
