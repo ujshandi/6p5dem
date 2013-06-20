@@ -1,4 +1,5 @@
 /* reset */
+/* reset */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;	padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
 ol, ul, li {list-style: none;}
 blockquote, q {quotes: none;}
@@ -170,6 +171,7 @@ a:hover.control {color:#669966;background-color:#f9f9f9;border-color:#669966;box
 .add {background:url(../images/ic-add.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .delete {background:url(../images/ic-delete.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .edit {background:url(../images/ic-edit.png) no-repeat 5px 50%;text-indent:25px;display:block;}
+.view {background:url(../../diklat/images/check.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .user {background:url(../images/ic-user.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 
 .one { width: 8.33333%!important; }
