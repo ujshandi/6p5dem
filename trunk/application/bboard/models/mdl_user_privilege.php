@@ -21,19 +21,28 @@ class mdl_user_privilege extends CI_Model{
 	{
 
 		$this->db->flush_cache();
-		$this->db->select('MENU.MENU_NAME,MENU.MENU_ID, USER_GROUP.USER_GROUP_NAME, USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP_MENU.PRIVILEGE,USER_GROUP_MENU.USER_GROUP_MENU_ID');
-		//$this->db->select('MENU.MENU_NAME,MENU.MENU_ID, USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP_MENU.PRIVILEGE');
+		
+		$this->db->select('USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP.USER_GROUP_NAME');
 		$this->db->from('USER_GROUP_MENU');
 		$this->db->join('USER_GROUP','USER_GROUP.USER_GROUP_ID=USER_GROUP_MENU.USER_GROUP_ID');
-		$this->db->join('MENU','USER_GROUP_MENU.MENU_ID=MENU.MENU_ID');
-		$this->db->order_by('MENU.MENU_ID');
+		$this->db->group_by('USER_GROUP_MENU.USER_GROUP_ID');
+		$this->db->group_by('USER_GROUP.USER_GROUP_NAME');
 		
 		$this->db->limit($num, $offset);
+		
 		return $this->db->get();
+		
 
 	}
 
-	
+	function countItem(){
+		$this->db->select('USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP.USER_GROUP_NAME');
+		$this->db->from('USER_GROUP_MENU');
+		$this->db->join('USER_GROUP','USER_GROUP.USER_GROUP_ID=USER_GROUP_MENU.USER_GROUP_ID');
+		$this->db->group_by('USER_GROUP_MENU.USER_GROUP_ID');
+		$this->db->group_by('USER_GROUP.USER_GROUP_NAME');
+		return $this->db->count_all_results();
+	}
 
 	function getItemById($id)
 
@@ -41,7 +50,7 @@ class mdl_user_privilege extends CI_Model{
 
 		$this->db->flush_cache();
 
-		$this->db->where('USER_GROUP_MENU.MENU_ID', $id);
+		$this->db->where('USER_GROUP_ID', $id);
 
 		return $this->db->get('USER_GROUP_MENU');
 
@@ -66,19 +75,20 @@ class mdl_user_privilege extends CI_Model{
 	
 	function get_data_edit($id){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('USER_GROUP_MENU.USER_GROUP_MENU_ID,USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP_MENU.PRIVILEGE,USER_GROUP_MENU.MENU_ID,MENU.MENU_NAME, USER_GROUP.USER_GROUP_NAME');
 		$this->db->from('USER_GROUP_MENU');
-		$this->db->where('USER_GROUP_MENU_ID', $id);
+		$this->db->join('MENU','MENU.MENU_ID=USER_GROUP_MENU.MENU_ID');
+		$this->db->join('USER_GROUP','USER_GROUP.USER_GROUP_ID=USER_GROUP_MENU.USER_GROUP_ID');
+		$this->db->where('USER_GROUP_MENU.USER_GROUP_ID', $id);
 		
 		return $this->db->get();
 	}
 	
 
 	function update($data){
-		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		$this->db->set('MENU_ID', $data['MENU_ID']);
+		
 		$this->db->set('PRIVILEGE', $data['PRIVILEGE']);
-		$this->db->where('USER_GROUP_MENU_ID', $data['ID']);
+		$this->db->where('USER_GROUP_MENU_ID', $data['USER_GROUP_MENU_ID']);
 		$result = $this->db->update('USER_GROUP_MENU');
 		
 		if($result) {
