@@ -148,6 +148,7 @@
 
         plot.postDrawHooks.addOnce(postPlotDraw);
         plot.eventListenerHooks.addOnce('jqplotMouseMove', handleMove);
+        plot.eventListenerHooks.addOnce('jqplotClick', handleClick);
 
         // if this is the left side of pyramid, set y values to negative.
         if (this.side === 'left') {
@@ -504,6 +505,17 @@
         }
         else if (neighbor == null) {
             unhighlight (plot);
+        }
+    }
+	
+	function handleClick(ev, gridpos, datapos, neighbor, plot) {
+        if (neighbor) {
+            var ins = [neighbor.seriesIndex, neighbor.pointIndex, neighbor.data];
+            var evt = jQuery.Event('jqplotDataClick');
+            evt.which = ev.which;
+            evt.pageX = ev.pageX;
+            evt.pageY = ev.pageY;
+            plot.target.trigger(evt, ins);
         }
     }
 
