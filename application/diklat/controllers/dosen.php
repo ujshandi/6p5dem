@@ -46,15 +46,16 @@ class dosen extends My_Controller {
 		$this->close();
 	}
 	
-	public function view($iddosen=""){
-		$this->load->model('mdl_dosen');
+	public function view($id, $iddosen=""){
+		$this->open();	
+		$data['id'] = $id;
+		$data['result'] = $this->mdl_dosen->getDataDetail($id);
 		
-		$this->open();
 		if($iddosen != ""){
 			$data['IDDOSEN'] = $iddosen;
 			$this->load->view('dosen/dosen_view', $data);
 		}else{
-			$this->load->view('dosen/dosen_view');
+			$this->load->view('dosen/dosen_view', $data);
 		}
 		$this->close();
 	}
