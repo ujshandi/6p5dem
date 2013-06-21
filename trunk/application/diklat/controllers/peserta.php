@@ -51,13 +51,12 @@ class peserta extends My_Controller {
 		$this->open();	
 		$data['id'] = $id;
 		$data['result'] = $this->mdl_peserta->getDataDetail($id);
-		$this->load->view('peserta/peserta_view', $data);
 		
 		if($idpeserta != ""){
 			$data['IDPESERTA'] = $idpeserta;
 			$this->load->view('peserta/peserta_view', $data);
 		}else{
-			$this->load->view('peserta/peserta_view');
+			$this->load->view('peserta/peserta_view', $data);
 		}
 		$this->close();
 	}
