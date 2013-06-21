@@ -20,8 +20,10 @@ class sdm extends My_Controller {
 		$data['title'] = 'Dinas ';
 		if($prov==0){
 			$data['title'] .= 'Provinsi ';
-			$data['stat'] = $this->mdl_provinsi->getData($this->input->post('JENIS_KELAMIN'));
-			$this->load->view('sdm/dinas/sdm_prov', $data);
+			$data['stat'] = $this->mdl_provinsi->getData('');
+			$data['statF'] = $this->mdl_provinsi->getData('Wanita');
+			$data['statM'] = $this->mdl_provinsi->getData('Pria');
+			$this->load->view('sdm/dinas/sdm_prov_new', $data);
 		}
 		elseif($kab==0){
 			$data['title'] .= 'Provinsi '.$this->mdl_provinsi->getProvByID($prov)->NAMAPROVIN;
