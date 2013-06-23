@@ -25,7 +25,7 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td style="vertical-align:middle" width = "25%"><?=$r->NAMA_UPT?></td>
-				<td style="vertical-align:middle"><?=$r->NAMA_SARPRAS?></td>
+				<td style="vertical-align:middle"><?=$r->ID_SARPRAS?></td>
 				<td style="vertical-align:middle"><?=$r->JUMLAH?></td>
 				<td style="vertical-align:middle"><?=$r->KAPASITAS?></td>
 				<td style="vertical-align:middle"><?=$r->TAHUN?></td>

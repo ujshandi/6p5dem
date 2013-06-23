@@ -20,7 +20,7 @@
 				<td width='2%'><?=$i?></td>
 				<td ><?=$r->KODE_UPT?></td>
 				<td ><?=$r->NAMA_UPT?></td>
-				<td ><?=$r->NAMA_INDUK?></td>
+				<td ><?=$r->KODE_INDUK?></td>
 				<td >
 					<a href="<?=site_url().'/upt/edit/'.$r->KODE_UPT?>" class="control" >
 						<span class="edit">edit</span></a> |
