@@ -51,9 +51,9 @@ hr {display:inline-block;height:0;width:100%;border-top:solid 1px #ececec;border
 #title h1 {color:#fff;text-shadow:0 1px 0 #111;font-family:'Jockey One',sans-serif;font-size:24px;font-weight:normal;text-transform:uppercase;}
 #title h2 {color:#FFFF99;text-shadow:0 1px 0 #000;font-size:14px;text-transform:uppercase;}
 #title h3 {color:#fff;text-shadow:0 1px 0 #111;font-size:11px;}
-h2.heading {color:#999999;text-shadow:0 1px 0 #fff;font-family:'Jockey One',sans-serif;font-weight:normal;font-size:17px}
-h1.heading {color:#999999;text-shadow:0 1px 0 #fff;font-family:'Jockey One',sans-serif;font-weight:normal;font-size:20px;text-transform:capitalize}
-p.text {color:#999;text-shadow:0 1px 0 #fff;font-size:12px;line-height:1.6em;margin:0 0 10px 0;padding:0}
+h2.heading {color:#666666;text-shadow:0 1px 0 #fff;font-family:'Jockey One',sans-serif;font-weight:normal;font-size:17px}
+h1.heading {color:#666666;text-shadow:0 1px 0 #fff;font-family:'Jockey One',sans-serif;font-weight:normal;font-size:20px;text-transform:capitalize}
+p.text {color:#333333;text-shadow:0 1px 0 #fff;font-size:13px;line-height:1.6em;margin:0 0 10px 0;padding:0}
 .hublogo {float:right;margin:10px 20px 0 0;text-align:center}
 .hublogo a{display:block;width:61px;height:70px;background:url(../images/dephub-logo.png) no-repeat top center;}
 .bread {float:left;margin:0 0 0 300px;padding-top:18px}
@@ -96,8 +96,8 @@ ul.homout li a img {float:left;border:none;margin:7px 5px 0 0}
 ul#vmenu, ul#vmenu ul {list-style-type:none;margin:0;padding:0;}
 ul#vmenu a {display:block;text-decoration:none;}
 ul#vmenu li {margin-top:1px;}
-ul#vmenu li a {background:#ececec;background:rgba(236,236,236,.8);font-size:13px;color:#888;text-shadow:0 1px 0 #fff;padding:0.5em;}
-ul#vmenu li a:focus, ul#vmenu li a:focus:hover {background:#fff;background:rgba(255,255,255,.9);color:#999966;}
+ul#vmenu li a {background:#ececec;background:rgba(236,236,236,.8);font-size:13px;color:#666666;text-shadow:0 1px 0 #fff;padding:0.5em;}
+ul#vmenu li a:focus, ul#vmenu li a:focus:hover {background:#fff;background:rgba(255,255,255,.9);color:#666666;}
 ul#vmenu li a:hover {background:#dedede;}
 ul#vmenu li ul li a {background:#ccc;background:rgba(204,204,204,.7) url(../images/arrow-list.gif) no-repeat 5px 50%;color:#666;padding-left:20px;}
 ul#vmenu li ul li a:hover,ul#vmenu li ul .current a,ul#vmenu li ul li a:focus {background-color:#f9f9f9;border-left:5px #99CC66 solid;color:#99CC66;padding-left:15px;}
