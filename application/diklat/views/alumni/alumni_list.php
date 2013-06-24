@@ -7,7 +7,7 @@
 	  <thead>
 		<th>NO</th>
 		<th width="20%">UPT</th>
-		<!--<th width="15%">DIKLAT</th>-->
+		<th width="15%">DIKLAT</th>
 		<th>NO PESERTA</th>
 		<th width="15%">Nama PESERTA</th>
 		<th>STATUS</th>
@@ -25,7 +25,7 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td><?=$r->NAMA_UPT?></td>
-				<!--<td><?=$r->NAMA_DIKLAT?></td>-->
+				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->NO_PESERTA?></td>
 				<td><?=$r->NAMA_PESERTA?></td>
 				<td><?=$r->STATUS_PESERTA?></td>
