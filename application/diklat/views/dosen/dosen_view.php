@@ -32,7 +32,7 @@
 			</li>
 			<br>
 			<li><label for="" >PENDIDIKAN : <em></em></label>
-				<strong><?=$result->row()->PENDIDIKAN->load()?></strong>
+				<strong><?=ReadCLOB($result->row()->PENDIDIKAN)?></strong>
 			</li>
 			<br>
 			<li><label for="" >JENIS PENGAJAR : <em></em></label>
