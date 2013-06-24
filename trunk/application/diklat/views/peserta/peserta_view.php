@@ -59,7 +59,7 @@
 						<td><?=$r->JENJANG?></td>
 						<td><?=$r->NAMA_PENDIDIKAN?></td>
 						<td><?=$r->PERIODE?></td>
-						<td><?=$r->NO_IJAZAH?></td>
+						<td><?=$r->NO_IJASAH?></td>
 						
 				</tr>
 		<?
