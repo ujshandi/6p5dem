@@ -24,7 +24,7 @@
 				<td><?=$r->KODE_DIKLAT?></td>
 				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->NAMA_PROGRAM?></td>
-				<td><?=$r->KODE_INDUK?></td>
+				<td><?=$r->NAMA_INDUK?></td>
 				<td >
 					<a href="<?=site_url().'/diklat_aparatur/edit/'.$r->KODE_DIKLAT?>" class="control" >
 						<span class="edit">edit</span></a> |

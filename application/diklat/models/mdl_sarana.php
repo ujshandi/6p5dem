@@ -7,9 +7,9 @@ class mdl_sarana extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_SARPRAS.NAMA_SARPRAS', false);
 		$this->db->from('DIKLAT_MST_SARANA');
-		//$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
+		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->limit($num, $offset);
 		
