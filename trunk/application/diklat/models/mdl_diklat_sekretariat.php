@@ -7,10 +7,10 @@ class mdl_diklat_sekretariat extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_DIKLAT.*, DIKLAT_MST_PROGRAM.NAMA_PROGRAM', false);
+		$this->db->select('DIKLAT_MST_DIKLAT.*, DIKLAT_MST_PROGRAM.NAMA_PROGRAM, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
 		$this->db->from('DIKLAT_MST_DIKLAT');
 		$this->db->join('DIKLAT_MST_PROGRAM', 'DIKLAT_MST_DIKLAT.KODE_PROGRAM = DIKLAT_MST_PROGRAM.KODE_PROGRAM');
-		//$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_DIKLAT.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
+		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_DIKLAT.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		

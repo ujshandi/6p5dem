@@ -23,7 +23,7 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td width="25%"><?=$r->NAMA_UPT?></td>
-				<td><?=$r->ID_SARPRAS?></td>
+				<td><?=$r->NAMA_SARPRAS?></td>
 				<td><?=$r->JUMLAH?></td>
 				<td><?=$r->TAHUN?></td>
 				<td >
