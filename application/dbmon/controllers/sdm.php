@@ -23,11 +23,13 @@ class sdm extends My_Controller {
 			$data['stat'] = $this->mdl_provinsi->getData('');
 			$data['statF'] = $this->mdl_provinsi->getData('Wanita');
 			$data['statM'] = $this->mdl_provinsi->getData('Pria');
-			$this->load->view('sdm/dinas/sdm_prov_new', $data);
+			$this->load->view('sdm/dinas/sdm_prov', $data);
 		}
 		elseif($kab==0){
 			$data['title'] .= 'Provinsi '.$this->mdl_provinsi->getProvByID($prov)->NAMAPROVIN;
-			$data['stat'] = $this->mdl_kbupaten->getData($prov,$this->input->post('JENIS_KELAMIN'));
+			$data['stat'] = $this->mdl_kbupaten->getData($prov, '');
+			$data['statF'] = $this->mdl_kbupaten->getData($prov, 'Wanita');
+			$data['statM'] = $this->mdl_kbupaten->getData($prov, 'Pria');
 			$this->load->view('sdm/dinas/sdm_kab', $data);
 		}
 		// else{
@@ -50,7 +52,9 @@ class sdm extends My_Controller {
 		
 		if($e1==''){
 			$data['title'] .= 'Eselon 1 ';
-			$data['stat'] = $this->mdl_eselon1->getData($this->input->post('JENIS_KELAMIN'));
+			$data['stat'] = $this->mdl_eselon1->getData('');
+			$data['statF'] = $this->mdl_eselon1->getData('Wanita');
+			$data['statM'] = $this->mdl_eselon1->getData('Pria');
 			$this->load->view('sdm/kementerian/sdm_e1', $data);
 		}
 		elseif($e2==''){
