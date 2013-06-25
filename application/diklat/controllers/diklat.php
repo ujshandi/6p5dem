@@ -12,6 +12,7 @@ class diklat extends My_Controller {
 	{
 		$this->open();
 		
+		/*
 		// # config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/diklat/index/';
 		$config['total_rows'] = $this->db->count_all('DIKLAT_MST_PROGRAM');
@@ -40,6 +41,8 @@ class diklat extends My_Controller {
 		$this->pagination->initialize($config);	
 		
 		$data['result'] = $this->mdl_diklat->getData($config['per_page'], $this->uri->segment(3));
+		*/
+		
 		$this->load->view('diklat/diklat_list');
 		
 		$this->close();

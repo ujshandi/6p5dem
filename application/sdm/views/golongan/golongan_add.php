@@ -16,8 +16,9 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">Id Golongan <em>*</em></label> <input name="ID_GOLONGAN" value="<?=set_value('ID_GOLONGAN')?>" type="text" class="five"/></li>
-			<li><label for="">Nama Golongan <em>*</em></label> <input name="NAMA_GOLONGAN" value="<?=set_value('NAMA_GOLONGAN')?>" type="text" class="five"/></li>
+			<!--<li><label for="">Id Golongan <em>*</em></label> <input name="ID_GOLONGAN" value="<?=set_value('ID_GOLONGAN')?>" type="text" class="one"/></li>-->
+			<li><label for="">Nama Golongan <em>*</em></label> <input name="NAMA_GOLONGAN" value="<?=set_value('NAMA_GOLONGAN')?>" type="text" class="two"/></li>
+			<li><label for="">Keterangan <em>*</em></label> <input name="KETERANGAN" value="<?=set_value('KETERANGAN')?>" type="text" class="five"/></li>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>
