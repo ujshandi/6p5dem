@@ -26,7 +26,6 @@ class golongan extends My_Controller {
 		$data['result'] = $this->mdl_golongan->getData($config['per_page'], $this->uri->segment(3));
 		$this->load->view('golongan/golongan_list', $data);
 		
-		
 		$this->close();
 	}
 
@@ -39,12 +38,14 @@ class golongan extends My_Controller {
 	public function proses_add(){
 		$this->open();
 		
-		$data['ID_GOLONGAN'] = $this->input->post('ID_GOLONGAN');
+		//$data['ID_GOLONGAN'] = $this->input->post('ID_GOLONGAN');
 		$data['NAMA_GOLONGAN'] = $this->input->post('NAMA_GOLONGAN');
+		$data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
 		# set rules validation
-		$this->form_validation->set_rules('ID_GOLONGAN', 'Id Golongan', 'required');
+		//$this->form_validation->set_rules('ID_GOLONGAN', 'Id Golongan', 'required');
 		$this->form_validation->set_rules('NAMA_GOLONGAN', 'Nama Golongan', 'required');
+		$this->form_validation->set_rules('KETERANGAN', 'KETERANGAN', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
@@ -72,12 +73,13 @@ class golongan extends My_Controller {
 		$this->open();
 		
 		$data['ID_GOLONGAN'] = $this->input->post('ID_GOLONGAN');
-		//$data['kode_induk'] = $this->input->post('kode_induk');
 		$data['NAMA_GOLONGAN'] = $this->input->post('NAMA_GOLONGAN');
+		$data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
 		# set rules validation
 		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
 		$this->form_validation->set_rules('NAMA_GOLONGAN', 'Nama Golongan', 'required');
+		$this->form_validation->set_rules('KETERANGAN', 'Keterangan', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
@@ -85,7 +87,7 @@ class golongan extends My_Controller {
 			$this->load->view('golongan/golongan_edit',$data);
 		}else{
 			$this->mdl_golongan->update($data);
-			redirect('golongan');
+			//redirect('golongan');
 		}
 		
 		$this->close();

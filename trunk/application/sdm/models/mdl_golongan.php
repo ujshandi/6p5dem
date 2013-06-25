@@ -27,9 +27,10 @@ class mdl_golongan extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
-		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
+		//$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
 		$this->db->set('NAMA_GOLONGAN', $data['NAMA_GOLONGAN']);
-		//$this->db->set('KETERANGAN', $data['']);
+		$this->db->set('KETERANGAN', $data['KETERANGAN']);
+		
 		$result = $this->db->insert('SDM_GOLONGAN');
 		
 		if($result) {
@@ -42,9 +43,12 @@ class mdl_golongan extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-		$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
+		//$this->db->set('ID_GOLONGAN', $data['ID_GOLONGAN']);
 		$this->db->set('NAMA_GOLONGAN', $data['NAMA_GOLONGAN']);
+		$this->db->set('KETERANGAN', $data['KETERANGAN']);
+		
 		$this->db->where('ID_GOLONGAN', $data['ID_GOLONGAN']);
+		
 		$result = $this->db->update('SDM_GOLONGAN');
 		
 		if($result) {
