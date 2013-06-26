@@ -5,6 +5,76 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		parent::__construct();
 	}
 
+	// --- penyesuaian dengan pusdatin
+	public function getkantor(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('SDM_KANTOR');
+		$this->db->order_by('KODEKANTOR','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Kantor-';
+            $result[$row->KODEKANTOR]= $row->NAMAPENUH;
+        }
+ 
+        return $result;
+	}
+	
+	public function getsatker(){
+		if($KODEKANTOR = $this->input->post('KODEKANTOR')){
+    	$result = array();
+    	$this->db->select('*');
+    	$this->db->from('SDM_UNITKERJA');
+    	$this->db->where('KODEKANTOR',$KODEKANTOR);
+    	$this->db->order_by('KODEUNIT','ASC');
+    	$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
+        	{
+            	$result[0]= '-Pilih Satker-';
+            	$result[$row->KODEUNIT]= $row->NAMAPENUH;
+        	}
+ 		}else
+		{
+			{
+			 $result[0]= '-Pilih Kantor Dahulu-';	
+			}
+		}
+        return $result;
+	}
+	
+	public function get_data2($d1,$d2){
+
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEGAWAI');
+		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		//$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_KEMENTRIAN.ID_JABATAN');
+		
+		if($d1 != '0'){
+			$this->db->where('UNITKANTOR', $d1);	
+		}
+		if($d2 != '0'){
+			$this->db->where('KERJAUNIT', $d2);	
+		}
+		
+		return $this->db->get();
+	}
+	
+	public function get_data_detail_new($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEGAWAI');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		$this->db->join('SDM_AGAMA', 'SDM_AGAMA.KODEAGAMA = SDM_PEGAWAI.AGAMA');
+		$this->db->join('SDM_KAWIN', 'SDM_KAWIN.KODEKAWIN = SDM_PEGAWAI.PERKAWINAN');
+		$this->db->join('SDM_KELAMIN', 'SDM_KELAMIN.KODEKELAMIN = SDM_PEGAWAI.KELAMIN');
+		$this->db->where('NIP', $id);
+		return $this->db->get();	
+	}
+	
+	// -- sebelum migrasi --
 	public function geteselon1(){
 		$result = array();
 		$this->db->select('*');
@@ -225,7 +295,8 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		$this->db->set('ID_ESELON_4', $data['ID_ESELON_4']);
 		$this->db->set('ALAMAT', $data['ALAMAT']);
 		$this->db->set('TMPT_LAHIR', $data['TMPT_LAHIR']);
-		$this->db->set('TGL_LAHIR', 'TO_TIMESTAMP(\''.$data['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
+		$this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
+		//$this->db->set('TGL_LAHIR', 'TO_TIMESTAMP(\''.$data['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
 		$this->db->set('AGAMA', $data['AGAMA']);
 		$this->db->set('JENIS_KELAMIN', $data['JENIS_KELAMIN']);
 		$this->db->set('STATUS', $data['STATUS']);

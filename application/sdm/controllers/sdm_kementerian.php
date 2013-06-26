@@ -19,19 +19,68 @@ class sdm_kementerian extends My_Controller {
 
 		$this->pagination->initialize($config);	
 		
-		$data['option_eselon1'] = $this->mdl_sdm_kementerian->geteselon1();
-		$this->load->view('sdm_kementrian/sdm_kementrian', $data);
+		$data['option_kantor'] = $this->mdl_sdm_kementerian->getkantor();
+		$this->load->view('sdm_kementerian/sdm_kementerian_new', $data);
 		
 		
 		$this->close();
 	}
-    
 	
+	// --- penyesuaian dengan pusdatin
+	public function select_satker(){
+    			
+			if('IS_AJAX') {
+            $data['option_satker'] = $this->mdl_sdm_kementerian->getsatker();
+       		$this->load->view('sdm_kementerian/satker',$data);
+            }
+    }
+    
+	// pemanggilan combo sater untuk proses add
+	public function select_satker2(){
+    			
+			if('IS_AJAX') {
+            $data['option_satker'] = $this->mdl_sdm_dinas->getsatker();
+       		$this->load->view('sdm_dinas/satker2',$data);
+            }
+    }
+	
+	function search_new()
+	{	
+		$this->open();
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_kementerian/index/';
+		$config['total_rows'] = $this->db->count_all('SDM_PEGAWAI');
+		$config['per_page'] = '10';
+		$config['num_links'] = '3';
+
+		$this->pagination->initialize($config);	
+		
+		$d1 = $this->input->post('KODEKANTOR');
+		$d2 = $this->input->post('KODEUNIT');
+		
+		$data['option_kantor'] = $this->mdl_sdm_kementerian->getkantor();
+		$data['option_satker'] = $this->mdl_sdm_kementerian->getsatker();
+		$data['result'] = $this->mdl_sdm_kementerian->get_data2($d1, $d2);
+		
+		
+		$this->load->view('sdm_kementerian/sdm_kementerian_searchNew',$data);
+		$this->close();
+	}
+	
+	function detail_new($id){
+		$this->open();	
+		$data['result1'] = $this->mdl_sdm_kementerian->get_data_detail_new($id);
+		//$data['result2'] = $this->mdl_sdm_kementerian->get_data_detail_diklat($id);
+		//$data['result2'] = $this->mdl_sdm_kementerian->get_data_detail_pendidikan($id);
+		$this->load->view('sdm_kementerian/sdm_kementerian_detail',$data);
+		$this->close();
+	}
+	
+	// sebelum migrasi
     function select_eselon2(){
     			
 			if('IS_AJAX') {
             $data['option_eselon2'] = $this->mdl_sdm_kementerian->geteselon2();
-       		$this->load->view('sdm_kementrian/selecteselon2',$data);
+       		$this->load->view('sdm_kementerian/selecteselon2',$data);
             }
     }
 	
@@ -66,7 +115,7 @@ class sdm_kementerian extends My_Controller {
 			
 			if('IS_AJAX') {
             $data['option_eselon3'] = $this->mdl_sdm_kementerian->geteselon3();
-       		$this->load->view('sdm_kementrian/selecteselon3',$data);
+       		$this->load->view('sdm_kementerian/selecteselon3',$data);
             }
     }
 	
@@ -74,7 +123,7 @@ class sdm_kementerian extends My_Controller {
 			
 			if('IS_AJAX') {
             $data['option_eselon4'] = $this->mdl_sdm_kementerian->geteselon4();
-       		$this->load->view('sdm_kementrian/selecteselon4',$data);
+       		$this->load->view('sdm_kementerian/selecteselon4',$data);
             }
     }
  
@@ -100,14 +149,14 @@ class sdm_kementerian extends My_Controller {
 		$data['result'] = $this->mdl_sdm_kementerian->get_data($e1, $e2, $e3, $e4);
 		
 		
-		$this->load->view('sdm_kementrian/sdm_kementrian_search',$data);
+		$this->load->view('sdm_kementerian/sdm_kementerian_search',$data);
 		$this->close();
 	}
 	
 	function detail($id){
 		$data['title']	='DETAIL DATA PEGAWAI KEMENTERIAN ';
 		$data['home']	='selected';
-		$data['main']	='form/kementrian1_detail';
+		$data['main']	='form/kementerian1_detail';
 		
 //<<<<<<< .mine
 		$data['result'] = $this->mdl_sdm_kementerian->get_data_duk_detail($id);
@@ -198,7 +247,8 @@ class sdm_kementerian extends My_Controller {
 		$data['JENIS_KELAMIN'] = $this->input->post('JENIS_KELAMIN');
 		$data['AGAMA'] = $this->input->post('AGAMA');
 		$data['STATUS'] = $this->input->post('STATUS');
-		$data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
+		$data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
+		//$data['TGL_LAHIR'] = $this->input->post('TGL_LAHIR');
 		$data['TMPT_LAHIR'] = $this->input->post('TMPT_LAHIR');
 		$data['JML_ANAK'] = $this->input->post('JML_ANAK');
 		$data['TMT'] = $this->input->post('TMT');
