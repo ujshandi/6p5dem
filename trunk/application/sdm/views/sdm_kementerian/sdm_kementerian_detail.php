@@ -84,7 +84,7 @@ ul.tabs {
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 <h1 class="heading">Detail Data Pegawai</h1>
-	<?=form_open('sdm_kementerian/search', array('class'=>'sform'))?>
+	<?=form_open('sdm_kementerian/search_new', array('class'=>'sform'))?>
 	<hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>
@@ -94,11 +94,10 @@ ul.tabs {
 <div id="tabbed_box_1" class="tabbed_box">    
     <div class="tabbed_area">  
       
-    <script src="<?=base_url()?>asset/sdm2/js/function.js" type="text/javascript"></script>   
+    <script src="<?=base_url()?>asset/globalstyle/js/function2.js" type="text/javascript"></script>   
 	<ul class="tabs">  
-		<li><a href="javascript:tabSwitch('tab_1', 'content_1');" id="tab_1" class="active">Profil</a></li>  
-		<li><a href="javascript:tabSwitch('tab_2', 'content_2');" id="tab_2">Diklat & Pelatihan</a></li>  
-		<li><a href="javascript:tabSwitch('tab_3', 'content_3');" id="tab_3">Pendidikan</a></li>
+		<li><a href="javascript:tabSwitch('tab_1', 'content_1');" id="tab_1" class="active">Profil Pegawai</a></li>  
+		<li><a href="javascript:tabSwitch('tab_2', 'content_2');" id="tab_2">Profile Pendidikan</a></li>
 		<!--li><a href="javascript:tabSwitch('tab_4', 'content_4');" id="tab_4">Pangkat</a></li-->
 	</ul>   
           
@@ -114,7 +113,7 @@ ul.tabs {
 		</tr>
 		<tr>
 			<td width="125">Tempat Lahir</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMPT_LAHIR?></td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMPLAHIR?></td>
 		</tr>
 		<tr>
 			<td width="125">Tanggal Lahir</td>
@@ -122,81 +121,70 @@ ul.tabs {
 		</tr>  
 		<tr>
 			<td width="125">Jenis Kelamin</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JENIS_KELAMIN?></td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->KELAMIN?></td>
 		</tr>
 		<tr>
 			<td width="125">Agama</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->AGAMA?></td>
 		</tr>
 		<tr>
+			<td width="125">Perkawinan</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->KAWIN?></td>
+		</tr>
+		<tr>
 			<td width="125">Alamat</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->ALAMAT?></td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JALAN?></td>
 		</tr>
 		<tr>
 			<td width="125">Golongan</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA_GOLONGAN?></td>
 		</tr>
 		<tr>
-			<td width="125">Jabatan</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA_JABATAN?></td>
+			<td width="125">TMT Golongan</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTGOLONGAN?></td>
 		</tr>
 		<tr>
-			<td width="125">TMT</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMT?></td>
+			<td width="125">Jabatan</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JABATAN?></td>
+		</tr>
+		<tr>
+			<td width="125">TMT Jabatan</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTJABATAN?></td>
+		</tr>
+		<tr>
+			<td width="125">TMT PNS</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTPNS?></td>
 		</tr>
 	</table>
 		</div>  
         <div id="content_2" class="content">
-			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
-				<thead>
-					<td>No</td>
-					<td>Kode Diklat</td>
-					<td>Nama Diklat</td>
-					<td>Tahun Diklat</td>
-				</thead>
-				<?
-					$i=1;
-					foreach($result2->result() as $row){
-				?>
-				<tr>
-					<td><?=$i?></td>
-					<td><?=$row->KODE_DIKLAT?></td>
-					<td><?=$row->NAMA_DIKLAT?></td>
-					<td><?=$row->TAHUN_DIKLAT?></td>
-				</tr>
-				<?
-					$i++;
-					}
-				?>
-			</table>
-		</div>  
-        <div id="content_3" class="content">
-			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
-				<thead>
-					<td>No</td>
-					<td>Nama Pendidikan</td>
-					<td>Jenjang</td>
-					<td>Tahun</td>
-				</thead>
-				<?
-					$i=1;
-					foreach($result3->result() as $row){
-				?>
-				<tr>
-					<td><?=$i?></td>
-					<td><?=$row->NAMA_SEKOLAH?></td>
-					<td><?=$row->NAMA_JENJANG?></td>
-					<td><?=$row->TAHUN_PENDIDIKAN?></td>
-				</tr>
-				<?
-					$i++;
-					}
-				?>
-			</table>
-		</div> 
-		<div id="content_4" class="content">
-			adhjsdha
-		</div>     
+		<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
+		<tr>
+			<td><h2>Jenjang S1</h2></td>
+			<td width="159" bgcolor="#FFFFFF"></td>
+		</tr>
+		<tr>
+			<td width="125">Nama Sekolah</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->SEKOLAH_S1?></td>
+		</tr>
+		<tr>
+			<td width="125">Jurusan</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->S11?></td>
+		</tr>
+		<tr>
+			<td><h2>Jenjang S2</h2></td>
+			<td width="159" bgcolor="#FFFFFF"></td>
+		</tr>  
+		<tr>
+			<td width="125">Nama Sekolah</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->SEKOLAH?></td>
+		</tr>
+		<tr>
+			<td width="125">Jurusan</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JURUSAN?></td>
+		</tr>
+	</table>	
+		</div>       
     </div>  
   
 </div>  
