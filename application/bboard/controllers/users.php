@@ -93,9 +93,7 @@ class Users extends MY_Controller
 		$data['id'] = $this->input->post('id');
 		$data['NAME'] = $this->input->post('NAME');
         $data['USERNAME'] = $this->input->post('USERNAME');
-		
-		echo 'password:' . $this->input->post('PASSWORD');
-		echo 'md5:' . md5($this->input->post('PASSWORD'));
+	
 		
         $data['PASSWORD'] = md5($this->input->post('PASSWORD'));
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');

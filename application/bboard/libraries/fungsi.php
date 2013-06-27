@@ -76,6 +76,23 @@ function bulan3($rrr)
 	if($rrr=='12'){$ttt='Des';}
 	return $ttt;
 	}
+	
+	function bulan4($rrr)
+	{
+	if($rrr=='JAN'){$ttt='01';}
+	if($rrr=='FEB'){$ttt='02';}
+	if($rrr=='MAR'){$ttt='03';}
+	if($rrr=='APR'){$ttt='04';}
+	if($rrr=='MAY'){$ttt='05';}
+	if($rrr=='JUN'){$ttt='06';}
+	if($rrr=='JUL'){$ttt='07';}
+	if($rrr=='AUG'){$ttt='08';}
+	if($rrr=='SEP'){$ttt='09';}
+	if($rrr=='OCT'){$ttt='10';}
+	if($rrr=='NOV'){$ttt='11';}
+	if($rrr=='DEC'){$ttt='12';}
+	return $ttt;
+	}
 function hari()
 	{
 	$input=date('D');
@@ -695,5 +712,15 @@ function array_delete(&$ary,$key_to_be_deleted)
 		$fin_result=$result0 . '/' . $result1 . '/' . $no;
 		
 		return $fin_result;
+	}
+	
+	function setDateToDB($d){
+		$tgl = explode('/', $d);
+		return $tgl[2].'-'.$tgl[0].'-'.$tgl[1];
+	}
+	function setDBToDate($d){
+		$tgl = explode('-', $d);
+		
+		return $this->bulan4($tgl[1]).'/'.$tgl[0].'/20'.$tgl[2];
 	}
 }

@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery-min.js" ></script>
 	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/custom.js" ></script>
 	<script type="text/javascript" src="<?=base_url()?>asset/diklat/js/ui.datepicker.js" ></script>	
-	<script type="text/javascript" src="<?=base_url()?>asset/board/asset/frontpage/js/ui.datepicker.js"></script>
+	
 	<link href="<?=base_url()?>asset/globalstyle/css/jquery-ui-datepicker/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-1.9.1.js"></script>
 	<script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-ui-1.10.3.custom.js"></script>
@@ -42,7 +42,7 @@
       
 	  
       <div class="right">
-          <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
+          <div class="usr"><span>welcome user</span><a href="#">BPSDM</a></div>
             <ul class="homout">
 				<li><a href="<?=base_url()?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
                 <li><a href="<?=base_url().$this->config->item('index_page').'/front'?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />MENU VIEW</a></li>
