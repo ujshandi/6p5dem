@@ -118,7 +118,18 @@
             <p>BPSDM Aplikasi merupakan aplikasi manajemen sumber daya manusia bidang transportasi Badan Pengembangan Sumber Daya Manusia Perhubungan - Kementerian Perhubungan RI</p>
         </div>
         <a href="<?php echo site_url() . '/auth/login' ?>" class="more_bgcolor more_rounded centered">LOGIN</a>
+		<br/><br/>
+		<!--Link Lowongan kerja-->
+			<h2 class="typo">Lowongan Kerja</h2>
+			<div class="apl_box">
+				<img src="<?=base_url()?>asset/board/asset/frontpage/images/loker.png" class="ic" />
+				<hr class="style1"/>
+				<p align="center"><center><a href="<?php echo site_url() . '/lowongan_kerja/' ?>" class="more_bgcolor more_rounded centered">LOKER</a></center></p>
+			</div>
+		<!--End Link lowongan kerja-->
+		
     </div>
+	
     
     <div class="section_14" id="agenda_kegiatan">
        

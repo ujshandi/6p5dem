@@ -1,0 +1,1 @@
+<?php 		foreach($result->result()  as $r){			echo '<option value="'.$r->AHLI_CODE.'">'.$r->AHLI_NAME.'</option>';			//echo $r->AHLI_NAME;	}		?>

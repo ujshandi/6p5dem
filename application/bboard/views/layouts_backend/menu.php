@@ -33,6 +33,12 @@
 						<li><a href="<?php echo site_url(); ?>/agenda_backend">Agenda Kegiatan</a></li>
 					</ul>
 				</li>
+				<li>
+					<a href="#">Lowongan Kerja</a>
+					<ul>
+						<li><a href="<?php echo site_url(); ?>/lowongan_kerja/add">Lowongan Kerja</a></li>
+					</ul>
+				</li>
 			</ul><!-- end vmenu -->
 		</div><!-- end wrap left-->
     
