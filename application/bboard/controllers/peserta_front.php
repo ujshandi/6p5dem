@@ -15,7 +15,7 @@ class peserta_front extends ci_controller {
 		$this->load->view('peserta/peserta_add', $data);
 	}
 	
-	public function proses_add(){
+	public function proses_add($kode=""){
 		//$this->open();
 		
 		# get post data
@@ -50,48 +50,10 @@ class peserta_front extends ci_controller {
 			$this->load->view('peserta/peserta_add',$data);
 		}else{
 			$this->mdl_peserta->insert($data);
-			redirect('peserta');
+			redirect('auth/index');
 		}
-		
 		//$this->close();
 	}
-	
-	// public function add_lulus1(){
-		// $this->open();
-		// $this->load->view('peserta/peserta_lulus_add1');
-		// $this->close();
-	// }
-	
-	// public function add_lulus2(){
-		// $this->open();
-		
-		// $data['KODE_UPT'] 		= $this->input->post('KODE_UPT');
-		// $data['KODE_DIKLAT'] 	= $this->input->post('KODE_DIKLAT');
-		// $data['THN_ANGKATAN'] 	= $this->input->post('THN_ANGKATAN');
-	
-		// if($data['KODE_DIKLAT'] == '' || $data['THN_ANGKATAN'] == '0'){
-			// redirect('peserta/add_lulus1');
-		// }
-		
-		
-		// $data['UPT'] = $this->mdl_upt->getDataEdit($data['KODE_UPT']);
-		// $data['DIKLAT'] = $this->mdl_diklat->getDataEdit($data['KODE_DIKLAT']);
-		// $data['data'] = $this->mdl_peserta->getPesertaRegister($data['KODE_UPT'], $data['KODE_DIKLAT'], $data['THN_ANGKATAN']);
-		
-		// $this->load->view('peserta/peserta_lulus_add2', $data);
-		// $this->close();
-	// }
-	
-	// public function proses_add_lulus(){
-		// $data['DATA'] = $this->input->post('DATA');
-		
-		// if($this->mdl_peserta->UpdatePesertaRegister($data['DATA'])){
-			// redirect('peserta');
-		// }else{
-			// echo 'Error insert to db!';
-		// }
-		
-	// }
 	
 	function getDiklat(){
 		$opt['name'] = 'KODE_DIKLAT';
