@@ -94,7 +94,7 @@
                 </li>
                 <li>
                     <a href="#"><img src="<?=base_url()?>asset/board/asset/frontpage/images/slider-image3.jpg" alt="" title="" border="0"/></a>
-                    <p class="flex-caption">Peresmian Kampus BAru BP2IP Surabaya - <a href="#">Detail</a></p>
+                    <p class="flex-caption">Peresmian Kampus Baru BP2IP Surabaya - <a href="#">Detail</a></p>
                 </li>
             </ul>
 	  	</div>
@@ -138,10 +138,13 @@
 			<p class="feat_text">	
 					<li>1.Usia maksimum 23 tahun pada bulan Agustus 2013;</li>
 					<li>2.Jenis Kelamin : Pria / Wanita;</li>
-					<li>3.Belum menikah dan sangguptidak menikah selama masa pendidikan dibuKikan dengan surat pernyataan;</li>
+					<li>3.Belum menikah dan sangguptidak menikah selama masa pendidikan dibuktikan dengan surat pernyataan;</li>
 					<li>4. Tinggi Badan minimal Pria 160 Gm dan Wanita 155 Cm;</li>
 			</p>
 		 </li>
+		 <div>
+		 <a href="<?php echo site_url() . '/peserta_front/add' ?>" class="more_bgcolor more_rounded centered">Daftar</a>
+		 </div>
         </ul>
     </div>
     
