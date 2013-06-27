@@ -36,7 +36,7 @@
 				<li>
 					<a href="#">Lowongan Kerja</a>
 					<ul>
-						<li><a href="<?php echo site_url(); ?>/lowongan_kerja/add">Lowongan Kerja</a></li>
+						<li><a href="<?php echo site_url(); ?>/lowongan_kerja_backend">Lowongan Kerja</a></li>
 					</ul>
 				</li>
 			</ul><!-- end vmenu -->

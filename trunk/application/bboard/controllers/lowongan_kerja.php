@@ -54,16 +54,10 @@ class Lowongan_kerja extends MY_Frontpage
 		$this->load->view('lowongan_kerja/lowongan_kerja_detail', $data);
 		$this->close();
 	}
-	function add(){
-		$data['LOWONGAN_CODE'] = $this->input->post('LOWONGAN_CODE');
-        $data['LOWONGAN_MAKRA'] = $this->input->post('LOWONGAN_MAKRA');
-        $data['LOWONGAN_TITLE'] = $this->input->post('LOWONGAN_TITLE');
-        $data['LOWONGAN_AHLI'] = $this->input->post('LOWONGAN_AHLI');
-        $data['LOWONGAN_DATE'] = $this->input->post('LOWONGAN_DATE');
-        $data['LOWONGAN_DATE_EXPIRED'] = $this->input->post('LOWONGAN_DATE_EXPIRED');
-        $data['LOWONGAN_SUMMARY'] = $this->input->post('LOWONGAN_SUMMARY');
-        $data['LOWONGAN_DETAIL'] = $this->input->post('LOWONGAN_DETAIL');
-	}
+	
+	
+	
+	
 	
 	
 }
