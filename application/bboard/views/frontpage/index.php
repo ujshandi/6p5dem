@@ -119,6 +119,15 @@
         </div>
         <a href="<?php echo site_url() . '/auth/login' ?>" class="more_bgcolor more_rounded centered">LOGIN</a>
 		<br/><br/>
+		<!--Link Pendaftaran Taruna-->
+			<h2 class="typo">Pendaftaran Taruna</h2>
+			<div class="apl_box">
+				<img src="<?=base_url()?>asset/board/asset/frontpage/images/Security.png" class="ic" />
+				<hr class="style1"/>
+				<p align="center"><center><a href="<?php echo site_url() . '/peserta_front/add'?>" class="more_bgcolor more_rounded centered">DAFTAR</a></center></p>
+			</div>
+		<!--End Link Pendaftaran Taruna-->
+		
 		<!--Link Lowongan kerja-->
 			<h2 class="typo">Lowongan Kerja</h2>
 			<div class="apl_box">
@@ -153,9 +162,6 @@
 					<li>4. Tinggi Badan minimal Pria 160 Gm dan Wanita 155 Cm;</li>
 			</p>
 		 </li>
-		 <div>
-		 <a href="<?php echo site_url() . '/peserta_front/add' ?>" class="more_bgcolor more_rounded centered">Daftar</a>
-		 </div>
         </ul>
     </div>
     
