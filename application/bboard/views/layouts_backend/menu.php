@@ -1,7 +1,7 @@
   <div id="content" class="page-green">
     <div id="contentwrap">
     	<div class="wrap_left bgtrans">
-        <h2 class="heading">Manajemen User</h2>
+        <h2 class="heading">Manajemen User dan Frontend</h2>
         <hr/>
         <ul id="vmenu">
 			 <? // echo $menuUser ?> 
@@ -22,22 +22,17 @@
 					</ul>
 				</li>
 				<li>
-					<a href="#">Pengumuman</a>
-					<ul>
-						<li><a href="<?php echo site_url(); ?>/pengumuman_backend">Pengumuman</a></li>
-					</ul>
+					<li><a href="<?php echo site_url(); ?>/pengumuman_backend">Pengumuman</a>
 				</li>
 				<li>
-					<a href="#">Agenda Kegiatan</a>
-					<ul>
-						<li><a href="<?php echo site_url(); ?>/agenda_backend">Agenda Kegiatan</a></li>
-					</ul>
+					<a href="<?php echo site_url(); ?>/agenda_backend">Agenda Kegiatan</a>
+					
 				</li>
 				<li>
-					<a href="#">Lowongan Kerja</a>
-					<ul>
-						<li><a href="<?php echo site_url(); ?>/lowongan_kerja_backend">Lowongan Kerja</a></li>
-					</ul>
+					<a href="<?php echo site_url(); ?>/lowongan_kerja_backend">Lowongan Kerja</a>
+				</li>
+				<li>
+					<a href="<?php echo site_url(); ?>/peserta_backend">Pendaftaran Taruna</a>
 				</li>
 			</ul><!-- end vmenu -->
 		</div><!-- end wrap left-->
