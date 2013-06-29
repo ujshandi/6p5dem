@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class peserta_front extends ci_controller {
+class peserta_front extends MY_Frontpage {
 	
 	function __construct(){
 		parent::__construct();
@@ -11,12 +11,16 @@ class peserta_front extends ci_controller {
 	}
 	
 	public function add(){
+		$this->open();
+		
 		$data['DIKLAT_MST_UPT'] = $this->mdl_peserta->getUPT();
 		$this->load->view('peserta/peserta_add', $data);
+		
+		$this->close();
 	}
 	
 	public function proses_add($kode=""){
-		//$this->open();
+		$this->open();
 		
 		# get post data
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
@@ -52,7 +56,7 @@ class peserta_front extends ci_controller {
 			$this->mdl_peserta->insert($data);
 			redirect('auth/index');
 		}
-		//$this->close();
+		$this->close();
 	}
 	
 	function getDiklat(){

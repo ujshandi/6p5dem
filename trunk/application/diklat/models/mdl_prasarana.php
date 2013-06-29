@@ -14,6 +14,8 @@ class mdl_prasarana extends CI_Model{
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_PRASARANA.KODE_UPT');
 		
+		$this->db->where('DIKLAT_MST_SARPRAS.JENIS', 'Prasarana');
+		
 		return $this->db->get();
 		
 	}
