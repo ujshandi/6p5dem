@@ -272,7 +272,7 @@ form.sform em {font-weight: bold;font-style: normal;color: #cc0000;}
 form.sform small {color:#3366CC;font-size:11px;font-weight:bold;padding-left:20px;position:relative}
 form.sform small.notice {color:#990000;}
 form.sform small img {position:absolute;left:0;top:0px}
-form.sform label {display: inline-block;line-height: 1.8;vertical-align: top;width: 50px;text-transform:uppercase;font-size:11px;;font-weight:bold;color:#666;text-shadow:1px 1px 1px #fff}
+form.sform label {display: inline-block;line-height: 1.8;vertical-align: top;width: 125px;text-transform:uppercase;font-size:11px;;font-weight:bold;color:#666;text-shadow:1px 1px 1px #fff}
 form.sform label.nowide {width:100px}
 form.sform fieldset fieldset label {margin-left: 173px;}
 form.sform p {font-size:12px;font-weight:bold;color:#003366;text-shadow:1px 1px 1px #fff;margin:10px 0}

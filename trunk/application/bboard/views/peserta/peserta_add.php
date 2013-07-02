@@ -58,23 +58,33 @@ $( "#TGL_MASUK" ).datepicker();
 					</div>
 				</li>
 					
-					<li><label for="">NOMOR PESERTA <em>*</em></label> <input name="NO_PESERTA" value="<?=set_value('NO_PESERTA')?>" type="text" class="two"/></li>
-					
-					<li><label for="">NAMA PESERTA <em>*</em></label> <input name="NAMA_PESERTA" value="<?=set_value('NAMA_PESERTA')?>" type="text" class="three"/></li>
-					
-					<li><label for="">TEMPAT LAHIR<em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="three"/></li>
-					
-					<li><label for="">TANGGAL LAHIR<em>*</em></label> <input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="one" id="TGL_LAHIR"/></li>
-					
-					<li><label for="">Jenis Kelamin <em>*</em></label> <select id="JK" name="JK">
+				<li><label for="">NOMOR PESERTA <em>*</em></label> 
+					<input name="NO_PESERTA" value="<?=set_value('NO_PESERTA')?>" type="text" class="two"/>
+				</li>
+				
+				<li><label for="">NAMA PESERTA <em>*</em></label> 
+					<input name="NAMA_PESERTA" value="<?=set_value('NAMA_PESERTA')?>" type="text" class="three"/>
+				</li>
+				
+				<li><label for="">TEMPAT LAHIR<em>*</em></label> 
+					<input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="three"/>
+				</li>
+				
+				<li><label for="">TANGGAL LAHIR<em>*</em></label> 
+					<input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="one" id="TGL_LAHIR"/>
+				</li>
+				
+				<li><label for="">Jenis Kelamin <em>*</em></label> <select id="JK" name="JK">
 					<option value="">- Pilih Jenis Kelamin -</option>
 					<option value="Pria">Pria</option>
 					<option value="Wanita">Wanita</option>
-					</select></li>
-					
-					<li><label for="">TANGGAL MASUK<em>*</em></label> <input name="TGL_MASUK" value="<?=set_value('TGL_MASUK')?>" type="text" class="one" id="TGL_MASUK"/></li>
-					
-					<li><label for="">TAHUN<em>*</em></label> <select id="THN_ANGKATAN" name="THN_ANGKATAN">
+				</select></li>
+				
+				<li><label for="">TANGGAL MASUK<em>*</em></label> 
+					<input name="TGL_MASUK" value="<?=set_value('TGL_MASUK')?>" type="text" class="one" id="TGL_MASUK"/>
+				</li>
+				
+				<li><label for="">TAHUN<em>*</em></label> <select id="THN_ANGKATAN" name="THN_ANGKATAN">
 					<option value="">- Pilih Tahun -</option>
 					<option value="2000">2000</option>
 					<option value="2001">2001</option>
@@ -97,20 +107,22 @@ $( "#TGL_MASUK" ).datepicker();
 					<option value="2018">2018</option>
 					<option value="2019">2019</option>
 					<option value="2020">2020</option>
-					</select></li>
+				</select></li>
 
-					<input type="hidden" name="STATUS_PESERTA" value="Registrasi">
-					
-					<li><label for="">KETERANGAN <em> </em></label> <input name="KETERANGAN" value="<?=set_value('KETERANGAN')?>" type="text" class="five"/></li>
-					
-					<div class="clearfix">&nbsp;</div>
-					
-					<li>
-					<input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/>
-					
-					<a href="<?=site_url();?>" class="greenbutton">Back</a>
-					</li>
+				<input type="hidden" name="STATUS_PESERTA" value="Registrasi">
 				
+				<li><label for="">KETERANGAN <em> </em></label> 
+					<input name="KETERANGAN" value="<?=set_value('KETERANGAN')?>" type="text" class="five"/>
+				</li>
+				
+				<hr/>
+				
+				<div class="clearfix">&nbsp;</div>
+				
+				<li>
+					<input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/>
+					<a href="<?=site_url();?>" class="greenbutton">Back</a>
+				</li>				
 			</li>
 			
 			<div class="clearfix">&nbsp;</div>
@@ -123,7 +135,7 @@ $( "#TGL_MASUK" ).datepicker();
 						<li>1. Usia maksimum 23 tahun pada bulan Agustus 2013;</li>
 						<li>2. Jenis Kelamin : Pria / Wanita;</li>
 						<li>3. Belum menikah dan sangguptidak menikah selama masa pendidikan dibuktikan dengan surat pernyataan;</li>
-						<li>4. Tinggi Badan minimal Pria 160 Gm dan Wanita 155 Cm;</li>
+						<li>4. Tinggi Badan minimal Pria 160 Cm dan Wanita 155 Cm;</li>
 				</p>
 			 </li>
 		</ol>
