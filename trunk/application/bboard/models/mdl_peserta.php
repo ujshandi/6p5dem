@@ -35,13 +35,13 @@ class mdl_peserta extends CI_Model{
 		$this->db->flush_cache();
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
         $this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
-        $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
+        //$this->db->set('NO_PESERTA', $data['NO_PESERTA']);
         $this->db->set('NAMA_PESERTA', $data['NAMA_PESERTA']);
         $this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
         $this->db->set('JK', $data['JK']);
-        $this->db->set('TGL_MASUK', $data['TGL_MASUK'], false);
-        $this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN']);
+       // $this->db->set('TGL_MASUK', $data['TGL_MASUK'], false);
+        //$this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN']);
         $this->db->set('STATUS_PESERTA', $data['STATUS_PESERTA']);
         $this->db->set('KETERANGAN', $data['KETERANGAN']);
 

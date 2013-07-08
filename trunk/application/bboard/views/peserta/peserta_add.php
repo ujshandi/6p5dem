@@ -58,9 +58,9 @@ $( "#TGL_MASUK" ).datepicker();
 					</div>
 				</li>
 					
-				<li><label for="">NOMOR PESERTA <em>*</em></label> 
+				<!--<li><label for="">NOMOR PESERTA <em>*</em></label> 
 					<input name="NO_PESERTA" value="<?=set_value('NO_PESERTA')?>" type="text" class="two"/>
-				</li>
+				</li>-->
 				
 				<li><label for="">NAMA PESERTA <em>*</em></label> 
 					<input name="NAMA_PESERTA" value="<?=set_value('NAMA_PESERTA')?>" type="text" class="three"/>
@@ -80,11 +80,11 @@ $( "#TGL_MASUK" ).datepicker();
 					<option value="Wanita">Wanita</option>
 				</select></li>
 				
-				<li><label for="">TANGGAL MASUK<em>*</em></label> 
+				<!--<li><label for="">TANGGAL MASUK<em>*</em></label> 
 					<input name="TGL_MASUK" value="<?=set_value('TGL_MASUK')?>" type="text" class="one" id="TGL_MASUK"/>
-				</li>
+				</li>-->
 				
-				<li><label for="">TAHUN<em>*</em></label> <select id="THN_ANGKATAN" name="THN_ANGKATAN">
+				<!--<li><label for="">TAHUN<em>*</em></label> <select id="THN_ANGKATAN" name="THN_ANGKATAN">
 					<option value="">- Pilih Tahun -</option>
 					<option value="2000">2000</option>
 					<option value="2001">2001</option>
@@ -107,7 +107,7 @@ $( "#TGL_MASUK" ).datepicker();
 					<option value="2018">2018</option>
 					<option value="2019">2019</option>
 					<option value="2020">2020</option>
-				</select></li>
+				</select></li>-->
 
 				<input type="hidden" name="STATUS_PESERTA" value="Registrasi">
 				
