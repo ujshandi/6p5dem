@@ -30,7 +30,7 @@ class mdl_penelitian extends CI_Model{
 		$this->db->flush_cache();
         $this->db->set('JUDUL_PENELITIAN', $data['JUDUL_PENELITIAN']);
         $this->db->set('ABSTRAK', $data['ABSTRAK']);
-        $this->db->set('TGL_PUBLIKASI', $data['TGL_PUBLIKASI']);
+        $this->db->set('TGL_PUBLIKASI', $data['TGL_PUBLIKASI'], false);
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
         $this->db->set('IDDOSEN_1', $data['IDDOSEN_1']);
         $this->db->set('IDDOSEN_2', $data['IDDOSEN_2']);

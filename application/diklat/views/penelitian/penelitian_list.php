@@ -24,9 +24,9 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td><?=$r->KODE_UPT?></td>
-				<td><?=$r->ID_DOSEN?></td>
+				<td><?=$r->IDDOSEN_1?></td>
 				<td><?=$r->JUDUL_PENELITIAN?></td>
-				<td><?=$r->ABSTRAK?></td>
+				<td><?=$r->ABSTRAK->load()?></td>
 				<td><?=$r->TGL_PUBLIKASI?></td>
 				<td >
 					<a href="<?=site_url().'/penelitian/edit/'.$r->ID_PENELITIAN?>" class="control" >
