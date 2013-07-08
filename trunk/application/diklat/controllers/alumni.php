@@ -6,6 +6,7 @@ class alumni extends My_Controller {
 		parent::__construct();
 		$this->load->model('mdl_satker');
 		$this->load->model('mdl_upt');
+		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_peserta');
 		$this->load->model('mdl_alumni');
 	}
@@ -47,42 +48,44 @@ class alumni extends My_Controller {
 		$this->close();
 	}
 	
-	public function add(){
-		$this->open();
-		$data['DIKLAT_MST_UPT'] = $this->mdl_alumni->getUPT();
-		$this->load->view('alumni/alumni_add', $data);
+	public function add_alumni1(){
+		$this->open();		
+		$this->load->view('alumni/alumni_add1');
 		$this->close();
 	}
 	
-	public function proses_add(){
+	public function add_alumni2(){
 		$this->open();
 		
-		# get post data
-		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
-        $data['IDPESERTA'] = $this->input->post('IDPESERTA');
-        $data['TGL_LULUS'] = "to_date('".$this->input->post('TGL_LULUS')."', 'mm/dd/yyyy')";
-        $data['KERJA'] = $this->input->post('KERJA');
-        $data['INSTANSI'] = $this->input->post('INSTANSI');
-		
-		# set rules validation
-		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
-        $this->form_validation->set_rules('IDPESERTA', 'PESERTA', 'required');
-        $this->form_validation->set_rules('TGL_LULUS', 'KODE INDUK', 'required');
-        $this->form_validation->set_rules('KERJA', 'TEMPAT KERJA', 'required');
-        $this->form_validation->set_rules('INSTANSI', 'INSTANSI', 'required');
-        
-		
-		# set message validation
-		$this->form_validation->set_message('required', 'Field %s harus diisi!');
-		
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('alumni/alumni_add',$data);
-		}else{
-			$this->mdl_alumni->insert($data);
-			redirect('alumni');
+		$data['KODE_UPT'] 		= $this->input->post('KODE_UPT');
+		$data['KODE_DIKLAT'] 	= $this->input->post('KODE_DIKLAT');
+		$data['THN_ANGKATAN'] 	= $this->input->post('THN_ANGKATAN');
+		$data['TGL_LULUS'] 		= $this->input->post('TGL_LULUS');
+		$data['KERJA'] 			= $this->input->post('KERJA');
+		$data['INSTANSI'] 		= $this->input->post('INSTANSI');
+	
+		if($data['KODE_DIKLAT'] == '' || $data['THN_ANGKATAN'] == '0'){
+			redirect('alumni/add_alumni1');
 		}
 		
+		
+		$data['UPT'] = $this->mdl_upt->getDataEdit($data['KODE_UPT']);
+		$data['DIKLAT'] = $this->mdl_diklat->getDataEdit($data['KODE_DIKLAT']);
+		$data['data'] = $this->mdl_peserta->getPesertaRegister($data['KODE_UPT'], $data['KODE_DIKLAT'], $data['THN_ANGKATAN'], $data['TGL_LULUS'], $data['KERJA'], $data['INSTANSI']);
+		
+		$this->load->view('alumni/alumni_add2', $data);
 		$this->close();
+	}
+	
+	public function proses_add_alumni1(){
+		$data['DATA'] = $this->input->post('DATA');
+		
+		if($this->mdl_alumni->UpdateAlumni($data['DATA'])){
+			redirect('alumni');
+		}else{
+			echo 'Error insert to db!';
+		}
+		
 	}
 	
 	public function edit($id){

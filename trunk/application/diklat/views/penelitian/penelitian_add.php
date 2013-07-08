@@ -14,9 +14,37 @@ $( "#TGL_PUBLIKASI" ).datepicker();
                url  : "<?=base_url().$this->config->item('index_page');?>/penelitian/getDosen",
                data : "KODE_UPT=" + KODE_UPT,
                success: function(data){
-                   $("#IDDOSEN").html(data);
+                   $("#IDDOSEN_1").html(data);
                }
             });
+			
+			 $.ajax({
+               type : "POST",
+               url  : "<?=base_url().$this->config->item('index_page');?>/penelitian/getDosen",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#IDDOSEN_2").html(data);
+               }
+            });
+			
+			 $.ajax({
+               type : "POST",
+               url  : "<?=base_url().$this->config->item('index_page');?>/penelitian/getDosen",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#IDDOSEN_3").html(data);
+               }
+            });
+			
+			$.ajax({
+               type : "POST",
+               url  : "<?=base_url().$this->config->item('index_page');?>/penelitian/getDosen",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#IDDOSEN_4").html(data);
+               }
+            });
+			
         });
     });
 </script>
@@ -49,32 +77,32 @@ $( "#TGL_PUBLIKASI" ).datepicker();
 			</li>
 			
 			<li><label for="">DOSEN <em>*</em></label>
-				<div id="IDDOSEN">
-				<select name="IDDOSEN">
+				<div id="IDDOSEN_1">
+				<select name="IDDOSEN_1">
 					<option value="">--Pilih--</option>        	
 				</select>
 				</div>
 			</li>
 			
 			<li><label for="">DOSEN <em> </em></label>
-				<div id="IDDOSEN">
-				<select name="IDDOSEN">
+				<div id="IDDOSEN_2">
+				<select name="IDDOSEN_2">
 					<option value="">--Pilih--</option>        	
 				</select>
 				</div>
 			</li>
 			
 			<li><label for="">DOSEN <em> </em></label>
-				<div id="IDDOSEN">
-				<select name="IDDOSEN">
+				<div id="IDDOSEN_3">
+				<select name="IDDOSEN_3">
 					<option value="">--Pilih--</option>        	
 				</select>
 				</div>
 			</li>
 			
 			<li><label for="">DOSEN <em> </em></label>
-				<div id="IDDOSEN">
-				<select name="IDDOSEN">
+				<div id="IDDOSEN_4">
+				<select name="IDDOSEN_4">
 					<option value="">--Pilih--</option>        	
 				</select>
 				</div>
