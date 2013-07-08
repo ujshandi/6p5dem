@@ -7,12 +7,12 @@ class mdl_peserta extends CI_Model{
 	
 	function getData($num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_PESERTA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
-		$this->db->from('DIKLAT_MST_PESERTA');
-		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PESERTA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		$this->db->select('DIKLAT_MST_PENDAFTARAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->from('DIKLAT_MST_PENDAFTARAN');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PENDAFTARAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PENDAFTARAN.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('IDPESERTA');
+		$this->db->order_by('IDPENDAFTAR');
 		
 		return $this->db->get();
 		
@@ -20,13 +20,13 @@ class mdl_peserta extends CI_Model{
 	
 	function getDataDetail($id){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_PESERTA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
-		$this->db->from('DIKLAT_MST_PESERTA');
-		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PESERTA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		$this->db->select('DIKLAT_MST_PENDAFTARAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->from('DIKLAT_MST_PENDAFTARAN');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PENDAFTARAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PENDAFTARAN.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		//$this->db->join('DIKLAT_PESERTA_PENDIDIKAN', 'DIKLAT_MST_PESERTA.IDPESERTA = DIKLAT_PESERTA_PENDIDIKAN.IDPESERTA');
 		
-		$this->db->where('DIKLAT_MST_PESERTA.IDPESERTA', $id);
+		$this->db->where('DIKLAT_MST_PENDAFTARAN.IDPENDAFTAR', $id);
 		
 		return $this->db->get();
 	}
@@ -35,17 +35,14 @@ class mdl_peserta extends CI_Model{
 		$this->db->flush_cache();
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
         $this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
-        //$this->db->set('NO_PESERTA', $data['NO_PESERTA']);
-        $this->db->set('NAMA_PESERTA', $data['NAMA_PESERTA']);
+        $this->db->set('NAMA_PENDAFTAR', $data['NAMA_PENDAFTAR']);
         $this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
         $this->db->set('JK', $data['JK']);
-       // $this->db->set('TGL_MASUK', $data['TGL_MASUK'], false);
-        //$this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN']);
         $this->db->set('STATUS_PESERTA', $data['STATUS_PESERTA']);
         $this->db->set('KETERANGAN', $data['KETERANGAN']);
 
-        $result = $this->db->insert('DIKLAT_MST_PESERTA');
+        $result = $this->db->insert('DIKLAT_MST_PENDAFTARAN');
 
 		if($result) {
 			return TRUE;
@@ -58,8 +55,8 @@ class mdl_peserta extends CI_Model{
 	function getDataEdit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('DIKLAT_MST_PESERTA');
-		$this->db->where('IDPESERTA', $id);
+		$this->db->from('DIKLAT_MST_PENDAFTARAN');
+		$this->db->where('IDPENDAFTAR', $id);
 		
 		return $this->db->get();
 	}
@@ -68,18 +65,15 @@ class mdl_peserta extends CI_Model{
 		$this->db->flush_cache();
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
         $this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
-        $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
-        $this->db->set('NAMA_PESERTA', $data['NAMA_PESERTA']);
+        $this->db->set('NAMA_PENDAFTAR', $data['NAMA_PENDAFTAR']);
         $this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
         $this->db->set('JK', $data['JK']);
-        $this->db->set('TGL_MASUK', $data['TGL_MASUK'], false);
-        $this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN']);
         $this->db->set('STATUS_PESERTA', $data['STATUS_PESERTA']);
         $this->db->set('KETERANGAN', $data['KETERANGAN']);
-		$this->db->where('IDPESERTA', $data['id']);
+		$this->db->where('IDPENDAFTAR', $data['id']);
 		
-		$result = $this->db->update('DIKLAT_MST_PESERTA');
+		$result = $this->db->update('DIKLAT_MST_PENDAFTARAN');
 		
 		if($result) {
 			return TRUE;
@@ -91,8 +85,8 @@ class mdl_peserta extends CI_Model{
 	
 	function delete($id){
 		$this->db->flush_cache();
-		$this->db->where('IDPESERTA', $id);
-		$result = $this->db->delete('DIKLAT_MST_PESERTA');
+		$this->db->where('IDPENDAFTAR', $id);
+		$result = $this->db->delete('DIKLAT_MST_PENDAFTARAN');
 		
 		if($result) {
 			return TRUE;

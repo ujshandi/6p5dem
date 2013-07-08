@@ -25,13 +25,10 @@ class peserta_front extends MY_Frontpage {
 		# get post data
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
-        //$data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
-        $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
+        $data['NAMA_PENDAFTAR'] = $this->input->post('NAMA_PENDAFTAR');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
         $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
         $data['JK'] = $this->input->post('JK');
-        //$data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'mm/dd/yyyy')";
-        //$data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
         $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
@@ -39,7 +36,7 @@ class peserta_front extends MY_Frontpage {
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
         $this->form_validation->set_rules('KODE_DIKLAT', 'DIKLAT', 'required');
         //$this->form_validation->set_rules('NO_PESERTA', 'NO PESERTA', 'required');
-        $this->form_validation->set_rules('NAMA_PESERTA', 'NAMA PESERTA', 'required');
+        $this->form_validation->set_rules('NAMA_PENDAFTAR', 'NAMA PENDAFTAR', 'required');
         $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
         $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
