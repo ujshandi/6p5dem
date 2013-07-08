@@ -69,7 +69,7 @@ class penelitian extends My_Controller {
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
-        $this->form_validation->set_rules('IDDOSEN_1', 'DOSEN', 'required');
+        //$this->form_validation->set_rules('IDDOSEN_1', 'DOSEN', 'required');
         $this->form_validation->set_rules('JUDUL_PENELITIAN', 'KODE INDUK', 'required');
         $this->form_validation->set_rules('ABSTRAK', 'ABSTRAK', 'required');
         $this->form_validation->set_rules('TGL_PUBLIKASI', 'TANGGAL PUBLIKASI', 'required');

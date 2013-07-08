@@ -2,7 +2,7 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Alumni</h1>
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/alumni/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/alumni/add_alumni1'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<table width="100%">
 	  <thead>
 		<th>NO</th>
@@ -28,8 +28,8 @@
 				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->NO_PESERTA?></td>
 				<td><?=$r->NAMA_PESERTA?></td>
-				<td><?=$r->STATUS_PESERTA?></td>
 				<td><?=$r->KERJA?></td>
+				<td><?=$r->INSTANSI?></td>
 				<td><?=$r->TGL_LULUS?></td>
 				<td >
 					<a href="<?=site_url().'/alumni/edit/'.$r->ID_ALUMNI?>" class="control" >

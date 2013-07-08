@@ -132,5 +132,29 @@ class mdl_alumni extends CI_Model{
 		
 	}
 	
+	function UpdateAlumni($data){
+		$this->db->trans_start();
+		
+		foreach($data as $r){
+			$this->db->flush_cache();
+			$this->db->set('TGL_LULUS', 'Lulus');
+			
+			$this->db->where('IDPESERTA', $r['IDPESERTA']);
+
+			$result = $this->db->update('DIKLAT_MST_ALUMNI');
+		}
+		
+		// $errNo   = $this->db->_error_number();
+	    // $errMess = $this->db->_error_message();
+		// $error = $errMess;
+		
+		//var_dump($errMess);die;
+	    //log_message("error", "Problem Inserting to : ".$errMess." (".$errNo.")"); 
+		
+		//return
+		$this->db->trans_complete();
+	    return $this->db->trans_status();
+	}
+	
 }
 ?>
