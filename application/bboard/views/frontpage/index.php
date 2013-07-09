@@ -188,9 +188,15 @@
 			
 		</p>
         <hr/>
+		<h2 class="typo">Informasi Alumni</h2>
+			<div class="apl_box">
+				<img src="<?=base_url()?>asset/board/asset/frontpage/images/alumni.png" class="ic" />
+				<hr class="style1"/>
+				<p align="center"><center><a href="<?php echo site_url() . '/alumni_frontpage/' ?>" class="more_bgcolor more_rounded centered">LIHAT</a></center></p>
+			</div>
+		</h2>
         <div id="calendar_box"></div>
     </div>
-    
 	<div class="clear"></div> 
   </div>
   
