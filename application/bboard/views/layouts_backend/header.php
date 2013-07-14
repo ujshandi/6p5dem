@@ -42,10 +42,15 @@
       
 	  
       <div class="right">
-          <div class="usr"><span>welcome user</span><a href="#">BPSDM</a></div>
+          <div class="usr"><span>welcome user</span><a href="#">
+			<?php  
+				echo $results['username'];
+				
+			?>
+			
+			</a></div>
             <ul class="homout">
 				<li><a href="<?=base_url()?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
-                <li><a href="<?=base_url().$this->config->item('index_page').'/front'?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />MENU VIEW</a></li>
                 <li><a href="<?=base_url().'index.php/auth/logout'?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_logout_16x16.png" />LOGOUT</a></li>
             </ul>
       </div>
