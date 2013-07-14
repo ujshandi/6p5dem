@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class News extends CI_Controller
+class News extends MY_Frontpage
 {
 	function __construct()
 	{
@@ -16,6 +16,14 @@ class News extends CI_Controller
 		$data['results'] = $this->news->getItem();
 		$this->load->view('news/news_list', $data);
 		
+	}
+	
+	function detail(){
+		$this->open();
+		$id=$this->uri->segment(3);
+		$data['results'] = $this->news->getItemById($id);
+		$this->load->view('news/news_detail', $data);
+		$this->close();
 	}
 }
 

@@ -84,49 +84,8 @@
 	
 	
 	<div id="elfinder"></div>
-	<!--
-    <div class="file_box">
-    <h3>File Explorer</h3>
-    <hr/>
-    	<ul class="jtree">
-        	<li><span data-state="open" data-style="unclosable">root</span>
-            	<ul>
-                	<li><span>pictures</span>
-                    	<ul>
-                        	<li><span>pictures subfolder 1</span></li>
-                            <li><span>pictures subfolder 2</span></li>
-                            <li><span>pictures subfolder 3</span></li>
-                            <li><span>pictures subfolder 4</span></li>
-                            <li><span>pictures subfolder 5</span></li>
-                            <li><span>pictures subfolder 6</span></li>
-                        </ul>
-                    </li>
-                    <li><span>admin</span>
-                    	<ul>
-                        	<li><span>admin subfolder</span></li>
-                        </ul>
-                    </li>
-                    <li><span>img</span>
-                    	<ul>
-                        	<li><span>img subfolder</span></li>
-                        </ul>
-                    </li>
-                    <li><span>js</span>
-                    	<ul>
-                        	<li><span>js subfolder</span></li>
-                        </ul>
-                    </li>
-                    <li><span>plugin</span>
-                    	<ul>
-                        	<li><span>plugin subfolder</span></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div><!--end file box-->
 	
-	     <div id="elfinder"></div>
+	
     </div>
     
     <div class="section_14">
