@@ -62,7 +62,7 @@ class Authentikasi extends CI_Model{
 	}
 	
 	function listMenuUserAsli($userid){
-		$sql = "SELECT d.menu_id, d.menu_grouping_name, d.menu_name, d.menu_url, d.menu_grouping_id, d.menu_grouping_url, d.icon_name FROM users a,            
+		$sql = "SELECT d.menu_id, d.MENU_GROUPING_NAME, d.menu_name, d.menu_url, d.menu_grouping_id, d.menu_grouping_url, d.icon_name FROM users a,            
 				  user_group b, user_group_menu c, (
 				  	SELECT a.*, UPPER(b.menu_grouping_name) AS menu_grouping_name, b.menu_grouping_url as menu_grouping_url, b.icon_name as icon_name FROM menu a, menu_grouping b
 						WHERE a.menu_grouping_id = b.menu_grouping_id" .

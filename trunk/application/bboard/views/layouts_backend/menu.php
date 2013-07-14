@@ -4,8 +4,9 @@
         <h2 class="heading">Manajemen User dan Frontend</h2>
         <hr/>
         <ul id="vmenu">
-			 <? // echo $menuUser ?> 
-			
+			 <?php  echo $menuUser; ?> 
+			 <?php /*
+			<!--
 				<li>
 					<a href="#">Users</a>
 					<ul>
@@ -34,6 +35,7 @@
 				<li>
 					<a href="<?php echo site_url(); ?>/peserta_backend">Pendaftaran Taruna</a>
 				</li>
-			</ul><!-- end vmenu -->
+				--> */?>
+			</ul><!-- end vmenu --> 
 		</div><!-- end wrap left-->
     

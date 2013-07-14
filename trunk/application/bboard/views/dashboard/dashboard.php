@@ -65,7 +65,7 @@
     </div>
     
 	<div class="section_13">
-      <img src="<?=base_url()?>asset/board/asset/frontpage/images/icon6.png" alt="" title="" border="0" class="feat_thumb" />
+      <img src="<?=base_url()?>asset/board/asset/frontpage/images/icon7.png" alt="" title="" border="0" class="feat_thumb" />
       <div class="feat_details">
       <h4>Admin Dashboard</h4>
       <a href="<?php echo site_url();?>/backend" class="inlink clear">ENTER</a>
