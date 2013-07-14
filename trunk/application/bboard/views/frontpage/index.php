@@ -40,15 +40,27 @@
 		});
 		return false;
   }
+  function load_silent(page,div){
+            var site = "<?php echo site_url()?>";
+            $.ajax({
+                url: site+"/"+page,
+                success: function(response){			
+                $(div).html(response);
+                },
+            dataType:"html"  		
+            });
+            return false;
+        }
 </script>
 	
 	<script type="text/javascript">	
+	
 	$(document).ready(function () {
-		load("news/index","#berita");
+		load("news/index","#infos2");
 	});
 	
 	$(document).ready(function () {
-		load("pengumuman/index","#pengumuman");
+		load("pengumuman/index","#infos1");
 	});
 	
 	$(document).ready(function () {
@@ -101,11 +113,63 @@
    </div><!--end slider-->
    
    <div class="infos"  id="pengumuman">
-		
-   </div><!--end pengumuman-->
+	<h3>Pengumuman</h3>
+    <div id="infos1">
+        <ul>
+            <li>
+                <div>
+                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
+                    <span>Release : 15 Pebruari 2013</span>
+                </div>
+            </li> 
+            <li>
+                <div>
+                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
+                    <span>Release : 15 Pebruari 2013</span>
+                </div>
+            </li> 
+            <li>
+                <div>
+                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
+                    <span>Release : 15 Pebruari 2013</span>
+                </div>
+            </li>   
+        </ul>
+    </div><!--end infos1-->
+	</div><!--end pengumuman-->
    
-   <div class="infos" id="berita" style="margin-top:17px">
+   <div class="infos" id="berita">
    	   	
+   	<h3>Berita Update</h3>
+   	<div id="infos2">
+        <ul>
+            <li>
+                <div>
+                    <span>15 Pebruari 2013 | 09:39 WIB</span>
+                    <h5><a href="#">Lorem Ipsum sim dolor met</a></h5>
+                    <img src="images/pic-small.jpg" />
+                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
+                </div>
+            </li> 
+            <li>
+                <div>
+                    <span>15 Pebruari 2013 | 09:39 WIB</span>
+                    <h5><a href="#">Lorem Ipsum sim dolor met</a></h5>
+                    <img src="images/pic-small.jpg" />
+                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
+                </div>
+            </li> 
+            <li>
+                <div>
+                    <span>15 Pebruari 2013 | 09:39 WIB</span>
+                    <h5><a href="#">Lorem Ipsum sim dolor met</a></h5>
+                    <img src="images/pic-small.jpg" />
+                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
+                </div>
+            </li>   
+        </ul>
+    </div><!--end infos2-->
+
    </div><!--end berita-->
    <div class="clear"></div>
    

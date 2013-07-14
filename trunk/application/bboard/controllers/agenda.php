@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Agenda extends CI_Controller
+class Agenda extends MY_Frontpage
 {
 	function __construct()
 	{
@@ -14,6 +14,14 @@ class Agenda extends CI_Controller
 	{
 		$data['results'] = $this->agenda->getItem();
 		$this->load->view('agenda/agenda_list', $data);
+	}
+	
+	function detail(){
+		$this->open();
+		$id=$this->uri->segment(3);
+		$data['results'] = $this->agenda->getItemById($id);
+		$this->load->view('agenda/agenda_detail', $data);
+		$this->close();
 	}
 }
 

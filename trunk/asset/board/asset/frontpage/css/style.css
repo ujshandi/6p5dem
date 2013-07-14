@@ -45,9 +45,9 @@ hr {display:inline-block;height:0;width:100%;border-top:solid 1px #ccc;border-bo
 hr.style1 {margin:10px 0;border-top-color:#ddd;border-bottom-color:#fff}
 
 /* Top */
-#wrap{margin:auto;width:940px;padding:20px 15px;background:url(../images/bg.png);box-shadow:0 0 10px rgba(0,0,0,.5);-moz-box-shadow:0 0 10px rgba(0,0,0,.5);-webkit-box-shadow:0 0 10px rgba(0,0,0,.5);border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;-webkit-border-radius:6px 6px 0 0;border:solid 3px rgba(255,255,255,.5);border-bottom:none}
+#wrap{margin:auto;width:940px;padding:20px 15px;background:url(../images/bg.png);box-shadow:0 0 10px rgba(0,0,0,.5);-moz-box-shadow:0 0 10px rgba(0,0,0,.5);-webkit-box-shadow:0 0 10px rgba(0,0,0,.5);border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;-webkit-border-radius:6px 6px 0 0;border:solid 3px rgba(255,255,255,.5);border-bottom:none;min-height:400px;}
 #page_wrap{margin:auto;width:1000px;padding:0 0 40px 0; background-color:#FFFFFF;}
-.center_content{ clear:both; padding:40px 0 0 0;}
+.center_content{ clear:both; padding:40px 0 0 0;text-align:justify;}
 #header{width:100%; height:140px;}
 .header_content{ width:1000px; margin:auto; line-height:140px;}
 .logo{float:left;margin:10px 0 0 20px;}
