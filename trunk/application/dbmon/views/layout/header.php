@@ -42,7 +42,7 @@
       <div class="right">
           <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
             <ul class="homout">
-                <li><a href="#"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
+                <li><a href="<?=base_url()?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
                 <li><a href="#"><img src="<?=base_url()?>asset/globalstyle/images/icon_logout_16x16.png" />LOGOUT</a></li>
             </ul>
       </div>
