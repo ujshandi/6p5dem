@@ -25,11 +25,66 @@ class lowongan_kerja_backend extends MY_Controller {
 		$this->pagination->initialize($config);	
 		
 		$data['result'] = $this->lowongan_kerja_backend->getData($config['per_page'], $this->uri->segment(3));
-		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);
+		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_filter', $data);
 		
 		$this->close_backend();
 	}
+	
+	function search(){
+		$this->open_backend();
+			
+			$search=$this->input->post('search');
+			
+			# config pagination
+			$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/search/';
+			$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $search);
+			$config['per_page'] = '10';
+			$config['num_links'] = '5';
+			
 
+			$this->pagination->initialize($config);	
+			
+			$data['result'] = $this->lowongan_kerja_backend->getSearchData(false, $search, $config['per_page'], $this->uri->segment(3));
+			$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);
+			
+		$this->close_backend();
+	}
+	
+	function filter_mahli(){
+		$mahlicode = $this->input->post('MAHLI_CODE');
+		$search="";
+			
+		# config pagination
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/search/';
+		$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $mahlicode, $search);
+		$config['per_page'] = '10';
+		$config['num_links'] = '5';
+		
+
+		$this->pagination->initialize($config);	
+		
+		$data['result'] = $this->lowongan_kerja_backend->getSearchData(false, $mahlicode, $search, $config['per_page'], $this->uri->segment(3));
+		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);
+		
+	}
+	
+	function filter_all(){
+		$mahlicode = $this->input->post('MAHLI_CODE');
+		$search = $this->input->post('search');
+		
+		# config pagination
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/search/';
+		$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $mahlicode, $search);
+		$config['per_page'] = '10';
+		$config['num_links'] = '5';
+		
+
+		$this->pagination->initialize($config);	
+		
+		$data['result'] = $this->lowongan_kerja_backend->getSearchData(false, $mahlicode, $search, $config['per_page'], $this->uri->segment(3));
+		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);
+		
+	}
 
 
 	function add(){

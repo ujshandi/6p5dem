@@ -238,11 +238,11 @@
         <div id="calendar_box"></div>
     </div>
 	<div class="section_14">
-    	<h2>Polling</h2>
+    	<!--<h2>Polling</h2>
 		
         <hr/>
         <p>
-			<img src="<?=base_url()?>asset/board/asset/frontpage/images/polling_images.jpg" alt="" title="" width="200" height="120" border="0" class="center" />
+			<img src="<?//=base_url()?>asset/board/asset/frontpage/images/polling_images.jpg" alt="" title="" width="200" height="120" border="0" class="center" />
 			<br/>
 			<br/>
 			
@@ -251,7 +251,7 @@
 				<input type="radio">Kurang<br/>
 			
 		</p>
-        <hr/>
+        <hr/> -->
 		<h2 class="typo">Informasi Alumni</h2>
 			<div class="apl_box">
 				<img src="<?=base_url()?>asset/board/asset/frontpage/images/alumni.png" class="ic" />
