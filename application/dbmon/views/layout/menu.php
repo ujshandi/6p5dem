@@ -36,7 +36,6 @@
 					<ul>
 						<li><a href="<?=base_url()?>dbmon.php/diklat/peserta">Komposisi Peserta Diklat</a></li>
 						<li><a href="<?=base_url()?>dbmon.php/diklat/alumni">Komposisi Alumni Diklat</a></li>
-						<li><a href="<?=base_url()?>dbmon.php/sdm/nonaparatur">Komposisi SDM Non-Aparatur</a></li>
 					</ul>
 				</li>
 				<li><a href="#">Dashboard Monitoring Kompetensi</a></li>
