@@ -16,6 +16,18 @@ class mdl_upt extends CI_Model{
 
 		return $this->db->get();
 	}
+	
+	function getDataPeserta(){
+		$subSql = "(SELECT count(*) FROM DIKLAT_MST_PESERTA WHERE KODE_UPT = DIKLAT_MST_UPT.KODE_UPT AND STATUS_PESERTA = 'Registrasi')";
+
+		$this->db->flush_cache();
+		$this->db->select("DIKLAT_MST_UPT.*,  ".$subSql." as JUMLAH_PESERTA");
+		$this->db->from('DIKLAT_MST_UPT');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('KODE_UPT');
+
+		return $this->db->get();
+	}
 
 	function getUptByID($kode_upt){
 		$this->db->flush_cache();
