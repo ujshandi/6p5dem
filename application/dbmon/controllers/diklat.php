@@ -50,7 +50,7 @@ class diklat extends My_Controller {
 		$data['title'] = 'Peserta Berdasarkan ';
 		if($upt==0){
 			$data['title'] .= 'UPT ';
-			$data['stat'] = $this->mdl_upt->getData('');
+			$data['stat'] = $this->mdl_upt->getDataPeserta('');
 			//$data['statF'] = $this->mdl_upt->getData('Wanita');
 			//$data['statM'] = $this->mdl_provinsi->getData('Pria');
 			$this->load->view('diklat/peserta/peserta_upt', $data);
