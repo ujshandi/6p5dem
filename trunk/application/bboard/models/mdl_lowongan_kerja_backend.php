@@ -24,6 +24,33 @@ class mdl_lowongan_kerja_backend extends CI_Model{
 		
 	}
 	
+	function getSearchData($count_data=false, $mahli='', $search='', $num=0, $offset=0){
+		$this->db->flush_cache();
+		$this->db->select('BB_MLOWONGAN.*,BB_MAKRA.MAKRA_NAME,BB_MAHLI.AHLI_NAME');
+		$this->db->from('BB_MLOWONGAN');
+		$this->db->join('BB_MAKRA', 'MAKRA_CODE=LOWONGAN_MAKRA');
+		$this->db->join('BB_MAHLI', 'AHLI_CODE=LOWONGAN_AHLI');
+		if ($mahli!=''){
+			$this->db->where('BB_MLOWONGAN.LOWONGAN_AHLI', $mahli);
+		}
+		
+		if ($search!=''){
+			$this->db->where('BB_MLOWONGAN.LOWONGAN_TITLE', $search);
+		}
+		
+		
+		if ($count_data) {
+			return $this->db->count_all_results();
+		}
+		
+		
+		$this->db->limit($num, $offset);
+		$this->db->order_by('LOWONGAN_CODE');
+		
+		return $this->db->get();
+		
+	}
+	
 	function getDataEdit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
