@@ -13,8 +13,8 @@ class mdl_diklat extends CI_Model{
 		$this->db->from('DIKLAT_MST_DIKLAT');
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_DIKLAT.KODE_DIKLAT');
-		if(trim($kode_upt['KODE_UPT'])!=0){
-			$this->db->where('DIKLAT_MST_DIKLAT.KODE_UPT',$kode_upt, false);
+		if($kode_upt!=0){
+			$this->db->where('DIKLAT_MST_DIKLAT.KODE_UPT',$kode_upt);
 		}
 		return $this->db->get();
 		
