@@ -44,7 +44,7 @@ class diklat extends My_Controller {
 	function peserta($upt=0, $diklat=0){
 		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_upt');
-		$this->load->model('mdl_peserta');
+		//$this->load->model('mdl_peserta');
 		$this->open();
 
 		$data['title'] = 'Peserta Berdasarkan ';
@@ -53,14 +53,14 @@ class diklat extends My_Controller {
 			$data['stat'] = $this->mdl_upt->getDataPeserta('');
 			//$data['statF'] = $this->mdl_upt->getData('Wanita');
 			//$data['statM'] = $this->mdl_provinsi->getData('Pria');
-			$this->load->view('diklat/peserta/peserta_upt', $data);
+			$this->load->view('diklat/peserta/peserta_diklat_new', $data);
 		}
 		elseif($diklat==0){
 			$data['title'] .= 'UPT '.$this->mdl_upt->getUptByID($upt)->NAMA_UPT;
 			$data['stat'] = $this->mdl_diklat->getData($upt, '');
 			//$data['statF'] = $this->mdl_kbupaten->getData($prov, 'Wanita');
 			//$data['statM'] = $this->mdl_kbupaten->getData($prov, 'Pria');
-			$this->load->view('diklat/peserta/peserta_diklat', $data);
+			$this->load->view('diklat/peserta/peserta_diklat_new', $data);
 		}
 		// else{
 		// 	$data['title'] .= 'Kabupaten/Kota '.$this->mdl_kbupaten->getKabByID($kab)->NAMAKABUP;
