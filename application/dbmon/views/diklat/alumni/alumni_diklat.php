@@ -6,7 +6,7 @@
     <div id="chart2" style="margin-top:10px; margin-right:15px; width:46%; min-height:800px; float:right"></div>
     <pre class="code brush:js"></pre>
 
-	<div id="chart1" style="margin-top:10px; margin-left:15px; min-height:900px;"></div>
+	<div id="chart1" style="margin-top:10px; margin-left:15px; width:100%; min-height:900px;"></div>
 	<pre class="code brush:js"></pre>
 	
 	<script class="code" type="text/javascript">
@@ -43,7 +43,7 @@
 				    renderer: $.jqplot.EnhancedLegendRenderer,
 				    show: true,
 				    rendererOptions: {
-				        numberColumns: 3
+				        numberColumns: 4
 				    },
 				    location: 's'
 				}		  
