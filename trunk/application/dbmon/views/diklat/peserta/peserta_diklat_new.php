@@ -20,7 +20,7 @@
 		<tr>
 		   	<td>Tahun : </td>
 		    <td>
-		    	<input type="text" name="tahun_awal" id="tahun_awal" value="2012" maxlength="4" size="5"/>
+		    	<input type="text" name="tahun_awal" id="tahun_awal" value="2010" maxlength="4" size="5"/>
 		    	<input type="text" name="tahun_akhir" id="tahun_akhir" value="2013" maxlength="4" size="5"/>
 		    </td>
 		</tr>
@@ -40,9 +40,10 @@
 			<tr>
 				<td width="20px" rowspan="2" style="text-align:center;vertical-align:middle;">No.</td>
 				<td width="400px" rowspan="2" style="text-align:center;vertical-align:middle;">UPT</td>
-				<td colspan="3" style="text-align:center;vertical-align:middle;">TAHUN</td>
+				<td colspan="4" style="text-align:center;vertical-align:middle;">TAHUN</td>
 			</tr>		
-			<tr>		
+			<tr>		\
+				<td style="text-align:center;vertical-align:middle;">2010</td>
 				<td style="text-align:center;vertical-align:middle;">2011</td>
 				<td style="text-align:center;vertical-align:middle;">2012</td>
 				<td style="text-align:center;vertical-align:middle;">2013</td>
@@ -52,9 +53,10 @@
 			<tr>		
 				<td>1.</td>
 				<td>ASD</td>
-				<td>1</td>
-				<td>2</td>
 				<td>3</td>
+				<td>7</td>
+				<td>9</td>
+				<td>1</td>
 			</tr>				
 		</tbody>
 	</table>
@@ -62,49 +64,20 @@
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 			$.jqplot.config.enablePlugins = true;
-			var key = [3,7,9,1,5,3,8,2,5];
-			var s1 = [3,7,9,1,5,3,8,2,5];
-			var ticks = [3,7,9,1,5,3,8,2,5];
+			var key = [3,7,9,1];
+			var s1 = [3,7,9,1];
+			var ticks = [2010,2011,2012,2013];
 			
-			plot1 = $.jqplot('chart1', [s1]);
-
-			var s2 = [3,7,9,1,5,3,8,2,5];
-			// [
-			// 	<?php
-			// 		foreach($stat->result() as $point){
-			// 			echo "['".$point->NAMAPROVIN."', ".$point->JUMLAH_SDM."],";
-			// 		}
-			// 	?>
-			// ];
-
-			plot2 = jQuery.jqplot('chart2', [s2], 
-			{
-			  title: ' ', 
-			  seriesDefaults: {
-			    shadow: false, 
-			    renderer: jQuery.jqplot.PieRenderer, 
-			    rendererOptions: { 
-			      startAngle: 180, 
-			      sliceMargin: 1, 
-			      showDataLabels: true } 
-			  }, 
-			  legend:{
-				    renderer: $.jqplot.EnhancedLegendRenderer,
-				    show: true,
-				    rendererOptions: {
-				        numberColumns: 3
-				    },
-				    location: 's'
+			plot1 = $.jqplot('chart1', [s1],{
+				axes: {
+					xaxis: {
+						renderer: $.jqplot.CategoryAxisRenderer,
+						ticks: ticks
+					}
 				}
 			});
 
 			$('#chart1').bind('jqplotDataClick', 
-				function (ev, seriesIndex, pointIndex, data) {
-					window.location.href = "<?=base_url().'dbmon.php/sdm/dinas/'?>"+key[pointIndex];
-				}
-			);
-
-			$('#chart2').bind('jqplotDataClick', 
 				function (ev, seriesIndex, pointIndex, data) {
 					window.location.href = "<?=base_url().'dbmon.php/sdm/dinas/'?>"+key[pointIndex];
 				}
