@@ -38,7 +38,15 @@
 			      startAngle: 180, 
 			      sliceMargin: 1, 
 			      showDataLabels: true } 
-			  } 
+			  },
+			  legend:{
+				    renderer: $.jqplot.EnhancedLegendRenderer,
+				    show: true,
+				    rendererOptions: {
+				        numberColumns: 3
+				    },
+				    location: 's'
+				}		  
 			  			});
 
 			$('#chart1').bind('jqplotDataClick', 

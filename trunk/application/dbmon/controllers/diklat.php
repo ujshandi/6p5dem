@@ -16,7 +16,7 @@ class diklat extends My_Controller {
 		$this->load->model('mdl_upt');
 		$this->load->model('mdl_alumni');
 		$this->open();
-
+		
 		$data['title'] = 'Alumni Berdasarkan ';
 		if($upt==0){
 			$data['title'] .= 'UPT ';
@@ -26,7 +26,7 @@ class diklat extends My_Controller {
 			$this->load->view('diklat/alumni/alumni_upt', $data);
 		}
 		elseif($diklat==0){
-			$data['title'] .= 'UPT '.$this->mdl_upt->getUptByID($upt)->NAMA_UPT;
+			$data['title'] .= 'Diklat Di UPT '.$this->mdl_upt->getUptByID($upt)->NAMA_UPT;
 			$data['stat'] = $this->mdl_diklat->getData($upt, '');
 			//$data['statF'] = $this->mdl_kbupaten->getData($prov, 'Wanita');
 			//$data['statM'] = $this->mdl_kbupaten->getData($prov, 'Pria');

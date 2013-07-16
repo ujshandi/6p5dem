@@ -44,9 +44,9 @@
 				    renderer: $.jqplot.EnhancedLegendRenderer,
 				    show: true,
 				    rendererOptions: {
-				        numberColumns: 1
+				        numberColumns: 3
 				    },
-				    location: 'e'
+				    location: 's'
 				}
 
 			});
