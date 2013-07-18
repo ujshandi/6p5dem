@@ -42,21 +42,35 @@
 				<td width="400px" rowspan="2" style="text-align:center;vertical-align:middle;">UPT</td>
 				<td colspan="4" style="text-align:center;vertical-align:middle;">TAHUN</td>
 			</tr>		
-			<tr>		\
-				<td style="text-align:center;vertical-align:middle;">2010</td>
-				<td style="text-align:center;vertical-align:middle;">2011</td>
-				<td style="text-align:center;vertical-align:middle;">2012</td>
-				<td style="text-align:center;vertical-align:middle;">2013</td>
+			<tr><?php foreach ($tahun as $y) :?>
+				<td style="text-align:center;vertical-align:middle;"><?=$y?></td>
+				<?php endforeach;?>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>		
-				<td>1.</td>
-				<td>ASD</td>
-				<td>3</td>
-				<td>7</td>
-				<td>9</td>
-				<td>1</td>
+			<?php 
+				$total=array_fill(0,sizeof($tahun),0); 
+				$i=1; 
+				foreach ($data->result_array() as $peserta) :
+			?>	
+			<tr>	
+				<td><?=$i;?>.</td>
+				<td><?=$peserta['NAMA_UPT']?></td>
+				<?php 
+				$j=0;
+				foreach ($tahun as $y){
+					echo '<td>'.$peserta[$y].'</td>';
+					$total[$j] += $peserta[$y];
+					$j++;
+				} $i++;
+				?>
+			</tr>				
+			<?php endforeach;?>
+			<tr>	
+				<td colspan="2">Jumlah</td>
+				<?php $j=0; foreach ($tahun as $y) {?>
+				<td><?=$total[$j]?></td>
+				<?php $j++; }?>
 			</tr>				
 		</tbody>
 	</table>
@@ -64,9 +78,9 @@
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 			$.jqplot.config.enablePlugins = true;
-			var key = [3,7,9,1];
-			var s1 = [3,7,9,1];
-			var ticks = [2010,2011,2012,2013];
+			var key = [<?php foreach ($tahun as $y) {echo $y.',';}?>];
+			var s1 = [<?php foreach ($total as $y) {echo $y.',';}?>];
+			var ticks = [<?php foreach ($tahun as $y) {echo $y.',';}?>];
 			
 			plot1 = $.jqplot('chart1', [s1],{
 				axes: {
