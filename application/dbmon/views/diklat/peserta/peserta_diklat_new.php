@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Komposisi SDM <?=$title;?></h1>
+	<h1 class="heading">Komposisi  <?=$title;?></h1>
 	<hr/>
 	
 	<?=form_open('diklat/search')?>
@@ -27,6 +27,7 @@
 		   	<td>Tahun : </td>
 		    <td>
 		    	<input type="text" name="tahun_awal" id="tahun_awal" value="2010" maxlength="4" size="5"/>
+				<label>s/d</label>
 		    	<input type="text" name="tahun_akhir" id="tahun_akhir" value="2013" maxlength="4" size="5"/>
 		    </td>
 		</tr>
