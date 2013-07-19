@@ -3,19 +3,25 @@
 	<h1 class="heading">Komposisi SDM <?=$title;?></h1>
 	<hr/>
 	
-	<?=form_open('sdm/dinas')?>
+	<?=form_open('diklat/search')?>
 	<table>
 		<tr>
+		<div id="indukupt">
 		   	<td width="100">Induk UPT : </td>
 		    <td><?php
-		        echo form_dropdown("INDUKUPT", array(''=>'Pilih Induk UPT','0'=>'0','1'=>'1'), '');
+		        echo form_dropdown("KODE_INDUK", $option_indukupt, $this->input->post('KODE_INDUK'),"id='KODE_INDUK'");
+				//echo form_dropdown("INDUKUPT", array(''=>'Pilih Induk UPT','0'=>'0','1'=>'1'), '');
 		    ?></td>
+		</div>
 		</tr>
 	   	<tr>
+		<div id="program">
 			<td>Program : </td>
 		    <td><?php
-		        echo form_dropdown("Program", array(''=>'Pilih Induk UPT','0'=>'0','1'=>'1'), '');
+		       echo form_dropdown("KODE_PROGRAM",array('0'=>'Pilih Induk UPT Dahulu'),'',"id='KODE_PROGRAM'",$this->input->post('KODE_PROGRAM'));
+			   // echo form_dropdown("Program", array(''=>'Pilih Induk UPT','0'=>'0','1'=>'1'), '');
 		    ?></td>
+		</div>
 		</tr>
 		<tr>
 		   	<td>Tahun : </td>
@@ -74,7 +80,26 @@
 			</tr>				
 		</tbody>
 	</table>
-
+	<script type="text/javascript">
+        $("#KODE_INDUK").change(function(){
+                var selectValues = $("#KODE_INDUK").val();
+                if (selectValues == 0){
+                    var msg = "Program :<select name=\"KODE_PROGRAM\" disabled><option value=\"0\">Pilih Induk UPT Dahulu</option></select>";
+                    $('#program').html(msg);
+                }else{
+                    var KODE_INDUK = {KODE_INDUK:$("#KODE_INDUK").val()};
+                    $('#KODE_PROGRAM').attr("disabled",true);
+                    $.ajax({
+                            type: "POST",
+                            url : "<?php echo site_url('diklat/select_program')?>",
+                            data: KODE_INDUK,
+                            success: function(msg){
+                                $('#program').html(msg);
+                            }
+                    });
+                }
+        });
+    </script>
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 			$.jqplot.config.enablePlugins = true;
@@ -98,7 +123,6 @@
 			);
 		});
 	</script>
-
 	<div class="clear">&nbsp;</div>
 
 </div><!-- end wrap right content-->
