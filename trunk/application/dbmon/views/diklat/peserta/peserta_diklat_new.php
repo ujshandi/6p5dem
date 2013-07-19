@@ -26,9 +26,9 @@
 		<tr>
 		   	<td>Tahun : </td>
 		    <td>
-		    	<input type="text" name="tahun_awal" id="tahun_awal" value="2010" maxlength="4" size="5"/>
+		    	<input type="text" name="tahun_awal" id="tahun_awal" maxlength="4" size="5" value="<?=$tahun_awal;?>"/>
 				<label>s/d</label>
-		    	<input type="text" name="tahun_akhir" id="tahun_akhir" value="2013" maxlength="4" size="5"/>
+		    	<input type="text" name="tahun_akhir" id="tahun_akhir" maxlength="4" size="5" value="<?=$tahun_akhir;?>"/>
 		    </td>
 		</tr>
 		<tr>
