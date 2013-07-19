@@ -3,7 +3,7 @@
 	<h1 class="heading">Komposisi  <?=$title;?></h1>
 	<hr/>
 	
-	<?=form_open('diklat/search')?>
+	<?=form_open('diklat/peserta')?>
 	<table>
 		<tr>
 		<div id="indukupt">
@@ -15,9 +15,9 @@
 		</div>
 		</tr>
 	   	<tr>
-		<div id="program">
+		<div>
 			<td>Program : </td>
-		    <td><?php
+		    <td id="program"><?php
 		       echo form_dropdown("KODE_PROGRAM",array('0'=>'Pilih Induk UPT Dahulu'),'',"id='KODE_PROGRAM'",$this->input->post('KODE_PROGRAM'));
 			   // echo form_dropdown("Program", array(''=>'Pilih Induk UPT','0'=>'0','1'=>'1'), '');
 		    ?></td>
@@ -47,7 +47,7 @@
 			<tr>
 				<td width="20px" rowspan="2" style="text-align:center;vertical-align:middle;">No.</td>
 				<td width="400px" rowspan="2" style="text-align:center;vertical-align:middle;">UPT</td>
-				<td colspan="4" style="text-align:center;vertical-align:middle;">TAHUN</td>
+				<td colspan="<?=sizeof($tahun);?>" style="text-align:center;vertical-align:middle;">TAHUN</td>
 			</tr>		
 			<tr><?php foreach ($tahun as $y) :?>
 				<td style="text-align:center;vertical-align:middle;"><?=$y?></td>
@@ -82,10 +82,16 @@
 		</tbody>
 	</table>
 	<script type="text/javascript">
+       	loadFilter();
+
         $("#KODE_INDUK").change(function(){
-                var selectValues = $("#KODE_INDUK").val();
+        	loadFilter();
+        });
+
+        function loadFilter(){
+        	var selectValues = $("#KODE_INDUK").val();
                 if (selectValues == 0){
-                    var msg = "Program :<select name=\"KODE_PROGRAM\" disabled><option value=\"0\">Pilih Induk UPT Dahulu</option></select>";
+                    var msg = "<select name=\"KODE_PROGRAM\" disabled><option value=\"0\">Pilih Induk UPT Dahulu</option></select>";
                     $('#program').html(msg);
                 }else{
                     var KODE_INDUK = {KODE_INDUK:$("#KODE_INDUK").val()};
@@ -96,10 +102,11 @@
                             data: KODE_INDUK,
                             success: function(msg){
                                 $('#program').html(msg);
+                    			$('#KODE_PROGRAM').val("<?=$this->input->post('KODE_PROGRAM')?>");
                             }
                     });
                 }
-        });
+        }
     </script>
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
