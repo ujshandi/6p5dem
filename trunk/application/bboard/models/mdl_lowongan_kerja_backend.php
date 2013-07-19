@@ -11,7 +11,7 @@ class mdl_lowongan_kerja_backend extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($count_data=false,$num=0, $offset=0){
 		$this->db->flush_cache();
 		$this->db->select('BB_MLOWONGAN.*,BB_MAKRA.MAKRA_NAME,BB_MAHLI.AHLI_NAME');
 		$this->db->from('BB_MLOWONGAN');
@@ -19,7 +19,9 @@ class mdl_lowongan_kerja_backend extends CI_Model{
 		$this->db->join('BB_MAHLI', 'AHLI_CODE=LOWONGAN_AHLI');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('LOWONGAN_CODE');
-		
+		if ($count_data) {
+			return $this->db->count_all_results();
+		}
 		return $this->db->get();
 		
 	}

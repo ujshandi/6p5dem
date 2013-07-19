@@ -11,7 +11,6 @@ class Users extends MY_Controller
 		$this->load->model('Authentikasi');
 		$this->load->model('mdl_users', 'users');
 		$this->load->library('auth_ad');
-		$this->load->library('simpliparse');
 	}
 
 	function index()
