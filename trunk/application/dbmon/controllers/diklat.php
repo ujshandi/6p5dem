@@ -15,6 +15,7 @@ class diklat extends My_Controller {
 		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_upt');
 		$this->load->model('mdl_alumni');
+		$this->load->model('mdl_peserta');
 		$this->open();
 		
 		$data['title'] = 'Alumni Berdasarkan ';
