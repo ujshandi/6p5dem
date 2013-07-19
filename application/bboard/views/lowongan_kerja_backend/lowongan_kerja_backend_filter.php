@@ -1,6 +1,5 @@
 <script type="text/javascript">
 	$(document).ready(function() {
-	
 		    var makracode=document.getElementById('MAKRA_CODE').value;
 			$.ajax({
 				 type:'post',
@@ -12,7 +11,7 @@
 					   var mahlicode=document.getElementById('AHLI_CODE').value;
 						$.ajax({
 								type: 'POST',
-								url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli',
+								url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/',
 								data: 'MAHLI_CODE=' + mahlicode,
 								success: function(data) {
 									$('#list_data').html(data);
@@ -37,7 +36,7 @@
 						var mahlicode=document.getElementById('AHLI_CODE').value;
 						$.ajax({
 								type: 'POST',
-								url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli',
+								url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/',
 								data: 'MAHLI_CODE=' + mahlicode,
 								success: function(data) {
 									$('#list_data').html(data);
@@ -50,19 +49,54 @@
 			 
 		});
 		
+		
 		var mahlicode=document.getElementById('AHLI_CODE').value;
 		$.ajax({
 				type: 'POST',
-				url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli',
+				url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/',
 				data: 'MAHLI_CODE=' + mahlicode,
 				success: function(data) {
 					$('#list_data').html(data);
 				}
+				
 
 			});
-			
 		
-		$('#search').click(function(){
+		          
+		$("p.pagination a").click(function() {
+				$.ajax({
+				  type: "GET",
+				  url: $(this).attr('href'),
+				  success: function(html){
+					$("#list_data").html(html);
+				  }
+				});               
+				return false;
+			  }); 
+		
+		
+		
+    }); 
+	
+	ajax_paging = function(){
+			
+			$("p.pagination a").click(function() {
+					
+				var mahlicode=document.getElementById('AHLI_CODE').value;
+				   $.ajax({
+					 type: "POST",
+					 url: $(this).get(),
+					 data: 'MAHLI_CODE=' + mahlicode,
+					 success: function(html){
+							$("#list_data").html(html);
+					  }
+				   });               
+             });    		
+			return false;
+		};
+	
+		function search_lowongan(){
+		
 			$.ajax({
 					type: 'POST',
 					url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_all',
@@ -72,10 +106,10 @@
 					}
 
 				});
-		});
+		}
 		
-    }); 
-
+	
+	
 </script>	
 
 <div class="wrap_right bgcontent">
@@ -103,15 +137,17 @@
 				 &nbsp; &nbsp; -  &nbsp; &nbsp;
 				
 			
-				NAMA LOWONGAN &nbsp; <input type="text" name="search" id="search" value=""/><input type="button" value="Search" id="search" />
+				NAMA LOWONGAN &nbsp; <input type="text" name="search" id="search" value=""/>
+				<a href="#" class="control" onClick="search_lowongan();">Cari</a>
+				
 			</li>
 	</ol>		
 	</fieldset>
+	<a onClick="ajax_paging();return false;" href="<?php echo site_url();?>/lowongan_kerja_backend/lowongan_kerja_backend/5">3</a>
+	<div id="list_data">
 	
-	<table width="100%" id="list_data">
+	</div>
+	
 		
-	</table>
-	<div class="clear">&nbsp;</div>
-	</form>
-	<?=$this->pagination->create_links()?>
+	
 </div>
