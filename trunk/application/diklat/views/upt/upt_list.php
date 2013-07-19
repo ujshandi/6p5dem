@@ -3,6 +3,29 @@
 	<h1 class="heading">Data UPT</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/upt/add'?>"class="control"> <span class="add">Tambah Data</span></a>
+	<?=form_open('upt/search', array('class'=>'sform'))?>
+	<fieldset>
+	<ol>
+		<li>
+			Satker : 
+			<select name="kode_induk">
+				<?=$this->mdl_satker->getOptionSatker(array('value'=>$kode_induk))?>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
+			<select name="numrow">
+				<option value="5" <?=$numrow==5?'Selected="selected"':''?>>5</option>
+				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
+				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
+				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>
+				<option value="100" <?=$numrow==100?'Selected="selected"':''?>>100</option>
+				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
+			</select>
+			<input type="submit" name="submit" value="Proses" />
+		</li>
+	</ol>		
+	</fieldset>
+	<?=form_close()?>
 	<table width="100%">
 	  <thead>
 		<th>No</th>
@@ -13,7 +36,7 @@
 	  </thead>
 	  <tbody>
 		<?
-		$i=1;
+		$i=$curcount;
 		foreach($result->result() as $r){
 		?>
 			<tr class='gradeC'>

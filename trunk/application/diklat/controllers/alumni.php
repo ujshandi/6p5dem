@@ -43,7 +43,7 @@ class alumni extends My_Controller {
 		$this->pagination->initialize($config);	
 		
 		$data['result'] = $this->mdl_alumni->getData($config['per_page'], $this->uri->segment(3));
-		$this->load->view('alumni/alumni_list', $data);
+		//$this->load->view('alumni/alumni_list', $data);
 		
 		$this->close();
 	}
