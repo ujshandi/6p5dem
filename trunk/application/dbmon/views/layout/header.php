@@ -33,7 +33,7 @@
       <div class="bread">
         <ul class="breadcrumbs">
           <li><a href="#">Home</a></li>
-          <li><a href="#">Aplikasi title</a></li>
+          <li><a href="#">Dashboard Monitoring</a></li>
           <li><span>Edit</span></li>
           <li class="current"><a href="#">Add</a></li>
         </ul>
