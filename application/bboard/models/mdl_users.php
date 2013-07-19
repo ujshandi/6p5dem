@@ -3,7 +3,9 @@
 
 
 class mdl_users extends CI_Model{
-
+	
+	public $limit;
+    public $offset;
 	
 
 	function __construct()
@@ -27,7 +29,21 @@ class mdl_users extends CI_Model{
 		return $this->db->get();
 
 	}
-
+	
+	function get_users_like($key,$count_data=false,$num=0, $offset=0){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('USERS');
+		if ($key!=''){
+				$this->db->like('USERNAME',$key);
+		}
+		
+		if ($count_data){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
 	
 
 	function getItemById($id)
@@ -130,6 +146,34 @@ class mdl_users extends CI_Model{
 		
 		return $out;
 	}
+	
+	 public function listBarang() {
+        $query = $this->db->limit($this->limit, $this->offset)
+                        ->get('USERS');
+        return $query->result_array();
+    }
+
+    public function listBarang_page($descp) {
+        $query = $this->db->select('*')
+                        ->from('USERS')
+                        ->like('USERNAME', $descp)
+                        ->get('', $this->limit, $this->offset);
+        return $query->result_array();
+    }
+
+     public function numRec() {
+        $result = $this->db->from('USERS');
+        return $result->count_all();
+    }
+
+    public function numRec_page($descp) {
+        $result = $this->db->like('USERNAME', $descp)
+                        ->from('USERS')
+                        ->count_all_results();
+        return $result;
+    }
+	
+	
 
 	
 

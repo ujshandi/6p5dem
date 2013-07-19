@@ -2,6 +2,7 @@
 
 class Users extends MY_Controller
 {
+	private $pagesize = 20;
 	function __construct()
 	{
 		parent::__construct();
@@ -10,6 +11,7 @@ class Users extends MY_Controller
 		$this->load->model('Authentikasi');
 		$this->load->model('mdl_users', 'users');
 		$this->load->library('auth_ad');
+		$this->load->library('simpliparse');
 	}
 
 	function index()
@@ -18,23 +20,43 @@ class Users extends MY_Controller
 		$this->open_backend();
 		
 		# config pagination
+		
+		
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/index/';
 		$config['total_rows'] = $this->db->count_all('USERS');
-		$config['per_page'] = '30';
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
 		$config['num_links'] = '3';
+		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
 		
 		$data['results'] = $this->users->getItem($config['per_page'], $this->uri->segment(3));
-		$this->load->view('users/users_list', $data);
-		
+		$this->load->view('users/users_filter', $data); 
+				
 		$this->close_backend();
 		
 	}
+	
+	
 	
 	public function add(){
 		$this->open_backend();
 		$this->load->view('users/users_add');
 		$this->close_backend();
+	}
+	public function getall(){
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
+		$config['total_rows'] = $this->db->count_all('USERS');
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->getItem($config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_list', $data);
 	}
 	
 	public function proses_add(){
@@ -129,6 +151,29 @@ class Users extends MY_Controller
 			
 		}
 	}
+	
+	public function proses_pencarian(){
+	
+		$keysearch_users = $this->input->post('txt_search');
+		/*if ($keysearch_users!=''){
+				$this->session->set_userdata('keysearch_users', $keysearch_users);
+			}else{
+				$keysearch_users = $this->session->userdata('keysearch_users');
+			}*/
+		
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/proses_pencarian/';
+		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->get_users_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_list', $data); 
+		
+	}
+	
 	
 }
 
