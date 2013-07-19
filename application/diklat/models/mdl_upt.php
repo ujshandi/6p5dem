@@ -5,7 +5,8 @@ class mdl_upt extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		// get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_MST_UPT.*, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
 		$this->db->from('DIKLAT_MST_UPT');
@@ -13,9 +14,32 @@ class mdl_upt extends CI_Model{
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
 		
+		if(!empty($filter['kode_induk']))
+			$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);
 		
-		return $this->db->get();
+		if(!empty($filter['search']))
+			$this->db->where('DIKLAT_MST_UPT.NAMA_UPT', $filter['search']);
 		
+		$tmp['row_data'] = $this->db->get();
+		
+		
+		// get count
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_UPT.*, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
+		$this->db->from('DIKLAT_MST_UPT');
+		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_UPT.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
+		
+		if(!empty($filter['kode_induk']))
+			$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);
+		
+		if(!empty($filter['search']))
+			$this->db->where('DIKLAT_MST_UPT.NAMA_UPT', $filter['search']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
 	}
 	
 	function getDataEdit($id){

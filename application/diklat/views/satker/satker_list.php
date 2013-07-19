@@ -3,6 +3,23 @@
 	<h1 class="heading">Data Satuan Kerja</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/satker/add'?>" class="control"><span class="add">Tambah Data</span></a>
+	<?=form_open('satker/search', array('class'=>'sform'))?>
+	<fieldset>
+	<ol>
+		<li>
+			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
+			<select name="numrow">
+				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
+				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
+				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>
+				<option value="100" <?=$numrow==100?'Selected="selected"':''?>>100</option>
+				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
+			</select>
+			<input type="submit" name="submit" value="Proses" />
+		</li>
+	</ol>		
+	</fieldset>
+	<?=form_close()?>
 	<table width="100%">
 	  <thead>
 		<th>No</th>
@@ -12,7 +29,7 @@
 	  <tbody>
 		
 		<?
-		$i=1;
+		$i=$curcount;
 		foreach($result->result() as $r){
 		?>
 		
@@ -35,8 +52,7 @@
 	<div class="clearfix">&nbsp;</div>        
         <div class="paging right">
           <ul>
-            <li class="active">
-				 <li><?=$this->pagination->create_links()?></li>
+            <?=$this->pagination->create_links()?>
           </ul>
         </div><!--end pagination-->
 	<div class="clearfix"></div>

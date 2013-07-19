@@ -5,15 +5,34 @@ class mdl_satker extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		// get data
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_INDUKUPT');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('KODE_INDUK');
 		
-		return $this->db->get();
+		if(!empty($filter['search'])){
+			$this->db->like('NAMA_INDUK', $filter['search']);
+		}
 		
+		$tmp['row_data'] = $this->db->get();
+		
+		//get count
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_INDUKUPT');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('KODE_INDUK');
+		
+		if(!empty($filter['search'])){
+			$this->db->like('NAMA_INDUK', $filter['search']);
+		}
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
 	}
 	
 	function getDataEdit($id){
@@ -68,9 +87,9 @@ class mdl_satker extends CI_Model{
 	}
 	
 	function getOptionSatker($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -79,7 +98,8 @@ class mdl_satker extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="">--- Semua ---</option>';
 		foreach($res->result() as $r){
 			if($r->KODE_INDUK == trim($value)){
 				$out .= '<option value="'.$r->KODE_INDUK.'" selected="selected">'.$r->NAMA_INDUK.'</option>';
@@ -87,7 +107,7 @@ class mdl_satker extends CI_Model{
 				$out .= '<option value="'.$r->KODE_INDUK.'">'.$r->NAMA_INDUK.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
