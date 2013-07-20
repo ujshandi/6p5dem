@@ -5,18 +5,38 @@ class mdl_sarana extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		# get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_SARPRAS.NAMA_SARPRAS', false);
 		$this->db->from('DIKLAT_MST_SARANA');
 		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->limit($num, $offset);
-		
 		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
 		
-		return $this->db->get();
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
 		
+		$tmp['row_data'] = $this->db->get();
+		
+		# get count
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_SARPRAS.NAMA_SARPRAS', false);
+		$this->db->from('DIKLAT_MST_SARANA');
+		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
+		
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
 	}
 	
 	function getDataEdit($id){

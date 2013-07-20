@@ -4,6 +4,28 @@
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/prasarana/add'?>" class="control"> <span class="add">Tambah Data Prasarana</span></a>
 	
+	<?=form_open('prasarana/search', array('class'=>'sform'))?>
+	<fieldset>
+	<ol>
+		<li>
+			UPT : 
+			<select name="kode_upt">
+				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<select name="numrow">
+				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
+				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
+				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>
+				<option value="100" <?=$numrow==100?'Selected="selected"':''?>>100</option>
+				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
+			</select>
+			<input type="submit" name="submit" value="Proses" />
+		</li>
+	</ol>		
+	</fieldset>
+	<?=form_close()?>
+	
 	<table width="100%">
 	  <thead>
 		<th>No</th>

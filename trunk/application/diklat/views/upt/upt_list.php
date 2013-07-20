@@ -14,7 +14,6 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			<select name="numrow">
-				<option value="5" <?=$numrow==5?'Selected="selected"':''?>>5</option>
 				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
 				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
 				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>

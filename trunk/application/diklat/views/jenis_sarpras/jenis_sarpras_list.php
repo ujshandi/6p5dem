@@ -10,7 +10,6 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			<select name="numrow">
-				<option value="5" <?=$numrow==5?'Selected="selected"':''?>>5</option>
 				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
 				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
 				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>
@@ -31,14 +30,14 @@
 	  </thead>
 	  <tbody>
 		<?
-		$i=1;
+		$i=$curcount;
 		foreach($result->result() as $r){
 		?>
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td><?=$r->NAMA_SARPRAS?></td>
 				<td><?=$r->JENIS?></td>
-				<td >
+				<td>
 					<a href="<?=site_url().'/jenis_sarpras/edit/'.$r->ID_SARPRAS?>" class="control" >
 						<span class="edit">edit</span></a> |
 					<a href="<?=site_url().'/jenis_sarpras/proses_delete/'.$r->ID_SARPRAS?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">

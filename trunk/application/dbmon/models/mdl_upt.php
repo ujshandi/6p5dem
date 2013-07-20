@@ -18,6 +18,7 @@ class mdl_upt extends CI_Model{
 	}
 
 	function getUptByID($kode_upt){
+		
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_UPT');
