@@ -74,9 +74,9 @@ class mdl_diklat extends CI_Model{
 	}
 	
 	function getOptionDiklat($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -85,7 +85,7 @@ class mdl_diklat extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
 		foreach($res->result() as $r){
 			if($r->KODE_DIKLAT == trim($value)){
 				$out .= '<option value="'.$r->KODE_DIKLAT.'" selected="selected">'.$r->NAMA_DIKLAT.'</option>';
@@ -93,7 +93,7 @@ class mdl_diklat extends CI_Model{
 				$out .= '<option value="'.$r->KODE_DIKLAT.'">'.$r->NAMA_DIKLAT.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}

@@ -39,22 +39,17 @@ $( "#TGL_MASUK" ).datepicker();
 			} 
 		?>
 		<ol>						
-			<li><label for="" >UPT <em>*</em></label>
-				<?
-					$opt_satker['id'] = 'KODE_UPT';
-					$opt_satker['name'] = 'KODE_UPT';
-					//$opt_satker[] = '';
-					echo $this->mdl_satker->getOptionUPTChild($opt_satker);
-					
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="kode_upt" id="KODE_UPT">
+					<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+				</select>
 			</li>
 			
 			<li><label for="">DIKLAT <em>*</em></label>
-				<div id="KODE_DIKLAT">
-				<select name="KODE_DIKLAT">
+				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
 					<option value="">--Pilih--</option>        	
 				</select>
-				</div>
 			</li>
 			
 			<li><label for="">NOMOR INDUK <em>*</em></label> <input name="NO_PESERTA" value="<?=set_value('NO_PESERTA')?>" type="text" class="two"/></li>

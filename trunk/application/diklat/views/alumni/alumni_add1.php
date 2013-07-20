@@ -15,10 +15,16 @@
     });
 </script>
 
+<script>
+$(function() {
+$( "#TGL_LULUS" ).datepicker();
+});
+</script>
+
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Peserta</h1>
+	<h1 class="heading">Data Alumni</h1>
 	<hr/>
-	<?=form_open('peserta/add_lulus2', array('class'=>'sform'))?>
+	<?=form_open('alumni/add_alumni2', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -46,17 +52,20 @@
 			</li>
 			
 			<li><label for="">TAHUN <em>*</em></label>
-			<select id="THN_ANGKATAN" name="THN_ANGKATAN">
-			<option value="0">-- PILIH --</option>
-			<?
-				$date = date('Y');
-				for($i=$date, $c=$date-15; $i>$c; $i--){
-					echo '<option value="'.$i.'">'.$i.'</option>';
-				}
-			?>
-			</select>
+				<select id="THN_ANGKATAN" name="THN_ANGKATAN">
+					<option value="0">-- PILIH --</option>
+					<?
+						$date = date('Y');
+						for($i=$date, $c=$date-15; $i>$c; $i--){
+							echo '<option value="'.$i.'">'.$i.'</option>';
+						}
+					?>
+				</select>
 			</li>
-
+			
+			<li><label for="">PERIODE / TANGGAL LULUS<em>*</em></label> <input name="TGL_LULUS" value="<?=set_value('TGL_LULUS')?>" type="text" class="one" id="TGL_LULUS"/>
+			</li>
+			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 			<li><input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/></li>

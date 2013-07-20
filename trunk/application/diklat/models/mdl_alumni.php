@@ -92,9 +92,7 @@ class mdl_alumni extends CI_Model{
 	}
 	
 	function getOptionPesertaByUPT($d){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+	
 		$value = isset($d['value'])?$d['value']:'';
 		$KODE_UPT = isset($d['KODE_UPT'])?$d['KODE_UPT']:'';
 		
@@ -104,7 +102,7 @@ class mdl_alumni extends CI_Model{
 		$result = $this->db->get('DIKLAT_MST_PESERTA');
 	
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
 		$out .= '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($result->result() as $r){
 				if(trim($r->NO_PESERTA) == trim($value)){
@@ -113,7 +111,7 @@ class mdl_alumni extends CI_Model{
 						$out .= '<option value="'.$r->NO_PESERTA.'">'.$r->NAMA_PESERTA.'</option>';
 				}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	

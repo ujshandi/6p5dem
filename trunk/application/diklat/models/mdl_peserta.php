@@ -166,9 +166,9 @@ class mdl_peserta extends CI_Model{
 	}
 	
 	function getOptionPeserta($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -177,7 +177,8 @@ class mdl_peserta extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if($r->NO_PESERTA == trim($value)){
 				$out .= '<option value="'.$r->NO_PESERTA.'" selected="selected">'.$r->NAMA_PESERTA.'</option>';
@@ -185,7 +186,7 @@ class mdl_peserta extends CI_Model{
 				$out .= '<option value="'.$r->NO_PESERTA.'">'.$r->NAMA_PESERTA.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}

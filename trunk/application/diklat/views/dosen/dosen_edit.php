@@ -25,14 +25,6 @@ $( "#TGL_LAHIR" ).datepicker();
 		<ol>
 		    <input type="hidden" name="id" value="<?=$id?>">
 			
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_satker->getOptionUPT($opti);
-				?>
-			</li>
-			
 			<li><label for="">NIP <em>*</em></label> <input name="NIP" value="<?=$result->row()->NIP?>" type="text" class="two"/></li>
 			
 			<li><label for="">NAMA DOSEN <em>*</em></label> <input name="NAMADOSEN" value="<?=$result->row()->NAMADOSEN?>" type="text" class="three"/></li>
@@ -69,13 +61,14 @@ $( "#TGL_LAHIR" ).datepicker();
 				?>
 			</li>
 			
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['id'] = 'KODE_UPT';
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_upt->getOptionUPT($opti);
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="KODE_UPT">
+					<?php 
+						$opti['value'] = $result->row()->KODE_UPT;
+						echo $this->mdl_satker->getOptionUPTChild($opti);
+					?>
+				</select>
 			</li>
 			
 			<div class="clearfix">&nbsp;</div>

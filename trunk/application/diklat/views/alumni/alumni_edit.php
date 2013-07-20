@@ -39,22 +39,24 @@ $( "#TGL_LULUS" ).datepicker();
 		?>
 		<ol>
 		    <input type="hidden" name="id" value="<?=$id?>">
-			<li><label for="" >UPT <em>*</em></label>
-				<?
-					$opt_satker['id'] = 'KODE_UPT';
-					$opt_satker['name'] = 'KODE_UPT';
-					$opt_satker['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_satker->getOptionUPTChild($opt_satker);
-					
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="kode_upt" id="KODE_UPT">
+					<?php 
+						$opti['value'] = $result->row()->KODE_UPT;
+						echo $this->mdl_satker->getOptionUPTChild($opti);
+					?>
+				</select>
 			</li>
 			
 			<li><label for="">PESERTA <em>*</em></label>
-				<div>
 				<select name="IDPESERTA" id="IDPESERTA">
 					<option value="">--Pilih--</option>        	
+					<?php 
+						$opti['value'] = $result->row()->IDPESERTA;
+						echo $this->mdl_peserta->getOptionPeserta($opti);
+					?>
 				</select>
-				</div>
 			</li>
 			
 			<li><label for="">TANGGAL LULUS <em>*</em></label> <input name="TGL_LULUS" id="TGL_LULUS" value="<?=$result->row()->TGL_LULUS?>" type="text" class="one"/></li>
