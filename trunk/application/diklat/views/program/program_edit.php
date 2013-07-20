@@ -24,7 +24,7 @@
 				<select name="KODE_INDUK">
 					<?php 
 						$opti['value'] = $result->row()->KODE_INDUK;
-						echo $this->mdl_satker->getOptionUPT($opti);
+						echo $this->mdl_satker->getOptionSatker($opti);
 					?>
 				</select>
 			</li>

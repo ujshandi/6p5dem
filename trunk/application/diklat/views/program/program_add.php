@@ -21,7 +21,7 @@
 			<li>
 				<label for="">SATKER<em>*</em></label>
 				<select name="KODE_INDUK">
-					<?=$this->mdl_satker->getOptionUPT(array('value'=>$kode_induk))?>
+					<?=$this->mdl_satker->getOptionSatker()?>
 				</select>
 			</li>
 			<div class="clearfix">&nbsp;</div>
