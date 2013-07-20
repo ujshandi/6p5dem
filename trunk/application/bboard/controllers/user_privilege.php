@@ -32,13 +32,18 @@ class user_privilege extends MY_Controller
 	}
 	
 	public function add(){
-		$this->open_backend();
-		$this->load->view('user_privilege/user_privilege_add');
-		$this->close_backend();
+		//$this->open_backend();
+		$data['user_group_id'] = $this->input->post('USER_GROUP_ID');
+		$menu = $this->input->post('MENU');
+		foreach ($menu  as $value){
+			$data['arr_added_menu'][] = $value['MENU_ID'];
+		}
+		$this->load->view('user_privilege/user_privilege_add', $data);
+		//$this->close_backend();
 	}
 	
 	public function proses_add(){
-		$this->open_backend();
+		//$this->open_backend();
 		
 		# get post data
 		$hakakses1 = $this->input->post('HAKAKSES1')=='1'?'1':'0';
@@ -52,32 +57,37 @@ class user_privilege extends MY_Controller
         $data['PRIVILEGE'] = $hakakses1.$hakakses2.$hakakses3.$hakakses4.$hakakses5;
 		
 		# set rules validation
+		
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
-        $this->form_validation->set_rules('MENU_ID', 'MENU_ID', 'required');
+        $this->form_validation->set_rules('MENU_ID', 'MENU_ID', 'required'); 
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('user_privilege/user_privilege_add',$data);
+			echo 'Data Gagal Disimpan';
 		}else{
 			$this->user_privilege->insert($data);
-			redirect('user_privilege');
+			redirect('user_privilege/load_edit/' . $data['USER_GROUP_ID'] . '');
 		}
 		
-		$this->close_backend();
+		//$this->close_backend();
 	}
 	
 	public function edit($id){
 		$this->open_backend();
 		
 		$data['id'] = $id;
+		$this->load->view('user_privilege/user_privilege', $data);
+		$this->close_backend();
+	}
+	
+	public function load_edit($id){
+		$data['id'] = $id;
 		$data['results'] = $this->user_privilege->get_data_edit($id);
 		
 		$this->load->view('user_privilege/user_privilege_edit', $data);
-		
-		$this->close_backend();
 	}
 	
 	public function proses_edit(){
