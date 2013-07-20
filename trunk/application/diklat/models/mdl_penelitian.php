@@ -5,7 +5,8 @@ class mdl_penelitian extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		# get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT', false);
 		$this->db->from('DIKLAT_PENELITIAN');
@@ -13,8 +14,31 @@ class mdl_penelitian extends CI_Model{
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_PENELITIAN.ID_PENELITIAN');
 		
-		return $this->db->get();
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_PENELITIAN.JUDUL_PENELITIAN', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
 
+		# get count
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->from('DIKLAT_PENELITIAN');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_PENELITIAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('DIKLAT_PENELITIAN.ID_PENELITIAN');
+		
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_PENELITIAN.JUDUL_PENELITIAN', $filter['search']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
 	}
 	
 	function getDataEdit($id){
