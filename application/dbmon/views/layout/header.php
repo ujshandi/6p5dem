@@ -6,14 +6,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	
   <link rel="shortcut icon" href="<?=base_url()?>asset/globalstyle/images/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="<?=base_url()?>asset/globalstyle/css/style.css" />
-  <link rel="stylesheet" type="text/css" href="<?=base_url()?>asset/globalstyle/css/jquery.jqplot.min.css" />
+  <link rel="stylesheet" type="text/css" href="<?=base_url()?>asset/globalstyle/css/style.css" />
+  <!--link rel="stylesheet" type="text/css" href="<?=base_url()?>asset/globalstyle/css/jquery.jqplot.min.css" />
   <link type="text/css" rel="stylesheet" href="<?=base_url()?>asset/globalstyle/js/syntaxhighlighter/styles/shCoreDefault.min.css" />
   <link type="text/css" rel="stylesheet" href="<?=base_url()?>asset/globalstyle/js/syntaxhighlighter/styles/shThemejqPlot.min.css" />
-	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery-min.js" ></script>
-  <script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery.jqplot.min.js"></script>
-  <script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/plugins/jqplot.json2.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="<?=base_url()?>asset/globalstyle/js/syntaxhighlighter/styles/shThemejqPlot.min.css" /-->
+  <link type="text/css" rel="stylesheet" href="<?=base_url()?>asset/dbmon/css/main.css" />
+  <link type="text/css" rel="stylesheet" href="<?=base_url()?>asset/dbmon/css/easyui/icon.css" />
+  <link type="text/css" rel="stylesheet" href="<?=base_url()?>asset/dbmon/css/easyui/gray/easyui.css" />
+	<script type="text/javascript" src="<?=base_url()?>asset/dbmon/js/jquery-1.7.2.min.js" ></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/jquery.jqplot.min.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/plugins/jqplot.json2.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>asset/globalstyle/js/custom.js" ></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/dbmon/js/FusionCharts.js" ></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/dbmon/js/main.js" ></script>
+	<script type="text/javascript" src="<?=base_url()?>asset/dbmon/js/jquery.easyui.min.js" ></script>
+	<script type="text/javascript">
+		var host='<?=base_url()?>dbmon.php/';
+		var site='<?=base_url()?>';
+	</script>
 </head>
 
 <body>

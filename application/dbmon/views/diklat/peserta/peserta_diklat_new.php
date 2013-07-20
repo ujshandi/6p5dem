@@ -26,7 +26,7 @@
 		   	<td width="100">Induk UPT : </td>
 		    <td>
 				<select name="KODE_UPT" id="KODE_UPT">
-					<?=$this->mdl_satker->getOptionSatker(array('value'=>$upt))?>
+					<?=$this->mdl_satker->getOptionSatker()?>
 				</select>
 			</td>
 		</div>
@@ -36,7 +36,7 @@
 			<td>Program : </td>
 		    <td>
 				<select name="KODE_PROGRAM" id="KODE_PROGRAM">
-					<?=$this->mdl_program->getOptionProgram(array('kode_induk'=>$upt, 'value'=>$program));?>
+					<option>---- pilih ----</option>
 				</select>
 			</td>
 		</div>

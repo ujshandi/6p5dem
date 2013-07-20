@@ -15,7 +15,7 @@ class mdl_provinsi extends CI_Model{
 		$this->db->from('SDM_PROVINSI');
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('KODEPROVIN');
-
+		//echo $this->db->last_query();
 		return $this->db->get();
 	}
 
