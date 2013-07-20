@@ -71,7 +71,7 @@ $( "#TGL_MASUK" ).datepicker();
 						<option value="Wanita">Wanita</option>
 					</select></li>
 					
-					<li><label for="">NO TELEPON<em>*</em></label> 
+					<li><label for="">NO TELEPON / Hp<em>*</em></label> 
 						<input name="NO_TELP" value="<?=set_value('NO_TELP')?>" type="text" class="three"/>
 					</li>
 

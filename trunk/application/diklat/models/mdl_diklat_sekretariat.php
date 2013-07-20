@@ -5,7 +5,8 @@ class mdl_diklat_sekretariat extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		# get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_MST_DIKLAT.*, DIKLAT_MST_PROGRAM.NAMA_PROGRAM, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
 		$this->db->from('DIKLAT_MST_DIKLAT');
@@ -16,7 +17,32 @@ class mdl_diklat_sekretariat extends CI_Model{
 		
 		$this->db->where('DIKLAT_MST_DIKLAT.KODE_INDUK', '1');
 		
-		return $this->db->get();
+		#filter
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_DIKLAT.NAMA_DIKLAT', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		
+		# get count
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_DIKLAT.*, DIKLAT_MST_PROGRAM.NAMA_PROGRAM, DIKLAT_MST_INDUKUPT.NAMA_INDUK', false);
+		$this->db->from('DIKLAT_MST_DIKLAT');
+		$this->db->join('DIKLAT_MST_PROGRAM', 'DIKLAT_MST_DIKLAT.KODE_PROGRAM = DIKLAT_MST_PROGRAM.KODE_PROGRAM');
+		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_DIKLAT.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		
+		$this->db->where('DIKLAT_MST_DIKLAT.KODE_INDUK', '1');
+		
+		if(!empty($filter['kode_induk']))
+			$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);
+		
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_DIKLAT.NAMA_DIKLAT', $filter['search']);
+			
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
 		
 	}
 	

@@ -8,6 +8,7 @@
 	<ol>
 		<li>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			NAMA SARANA PRASARANA :
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			<select name="numrow">
 				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>

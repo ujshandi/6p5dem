@@ -1,6 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class diklat_sekretariat extends My_Controller {
+
+	var $id = 'diklat_sekretariat';
 	
 	function __construct(){
 		parent::__construct();
@@ -14,37 +16,57 @@ class diklat_sekretariat extends My_Controller {
 	{
 		$this->open();
 		
+		# get filter		
+		$data['search'] = $this->session->userdata($this->id.'search');
+		$data['numrow'] = $this->session->userdata($this->id.'numrow');
+		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
+		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
+		
+		# get data
+		$result = $this->mdl_diklat_sekretariat->getData($data['numrow'], $offset, $data);
+		
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/diklat_sekretariat/index/';
-		$config['total_rows'] = $this->db->count_all('DIKLAT_MST_DIKLAT');
-		$config['per_page'] = '30';
-		$config['num_links'] = '3';
-		// $config['uri_segment'] = '3';
-		// $config['full_tag_open'] = '';
-		// $config['full_tag_close'] = '';
-		// $config['num_tag_open'] = '<li>';
-		// $config['num_tag_close'] = '</li>';
-		// $config['cur_tag_open'] = '<li><a href="javascript:void(0)" class="current">';
-		// $config['cur_tag_close'] = '</a></li>';
-		// $config['prev_link'] = 'Prev';
-		// $config['prev_tag_open'] = '<li>';
-		// $config['prev_tag_close'] = '</li>';
-		// $config['next_link'] = 'Next';
-		// $config['next_tag_open'] = '<li>';
-		// $config['next_tag_close'] = '</li>';
-		// $config['last_link'] = 'Last';
-		// $config['last_tag_open'] = '<li>';
-		// $config['last_tag_close'] = '</li>';
-		// $config['first_link'] = 'First';
-		// $config['first_tag_open'] = '<li>';
-		// $config['first_tag_close'] = '</li>';
+		$config['per_page'] = $data['numrow'];
+		$config['num_links'] = '10';
+		$config['uri_segment'] = '3';
+		$config['full_tag_open'] = '';
+		$config['full_tag_close'] = '';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="javascript:void(0)" class="current">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+
+		$config['total_rows'] = $result['row_count'];
 
 		$this->pagination->initialize($config);	
 		
-		$data['result'] = $this->mdl_diklat_sekretariat->getData($config['per_page'], $this->uri->segment(3));
+		$data['curcount'] = $offset+1;
+		
+		$data['result'] = $result['row_data'];
+		
 		$this->load->view('diklat/diklat_sekretariat_list', $data);
 		
 		$this->close();
+	}
+	
+	public function search(){
+		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
+		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
+		
+		redirect('diklat_sekretariat');
 	}
 	
 	public function add(){

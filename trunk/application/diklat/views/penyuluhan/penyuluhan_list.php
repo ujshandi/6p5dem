@@ -13,6 +13,7 @@
 				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
 			</select>
 			&nbsp;&nbsp;
+			NAMA PENYULUHAN :
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			&nbsp;&nbsp;
 			<select name="numrow">
