@@ -2,9 +2,12 @@
 
 class kalender extends My_Controller {
 	
+	var $id = 'kalender';
+	
 	function __construct(){
 		parent::__construct();
 		$this->load->model('mdl_upt');
+		$this->load->model('mdl_satker');
 		$this->load->model('mdl_kalender');
 	}
 	
@@ -12,37 +15,60 @@ class kalender extends My_Controller {
 	{
 		$this->open();
 		
+		# get filter
+		$data['kode_upt'] = $this->session->userdata($this->id.'kode_upt');
+		$data['search'] = $this->session->userdata($this->id.'search');
+		$data['numrow'] = $this->session->userdata($this->id.'numrow');
+		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
+		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
+		
+		# get data
+		$result = $this->mdl_kalender->getData($data['numrow'], $offset, $data);
+		
+		
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/kalender/index/';
-		$config['total_rows'] = $this->db->count_all('DIKLAT_KALENDER');
-		$config['per_page'] = '30';
-		$config['num_links'] = '3';
-		// $config['uri_segment'] = '3';
-		// $config['full_tag_open'] = '';
-		// $config['full_tag_close'] = '';
-		// $config['num_tag_open'] = '<li>';
-		// $config['num_tag_close'] = '</li>';
-		// $config['cur_tag_open'] = '<li><a href="javascript:void(0)" class="current">';
-		// $config['cur_tag_close'] = '</a></li>';
-		// $config['prev_link'] = 'Prev';
-		// $config['prev_tag_open'] = '<li>';
-		// $config['prev_tag_close'] = '</li>';
-		// $config['next_link'] = 'Next';
-		// $config['next_tag_open'] = '<li>';
-		// $config['next_tag_close'] = '</li>';
-		// $config['last_link'] = 'Last';
-		// $config['last_tag_open'] = '<li>';
-		// $config['last_tag_close'] = '</li>';
-		// $config['first_link'] = 'First';
-		// $config['first_tag_open'] = '<li>';
-		// $config['first_tag_close'] = '</li>';
+		$config['per_page'] = $data['numrow'];
+		$config['num_links'] = '10';
+		$config['uri_segment'] = '3';
+		$config['full_tag_open'] = '';
+		$config['full_tag_close'] = '';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="javascript:void(0)" class="current">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+
+		$config['total_rows'] = $result['row_count'];
 
 		$this->pagination->initialize($config);	
 		
-		$data['result'] = $this->mdl_kalender->getData($config['per_page'], $this->uri->segment(3));
+		$data['curcount'] = $offset+1;
+		
+		$data['result'] = $result['row_data'];
+		
 		$this->load->view('kalender/kalender_list', $data);
 		
 		$this->close();
+	}
+	
+	public function search(){
+		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('kode_upt'));
+		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
+		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
+		
+		redirect('kalender');
 	}
 	
 	public function add(){

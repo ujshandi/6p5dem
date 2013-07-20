@@ -5,16 +5,38 @@ class mdl_jenis_sarpras extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		//	get data
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_SARPRAS');
-		//$this->db->join('DIKLAT_MST_INDUKprogram b', 'b.KODE_INDUK = a.KODE_INDUK');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('ID_SARPRAS');
 		
-		return $this->db->get();
+		//if(!empty($filter['kode_induk']))
+			//$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);
 		
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_SARPRAS.NAMA_SARPRAS', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();		
+		
+		// get count
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_SARPRAS');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('ID_SARPRAS');
+		
+		//if(!empty($filter['kode_induk']))
+			//$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);
+		
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_SARPRAS.NAMA_SARPRAS', $filter['search']);
+			
+			$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;		
 	}
 	
 	function getDataEdit($id){

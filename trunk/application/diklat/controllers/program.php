@@ -117,7 +117,7 @@ class program extends My_Controller {
 		if($this->mdl_program->delete($id)){
 			redirect('program');
 		}else{
-			// code u/ gagal simpan
+		
 		}
 	}
 	

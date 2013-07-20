@@ -23,12 +23,11 @@ $( "#TGL_AKHIR" ).datepicker();
 			} 
 		?>
 		<ol>
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = set_value('KODE_UPT');
-					echo $this->mdl_upt->getOptionUPT($opti);
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="kode_upt">
+					<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+				</select>
 			</li>
 			
 			<li><label for="">TANGGAL AWAL S/D <em>*</em></label> <input name="TGL_AWAL" value="<?=set_value('TGL_AWAL')?>" type="text" class="one" id="TGL_AWAL"/></li>

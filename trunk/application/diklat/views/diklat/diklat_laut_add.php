@@ -16,20 +16,18 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = set_value('KODE_UPT');
-					echo $this->mdl_upt->getOptionUPTLaut($opti);
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="kode_upt">
+					<?=$this->mdl_upt->getOptionUPTLaut(array('value'=>$kode_upt))?>
+				</select>
 			</li>
 			
-			<li><label for="">PROGRAM <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_PROGRAM';
-					$opti['value'] = set_value('KODE_PROGRAM');
-					echo $this->mdl_program->getOptionProgramLaut($opti);
-				?>
+			<li>
+				<label for="">PROGRAM <em>*</em></label>
+				<select name="KODE_PROGRAM">
+					<?=$this->mdl_program->getOptionProgramlaut(array('value'=>$kode_program))?>
+				</select>
 			</li>
 			
 			<li><label for="">KODE DIKLAT <em>*</em></label> <input name="KODE_DIKLAT" value="<?=set_value('KODE_DIKLAT')?>" type="text" class="three"/></li>

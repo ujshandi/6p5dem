@@ -24,7 +24,6 @@ class mdl_diklat_darat extends CI_Model{
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_DIKLAT');
-		$this->db->where('KODE_INDUK', $id);
 		$this->db->where('KODE_DIKLAT', $id);
 		
 		return $this->db->get();

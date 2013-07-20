@@ -205,9 +205,7 @@ class peserta extends My_Controller {
 	}
 	
 	function getDiklat(){
-		$opt['name'] = 'KODE_DIKLAT';
-		$opt['KODE_UPT'] = $this->input->post('KODE_UPT');
-		echo $this->mdl_peserta->getOptionDiklatByUPT($opt);
+		echo $this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$this->input->post('KODE_UPT')));
 	}
 	
 }

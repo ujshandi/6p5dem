@@ -65,7 +65,7 @@ class alumni extends My_Controller {
 		$data['INSTANSI'] 		= $this->input->post('INSTANSI');
 	
 		if($data['KODE_DIKLAT'] == '' || $data['THN_ANGKATAN'] == '0'){
-			redirect('alumni/add_alumni1');
+			//redirect('alumni/add_alumni1');
 		}
 		
 		

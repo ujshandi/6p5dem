@@ -18,10 +18,9 @@ class mdl_upt extends CI_Model{
 			$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);
 		
 		if(!empty($filter['search']))
-			$this->db->where('DIKLAT_MST_UPT.NAMA_UPT', $filter['search']);
+			$this->db->like('DIKLAT_MST_UPT.NAMA_UPT', $filter['search']);
 		
-		$tmp['row_data'] = $this->db->get();
-		
+		$tmp['row_data'] = $this->db->get();		
 		
 		// get count
 		$this->db->flush_cache();
@@ -35,7 +34,7 @@ class mdl_upt extends CI_Model{
 			$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);
 		
 		if(!empty($filter['search']))
-			$this->db->where('DIKLAT_MST_UPT.NAMA_UPT', $filter['search']);
+			$this->db->like('DIKLAT_MST_UPT.NAMA_UPT', $filter['search']);
 		
 		$tmp['row_count'] = $this->db->get()->num_rows();
 		
@@ -103,9 +102,9 @@ class mdl_upt extends CI_Model{
 	}
 	
 	function getOptionUPT($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -114,7 +113,8 @@ class mdl_upt extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_UPT) == trim($value)){
 				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
@@ -122,15 +122,15 @@ class mdl_upt extends CI_Model{
 				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionUPTDarat($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		//$name = isset($d['name'])?$d['name']:'';
+		//$id = isset($d['id'])?$d['id']:'';
+		//$class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -140,7 +140,8 @@ class mdl_upt extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_UPT) == trim($value)){
 				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
@@ -148,15 +149,15 @@ class mdl_upt extends CI_Model{
 				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionUPTLaut($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -166,7 +167,8 @@ class mdl_upt extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_UPT) == trim($value)){
 				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
@@ -174,15 +176,15 @@ class mdl_upt extends CI_Model{
 				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionUPTUdara($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -192,7 +194,8 @@ class mdl_upt extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_UPT) == trim($value)){
 				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
@@ -200,15 +203,15 @@ class mdl_upt extends CI_Model{
 				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionUPTAparatur($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -218,7 +221,8 @@ class mdl_upt extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_UPT) == trim($value)){
 				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
@@ -226,15 +230,15 @@ class mdl_upt extends CI_Model{
 				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionUPTSekretariat($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -244,7 +248,8 @@ class mdl_upt extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_UPT) == trim($value)){
 				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
@@ -252,7 +257,7 @@ class mdl_upt extends CI_Model{
 				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}

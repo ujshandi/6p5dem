@@ -18,20 +18,23 @@
 		<ol>
 		    <input type="hidden" name="id" value="<?=$id?>">
 			
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_upt->getOptionUPTLaut($opti);
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="KODE_UPT">
+					<?php 
+						$opti['value'] = $result->row()->KODE_UPT;
+						echo $this->mdl_upt->getOptionUPTLaut($opti);
+					?>
+				</select>
 			</li>
 			
 			<li><label for="">PROGRAM <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_PROGRAM';
-					$opti['value'] = $result->row()->KODE_PROGRAM;
-					echo $this->mdl_program->getOptionProgramLaut($opti);
-				?>
+				<select name="KODE_PROGRAM">
+					<?php 
+						$opti['value'] = $result->row()->KODE_PROGRAM;
+						echo $this->mdl_program->getOptionProgramLaut($opti);
+					?>
+				</select>
 			</li>
 			
 			<li><label for="">KODE DIKLAT <em>*</em></label> <input name="KODE_DIKLAT" value="<?=$result->row()->KODE_DIKLAT?>" type="text" class="three"/></li>

@@ -19,12 +19,14 @@
 		    <input type="hidden" name="id" value="<?=$id?>">
 			<li><label for="">KODE PROGRAM <em>*</em></label> <input name="KODE_PROGRAM" value="<?=$result->row()->KODE_PROGRAM?>" type="text" class="five"/></li>
 			<li><label for="">NAMA PROGRAM <em>*</em></label> <input name="NAMA_PROGRAM" value="<?=$result->row()->NAMA_PROGRAM?>" type="text" class="five"/></li>
-			<li><label for="">SATKER <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_INDUK';
-					$opti['value'] = $result->row()->KODE_INDUK;
-					echo $this->mdl_satker->getOptionUPT($opti);
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="KODE_INDUK">
+					<?php 
+						$opti['value'] = $result->row()->KODE_INDUK;
+						echo $this->mdl_satker->getOptionUPT($opti);
+					?>
+				</select>
 			</li>
 			
 			<div class="clearfix">&nbsp;</div>

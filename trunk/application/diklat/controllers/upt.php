@@ -88,7 +88,6 @@ class upt extends My_Controller {
 		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
         $this->form_validation->set_rules('NAMA_UPT', 'NAMA UPT', 'required');
         $this->form_validation->set_rules('KODE_INDUK', 'KODE INDUK', 'required');
-        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
