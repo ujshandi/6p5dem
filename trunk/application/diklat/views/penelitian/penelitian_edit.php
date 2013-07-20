@@ -39,13 +39,12 @@ $( "#TGL_PUBLIKASI" ).datepicker();
 		?>
 		<ol>
 			<li><label for="" >UPT <em>*</em></label>
+				<select name="KODE_UPT" id="KODE_UPT">
 				<?
-					$opt_satker['id'] = 'KODE_UPT';
-					$opt_satker['name'] = 'KODE_UPT';
 					$opt_satker['value'] = $result->row()->KODE_UPT;
 					echo $this->mdl_satker->getOptionUPTChild($opt_satker);
-					
 				?>
+				</select>
 			</li>
 			
 			<li><label for="">DOSEN <em>*</em></label>
