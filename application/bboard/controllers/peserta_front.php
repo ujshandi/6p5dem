@@ -29,7 +29,8 @@ class peserta_front extends MY_Frontpage {
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
         $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
         $data['JK'] = $this->input->post('JK');
-        $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
+		$data['STATUS_PENDAFTAR'] = $this->input->post('STATUS_PENDAFTAR');
+        $data['NO_TELP'] = $this->input->post('NO_TELP');        
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
 		# set rules validation
@@ -40,9 +41,9 @@ class peserta_front extends MY_Frontpage {
         $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
         $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
-        //$this->form_validation->set_rules('TGL_MASUK', 'TANGGAL MASUK', 'required');
+        $this->form_validation->set_rules('NO_TELP', 'NO TELP', 'required');
         //$this->form_validation->set_rules('THN_ANGKATAN', 'TAHUN ANGKATAN', 'required');
-        $this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
+        //$this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -57,9 +58,7 @@ class peserta_front extends MY_Frontpage {
 	}
 	
 	function getDiklat(){
-		$opt['name'] = 'KODE_DIKLAT';
-		$opt['KODE_UPT'] = $this->input->post('KODE_UPT');
-		echo $this->mdl_peserta->getOptionDiklatByUPT($opt);
+		echo $this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$this->input->post('KODE_UPT')));
 	}
 	
 }

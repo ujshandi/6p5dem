@@ -93,9 +93,9 @@ class mdl_satker extends CI_Model{
 	}
 	
 	function getOptionUPTChild($d=""){
-			$name = isset($d['name'])?$d['name']:'';
-			$id = isset($d['id'])?$d['id']:'';
-			$class = isset($d['class'])?$d['class']:'';
+			// $name = isset($d['name'])?$d['name']:'';
+			// $id = isset($d['id'])?$d['id']:'';
+			// $class = isset($d['class'])?$d['class']:'';
 			$value = isset($d['value'])?$d['value']:'';
 			
 			$this->db->flush_cache();
@@ -104,7 +104,7 @@ class mdl_satker extends CI_Model{
 			
 			$res = $this->db->get();
 			
-			$out = '<select name="'.$name.'" id="'.$id.'">';
+			//$out = '<select name="'.$name.'" id="'.$id.'">';
 			$out .= '<option value="" selected="selected">-- Pilih --</option>';
 			foreach($res->result() as $r){
 					if(trim($r->KODE_UPT) == trim($value)){
@@ -113,7 +113,7 @@ class mdl_satker extends CI_Model{
 							$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 					}
 			}
-			$out .= '</select>';
+			//$out .= '</select>';
 			
 			return $out;
 	}

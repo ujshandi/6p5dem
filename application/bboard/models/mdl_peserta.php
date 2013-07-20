@@ -39,7 +39,8 @@ class mdl_peserta extends CI_Model{
         $this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
         $this->db->set('JK', $data['JK']);
-        $this->db->set('STATUS_PESERTA', $data['STATUS_PESERTA']);
+        $this->db->set('STATUS_PENDAFTAR', $data['STATUS_PENDAFTAR']);
+		$this->db->set('NO_TELP', $data['NO_TELP']);
         $this->db->set('KETERANGAN', $data['KETERANGAN']);
 
         $result = $this->db->insert('DIKLAT_MST_PENDAFTARAN');
@@ -69,7 +70,8 @@ class mdl_peserta extends CI_Model{
         $this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
         $this->db->set('JK', $data['JK']);
-        $this->db->set('STATUS_PESERTA', $data['STATUS_PESERTA']);
+        $this->db->set('NO_TELP', $data['NO_TELP']);
+        $this->db->set('STATUS_PENDAFTAR', $data['STATUS_PENDAFTAR']);
         $this->db->set('KETERANGAN', $data['KETERANGAN']);
 		$this->db->where('IDPENDAFTAR', $data['id']);
 		
@@ -195,9 +197,7 @@ class mdl_peserta extends CI_Model{
 	}
 	
 	function getOptionDiklatByUPT($d){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+	
 		$value = isset($d['value'])?$d['value']:'';
 		$KODE_UPT = isset($d['KODE_UPT'])?$d['KODE_UPT']:'';
 		
@@ -205,8 +205,8 @@ class mdl_peserta extends CI_Model{
 		$this->db->where('KODE_UPT', $KODE_UPT);
 		$result = $this->db->get('DIKLAT_MST_DIKLAT');
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
-		$out .= '<option value="" selected="selected">-- Pilih --</option>';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($result->result() as $r){
 				if(trim($r->KODE_DIKLAT) == trim($value)){
 						$out .= '<option value="'.$r->KODE_DIKLAT.'" selected="selected">'.$r->NAMA_DIKLAT.'</option>';
@@ -214,7 +214,7 @@ class mdl_peserta extends CI_Model{
 						$out .= '<option value="'.$r->KODE_DIKLAT.'">'.$r->NAMA_DIKLAT.'</option>';
 				}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	

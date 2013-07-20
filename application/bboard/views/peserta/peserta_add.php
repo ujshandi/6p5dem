@@ -39,58 +39,57 @@ $( "#TGL_MASUK" ).datepicker();
 			} 
 		?>
 		<ol>
-			<li>
-				<li><label for="" >UPT <em>*</em></label>
-					<?
-						$opt_satker['id'] = 'KODE_UPT';
-						$opt_satker['name'] = 'KODE_UPT';
-						//$opt_satker[] = '';
-						echo $this->mdl_satker->getOptionUPTChild($opt_satker);
-						
-					?>
-				</li>
-							
-				<li><label for="">DIKLAT <em>*</em></label>
-					<div id="KODE_DIKLAT">
-					<select name="KODE_DIKLAT">
-						<option value="">--Pilih--</option>        	
-					</select>
-					</div>
-				</li>
-				
-				<li><label for="">NAMA PENDAFTAR <em>*</em></label> 
-					<input name="NAMA_PENDAFTAR" value="<?=set_value('NAMA_PENDAFTAR')?>" type="text" class="three"/>
-				</li>
-				
-				<li><label for="">TEMPAT LAHIR<em>*</em></label> 
-					<input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="three"/>
-				</li>
-				
-				<li><label for="">TANGGAL LAHIR<em>*</em></label> 
-					<input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="one" id="TGL_LAHIR"/>
-				</li>
-				
-				<li><label for="">Jenis Kelamin <em>*</em></label> <select id="JK" name="JK">
-					<option value="">- Pilih Jenis Kelamin -</option>
-					<option value="Pria">Pria</option>
-					<option value="Wanita">Wanita</option>
-				</select></li>
-
-				<!--<input type="hidden" name="STATUS_PESERTA" value="Registrasi">-->
-				
-				<li><label for="">KETERANGAN <em> </em></label> 
-					<input name="KETERANGAN" value="<?=set_value('KETERANGAN')?>" type="text" class="five"/>
-				</li>
-				
-				<hr/>
-				
-				<div class="clearfix">&nbsp;</div>
-				
 				<li>
-					<input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/>
-					<a href="<?=site_url();?>" class="greenbutton">Back</a>
-				</li>				
-			</li>
+					<li>
+						<label for="">UPT<em>*</em></label>
+						<select name="KODE_UPT" id="KODE_UPT">
+							<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$KODE_UPT))?>
+						</select>
+					</li>
+					
+					<li><label for="">DIKLAT <em>*</em></label>
+						<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+							<option value="">--Pilih--</option>        	
+						</select>
+					</li>
+					
+					<li><label for="">NAMA PENDAFTAR <em>*</em></label> 
+						<input name="NAMA_PENDAFTAR" value="<?=set_value('NAMA_PENDAFTAR')?>" type="text" class="five"/>
+					</li>
+					
+					<li><label for="">TEMPAT LAHIR<em>*</em></label> 
+						<input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="three"/>
+					</li>
+					
+					<li><label for="">TANGGAL LAHIR<em>*</em></label> 
+						<input name="TGL_LAHIR" value="<?=set_value('TGL_LAHIR')?>" type="text" class="one" id="TGL_LAHIR"/>
+					</li>
+					
+					<li><label for="">Jenis Kelamin <em>*</em></label> <select id="JK" name="JK">
+						<option value="">- Pilih Jenis Kelamin -</option>
+						<option value="Pria">Pria</option>
+						<option value="Wanita">Wanita</option>
+					</select></li>
+					
+					<li><label for="">NO TELEPON<em>*</em></label> 
+						<input name="NO_TELP" value="<?=set_value('NO_TELP')?>" type="text" class="three"/>
+					</li>
+
+					<input type="hidden" name="STATUS_PENDAFTAR" value="Daftar">
+					
+					<li><label for="">KETERANGAN <em> </em></label> 
+						<input name="KETERANGAN" value="<?=set_value('KETERANGAN')?>" type="text" class="five"/>
+					</li>
+					
+					<hr/>
+					
+					<div class="clearfix">&nbsp;</div>
+					
+					<li>
+						<input class="greenbutton" type="submit" value="SUBMIT" style="float:right"/>
+						<a href="<?=site_url();?>" class="greenbutton">Back</a>
+					</li>				
+				</li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
