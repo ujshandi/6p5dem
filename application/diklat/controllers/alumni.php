@@ -43,7 +43,7 @@ class alumni extends My_Controller {
 		$this->pagination->initialize($config);	
 		
 		$data['result'] = $this->mdl_alumni->getData($config['per_page'], $this->uri->segment(3));
-		//$this->load->view('alumni/alumni_list', $data);
+		$this->load->view('alumni/alumni_list', $data);
 		
 		$this->close();
 	}
@@ -136,10 +136,7 @@ class alumni extends My_Controller {
 	}
 	
 	function getPeserta(){
-		$opt['name'] = 'KODE_UPT';
-		$opt['id'] = 'KODE_UPT';
-		$opt['KODE_UPT'] = $this->input->post('KODE_UPT');
-		echo $this->mdl_alumni->getOptionPesertaByUPT($opt);
+		echo $this->mdl_alumni->getOptionPesertaByUPT(array('KODE_UPT'=>$this->input->post('KODE_UPT')));
 	}
 	
 }

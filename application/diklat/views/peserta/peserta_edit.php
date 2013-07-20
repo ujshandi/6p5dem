@@ -42,26 +42,24 @@ $( "#TGL_MASUK" ).datepicker();
 		<ol>
 		    <input type="hidden" name="id" value="<?=$id?>">
 			
-			<li><label for="" >UPT <em>*</em></label>
-				<?
-					$opt_satker['id'] = 'KODE_UPT';
-					$opt_satker['name'] = 'KODE_UPT';
-					$opt_satker['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_satker->getOptionUPTChild($opt_satker);
-					
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="kode_upt" id="KODE_UPT">
+					<?php 
+						$opti['value'] = $result->row()->KODE_UPT;
+						echo $this->mdl_satker->getOptionUPTChild($opti);
+					?>
+				</select>
 			</li>
 			
 			<li><label for="">DIKLAT <em>*</em></label>
-				<div id="KODE_DIKLAT">
-				<?php
-					$opt['name'] = 'KODE_DIKLAT';
-					//$opt['id'] = 'KODE_UPT';
-					$opt['KODE_UPT'] = $result->row()->KODE_UPT;
-					$opt['value'] = $result->row()->KODE_DIKLAT;
-					echo $this->mdl_peserta->getOptionDiklatByUPT($opt);
-				?>
-				</div>
+				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+					<option value="">--Pilih--</option>        	
+					<?php 
+						$opti['value'] = $result->row()->KODE_DIKLAT;
+						echo $this->mdl_diklat->getOptionDiklat($opti);
+					?>
+				</select>
 			</li>
 			
 			<li><label for="">NOMOR INDUK <em>*</em></label> <input name="NO_PESERTA" value="<?=$result->row()->NO_PESERTA?>" type="text" class="two"/></li>

@@ -6,6 +6,7 @@ class kurikulum extends My_Controller {
 		parent::__construct();
 		//$this->load->model('mdl_diklat');
 		$this->load->model('mdl_upt');
+		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_kurikulum');
 		$this->load->model('mdl_satker');
 	}
