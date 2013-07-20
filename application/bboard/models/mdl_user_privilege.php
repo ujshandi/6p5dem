@@ -112,7 +112,7 @@ class mdl_user_privilege extends CI_Model{
 		
 	}
 	
-	function get_group_user($d=""){
+	function get_group_user($d="",$user_group_id=""){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
 		$class = isset($d['class'])?$d['class']:'';
@@ -120,6 +120,9 @@ class mdl_user_privilege extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->from('USER_GROUP');
+		if ($user_group_id!='') {
+			$this->db->where('USER_GROUP_ID', $user_group_id);
+		}
 		$this->db->order_by('USER_GROUP_ID');
 		
 		$res = $this->db->get();
@@ -137,7 +140,7 @@ class mdl_user_privilege extends CI_Model{
 		return $out;
 	}
 	
-	function get_menu($d=""){
+	function get_menu($d="",$arr_added_menu){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
 		$class = isset($d['class'])?$d['class']:'';
@@ -145,6 +148,35 @@ class mdl_user_privilege extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->from('MENU');
+		if (count($arr_added_menu)>0){
+			$this->db->where_not_in('MENU_ID' ,  $arr_added_menu);
+		}
+		$this->db->order_by('MENU_ID');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->MENU_ID == trim($value)){
+				$out .= '<option value="'.$r->MENU_ID.'" selected="selected">'.$r->MENU_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->MENU_ID.'">'.$r->MENU_NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
+	
+	function get_menu_not_in($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('MENU');
+		
 		$this->db->order_by('MENU_ID');
 		
 		$res = $this->db->get();
