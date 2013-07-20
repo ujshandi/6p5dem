@@ -18,23 +18,27 @@
 		<ol>
 		    <input type="hidden" name="id" value="<?=$id?>">
 			<ol>
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = $result->row()->KODE_UPT;
-					echo $this->mdl_upt->getOptionUPT($opti);
-				?>
-			</li> 
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="KODE_UPT">
+					<?php 
+						$opti['value'] = $result->row()->KODE_UPT;
+						echo $this->mdl_satker->getOptionUPTChild($opti);
+					?>
+				</select>
+			</li>
 			
 			<li><label for="">TAHUN <em>*</em></label> <input name="TAHUN" value="<?=$result->row()->TAHUN?>" type="text" class="one"/></li>
 			
-			<li><label for="">NAMA PRASARANA <em>*</em></label>
-				<?php 
-					$opti['name'] = 'ID_SARPRAS';
-					$opti['value'] = $result->row()->ID_SARPRAS;
-					echo $this->mdl_prasarana->getOptionPrasarana($opti);
-				?>
-			</li> 
+			<li>
+				<label for="">NAMA PRASARANA<em>*</em></label>
+				<select name="ID_SARPRAS">
+					<?php 
+						$opti['value'] = $result->row()->ID_SARPRAS;
+						echo $this->mdl_prasarana->getOptionPrasarana($opti);
+					?>
+				</select>
+			</li>
 			
 			<li><label for="">JUMLAH <em>*</em></label> <input name="JUMLAH" value="<?=$result->row()->JUMLAH?>" type="text" class="five"/></li>
 			

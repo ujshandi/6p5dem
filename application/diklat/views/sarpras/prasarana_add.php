@@ -16,22 +16,19 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = set_value('KODE_UPT');
-					echo $this->mdl_upt->getOptionUPT($opti);
-				?>
-			</li> 
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="kode_upt">
+					<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+				</select>
+			</li>
 			
 			<li><label for="">TAHUN <em>*</em></label> <input name="TAHUN" value="<?=set_value('TAHUN')?>" type="text" class="one"/></li>
 			
 			<li><label for="">NAMA PRASARANA <em>*</em></label>
-				<?php 
-					$opti['name'] = 'ID_SARPRAS';
-					$opti['value'] = set_value('ID_SARPRAS');
-					echo $this->mdl_prasarana->getOptionPrasarana($opti);
-				?>
+				<select name="ID_SARPRAS">
+					<?=$this->mdl_prasarana->getOptionPrasarana(array('value'=>$ID_SARPRAS))?>
+				</select>
 			</li> 
 			
 			<li><label for="">JUMLAH <em>*</em></label> <input name="JUMLAH" value="<?=set_value('JUMLAH')?>" type="text" class="five"/></li>

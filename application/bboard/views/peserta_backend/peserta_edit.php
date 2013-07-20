@@ -64,9 +64,7 @@ $( "#TGL_MASUK" ).datepicker();
 				</div>
 			</li>
 			
-			<li><label for="">NOMOR PESERTA <em>*</em></label> <input name="NO_PESERTA" value="<?=$result->row()->NO_PESERTA?>" type="text" class="two"/></li>
-			
-			<li><label for="">NAMA PESERTA <em>*</em></label> <input name="NAMA_PESERTA" value="<?=$result->row()->NAMA_PESERTA?>" type="text" class="three"/></li>
+			<li><label for="">NAMA PENDAFTAR <em>*</em></label> <input name="NAMA_PENDAFTAR" value="<?=$result->row()->NAMA_PENDAFTAR?>" type="text" class="three"/></li>
 			
 			<li><label for="">TEMPAT LAHIR<em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=$result->row()->TEMPAT_LAHIR?>" type="text" class="three"/></li>
 			
@@ -78,17 +76,6 @@ $( "#TGL_MASUK" ).datepicker();
 					$opti['name'] = 'JK';
 					$opti['value'] = $result->row()->JK;
 					echo $this->mdl_peserta->getOptionJenkel($opti);
-				?>
-			</li>
-			
-			<li><label for="">TANGGAL MASUK<em>*</em></label> <input name="TGL_MASUK" value="<?=$result->row()->TGL_MASUK?>" type="text" class="one" id="TGL_MASUK"/></li>
-			
-			<li><label for="">TAHUN <em>*</em></label>
-				<?php 
-					$opti['id'] = 'THN_ANGKATAN';
-					$opti['name'] = 'THN_ANGKATAN';
-					$opti['value'] = $result->row()->THN_ANGKATAN;
-					echo $this->mdl_peserta->getOptionTahun($opti);
 				?>
 			</li>
 			

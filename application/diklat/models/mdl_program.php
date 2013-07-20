@@ -84,9 +84,9 @@ class mdl_program extends CI_Model{
 	}
 	
 	function getOptionProgram($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -95,7 +95,7 @@ class mdl_program extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_PROGRAM) == trim($value)){
 				$out .= '<option value="'.$r->KODE_PROGRAM.'" selected="selected">'.$r->NAMA_PROGRAM.'</option>';
@@ -103,15 +103,15 @@ class mdl_program extends CI_Model{
 				$out .= '<option value="'.$r->KODE_PROGRAM.'">'.$r->NAMA_PROGRAM.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionProgramDarat($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -121,7 +121,8 @@ class mdl_program extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_PROGRAM) == trim($value)){
 				$out .= '<option value="'.$r->KODE_PROGRAM.'" selected="selected">'.$r->NAMA_PROGRAM.'</option>';
@@ -129,15 +130,15 @@ class mdl_program extends CI_Model{
 				$out .= '<option value="'.$r->KODE_PROGRAM.'">'.$r->NAMA_PROGRAM.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionProgramLaut($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -147,7 +148,8 @@ class mdl_program extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_PROGRAM) == trim($value)){
 				$out .= '<option value="'.$r->KODE_PROGRAM.'" selected="selected">'.$r->NAMA_PROGRAM.'</option>';
@@ -155,15 +157,15 @@ class mdl_program extends CI_Model{
 				$out .= '<option value="'.$r->KODE_PROGRAM.'">'.$r->NAMA_PROGRAM.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionProgramUdara($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -173,7 +175,8 @@ class mdl_program extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_PROGRAM) == trim($value)){
 				$out .= '<option value="'.$r->KODE_PROGRAM.'" selected="selected">'.$r->NAMA_PROGRAM.'</option>';
@@ -181,15 +184,15 @@ class mdl_program extends CI_Model{
 				$out .= '<option value="'.$r->KODE_PROGRAM.'">'.$r->NAMA_PROGRAM.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionProgramAparatur($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -199,7 +202,8 @@ class mdl_program extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_PROGRAM) == trim($value)){
 				$out .= '<option value="'.$r->KODE_PROGRAM.'" selected="selected">'.$r->NAMA_PROGRAM.'</option>';
@@ -207,15 +211,15 @@ class mdl_program extends CI_Model{
 				$out .= '<option value="'.$r->KODE_PROGRAM.'">'.$r->NAMA_PROGRAM.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
 	
 	function getOptionProgramSekretariat($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -225,7 +229,8 @@ class mdl_program extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if(trim($r->KODE_PROGRAM) == trim($value)){
 				$out .= '<option value="'.$r->KODE_PROGRAM.'" selected="selected">'.$r->NAMA_PROGRAM.'</option>';
@@ -233,7 +238,7 @@ class mdl_program extends CI_Model{
 				$out .= '<option value="'.$r->KODE_PROGRAM.'">'.$r->NAMA_PROGRAM.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}

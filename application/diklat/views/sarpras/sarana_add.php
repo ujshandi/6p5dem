@@ -17,13 +17,11 @@
 		?>
 		<ol>
 			
-			<li><label for="">UPT <em>*</em></label>
-				<?php 
-					$opti['id'] = 'KODE_UPT';
-					$opti['name'] = 'KODE_UPT';
-					$opti['value'] = set_value('KODE_UPT');
-					echo $this->mdl_upt->getOptionUPT($opti);
-				?>
+			<li>
+				<label for="">UPT<em>*</em></label>
+				<select name="kode_upt">
+					<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+				</select>
 			</li>
 			
 			<li><label for="">TAHUN<em>*</em></label> <select id="TAHUN" name="TAHUN">
