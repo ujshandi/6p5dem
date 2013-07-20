@@ -12,6 +12,7 @@
 				<?=$this->mdl_satker->getOptionSatker(array('value'=>$kode_induk))?>
 			</select>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			NAMA UPT :
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			<select name="numrow">
 				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>

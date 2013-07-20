@@ -3,6 +3,32 @@
 	<h1 class="heading">Data program</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/program/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	
+	<?=form_open('program/search', array('class'=>'sform'))?>
+	<fieldset>
+	<ol>
+		<li>
+			UPT : 
+			<select name="kode_induk">
+				<?=$this->mdl_satker->getOptionSatker(array('value'=>$kode_induk))?>
+			</select>
+			&nbsp;&nbsp;
+			NAMA PROGRAM :
+			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
+			&nbsp;&nbsp;
+			<select name="numrow">
+				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
+				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
+				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>
+				<option value="100" <?=$numrow==100?'Selected="selected"':''?>>100</option>
+				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
+			</select>
+			<input type="submit" name="submit" value="Proses" />
+		</li>
+	</ol>		
+	</fieldset>
+	<?=form_close()?>
+	
 	<table width="100%">
 	  <thead>
 		<th>No</th>

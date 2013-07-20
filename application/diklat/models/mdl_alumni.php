@@ -5,7 +5,8 @@ class mdl_alumni extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		# get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NO_PESERTA, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_ALUMNI');
@@ -15,7 +16,33 @@ class mdl_alumni extends CI_Model{
 		$this->db->limit($num, $offset);
 		$this->db->order_by('ID_ALUMNI');
 		
-		return $this->db->get();
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		
+		# get count
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NO_PESERTA, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->from('DIKLAT_MST_ALUMNI');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('ID_ALUMNI');
+		
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
 		
 	}
 	

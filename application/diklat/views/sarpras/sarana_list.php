@@ -12,7 +12,10 @@
 			<select name="kode_upt">
 				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;
+			NAMA SARANA :
+			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
+			&nbsp;&nbsp;
 			<select name="numrow">
 				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
 				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
