@@ -51,7 +51,6 @@ class diklat extends My_Controller {
 		
 		// get post
 		$upt = isset($_POST['KODE_UPT'])?$_POST['KODE_UPT']:'';
-		
 		$program = isset($_POST['KODE_PROGRAM'])?$_POST['KODE_PROGRAM']:'';
 		if(isset($_POST['tahun_awal'])){
 			$x=0;
@@ -66,6 +65,10 @@ class diklat extends My_Controller {
 		$this->open();
 		
 		$data['title'] = 'UPT '.($upt=='')?'':$this->mdl_upt->getUPTById($upt)->NAMA_UPT;
+		$data['upt'] = $upt;
+		$data['program'] = $program;
+		$data['tahun_awal'] = isset($_POST['tahun_awal'])?$_POST['tahun_awal']:'2010';
+		$data['tahun_akhir'] = isset($_POST['tahun_akhir'])?$_POST['tahun_akhir']:'2013';
 		$data['tahun'] = $tahun;
 		// Get Data berparameter (Kode Induk, Kode Program, & Tahun dalam bentuk array)
 		$data['data'] = $this->mdl_peserta->getData($upt, $program, $data['tahun']);
