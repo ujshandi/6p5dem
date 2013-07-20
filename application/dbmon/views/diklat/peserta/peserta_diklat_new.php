@@ -1,3 +1,19 @@
+<script>
+    $(document).ready(function(){
+        $("#KODE_UPT").change(function(){
+            var KODE_UPT = $("#KODE_UPT").val();
+            $.ajax({
+               type : "POST",
+               url  : "<?=base_url().$this->config->item('index_page');?>/diklat/getProgram",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#KODE_PROGRAM").html(data);
+               }
+            });
+        });
+    });
+</script>
+
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Komposisi  <?=$title;?></h1>
@@ -8,19 +24,21 @@
 		<tr>
 		<div id="indukupt">
 		   	<td width="100">Induk UPT : </td>
-		    <td><?php
-		        echo form_dropdown("KODE_INDUK", $option_indukupt, $this->input->post('KODE_INDUK'),"id='KODE_INDUK'");
-				//echo form_dropdown("INDUKUPT", array(''=>'Pilih Induk UPT','0'=>'0','1'=>'1'), '');
-		    ?></td>
+		    <td>
+				<select name="KODE_UPT" id="KODE_UPT">
+					<?=$this->mdl_satker->getOptionSatker()?>
+				</select>
+			</td>
 		</div>
 		</tr>
 	   	<tr>
 		<div>
 			<td>Program : </td>
-		    <td id="program"><?php
-		       echo form_dropdown("KODE_PROGRAM",array('0'=>'Pilih Induk UPT Dahulu'),'',"id='KODE_PROGRAM'",$this->input->post('KODE_PROGRAM'));
-			   // echo form_dropdown("Program", array(''=>'Pilih Induk UPT','0'=>'0','1'=>'1'), '');
-		    ?></td>
+		    <td>
+				<select name="KODE_PROGRAM" id="KODE_PROGRAM">
+					<option>---- pilih ----</option>
+				</select>
+			</td>
 		</div>
 		</tr>
 		<tr>
@@ -81,33 +99,7 @@
 			</tr>				
 		</tbody>
 	</table>
-	<script type="text/javascript">
-       	loadFilter();
 
-        $("#KODE_INDUK").change(function(){
-        	loadFilter();
-        });
-
-        function loadFilter(){
-        	var selectValues = $("#KODE_INDUK").val();
-                if (selectValues == 0){
-                    var msg = "<select name=\"KODE_PROGRAM\" disabled><option value=\"0\">Pilih Induk UPT Dahulu</option></select>";
-                    $('#program').html(msg);
-                }else{
-                    var KODE_INDUK = {KODE_INDUK:$("#KODE_INDUK").val()};
-                    $('#KODE_PROGRAM').attr("disabled",true);
-                    $.ajax({
-                            type: "POST",
-                            url : "<?php echo site_url('diklat/select_program')?>",
-                            data: KODE_INDUK,
-                            success: function(msg){
-                                $('#program').html(msg);
-                    			$('#KODE_PROGRAM').val("<?=$this->input->post('KODE_PROGRAM')?>");
-                            }
-                    });
-                }
-        }
-    </script>
 	<script class="code" type="text/javascript">
 		$(document).ready(function(){
 			$.jqplot.config.enablePlugins = true;
