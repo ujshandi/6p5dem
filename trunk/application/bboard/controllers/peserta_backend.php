@@ -80,7 +80,8 @@ class peserta_backend extends My_Controller {
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
         $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
         $data['JK'] = $this->input->post('JK');
-        $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
+        $data['NO_TELP'] = $this->input->post('NO_TELP');
+        $data['STATUS_PENDAFTAR'] = $this->input->post('STATUS_PENDAFTAR');
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
 		# set rules validation
@@ -88,9 +89,10 @@ class peserta_backend extends My_Controller {
         $this->form_validation->set_rules('KODE_DIKLAT', 'DIKLAT', 'required');
         $this->form_validation->set_rules('NAMA_PENDAFTAR', 'NAMA PENDAFTAR', 'required');
         $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
+        $this->form_validation->set_rules('NO_TELP', 'NO TELP', 'required');
         $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
-        $this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
+        $this->form_validation->set_rules('STATUS_PENDAFTAR', 'STATUS PESERTA', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -124,9 +126,10 @@ class peserta_backend extends My_Controller {
         $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
         $data['NAMA_PENDAFTAR'] = $this->input->post('NAMA_PENDAFTAR');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
+        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
         $data['JK'] = $this->input->post('JK');
-        $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
+        $data['NO_TELP'] = $this->input->post('NO_TELP');
+        $data['STATUS_PENDAFTAR'] = $this->input->post('STATUS_PENDAFTAR');
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
 		# set rules validation
@@ -136,7 +139,7 @@ class peserta_backend extends My_Controller {
         $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
         $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
-        $this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
+        $this->form_validation->set_rules('STATUS_PENDAFTAR', 'STATUS PENDAFTAR', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		

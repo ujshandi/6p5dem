@@ -31,7 +31,7 @@
 				<td><?=$r->TEMPAT_LAHIR?></td>
 				<td><?=$r->TGL_LAHIR?></td>
 				<td><?=$r->JK?></td>
-				<td><?=$r->STATUS_PESERTA?></td>
+				<td><?=$r->STATUS_PENDAFTAR?></td>
 				<td >
 					<a href="<?=site_url().'/peserta_backend/edit/'.$r->IDPENDAFTAR?>" class="control" >
 						<span class="edit">edit</span></a> |
