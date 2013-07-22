@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH')) exit('No direct script allowed');
 
-class mdl_news extends CI_Model{
+class mdl_news_backend extends CI_Model{
 	
 	function __construct()
 	{
@@ -9,7 +9,7 @@ class mdl_news extends CI_Model{
 	
 	function getItem($num=0, $offset=0)
 	{
-		$this->db->flush_cache();
+		$this->db->flush_cache();		
 		$this->db->order_by("NEWS_DATETIME", "asc");
 		//return $this->db->get('BB_NEWS', $num, $offset);		return $this->db->get('BB_NEWS');
 	}

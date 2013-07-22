@@ -9,6 +9,7 @@ class news_backend extends MY_Controller
 		$this->load->helper('url');
 		$this->load->model('Authentikasi');
 		$this->load->model('mdl_news', 'news');
+		$this->load->model('mdl_news_backend', 'news_backend');
 		$this->load->library('auth_ad');
 	}
 
@@ -41,23 +42,20 @@ class news_backend extends MY_Controller
 		$this->open_backend();
 		
 		# get post data
-		$data['NAME'] = $this->input->post('NAME');
-        $data['USERNAME'] = $this->input->post('USERNAME');
-        $data['PASSWORD'] = $this->input->post('PASSWORD');
-		$data['news_backend_ID'] = $this->input->post('news_backend_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
-		$data['NIP'] = $this->input->post('NIP');
-		$data['EMAIL'] = $this->input->post('EMAIL');
+		$data['NEWS_ID'] = $this->input->post('NEWS_ID');
+        $data['NEWS_TITLE'] = $this->input->post('NEWS_TITLE');
+        $data['NEWS_BODY'] = $this->input->post('NEWS_BODY');
+        $data['NEWS_DATETIME'] = $this->input->post('NEWS_DATETIME');
+        $data['NEWS_READ'] = $this->input->post('NEWS_READ');
+        $data['URL'] = $this->input->post('URL');
+        $data['IMAGE'] = $this->input->post('IMAGE');
+        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
 		
 		# set rules validation
-		$this->form_validation->set_rules('NAME', 'NAME', 'required');
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
-        $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('news_backend_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
+        $this->form_validation->set_rules('NEWS_TITLE', 'NEWS TITLE', 'required');
+        $this->form_validation->set_rules('NEWS_BODY', 'NEWS BODY', 'required');
+        $this->form_validation->set_rules('NEWS_DATETIME', 'NEWS DATETIME', 'required');
+        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
         
 		
 		# set message validation

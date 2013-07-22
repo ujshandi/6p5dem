@@ -84,6 +84,38 @@ class mdl_user_privilege extends CI_Model{
 		return $this->db->get();
 	}
 	
+	function get_data_edit_diklat($id){
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_USER_GROUP_MENU.USER_GROUP_MENU_ID,
+							DIKLAT_USER_GROUP_MENU.USER_GROUP_ID,
+							DIKLAT_USER_GROUP_MENU.PRIVILEGE,
+							DIKLAT_USER_GROUP_MENU.MENU_ID,
+							DIKLAT_MENU.MENU_NAME, 
+							DIKLAT_USER_GROUP.USER_GROUP_NAME');
+		$this->db->from('DIKLAT_USER_GROUP_MENU');
+		$this->db->join('DIKLAT_MENU','DIKLAT_MENU.MENU_ID=DIKLAT_USER_GROUP_MENU.MENU_ID');
+		$this->db->join('DIKLAT_USER_GROUP','DIKLAT_USER_GROUP.USER_GROUP_ID=DIKLAT_USER_GROUP_MENU.USER_GROUP_ID');
+		/*$this->db->where('DIKLAT_USER_GROUP_MENU.USER_GROUP_ID', $id); */
+		
+		return $this->db->get();
+	}
+	
+	function get_data_edit_sdm($id){
+		$this->db->flush_cache();
+		$this->db->select('SDM_USER_GROUP_MENU.USER_GROUP_MENU_ID,
+							SDM_USER_GROUP_MENU.USER_GROUP_ID,
+							SDM_USER_GROUP_MENU.PRIVILEGE,
+							SDM_USER_GROUP_MENU.MENU_ID,
+							SDM_MENU.MENU_NAME, 
+							SDM_USER_GROUP.USER_GROUP_NAME');
+		$this->db->from('SDM_USER_GROUP_MENU');
+		$this->db->join('SDM_MENU','SDM_MENU.MENU_ID=SDM_USER_GROUP_MENU.MENU_ID');
+		$this->db->join('SDM_USER_GROUP','SDM_USER_GROUP.USER_GROUP_ID=SDM_USER_GROUP_MENU.USER_GROUP_ID');
+		/*$this->db->where('SDM_USER_GROUP_MENU.USER_GROUP_ID', $id); */
+		
+		return $this->db->get();
+	}
+	
 
 	function update($data){
 		
