@@ -104,7 +104,7 @@ class alumni extends My_Controller {
 		$data['DATA'] = $this->input->post('DATA');
 		
 		if($this->mdl_alumni->UpdateAlumni($data['DATA'])){
-			redirect('alumni');
+			//redirect('alumni');
 		}else{
 			echo 'Error insert to db!';
 		}

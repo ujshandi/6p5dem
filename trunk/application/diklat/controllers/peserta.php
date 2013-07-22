@@ -188,12 +188,12 @@ class peserta extends My_Controller {
         $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
         $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
+        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
         $data['JK'] = $this->input->post('JK');
-        $data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'mm/dd/yyyy')";
+        $data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'dd/mm/yyyy')";
         $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
         $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
-        $data['KETERANGAN'] = $this->input->post('KETERANGAN');
+        $data['KETERANGAN'] = $this->input->post('KETERANGAN');	
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
