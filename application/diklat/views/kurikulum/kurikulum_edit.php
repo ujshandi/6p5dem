@@ -35,7 +35,7 @@
 		    <input type="hidden" name="id" value="<?=$id?>">
 			<li>
 				<label for="">UPT<em>*</em></label>
-				<select name="kode_upt" id="KODE_UPT">
+				<select name="KODE_UPT" id="KODE_UPT">
 					<?php 
 						$opti['value'] = $result->row()->KODE_UPT;
 						echo $this->mdl_satker->getOptionUPTChild($opti);
