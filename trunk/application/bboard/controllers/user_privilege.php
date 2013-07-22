@@ -90,6 +90,18 @@ class user_privilege extends MY_Controller
 		$this->load->view('user_privilege/user_privilege_edit', $data);
 	}
 	
+	public function load_edit_diklat($id){
+		$data['id'] = $id;
+		$data['results'] = $this->user_privilege->get_data_edit_diklat($id);
+		$this->load->view('user_privilege/user_privilege_edit', $data);
+	}
+	
+	public function load_edit_sdm($id){
+		$data['id'] = $id;
+		$data['results'] = $this->user_privilege->get_data_edit_sdm($id);
+		$this->load->view('user_privilege/user_privilege_edit', $data);
+	}
+	
 	public function proses_edit(){
 		$this->open_backend();
 		
