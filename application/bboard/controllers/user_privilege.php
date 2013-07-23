@@ -35,9 +35,12 @@ class user_privilege extends MY_Controller
 		//$this->open_backend();
 		$data['user_group_id'] = $this->input->post('USER_GROUP_ID');
 		$menu = $this->input->post('MENU');
-		foreach ($menu  as $value){
-			$data['arr_added_menu'][] = $value['MENU_ID'];
+		if (!empty($menu)){
+			foreach ($menu  as $value){
+				$data['arr_added_menu'][] = $value['MENU_ID'];
+			}
 		}
+		
 		$this->load->view('user_privilege/user_privilege_add', $data);
 		//$this->close_backend();
 	}
@@ -129,8 +132,16 @@ class user_privilege extends MY_Controller
 	
 	public function load_edit($id){
 		$data['id'] = $id;
-		$data['results'] = $this->user_privilege->get_data_edit($id);
 		
+		$count_rows = $this->user_privilege->get_data_edit($id, true);
+		
+		if ($count_rows>0){
+			$data['results'] = $this->user_privilege->get_data_edit($id);
+			
+		}else{
+			$data['results'] = $this->user_privilege->get_user_group_by_id($id);
+		}
+		$data['count_rows'] = $count_rows;
 		$this->load->view('user_privilege/user_privilege_edit', $data);
 	}
 	
@@ -187,11 +198,11 @@ class user_privilege extends MY_Controller
 				$HAKAKSES4 = '0';
 			}
 			
-			
 			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];
 			$data['PRIVILEGE']=$HAKAKSES0.$HAKAKSES1.$HAKAKSES2.$HAKAKSES3.$HAKAKSES4;
 			$this->user_privilege->update($data);
 		}
+		
         
 		redirect('user_privilege');
 		
@@ -201,6 +212,17 @@ class user_privilege extends MY_Controller
 	public function proses_delete($id){
 		if($this->user_privilege->delete($id)){
 			redirect('user_privilege');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	
+	public function hapus_modul(){
+		$id=$this->uri->segment(3);
+		$user_group_id=$this->input->post('USER_GROUP_ID');
+		if($this->user_privilege->hapus_modul($id)){
+			redirect('user_privilege/load_edit/' . $user_group_id . '');
 		}else{
 			// code u/ gagal simpan
 			

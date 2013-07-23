@@ -21,13 +21,14 @@ class mdl_user_privilege extends CI_Model{
 	{
 
 		$this->db->flush_cache();
-		
+		/*
 		$this->db->select('USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP.USER_GROUP_NAME');
-		$this->db->from('USER_GROUP_MENU');
-		$this->db->join('USER_GROUP','USER_GROUP.USER_GROUP_ID=USER_GROUP_MENU.USER_GROUP_ID');
+		$this->db->from('USER_GROUP');
+		$this->db->join('USER_GROUP_MENU','USER_GROUP.USER_GROUP_ID=USER_GROUP_MENU.USER_GROUP_ID');
 		$this->db->group_by('USER_GROUP_MENU.USER_GROUP_ID');
-		$this->db->group_by('USER_GROUP.USER_GROUP_NAME');
-		
+		$this->db->group_by('USER_GROUP.USER_GROUP_NAME');*/
+		$this->db->select('*');
+		$this->db->from('USER_GROUP');
 		$this->db->limit($num, $offset);
 		
 		return $this->db->get();
@@ -89,15 +90,22 @@ class mdl_user_privilege extends CI_Model{
 		}
 	}
 	
+	function get_user_group_by_id($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_GROUP_ID', $id);
+		return $this->db->get('USER_GROUP');
+	}
 	
-	function get_data_edit($id){
+	function get_data_edit($id, $count_rows=false){
 		$this->db->flush_cache();
 		$this->db->select('USER_GROUP_MENU.USER_GROUP_MENU_ID,USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP_MENU.PRIVILEGE,USER_GROUP_MENU.MENU_ID,MENU.MENU_NAME, USER_GROUP.USER_GROUP_NAME');
 		$this->db->from('USER_GROUP_MENU');
 		$this->db->join('MENU','MENU.MENU_ID=USER_GROUP_MENU.MENU_ID');
 		$this->db->join('USER_GROUP','USER_GROUP.USER_GROUP_ID=USER_GROUP_MENU.USER_GROUP_ID');
 		$this->db->where('USER_GROUP_MENU.USER_GROUP_ID', $id);
-		
+		if ($count_rows){
+			return $this->db->count_all_results();
+		}
 		return $this->db->get();
 	}
 	
@@ -161,6 +169,19 @@ class mdl_user_privilege extends CI_Model{
 		
 	}
 	
+	function hapus_modul($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_GROUP_MENU_ID', $id);
+		$result = $this->db->delete('USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
 	function get_group_user($d="",$user_group_id=""){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
@@ -200,6 +221,32 @@ class mdl_user_privilege extends CI_Model{
 		if (count($arr_added_menu)>0){
 			$this->db->where_not_in('MENU_ID' ,  $arr_added_menu);
 		}
+		$this->db->order_by('MENU_ID');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->MENU_ID == trim($value)){
+				$out .= '<option value="'.$r->MENU_ID.'" selected="selected">'.$r->MENU_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->MENU_ID.'">'.$r->MENU_NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
+	
+	
+	function get_menu_all($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('MENU');
 		$this->db->order_by('MENU_ID');
 		
 		$res = $this->db->get();

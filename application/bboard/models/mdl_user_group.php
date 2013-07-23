@@ -46,9 +46,8 @@ class mdl_user_group extends CI_Model{
 	function insert($data){
 		$this->db->flush_cache();
 		
-		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		$this->db->set('PRIVILEGE', $data['PRIVILEGE']);
+		$this->db->set('USER_GROUP_NAME', $data['USER_GROUP_NAME']);
+		$this->db->set('URUTAN', $data['URUTAN']);
 			
 		$result = $this->db->insert('USER_GROUP');
 		
