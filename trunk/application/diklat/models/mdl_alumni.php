@@ -181,5 +181,27 @@ class mdl_alumni extends CI_Model{
 	    return $this->db->trans_status();
 	}
 	
+	function getOptionStatus($d=""){
+		//$name = isset($d['name'])?$d['name']:'';
+		//$id = isset($d['id'])?$d['id']:'';
+		//$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$res = array('Kerja','Belum Kerja');
+		
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res as $r){
+			if($r == trim($value)){
+				$out .= '<option value="'.$r.'" selected="selected">'.$r.'</option>';
+			}else{
+				$out .= '<option value="'.$r.'">'.$r.'</option>';
+			}
+		}
+		//$out .= '</select>';
+		
+		return $out;
+	}
+	
 }
 ?>
