@@ -14,3 +14,14 @@ font-weight:bold;
     min-height:50px;
 	min-width:50px;
 }
+
+.box-info {
+		width:700px;
+		height:175px;
+		border:1px solid #cecece;
+		padding:27px;
+		margin:17px;
+		background:#fff;
+		border-radius: 4px 4px 4px 4px;
+		display: inline-table; box-shadow: 0 0 10px #4095DC;
+}

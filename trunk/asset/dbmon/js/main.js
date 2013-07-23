@@ -33,7 +33,7 @@ function getClientWidth(){
 function get_chart(id,type_chart,mod,render_id,lebar_na,tinggi_na){
 	post['kat']=mod;
 	$("#"+render_id).html("").addClass("loading");
-	$.post(host+'sdm/get_datagrap',post,function(r){
+	$.post(host+'dashboard/get_datagrap',post,function(r){
 			//r = eval('('+r+')');
 			if(FusionCharts(id)){FusionCharts(id).dispose();}
 			id = new FusionCharts(site+"asset/dbmon/swf/"+type_chart+".swf", id, frmWidth-lebar_na, (mod=='campur' ? tinggi_na : frmHeight-tinggi_na));
@@ -75,7 +75,7 @@ function mywindow_close(){
 
 function get_data_kab(kd_prov,flag_kelamin,w,h,url_na){
 	loadingna()
-	var url=host+'sdm/'+url_na;
+	var url=host+'dashboard/'+url_na;
 	var post_na={};
 	post_na['kd_prov']=kd_prov;
 	if(flag_kelamin!=''){	
@@ -115,4 +115,27 @@ function winLoadingClose(){
 }
 function loadingna(){
 	windowLoading("<img src='"+site+"asset/dbmon/images/loading.gif' style='position: fixed;top: 50%;left: 50%;margin-top: -10px;margin-left: -25px;'/>","Mohon Tunggu",200,100);
+}
+
+function loadUrl(obj, urls){
+	var url=host+'dashboard/'+urls;
+	$('.btn-highlight').removeClass("btn-highlight");
+	obj.className += " btn-highlight";	
+	
+    $("#content_na").html("").addClass("loading");
+	$.get(url,function (html){
+	    $("#content_na").html(html).removeClass("loading");
+    });
+}
+
+function fillCombo(url, SelID, value, value2, value3, value4){
+	//if(Ext.get(SelID).innerHTML == "") return false;
+	if (value == undefined) value = "";
+	if (value2 == undefined) value2 = "";
+	if (value3 == undefined) value3 = "";
+	if (value4 == undefined) value4 = "";
+	
+	$.post(url, {"v": value, "v2": value2, "v3": value3, "v4": value4},function(data){
+	$('#'+SelID).append(data);
+	});
 }
