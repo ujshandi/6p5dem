@@ -53,7 +53,7 @@ class mdl_users extends CI_Model{
 		$this->db->flush_cache();
 
 		$this->db->where('USER_ID', $id);
-
+	
 		return $this->db->get('USERS');
 
 	}

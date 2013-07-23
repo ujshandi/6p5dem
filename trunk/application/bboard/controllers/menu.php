@@ -9,6 +9,7 @@ class menu extends MY_Controller
 		$this->load->helper('url');
 		$this->load->model('Authentikasi');
 		$this->load->model('mdl_menu', 'menu');
+		$this->load->model('mdl_user_privilege', 'user_privilege');
 		$this->load->library('auth_ad');
 	}
 
@@ -88,23 +89,19 @@ class menu extends MY_Controller
 		$this->open_backend();
 		
 		$data['id'] = $this->input->post('id');
-		$data['menu_ID'] = $this->input->post('menu_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
+        $data['MENU_NAME'] = $this->input->post('MENU_NAME');
+        $data['MENU_URL'] = $this->input->post('MENU_URL');
+        $data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+        
 	
 		
 		# set rules validation
-		$this->form_validation->set_rules('NAME', 'NAME', 'required');
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
-        $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
+		$this->form_validation->set_rules('MENU_NAME', 'MENU_NAME', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('user_group/menu_edit',$data);
+			$this->load->view('menu/menu_edit',$data);
 		}else{
 			$this->menu->update($data);
 			redirect('menu');
