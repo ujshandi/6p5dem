@@ -9,23 +9,25 @@ class sdm extends My_Controller {
 	
 	public function index()
 	{
-		//echo base_url();
-		redirect("sdm/get_form/sdm_dinas");
+		
+		$data['modul']='home';
+		show('home', $data);
+	
 	}
 	
 	function get_form($p1="",$p2=""){
-		$this->open();
+		//$this->open();
 		$data['modul']=$p1;
 		
 		switch ($p1){
 			case 'sdm_dinas':
 				$data['title']='Provinsi';
 				$this->load->view('sdm/dinas/sdm_prov', $data);
-				
+				//show('sdm/dinas/sdm_prov', $data);
 			break;
 		}
 		
-		$this->close();
+		//$this->close();
 	}
 	
 	function get_detail($p1="",$p2=""){
