@@ -61,7 +61,15 @@ $( "#TGL_LULUS" ).datepicker();
 			
 			<li><label for="">TANGGAL LULUS <em>*</em></label> <input name="TGL_LULUS" id="TGL_LULUS" value="<?=$result->row()->TGL_LULUS?>" type="text" class="one"/></li>
 			
-			<li><label for="">TEMPAT KERJA <em>*</em></label> <input name="KERJA" value="<?=$result->row()->KERJA?>" type="text" class="five"/></li>
+			<li><label for="">STATUS ALUMNI <em>*</em></label>
+				<select name="KERJA" id="KERJA">
+					<option value="">--Pilih--</option>        	
+					<?php 
+						$opti['value'] = $result->row()->KERJA;
+						echo $this->mdl_alumni->getOptionStatus($opti);
+					?>
+				</select>
+			</li>
 			
 			<li><label for="">INSTANSI<em>*</em></label> <input name="INSTANSI" value="<?=$result->row()->INSTANSI?>" type="text" class="five"/></li>
 			
