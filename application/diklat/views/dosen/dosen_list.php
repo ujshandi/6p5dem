@@ -41,7 +41,7 @@
 	  </thead>
 	  <tbody>
 		<?
-		$i=1;
+		$i=$curcount;
 		foreach($result->result() as $r){
 		?>
 			<tr class='gradeC'>
