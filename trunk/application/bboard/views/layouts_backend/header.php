@@ -14,9 +14,14 @@
 	<link href="<?=base_url()?>asset/globalstyle/css/jquery-ui-datepicker/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-1.9.1.js"></script>
 	<script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-ui-1.10.3.custom.js"></script>
-	<script src="<?=base_url()?>asset/board/asset/easyui/jquery.easyui.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="<?=base_url()?>asset/board/asset/easyui/themes/default/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="<?=base_url()?>asset/board/asset/easyui/themes/icon.css"/>
+	<!--<script src="<?/*=base_url()*/?>asset/board/asset/easyui/jquery.easyui.min.js"></script>-->
+	
+	<!--<script src="<?/*=base_url()*/?>asset/board/asset/easyui/jquery.easyui.min.js"></script>-->
+	<script type="text/javascript" src="<?php echo base_url(); ?>asset/board/asset/tiny_mce/tiny_mce/tiny_mce.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>asset/board/asset/tiny_mce/tiny.js"></script>
+	<!--
+	<link rel="stylesheet" type="text/css" href="<?/*=base_url()*/?>asset/board/asset/easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="<?/*=base_url()*/?>asset/board/asset/easyui/themes/icon.css"/>-->
 </head>
 <body>
 <div id="container">
