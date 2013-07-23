@@ -75,6 +75,50 @@ class user_privilege extends MY_Controller
 		//$this->close_backend();
 	}
 	
+	public function add_sdm(){
+		//$this->open_backend();
+		$data['user_group_id'] = $this->input->post('USER_GROUP_ID');
+		$menu = $this->input->post('MENU');
+		foreach ($menu  as $value){
+			$data['arr_added_menu'][] = $value['MENU_ID'];
+		}
+		$this->load->view('user_privilege/user_privilege_add_sdm', $data);
+		//$this->close_backend();
+	}
+	
+	public function proses_add_sdm(){
+		//$this->open_backend();
+		
+		# get post data
+		$hakakses1 = $this->input->post('HAKAKSES1')=='1'?'1':'0';
+        $hakakses2 = $this->input->post('HAKAKSES2')=='1'?'1':'0';
+        $hakakses3 = $this->input->post('HAKAKSES3')=='1'?'1':'0';
+        $hakakses4 = $this->input->post('HAKAKSES4')=='1'?'1':'0';
+        $hakakses5 = $this->input->post('HAKAKSES5')=='1'?'1':'0';
+		
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+        $data['MENU_ID'] = $this->input->post('MENU_ID');
+        $data['PRIVILEGE'] = $hakakses1.$hakakses2.$hakakses3.$hakakses4.$hakakses5;
+		
+		# set rules validation
+		
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
+        $this->form_validation->set_rules('MENU_ID', 'MENU_ID', 'required'); 
+		
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		
+		if ($this->form_validation->run() == FALSE){
+			echo 'Data Gagal Disimpan';
+		}else{
+			$this->user_privilege->insert_sdm($data);
+			redirect('user_privilege/load_edit_sdm/' . $data['USER_GROUP_ID'] . '');
+		}
+		
+		//$this->close_backend();
+	}
+	
 	public function edit($id){
 		$this->open_backend();
 		
@@ -93,13 +137,13 @@ class user_privilege extends MY_Controller
 	public function load_edit_diklat($id){
 		$data['id'] = $id;
 		$data['results'] = $this->user_privilege->get_data_edit_diklat($id);
-		$this->load->view('user_privilege/user_privilege_edit', $data);
+		$this->load->view('user_privilege/user_privilege_edit_diklat', $data);
 	}
 	
 	public function load_edit_sdm($id){
 		$data['id'] = $id;
 		$data['results'] = $this->user_privilege->get_data_edit_sdm($id);
-		$this->load->view('user_privilege/user_privilege_edit', $data);
+		$this->load->view('user_privilege/user_privilege_edit_sdm', $data);
 	}
 	
 	public function proses_edit(){
