@@ -17,7 +17,7 @@
 </div>
 --><!-- end page title --><!-- end submenu --><!-- end topmenu -->
 
-  <div id="content">
+  <!--div id="content">
     <div id="contentwrap">
     	<div class="wrap_left bgtrans">
 			<h2 class="heading">Side Menu</h2>
@@ -39,6 +39,7 @@
 					</ul>
 				</li>
 				<li><a href="#">Dashboard Monitoring Kompetensi</a></li>
-			</ul><!-- end vmenu -->
-		</div><!-- end wrap left-->
+			</ul>
+		</div--><!-- end wrap left-->
+		
     
