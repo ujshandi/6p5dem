@@ -3,6 +3,33 @@
 	<h1 class="heading">Informasi Data Alumni</h1>
 	<hr/>
 	<a href="<?=site_url();?>" class="greenbutton">Back</a>
+	<br>
+	<br>
+	<?=form_open('alumni_frontpage/search', array('class'=>'sform'))?>
+	<fieldset>
+	<ol>
+		<li>
+			UPT : 
+			<select name="kode_upt">
+				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+			</select>
+			&nbsp;&nbsp;
+			NAMA ALUMNI :
+			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
+			&nbsp;&nbsp;
+			<select name="numrow">
+				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
+				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
+				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>
+				<option value="100" <?=$numrow==100?'Selected="selected"':''?>>100</option>
+				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
+			</select>
+			<input type="submit" name="submit" value="Proses" />
+		</li>
+	</ol>		
+	</fieldset>
+	<?=form_close()?>
+	
 	<hr/>
 	<table width="100%">
 	  <thead>
@@ -16,7 +43,7 @@
 	  <tbody>
 	  
 		<?
-		$i=1;
+		$i=$curcount;
 		foreach($result->result() as $r){
 		?>
 		
@@ -35,10 +62,6 @@
 	  </tbody>
 	</table>
 	
-	<div class="clearfix">&nbsp;</div>        
-        <div class="paging right">
           	 <?=$this->pagination->create_links()?>
-        </div><!--end pagination-->
-	<div class="clearfix"></div>
-	
+        
 </div><!-- end wrap right content-->
