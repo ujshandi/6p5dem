@@ -157,7 +157,7 @@ class mdl_alumni extends CI_Model{
 		
 	}
 	
-	function UpdateAlumni($data){
+	function InsertAlumni($data){
 		$this->db->trans_start();
 		
 		foreach($data as $r){
@@ -166,7 +166,7 @@ class mdl_alumni extends CI_Model{
 			
 			$this->db->where('IDPESERTA', $r['IDPESERTA']);
 
-			$result = $this->db->update('DIKLAT_MST_ALUMNI');
+			$result = $this->db->insert('DIKLAT_MST_ALUMNI');
 		}
 		
 		// $errNo   = $this->db->_error_number();

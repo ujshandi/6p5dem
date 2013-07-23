@@ -103,12 +103,11 @@ class alumni extends My_Controller {
 	public function proses_add_alumni1(){
 		$data['DATA'] = $this->input->post('DATA');
 		
-		if($this->mdl_alumni->UpdateAlumni($data['DATA'])){
-			//redirect('alumni');
+		if($this->mdl_alumni->InsertAlumni($data['DATA'])){
+			redirect('alumni');
 		}else{
 			echo 'Error insert to db!';
 		}
-		
 	}
 	
 	public function edit($id){
