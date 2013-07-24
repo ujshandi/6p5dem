@@ -78,11 +78,12 @@ class mdl_menu extends CI_Model{
 
 	function update($data){
 		$this->db->flush_cache();
-        $this->db->set('MENU_ID', $data['id']);
+        
         $this->db->set('MENU_NAME', $data['MENU_NAME']);
         $this->db->set('MENU_URL', $data['MENU_URL']);
         $this->db->set('MENU_GROUPING_ID', $data['MENU_GROUPING_ID']);
         $this->db->set('STAT', 'A');
+		$this->db->where('MENU_ID', $data['ID']);
 		$result = $this->db->update('MENU');
 		if($result) {
 			return TRUE;

@@ -88,10 +88,10 @@ class menu extends MY_Controller
 	public function proses_edit(){
 		$this->open_backend();
 		
-		$data['id'] = $this->input->post('id');
-        $data['MENU_NAME'] = $this->input->post('MENU_NAME');
-        $data['MENU_URL'] = $this->input->post('MENU_URL');
-        $data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+		echo '-' .$data['ID'] = $this->input->post('ID');
+        echo '-' .$data['MENU_NAME'] = $this->input->post('MENU_NAME');
+        echo '-' .$data['MENU_URL'] = $this->input->post('MENU_URL');
+        echo '-' .$data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
         
 	
 		

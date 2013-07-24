@@ -12,6 +12,8 @@ class Users extends MY_Controller
 		$this->load->model('mdl_users', 'users');
 		$this->load->library('auth_ad');
 	}
+	
+	
 
 	function index()
 	{
@@ -20,7 +22,7 @@ class Users extends MY_Controller
 		
 		# config pagination
 		
-		
+		/*
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/index/';
 		$config['total_rows'] = $this->db->count_all('USERS');
 		$config['full_tag_open'] = '<p class="pagination">';
@@ -30,24 +32,42 @@ class Users extends MY_Controller
 		$this->pagination->initialize($config);	
 		
 		$data['results'] = $this->users->getItem($config['per_page'], $this->uri->segment(3));
-		$this->load->view('users/users_filter', $data); 
-				
+		$this->load->view('users/users_filter', $data); */
+		
+		$this->load->view('users/users_tabbed');
+		
 		$this->close_backend();
 		
+	}
+	
+	function users_filter(){
+		
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/index/';
+		$config['total_rows'] = $this->db->count_all('USERS');
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '10';
+		$config['num_links'] = '3';
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->getItem($config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_filter', $data); 
 	}
 	
 	
 	
 	public function add(){
-		$this->open_backend();
+		//$this->open_backend();
 		$this->load->view('users/users_add');
-		$this->close_backend();
+		//$this->close_backend();
 	}
+	
+	/*get list data bboard from table users*/
 	public function getall(){
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
 		$config['total_rows'] = $this->db->count_all('USERS');
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '10';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
@@ -58,8 +78,25 @@ class Users extends MY_Controller
 		$this->load->view('users/users_list', $data);
 	}
 	
+	/*get list data sdm from table sdm*/
+	function get_users_sdm(){
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
+		$config['total_rows'] = $this->users->get_item_sdm($keysearch_users,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '10';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->get_item_sdm($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_list_sdm', $data);
+	}
+	
 	public function proses_add(){
-		$this->open_backend();
+		//$this->open_backend();
 		
 		# get post data
 		$data['NAME'] = $this->input->post('NAME');
@@ -67,6 +104,7 @@ class Users extends MY_Controller
         $data['PASSWORD'] = md5($this->input->post('PASSWORD'));
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
 		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
+		$data['POSITION'] = $this->input->post('POSITION');
 		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
@@ -77,7 +115,7 @@ class Users extends MY_Controller
         $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
 		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
+		$this->form_validation->set_rules('NIP', 'NIP', 'required|numeric');
 		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
         
 		
@@ -88,28 +126,58 @@ class Users extends MY_Controller
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('users/users_add',$data);
 		}else{
-			$this->users->insert($data);
-			redirect('users');
+			$this->users->insert_sdm($data);
+			redirect('users/get_users_sdm');
 		}
 		
-		$this->close_backend();
+		//$this->close_backend();
+	}
+	
+	public function add_sdm(){
+
+		$data['results'] = $this->users->get_allitem_sdm();
+		$data['nilai'] = 'a';
+		$this->load->view('users/users_add_sdm', $data);
+	}
+	
+	public function proses_add_sdm(){
+		# get post data
+        $data['USERNAME'] = $this->input->post('USERNAME');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		
+		# set rules validation
+		
+        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
+        
+		
+		# set message validation 
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_add_sdm',$data);
+		}else{
+			$this->users->insert_sdm($data);
+			redirect('users/getall');
+		}
 	}
 	
 	public function edit($id){
-		$this->open_backend();
+		//$this->open_backend();
 		
 		$data['id'] = $id;
 		$data['result'] = $this->users->get_data_edit($id);
 		
 		$this->load->view('users/users_edit', $data);
 		
-		$this->close_backend();
+		//$this->close_backend();
 	}
 	
 	public function proses_edit(){
-		$this->open_backend();
+		//$this->open_backend();
 		
-		$data['id'] = $this->input->post('id');
+		$data['ID'] = $this->input->post('ID');
 		$data['NAME'] = $this->input->post('NAME');
         $data['USERNAME'] = $this->input->post('USERNAME');
 	
@@ -117,6 +185,7 @@ class Users extends MY_Controller
         $data['PASSWORD'] = md5($this->input->post('PASSWORD'));
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
 		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
+		$data['POSITION'] = $this->input->post('POSITION');
 		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
@@ -136,10 +205,10 @@ class Users extends MY_Controller
 			$this->load->view('users/users_edit',$data);
 		}else{
 			$this->users->update($data);
-			redirect('users');
+			redirect('users/getall');
 		}
 		
-		$this->close_backend();
+		//$this->close_backend();
 	}
 	
 	public function proses_delete($id){
@@ -163,7 +232,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/proses_pencarian/';
 		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '10';
 		$config['num_links'] = '3';
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
