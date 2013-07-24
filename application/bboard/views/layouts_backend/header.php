@@ -22,6 +22,9 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="<?/*=base_url()*/?>asset/board/asset/easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="<?/*=base_url()*/?>asset/board/asset/easyui/themes/icon.css"/>-->
+	
+	<link type="text/css" href="<?=base_url()?>asset/board/asset/admin/css/tabbed.css" rel="stylesheet"  type="text/css"  />
+	
 </head>
 <body>
 <div id="container">
