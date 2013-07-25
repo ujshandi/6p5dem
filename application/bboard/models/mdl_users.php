@@ -77,7 +77,14 @@ class mdl_users extends CI_Model{
 		return $this->db->get('USERS');
 
 	}
+	
+	function get_item_by_username($USERNAME){
+		$this->db->flush_cache();
 
+		$this->db->where('USERNAME', $USERNAME);
+	
+		return $this->db->get('USERS');
+	}
 
 	function insert($data){
 		$this->db->flush_cache();
@@ -104,15 +111,13 @@ class mdl_users extends CI_Model{
 		$this->db->flush_cache();
 		$this->db->set('USERNAME', $data['USERNAME']);
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		/*$this->db->set('NAME', $data['NAME']);
-		
+		$this->db->set('NAME', $data['NAME']);
 		$this->db->set('PASSWORD', $data['PASSWORD']);
-		
 		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
 		$this->db->set('POSITION', $data['POSITION']);
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
-		$this->db->set('EMAIL', $data['EMAIL']);*/
+		$this->db->set('EMAIL', $data['EMAIL']);
 			
 		$result = $this->db->insert('SDM_USERS');
 		
@@ -133,20 +138,20 @@ class mdl_users extends CI_Model{
 		return $this->db->get();
 	}
 	
-
-	function update($data){
-		$this->db->set('NAME', $data['NAME']);
-		$this->db->set('USERNAME', $data['USERNAME']);
-		$this->db->set('PASSWORD', $data['PASSWORD']);
-		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
-		$this->db->set('POSITION', $data['POSITION']);
-		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
-		$this->db->set('NIP', $data['NIP']);
-		$this->db->set('EMAIL', $data['EMAIL']);
-		$this->db->where('USER_ID', $data['ID']);
-		$result = $this->db->update('USERS');
+	function get_data_edit_sdm($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_USERS');
+		$this->db->where('USER_ID', $id);
 		
+		return $this->db->get();
+	}
+	
+
+	function update_sdm($data){
+		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$result = $this->db->update('SDM_USERS');
+		$this->db->where('USERNAME', $data['USERNAME']);
 		if($result) {
 			return TRUE;
 		}else {
@@ -154,6 +159,7 @@ class mdl_users extends CI_Model{
 		}
 		
 	}
+	
 	
 	function delete($data){
 		$this->db->flush_cache();
@@ -166,6 +172,18 @@ class mdl_users extends CI_Model{
 			return FALSE;
 		}
 		
+	}
+	
+	function delete_sdm($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_ID', $id);
+		$result = $this->db->delete('SDM_USERS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
 	}
 	
 	function get_group_user($d=""){

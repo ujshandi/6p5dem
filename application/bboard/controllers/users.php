@@ -126,8 +126,8 @@ class Users extends MY_Controller
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('users/users_add',$data);
 		}else{
-			$this->users->insert_sdm($data);
-			redirect('users/get_users_sdm');
+			$this->users->insert($data);
+			redirect('users/getall');
 		}
 		
 		//$this->close_backend();
@@ -142,8 +142,18 @@ class Users extends MY_Controller
 	
 	public function proses_add_sdm(){
 		# get post data
-        $data['USERNAME'] = $this->input->post('USERNAME');
+        $USERNAME = $this->input->post('USERNAME');
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$results=$this->users->get_item_by_username($USERNAME);
+		$data['USERNAME']=$USERNAME;
+		$data['NAME']=$results->row()->NAME;
+		$data['PASSWORD']=$results->row()->PASSWORD;
+		$data['DEPARTMENT']=$results->row()->DEPARTMENT;
+		$data['POSITION']=$results->row()->POSITION;
+		$data['DESCRIPTION']=$results->row()->DESCRIPTION;
+		$data['NIP']=$results->row()->NIP;
+		$data['EMAIL']=$results->row()->EMAIL;
+		
 		
 		# set rules validation
 		
@@ -159,7 +169,7 @@ class Users extends MY_Controller
 			$this->load->view('users/users_add_sdm',$data);
 		}else{
 			$this->users->insert_sdm($data);
-			redirect('users/getall');
+			redirect('users/get_users_sdm');
 		}
 	}
 	
@@ -174,7 +184,18 @@ class Users extends MY_Controller
 		//$this->close_backend();
 	}
 	
+	public function edit_sdm($id){
+		$data['id'] = $id;
+		$results = $this->users->get_data_edit_sdm($id);
+		$data['USERNAME']=$results->row()->USERNAME;
+		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
+		$this->load->view('users/users_edit_sdm', $data);
+		
+	}
+	
 	public function proses_edit(){
+	
+	
 		//$this->open_backend();
 		
 		$data['ID'] = $this->input->post('ID');
@@ -211,6 +232,24 @@ class Users extends MY_Controller
 		//$this->close_backend();
 	}
 	
+	public function proses_edit_sdm(){
+		$data['USERNAME'] = $this->input->post('USERNAME');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		
+		$this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_edit_sdm',$data);
+		}else{
+			$this->users->update_sdm($data);
+			redirect('users/get_users_sdm');
+		}
+		
+	}
+	
 	public function proses_delete($id){
 		if($this->users->delete($id)){
 			redirect('users');
@@ -218,6 +257,16 @@ class Users extends MY_Controller
 			// code u/ gagal simpan
 			
 		}
+	}
+	
+	public function proses_delete_sdm($id){
+		
+		if($this->users->delete_sdm($id)){
+			redirect('users/get_users_sdm');
+		}else{
+			 echo 'Gagal Simpan';
+		}
+	
 	}
 	
 	public function proses_pencarian(){
