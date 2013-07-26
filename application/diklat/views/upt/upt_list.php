@@ -7,7 +7,7 @@
 	<fieldset>
 	<ol>
 		<li>
-			Satker : 
+			SATKER : 
 			<select name="kode_induk">
 				<?=$this->mdl_satker->getOptionSatker(array('value'=>$kode_induk))?>
 			</select>
