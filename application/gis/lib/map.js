@@ -1,252 +1,324 @@
-var mapPanel;
-var map, lyrLine, zoom;
-var points = [];
-var map, zoom;
-var myPoint, pointLayer, center;
-var bounds = new OpenLayers.Bounds();
+var infoWindowHeight = "215px";
+var infoWindowWidth = "350px";
+var gmarkers = [];
+var gicons = [];
+var overlay;
+var map = null;
+var kmlLayer = null;
+MyOverlay.prototype=new google.maps.OverlayView;
+MyOverlay.prototype.onAdd=function(){};
+MyOverlay.prototype.onRemove=function(){};
+MyOverlay.prototype.draw=function(){};
+function MyOverlay(mymap){this.setMap(mymap)}
 
-var gphy = new OpenLayers.Layer.Google("Google Physical",{type: google.maps.MapTypeId.G_PHYSICAL_MAP});
-var gmap = new OpenLayers.Layer.Google("Google Streets",{type: google.maps.MapTypeId.ROAD});
-var ghyb = new OpenLayers.Layer.Google("Google Hybrid",{type: google.maps.MapTypeId.G_HYBRID_MAP});
-var gsat = new OpenLayers.Layer.Google("Google Satellite",{type: google.maps.MapTypeId.G_SATELLITE_MAP});
-	
-Ext.onReady(function() {
-	mapPanel = new GeoExt.MapPanel({
-        renderTo: "mappanel",
-        stateId: "mappanel",
-        height: 550,
-        map: map,
-    });
-	
-	var centerlonlat = new OpenLayers.LonLat( 116.70996308327, -1.1147475242615 );
-	centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
-	var zoom_awal = 5;
-	map.setCenter(centerlonlat,zoom_awal);
-	
+var infowindow = new google.maps.InfoWindow({ 
 });
 
-var map = new OpenLayers.Map({
-			controls:[
-				new OpenLayers.Control.Navigation(),
-				new OpenLayers.Control.PanZoomBar(),
-				new OpenLayers.Control.ScaleLine(),
-				new OpenLayers.Control.MousePosition({
-					div: document.getElementById('external_control') 
-				})
-			],
-			maxResolution: "auto",
-			units: 'm',
-			projection: new OpenLayers.Projection('EPSG:900913'),
-			'displayProjection': new OpenLayers.Projection('EPSG:4326'),
-			maxResolution: 156543.0339,
-			maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
-		});
-/*
-var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Strategy.Fixed()],
-			  protocol: new OpenLayers.Protocol.HTTP({url: "mapData/kabIndonesia.kml",
-			  format: new OpenLayers.Format.KML({
-					  extractStyles: false, 
-					  extractAttributes: true, 
-					  maxDepth: 2, 
-					  'internalProjection': map.projection, 
-					  'externalProjection': map.displayProjection})
-			  }),
-			  styleMap: styleKmlFar = new OpenLayers.StyleMap({'default':{
-							strokeColor: "#00FF00",
-							strokeOpacity: 1,
-							strokeWidth: 0.5,
-							fillColor: "#FF5500",
-							fillOpacity: 0.5
-							//pointRadius: 6,
-							//pointerEvents: "visiblePainted",
-							label : "${name}",
-							fontColor: "${favColor}",
-							fontSize: "12px",
-							fontFamily: "Courier New, monospace",
-							fontWeight: "bold",
-							labelAlign: "${align}",
-							labelXOffset: "${xOffset}",
-							labelYOffset: "${yOffset}"
-						}})
-	});*/
-	
-	map.addLayers([gmap, gphy, ghyb, gsat]);
-	
+gicons["red"] = new google.maps.MarkerImage("images/mapIcons/marker_red.png",
+	new google.maps.Size(20, 34),
+	new google.maps.Point(0,0),
+	new google.maps.Point(9, 34)
+);
+var iconShadow = new google.maps.MarkerImage('images/mapIcons/shadow50.png',
+	new google.maps.Size(51, 51),
+	new google.maps.Point(0,0),
+	new google.maps.Point(9, 34)
+);
 
-	function baseMapSelect(str) {
-			if (str == '1') {
-				map.setBaseLayer(gmap);
-			} else if (str == '2') {
-				map.setBaseLayer(gphy);
-			} else if (str == '3') {
-				map.setBaseLayer(ghyb);
-			} else {
-				map.setBaseLayer(gsat);
-			}
-		}
+var iconPath = ('images/mapIcons/');
+var	imgSizeX = 35;
+var	imgSizeY = 35;
 
-	layerStyle = OpenLayers.Util.extend({}, OpenLayers.Feature.Vector.style['default']);
-	pointLayer = new OpenLayers.Layer.Vector("Point data", {style: layerStyle});
-	map.addLayer(pointLayer);
-	
-	selectControl = new OpenLayers.Control.SelectFeature([pointLayer]);
-	map.addControl(selectControl);
-	selectControl.activate();
-	
 
-	pointLayer.events.on({
-		'featureselected': onFeatureSelect,
-		'featureunselected': onFeatureUnselect,
-		'beforefeatureremoved': onMarkerBeforeFeatureRemoved 
+function createIcon(category){
+	if(category == 'UPT PERHUBUNGAN DARAT'){
+		category = 'hubdarat'
+	}
+	if(category == 'UPT PERHUBUNGAN LAUT'){
+		category = 'hublaut'
+	}
+	if(category == 'UPT PERHUBUNGAN UDARA'){
+		category = 'hubudara'
+	}
+	icon = new google.maps.MarkerImage(iconPath + category + '.png',
+		new google.maps.Size(imgSizeX, imgSizeY),
+		new google.maps.Point(0,0),
+		new google.maps.Point(imgSizeX/2, imgSizeY/2)
+	)
+	return icon;
+}
+
+
+function createMarker(latlng, category, html){
+	var contentString = html;
+	var marker = new google.maps.Marker({
+            position: latlng,
+			icon: createIcon(category),
+            map: map,
+			zIndex: Math.round(latlng.lat()*-100000)<<5,
+			title: category
+        });
+		
+		marker.mycategory = category; 
+		marker.content = contentString;
+		gmarkers.push(marker);
+		
+		google.maps.event.addListener(marker, 'click', function(){
+		infowindow.setContent(contentString);
+		infowindow.open(map, marker);
 	});
 	
-	function onFeatureSelect(clickInfo) {
-		clickedFeature = clickInfo.feature;
-		popup = new OpenLayers.Popup.FramedCloud(
-			"featurePopup",
-			clickedFeature.geometry.getBounds().getCenterLonLat(),
-			new OpenLayers.Size(300,300),
-			clickedFeature.attributes.name,
-			null,
-			true,
-			onPopupClose
-		);
-		clickedFeature.popup = popup;
-		popup.feature = clickedFeature;
-		map.addPopup(popup);
-	}
-					
-	function onFeatureUnselect(clickInfo) {
-		feature = clickInfo.feature;
-		if (feature.popup) {
-			popup.feature = null;
-			map.removePopup(feature.popup);
-			feature.popup.destroy();
-			feature.popup = null;
+}
+
+function toggleShipVisibility(category, visibility) {
+	if (category == 'UPT PERHUBUNGAN DARAT') {
+		for (var i=0; i<gmarkers.length; i++) {
+			if (gmarkers[i].mycategory == 'UPT PERHUBUNGAN DARAT') {
+				gmarkers[i].setVisible(visibility);
+			}
 		}
-	}
-					
-	function onPopupClose(closeInfo) {
-		selectControl.unselect(this.feature);
+	}else if (category == 'UPT PERHUBUNGAN LAUT') {
+		for (var i=0; i<gmarkers.length; i++) {
+			if (gmarkers[i].mycategory == 'UPT PERHUBUNGAN LAUT') {
+				gmarkers[i].setVisible(visibility);
+			}
+		}
+	}else if (category == 'UPT PERHUBUNGAN UDARA') {
+		for (var i=0; i<gmarkers.length; i++) {
+			if (gmarkers[i].mycategory == 'UPT PERHUBUNGAN UDARA') {
+				gmarkers[i].setVisible(visibility);
+			}
+		}
 	}
 	
-	function onMarkerBeforeFeatureRemoved(evt){
-		if(evt.feature.popup){
-			map.removePopup(evt.feature.popup);
-			evt.feature.popup.destroy();
-			delete evt.feature.popup;
-		}
-	}
+	document.getElementById(category+"box").checked = visibility;
+	if (!visibility) infowindow.close();
 
-	function mainCategoryInit(){
-			$.jsonp({
-				url: "getmarkdemo.php",
-				callback: "callback",
-				success: function(data) {
-					points = [];
-					pointLayer.destroyFeatures();
-					$.each(data, function(i, item){									
-						var lat = item.lat;
-						var lon = item.lon;
-						var nama = item.nama;
-						var tempat = item.tempat;
-						var tema = item.tema;
-						var judul = item.judul;
-						var jmlpeserta = item.jmlpeserta;
-						var tanggal = item.tanggal;
-						var tempat = item.tempat;
-						var photo = item.photo;
-						var html = "<div><table border=0><tr><td colspan=3><center><font size=2><b>"+tema+"</b></font></center><hr></td></tr><tr><td><font size=2><b>Judul Kegiatan </b></font></td><td>:</td><td><font size=2>"+judul+"</font></td></tr><tr><td><font size=2><b>Lokasi Kegiatan</b></font></td><td>:</td><td><font size=2>"+tempat+"</font></td></tr><tr><td><font size=2><b>Jumlah Peserta</b></font></td><td>:</td><td><font size=2>"+jmlpeserta+"</font></td></tr><tr><td><font size=2><b>Tanggal</b></font></td><td>:</td><td><font size=2>"+tanggal+"</font></td></tr><tr><td><font size=2><b>Foto</b></font></td><td>:</td><td><img src='upload/"+photo+"' height='70px' width='120px' /></td></tr></table></div>";
-						addMarker(lon, lat, html, nama, tema);
-					});	
-				},
-				error: function() {
-				
-				}
+}
+
+
+
+function boxclick(box, category){
+	toggleShipVisibility(category, box.checked);
+}
+
+function myclick(i){
+	zoomLevel = map.getZoom();
+	var latnya = gmarkers[i].getPosition().lat();
+	var lngnya = gmarkers[i].getPosition().lng();
+	if (MOPopupStatus == 1)	google.maps.event.trigger(gmarkers[i],"mouseover");
+	if (MOPopupStatus == 2)	google.maps.event.trigger(gmarkers[i],"click");
+	map.setCenter(new google.maps.LatLng(latnya,lngnya));
+}
+
+function LatLngControl(map) {
+
+	this.node_ = this.createHtmlNode_();
+	var dmsLat = map.getCenter().lat().toFixed(4);
+	var dmsLon = map.getCenter().lng().toFixed(4);
+	this.node_.innerHTML = 'Lat: ' +  dmsLat + '<br> Lon: ' + dmsLon;
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(this.node_);
+	this.setMap(map);
+}
+
+LatLngControl.prototype = new google.maps.OverlayView();
+LatLngControl.prototype.draw = function() {};
+
+LatLngControl.prototype.createHtmlNode_ = function() {
+	var divNode = document.createElement('div');
+	divNode.id = 'latlng-control';
+	divNode.index = 100;
+	return divNode;
+};
+
+LatLngControl.prototype.visible_changed = function() {
+	this.node_.style.display = this.get('visible') ? '' : 'none';
+};
+
+LatLngControl.prototype.updatePosition = function(latLng) {
+	var dmsLat = latLng.lat().toFixed(4);
+	var dmsLon = latLng.lng().toFixed(4);
+	this.node_.innerHTML = 'Lat: ' +  dmsLat + '<br> Lon: ' + dmsLon;    
+};
+
+function mapInit(){
+	var centerCoord = new google.maps.LatLng(-0.563985,118.088608);
+	var mapOptions = {
+		zoom: 6,
+		center: centerCoord,
+		draggable: true,
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		mapTypeControl: true, //false
+		mapTypeControlOptions: {
+			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+			position: google.maps.ControlPosition.TOP_RIGHT
+		},
+		panControl: true,
+		panControlOptions: {
+			  position: google.maps.ControlPosition.LEFT_CENTER
+		},
+		zoomControl: true,
+		zoomControlOptions: {
+			style: google.maps.ZoomControlStyle.DEFAULT,
+			position: google.maps.ControlPosition.LEFT_CENTER
+		},
+		scaleControl: false,
+		scaleControlOptions: {
+		  position: google.maps.ControlPosition.BOTTOM_LEFT
+		},
+		streetViewControl: false,
+	}
+	
+	map = new google.maps.Map(document.getElementById("map"), mapOptions);
+	overlay = new MyOverlay(map);
+	
+	google.maps.event.addListener(map, 'click', function() {
+		infowindow.close();
+	});	
+
+	var latLngControl = new LatLngControl(map);
+	
+	google.maps.event.addListener(map, 'zoom_changed', function() {
+		zoomLevel = map.getZoom();
+	});
+	google.maps.event.addListener(map, 'mouseover', function(mEvent) {
+	  latLngControl.set('visible', true);
+	});
+	google.maps.event.addListener(map, 'mouseout', function(mEvent) {
+	  latLngControl.set('visible', false);
+	});
+	google.maps.event.addListener(map, 'mousemove', function(mEvent) {
+	  latLngControl.updatePosition(mEvent.latLng);
+	});
+var ctaLayer = new google.maps.KmlLayer({
+    //url: 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml'
+	  url: 'http://metrotrack.web.id/kab.kml'
+	//url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/mapData/kabIndonesia.kml'
+  });
+  ctaLayer.setMap(map);
+}
+
+function markerInit(){
+	$.jsonp({
+		url: "dataOracle.php",
+		callback: "callback",
+		success: function(data) {
+			for (i in gmarkers) {
+				gmarkers[i].setMap(null);
+			}
+			gmarkers.length = 0;
+			$.each(data, function(i, item){
+				var lat = item.lat;
+				var lng = item.lng;
+				var point = new google.maps.LatLng(lat,lng);
+				var tipe = item.tipe;
+				var picture = item.picture;
+				if (!item.picture) picture = 'images/img/no.gif';
+				var html = "Keterangan : "+item.content;
+				marker = createMarker(point,tipe,html);
 			});
-	}
-	
-	function addMarker(lon, lat, html, nama, tema) {
-		myPoint = new OpenLayers.Geometry.Point(lon,lat).transform( map.displayProjection,  map.projection);
-		bounds.extend(myPoint);
-								
-		var sampleStyle = OpenLayers.Util.extend({}, layerStyle);
-		sampleStyle.fillOpacity = 1;
-		sampleStyle.graphicOpacity = 1;							
-		sampleStyle.graphicWidth = 20;
-		sampleStyle.graphicHeight = 28;
-		sampleStyle.graphicXOffset = -(28 / 2);
-		sampleStyle.graphicYOffset = -28;
-		sampleStyle.fontColor = "black";
-		sampleStyle.fontSize = "12px";
-		sampleStyle.labelAlign = "lt";
-		sampleStyle.cursor= "pointer";
-		sampleStyle.graphicTitle=tema;
-		sampleStyle.graphicName="square";
-		sampleStyle.label=tema;
-		sampleStyle.labelXOffset=10;
-		sampleStyle.labelYOffset=12;
-		sampleStyle.fontFamily="verdana";
-		if (tema == "Bimbingan Teknis"){
-			sampleStyle.externalGraphic = "images/symbol/SDall.png";
-		}else if (tema == "Diklat"){
-			sampleStyle.externalGraphic = "images/symbol/SMPall.png";
-		}else{
-			sampleStyle.externalGraphic = "images/symbol/PTall.png";
+
+			toggleShipVisibility("UPT PERHUBUNGAN DARAT", document.getElementById("UPT PERHUBUNGAN DARATbox").checked);
+			toggleShipVisibility("UPT PERHUBUNGAN LAUT", document.getElementById("UPT PERHUBUNGAN LAUTbox").checked);
+			toggleShipVisibility("UPT PERHUBUNGAN UDARA", document.getElementById("UPT PERHUBUNGAN UDARAbox").checked);
+		},
+		error: function() {
+
+		   alert('Error creating marker, Please check your internet connection!!');
 		}
-		sampleStyle.labelBackgroundColor = "#fcf9f9";
-		sampleStyle.labelPadding = "3px";
-		sampleStyle.labelBorderColor = "#333";
-		sampleStyle.labelBorderSize = "solid 1px";
-		sampleStyle.labelSelect = true;
-		sampleStyle.display = 'none';
-	
-		myPointFeature = new OpenLayers.Feature.Vector( myPoint,null,sampleStyle);
-		myPointFeature.attributes = {
-			name: html	
-		};
-		myPointFeature.type = nama; 
-		pointLayer.addFeatures( [ myPointFeature ] );
-	}
-	
-	function VesselZoom(str) {
-		coords = str.split("@");
-		var x = coords[1];
-		var y = coords[2];
-		var centering = new OpenLayers.LonLat( y , x );
-		centering = centering.transform(map.displayProjection, map.projection);
-		zoom = map.getZoom();
-		map.setCenter(centering,zoom);
-	}
-	
-	function showMark(str) {
-		if (document.getElementById(str).checked) {
-			for (i=0;i<=pointLayer.features.length - 1;i++) {
-				if(pointLayer.features[i].type == str) {
-					pointLayer.features[i].style.display = 'block';
-					pointLayer.redraw();
-				}
-			}	
-		} else {
-			for (i=0;i<=pointLayer.features.length - 1;i++) {
-				if(pointLayer.features[i].type == str) {
-					pointLayer.features[i].style.display = 'none';
-					pointLayer.redraw();
-				}	
-			}
-		}
-	}
-	
-	$(function(){
-		mainCategoryInit();
 	});
-	/*
-	map.events.register('zoomend', this, function() {
-		if (map.getZoom() < 5) {
-			kmlFar.setVisibility(true);
-		} else {
-			kmlFar.setVisibility(false);
+}
+
+function resetOverlay() {
+	for (i in gmarkers) {
+		gmarkers[i].setMap(null);
+	}
+	gmarkers.length = 0;
+	markerInit();	
+}
+
+function toggleShipVisibility2(category, visibility) {
+	if (category == 'MATRA DARAT') {
+		  show_layer_darat();
+		  
+	}else if (category == 'MATRA LAUT') {
+		  show_layer_darat();
+	}else if (category == 'MATRA UDARA') {
+		  show_layer_darat();
+	}
+	
+	document.getElementById(category+"box").checked = visibility;
+	if (!visibility) infowindow.close();
+
+}
+
+function boxclick2xx(box, category){
+	if (box.checked) toggleShipVisibility2(category, box.checked);
+	else  kmlLayer.setMap(null) ;
+}
+
+function boxclick2(box, category){
+  if(box.checked) {
+	if (category == 'MATRA DARAT') {
+	    create_kmlFileDarat();
+		kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';   		  
+	}else if (category == 'MATRA LAUT') {
+	    kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';
+		  
+	}else if (category == 'MATRA UDARA') {
+	    kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';	  
+	}
+	
+	var kmlOptions = {
+       suppressInfoWindows: false
+    };
+    kmlLayer = new google.maps.KmlLayer(kmlLayer01URL, kmlOptions);
+    kmlLayer.setMap(map);
+	 
+  }
+  else {
+	 kmlLayer.setMap(null) ;
+  }  
+	document.getElementById(category+"box").checked = box.checked;
+	if (!box.checked) infowindow.close();
+}
+
+function create_kmlLayer(kmlURL,kmlOptions){
+   kmlLayer = new google.maps.KmlLayer(kmlURL, kmlOptions);
+}
+
+function downloadUrl(url,callback) {
+ var request = window.ActiveXObject ?
+     new ActiveXObject('Microsoft.XMLHTTP') :
+     new XMLHttpRequest;
+
+ request.onreadystatechange = function() {
+   if (request.readyState == 4) {
+     request.onreadystatechange = doNothing;
+     callback(request, request.status);
+   }
+ };
+
+ request.open('GET', url, true);
+ request.send(null);
+}
+
+function create_kmlFileDarat(){
+  //alert("asdasd");
+  //$('#resultMsg').load('createKmlDarat.php');
+  $('#resultMsg').load('createKmlDarat.php', function() {
+  //alert('Load was performed.');
+  });
+}
+
+function create_kmlFileDaratxxxx(){
+	$.jsonp({
+		url: "createKmlDarat.php",
+		callback: "callback",
+		success: function(data) {
+		},
+		error: function() {
+		   alert('Error crete KML, Please check your internet connection!!');
 		}
-		console.log(map.getZoom);
 	});
-	*/
+}
