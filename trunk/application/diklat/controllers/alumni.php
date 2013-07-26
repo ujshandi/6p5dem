@@ -125,14 +125,14 @@ class alumni extends My_Controller {
 		
 		$data['id'] = $this->input->post('id');
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
-        $data['IDPESERTA'] = $this->input->post('IDPESERTA');
-        $data['TGL_LULUS'] = "to_date('".$this->input->post('TGL_LULUS')."', 'mm/dd/yyyy')";
+        $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
+        $data['TGL_LULUS'] = "to_date('".$this->input->post('TGL_LULUS')."', 'dd/mm/yyyy')";
         $data['KERJA'] = $this->input->post('KERJA');
         $data['INSTANSI'] = $this->input->post('INSTANSI');
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
-        $this->form_validation->set_rules('IDPESERTA', 'PESERTA', 'required');
+        $this->form_validation->set_rules('NO_PESERTA', 'PESERTA', 'required');
         $this->form_validation->set_rules('TGL_LULUS', 'KODE INDUK', 'required');
         $this->form_validation->set_rules('KERJA', 'TEMPAT KERJA', 'required');
         $this->form_validation->set_rules('INSTANSI', 'INSTANSI', 'required');

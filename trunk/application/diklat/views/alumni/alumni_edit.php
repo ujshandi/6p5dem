@@ -50,10 +50,10 @@ $( "#TGL_LULUS" ).datepicker();
 			</li>
 			
 			<li><label for="">PESERTA <em>*</em></label>
-				<select name="IDPESERTA" id="IDPESERTA">
+				<select name="NO_PESERTA" id="NO_PESERTA">
 					<option value="">--Pilih--</option>        	
 					<?php 
-						$opti['value'] = $result->row()->IDPESERTA;
+						$opti['value'] = $result->row()->NO_PESERTA;
 						echo $this->mdl_peserta->getOptionPeserta($opti);
 					?>
 				</select>
@@ -61,14 +61,12 @@ $( "#TGL_LULUS" ).datepicker();
 			
 			<li><label for="">TANGGAL LULUS <em>*</em></label> <input name="TGL_LULUS" id="TGL_LULUS" value="<?=$result->row()->TGL_LULUS?>" type="text" class="one"/></li>
 			
-			<li><label for="">STATUS ALUMNI <em>*</em></label>
-				<select name="KERJA" id="KERJA">
-					<option value="">--Pilih--</option>        	
-					<?php 
-						$opti['value'] = $result->row()->KERJA;
-						echo $this->mdl_alumni->getOptionStatus($opti);
-					?>
-				</select>
+			<li><label for="">STATUS ALUMNI<em>*</em></label>
+				<?php 
+					$opti['name'] = 'KERJA';
+					$opti['value'] = $result->row()->KERJA;
+					echo $this->mdl_alumni->getOptionStatus($opti);
+				?>
 			</li>
 			
 			<li><label for="">INSTANSI<em>*</em></label> <input name="INSTANSI" value="<?=$result->row()->INSTANSI?>" type="text" class="five"/></li>

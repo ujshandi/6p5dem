@@ -52,17 +52,21 @@
 					foreach($data->result() as $r){
 				?>
 				<tr>
-					<td><input name="DATA[<?=$i?>][IDPESERTA]" type="checkbox"  value="<?=$r->IDPESERTA?>" checked="checked" /></td>
+					<td><input name="DATA[<?=$i?>][NO_PESERTA]" type="checkbox"  value="<?=$r->NO_PESERTA?>" checked="checked" /></td>
 					<td><?=$r->NO_PESERTA?></td>
-					<td><?=$r->NAMA_PESERTA?></td>
 					<td>
-						<select id="JK" name="JK">
+						<?=$r->NAMA_PESERTA?>
+						<input name="DATA[<?=$i?>][TGL_LULUS]" type="hidden" value="<?=$TGL_LULUS?>" />
+						<input name="DATA[<?=$i?>][KODE_UPT]" type="hidden" value="<?=$KODE_UPT?>" />
+					</td>
+					<td>
+						<select name="DATA[<?=$i?>][KERJA]">
 							<option value="">- Pilih Status Alumni -</option>
 							<option value="Bekerja">Bekerja</option>
 							<option value="Belum Bekerja">Belum Bekerja</option>
 						</select>
 					</td>
-					<td><input name="INSTANSI" value="<?=set_value('INSTANSI')?>" type="text" id="INSTANSI"/></td>
+					<td><input name="DATA[<?=$i?>][INSTANSI]" value="<?=set_value('INSTANSI')?>" type="text" id="INSTANSI"/></td>
 				</tr>
 				<?
 						$i++;
