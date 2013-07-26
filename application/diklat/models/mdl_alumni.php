@@ -8,31 +8,33 @@ class mdl_alumni extends CI_Model{
 	function getData($num=0, $offset=0, $filter){
 		# get data
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NO_PESERTA, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_ALUMNI');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.NO_PESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('ID_ALUMNI');
+		$this->db->order_by('DIKLAT_MST_ALUMNI.ID_ALUMNI');
 		
 		//filter
 		if(!empty($filter['kode_upt']))
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
 		if(!empty($filter['search']))
 			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+		//echo $filter['search'];
 		
 		$tmp['row_data'] = $this->db->get();
 		
 		# get count
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NO_PESERTA, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_ALUMNI');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.NO_PESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		//$this->db->limit($num, $offset);
-		$this->db->order_by('ID_ALUMNI');
+		$this->db->order_by('DIKLAT_MST_ALUMNI.ID_ALUMNI');
 		
 		//filter
 		if(!empty($filter['kode_upt']))
@@ -49,7 +51,7 @@ class mdl_alumni extends CI_Model{
 	function insert($data){
 		$this->db->flush_cache();
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
-        $this->db->set('IDPESERTA', $data['IDPESERTA']);
+        $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
         $this->db->set('TGL_LULUS', $data['TGL_LULUS'], false);
         $this->db->set('KERJA', $data['KERJA']);
         $this->db->set('INSTANSI', $data['INSTANSI']);
@@ -77,7 +79,7 @@ class mdl_alumni extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-        $this->db->set('IDPESERTA', $data['IDPESERTA']);
+        $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
         $this->db->set('TGL_LULUS', $data['TGL_LULUS'], false);
         $this->db->set('KERJA', $data['KERJA']);
         $this->db->set('INSTANSI', $data['INSTANSI']);
@@ -162,10 +164,12 @@ class mdl_alumni extends CI_Model{
 		
 		foreach($data as $r){
 			$this->db->flush_cache();
-			$this->db->set('TGL_LULUS', 'Lulus');
+			$this->db->set('NO_PESERTA', $r['NO_PESERTA']);
+			$this->db->set('TGL_LULUS', "to_date('".$r['TGL_LULUS']."', 'mm/dd/yyyy')", FALSE);
+			$this->db->set('KERJA', $r['KERJA']);
+			$this->db->set('INSTANSI', $r['INSTANSI']);
+			$this->db->set('KODE_UPT', $r['KODE_UPT']);
 			
-			$this->db->where('IDPESERTA', $r['IDPESERTA']);
-
 			$result = $this->db->insert('DIKLAT_MST_ALUMNI');
 		}
 		
@@ -182,15 +186,15 @@ class mdl_alumni extends CI_Model{
 	}
 	
 	function getOptionStatus($d=""){
-		//$name = isset($d['name'])?$d['name']:'';
-		//$id = isset($d['id'])?$d['id']:'';
-		//$class = isset($d['class'])?$d['class']:'';
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$res = array('Kerja','Belum Kerja');
 		
-		//$out = '<select name="'.$name.'" id="'.$id.'">';
-		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res as $r){
 			if($r == trim($value)){
 				$out .= '<option value="'.$r.'" selected="selected">'.$r.'</option>';
@@ -198,7 +202,7 @@ class mdl_alumni extends CI_Model{
 				$out .= '<option value="'.$r.'">'.$r.'</option>';
 			}
 		}
-		//$out .= '</select>';
+		$out .= '</select>';
 		
 		return $out;
 	}
