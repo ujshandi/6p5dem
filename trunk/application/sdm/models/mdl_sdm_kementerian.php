@@ -74,6 +74,27 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		return $this->db->get();	
 	}
 	
+	public function get_data_dukNew($d1, $d2){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEGAWAI');
+		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		
+		if($d1 != '0'){
+			$this->db->where('UNITKANTOR', $d1);	
+		}
+		if($d2 != '0'){
+			$this->db->where('KERJAUNIT', $d2);	
+		}
+		
+		$this->db->order_by('ID_GOLONGAN', 'ASC');
+		$this->db->order_by('TMTPNS', 'ASC');
+		
+		return $this->db->get();
+		
+	}
+	
 	// -- sebelum migrasi --
 	public function geteselon1(){
 		$result = array();
@@ -180,7 +201,7 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		return $this->db->get();
 	}	  
 	
-	public function get_data_duk($e1, $e2, $e3, $e4){
+	/*public function get_data_duk($e1, $e2, $e3, $e4){
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('SDM_PEG_KEMENTRIAN');
@@ -204,7 +225,7 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		
 		return $this->db->get();
 		
-	}
+	}*/
 	
 	public function get_data_duk_detail_pangkat($id){
 		$this->db->flush_cache();

@@ -75,6 +75,52 @@ class sdm_kementerian extends My_Controller {
 		$this->close();
 	}
 	
+	public function duk_new()
+	{
+		$this->open();
+		
+		# config pagination
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_kementerian/duk_new/';
+		$config['total_rows'] = $this->db->count_all('SDM_PEGAWAI');
+		$config['per_page'] = '10';
+		$config['num_links'] = '3';
+
+		$this->pagination->initialize($config);	
+		
+		$data['option_kantor'] = $this->mdl_sdm_kementerian->getkantor();
+		$this->load->view('sdm_kementerian/sdm_kementerian_duk_new', $data);
+		
+		
+		$this->close();
+	}
+	
+	public function search_duk_new()
+	{	
+		$this->open();
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_kementerian/duk_new/';
+		$config['total_rows'] = $this->db->count_all('SDM_PEGAWAI');
+		$config['per_page'] = '10';
+		$config['num_links'] = '3';
+
+		$this->pagination->initialize($config);	
+		
+		$d1 = $this->input->post('KODEKANTOR');
+		$d2 = $this->input->post('KODEUNIT');
+		//$e3 = $this->input->post('ID_ESELON_3');
+		//$e4 = $this->input->post('ID_ESELON_4');
+		
+		$data['option_kantor'] = $this->mdl_sdm_kementerian->getkantor();
+		$data['option_satker'] = $this->mdl_sdm_kementerian->getsatker();
+		//$data['option_eselon3'] = $this->mdl_sdm_kementerian->geteselon3();
+		//$data['option_eselon4'] = $this->mdl_sdm_kementerian->geteselon4();
+
+		$data['result'] = $this->mdl_sdm_kementerian->get_data_dukNew($d1, $d2);
+		
+		
+		$this->load->view('sdm_kementerian/sdm_kementerian_duk_searchNew',$data);
+		$this->close();
+	}
+	
 	// sebelum migrasi
     function select_eselon2(){
     			

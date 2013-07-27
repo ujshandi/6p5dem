@@ -5,25 +5,19 @@ class Laporan_model extends CI_Model{
 		parent::__construct();
 	}
 	
-	public function get_sdm_kementerian($e1,$e2,$e3,$e4){
+	public function get_sdm_kementerian($kantor,$unit){
 		
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('SDM_PEGAWAI_KEMENTRIAN');
-		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI_KEMENTRIAN.ID_GOLONGAN');
-		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEGAWAI_KEMENTRIAN.ID_JABATAN');
+		$this->db->from('SDM_PEGAWAI');
+		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
 		
-		if($e1 != '0'){
-			$this->db->where('ID_ESELON_1', $e1);	
+		if($kantor != '0'){
+			$this->db->where('UNITKANTOR', $kantor);	
 		}
-		if($e2 != '0'){
-			$this->db->where('ID_ESELON_2', $e2);	
-		}
-		if($e3 != '0'){
-			$this->db->where('ID_ESELON_3', $e3);	
-		}
-		if($e4 != '0'){
-			$this->db->where('ID_ESELON_4', $e4);	
+		if($unit != '0'){
+			$this->db->where('KERJAUNIT', $unit);	
 		}
 		
 		$result = $this->db->get();
@@ -33,8 +27,8 @@ class Laporan_model extends CI_Model{
 			$pdfdata[$i][0] = $i +1;
 			$pdfdata[$i][1] = $row->NIP;
 			$pdfdata[$i][2] = $row->NAMA;
-			$pdfdata[$i][3] = $row->ALAMAT;
-			$pdfdata[$i][4] = $row->NAMA_JABATAN;
+			$pdfdata[$i][3] = $row->JALAN;
+			$pdfdata[$i][4] = $row->JABATAN;
 			$pdfdata[$i][5] = $row->NAMA_GOLONGAN;
 			$i++;
 		}
@@ -94,6 +88,81 @@ class Laporan_model extends CI_Model{
 		}
 		
 		return $data;
+	}
+	
+	public function get_duk_sdm_kementerian($kantor,$unit){
+		
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEGAWAI');
+		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		
+		if($kantor != '0'){
+			$this->db->where('UNITKANTOR', $kantor);	
+		}
+		if($unit != '0'){
+			$this->db->where('KERJAUNIT', $unit);	
+		}
+		
+		$this->db->order_by('ID_GOLONGAN', 'ASC');
+		$this->db->order_by('TMTPNS', 'ASC');
+		$result = $this->db->get();
+		
+		$i=0;
+		foreach($result->result() as $row){
+			$pdfdata[$i][0] = $i +1;
+			$pdfdata[$i][1] = $row->NIP;
+			$pdfdata[$i][2] = $row->NAMA;
+			$pdfdata[$i][3] = $row->JALAN;
+			$pdfdata[$i][4] = $row->NAMA_GOLONGAN;
+			$pdfdata[$i][5] = $row->TMTGOLONGAN;
+			$pdfdata[$i][6] = $row->JABATAN;
+			$pdfdata[$i][7] = $row->TMTJABATAN;
+			$pdfdata[$i][8] = $row->TMTPNS;
+			$i++;
+		}
+		
+		return $pdfdata;
+		
+	}
+	
+	public function get_duk_sdm_dinas($prov,$kab){
+		
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_DINAS');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_DINAS.ID_GOLONGAN');
+		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
+		
+		if($prov != '0'){
+			$this->db->where('KODEPROVIN', $prov);	
+		}
+		if($kab != '0'){
+			$this->db->where('KODEKABUP', $kab);	
+		}
+		
+		$this->db->order_by('SDM_PEG_DINAS.ID_GOLONGAN', 'ASC');
+		$this->db->order_by('SDM_PEG_DINAS.ID_JABATAN', 'ASC');
+		$this->db->order_by('SDM_PEG_DINAS.TMT', 'ASC');
+		$result = $this->db->get();
+		
+		$i=0;
+		foreach($result->result() as $row){
+			$pdfdata[$i][0] = $i +1;
+			$pdfdata[$i][1] = $row->NIP;
+			$pdfdata[$i][2] = $row->NAMA;
+			$pdfdata[$i][3] = $row->ALAMAT;
+			$pdfdata[$i][4] = $row->NAMA_GOLONGAN;
+			$pdfdata[$i][5] = $row->TMT_GOLONGAN;
+			$pdfdata[$i][6] = $row->NAMA_JABATAN;
+			$pdfdata[$i][7] = $row->TMT_JABATAN;
+			$pdfdata[$i][8] = $row->TMT;
+			$i++;
+		}
+		
+		return $pdfdata;
+		
 	}
 
 	
