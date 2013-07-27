@@ -11,7 +11,7 @@
 <script type="text/javascript" src="js/jquery.jsonp-2.1.4.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script type="text/javascript" src="js/markerwithlabel.js" ></script>
-<script type="text/javascript" src="lib/map.js" ></script>
+<script type="text/javascript" src="lib/mapKML.js" ></script>
 <script type="text/javascript" src="js/custom.js" ></script>
 <script type="text/javascript">
 	function loading() {
