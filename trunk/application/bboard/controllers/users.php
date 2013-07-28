@@ -45,7 +45,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/index/';
 		$config['total_rows'] = $this->db->count_all('USERS');
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '10';
+		$config['per_page'] = '5';
 		$config['num_links'] = '3';
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
@@ -67,7 +67,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
 		$config['total_rows'] = $this->db->count_all('USERS');
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '10';
+		$config['per_page'] = '5';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
@@ -84,7 +84,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
 		$config['total_rows'] = $this->users->get_item_sdm($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '10';
+		$config['per_page'] = '5';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
@@ -135,17 +135,19 @@ class Users extends MY_Controller
 	
 	public function add_sdm(){
 
+		
 		$data['results'] = $this->users->get_allitem_sdm();
-		$data['nilai'] = 'a';
+		
 		$this->load->view('users/users_add_sdm', $data);
 	}
 	
 	public function proses_add_sdm(){
 		# get post data
-        $USERNAME = $this->input->post('USERNAME');
+        $USER_ID = $this->input->post('USER_ID');
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
-		$results=$this->users->get_item_by_username($USERNAME);
-		$data['USERNAME']=$USERNAME;
+		$results=$this->users->get_item_by_username($USER_ID);
+		$data['USER_ID']=$USER_ID;
+		$data['USERNAME']=$results->row()->USERNAME;
 		$data['NAME']=$results->row()->NAME;
 		$data['PASSWORD']=$results->row()->PASSWORD;
 		$data['DEPARTMENT']=$results->row()->DEPARTMENT;
@@ -157,7 +159,7 @@ class Users extends MY_Controller
 		
 		# set rules validation
 		
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
+        $this->form_validation->set_rules('USER_ID', 'USER_ID', 'required');
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
         
 		
@@ -281,7 +283,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/proses_pencarian/';
 		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '10';
+		$config['per_page'] = '5';
 		$config['num_links'] = '3';
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	

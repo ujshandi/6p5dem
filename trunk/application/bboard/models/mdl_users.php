@@ -78,10 +78,10 @@ class mdl_users extends CI_Model{
 
 	}
 	
-	function get_item_by_username($USERNAME){
+	function get_item_by_username($USER_ID){
 		$this->db->flush_cache();
 
-		$this->db->where('USERNAME', $USERNAME);
+		$this->db->where('USER_ID', $USER_ID);
 	
 		return $this->db->get('USERS');
 	}
@@ -109,6 +109,7 @@ class mdl_users extends CI_Model{
 	}
 	function insert_sdm($data){
 		$this->db->flush_cache();
+		$this->db->set('USER_ID', $data['USER_ID']);
 		$this->db->set('USERNAME', $data['USERNAME']);
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
 		$this->db->set('NAME', $data['NAME']);
@@ -150,8 +151,9 @@ class mdl_users extends CI_Model{
 
 	function update_sdm($data){
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		$result = $this->db->update('SDM_USERS');
+		
 		$this->db->where('USERNAME', $data['USERNAME']);
+		$result = $this->db->update('SDM_USERS');
 		if($result) {
 			return TRUE;
 		}else {
@@ -210,7 +212,7 @@ class mdl_users extends CI_Model{
 		return $out;
 	}
 	
-	function get_user_not_in_sdm($d="",$arr_users=""){
+	function get_user_not_in_sdm($d="",$arr_users=array()){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
 		$class = isset($d['class'])?$d['class']:'';
@@ -218,23 +220,25 @@ class mdl_users extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->from('USERS');
-		if ($arr_users!=""){
-			$this->db->where_not_in('USERNAME' ,  $arr_users);
+		if (count($arr_users)>0){
+			$this->db->where_not_in('USER_ID' ,  $arr_users);
 		}
 		$res = $this->db->get();
 		
 		$out = '<select name="'.$name.'" id="'.$id.'">';
 		foreach($res->result() as $r){
-			if($r->USERNAME == trim($value)){
-				$out .= '<option value="'.$r->USERNAME.'" selected="selected">'.$r->USERNAME.'</option>';
+			if($r->USER_ID == trim($value)){
+				$out .= '<option value="'.$r->USER_ID.'" selected="selected">'.$r->USERNAME.'</option>';
 			}else{
-				$out .= '<option value="'.$r->USERNAME.'">'.$r->USERNAME.'</option>';
+				$out .= '<option value="'.$r->USER_ID.'">'.$r->USERNAME.'</option>';
 			}
 		}
 		$out .= '</select>';
 		
 		return $out;
 	}
+	
+	
 	
 	function get_group_user_sdm($d=""){
 		$name = isset($d['name'])?$d['name']:'';
