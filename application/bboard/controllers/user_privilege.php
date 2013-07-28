@@ -18,6 +18,7 @@ class user_privilege extends MY_Controller
 		$this->open_backend();
 		
 		# config pagination
+		/*
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_privilege/index/';
 		$config['total_rows'] = $this->user_privilege->countItem();
 		$config['per_page'] = '30';
@@ -26,10 +27,36 @@ class user_privilege extends MY_Controller
 		
 		$data['results'] = $this->user_privilege->getItem($config['per_page'], $this->uri->segment(3));
 		$this->load->view('user_privilege/user_privilege_list', $data);
-		
+		*/
+		$this->load->view('user_privilege/user_privilege_tabbed');
 		$this->close_backend();
-		
 	}
+	
+	
+	public function get_all_bboard(){
+		$keys="";
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_privilege/get_all_bboard/';
+		$config['total_rows'] = $this->user_privilege->get_item_bboard($keys,false);
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->user_privilege->get_item_bboard($keys,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('user_privilege/privilege_list_bboard', $data);
+	}
+	
+	public function get_all_sdm(){
+		$keys = "";
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_privilege/get_all_sdm/';
+		$config['total_rows'] = $this->user_privilege->get_item_sdm($keys,true);
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->user_privilege->get_item_sdm($keys,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('user_privilege/privilege_list_sdm', $data);
+	}
+	
 	
 	public function add(){
 		//$this->open_backend();
@@ -122,15 +149,8 @@ class user_privilege extends MY_Controller
 		//$this->close_backend();
 	}
 	
-	public function edit($id){
-		$this->open_backend();
+	public function edit_bboard($id){
 		
-		$data['id'] = $id;
-		$this->load->view('user_privilege/user_privilege', $data);
-		$this->close_backend();
-	}
-	
-	public function load_edit($id){
 		$data['id'] = $id;
 		
 		$count_rows = $this->user_privilege->get_data_edit($id, true);
@@ -143,8 +163,9 @@ class user_privilege extends MY_Controller
 		}
 		$data['count_rows'] = $count_rows;
 		$this->load->view('user_privilege/user_privilege_edit', $data);
+		
 	}
-	
+
 	public function load_edit_diklat($id){
 		$data['id'] = $id;
 		$data['results'] = $this->user_privilege->get_data_edit_diklat($id);

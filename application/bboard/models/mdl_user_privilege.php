@@ -35,6 +35,42 @@ class mdl_user_privilege extends CI_Model{
 		
 
 	}
+	
+	function get_item_bboard($keys="",$count_rows=false,$num=0, $offset=0)
+	{
+		$this->db->flush_cache();
+		
+		$this->db->select('*');
+		$this->db->from('USER_GROUP');
+		
+		
+		if ($keys!=""){
+			$this->db->where('USER_GROUP_ID', $id);
+		}
+		if ($count_rows){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
+	
+	function get_item_sdm($keys="",$count_rows=false,$num=0, $offset=0)
+	{
+		$this->db->flush_cache();
+		
+		$this->db->select('*');
+		$this->db->from('SDM_USER_GROUP');
+		
+		
+		if ($keys!=""){
+			$this->db->where('USER_GROUP_ID', $id);
+		}
+		if ($count_rows){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
 
 	function countItem(){
 		$this->db->select('USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP.USER_GROUP_NAME');
@@ -136,7 +172,7 @@ class mdl_user_privilege extends CI_Model{
 		$this->db->from('SDM_USER_GROUP_MENU');
 		$this->db->join('SDM_MENU','SDM_MENU.MENU_ID=SDM_USER_GROUP_MENU.MENU_ID');
 		$this->db->join('SDM_USER_GROUP','SDM_USER_GROUP.USER_GROUP_ID=SDM_USER_GROUP_MENU.USER_GROUP_ID');
-		/*$this->db->where('SDM_USER_GROUP_MENU.USER_GROUP_ID', $id); */
+		$this->db->where('SDM_USER_GROUP_MENU.USER_GROUP_ID', $id); 
 		
 		return $this->db->get();
 	}

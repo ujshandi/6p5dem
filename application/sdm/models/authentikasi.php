@@ -72,6 +72,7 @@ class Authentikasi extends CI_Model{
                     AND c.menu_id = d.menu_id					
 					AND a.user_id = '".$userid."' ORDER BY d.menu_grouping_id,d.menu_id";
 		//echo "$sql"; exit;
+		
 	    return $this->db->query($sql);			
 	}
 	
