@@ -88,7 +88,7 @@ $( "#TGL_MASUK" ).datepicker();
 				?>
 			</li>
 			
-			<li><label for="">KETERANGAN <em>*</em></label> <input name="KETERANGAN" value="<?=$result->row()->KETERANGAN->load()?>" type="text" class="five"/></li>
+			<li><label for="">KETERANGAN <em>*</em></label> <input name="KETERANGAN" value="<?=ReadCLOB($result->row()->KETERANGAN)?>" type="text" class="five"/></li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>

@@ -5,7 +5,8 @@ class mdl_peserta extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
+	function getData($num=0, $offset=0, $filter){
+		# get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_MST_PENDAFTARAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_PENDAFTARAN');
@@ -14,7 +15,32 @@ class mdl_peserta extends CI_Model{
 		$this->db->limit($num, $offset);
 		$this->db->order_by('IDPENDAFTAR');
 		
-		return $this->db->get();
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		
+		# get data
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_PENDAFTARAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->from('DIKLAT_MST_PENDAFTARAN');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PENDAFTARAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PENDAFTARAN.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('IDPENDAFTAR');
+		
+		//filter
+		if(!empty($filter['kode_upt']))
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		if(!empty($filter['search']))
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
 		
 	}
 	
@@ -162,9 +188,9 @@ class mdl_peserta extends CI_Model{
 	}
 	
 	function getOptionPeserta($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
@@ -173,7 +199,8 @@ class mdl_peserta extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($res->result() as $r){
 			if($r->NO_PESERTA == trim($value)){
 				$out .= '<option value="'.$r->NO_PESERTA.'" selected="selected">'.$r->NAMA_PESERTA.'</option>';
@@ -181,7 +208,7 @@ class mdl_peserta extends CI_Model{
 				$out .= '<option value="'.$r->NO_PESERTA.'">'.$r->NAMA_PESERTA.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
@@ -235,16 +262,16 @@ class mdl_peserta extends CI_Model{
 		
 	}
 	
-	function getPesertaRegister($upt, $diklat, $tahun){
+	function getPesertaRegister($upt, $diklat){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('DIKLAT_MST_PESERTA');
-		$this->db->where('THN_ANGKATAN', $tahun);
+		$this->db->from('DIKLAT_MST_PENDAFTARAN');
+		//$this->db->where('THN_ANGKATAN', $tahun);
 		$this->db->where('KODE_UPT', $upt);
 		$this->db->where('KODE_DIKLAT', $diklat);
-		$this->db->where('STATUS_PESERTA', 'Registrasi');
+		$this->db->where('STATUS_PENDAFTAR', 'Daftar');
 		
-		$this->db->order_by('NAMA_PESERTA');
+		$this->db->order_by('NAMA_PENDAFTAR');
 		
 		return $this->db->get();
 		
@@ -255,11 +282,11 @@ class mdl_peserta extends CI_Model{
 		
 		foreach($data as $r){
 			$this->db->flush_cache();
-			$this->db->set('STATUS_PESERTA', 'Lulus');
+			$this->db->set('STATUS_PENDAFTAR', 'Diterima');
 			
-			$this->db->where('IDPESERTA', $r['IDPESERTA']);
+			$this->db->where('IDPENDAFTAR', $r['IDPENDAFTAR']);
 
-			$result = $this->db->update('DIKLAT_MST_PESERTA');
+			$result = $this->db->update('DIKLAT_MST_PENDAFTARAN');
 		}
 		
 		// $errNo   = $this->db->_error_number();
