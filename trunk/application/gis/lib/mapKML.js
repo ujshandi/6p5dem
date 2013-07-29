@@ -146,7 +146,7 @@ LatLngControl.prototype.updatePosition = function(latLng) {
 function mapInit(){
 	var centerCoord = new google.maps.LatLng(-0.563985,118.088608);
 	var mapOptions = {
-		zoom: 6,
+		zoom: 5,
 		center: centerCoord,
 		draggable: true,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -192,6 +192,12 @@ function mapInit(){
 	google.maps.event.addListener(map, 'mousemove', function(mEvent) {
 	  latLngControl.updatePosition(mEvent.latLng);
 	});
+	
+	 //google.maps.event.addListener(kmlLayer, 'click', function(kmlEvent) {
+				   //var text = kmlEvent.featureData.description;
+				  // showInContentWindow(text);
+	//});
+
     //var ctaLayer = new google.maps.KmlLayer({
     //url: 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml'
 	  //url: 'http://metrotrack.web.id/kab.kml'
@@ -279,7 +285,9 @@ function boxclick2(box, category){
 	 
   }
   else {
-	 kmlLayer.setMap(null) ;
+	for (i in kmlLayers) {
+				kmlLayers[i].setMap(null);
+			}
   }  
 	document.getElementById(category+"box").checked = box.checked;
 	if (!box.checked) infowindow.close();
@@ -287,22 +295,6 @@ function boxclick2(box, category){
 
 function create_kmlLayer(kmlURL,kmlOptions){
    kmlLayer = new google.maps.KmlLayer(kmlURL, kmlOptions);
-}
-
-function downloadUrl(url,callback) {
- var request = window.ActiveXObject ?
-     new ActiveXObject('Microsoft.XMLHTTP') :
-     new XMLHttpRequest;
-
- request.onreadystatechange = function() {
-   if (request.readyState == 4) {
-     request.onreadystatechange = doNothing;
-     callback(request, request.status);
-   }
- };
-
- request.open('GET', url, true);
- request.send(null);
 }
 
 function create_kmlFileDarat(){
@@ -328,14 +320,31 @@ function create_kmlFileDaratOK(){
 				//window.alert(kmlLayerURL);
 				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
                 //kmlLayer.setMap(map);
-				 kmlLayer = new google.maps.KmlLayer({
+				 kmlLayers[i] = new google.maps.KmlLayer({
 					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+kode+'.kml',
-					suppressInfoWindows: false,
+					suppressInfoWindows: true,
+					preserveViewport: true,
 					map: map
+				});	
+				 google.maps.event.addListener(kmlLayers[i], 'click', function(kmlEvent) {
+				    var text = kmlEvent.featureData.description;
+				    var pesan= 'Jumlah SDM: '+jumlah;
+					infowindow.close();
+					//window.alert("klik ok");
+					//kmlEvent.featureData.infowindow.replace("");
+					//infowindow.setContent('testttttt');
+					//infowindow.open(map, kmlLayers[i]);
+					//infowindow.open(map);
+					 if (kmlEvent.featureData && kmlEvent.featureData.description) {
+							infowindow.setOptions({ "position": kmlEvent.latLng,
+								"pixelOffset": kmlEvent.pixelOffset,
+							"content": 'Jumlah SDM: '+jumlah });
+						infowindow.open(map);
+					}
 				});
+  
+				 
 				
-				
-                 ;				
 			});
 		},
 		error: function() {
@@ -343,3 +352,4 @@ function create_kmlFileDaratOK(){
 		}
 	});
 }
+
