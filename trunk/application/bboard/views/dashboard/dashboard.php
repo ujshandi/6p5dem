@@ -59,7 +59,7 @@
       <img src="<?=base_url()?>asset/board/asset/frontpage/images/icon6.png" alt="" title="" border="0" class="feat_thumb" />
       <div class="feat_details">
       <h4>Basis Data Peraturan Transportasi</h4>
-      <a href="#" class="inlink clear">ENTER</a>
+      <a href="<?php echo base_url();?>jdih.php" class="inlink clear">ENTER</a>
       <p>Pengelolaan data peraturan.</p>
       </div>
     </div>

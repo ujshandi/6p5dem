@@ -4,6 +4,8 @@
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta_backend/add'?>" class="control"> <span class="add">Tambah Pendaftar Taruna</span></a>
 	
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta_backend/add_lulus1'?>" class="control"> <span class="add">Tambah Pendaftar Lulus Ujian</span></a>
+	
 	<table width="100%">
 	  <thead>
 		<th>No</th>
