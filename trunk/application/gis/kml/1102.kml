@@ -13,7 +13,12 @@
 	<SimpleField name="YCOORD" type="float"></SimpleField>
 </Schema>
   <Placemark>
-	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+     <description><![CDATA[<h4>Kabupaten</h4>
+					<ul class="textattributes">
+					<li><strong><span class="atr-name">KAB_KOTA</span>:</strong> <span class="atr-value">Kab. ACEH TENGGARA</span></li>			 
+					</ul>]]>
+    </description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>1</fill></PolyStyle></Style>
 	<ExtendedData><SchemaData schemaUrl="#1102">
 		<SimpleData name="KODE">1102</SimpleData>
 		<SimpleData name="KABUPATEN">ACEH TENGGARA</SimpleData>
