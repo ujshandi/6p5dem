@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>6101710</name>
+<Schema name="6101710" id="6101710">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="KODE" type="string"></SimpleField>
+	<SimpleField name="KABUPATEN" type="string"></SimpleField>
+	<SimpleField name="KETERANGAN" type="string"></SimpleField>
+	<SimpleField name="SUMBER" type="string"></SimpleField>
+	<SimpleField name="TGL" type="string"></SimpleField>
+	<SimpleField name="XCOORD" type="float"></SimpleField>
+	<SimpleField name="YCOORD" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><color>FF00FF00</color><fill>1</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#6101710">
+		<SimpleData name="KODE">6101710</SimpleData>
+		<SimpleData name="KABUPATEN">kotib singkawang</SimpleData>
+		<SimpleData name="KETERANGAN">0</SimpleData>
+		<SimpleData name="SUMBER">0</SimpleData>
+		<SimpleData name="TGL">0000/00/00</SimpleData>
+		<SimpleData name="XCOORD">12202.000000000000000</SimpleData>
+		<SimpleData name="YCOORD">0.000000000000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>109.023529,0.902769 109.020882,0.897247 109.017014,0.89458 109.00457,0.889233 108.998039,0.886967 108.991508,0.885518 108.980286,0.886915 108.976189,0.8916 108.967995,0.908119 108.956415,0.922182 108.9566,0.92264 108.959,0.92975 108.9603,0.93314 108.960475,0.933604 108.9614,0.93606 108.9623,0.9383 108.9635,0.94186 108.9644,0.94467 108.9654,0.94765 108.9664,0.95098 108.9678,0.95465 108.968798,0.957327 108.982399,0.953297 108.995064,0.950475 109.007523,0.946019 109.019989,0.938704 109.02919,0.931787 109.032463,0.926487 109.033081,0.921995 109.03228,0.914028 109.023529,0.902769</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>3271</name>
+<Schema name="3271" id="3271">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="KODE" type="string"></SimpleField>
+	<SimpleField name="KABUPATEN" type="string"></SimpleField>
+	<SimpleField name="KETERANGAN" type="string"></SimpleField>
+	<SimpleField name="SUMBER" type="string"></SimpleField>
+	<SimpleField name="TGL" type="string"></SimpleField>
+	<SimpleField name="XCOORD" type="float"></SimpleField>
+	<SimpleField name="YCOORD" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><color>FF00FF00</color><fill>1</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#3271">
+		<SimpleData name="KODE">3271</SimpleData>
+		<SimpleData name="KABUPATEN">Kodya BOGOR</SimpleData>
+		<SimpleData name="KETERANGAN">13255480.15</SimpleData>
+		<SimpleData name="SUMBER"></SimpleData>
+		<SimpleData name="TGL">0000/00/00</SimpleData>
+		<SimpleData name="XCOORD">0.000000000000000</SimpleData>
+		<SimpleData name="YCOORD">0.000000000000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>106.798576,-6.60386 106.795578,-6.601779 106.794121,-6.599435 106.790947,-6.598309 106.789642,-6.595353 106.786781,-6.594146 106.783554,-6.588908 106.78112,-6.586873 106.778229,-6.585819 106.776146,-6.582812 106.774612,-6.581009 106.771515,-6.580267 106.769432,-6.577954 106.768875,-6.57499 106.767197,-6.573601 106.765495,-6.571677 106.768234,-6.570091 106.771065,-6.568402 106.774368,-6.566865 106.776711,-6.565573 106.779617,-6.564135 106.783035,-6.562963 106.785904,-6.56144 106.790634,-6.560565 106.79274,-6.560262 106.794975,-6.560002 106.798515,-6.560801 106.801079,-6.563535 106.802177,-6.566681 106.802864,-6.569571 106.803192,-6.572773 106.803154,-6.57755 106.80407,-6.582675 106.804733,-6.586678 106.805557,-6.589697 106.806511,-6.592513 106.807014,-6.594739 106.808128,-6.599491 106.808578,-6.602355 106.80854,-6.607131 106.803436,-6.605017 106.800659,-6.604092 106.798576,-6.60386</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

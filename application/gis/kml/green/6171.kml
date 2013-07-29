@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>6171</name>
+<Schema name="6171" id="6171">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="KODE" type="string"></SimpleField>
+	<SimpleField name="KABUPATEN" type="string"></SimpleField>
+	<SimpleField name="KETERANGAN" type="string"></SimpleField>
+	<SimpleField name="SUMBER" type="string"></SimpleField>
+	<SimpleField name="TGL" type="string"></SimpleField>
+	<SimpleField name="XCOORD" type="float"></SimpleField>
+	<SimpleField name="YCOORD" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><color>FF00FF00</color><fill>1</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#6171">
+		<SimpleData name="KODE">6171</SimpleData>
+		<SimpleData name="KABUPATEN">Kodya  PONTIANAK</SimpleData>
+		<SimpleData name="KETERANGAN">313784089.26</SimpleData>
+		<SimpleData name="SUMBER"></SimpleData>
+		<SimpleData name="TGL">0000/00/00</SimpleData>
+		<SimpleData name="XCOORD">0.000000000000000</SimpleData>
+		<SimpleData name="YCOORD">0.000000000000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>109.419975,0.003938 109.421257,-0.019959 109.425568,-0.026692 109.432968,-0.042816 109.433666,-0.045474 109.437096,-0.058537 109.435883,-0.065075 109.425072,-0.076126 109.423447,-0.081644 109.426559,-0.099614 109.431694,-0.106958 109.431305,-0.117581 109.428246,-0.119425 109.417809,-0.116789 109.41188,-0.1168 109.407593,-0.121914 109.403328,-0.13234 109.399269,-0.148485 109.397461,-0.159723 109.395271,-0.184239 109.392433,-0.1965 109.386513,-0.198963 109.380783,-0.197748 109.374214,-0.18918 109.366013,-0.181025 109.353325,-0.176146 109.342667,-0.168199 109.332832,-0.15882 109.32666,-0.144737 109.320717,-0.14005 109.311493,-0.131692 109.305351,-0.12823 109.300026,-0.124359 109.287521,-0.114781 109.281372,-0.107439 109.269463,-0.08826 109.268997,-0.065791 109.272415,-0.04066 109.268509,-0.031066 109.267059,-0.024736 109.266441,-0.021878 109.268883,-0.017992 109.276237,-0.014097 109.283997,-0.007955 109.290726,0.000841 109.306236,0.013126 109.333626,0.020529 109.361649,0.01956 109.390083,0.017365 109.40786,0.021687 109.416054,0.01823 109.418098,0.017008 109.419975,0.003938</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

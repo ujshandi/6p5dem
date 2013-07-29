@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>3272</name>
+<Schema name="3272" id="3272">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="KODE" type="string"></SimpleField>
+	<SimpleField name="KABUPATEN" type="string"></SimpleField>
+	<SimpleField name="KETERANGAN" type="string"></SimpleField>
+	<SimpleField name="SUMBER" type="string"></SimpleField>
+	<SimpleField name="TGL" type="string"></SimpleField>
+	<SimpleField name="XCOORD" type="float"></SimpleField>
+	<SimpleField name="YCOORD" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><color>FF00FF00</color><fill>1</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#3272">
+		<SimpleData name="KODE">3272</SimpleData>
+		<SimpleData name="KABUPATEN">Kodya SUKABUMI</SimpleData>
+		<SimpleData name="KETERANGAN">9631341.09</SimpleData>
+		<SimpleData name="SUMBER"></SimpleData>
+		<SimpleData name="TGL">0000/00/00</SimpleData>
+		<SimpleData name="XCOORD">0.000000000000000</SimpleData>
+		<SimpleData name="YCOORD">0.000000000000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>106.909157,-6.941809 106.908615,-6.940469 106.907135,-6.93819 106.906189,-6.936463 106.905006,-6.934458 106.90406,-6.932794 106.903305,-6.930823 106.903069,-6.929615 106.902893,-6.928 106.902557,-6.926795 106.902435,-6.925753 106.901733,-6.923443 106.901726,-6.921858 106.901726,-6.919211 106.901085,-6.916377 106.900871,-6.914763 106.900795,-6.91291 106.901505,-6.911577 106.902603,-6.910942 106.903793,-6.910001 106.9049,-6.909568 106.90641,-6.909125 106.908409,-6.909445 106.910126,-6.909166 106.912033,-6.908747 106.913681,-6.908333 106.91526,-6.907821 106.917213,-6.907805 106.918732,-6.907699 106.919868,-6.907029 106.921021,-6.907236 106.922707,-6.907125 106.924545,-6.908751 106.925598,-6.910594 106.925865,-6.911936 106.925995,-6.914226 106.925896,-6.915813 106.92572,-6.916897 106.92572,-6.918246 106.92572,-6.91973 106.925926,-6.921175 106.926216,-6.92309 106.926231,-6.925046 106.926216,-6.927373 106.926193,-6.929179 106.926186,-6.930207 106.925766,-6.932073 106.925659,-6.934774 106.925133,-6.93644 106.924759,-6.937832 106.924286,-6.939328 106.92289,-6.941287 106.921433,-6.943281 106.919762,-6.944738 106.918633,-6.945442 106.917465,-6.945977 106.915749,-6.946392 106.914337,-6.94663 106.912674,-6.946335 106.911491,-6.944848 106.910446,-6.943694 106.909157,-6.941809</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>
