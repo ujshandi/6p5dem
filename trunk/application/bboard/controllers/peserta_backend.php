@@ -60,7 +60,7 @@ class peserta_backend extends My_Controller {
 		
 		$this->load->view('peserta_backend/peserta_list', $data);
 		
-		$this->close();
+		$this->close_backend();
 	}
 	
 	public function search(){
@@ -68,7 +68,7 @@ class peserta_backend extends My_Controller {
 		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
 		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
 		
-		redirect('peserta');
+		redirect('peserta_backend');
 	}
 	
 	public function view($id, $idpeserta=""){
