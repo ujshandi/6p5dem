@@ -68,7 +68,7 @@ $( "#TGL_MASUK" ).datepicker();
 			
 			<li><label for="">TANGGAL LAHIR<em>*</em></label> <input name="TGL_LAHIR" value="<?=$result->row()->TGL_LAHIR?>" type="text" class="one" id="TGL_LAHIR"/></li>
 			
-			<li><label for="">JENIS KELAMIn <em>*</em></label>
+			<li><label for="">JENIS KELAMIN <em>*</em></label>
 				<?php 
 					$opti['id'] = 'JK';
 					$opti['name'] = 'JK';
