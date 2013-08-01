@@ -3,11 +3,12 @@
 	<h1 class="heading">Data Peserta</h1>
 	<hr/>
 	<?=form_open('front/peserta')?>
-		<?
-			$opt['name'] = 'KODE_UPT';
-			$opt['value'] = isset($KODE_UPT)?$KODE_UPT:$this->input->post('KODE_UPT');
-			echo $this->mdl_satker->getOptionUPTChild($opt)
-		?>
+		<select name="KODE_UPT">
+			<?
+				$opt['value'] = isset($KODE_UPT)?$KODE_UPT:$this->input->post('KODE_UPT');
+				echo $this->mdl_satker->getOptionUPTChild($opt)
+			?>
+		</select>
 		<br>
 		<input type="submit" value="Proses" class="control">
 	<?=form_close()?>
