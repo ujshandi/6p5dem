@@ -76,35 +76,27 @@ $( "#TGL_PUBLIKASI" ).datepicker();
 			</li>
 			
 			<li><label for="">DOSEN <em>*</em></label>
-				<div id="IDDOSEN_1">
-				<select name="IDDOSEN_1">
+				<select name="IDDOSEN_1" id="IDDOSEN_1">
 					<option value="">--Pilih--</option>        	
 				</select>
-				</div>
 			</li>
 			
 			<li><label for="">DOSEN <em> </em></label>
-				<div id="IDDOSEN_2">
-				<select name="IDDOSEN_2">
+				<select name="IDDOSEN_2" id="IDDOSEN_2">
 					<option value="">--Pilih--</option>        	
 				</select>
-				</div>
 			</li>
 			
 			<li><label for="">DOSEN <em> </em></label>
-				<div id="IDDOSEN_3">
-				<select name="IDDOSEN_3">
+				<select name="IDDOSEN_3" id="IDDOSEN_3">
 					<option value="">--Pilih--</option>        	
 				</select>
-				</div>
 			</li>
 			
 			<li><label for="">DOSEN <em> </em></label>
-				<div id="IDDOSEN_4">
-				<select name="IDDOSEN_4">
+				<select name="IDDOSEN_4" id="IDDOSEN_4">
 					<option value="">--Pilih--</option>        	
 				</select>
-				</div>
 			</li>
 			
 			<li><label for="">JUDUL PENELITIAN <em>*</em></label> <input name="JUDUL_PENELITIAN" value="<?=set_value('JUDUL_PENELITIAN')?>" type="text" class="three"/></li>

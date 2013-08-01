@@ -13,6 +13,7 @@
 				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
 			</select>
 			&nbsp;&nbsp;
+			JUDUL PENELITIAN : 
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			&nbsp;&nbsp;
 			<select name="numrow">
@@ -31,7 +32,7 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th width="25%">UPT</th>
+		<th width="20%">UPT</th>
 		<th>DOSEN</th>
 		<th>Judul Penelitian</th>
 		<th>Abstrak</th>
@@ -48,14 +49,14 @@
 		
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
-				<td><?=$r->KODE_UPT?></td>
-				<td><?=$r->IDDOSEN_1?></td>
+				<td><?=$r->NAMA_UPT?></td>
+				<td><?=$r->NAMADOSEN?></td>
 				<td><?=$r->JUDUL_PENELITIAN?></td>
 				<td><?=$r->ABSTRAK->load()?></td>
 				<td><?=$r->TGL_PUBLIKASI?></td>
 				<td >
-					<a href="<?=site_url().'/penelitian/edit/'.$r->ID_PENELITIAN?>" class="control" >
-						<span class="edit">edit</span></a> |
+					<!--<a href="<?=site_url().'/penelitian/edit/'.$r->ID_PENELITIAN?>" class="control" >
+						<span class="edit">edit</span></a> | -->
 					<a href="<?=site_url().'/penelitian/proses_delete/'.$r->ID_PENELITIAN?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
 				</td>
