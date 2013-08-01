@@ -8,9 +8,10 @@ class mdl_penelitian extends CI_Model{
 	function getData($num=0, $offset=0, $filter){
 		# get data
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DOSEN.NAMADOSEN', false);
 		$this->db->from('DIKLAT_PENELITIAN');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_PENELITIAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DOSEN', 'DIKLAT_PENELITIAN.IDDOSEN_1 = DIKLAT_MST_DOSEN.IDDOSEN');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_PENELITIAN.ID_PENELITIAN');
 		
@@ -24,9 +25,10 @@ class mdl_penelitian extends CI_Model{
 
 		# get count
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DOSEN.NAMADOSEN', false);
 		$this->db->from('DIKLAT_PENELITIAN');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_PENELITIAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DOSEN', 'DIKLAT_PENELITIAN.IDDOSEN_1 = DIKLAT_MST_DOSEN.IDDOSEN');
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_PENELITIAN.ID_PENELITIAN');
 		
@@ -128,8 +130,8 @@ class mdl_penelitian extends CI_Model{
 		$this->db->where('KODE_UPT', $KODE_UPT);
 		$result = $this->db->get('DIKLAT_MST_DOSEN');
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
-		$out .= '<option value="" selected="selected">-- Pilih --</option>';
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
 		foreach($result->result() as $r){
 				if(trim($r->IDDOSEN) == trim($value)){
 						$out .= '<option value="'.$r->IDDOSEN.'" selected="selected">'.$r->NAMADOSEN.'</option>';
@@ -137,7 +139,7 @@ class mdl_penelitian extends CI_Model{
 						$out .= '<option value="'.$r->IDDOSEN.'">'.$r->NAMADOSEN.'</option>';
 				}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	
