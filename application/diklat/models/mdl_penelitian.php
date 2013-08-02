@@ -43,6 +43,18 @@ class mdl_penelitian extends CI_Model{
 		return $tmp;
 	}
 	
+	function getDataDetail($id){
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DOSEN.NAMADOSEN', false);
+		$this->db->from('DIKLAT_PENELITIAN');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_PENELITIAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_DOSEN', 'DIKLAT_PENELITIAN.IDDOSEN_1 = DIKLAT_MST_DOSEN.IDDOSEN');
+		
+		$this->db->where('DIKLAT_PENELITIAN.ID_PENELITIAN', $id);
+		
+		return $this->db->get();
+	}
+	
 	function getDataEdit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');

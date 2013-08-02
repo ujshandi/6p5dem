@@ -70,6 +70,20 @@ class penelitian extends My_Controller {
 		redirect('penelitian');
 	}
 	
+		public function view($id, $idpenelitian=""){
+		$this->open();	
+		$data['id'] = $id;
+		$data['result'] = $this->mdl_penelitian->getDataDetail($id);
+		
+		if($idpenelitian != ""){
+			$data['ID_PENELITIAN'] = $idpenelitian;
+			$this->load->view('penelitian/penelitian_view', $data);
+		}else{
+			$this->load->view('penelitian/penelitian_view', $data);
+		}
+		$this->close();
+	}
+	
 	public function add(){
 		$this->open();
 		$data['DIKLAT_MST_UPT'] = $this->mdl_penelitian->getUPT();
