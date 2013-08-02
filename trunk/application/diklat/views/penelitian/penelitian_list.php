@@ -55,6 +55,8 @@
 				<td><?=$r->ABSTRAK->load()?></td>
 				<td><?=$r->TGL_PUBLIKASI?></td>
 				<td >
+					<a href="<?=site_url().'/penelitian/view/'.$r->ID_PENELITIAN?>" class="control" >
+						<span class="view">view</span></a> |
 					<!--<a href="<?=site_url().'/penelitian/edit/'.$r->ID_PENELITIAN?>" class="control" >
 						<span class="edit">edit</span></a> | -->
 					<a href="<?=site_url().'/penelitian/proses_delete/'.$r->ID_PENELITIAN?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
