@@ -46,7 +46,7 @@ $( "#TGL_LAHIR" ).datepicker();
 			
 			<li><label for="">Tahun Mulai Mengajar <em>*</em></label> <input name="TAHUN" value="<?=set_value('TAHUN')?>" type="text" class="one"/></li>
 			
-			<li><label for="">Pendidikan <em>*</em></label> <input name="PENDIDIKAN" value="<?=set_value('PENDIDIKAN')?>" type="text" class="five"/></li>
+			<li><label for="">Pendidikan <em>*</em></label> <textarea name="PENDIDIKAN" value="<?=set_value('PENDIDIKAN')?>" type="text" class="five"/></textarea></li>
 			
 			<li><label for="">Jenis Pengajar <em>*</em></label> <select id="JENIS_DOSEN" name="JENIS_DOSEN">
 			<option value="">- Pilih Jenis Pengajar -</option>

@@ -17,7 +17,7 @@
 		?>
 		<ol>
 			<li><label for="">KODE PROGRAM <em>*</em></label> <input name="KODE_PROGRAM" value="<?=set_value('KODE_PROGRAM')?>" type="text" class="three"/></li>
-			<li><label for="">NAMA PROGRAM <em>*</em></label> <input name="NAMA_PROGRAM" value="<?=set_value('NAMA_PROGRAM')?>" type="text" class="five"/></li>
+			<li><label for="">NAMA PROGRAM <em>*</em></label> <textarea name="NAMA_PROGRAM" value="<?=set_value('NAMA_PROGRAM')?>" type="text" class="five"/></textarea></li>
 			<li>
 				<label for="">SATKER<em>*</em></label>
 				<select name="KODE_INDUK">

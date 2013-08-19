@@ -101,7 +101,7 @@ $( "#TGL_PUBLIKASI" ).datepicker();
 			
 			<li><label for="">JUDUL PENELITIAN <em>*</em></label> <input name="JUDUL_PENELITIAN" value="<?=set_value('JUDUL_PENELITIAN')?>" type="text" class="three"/></li>
 			
-			<li><label for="">ABSTRAK <em>*</em></label> <input name="ABSTRAK" value="<?=set_value('ABSTRAK')?>" type="text" class="five"/></li>
+			<li><label for="">ABSTRAK <em>*</em></label> <textarea name="ABSTRAK" value="<?=set_value('ABSTRAK')?>" type="text" class="five"/> </textarea></li>
 			
 			<li><label for="">TANGGAL PUBLIKASI<em>*</em></label> <input name="TGL_PUBLIKASI" value="<?=set_value('TGL_PUBLIKASI')?>" type="text" class="one" id="TGL_PUBLIKASI"/></li>
 			
