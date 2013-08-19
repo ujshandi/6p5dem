@@ -8,15 +8,13 @@ class mdl_alumni_front extends CI_Model{
 	function getData($num=0, $offset=0, $filter){
 		# get data
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NO_PESERTA, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_ALUMNI');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.NO_PESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		$this->db->limit($num, $offset);
-		//$this->db->where('DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.IDPESERTA');
-		//$this->db->where('DIKLAT_MST_PESERTA.STATUS = "Lulus"');
-		$this->db->order_by('ID_ALUMNI');
+		$this->db->order_by('DIKLAT_MST_ALUMNI.ID_ALUMNI');
 		
 		//filter
 		if(!empty($filter['kode_upt']))
@@ -28,15 +26,14 @@ class mdl_alumni_front extends CI_Model{
 		
 		# get count
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NO_PESERTA, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_ALUMNI');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.NO_PESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		//$this->db->limit($num, $offset);
-		//$this->db->where('DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.IDPESERTA');
-		//$this->db->where('DIKLAT_MST_PESERTA.STATUS = "Lulus"');
-		$this->db->order_by('ID_ALUMNI');
+		$this->db->order_by('DIKLAT_MST_ALUMNI.ID_ALUMNI');
 		
 		//filter
 		if(!empty($filter['kode_upt']))

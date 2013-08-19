@@ -37,7 +37,7 @@
 		<th width="20%">UPT</th>
 		<th width="15%">DIKLAT</th>
 		<th>NO PESERTA</th>
-		<th width="15%">Nama PESERTA</th>
+		<th width="15%">NAMA PESERTA</th>
 		<th>TEMPAT BEKERJA</th>
 	  </thead>
 	  <tbody>
