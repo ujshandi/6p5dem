@@ -34,7 +34,7 @@ $( "#TGL_AKHIR" ).datepicker();
 			
 			<li><label for="">TANGGAL AKHIR <em>*</em></label> <input name="TGL_AKHIR" value="<?=set_value('TGL_AKHIR')?>" type="text" class="one" id="TGL_AKHIR"/></li>
 			
-			<li><label for="">KEGIATAN<em>*</em></label> <input name="KEGIATAN" value="<?=set_value('KEGIATAN')?>" type="text" class="five"/></li>
+			<li><label for="">KEGIATAN<em>*</em></label> <textarea name="KEGIATAN" value="<?=set_value('KEGIATAN')?>" type="text" class="five"/> </textarea></li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>

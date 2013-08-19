@@ -18,7 +18,7 @@
 		<ol>
 		    <input type="hidden" name="id" value="<?=$id?>">
 			<li><label for="">KODE PROGRAM <em>*</em></label> <input name="KODE_PROGRAM" value="<?=$result->row()->KODE_PROGRAM?>" type="text" class="five"/></li>
-			<li><label for="">NAMA PROGRAM <em>*</em></label> <input name="NAMA_PROGRAM" value="<?=$result->row()->NAMA_PROGRAM?>" type="text" class="five"/></li>
+			<li><label for="">NAMA PROGRAM <em>*</em></label> <textarea name="NAMA_PROGRAM" value="<?=$result->row()->NAMA_PROGRAM?>" type="text" class="five"/></textarea></li>
 			<li>
 				<label for="">UPT<em>*</em></label>
 				<select name="KODE_INDUK">
