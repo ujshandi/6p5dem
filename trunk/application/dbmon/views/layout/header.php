@@ -79,10 +79,13 @@
 				
 				<div title="Dashboard Monitoring Diklat" iconCls="chart_pie" style="padding:5px;">
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="status_online" 
-						onClick="loadUrl(this, 'get_form/mon_diklat/peserta');" style="width:250px" >Komposisi Peserta Diklat</a>
+						onClick="loadUrl(this, 'get_form/mon_diklat/peserta');" style="width:300px" >Komposisi Peserta Berdasarkan Program</a>
+					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="status_offline" style="width:300px" 
+						onClick="loadUrl(this, 'get_form/mon_diklat/alumni');" >Komposisi Alumni Berdasarkan Program</a>
+					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="status_online" style="width:250px" 
+						onClick="loadUrl(this, 'get_form/mon_diklat_upt/peserta');" >Komposisi Peserta Berdasarkan UPT</a>
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="status_offline" style="width:250px" 
-						onClick="loadUrl(this, 'get_form/mon_diklat/alumni');" >Komposisi Alumni Diklat</a>
-					
+						onClick="loadUrl(this, 'get_form/mon_diklat_upt/alumni');" >Komposisi Alumni Berdasarkan UPT</a>
 				</div>
 				<div title="Dashboard Monitoring Kompetensi" iconCls="chart_curve" style="padding:5px;">
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 

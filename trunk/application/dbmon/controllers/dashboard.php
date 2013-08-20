@@ -31,6 +31,12 @@ class dashboard extends My_Controller {
 				$mod="mon_diklat";
 			
 			break;
+			case 'mon_diklat_upt':
+				$data['title']='Komposisi Peserta Diklat';
+				$data['flag']=$p2;
+				$mod="mon_diklat_upt";
+			
+			break;
 			
 			case "data_list":
 				$mod="data_list";
@@ -66,9 +72,47 @@ class dashboard extends My_Controller {
 				
 				$data['html']=$html;
 			break;
+			//tambahan
+			/*case "data_list_upt":
+				$mod="data_list_upt";
+				$data['induk_upt']	 =$this->input->post('induk_upt');
+				$data['upt'] =$this->input->post('upt');
+				$data['tahun_akhir'] =$this->input->post('tahun_akhir');
+				$data['tahun_mulai'] =$this->input->post('tahun_mulai');
+				$data_diklat=$this->mdashboard->get_data_upt('get_DIKLAT',$data['induk_upt'],$data['tahun_mulai'],$data['tahun_akhir']);
+				$html_isi="";
+				$html='<table width="100%" border="0">
+					<thead>
+					  <tr>
+						<th>KODE UPT</th>
+						<th>NAMA UPT</th>';
+						
+				for($i=$data['tahun_mulai'];$i<=$data['tahun_akhir'];$i++){		
+					$html .='<th align="right">'.$i.'&nbsp;</th>';
+					
+				}		
+				$html .='</tr></thead>';
+				foreach($data_diklat as $x=>$v){
+				$html .='
+					  <tr>
+						<td>'.$v['KODE_UPT'].'</td>
+						<td>'.$v['NAMA_UPT'].'</td>';
+						for($i=$data['tahun_mulai'];$i<=$data['tahun_akhir'];$i++){	
+								$html .='<td align="right">'.$v['JUMLAH_'.$i].'</td>';
+						}		
+				$html .='</tr>';
+					  
+				}
+				$html .='</table>';
+				
+				$data['html']=$html;
+			break;*/
 			
 			case "data_grafik":
 				$mod="data_grafik";
+			break;
+			case "data_grafik_upt":
+				$mod="data_grafik_upt";
 			break;
 			default:$mod='under';
 		}
@@ -199,6 +243,30 @@ class dashboard extends My_Controller {
 				
 				case 'DIKLAT_MST_PROGRAM':
 					$rec=$this->mdashboard->isi_combo('DIKLAT_MST_PROGRAM','KODE_PROGRAM','NAMA_PROGRAM');
+				break;
+		}
+		//print_r($rec);
+		$optTemp .= "<option value=''>-- Pilih --</option>";			
+			foreach($rec as $v=>$k)
+			{
+				if($this->input->post("v") == $k['ID_NA'])
+					$optTemp .= "<option selected value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+				else 
+					$optTemp .= "<option value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+			}
+			echo $optTemp;	
+		
+	}
+	//tambahan
+	function get_combo_upt($p1,$valfilter="",$val="",$val2=""){
+		$optTemp =""; 
+		switch($p1){
+				case 'DIKLAT_MST_INDUKUPT':
+					$rec=$this->mdashboard->isi_combo_upt('DIKLAT_MST_INDUKUPT','KODE_INDUK','NAMA_INDUK');
+				break;
+				
+				case 'DIKLAT_MST_UPT':
+					$rec=$this->mdashboard->isi_combo_upt('DIKLAT_MST_UPT','KODE_UPT','NAMA_UPT');
 				break;
 		}
 		//print_r($rec);

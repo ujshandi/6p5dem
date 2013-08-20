@@ -94,6 +94,7 @@
 		return $this->db->query($sql)->result_array(); 
 	}
 	
+		
 	function get_data_grid($p1="",$p2="",$p3="",$p4=""){
 		switch ($p1){
 			case "data_diklat":
@@ -145,6 +146,15 @@
 		$where=" WHERE 1=1 ";
 		$v=$this->input->post('v');
 		if($v){if($table=='DIKLAT_MST_PROGRAM')$where .=" AND KODE_INDUK='".$v."'";}
+		$sql="select ".$field_id." as id_na ,".$field_display." as text from ".$table.$where;
+		//echo $sql;
+		return $this->db->query($sql)->result_array();
+	}
+	//tambahan
+	function isi_combo_upt($table,$field_id,$field_display){
+		$where=" WHERE 1=1 ";
+		$v=$this->input->post('v');
+		if($v){if($table=='DIKLAT_MST_UPT')$where .=" AND KODE_INDUK='".$v."'";}
 		$sql="select ".$field_id." as id_na ,".$field_display." as text from ".$table.$where;
 		//echo $sql;
 		return $this->db->query($sql)->result_array();
