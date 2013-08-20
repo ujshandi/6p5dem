@@ -59,13 +59,35 @@ class mdl_users extends CI_Model{
 		$this->db->limit($num, $offset);
 		return $this->db->get();
 	}
+	
 	function get_allitem_sdm(){
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('SDM_USERS');
 		return $this->db->get();
 	}
-
+	
+	function get_item_diklat($key,$count_data=false,$num=0, $offset=0){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_USERS');
+		if ($key!=''){
+				$this->db->like('USERNAME',$key);
+		}
+		
+		if ($count_data){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
+	function get_allitem_diklat(){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_USERS');
+		return $this->db->get();
+	}
+	
 	function getItemById($id)
 
 	{
@@ -98,6 +120,7 @@ class mdl_users extends CI_Model{
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
+		$this->db->set('LEVEL', $data['LEVEL']);
 			
 		$result = $this->db->insert('USERS');
 		
@@ -107,6 +130,28 @@ class mdl_users extends CI_Model{
 			return FALSE;
 		}
 	}
+	
+	function update($data){
+		$this->db->set('NAME', $data['NAME']);
+		$this->db->set('USERNAME', $data['USERNAME']);
+		$this->db->set('PASSWORD', $data['PASSWORD']);
+		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
+		$this->db->set('POSITION', $data['POSITION']);
+		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
+		$this->db->set('NIP', $data['NIP']);
+		$this->db->set('EMAIL', $data['EMAIL']);
+		$this->db->set('LEVEL', $data['LEVEL']);
+		$this->db->where('USER_ID', $data['ID']);
+		$result = $this->db->update('USERS');
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
 	function insert_sdm($data){
 		$this->db->flush_cache();
 		$this->db->set('USER_ID', $data['USER_ID']);
@@ -119,7 +164,7 @@ class mdl_users extends CI_Model{
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
-			
+		
 		$result = $this->db->insert('SDM_USERS');
 		
 		if($result) {
@@ -211,6 +256,29 @@ class mdl_users extends CI_Model{
 		
 		return $out;
 	}
+	function get_group_level($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('LEVEL');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->LEVEL_ID == trim($value)){
+				$out .= '<option value="'.$r->LEVEL_ID.'" selected="selected">'.$r->NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->LEVEL_ID.'">'.$r->NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
 	
 	function get_user_not_in_sdm($d="",$arr_users=array()){
 		$name = isset($d['name'])?$d['name']:'';
@@ -238,7 +306,31 @@ class mdl_users extends CI_Model{
 		return $out;
 	}
 	
-	
+	function get_user_not_in_diklat($d="",$arr_users=array()){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('USERS');
+		if (count($arr_users)>0){
+			$this->db->where_not_in('USER_ID' ,  $arr_users);
+		}
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->USER_ID == trim($value)){
+				$out .= '<option value="'.$r->USER_ID.'" selected="selected">'.$r->USERNAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->USER_ID.'">'.$r->USERNAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
 	
 	function get_group_user_sdm($d=""){
 		$name = isset($d['name'])?$d['name']:'';
@@ -248,6 +340,30 @@ class mdl_users extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->from('SDM_USER_GROUP');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->USER_GROUP_ID == trim($value)){
+				$out .= '<option value="'.$r->USER_GROUP_ID.'" selected="selected">'.$r->USER_GROUP_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->USER_GROUP_ID.'">'.$r->USER_GROUP_NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
+	
+	function get_group_user_diklat($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('DIKLAT_USER_GROUP');
 		
 		$res = $this->db->get();
 		
