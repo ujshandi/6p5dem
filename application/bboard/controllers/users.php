@@ -95,6 +95,22 @@ class Users extends MY_Controller
 		$this->load->view('users/users_list_sdm', $data);
 	}
 	
+	function get_users_diklat(){
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
+		$config['total_rows'] = $this->users->get_item_diklat($keysearch_users,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->get_item_diklat($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_list_diklat', $data);
+	}
+	
 	public function proses_add(){
 		//$this->open_backend();
 		
@@ -108,6 +124,7 @@ class Users extends MY_Controller
 		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
 		
 		# set rules validation
 		$this->form_validation->set_rules('NAME', 'NAME', 'required');
@@ -212,6 +229,7 @@ class Users extends MY_Controller
 		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
 		
 		# set rules validation
 		$this->form_validation->set_rules('NAME', 'NAME', 'required');
@@ -291,6 +309,49 @@ class Users extends MY_Controller
 		$data['results'] = $this->users->get_users_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
 		$this->load->view('users/users_list', $data); 
 		
+	}
+	
+	public function add_diklat(){
+
+		
+		$data['results'] = $this->users->get_allitem_diklat();
+		
+		$this->load->view('users/users_add_diklat', $data);
+	}
+	
+	/*diklat*/
+	public function proses_add_diklat(){
+		# get post data
+        $USER_ID = $this->input->post('USER_ID');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$results=$this->users->get_item_by_username($USER_ID);
+		$data['USER_ID']=$USER_ID;
+		$data['USERNAME']=$results->row()->USERNAME;
+		$data['NAME']=$results->row()->NAME;
+		$data['PASSWORD']=$results->row()->PASSWORD;
+		$data['DEPARTMENT']=$results->row()->DEPARTMENT;
+		$data['POSITION']=$results->row()->POSITION;
+		$data['DESCRIPTION']=$results->row()->DESCRIPTION;
+		$data['NIP']=$results->row()->NIP;
+		$data['EMAIL']=$results->row()->EMAIL;
+		
+		
+		# set rules validation
+		
+        $this->form_validation->set_rules('USER_ID', 'USER_ID', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
+        
+		
+		# set message validation 
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_add_diklat',$data);
+		}else{
+			$this->users->insert_sdm($data);
+			redirect('users/get_users_diklat');
+		}
 	}
 	
 	
