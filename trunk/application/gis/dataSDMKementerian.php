@@ -5,12 +5,12 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
-$stid = oci_parse($conn, 'Select KODEKABUP,count(*) as JUMLAH from sdm_peg_dinas group by KODEKABUP ');
+$stid = oci_parse($conn, ' select * from (Select KABALAMAT,count(*) as JUMLAH from sdm_pegawai group by KABALAMAT) where ROWNUM <= 15 ');
 oci_execute($stid);
 
 echo 'callback([';
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-    $kode = $row['KODEKABUP'];
+    $kode = $row['KABALAMAT'];
 	$jumlah = $row['JUMLAH'];
 	
 	echo '{';
