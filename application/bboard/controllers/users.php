@@ -381,12 +381,15 @@ class Users extends MY_Controller
 		$data['NIP']=$results->row()->NIP;
 		$data['EMAIL']=$results->row()->EMAIL;
 		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		
 		$INDUK_UPT = $this->input->post('INDUK_UPT');
 		$UPT = $this->input->post('UPT');
 		if ($data['LEVEL']==2){
 			$data['KODE_UPT'] = $INDUK_UPT;	
 		}else if ($data['LEVEL']==3){
 			$data['KODE_UPT'] = $UPT;	
+		}else if ($data['LEVEL']==1){
+			$data['KODE_UPT'] = "";	
 		}
 		
 		
