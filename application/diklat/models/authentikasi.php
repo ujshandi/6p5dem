@@ -187,6 +187,20 @@ class Authentikasi extends CI_Model{
 		}		
 	}
    
+	public function get_level(){
+		$user = $this->session->userdata("dataUser");
+		
+		$this->db->select("LEVEL, KODE_UPT");
+		$this->db->from("DIKLAT_USERS");
+		$this->db->where("USERNAME", $user['USER_NAME']);
+		
+		$res = $this->db->get();
+		
+		$ret['LEVEL'] = $res->row()->LEVEL;
+		$ret['KODE_UPT'] = $res->row()->KODE_UPT;
+		
+		return $ret;
+	}
    
 }
 ?>
