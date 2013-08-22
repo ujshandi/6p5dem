@@ -5,6 +5,7 @@
 		
 		var level_id = $("#EDIT_LEVEL_ID").val();
 		$("#EDIT_LEVEL_ID").change(function() {
+			/*
 			$("#edit_tampil_induk_upt").empty();
 			$("#edit_tampil_upt").empty();
 			
@@ -16,7 +17,8 @@
 					   $("#edit_tampil_induk_upt").html(data);
 				 }
 			 });    
-			
+			*/
+			alert();
 		});
 	});
 </script>
