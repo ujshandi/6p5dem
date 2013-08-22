@@ -64,8 +64,10 @@ class Users extends MY_Controller
 	
 	/*get list data bboard from table users*/
 	public function getall(){
+		$keysearch_users = $this->input->post('txt_search');
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
-		$config['total_rows'] = $this->db->count_all('USERS');
+		
+		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
 		$config['per_page'] = '5';
 		$config['num_links'] = '3';
@@ -74,8 +76,30 @@ class Users extends MY_Controller
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
 		
-		$data['results'] = $this->users->getItem($config['per_page'], $this->uri->segment(3));
+		$data['results'] = $this->users->get_users_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
 		$this->load->view('users/users_list', $data);
+	}
+	
+	public function proses_pencarian(){
+	
+		$keysearch_users = $this->input->post('txt_search');
+		/*if ($keysearch_users!=''){
+				$this->session->set_userdata('keysearch_users', $keysearch_users);
+			}else{
+				$keysearch_users = $this->session->userdata('keysearch_users');
+			}*/
+		
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/proses_pencarian/';
+		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->get_users_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_list', $data); 
+		
 	}
 	
 	/*get list data sdm from table sdm*/
@@ -125,13 +149,16 @@ class Users extends MY_Controller
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
 		$data['LEVEL'] = $this->input->post('LEVEL_ID');
-		
+		$INDUK_UPT = $this->input->post('INDUK_UPT');
+		$UPT = $this->input->post('UPT');
+		$data['KODE_UPT'] = $INDUK_UPT;
 		# set rules validation
 		$this->form_validation->set_rules('NAME', 'NAME', 'required');
         $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
         $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
 		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
+		
 		$this->form_validation->set_rules('NIP', 'NIP', 'required|numeric');
 		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
         
@@ -231,6 +258,7 @@ class Users extends MY_Controller
 		$data['EMAIL'] = $this->input->post('EMAIL');
 		$data['LEVEL'] = $this->input->post('LEVEL_ID');
 		
+		
 		# set rules validation
 		$this->form_validation->set_rules('NAME', 'NAME', 'required');
         $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
@@ -238,6 +266,7 @@ class Users extends MY_Controller
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
 		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
 		$this->form_validation->set_rules('NIP', 'NIP', 'required');
+		$this->form_validation->set_rules('KODE_UPT', 'KODE_UPT', 'required');
 		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -270,6 +299,32 @@ class Users extends MY_Controller
 		
 	}
 	
+	public function edit_diklat($id){
+		$data['id'] = $id;
+		$results = $this->users->get_data_edit_diklat($id);
+		$data['USERNAME']=$results->row()->USERNAME;
+		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
+		$this->load->view('users/users_edit_diklat', $data);
+	}
+	
+	public function proses_edit_diklat(){
+		$data['USERNAME'] = $this->input->post('USERNAME');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		
+		$this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_edit_diklat',$data);
+		}else{
+			$this->users->update_diklat($data);
+			redirect('users/get_users_diklat');
+		}
+		
+	}
+	
 	public function proses_delete($id){
 		if($this->users->delete($id)){
 			redirect('users');
@@ -289,27 +344,7 @@ class Users extends MY_Controller
 	
 	}
 	
-	public function proses_pencarian(){
 	
-		$keysearch_users = $this->input->post('txt_search');
-		/*if ($keysearch_users!=''){
-				$this->session->set_userdata('keysearch_users', $keysearch_users);
-			}else{
-				$keysearch_users = $this->session->userdata('keysearch_users');
-			}*/
-		
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/proses_pencarian/';
-		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
-		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
-		$config['num_links'] = '3';
-		$config['full_tag_close'] = '</p>';
-		$this->pagination->initialize($config);	
-		
-		$data['results'] = $this->users->get_users_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
-		$this->load->view('users/users_list', $data); 
-		
-	}
 	
 	public function add_diklat(){
 
@@ -349,11 +384,34 @@ class Users extends MY_Controller
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('users/users_add_diklat',$data);
 		}else{
-			$this->users->insert_sdm($data);
+			$this->users->insert_diklat($data);
 			redirect('users/get_users_diklat');
 		}
 	}
 	
+	function get_induk_upt(){
+		$level_id=$this->input->post('level_id');
+		$data['level_id'] = $level_id;
+		if ($level_id=='2'){ /*induk upt -> tbl mst_induk_upt */
+			$data['results']=$this->users->get_induk_upt();
+			
+			//upt darat,laut.udara
+		}elseif($level_id=='3'){ /*upt ->induk upt dan master upt*/
+			$data['results']=$this->users->get_induk_upt();
+		}else{
+			$data['results'] = "";
+		}
+		
+		$this->load->view('users/get_induk_upt', $data);
+	}
+	
+	function get_upt(){
+		$induk_upt=$this->input->post('induk_upt');
+		$var_level_id=$this->input->post('var_level_id');
+		
+		$data['results']=$this->users->get_upt($induk_upt);
+		$this->load->view('users/get_upt', $data);
+	}
 	
 }
 

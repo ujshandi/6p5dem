@@ -23,8 +23,9 @@ class mdl_users extends CI_Model{
 	{
 
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('USERS.*,USER_GROUP.USER_GROUP_NAME');
 		$this->db->from('USERS');
+		$this->db->join('USER_GROUP','USER_GROUP.USER_GROUP_ID=USERS.USER_GROUP_ID');
 		$this->db->limit($num, $offset);
 		return $this->db->get();
 
@@ -32,8 +33,9 @@ class mdl_users extends CI_Model{
 	
 	function get_users_like($key,$count_data=false,$num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('USERS.NIP,USERS.USERNAME,USERS.NAME,USERS.LEVEL,USERS.DEPARTMENT,USERS.POSITION,USERS.USER_ID,USER_GROUP.USER_GROUP_NAME');
 		$this->db->from('USERS');
+		$this->db->join('USER_GROUP','USER_GROUP.USER_GROUP_ID=USERS.USER_GROUP_ID');
 		if ($key!=''){
 				$this->db->like('USERNAME',$key);
 		}
@@ -47,8 +49,11 @@ class mdl_users extends CI_Model{
 	
 	function get_item_sdm($key,$count_data=false,$num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('SDM_USERS.*,SDM_USER_GROUP.USER_GROUP_NAME,USERS.LEVEL');
 		$this->db->from('SDM_USERS');
+		$this->db->join('USERS','USERS.USER_ID=SDM_USERS.USER_ID');
+		$this->db->join('SDM_USER_GROUP','SDM_USER_GROUP.USER_GROUP_ID=SDM_USERS.USER_GROUP_ID');
+		
 		if ($key!=''){
 				$this->db->like('USERNAME',$key);
 		}
@@ -121,6 +126,7 @@ class mdl_users extends CI_Model{
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
 		$this->db->set('LEVEL', $data['LEVEL']);
+		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 			
 		$result = $this->db->insert('USERS');
 		
@@ -142,6 +148,7 @@ class mdl_users extends CI_Model{
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
 		$this->db->set('LEVEL', $data['LEVEL']);
+		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 		$this->db->where('USER_ID', $data['ID']);
 		$result = $this->db->update('USERS');
 		if($result) {
@@ -166,6 +173,28 @@ class mdl_users extends CI_Model{
 		$this->db->set('EMAIL', $data['EMAIL']);
 		
 		$result = $this->db->insert('SDM_USERS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	
+	function insert_diklat($data){
+		$this->db->flush_cache();
+		$this->db->set('USER_ID', $data['USER_ID']);
+		$this->db->set('USERNAME', $data['USERNAME']);
+		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$this->db->set('NAME', $data['NAME']);
+		$this->db->set('PASSWORD', $data['PASSWORD']);
+		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
+		$this->db->set('POSITION', $data['POSITION']);
+		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
+		$this->db->set('NIP', $data['NIP']);
+		$this->db->set('EMAIL', $data['EMAIL']);
+		
+		$result = $this->db->insert('DIKLAT_USERS');
 		
 		if($result) {
 			return TRUE;
@@ -207,6 +236,27 @@ class mdl_users extends CI_Model{
 		
 	}
 	
+	function get_data_edit_diklat($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_USERS');
+		$this->db->where('USER_ID', $id);
+		
+		return $this->db->get();
+	}
+	
+
+	function update_diklat($data){
+		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		
+		$this->db->where('USERNAME', $data['USERNAME']);
+		$result = $this->db->update('DIKLAT_USERS');
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
 	
 	function delete($data){
 		$this->db->flush_cache();
@@ -407,6 +457,21 @@ class mdl_users extends CI_Model{
     }
 	
 	
+	function get_induk_upt(){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_INDUKUPT');
+		
+		return $this->db->get();
+	}
+	
+	function get_upt($upt){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_UPT');
+		$this->db->where('KODE_INDUK', $upt);
+		return $this->db->get();
+	}
 
 	
 

@@ -1,0 +1,1 @@
+<label for="">UPT </label>	<select name="UPT" id="UPT">	<option value="0">Pilihan Kosong</option>	<?php 			foreach($results->result()  as $r){				echo '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';		}	?>	</select>

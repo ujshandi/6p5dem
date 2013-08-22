@@ -15,7 +15,7 @@ class menu extends MY_Controller
 
 	function index()
 	{
-		
+
 		$this->open_backend();
 		
 		# config pagination
