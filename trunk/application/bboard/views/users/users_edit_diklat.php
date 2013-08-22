@@ -3,7 +3,7 @@
 	
 	$(document).ready(function() {
 		
-		var level_id = $("#EDIT_LEVEL_ID").val();
+		var edit_level_id = document.getElementById("EDIT_LEVEL_ID");
 		$("#EDIT_LEVEL_ID").change(function() {
 			/*
 			$("#edit_tampil_induk_upt").empty();
@@ -18,7 +18,7 @@
 				 }
 			 });    
 			*/
-			alert();
+			alert(edit_level_id);
 		});
 	});
 </script>
