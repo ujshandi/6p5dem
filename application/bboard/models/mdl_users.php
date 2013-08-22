@@ -124,7 +124,8 @@ class mdl_users extends CI_Model{
 		$this->db->set('EMAIL', $data['EMAIL']);
 		$this->db->set('LEVEL', $data['LEVEL']);
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
-			
+		$this->db->set('STAT', 'A');
+									
 		$result = $this->db->insert('USERS');
 		
 		if($result) {
