@@ -19,7 +19,7 @@ class Authentikasi extends CI_Model{
 	
 	function userExist($data){
 		$data_array = array_merge($data,array("USERS.STAT"=>"A"));	
-		$this->db->select(array('USERNAME','USER_ID','NAME','KD_LOKASI','USER_GROUP_ID','SCOPE', 'USER_FOTO','KDKPKNL'));						
+		$this->db->select(array('USERNAME','USER_ID','NAME','KD_LOKASI','USER_GROUP_ID','SCOPE', 'USER_FOTO','LEVEL','KODE_UPT','KDKPKNL'));						
 		$query = $this->db->get_where('USERS',$data_array);				
 												
 		if($query->num_rows() > 0){
