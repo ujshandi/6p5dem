@@ -193,6 +193,9 @@ class mdl_users extends CI_Model{
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
+		$this->db->set('STAT', 'A';
+		$this->db->set('LEVEL', $data['LEVEL']);
+		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 		
 		$result = $this->db->insert('DIKLAT_USERS');
 		
@@ -248,6 +251,8 @@ class mdl_users extends CI_Model{
 
 	function update_diklat($data){
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$this->db->set('LEVEL', $data['LEVEL']);
+		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 		
 		$this->db->where('USERNAME', $data['USERNAME']);
 		$result = $this->db->update('DIKLAT_USERS');

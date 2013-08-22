@@ -148,10 +148,12 @@ class Users extends MY_Controller
 		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
-		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		/*$data['LEVEL'] = $this->input->post('LEVEL_ID');
 		$INDUK_UPT = $this->input->post('INDUK_UPT');
 		$UPT = $this->input->post('UPT');
-		$data['KODE_UPT'] = $INDUK_UPT;
+		$data['KODE_UPT'] = $INDUK_UPT; */
+		$data['LEVEL'] = "";
+		$data['KODE_UPT'] = "";
 		# set rules validation
 		$this->form_validation->set_rules('NAME', 'NAME', 'required');
         $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
@@ -304,12 +306,21 @@ class Users extends MY_Controller
 		$results = $this->users->get_data_edit_diklat($id);
 		$data['USERNAME']=$results->row()->USERNAME;
 		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
+		$data['LEVEL']=$results->row()->LEVEL;
 		$this->load->view('users/users_edit_diklat', $data);
 	}
 	
 	public function proses_edit_diklat(){
 		$data['USERNAME'] = $this->input->post('USERNAME');
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		$INDUK_UPT = $this->input->post('INDUK_UPT');
+		$UPT = $this->input->post('UPT');
+		if ($data['LEVEL']==2){
+			$data['KODE_UPT'] = $INDUK_UPT;	
+		}else if ($data['LEVEL']==3){
+			$data['KODE_UPT'] = $UPT;	
+		}
 		
 		$this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
@@ -369,6 +380,14 @@ class Users extends MY_Controller
 		$data['DESCRIPTION']=$results->row()->DESCRIPTION;
 		$data['NIP']=$results->row()->NIP;
 		$data['EMAIL']=$results->row()->EMAIL;
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		$INDUK_UPT = $this->input->post('INDUK_UPT');
+		$UPT = $this->input->post('UPT');
+		if ($data['LEVEL']==2){
+			$data['KODE_UPT'] = $INDUK_UPT;	
+		}else if ($data['LEVEL']==3){
+			$data['KODE_UPT'] = $UPT;	
+		}
 		
 		
 		# set rules validation
