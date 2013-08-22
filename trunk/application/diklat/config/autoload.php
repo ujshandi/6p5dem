@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'pagination', 'form_valida
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'oracle');
+$autoload['helper'] = array('url', 'form', 'oracle', 'auth');
 
 
 /*
