@@ -42,7 +42,14 @@
       
 	  
       <div class="right">
-          <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
+          <div class="usr"><span>welcome user</span>
+		  <a href="#">
+			<?
+				$user = $this->session->userdata('dataUser');
+				echo $user['USER_NAME'];
+				//print_r($user);
+			?>
+			</a></div>
             <ul class="homout">
 				<li><a href="<?=base_url()?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
                 <li><a href="<?=base_url().$this->config->item('index_page').'/front'?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />MENU VIEW</a></li>
