@@ -33,6 +33,8 @@ class Authentikasi extends CI_Model{
 								 "SCOPE"=>$item["SCOPE"], // keterangan dinotes
 								 "USER_FOTO"=>$item["USER_FOTO"], //foto											 								
 								 "LOGIN"=>TRUE,
+								 "LEVEL"=>$item["LEVEL"],
+								 "KODE_UPT"=>$item["KODE_UPT"],
 								 "KDKPKNL"=>$item["KDKPKNL"]
 								 );
 			}
