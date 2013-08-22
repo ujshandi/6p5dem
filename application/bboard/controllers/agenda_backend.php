@@ -14,9 +14,17 @@ class agenda_backend extends MY_Controller
 
 	function index()
 	{
+
 		
 		$this->open_backend();
 		
+		$data['can_view'] 	= $this->can_view();
+
+		$data['can_insert'] = $this->can_insert();
+
+		$data['can_update'] = $this->can_update();
+
+		$data['can_delete'] = $this->can_delete();
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/agenda_backend/index/';
 		$config['total_rows'] = $this->db->count_all('BB_AGENDA');
@@ -32,12 +40,19 @@ class agenda_backend extends MY_Controller
 	}
 	
 	public function add(){
+		if ($this->can_insert() == FALSE){
+			redirect('auth/failed');
+		}
+		
 		$this->open_backend();
 		$this->load->view('agenda_backend/agenda_backend_add');
 		$this->close_backend();
 	}
 	
 	public function proses_add(){
+		if ($this->can_insert() == FALSE){
+			redirect('auth/failed');
+		}
 		$this->open_backend();
 		
 		# get post data
@@ -74,6 +89,9 @@ class agenda_backend extends MY_Controller
 	}
 	
 	public function edit($id){
+		if ($this->can_update() == FALSE){
+			redirect('auth/failed');
+		}
 		$this->open_backend();
 		
 		$data['id'] = $id;
@@ -85,6 +103,9 @@ class agenda_backend extends MY_Controller
 	}
 	
 	public function proses_edit(){
+		if ($this->can_update() == FALSE){
+			redirect('auth/failed');
+		}
 		$this->open_backend();
 		
 		$data['id'] = $this->input->post('id');
@@ -119,6 +140,9 @@ class agenda_backend extends MY_Controller
 	}
 	
 	public function proses_delete($id){
+		if ($this->can_delete() == FALSE){
+			redirect('auth/failed');
+		}
 		if($this->agenda_backend->delete($id)){
 			redirect('agenda_backend');
 		}else{
