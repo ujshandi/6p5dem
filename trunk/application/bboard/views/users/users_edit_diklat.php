@@ -1,24 +1,22 @@
 <script type="text/javascript">
 	var url='<?php echo site_url();?>/users/';
 	
-	$(document).ready(function() {
-		
-		var edit_level_id = document.getElementById("EDIT_LEVEL_ID");
-		$("#EDIT_LEVEL_ID").change(function() {
-			/*
-			$("#edit_tampil_induk_upt").empty();
-			$("#edit_tampil_upt").empty();
-			
-			$.ajax({
-				 type:'post',
-				 url:url + 'get_induk_upt',
-				 data:'level_id='+level_id,
-				 success:function(data){
-					   $("#edit_tampil_induk_upt").html(data);
-				 }
-			 });    
-			*/
-			alert(edit_level_id);
+	$(document).ready(function() {	
+		$("#LEVEL_ID").change(function() {
+			var level_id = $("#LEVEL_ID").val();
+			$("#tampil_induk_upt").empty();
+				$("#tampil_upt").empty();
+			if (level_id!='1'){
+
+				$.ajax({
+					 type:'post',
+					 url:url + 'get_induk_upt',
+					 data:'level_id='+level_id,
+					 success:function(data){
+						   $("#tampil_induk_upt").html(data);
+					 }
+				 });    
+			}
 		});
 	});
 </script>
@@ -49,16 +47,16 @@
 				?>
 			</li>
 			<li><label for="">LEVEL <em>*</em></label>
+				<select id="LEVEL_ID" name="LEVEL_ID">
 				<?php 
-					$opti['name'] = 'EDIT_LEVEL_ID';
 					$opti['value'] = set_value($LEVEL);
-					$opti['id'] = 'EDIT_LEVEL_ID';
-					echo $this->users->get_group_level($opti);
+					echo $this->users->get_edit_group_level($opti);
 				?>
+				</select>
 			</li>
 			
-			<div id="edit_tampil_induk_upt"></div>
-			<div id="edit_tampil_upt"></div>
+			<div id="tampil_induk_upt"></div>
+			<div id="tampil_upt"></div>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 		<li>

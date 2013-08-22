@@ -143,9 +143,7 @@ class Users extends MY_Controller
         $data['USERNAME'] = $this->input->post('USERNAME');
         $data['PASSWORD'] = md5($this->input->post('PASSWORD'));
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['POSITION'] = $this->input->post('POSITION');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
+		
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
 		/*$data['LEVEL'] = $this->input->post('LEVEL_ID');
@@ -158,12 +156,7 @@ class Users extends MY_Controller
 		$this->form_validation->set_rules('NAME', 'NAME', 'required');
         $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
         $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		
-		$this->form_validation->set_rules('NIP', 'NIP', 'required|numeric');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
-        
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');        
 		
 		# set message validation 
 		
@@ -253,9 +246,6 @@ class Users extends MY_Controller
 		
         $data['PASSWORD'] = md5($this->input->post('PASSWORD'));
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['POSITION'] = $this->input->post('POSITION');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
 		$data['NIP'] = $this->input->post('NIP');
 		$data['EMAIL'] = $this->input->post('EMAIL');
 		$data['LEVEL'] = $this->input->post('LEVEL_ID');

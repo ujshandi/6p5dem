@@ -120,9 +120,6 @@ class mdl_users extends CI_Model{
 		$this->db->set('USERNAME', $data['USERNAME']);
 		$this->db->set('PASSWORD', $data['PASSWORD']);
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
-		$this->db->set('POSITION', $data['POSITION']);
-		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
 		$this->db->set('LEVEL', $data['LEVEL']);
@@ -142,9 +139,6 @@ class mdl_users extends CI_Model{
 		$this->db->set('USERNAME', $data['USERNAME']);
 		$this->db->set('PASSWORD', $data['PASSWORD']);
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
-		$this->db->set('DEPARTMENT', $data['DEPARTMENT']);
-		$this->db->set('POSITION', $data['POSITION']);
-		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
 		$this->db->set('LEVEL', $data['LEVEL']);
@@ -331,6 +325,31 @@ class mdl_users extends CI_Model{
 			}
 		}
 		$out .= '</select>';
+		
+		return $out;
+	}
+	
+	function get_edit_group_level($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('LEVEL');
+		
+		$res = $this->db->get();
+		
+		/*$out = '<select name="'.$name.'" id="'.$id.'">'; */
+		$out = '';
+		foreach($res->result() as $r){
+			if($r->LEVEL_ID == trim($value)){
+				$out .= '<option value="'.$r->LEVEL_ID.'" selected="selected">'.$r->NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->LEVEL_ID.'">'.$r->NAME.'</option>';
+			}
+		}
+		/*$out .= '</select>'; */
 		
 		return $out;
 	}
