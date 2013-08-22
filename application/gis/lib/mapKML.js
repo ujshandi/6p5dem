@@ -222,7 +222,11 @@ function markerInit(){
 				var tipe = item.tipe;
 				var picture = item.picture;
 				if (!item.picture) picture = 'images/img/no.gif';
-				var html = "Keterangan : "+item.content;
+				var html = "<div style='min-height:100px;'>Keterangan : <br/>"+
+					"<b>"+item.content+"</b><br/>"+
+					"Jumlah Peserta : "+item.peserta+"<br/>"+
+					"Jumlah Alumni : "+item.alumni+
+					"</div>";
 				marker = createMarker(point,tipe,html);
 			});
 
