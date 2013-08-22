@@ -321,7 +321,7 @@ function create_kmlFileDaratOK(){
 				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
                 //kmlLayer.setMap(map);
 				 kmlLayers[i] = new google.maps.KmlLayer({
-					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+kode+'.kml',
+					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/green/'+kode+'.kml',
 					suppressInfoWindows: true,
 					preserveViewport: true,
 					map: map
@@ -335,12 +335,12 @@ function create_kmlFileDaratOK(){
 					//infowindow.setContent('testttttt');
 					//infowindow.open(map, kmlLayers[i]);
 					//infowindow.open(map);
-					 if (kmlEvent.featureData && kmlEvent.featureData.description) {
+					// if (kmlEvent.featureData && kmlEvent.featureData.description) {
 							infowindow.setOptions({ "position": kmlEvent.latLng,
 								"pixelOffset": kmlEvent.pixelOffset,
 							"content": 'Jumlah SDM: '+jumlah });
 						infowindow.open(map);
-					}
+					//}
 				});
   
 				 
