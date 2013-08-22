@@ -1,5 +1,16 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+# get
+if ( ! function_exists('get_level'))
+{
+	function get_level()
+	{
+		$CI =& get_instance();
+		$CI->load->model('authentikasi');
+		return $CI->authentikasi->get_level();
+	}
+}
+
 # Cek login
 if ( ! function_exists('is_login'))
 {
