@@ -1,3 +1,25 @@
+<script type="text/javascript">
+	var url='<?php echo site_url();?>/users/';
+	
+	$(document).ready(function() {
+		
+		var level_id = $("#EDIT_LEVEL_ID").val();
+		$("#EDIT_LEVEL_ID").change(function() {
+			$("#edit_tampil_induk_upt").empty();
+			$("#edit_tampil_upt").empty();
+			
+			$.ajax({
+				 type:'post',
+				 url:url + 'get_induk_upt',
+				 data:'level_id='+level_id,
+				 success:function(data){
+					   $("#edit_tampil_induk_upt").html(data);
+				 }
+			 });    
+			
+		});
+	});
+</script>
 <?=form_open('users/proses_add_diklat', array('class'=>'sform','id'=>'form_edit_diklat'))?>
 		<?php 
 			if(validation_errors())
@@ -24,7 +46,17 @@
 					echo $this->users->get_group_user_diklat($opti);
 				?>
 			</li>
+			<li><label for="">LEVEL <em>*</em></label>
+				<?php 
+					$opti['name'] = 'EDIT_LEVEL_ID';
+					$opti['value'] = set_value($LEVEL);
+					$opti['id'] = 'EDIT_LEVEL_ID';
+					echo $this->users->get_group_level($opti);
+				?>
+			</li>
 			
+			<div id="edit_tampil_induk_upt"></div>
+			<div id="edit_tampil_upt"></div>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
 		<li>
