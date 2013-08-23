@@ -37,7 +37,7 @@
 			
 			<li><label for="">FOTO PRASARANA <em>*</em></label> <input name="userfile" value="<?=set_value('GAMBAR_PRASARANA')?>" type="file" class="five"/></li>
 			
-			<li><label for="">DESKRIPSI PRASARANA <em>*</em></label> <textarea name="DESKRIPSI_PRASARANA" value="<?=set_value('DESKRIPSI_PRASARANA')?>" type="text" class="five"/> </textarea></li>
+			<li><label for="">DESKRIPSI PRASARANA <em>*</em></label> <textarea name="DESKRIPSI_PRASARANA" class="five"><?=set_value('DESKRIPSI_PRASARANA')?></textarea></li>
 			
 			
 			<div class="clearfix">&nbsp;</div>

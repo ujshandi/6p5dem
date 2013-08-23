@@ -6,6 +6,9 @@ class mdl_prasarana extends CI_Model{
 	}
 	
 	function getData($num=0, $offset=0, $filter){
+		// yanto
+		$level = get_level();
+		
 		#get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_MST_PRASARANA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_SARPRAS.NAMA_SARPRAS', false);
@@ -16,9 +19,16 @@ class mdl_prasarana extends CI_Model{
 		$this->db->order_by('DIKLAT_MST_PRASARANA.KODE_UPT');
 		$this->db->where('DIKLAT_MST_SARPRAS.JENIS', 'Prasarana');
 		
-		//filter
-		if(!empty($filter['kode_upt']))
+		// yanto
+		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('DIKLAT_MST_UPT.KODE_INDUK', $level['KODE_UPT']);
+			}else if($level['LEVEL'] == 3){
+				$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $level['KODE_UPT']);
+			}
+		}
 		if(!empty($filter['search']))
 			$this->db->like('DIKLAT_MST_SARPRAS.NAMA_SARPRAS', $filter['search']);
 		
@@ -34,9 +44,16 @@ class mdl_prasarana extends CI_Model{
 		$this->db->order_by('DIKLAT_MST_PRASARANA.KODE_UPT');
 		$this->db->where('DIKLAT_MST_SARPRAS.JENIS', 'Prasarana');
 		
-		//filter
-		if(!empty($filter['kode_upt']))
+		// yanto
+		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('DIKLAT_MST_UPT.KODE_INDUK', $level['KODE_UPT']);
+			}else if($level['LEVEL'] == 3){
+				$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $level['KODE_UPT']);
+			}
+		}
 		if(!empty($filter['search']))
 			$this->db->like('DIKLAT_MST_SARPRAS.NAMA_SARPRAS', $filter['search']);
 		

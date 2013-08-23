@@ -46,7 +46,7 @@
 			
 			<li><label for="">FOTO PRASARANA <em>*</em></label> <input name="userfile" value="<?=$result->row()->GAMBAR_PRASARANA?>" type="file" class="five"/></li>
 			
-			<li><label for="">DESKRIPSI PRASARANA <em>*</em></label> <textarea name="DESKRIPSI_PRASARANA" value="<?=$result->row()->DESKRIPSI_PRASARANA?>" type="text" class="five"/></textarea></li>
+			<li><label for="">DESKRIPSI PRASARANA <em>*</em></label> <textarea name="DESKRIPSI_PRASARANA" class="five"><?=$result->row()->DESKRIPSI_PRASARANA?></textarea></li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>

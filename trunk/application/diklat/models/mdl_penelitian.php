@@ -6,6 +6,9 @@ class mdl_penelitian extends CI_Model{
 	}
 	
 	function getData($num=0, $offset=0, $filter){
+		// yanto
+		$level = get_level();
+		
 		# get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_PENELITIAN.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_DOSEN.NAMADOSEN', false);
@@ -15,9 +18,17 @@ class mdl_penelitian extends CI_Model{
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_PENELITIAN.ID_PENELITIAN');
 		
-		//filter
-		if(!empty($filter['kode_upt']))
+		// yanto
+		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('DIKLAT_MST_UPT.KODE_INDUK', $level['KODE_UPT']);
+			}else if($level['LEVEL'] == 3){
+				$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $level['KODE_UPT']);
+			}
+		}
+		
 		if(!empty($filter['search']))
 			$this->db->like('DIKLAT_PENELITIAN.JUDUL_PENELITIAN', $filter['search']);
 		
@@ -32,9 +43,17 @@ class mdl_penelitian extends CI_Model{
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_PENELITIAN.ID_PENELITIAN');
 		
-		//filter
-		if(!empty($filter['kode_upt']))
+		// yanto
+		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('DIKLAT_MST_UPT.KODE_INDUK', $level['KODE_UPT']);
+			}else if($level['LEVEL'] == 3){
+				$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $level['KODE_UPT']);
+			}
+		}
+		
 		if(!empty($filter['search']))
 			$this->db->like('DIKLAT_PENELITIAN.JUDUL_PENELITIAN', $filter['search']);
 		
