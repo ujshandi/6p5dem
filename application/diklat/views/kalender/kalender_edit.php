@@ -38,7 +38,7 @@ $( "#TGL_AKHIR" ).datepicker();
 			
 			<li><label for="">TANGGAL AKHIR <em>*</em></label> <input name="TGL_AKHIR" value="<?=$result->row()->TGL_AKHIR?>" type="text" class="one" id="TGL_AKHIR"/></li>
 			
-			<li><label for="">KEGIATAN<em>*</em></label> <textarea name="KEGIATAN" value="<?=ReadCLOB($result->row()->KEGIATAN)?>" type="text" class="five"/> </textarea></li>
+			<li><label for="">KEGIATAN<em>*</em></label> <textarea name="KEGIATAN" class="five"><?=ReadCLOB($result->row()->KEGIATAN)?></textarea></li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>

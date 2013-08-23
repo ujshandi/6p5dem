@@ -20,11 +20,12 @@
 			<li><label for="">KODE UPT <em>*</em></label> <input name="KODE_UPT" value="<?=set_value('KODE_UPT')?>" type="text" class="three"/></li>
 			<li><label for="">NAMA UPT <em>*</em></label> <input name="NAMA_UPT" value="<?=set_value('NAMA_UPT')?>" type="text" class="five"/></li>
 			<li><label for="">SATKER <em>*</em></label>
+				<select name="KODE_INDUK" >
 				<?php 
-					$opti['name'] = 'KODE_INDUK';
 					$opti['value'] = set_value('KODE_INDUK');
-					echo $this->mdl_satker->getOptionUPT($opti);
+					echo $this->mdl_upt->getOptionUPT($opti);
 				?>
+				</select>
 			</li>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
