@@ -37,6 +37,36 @@
 					
 			break;
 			
+			//kementerian
+			case "data_sdm_kementerian":
+				if($p2=='all2'){
+					$sql="SELECT SDM_KANTOR.*, 
+						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR) as JUMLAH_SDM 
+						FROM SDM_KANTOR ORDER BY KODEKANTOR";
+				}
+				else{
+					$sql="SELECT SDM_KANTOR.*, 
+						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND KELAMIN = '1') 
+						as JUMLAH_SDM_PRIA,
+						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND KELAMIN = '2') 
+						as JUMLAH_SDM_WANITA  
+						
+						FROM SDM_KANTOR ORDER BY KODEKANTOR";
+				}
+				
+				//return $this->db->query($sql)->result_array(); 
+			break;
+			case "data_sdm_satker":
+					$where='';
+					if($p3!=''){
+						$where .=" AND KELAMIN='".($p3=='W' ? 'Wanita' : 'Pria')."'";
+					}
+					$sql="SELECT A.*,
+					(SELECT count(*) FROM SDM_PEGAWAI WHERE KODEUNIT = A.KODEUNIT ".$where.") as JUMLAH_SDM 
+					FROM SDM_UNITKERJA A
+					WHERE A.KODEKANTOR='".$p2."'";
+					
+			break;
 			case "get_DIKLAT":
 				$where ="";
 				$flag=$this->input->post('flag');

@@ -25,6 +25,11 @@ class dashboard extends My_Controller {
 				$mod="sdm_prov";
 				
 			break;
+			case 'sdm_kementerian':
+				$data['title']='Kementerian Perhubungan';
+				$mod="sdm_kementerian";
+				
+			break;
 			case 'mon_diklat':
 				$data['title']='Komposisi Peserta Diklat';
 				$data['flag']=$p2;
@@ -141,11 +146,27 @@ class dashboard extends My_Controller {
 		}
 		$this->load->view('dashboard/'.$p1, $data);
 	}
+	//kementerian
+	function get_detail2($p1="",$p2=""){
+		switch ($p1){
+			case 'data_satker':
+				$data['kd_kantor']=$this->input->post('kd_kantor');
+				$data['flag_kelamin']=$this->input->post('flag_kelamin');
+				$data['chart']=$p2;
+				$data['title']='Data ';
+				$data['chart']=$p2;
+				
+			break;
+			
+		}
+		$this->load->view('dashboard/'.$p1, $data);
+	}
 	
 	function get_datagrap(){
 	$kat=$this->input->post('kat');
 	$kom=$this->input->post('kom');
 	$prov=$this->input->post('prov');
+	$kantor=$this->input->post('kantor');
 
 		switch($kat){
 			case "all":
@@ -154,6 +175,19 @@ class dashboard extends My_Controller {
 				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
 				foreach ($data as $x=>$v){
 					$xml .='<set label="'.$v['NAMAPROVIN'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_kab("'.$v["KODEPROVIN"].'","",300,200,"get_detail/data_kab/Doughnut3D")\' />';
+				}
+				
+			
+			$xml .='</chart>';
+			
+			break;
+			//kementerian
+			case "all2":
+				$data=$this->mdashboard->get_data('data_sdm_kementerian',$kat);
+			//	print_r($data);
+				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAPENUH'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_satker("'.$v["UNITKANTOR"].'","",300,200,"get_detail2/data_satker/Doughnut3D")\' />';
 				}
 				
 			
@@ -202,6 +236,29 @@ class dashboard extends My_Controller {
 			
 			break;
 			
+			//kementerian
+			case "data_satker":
+				$kd_kantor=$this->input->post('kd_kantor');
+				$flag_kelamin=$this->input->post('flag_kelamin');
+				$data=$this->mdashboard->get_data('data_sdm_satker',$kd_kantor,$flag_kelamin);
+			//	print_r($data);
+				if($flag_kelamin){
+					$xml="<chart yAxisName='Jumlah' showLegend='0' labelDisplay='ROTATE' numDivLines='5' slantLabels='1' caption='Data Per Unit Kerja' numberPrefix='' showBorder='0' imageSave='1' exportHandler=''>";
+				}
+				
+				else{
+					$xml='<chart caption="" showLegend="1" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
+				}
+				
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAPENUH'].'" value="'.$v['JUMLAH_SDM'].'" />';
+				}
+				
+			
+			$xml .='</chart>';
+			
+			break;
+			
 			
 			
 			case "campur":
@@ -216,6 +273,34 @@ class dashboard extends My_Controller {
 					$xml .="<category name='".$v["NAMAPROVIN"]."' />";
 					$xml_pria .="<set value='".$v["JUMLAH_SDM_PRIA"]."' link=\"JavaScript:get_data_kab('".$v["KODEPROVIN"]."','P',300,200,'get_detail/data_kab/Column3D')\" />";
 					$xml_wanita .="<set value='".$v["JUMLAH_SDM_WANITA"]."' link=\"JavaScript:get_data_kab('".$v["KODEPROVIN"]."','W',300,200,'get_detail/data_kab/Column3D')\" />";
+				}
+					$xml_pria .="</dataset>";
+					$xml_wanita .="</dataset>";
+					$xml .="</categories>";
+					$xml .=$xml_pria.$xml_wanita."</graph>";
+				
+				
+				/*$xml="<chart caption='Brand Winner' yAxisName='Brand Value ($ m)' xAxisName='Brand' bgColor='F1F1F1' showValues='0' canvasBorderThickness='1' canvasBorderColor='999999' plotFillAngle='330' plotBorderColor='999999' showAlternateVGridColor='1' divLineAlpha='0'>";
+				foreach ($data as $x=>$v){
+					$xml .="<set label='".$v['NAMAPROVIN']."' value='".$v['JUMLAH_dashboard']."' toolText='2006 Rank: 1, Country: US'/>";
+				}
+				$xml .="</chart>";*/
+			break;
+			
+			//kementerian
+			
+			case "campur2":
+				$data=$this->mdashboard->get_data('data_sdm_kementerian',$kat);
+				$xml_pria="<dataset seriesName='Pria' color='0078B5' showValues='0'>";
+				$xml_wanita="<dataset seriesName='Wanita' color='750D00' showValues='0'>";
+				$xml="<graph caption='Komposisi dashboard Kementerian Perhubungan' xAxisName='Kantor' yAxisName='Total Pria & Wanita'
+					  showValues='0' numberPrefix='' decimalPrecision='0' bgcolor='F3f3f3' bgAlpha='70'
+					  showColumnShadow='1' divlinecolor='c5c5c5' divLineAlpha='60' showAlternateHGridColor='1'
+					  alternateHGridColor='f8f8f8' alternateHGridAlpha='60' ><categories>"; 
+				foreach ($data as $x=>$v){
+					$xml .="<category name='".$v["NAMAPENUH"]."' />";
+					$xml_pria .="<set value='".$v["JUMLAH_SDM_PRIA"]."' link=\"JavaScript:get_data_satker('".$v["KODEKANTOR"]."','P',300,200,'get_detail2/data_satker/Column3D')\" />";
+					$xml_wanita .="<set value='".$v["JUMLAH_SDM_WANITA"]."' link=\"JavaScript:get_data_satker('".$v["KODEKANTOR"]."','W',300,200,'get_detail2/data_satker/Column3D')\" />";
 				}
 					$xml_pria .="</dataset>";
 					$xml_wanita .="</dataset>";
