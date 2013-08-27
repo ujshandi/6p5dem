@@ -116,6 +116,8 @@ class Authentikasi extends CI_Model{
 		   $data['email']= $row->EMAIL;
 		   $data['name']= $row->NAME;
 		   $data['username']= $row->USERNAME;
+		   $data['level']= $row->LEVEL;
+		   $data['kode_upt']= $row->KODE_UPT;
 		}
    	
    	return $data;

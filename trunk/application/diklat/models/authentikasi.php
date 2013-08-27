@@ -26,7 +26,7 @@ class Authentikasi extends CI_Model{
 	
 	function userExist($data){
 		$data_array = array_merge($data,array("USERS.STAT"=>"A"));	
-		$this->db->select(array('USERNAME','USER_ID','NAME','KD_LOKASI','USER_GROUP_ID','SCOPE', 'USER_FOTO','KDKPKNL'));						
+		$this->db->select(array('USERNAME','USER_ID','NAME','KD_LOKASI','USER_GROUP_ID','SCOPE','LEVEL','KODE_UPT', 'USER_FOTO','KDKPKNL'));						
 		$query = $this->db->get_where('USERS',$data_array);				
 												
 		if($query->num_rows() > 0){
@@ -40,6 +40,8 @@ class Authentikasi extends CI_Model{
 								 "SCOPE"=>$item["SCOPE"], // keterangan dinotes
 								 "USER_FOTO"=>$item["USER_FOTO"], //foto											 								
 								 "LOGIN"=>TRUE,
+								  "LEVEL"=>$item["LEVEL"],
+								 "KODE_UPT"=>$item["KODE_UPT"],
 								 "KDKPKNL"=>$item["KDKPKNL"]
 								 );
 			}
@@ -107,6 +109,8 @@ class Authentikasi extends CI_Model{
 		   $data['email']= $row->EMAIL;
 		   $data['name']= $row->NAME;
 		   $data['username']= $row->USERNAME;
+		   $data['level']= $row->LEVEL;
+		   $data['kode_upt']= $row->KODE_UPT;
 		}
    	
    	return $data;
