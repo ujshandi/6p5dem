@@ -184,6 +184,9 @@ class Users extends MY_Controller
 		# get post data
         $USER_ID = $this->input->post('USER_ID');
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
+		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
 		$results=$this->users->get_item_by_username($USER_ID);
 		$data['USER_ID']=$USER_ID;
 		$data['USERNAME']=$results->row()->USERNAME;
@@ -230,6 +233,10 @@ class Users extends MY_Controller
 		$results = $this->users->get_data_edit_sdm($id);
 		$data['USERNAME']=$results->row()->USERNAME;
 		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
+		$data['LEVEL_ID']=$results->row()->LEVEL;
+		$data['KODEPROVIN']=$results->row()->KODEPROVIN;
+		$data['KODEKABUP']=$results->row()->KODEKABUP;
+		
 		$this->load->view('users/users_edit_sdm', $data);
 		
 	}
@@ -276,6 +283,9 @@ class Users extends MY_Controller
 	public function proses_edit_sdm(){
 		$data['USERNAME'] = $this->input->post('USERNAME');
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
+		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
 		
 		$this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
@@ -425,6 +435,20 @@ class Users extends MY_Controller
 		$this->load->view('users/get_upt', $data);
 	}
 	
+	function get_provinsi(){
+		$level_id=$this->input->post('level_id');
+		$data['level_id'] = $level_id;
+		$data['results']=$this->users->get_provinsi();
+		$this->load->view('users/get_provinsi', $data);
+	}
+	
+	function get_kabupaten(){
+		$kodeprovin=$this->input->post('kodeprovin');
+
+		
+		$data['results']=$this->users->get_kabupaten($kodeprovin);
+		$this->load->view('users/get_kabupaten', $data);
+	}
 }
 
 /* End of file users.php */

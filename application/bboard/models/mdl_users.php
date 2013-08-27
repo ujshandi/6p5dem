@@ -49,7 +49,7 @@ class mdl_users extends CI_Model{
 	
 	function get_item_sdm($key,$count_data=false,$num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('SDM_USERS.*,SDM_USER_GROUP.USER_GROUP_NAME,USERS.LEVEL');
+		$this->db->select('SDM_USERS.*,SDM_USER_GROUP.USER_GROUP_NAME');
 		$this->db->from('SDM_USERS');
 		$this->db->join('USERS','USERS.USER_ID=SDM_USERS.USER_ID');
 		$this->db->join('SDM_USER_GROUP','SDM_USER_GROUP.USER_GROUP_ID=SDM_USERS.USER_GROUP_ID');
@@ -166,6 +166,9 @@ class mdl_users extends CI_Model{
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
+		$this->db->set('LEVEL', $data['LEVEL']);
+		$this->db->set('KODEPROVIN', $data['KODEPROVIN']);
+		$this->db->set('KODEKABUP', $data['KODEKABUP']);
 		
 		$result = $this->db->insert('SDM_USERS');
 		
@@ -223,6 +226,9 @@ class mdl_users extends CI_Model{
 
 	function update_sdm($data){
 		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$this->db->set('LEVEL', $data['LEVEL']);
+		$this->db->set('KODEPROVIN', $data['KODEPROVIN']);
+		$this->db->set('KODEKABUP', $data['KODEKABUP']);
 		
 		$this->db->where('USERNAME', $data['USERNAME']);
 		$result = $this->db->update('SDM_USERS');
@@ -497,7 +503,65 @@ class mdl_users extends CI_Model{
 		$this->db->where('KODE_INDUK', $upt);
 		return $this->db->get();
 	}
+	
+	function get_group_sdm_provinsi($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('SDM_PROVINSI');
+		
+		$res = $this->db->get();
 
+		$out = '';
+		foreach($res->result() as $r){
+			if($r->LEVEL_ID == trim($value)){
+				$out .= '<option value="'.$r->KODEPROVIN.'" selected="selected">'.$r->NAMAPROVIN.'</option>';
+			}else{
+				$out .= '<option value="'.$r->KODEPROVIN.'">'.$r->NAMAPROVIN.'</option>';
+			}
+		}		
+		return $out;
+	}
+	
+	function get_group_sdm_level($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('SDM_LEVEL');
+		
+		$res = $this->db->get();
+
+		$out = '';
+		foreach($res->result() as $r){
+			if($r->ID == trim($value)){
+				$out .= '<option value="'.$r->ID.'" selected="selected">'.$r->NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->ID.'">'.$r->NAME.'</option>';
+			}
+		}		
+		return $out;
+	}
+	
+	function get_provinsi(){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PROVINSI');
+		return $this->db->get();
+	}
+	function get_kabupaten($kodeprovin){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_KABUPATEN');
+		$this->db->where('KODEPROVIN', $kodeprovin);
+		return $this->db->get();
+	}
+	
 	
 
 }

@@ -55,7 +55,9 @@
           <div class="usr"><span>welcome user</span><a href="#">
 			<?php  
 				echo $results['username'];
-				
+		
+				$data = $this->session->userdata('dataUser');	
+	
 			?>
 			
 			</a></div>

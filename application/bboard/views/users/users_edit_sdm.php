@@ -24,6 +24,17 @@
 					echo $this->users->get_group_user_sdm($opti);
 				?>
 			</li>
+			<li><label for="">LEVEL <em>*</em></label>
+				<select id="LEVEL_ID" name="LEVEL_ID">
+					
+					<option value="1">ADMINISTRASI</option>
+					<option value="2">PROVINSI</option>
+					<option value="3">KABUPATEN</option>
+				</select>
+			</li>
+			
+			<div id="tampil_provinsi"></div><br/>
+			<div id="tampil_kabupaten"></div>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
