@@ -29,6 +29,36 @@ if(modul=='sdm_dinas'){
 	});
 }
 
+// Kementerian
+if(modul=='sdm_kementerian'){
+	$(document).ready(function(){
+	$('#panelsMom1').css('height', tinggi+'px');
+	$('#panelsMom1').css('width', lebar-290+'px');
+	
+	$('#kat').css('width', lebar2+'px');	
+	$('#all2').css('width', lebar2+'px');	
+	$('#kat').css('height', tinggi+'px');	
+	$('#all2').css('height', tinggi+'px');	
+	
+	$('#chart1').panel({
+		width: lebar2,
+		height: frmHeight-220,
+		title: 'Komposisi SDM Kementerian Perhubungan (%)',
+		html: "<div id='chart1'></div>"
+	});
+	$('#chart2').panel({
+		width: lebar2,
+		height: frmHeight-220,
+		title: 'Komposisi SDM Pria & Wanita',
+		html: "<div id='chart2'></div>"
+	});
+	
+	get_chart2('fcfchart1','Doughnut3D','all2','chart1',700,260);
+	get_chart2('fcfchart2','FCF_MSBar2D','campur2','chart2',865,450);	
+	//get_chart('fcfchart3','Bar2D','pria','chart3',1000,100);	
+	});
+}
+
 if(modul=='mon_diklat'){
 	var induk_upt
 	var program_upt
