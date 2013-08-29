@@ -57,6 +57,40 @@ class user_privilege extends MY_Controller
 		$this->load->view('user_privilege/privilege_list_sdm', $data);
 	}
 	
+	public function get_all_diklat(){
+		$keys = "";
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_privilege/get_all_diklat/';
+		$config['total_rows'] = $this->user_privilege->get_item_diklat($keys,true);
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->user_privilege->get_item_diklat($keys,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('user_privilege/privilege_list_diklat', $data);
+	}
+	
+	public function get_all_kopeten(){
+		$keys = "";
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_privilege/get_all_kopeten/';
+		$config['total_rows'] = $this->user_privilege->get_item_kopeten($keys,true);
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->user_privilege->get_item_kopeten($keys,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('user_privilege/privilege_list_kopeten', $data);
+	}
+	public function get_all_gis(){
+		$keys = "";
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/user_privilege/get_all_gis/';
+		$config['total_rows'] = $this->user_privilege->get_item_gis($keys,true);
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->user_privilege->get_item_gis($keys,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('user_privilege/privilege_list_gis', $data);
+	}
 	
 	public function add(){
 		//$this->open_backend();
@@ -222,6 +256,58 @@ class user_privilege extends MY_Controller
 			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];
 			$data['PRIVILEGE']=$HAKAKSES0.$HAKAKSES1.$HAKAKSES2.$HAKAKSES3.$HAKAKSES4;
 			$this->user_privilege->update($data);
+		}
+		
+        
+		redirect('user_privilege');
+		
+		$this->close_backend();
+	}
+	
+	public function proses_edit_diklat(){
+		$this->open_backend();
+		
+		# get post data
+		
+		$data['ID'] = $this->input->post('ID');
+		$MENU = $this->input->post('MENU');
+		
+		foreach ($MENU  as $value){
+			/*echo $value['MENU_ID'] .'-'. $value['HAKAKSES0'] . '-' . $value['HAKAKSES1'] . '-' . $value['HAKAKSES2'] . '-' . $value['HAKAKSES3'] . '-' . $value['HAKAKSES4'] . '<br/>';
+			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];*/
+			
+			if (isset($value['HAKAKSES0'])){
+				$HAKAKSES0 = '1';
+			}else{
+				$HAKAKSES0 = '0';
+			}
+			
+			if (isset($value['HAKAKSES1'])){
+				$HAKAKSES1 = '1';
+			}else{
+				$HAKAKSES1 = '0';
+			}
+			if (isset($value['HAKAKSES2'])){
+				$HAKAKSES2 = '1';
+			}else{
+				$HAKAKSES2 = '0';
+			}
+			
+			if (isset($value['HAKAKSES3'])){
+				$HAKAKSES3 = '1';
+			}else{
+				$HAKAKSES3 = '0';
+			}
+			
+			if (isset($value['HAKAKSES4'])){
+				$HAKAKSES4 = '1';
+			}else{
+				$HAKAKSES4 = '0';
+			}
+			
+			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];
+			$data['PRIVILEGE']=$HAKAKSES0.$HAKAKSES1.$HAKAKSES2.$HAKAKSES3.$HAKAKSES4;
+			$this->user_privilege->update_diklat($data);
 		}
 		
         

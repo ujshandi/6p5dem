@@ -105,7 +105,7 @@ class Users extends MY_Controller
 	/*get list data sdm from table sdm*/
 	function get_users_sdm(){
 		$keysearch_users = $this->input->post('txt_search');
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_sdm/';
 		$config['total_rows'] = $this->users->get_item_sdm($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
 		$config['per_page'] = '5';
@@ -121,7 +121,7 @@ class Users extends MY_Controller
 	
 	function get_users_diklat(){
 		$keysearch_users = $this->input->post('txt_search');
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/getall/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_diklat/';
 		$config['total_rows'] = $this->users->get_item_diklat($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
 		$config['per_page'] = '5';
@@ -448,11 +448,14 @@ class Users extends MY_Controller
 	}
 	
 	function get_kabupaten(){
-		$data['kodeprovin']=$this->input->post('kodeprovin');
-		$data['$kodekabup']=$this->input->post('kodekabup');
+		
+		$kodeprovin = $this->input->post('kodeprovin');
+		$data['kodekabup']=$this->input->post('kodekabup');
+		$data['kodeprovin']=$kodeprovin;
+		
 
 		
-		//$data['results']=$this->users->get_kabupaten();
+		$data['results']=$this->users->get_kabupaten($kodeprovin);
 		$this->load->view('users/get_kabupaten', $data);
 	}
 }

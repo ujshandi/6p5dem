@@ -71,6 +71,60 @@ class mdl_user_privilege extends CI_Model{
 		$this->db->limit($num, $offset);
 		return $this->db->get();
 	}
+	
+	function get_item_diklat($keys="",$count_rows=false,$num=0, $offset=0)
+	{
+		$this->db->flush_cache();
+		
+		$this->db->select('*');
+		$this->db->from('DIKLAT_USER_GROUP');
+		
+		
+		if ($keys!=""){
+			$this->db->where('USER_GROUP_ID', $id);
+		}
+		if ($count_rows){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
+	
+	function get_item_kopeten($keys="",$count_rows=false,$num=0, $offset=0)
+	{
+		$this->db->flush_cache();
+		
+		$this->db->select('*');
+		$this->db->from('KOPETEN_USER_GROUP');
+		
+		
+		if ($keys!=""){
+			$this->db->where('USER_GROUP_ID', $id);
+		}
+		if ($count_rows){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
+	
+	function get_item_gis($keys="",$count_rows=false,$num=0, $offset=0)
+	{
+		$this->db->flush_cache();
+		
+		$this->db->select('*');
+		$this->db->from('KOPETEN_USER_GROUP');
+		
+		
+		if ($keys!=""){
+			$this->db->where('USER_GROUP_ID', $id);
+		}
+		if ($count_rows){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
 
 	function countItem(){
 		$this->db->select('USER_GROUP_MENU.USER_GROUP_ID,USER_GROUP.USER_GROUP_NAME');
@@ -190,6 +244,18 @@ class mdl_user_privilege extends CI_Model{
 			return FALSE;
 		}
 		
+	}
+	
+	function update_diklat($data){
+		$this->db->set('PRIVILEGE', $data['PRIVILEGE']);
+		$this->db->where('USER_GROUP_MENU_ID', $data['USER_GROUP_MENU_ID']);
+		$result = $this->db->update('DIKLAT_USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
 	}
 	
 	function delete($data){
