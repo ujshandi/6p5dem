@@ -307,6 +307,7 @@ class Users extends MY_Controller
 		$data['USERNAME']=$results->row()->USERNAME;
 		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
 		$data['LEVEL']=$results->row()->LEVEL;
+		$data['KODE_UPT']=$results->row()->KODE_UPT;
 		$this->load->view('users/users_edit_diklat', $data);
 	}
 	
@@ -437,16 +438,21 @@ class Users extends MY_Controller
 	
 	function get_provinsi(){
 		$level_id=$this->input->post('level_id');
+		$kodeprovin=$this->input->post('kodeprovin');
+		$kodekabup=$this->input->post('kodekabup');
 		$data['level_id'] = $level_id;
+		$data['kodeprovin'] = $kodeprovin;
+		$data['kodekabup'] = $kodekabup;
 		$data['results']=$this->users->get_provinsi();
 		$this->load->view('users/get_provinsi', $data);
 	}
 	
 	function get_kabupaten(){
-		$kodeprovin=$this->input->post('kodeprovin');
+		$data['kodeprovin']=$this->input->post('kodeprovin');
+		$data['$kodekabup']=$this->input->post('kodekabup');
 
 		
-		$data['results']=$this->users->get_kabupaten($kodeprovin);
+		//$data['results']=$this->users->get_kabupaten();
 		$this->load->view('users/get_kabupaten', $data);
 	}
 }

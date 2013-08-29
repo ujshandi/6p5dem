@@ -517,7 +517,7 @@ class mdl_users extends CI_Model{
 
 		$out = '';
 		foreach($res->result() as $r){
-			if($r->LEVEL_ID == trim($value)){
+			if($r->KODEPROVIN == trim($value)){
 				$out .= '<option value="'.$r->KODEPROVIN.'" selected="selected">'.$r->NAMAPROVIN.'</option>';
 			}else{
 				$out .= '<option value="'.$r->KODEPROVIN.'">'.$r->NAMAPROVIN.'</option>';
@@ -526,23 +526,24 @@ class mdl_users extends CI_Model{
 		return $out;
 	}
 	
-	function get_group_sdm_level($d=""){
+	
+	function get_group_sdm_kabupaten($d=""){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
 		$class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
-		$this->db->from('SDM_LEVEL');
+		$this->db->from('SDM_KABUPATEN');
 		
 		$res = $this->db->get();
 
 		$out = '';
 		foreach($res->result() as $r){
-			if($r->ID == trim($value)){
-				$out .= '<option value="'.$r->ID.'" selected="selected">'.$r->NAME.'</option>';
+			if($r->KODEKABUP == trim($value)){
+				$out .= '<option value="'.$r->KODEKABUP.'" selected="selected">'.$r->NAMAKABUP.'</option>';
 			}else{
-				$out .= '<option value="'.$r->ID.'">'.$r->NAME.'</option>';
+				$out .= '<option value="'.$r->KODEKABUP.'">'.$r->NAMAKABUP.'</option>';
 			}
 		}		
 		return $out;
@@ -561,7 +562,4 @@ class mdl_users extends CI_Model{
 		$this->db->where('KODEPROVIN', $kodeprovin);
 		return $this->db->get();
 	}
-	
-	
-
 }
