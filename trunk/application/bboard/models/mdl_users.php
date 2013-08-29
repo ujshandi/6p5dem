@@ -532,10 +532,11 @@ class mdl_users extends CI_Model{
 		$id = isset($d['id'])?$d['id']:'';
 		$class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
+		$kodeprovin = isset($d['kodeprovin'])?$d['kodeprovin']:'';
 		
 		$this->db->flush_cache();
 		$this->db->from('SDM_KABUPATEN');
-		
+		$this->db->where('KODEPROVIN', $kodeprovin);
 		$res = $this->db->get();
 
 		$out = '';
