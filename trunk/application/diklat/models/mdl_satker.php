@@ -46,7 +46,7 @@ class mdl_satker extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
-		$this->db->set('KODE_INDUK', $data['kode_induk']);
+		//$this->db->set('KODE_INDUK', $data['kode_induk']);
 		$this->db->set('NAMA_INDUK', $data['nama_induk']);
 		$result = $this->db->insert('DIKLAT_MST_INDUKUPT');
 		
@@ -60,7 +60,7 @@ class mdl_satker extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-		$this->db->set('KODE_INDUK', $data['kode_induk']);
+		//$this->db->set('KODE_INDUK', $data['kode_induk']);
 		$this->db->set('NAMA_INDUK', $data['nama_induk']);
 		$this->db->where('KODE_INDUK', $data['id']);
 		$result = $this->db->update('DIKLAT_MST_INDUKUPT');

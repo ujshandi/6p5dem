@@ -99,7 +99,7 @@ $( "#TGL_MASUK" ).datepicker();
 				?>
 			</li>
 			
-			<li><label for="">KETERANGAN <em>*</em></label> <textarea name="KETERANGAN" value="<?=ReadCLOB($result->row()->KETERANGAN)?>" type="text" class="five"/></textarea></li>
+			<li><label for="">KETERANGAN <em>*</em></label> <textarea name="KETERANGAN" class="five"><?=ReadCLOB($result->row()->KETERANGAN)?></textarea></li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>

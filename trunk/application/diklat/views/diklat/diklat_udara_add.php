@@ -31,8 +31,8 @@
 			</li>
 			
 			<li><label for="">KODE DIKLAT <em>*</em></label> <input name="KODE_DIKLAT" value="<?=set_value('KODE_DIKLAT')?>" type="text" class="three"/></li>
-			
-			<li><label for="">NAMA DIKLAT <em>*</em></label> <textarea name="NAMA_DIKLAT" value="<?=set_value('NAMA_DIKLAT')?>" type="text" class="five"/> </textarea></li>
+						
+			<li><label for="">NAMA DIKLAT <em>*</em></label> <textarea name="NAMA_DIKLAT" class="five"><?=set_value('NAMA_DIKLAT')?></textarea></li>
 			
 			<input type="hidden" name="KODE_INDUK" value="5">
 			

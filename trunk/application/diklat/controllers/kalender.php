@@ -124,8 +124,8 @@ class kalender extends My_Controller {
 		$data['id'] = $this->input->post('id');
 		//$data['IDKALENDER'] = $this->input->post('IDKALENDER');
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
-        $data['TGL_AWAL'] = "to_date('".$this->input->post('TGL_AWAL')."', 'mm/dd/yyyy')";
-        $data['TGL_AKHIR'] = "to_date('".$this->input->post('TGL_AKHIR')."', 'mm/dd/yyyy')";
+        $data['TGL_AWAL'] = "to_date('".$this->input->post('TGL_AWAL')."', 'dd/mm/yyyy')";
+        $data['TGL_AKHIR'] = "to_date('".$this->input->post('TGL_AKHIR')."', 'dd/mm/yyyy')";
         $data['KEGIATAN'] = $this->input->post('KEGIATAN');
 		
 		# set rules validation

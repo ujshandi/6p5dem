@@ -16,7 +16,6 @@
 			} 
 		?>
 		<ol>
-			<li><label for="">Kode Satker <em>*</em></label> <input name="kode_induk" value="<?=set_value('kode_induk')?>" type="text" class="five"/></li>
 			<li><label for="">Nama Satker <em>*</em></label> <input name="nama_induk" value="<?=set_value('nama_induk')?>" type="text" class="five"/></li>
 			<div class="clearfix">&nbsp;</div>
 			<hr/>

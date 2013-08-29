@@ -100,7 +100,7 @@ $( "#TGL_MASUK" ).datepicker();
 			<option value="Lulus">Lulus</option>
 			</select></li>
 			
-			<li><label for="">KETERANGAN <em>*</em></label> <textarea name="KETERANGAN" value="<?=set_value('KETERANGAN')?>" type="text" class="five"/></textarea></li>
+			<li><label for="">KETERANGAN <em>*</em></label> <textarea name="KETERANGAN" class="five"><?=set_value('KETERANGAN')?></textarea></li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
