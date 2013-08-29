@@ -4,14 +4,14 @@
 	$(document).ready(function() {	
 		$("#LEVEL_ID").change(function() {
 			var level_id = $("#LEVEL_ID").val();
+			var var_kode_upt = $("#VAR_KODE_UPT").val();
 			$("#tampil_induk_upt").empty();
-				$("#tampil_upt").empty();
+			$("#tampil_upt").empty();
 			if (level_id!='1'){
-
 				$.ajax({
 					 type:'post',
 					 url:url + 'get_induk_upt',
-					 data:'level_id='+level_id,
+					 data:'level_id='+level_id + 'kode_upt=' + var_kode_upt,
 					 success:function(data){
 						   $("#tampil_induk_upt").html(data);
 					 }
@@ -20,7 +20,7 @@
 		});
 	});
 </script>
-<?=form_open('users/proses_add_diklat', array('class'=>'sform','id'=>'form_edit_diklat'))?>
+<?=form_open('users/proses_edit_diklat', array('class'=>'sform','id'=>'form_edit_diklat'))?>
 		<?php 
 			if(validation_errors())
 			{
@@ -46,15 +46,16 @@
 					echo $this->users->get_group_user_diklat($opti);
 				?>
 			</li>
+	
 			<li><label for="">LEVEL <em>*</em></label>
 				<select id="LEVEL_ID" name="LEVEL_ID">
 				<?php 
-					$opti['value'] = set_value($LEVEL);
+					$opti['value'] = $LEVEL;
 					echo $this->users->get_edit_group_level($opti);
 				?>
 				</select>
 			</li>
-			
+			<input type="hidden" name="VAR_KODE_UPT" value="<?php echo $KODE_UPT?>" id="VAR_KODE_UPT">
 			<div id="tampil_induk_upt"></div>
 			<div id="tampil_upt"></div>
 			<div class="clearfix">&nbsp;</div>

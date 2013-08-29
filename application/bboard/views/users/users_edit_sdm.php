@@ -1,4 +1,42 @@
-<?=form_open('users/proses_add_sdm', array('class'=>'sform','id'=>'form_edit_sdm'))?>
+<script type="text/javascript">
+	var url='<?php echo site_url();?>/users/';
+	
+	
+	$(document).ready(function() {	
+		var level_id = $("#LEVEL_ID").val();
+		var var_kodeprovin = $("#VAR_KODEPROVIN").val();
+		var var_kodekabup = $("#VAR_KODEKABUP").val();
+		var data = { 'level_id': level_id , 'kodeprovin': var_kodeprovin, 'kodekabup': var_kodekabup};
+		if (level_id!='1'){
+				$.ajax({
+					 type:'post',
+					 url:url + 'get_provinsi',
+					 data:data,
+					 success:function(data){
+						   $("#tampil_provinsi").html(data);
+					 }
+				 }); 
+			}
+			
+		$("#LEVEL_ID").change(function() {
+			var level_id = $("#LEVEL_ID").val();
+
+			$("#tampil_provinsi").empty();
+			$("#tampil_kabupaten").empty();
+			if (level_id!='1'){
+				$.ajax({
+					 type:'post',
+					 url:url + 'get_provinsi',
+					 data:'level_id='+level_id,
+					 success:function(data){
+						   $("#tampil_provinsi").html(data);
+					 }
+				 }); 
+			}
+		});
+	});
+</script>
+<?=form_open('users/form_edit_sdm', array('class'=>'sform','id'=>'form_edit_sdm'))?>
 		<?php 
 			if(validation_errors())
 			{
@@ -26,13 +64,34 @@
 			</li>
 			<li><label for="">LEVEL <em>*</em></label>
 				<select id="LEVEL_ID" name="LEVEL_ID">
+					<?php
+						switch($LEVEL_ID){
+							case 1:
+								echo '<option value="1" selected="selected">ADMINISTRASI</option>';
+								echo '<option value="2">PROVINSI</option>';
+								echo '<option value="3">KABUPATEN</option>';
+								break;
+							case 2:
+								echo '<option value="1" >ADMINISTRASI</option>';
+								echo '<option value="2" selected="selected">PROVINSI</option>';
+								echo '<option value="3">KABUPATEN</option>';
+								break;
+							case 3:
+								echo '<option value="1" >ADMINISTRASI</option>';
+								echo '<option value="2" >PROVINSI</option>';
+								echo '<option value="3" selected="selected">KABUPATEN</option>';
+								break;
+							default:
+								echo '<option value="1" >ADMINISTRASI</option>';
+								echo '<option value="2" >PROVINSI</option>';
+								echo '<option value="3" >KABUPATEN</option>';
+						}
+					?>
 					
-					<option value="1">ADMINISTRASI</option>
-					<option value="2">PROVINSI</option>
-					<option value="3">KABUPATEN</option>
 				</select>
 			</li>
-			
+			<input type="hidden" id="VAR_KODEPROVIN" name="VAR_KODEPROVIN" value="<?=$KODEPROVIN?>" />
+			<input type="hidden" id="VAR_KODEKABUP" name="VAR_KODEKABUP" value="<?=$KODEKABUP?>" />
 			<div id="tampil_provinsi"></div><br/>
 			<div id="tampil_kabupaten"></div>
 			
