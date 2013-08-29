@@ -75,11 +75,11 @@ class satker extends My_Controller {
 	public function proses_add(){
 		$this->open();
 		
-		$data['kode_induk'] = $this->input->post('kode_induk');
+		//$data['kode_induk'] = $this->input->post('kode_induk');
 		$data['nama_induk'] = $this->input->post('nama_induk');
 		
 		# set rules validation
-		$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
+		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
 		$this->form_validation->set_rules('nama_induk', 'Nama Satker', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -112,7 +112,7 @@ class satker extends My_Controller {
 		$data['nama_induk'] = $this->input->post('nama_induk');
 		
 		# set rules validation
-		$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
+		//$this->form_validation->set_rules('kode_induk', 'Kode Satker', 'required');
 		$this->form_validation->set_rules('nama_induk', 'Nama Satker', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');

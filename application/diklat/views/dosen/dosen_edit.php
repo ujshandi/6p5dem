@@ -51,7 +51,7 @@ $( "#TGL_LAHIR" ).datepicker();
 			
 			<li><label for="">Tahun Mulai Mengajar <em>*</em></label> <input name="TAHUN" value="<?=$result->row()->TAHUN?>" type="text" class="one"/></li>
 			
-			<li><label for="">Pendidikan <em>*</em></label> <textarea name="PENDIDIKAN" value="<?=ReadCLOB($result->row()->PENDIDIKAN)?>" type="text" class="five"/></textarea></li>
+			<li><label for="">Pendidikan <em>*</em></label> <textarea name="PENDIDIKAN" class="five"><?=ReadCLOB($result->row()->PENDIDIKAN)?></textarea></li>
 			
 			<li><label for="">Jenis Pengajar <em>*</em></label>
 				<?php 

@@ -39,7 +39,7 @@
 			
 			<li><label for="">KODE DIKLAT <em>*</em></label> <input name="KODE_DIKLAT" value="<?=$result->row()->KODE_DIKLAT?>" type="text" class="three"/></li>
 			
-			<li><label for="">NAMA DIKLAT <em>*</em></label> <textarea name="NAMA_DIKLAT" value="<?=$result->row()->NAMA_DIKLAT?>" type="text" class="five"/></textarea></li>
+			<li><label for="">NAMA DIKLAT <em>*</em></label> <textarea name="NAMA_DIKLAT" class="five"><?=$result->row()->NAMA_DIKLAT?></textarea></li>
 			
 			<input type="hidden" name="KODE_INDUK" value="<?=$result->row()->KODE_INDUK?>">
 			
