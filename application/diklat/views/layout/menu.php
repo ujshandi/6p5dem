@@ -1,4 +1,4 @@
-  <div id="content" class="page-green">
+  <div id="content">
     <div id="contentwrap">
     	<div class="wrap_left bgtrans">
         <h2 class="heading">Basis Data DIKLAT</h2>

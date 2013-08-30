@@ -21,6 +21,7 @@ html[xmlns] .clearfix {display: block;}
 * html .clearfix {height: 1%;}
 .right{ float:right;}
 .left{ float:left;}
+.tr {text-align:right}
 p{padding:0;margin:0px;text-align:left;line-height:1.5em;}
 
 a{color:#006bd1; text-decoration:none;}
@@ -45,9 +46,9 @@ hr {display:inline-block;height:0;width:100%;border-top:solid 1px #ccc;border-bo
 hr.style1 {margin:10px 0;border-top-color:#ddd;border-bottom-color:#fff}
 
 /* Top */
-#wrap{margin:auto;width:940px;padding:20px 15px;background:url(../images/bg.png);box-shadow:0 0 10px rgba(0,0,0,.5);-moz-box-shadow:0 0 10px rgba(0,0,0,.5);-webkit-box-shadow:0 0 10px rgba(0,0,0,.5);border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;-webkit-border-radius:6px 6px 0 0;border:solid 3px rgba(255,255,255,.5);border-bottom:none;min-height:400px;}
+#wrap{margin:auto;width:940px;padding:20px 15px;background:url(../images/bg.png);box-shadow:0 0 10px rgba(0,0,0,.5);-moz-box-shadow:0 0 10px rgba(0,0,0,.5);-webkit-box-shadow:0 0 10px rgba(0,0,0,.5);border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;-webkit-border-radius:6px 6px 0 0;border:solid 3px rgba(255,255,255,.5);border-bottom:none}
 #page_wrap{margin:auto;width:1000px;padding:0 0 40px 0; background-color:#FFFFFF;}
-.center_content{ clear:both; padding:40px 0 0 0;text-align:justify;}
+.center_content{ clear:both; padding:40px 0 0 0;}
 #header{width:100%; height:140px;}
 .header_content{ width:1000px; margin:auto; line-height:140px;}
 .logo{float:left;margin:10px 0 0 20px;}
@@ -118,25 +119,26 @@ html[xmlns] .slides {display: block;}
 .section_14{ width:210px; float:left; margin:0 0 20px 20px;}
 .section_23{ width:600px; float:left; margin:0 0 20px 20px;}
 
-.page_title{ 
-	clear:both; padding:0 0 25px 0;
-}
-#h1_pagetitle{
-	float:left;
-}
-#logout{
-	float:right;
-	color:red;
-}
-#logout a{
-	color:red;
-}
+.one { width: 8.33333%!important; }
+.two { width: 16.66667%!important; }
+.three { width: 25%!important; }
+.four { width: 33.33333%!important; }
+.five { width: 41.66667%!important; }
+.six { width: 50%!important; }
+.seven { width: 58.33333%!important; }
+.eight { width: 66.66667%!important; }
+.nine { width: 75%!important; }
+.ten { width: 83.33333%!important; }
+.eleven { width: 91.66667%!important; }
+.twelve { width: 100%; }
+
+.page_title{ clear:both; padding:0 0 15px 0;}
 .page_title h1 {padding:0;font-family:'Jockey One',sans-serif;text-shadow:0 1px 1px #fff}
 img.feat_thumb{float:left;}
 .feat_details{width:180px;float:left;padding:0 0 0 10px;}
 .feat_details h4 {font-size:15px;font-weight:bold;color:#cc6600;text-shadow:0 1px 1px #f9f9f9}
 .test_right{width:155px;float:left;padding:0 0 0 10px;}
-p.feat_text{text-shadow:0 1px 0 #fff; text-align:justify;}
+p.feat_text{text-shadow:0 1px 0 #fff}
 p.feat_text span.meta {display:inline-block;font-size:11px;font-style:normal;font-weight:bold;color:#663300}
 .testimonial{ border-bottom:1px solid #ccc; padding:0 0 10px 0; margin:10px 0 0px 0; clear:both; float:left;}
 .apl_box {background:#fff;background:rgba(255,255,255,.8);border:solid 1px #FFCC00;overflow:auto;padding:15px;border-radius:4px;text-align:center;margin:5px 0 15px;box-shadow:0 0 10px rgba(255,204,0,.6) inset}
@@ -203,33 +205,31 @@ TABLE.simpleCalendar TR TD.today {background-color: darkred;font-weight: bold;co
 TABLE.simpleCalendar TR TD.active:hover {background-color: lightblue;cursor: pointer;}
 TABLE.simpleCalendar TR TD.inactive {background-color: lightgray;}
 TABLE.simpleCalendar TR TD.selected {background-color: blue;}
-
-.splash {width:940px;margin:-20px 0 0 0;}
-/*dua kolom*/
-#usefulinkcontent{
-	float:left;
-	width:48%;
-	margin-right:1%;
-}
-
-/* table */
-table {background:#FFFFFF;background:rgba(255,255,255,.7);border-collapse:collapse;font-size:12px;text-align:left;max-width:100%;width:100%;border-spacing:0;margin:0;border:0 none;text-shadow:0 1px 0 #fff;border:dotted 1px #ddd;}
-table tbody tr:nth-child(2n) {background:#f9f9f9;background:rgba(249,249,249,.8);}
-table thead {/*background:#c6dba0;*/
-background: #f2f6f8;
-background: -moz-linear-gradient(top, #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f6f8), color-stop(50%,#d8e1e7), color-stop(51%,#b5c6d0), color-stop(100%,#e0eff9));
-background: -webkit-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
-background: -o-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
-background: -ms-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
-background: linear-gradient(to bottom, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 );
-border-top:solid 1px #b5c6d0}
-table tfoot {background:#f3f3f3;border-top:solid 1px #a8dbeb}
-table th {border-bottom:2px solid #b5c6d0;color:#000;font-size:13px;font-weight:bold;text-transform:uppercase;padding:10px 8px;}
-table td {border-bottom:1px dotted #999;color:#333;padding:6px 8px;font-size:12px;display:table-cell;}
-table tbody tr:hover td {color:#000;background:#DDEEBD;}
-
+/* form */
+input[type="text"], input[type="password"], textarea { background-color: white; font-family: inherit; border: 1px solid #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.75); font-size: 12px; margin: 0 0 5px 0; padding: 4px; height: 20px; width: auto; -webkit-transition: all 0.15s linear; -moz-transition: all 0.15s linear; -o-transition: all 0.15s linear; transition: all 0.15s linear; display:inline-block }
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background: #fafafa; outline: none !important; border-color: #888; }
+input[type="text"][disabled], input[type="password"][disabled], textarea[disabled] { background-color: #ddd; }
+textarea { height: auto; }
+select { background-color: white; font-family: inherit; border: 1px solid #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.75); font-size: 12px; margin: 0 0 5px 0; padding: 5px; width: auto; -webkit-transition: all 0.15s linear; -moz-transition: all 0.15s linear; -o-transition: all 0.15s linear; transition: all 0.15s linear; display:inline-block}
+input[type="button"] {margin:0;padding:2px;background:#ececec;border:solid 1px #ccc;border-radius:2px;color:#003366;text-shadow:0 1px 1px #f3f3f3}
+form.sform fieldset {padding:10px;border:dotted 1px #ddd;background:rgba(255,255,255,.5);border-radius:6px;}
+form.sform legend { padding: 0 2px;font-weight: bold;}
+form.sform fieldset ol {margin: 0;padding: 0;list-style-type:none}
+form.sform fieldset li {list-style: none;padding: 5px;margin: 0;}
+form.sform .cell {width:50%;float:left}
+form.sform fieldset fieldset {border: none;margin: 3px 0 0;}
+form.sform fieldset fieldset legend {padding: 0 0 5px;font-weight: normal;}
+form.sform fieldset fieldset label {display: block;width: auto;}
+form.sform em {font-weight: bold;font-style: normal;color: #cc0000;}
+form.sform small {color:#3366CC;font-size:11px;font-weight:bold;padding-left:20px;position:relative}
+form.sform small.notice {color:#990000;}
+form.sform small img {position:absolute;left:0;top:0px}
+form.sform label {display: inline-block;line-height: 1.8;vertical-align: top;width: 170px;text-transform:uppercase;font-size:11px;;font-weight:bold;color:#666;text-shadow:1px 1px 1px #fff}
+form.sform label.nowide {width:100px}
+form.sform fieldset fieldset label {margin-left: 173px;}
+form.sform p {font-size:12px;font-weight:bold;color:#003366;text-shadow:1px 1px 1px #fff;margin:10px 0}
+form.sform span {font-size:11px;font-weight:bold}
+form.sform div {display:inline-block;width:auto}
 
 .greenbutton {
 background: #339933;
@@ -253,40 +253,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9b19', end
 background: linear-gradient(top, #ff9b19 0%,#ffc339 100%);
 border-color:#FF9900;text-shadow: -1px -1px #FF6600;}
 
-/* form */
-input[type="text"], input[type="password"], textarea { background-color: white; font-family: inherit; border: 1px solid #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.75); font-size: 12px; margin: 0 0 5px 0; padding: 2px; height: 18px; width: auto; -webkit-transition: all 0.15s linear; -moz-transition: all 0.15s linear; -o-transition: all 0.15s linear; transition: all 0.15s linear; display:inline-block }
-input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background: #fafafa; outline: none !important; border-color: #888; }
-input[type="text"][disabled], input[type="password"][disabled], textarea[disabled] { background-color: #ddd; }
-textarea { height: auto; }
-select { background-color: white; font-family: inherit; border: 1px solid #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.75); font-size: 12px; margin: 0 0 2px 0; padding: 2px; height: 22px; width: auto; -webkit-transition: all 0.15s linear; -moz-transition: all 0.15s linear; -o-transition: all 0.15s linear; transition: all 0.15s linear; display:inline-block}
-input[type="button"] {margin:0;padding:2px;background:#ececec;border:solid 1px #ccc;border-radius:2px;color:#003366;text-shadow:0 1px 1px #f3f3f3}
-form.sform fieldset {margin-bottom: 10px;padding:20px;border:dotted 1px #ddd;background:rgba(255,255,255,.5);border-radius:6px;}
-form.sform legend { padding: 0 2px;font-weight: bold;}
-form.sform fieldset ol {margin: 0;padding: 0;list-style-type:none}
-form.sform fieldset li {list-style: none;padding: 5px;margin: 0;}
-form.sform .cell {width:50%;float:left}
-form.sform fieldset fieldset {border: none;margin: 3px 0 0;}
-form.sform fieldset fieldset legend {padding: 0 0 5px;font-weight: normal;}
-form.sform fieldset fieldset label {display: block;width: auto;}
-form.sform em {font-weight: bold;font-style: normal;color: #cc0000;}
-form.sform small {color:#3366CC;font-size:11px;font-weight:bold;padding-left:20px;position:relative}
-form.sform small.notice {color:#990000;}
-form.sform small img {position:absolute;left:0;top:0px}
-form.sform label {display: inline-block;line-height: 1.8;vertical-align: top;width: 125px;text-transform:uppercase;font-size:11px;;font-weight:bold;color:#666;text-shadow:1px 1px 1px #fff}
-form.sform label.nowide {width:100px}
-form.sform fieldset fieldset label {margin-left: 173px;}
-form.sform p {font-size:12px;font-weight:bold;color:#003366;text-shadow:1px 1px 1px #fff;margin:10px 0}
-form.sform span {font-size:11px;font-weight:bold}
-form.sform div {display:inline-block;width:auto}
-
-/* pagination */
-.paging {margin:0;padding:0;}
-.paging ul {border-radius:4px;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);display: inline-block;margin:0!important;padding:0;background:#fff;font-size:12px}
-.paging ul > li {display: inline;}
-.paging ul > li > a, .paging ul > li > span {-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none;-moz-border-top-colors: none;   background-color: #FFFFFF;border-color: #DDDDDD;border-image: none;border-style: solid;border-width: 1px 1px 1px 0;float: left;line-height: 20px;padding: 4px 12px;text-decoration: none;color:#999}
-.paging ul > li > a:hover, .paging ul > .active > a, .paging ul > .active > span {background-color: #F5F5F5;}
-.paging ul > .active > a, .paging ul > .active > span {color: #003366;font-weight:bold;cursor: default;}
-.paging ul > .done > a, .paging ul > .done > span {color: #ccc;cursor: default;background:#fdfdfd}
-.paging ul > .disabled > span, .paging ul > .disabled > a, .paging ul > .disabled > a:hover {background-color: transparent;color: #999999;cursor: default;}
-.paging ul > li:first-child > a, .paging ul > li:first-child > span {border-bottom-left-radius: 4px;border-left-width: 1px;border-top-left-radius: 4px;}
-.paging ul > li:last-child > a, .paging ul > li:last-child > span {border-bottom-right-radius: 4px;border-top-right-radius: 4px;}
+.splash {width:940px;margin:-20px 0 0 0;}
