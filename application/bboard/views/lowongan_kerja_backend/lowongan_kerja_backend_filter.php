@@ -1,4 +1,29 @@
 <script type="text/javascript">
+	function ajaxpaging(param_url){
+		if (param_url== null ){
+			param_url='<?php echo site_url();?>/lowongan_kerja_backend/getall/';
+		}
+		$.ajax({
+				type: 'POST',
+				url :  param_url,
+				data: $('#lowongan_kerja').serialize(),
+				success: function(data) {
+					$('#list_data').html(data);
+				}
+			});
+	}
+	function search_lowongan(){
+		
+			$.ajax({
+					type: 'POST',
+					url:'<?php echo site_url();?>/lowongan_kerja_backend/getall',
+					data: $('#lowongan_kerja').serialize(),
+					success: function(data) {
+						$('#list_data').html(data);
+					}
+
+				});
+		}
 	$(document).ready(function() {
 			
 	
@@ -68,23 +93,10 @@
 		
 		
 		
-    }); 
+    });
 	
-	function ajaxpaging(param_url){
-
-		if (param_url== null ){
-			param_url='<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/';
-		}
-		$.ajax({
-					type: 'POST',
-					url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/',
-					data: $('#lowongan_kerja').serialize(),
-					success: function(data) {
-						$('#list_data').html(data);
-					}
-			});
-	}
 	
+	/*
 		function search_lowongan(){
 		
 			$.ajax({
@@ -97,7 +109,7 @@
 
 				});
 		}
-		
+		*/
 	
 	
 </script>	
