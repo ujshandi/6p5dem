@@ -23,7 +23,7 @@ class mdl_pengumuman_backend extends CI_Model{
 
 	function insert($data)
 	{
-		 $this->db->flush_cache();        $this->db->set('ID_PENGUMUMAN', $data['ID_PENGUMUMAN']);        $this->db->set('JUDUL', $data['JUDUL']);        $this->db->set('ISI', $data['ISI']);		$this->db->set('TANGGAL_PEMBUATAN', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['TANGGAL_PEMBUATAN']).'\', \'YYYY-MM-DD\')', FALSE);        $this->db->set('URL', $data['URL']);        $this->db->set('GAMBAR', $data['GAMBAR']);        $this->db->set('EXPIRE', $data['EXPIRE']);        $this->db->set('DESKRIPSI', $data['DESKRIPSI']);        $this->db->set('TANGGAL_MODIFIKASI', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['TANGGAL_MODIFIKASI']).'\', \'YYYY-MM-DD\')', FALSE);	        $result = $this->db->insert('BB_PENGUMUMAN');
+		 $this->db->flush_cache();        				$this->db->set('JUDUL', $data['JUDUL']);        $this->db->set('ISI', $data['ISI']);        $this->db->set('URL', $data['URL']);        $this->db->set('GAMBAR', $data['GAMBAR']);		$this->db->set('EXPIRE', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['EXPIRE']).'\', \'YYYY-MM-DD\')', FALSE);		$this->db->set('TANGGAL_PEMBUATAN', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['TANGGAL_PEMBUATAN']).'\', \'YYYY-MM-DD\')', FALSE);        $this->db->set('DESKRIPSI', $data['DESKRIPSI']);        $this->db->set('TANGGAL_MODIFIKASI', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['TANGGAL_MODIFIKASI']).'\', \'YYYY-MM-DD\')', FALSE);		        $result = $this->db->insert('BB_PENGUMUMAN');
 	}
 	
 	function update($id,$data)

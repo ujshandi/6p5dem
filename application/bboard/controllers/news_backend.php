@@ -41,34 +41,42 @@ class news_backend extends MY_Controller
 	
 	public function proses_add(){
 		$this->open_backend();
-		
-		# get post data
-		$data['NEWS_ID'] = $this->input->post('NEWS_ID');
-        $data['NEWS_TITLE'] = $this->input->post('NEWS_TITLE');
-        $data['NEWS_BODY'] = $this->input->post('NEWS_BODY');
-        $data['NEWS_DATETIME'] = $this->input->post('NEWS_DATETIME');
-        $data['NEWS_READ'] = $this->input->post('NEWS_READ');
-        $data['URL'] = $this->input->post('URL');
-        $data['IMAGE'] = $this->input->post('IMAGE');
-        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
-		
-		# set rules validation
-        $this->form_validation->set_rules('NEWS_TITLE', 'NEWS TITLE', 'required');
-        $this->form_validation->set_rules('NEWS_BODY', 'NEWS BODY', 'required');
-        $this->form_validation->set_rules('NEWS_DATETIME', 'NEWS DATETIME', 'required');
-        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
-        
-		
-		# set message validation
-		$this->form_validation->set_message('required', 'Field %s harus diisi!');
-		
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('news_backend/news_backend_add',$data);
-		}else{
-			$this->news_backend->insert($data);
-			redirect('news_backend');
+		$config['upload_path'] = './asset/board/upload/news/';
+		$config['allowed_types'] = 'gif|jpg|png|BMP|';
+		$config['max_size']	= '1000';
+		$config['max_width']  = '800';
+		$config['max_height']  = '800';
+
+		$this->load->library('upload', $config);
+
+		if ( $this->upload->do_upload()){
+			$data['IMAGE'] =  $this->upload->file_name;
+			# get post data
+			$data['NEWS_ID'] = $this->input->post('NEWS_ID');
+			$data['NEWS_TITLE'] = $this->input->post('NEWS_TITLE');
+			$data['NEWS_BODY'] = $this->input->post('NEWS_BODY');
+			$data['NEWS_DATETIME'] = $this->input->post('NEWS_DATETIME');
+			$data['NEWS_READ'] = $this->input->post('NEWS_READ');
+			$data['URL'] = $this->input->post('URL');
+			$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+			
+			# set rules validation
+			$this->form_validation->set_rules('NEWS_TITLE', 'NEWS TITLE', 'required');
+			$this->form_validation->set_rules('NEWS_BODY', 'NEWS BODY', 'required');
+			$this->form_validation->set_rules('NEWS_DATETIME', 'NEWS DATETIME', 'required');
+			$this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+			
+			
+			# set message validation
+			$this->form_validation->set_message('required', 'Field %s harus diisi!');
+			
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('news_backend/news_backend_add',$data);
+			}else{
+				$this->news_backend->insert($data);
+				redirect('news_backend');
+			}
 		}
-		
 		$this->close_backend();
 	}
 	
