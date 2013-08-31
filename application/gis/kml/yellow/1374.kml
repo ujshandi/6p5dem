@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>1374</name>
+<Schema name="1374" id="1374">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="KODE" type="string"></SimpleField>
+	<SimpleField name="KABUPATEN" type="string"></SimpleField>
+	<SimpleField name="KETERANGAN" type="string"></SimpleField>
+	<SimpleField name="SUMBER" type="string"></SimpleField>
+	<SimpleField name="TGL" type="string"></SimpleField>
+	<SimpleField name="XCOORD" type="float"></SimpleField>
+	<SimpleField name="YCOORD" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff000000</color></LineStyle><PolyStyle><color>FF00FFFF</color><fill>1</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#1374">
+		<SimpleData name="KODE">1374</SimpleData>
+		<SimpleData name="KABUPATEN">Kod. TANAH DATAR</SimpleData>
+		<SimpleData name="KETERANGAN">47718748.58</SimpleData>
+		<SimpleData name="SUMBER"></SimpleData>
+		<SimpleData name="TGL">0000/00/00</SimpleData>
+		<SimpleData name="XCOORD">0.000000000000000</SimpleData>
+		<SimpleData name="YCOORD">0.000000000000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>100.426323,-0.479643 100.419617,-0.480246 100.402809,-0.480523 100.389046,-0.476605 100.383011,-0.472547 100.37648,-0.467478 100.374992,-0.462426 100.379395,-0.455713 100.391006,-0.453567 100.3964,-0.449886 100.400658,-0.439136 100.407394,-0.436468 100.414787,-0.437672 100.421852,-0.436015 100.424736,-0.431315 100.42643,-0.428461 100.428116,-0.426449 100.434357,-0.423275 100.440491,-0.424321 100.44342,-0.424821 100.449287,-0.428206 100.45163,-0.43141 100.454803,-0.434449 100.461502,-0.439687 100.468864,-0.447282 100.471825,-0.460245 100.469406,-0.474198 100.465851,-0.4794 100.456085,-0.483234 100.447838,-0.48455 100.442978,-0.482347 100.432236,-0.479113 100.426323,-0.479643</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>
