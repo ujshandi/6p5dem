@@ -317,6 +317,18 @@ function create_kmlFileDaratOK(){
 		$.each(data, function(i, item){
 				var kode = item.kode;
 				var jumlah = item.jumlah;
+				var total = item.total;
+				
+				var low = total/3;
+				var nrm = low + (total/3);
+				var hi  = nrm + (total/3);
+				var color = 'green';
+				
+				if(jumlah<low){ color = 'red'}
+				else if(jumlah<nrm){ color = 'yellow'}
+				else { color = 'green'}
+				
+				//alert(total/3 + ' ' + jumlah + ' ' + color);
 				//window.alert("kode: "+kode+"jumlah: "+jumlah);
 				//window.alert(i);
 				//var kmlOptions = {suppressInfoWindows: false};
@@ -325,7 +337,7 @@ function create_kmlFileDaratOK(){
 				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
                 //kmlLayer.setMap(map);
 				 kmlLayers[i] = new google.maps.KmlLayer({
-					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/green/'+kode+'.kml',
+					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml',
 					suppressInfoWindows: true,
 					preserveViewport: true,
 					map: map

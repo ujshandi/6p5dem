@@ -5,6 +5,13 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
+$stid = oci_parse($conn, ' select SUM(JUMLAH) as TOTAL from (Select KABALAMAT,count(*) as JUMLAH from sdm_pegawai group by KABALAMAT) where ROWNUM <= 15 ');
+oci_execute($stid);
+
+while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+    $total = $row['TOTAL'];
+}
+
 $stid = oci_parse($conn, ' select * from (Select KABALAMAT,count(*) as JUMLAH from sdm_pegawai group by KABALAMAT) where ROWNUM <= 15 ');
 oci_execute($stid);
 
@@ -15,7 +22,8 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
 	
 	echo '{';
 		echo '"kode":"'.$kode.'",';
-		echo '"jumlah":"'.$jumlah.'"';
+		echo '"jumlah":"'.$jumlah.'",';
+		echo '"total":"'.$total.'"';
 	echo '},';
 }
 echo ']);';	
