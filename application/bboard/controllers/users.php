@@ -135,6 +135,22 @@ class Users extends MY_Controller
 		$this->load->view('users/users_list_diklat', $data);
 	}
 	
+	public function get_users_kopeten(){
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_kopeten/';
+		$config['total_rows'] = $this->users->get_item_kopeten($keysearch_users,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->get_item_diklat($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_list_kopeten', $data);
+	}
+	
 	public function proses_add(){
 		//$this->open_backend();
 		
@@ -410,6 +426,94 @@ class Users extends MY_Controller
 			$this->users->insert_diklat($data);
 			redirect('users/get_users_diklat');
 		}
+	}
+	
+	public function add_kopeten(){
+
+		
+		$data['results'] = $this->users->get_allitem_kopeten();
+		
+		$this->load->view('users/users_add_kopeten', $data);
+	}
+	
+	/*kopeten*/
+	public function proses_add_kopeten(){
+		# get post data
+        $USER_ID = $this->input->post('USER_ID');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$results=$this->users->get_item_by_username($USER_ID);
+		$data['USER_ID']=$USER_ID;
+		$data['USERNAME']=$results->row()->USERNAME;
+		$data['NAME']=$results->row()->NAME;
+		$data['PASSWORD']=$results->row()->PASSWORD;
+		$data['DEPARTMENT']=$results->row()->DEPARTMENT;
+		$data['POSITION']=$results->row()->POSITION;
+		$data['DESCRIPTION']=$results->row()->DESCRIPTION;
+		$data['NIP']=$results->row()->NIP;
+		$data['EMAIL']=$results->row()->EMAIL;
+		/*$data['LEVEL'] = $this->input->post('LEVEL_ID'); 
+	
+		if ($data['LEVEL']==2){
+			$data['KODE_UPT'] = $INDUK_UPT;	
+		}else if ($data['LEVEL']==3){
+			$data['KODE_UPT'] = $UPT;	
+		}else if ($data['LEVEL']==1){
+			$data['KODE_UPT'] = "";	
+		}*/
+		
+		
+		# set rules validation
+		
+        $this->form_validation->set_rules('USER_ID', 'USER_ID', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
+        
+		
+		# set message validation 
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_add_kopeten',$data);
+		}else{
+			$this->users->insert_kopeten($data);
+			redirect('users/get_users_kopeten');
+		}
+	}
+	
+	public function edit_kopeten($id){
+		$data['id'] = $id;
+		$results = $this->users->get_data_edit_kopeten($id);
+		$data['USERNAME']=$results->row()->USERNAME;
+		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
+		/*$data['LEVEL']=$results->row()->LEVEL;
+		$data['KODE_UPT']=$results->row()->KODE_UPT;*/
+		$this->load->view('users/users_edit_kopeten', $data);
+	}
+	
+	public function proses_edit_kopeten(){
+		$data['USERNAME'] = $this->input->post('USERNAME');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		$INDUK_UPT = $this->input->post('INDUK_UPT');
+		$UPT = $this->input->post('UPT');
+		if ($data['LEVEL']==2){
+			$data['KODE_UPT'] = $INDUK_UPT;	
+		}else if ($data['LEVEL']==3){
+			$data['KODE_UPT'] = $UPT;	
+		}
+		
+		$this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_edit_kopeten',$data);
+		}else{
+			$this->users->update_kopeten($data);
+			redirect('users/get_users_kopeten');
+		}
+		
 	}
 	
 	function get_induk_upt(){
