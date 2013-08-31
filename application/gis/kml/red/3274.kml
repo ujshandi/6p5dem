@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>3274</name>
+<Schema name="3274" id="3274">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="KODE" type="string"></SimpleField>
+	<SimpleField name="KABUPATEN" type="string"></SimpleField>
+	<SimpleField name="KETERANGAN" type="string"></SimpleField>
+	<SimpleField name="SUMBER" type="string"></SimpleField>
+	<SimpleField name="TGL" type="string"></SimpleField>
+	<SimpleField name="XCOORD" type="float"></SimpleField>
+	<SimpleField name="YCOORD" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff000000</color></LineStyle><PolyStyle><color>FFFF0000</color><fill>1</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#3274">
+		<SimpleData name="KODE">3274</SimpleData>
+		<SimpleData name="KABUPATEN">Kodya CIREBON</SimpleData>
+		<SimpleData name="KETERANGAN">23012280.67</SimpleData>
+		<SimpleData name="SUMBER"></SimpleData>
+		<SimpleData name="TGL">0000/00/00</SimpleData>
+		<SimpleData name="XCOORD">0.000000000000000</SimpleData>
+		<SimpleData name="YCOORD">0.000000000000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>108.580437,-6.738937 108.580431,-6.738929 108.578285,-6.740055 108.575806,-6.741048 108.572701,-6.742064 108.569687,-6.743837 108.567795,-6.744743 108.566238,-6.746752 108.563332,-6.749654 108.560959,-6.753716 108.559982,-6.756127 108.55909,-6.757467 108.558464,-6.758738 108.557976,-6.760369 108.556633,-6.763717 108.55574,-6.768405 108.553848,-6.77163 108.552841,-6.775771 108.551498,-6.779789 108.549637,-6.782259 108.547928,-6.78403 108.546364,-6.78537 108.5448,-6.787155 108.543015,-6.788048 108.541451,-6.789165 108.53878,-6.790281 108.537384,-6.78993 108.536102,-6.790281 108.533646,-6.789611 108.531853,-6.788718 108.529846,-6.787826 108.528595,-6.786848 108.527153,-6.78511 108.529182,-6.781129 108.529625,-6.778673 108.530296,-6.775994 108.529945,-6.773098 108.529846,-6.769967 108.52903,-6.766215 108.528511,-6.764387 108.52739,-6.762601 108.526276,-6.758806 108.526276,-6.757467 108.525856,-6.755161 108.525383,-6.754118 108.525604,-6.75211 108.525612,-6.750055 108.527168,-6.748092 108.530067,-6.745189 108.534981,-6.741841 108.53714,-6.740355 108.540779,-6.739162 108.546585,-6.736707 108.550835,-6.733805 108.553375,-6.732435 108.554848,-6.731573 108.560738,-6.722801 108.561104,-6.720635 108.561768,-6.718849 108.562515,-6.717967 108.563019,-6.716765 108.563332,-6.715724 108.564667,-6.714161 108.565338,-6.712376 108.565781,-6.711259 108.565979,-6.708935 108.566902,-6.710142 108.568817,-6.711569 108.569687,-6.713001 108.569862,-6.714502 108.570465,-6.71944 108.571053,-6.722145 108.572517,-6.726508 108.573341,-6.73019 108.574501,-6.732663 108.575089,-6.735016 108.576134,-6.736105 108.578552,-6.736495 108.580063,-6.73793 108.580437,-6.738937</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>
