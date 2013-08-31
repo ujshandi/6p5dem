@@ -24,7 +24,37 @@ if(modul=='sdm_dinas'){
 	});
 	
 	get_chart('fcfchart1','Doughnut3D','all','chart1',850,270);
-	get_chart('fcfchart2','FCF_MSBar2D','campur','chart2',865,1500);	
+	get_chart('fcfchart2','FCF_MSBar2D','campur','chart2',865,500);	
+	//get_chart('fcfchart3','Bar2D','pria','chart3',1000,100);	
+	});
+}
+
+// sdm_kementerian
+if(modul=='sdm_kementerian'){
+	$(document).ready(function(){
+	$('#panelsMom1').css('height', tinggi+'px');
+	$('#panelsMom1').css('width', lebar-290+'px');
+	
+	$('#kat').css('width', lebar2+'px');	
+	$('#all2').css('width', lebar2+'px');	
+	$('#kat').css('height', tinggi+'px');	
+	$('#all2').css('height', tinggi+'px');	
+	
+	$('#chart1').panel({
+		width: lebar2,
+		height: frmHeight-220,
+		title: 'Komposisi SDM Kementerian Perhubungan (%)',
+		html: "<div id='chart1'></div>"
+	});
+	$('#chart2').panel({
+		width: lebar2,
+		height: frmHeight-220,
+		title: 'Komposisi SDM Kementerian Pria & Wanita',
+		html: "<div id='chart2'></div>"
+	});
+	
+	get_chart2('fcfchart1','Doughnut3D','all2','chart1',850,270);
+	get_chart2('fcfchart2','FCF_MSBar2D','campur2','chart2',865,500);	
 	//get_chart('fcfchart3','Bar2D','pria','chart3',1000,100);	
 	});
 }

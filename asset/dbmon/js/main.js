@@ -43,6 +43,21 @@ function get_chart(id,type_chart,mod,render_id,lebar_na,tinggi_na){
 	});
 }
 
+// sdm kementerian
+
+function get_chart2(id,type_chart,mod,render_id,lebar_na,tinggi_na){
+	post['kat']=mod;
+	$("#"+render_id).html("").addClass("loading");
+	$.post(host+'dashboard/get_datagrap',post,function(r){
+			//r = eval('('+r+')');
+			if(FusionCharts(id)){FusionCharts(id).dispose();}
+			id = new FusionCharts(site+"asset/dbmon/swf/"+type_chart+".swf", id, frmWidth-lebar_na, (mod=='campur2' ? tinggi_na : frmHeight-tinggi_na));
+			id.setDataXML(r);
+			id.render(render_id);
+			 $("#"+render_id).removeClass("loading");
+	});
+}
+
 var container3;
 function mywindow(html,judul,width,height){
     container3 = "win"+Math.floor(Math.random()*9999);
