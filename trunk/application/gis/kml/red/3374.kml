@@ -13,7 +13,7 @@
 	<SimpleField name="YCOORD" type="float"></SimpleField>
 </Schema>
   <Placemark>
-	<Style><LineStyle><color>ff000000</color></LineStyle><PolyStyle><color>FFFF0000</color><fill>1</fill></PolyStyle></Style>
+	<Style><LineStyle><color>ff000000</color></LineStyle><PolyStyle><color>FF0000FF</color><fill>1</fill></PolyStyle></Style>
 	<ExtendedData><SchemaData schemaUrl="#3374">
 		<SimpleData name="KODE">3374</SimpleData>
 		<SimpleData name="KABUPATEN">Kodya SEMARANG</SimpleData>
