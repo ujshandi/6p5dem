@@ -86,12 +86,11 @@ class news_backend extends MY_Controller
 	public function proses_edit(){
 		$this->open_backend();
 		$id= $this->input->post('id');
-		# get post data
+		
         $data['NEWS_TITLE'] = $this->input->post('NEWS_TITLE');
         $data['NEWS_BODY'] = $this->input->post('NEWS_BODY');
-        //$data['NEWS_DATETIME'] = '\'TO_DATE(\''.$this->fungsi->setUpdateDateToDB($this->input->post('NEWS_DATETIME')).'\', \'SYYYY-MM-DD\')';
-		//$data['NEWS_DATETIME'] = "to_date('".$this->input->post('NEWS_DATETIME')."', 'mm/dd/yyyy')";
 		$data['NEWS_DATETIME'] = $this->input->post('NEWS_DATETIME');
+		$data['NEWS_READ'] = $this->input->post('NEWS_READ');
         $data['URL'] = $this->input->post('URL');
         $data['IMAGE'] = $this->input->post('IMAGE');
         $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
@@ -100,8 +99,6 @@ class news_backend extends MY_Controller
 		
 		# set rules validation
         $this->form_validation->set_rules('NEWS_TITLE', 'NEWS TITLE', 'required');
-        $this->form_validation->set_rules('NEWS_BODY', 'NEWS BODY', 'required');
-        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -110,7 +107,7 @@ class news_backend extends MY_Controller
 			$this->load->view('news_backend/news_backend_edit',$data);
 		}else{
 			$this->news_backend->update($id,$data);
-			//redirect('news_backend');
+			redirect('news_backend');
 		}
 		
 		$this->close_backend();
