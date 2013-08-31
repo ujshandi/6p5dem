@@ -20,7 +20,7 @@ class mdl_alumni_front extends CI_Model{
 		if(!empty($filter['kode_upt']))
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
 		if(!empty($filter['search']))
-			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', strtoupper($filter['search']));
 		
 		$tmp['row_data'] = $this->db->get();
 		
@@ -39,7 +39,7 @@ class mdl_alumni_front extends CI_Model{
 		if(!empty($filter['kode_upt']))
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
 		if(!empty($filter['search']))
-			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', strtoupper($filter['search']));
 		
 		$tmp['row_count'] = $this->db->get()->num_rows();
 		

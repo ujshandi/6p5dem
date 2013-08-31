@@ -16,6 +16,10 @@ class Alumni_frontpage extends My_Frontpage {
 		
 	}
 	
+	function test(){
+		echo 'hahaha';
+	}
+	
 	public function index()
 	{
 		$this->open();
