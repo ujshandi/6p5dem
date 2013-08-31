@@ -1,6 +1,6 @@
-<div id="usefulinkcontent">
+<div id="usefulinkcontent_left">
 
-<table width="40%">
+<table>
 	<thead>
 		<tr>
 			<th align="left" valign="top" scope="col">Lowongan  Perhubungan Darat Terbaru</th>
@@ -37,8 +37,8 @@
 	
 </table>
 </div>
-<div id="usefulinkcontent">
-<table width="40%">
+<div id="usefulinkcontent_right">
+<table >
 	<thead>
 		<tr>
 			<th align="left" valign="top" scope="col">Lowongan  Perhubungan Laut Terbaru</th>
@@ -77,10 +77,8 @@
 </div>
 
 <div class="clearfix">&nbsp;</div>
-<div id="usefulinkcontent">
-
-
-<table width="40%">
+<div id="usefulinkcontent_left">
+<table>
 	<thead>
 		<tr>
 			<th align="left" valign="top" scope="col">Lowongan  Perhubungan Udara Terbaru</th>
@@ -117,8 +115,8 @@
 	
 </table>
 </div>
-<div id="usefulinkcontent">
-<table width="40%">
+<div id="usefulinkcontent_right">
+<table>
 	<thead>
 		<tr>
 			<th align="left" valign="top" scope="col">Lowongan  Perhubungan Kereta Api Terbaru</th>

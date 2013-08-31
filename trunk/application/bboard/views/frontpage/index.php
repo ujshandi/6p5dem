@@ -201,6 +201,14 @@
 			</div>
 		<!--End Link lowongan kerja-->
 		
+		<!--Link Informasi Kerjasama-->
+			<h2 class="typo">Informasi Kerjasama</h2>
+			<div class="apl_box">
+				<img src="<?=base_url()?>asset/board/asset/frontpage/images/loker.png" class="ic" />
+				<hr class="style1"/>
+				<p align="center"><center><a href="<?php echo site_url() . '/kerjasama/' ?>" class="more_bgcolor more_rounded centered">INFO KERJASAMA</a></center></p>
+			</div>
+		<!--End Link Informasi Kerjasama-->
     </div>
 	
     
@@ -261,6 +269,7 @@
 		</h2>
         <div id="calendar_box"></div>
     </div>
+	
 	<div class="clear"></div> 
   </div>
   
