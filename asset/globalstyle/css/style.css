@@ -98,16 +98,16 @@ ul.homout li a:hover {background:#FFCC00;color:#990000;}
 ul.homout li a img {float:left;border:none;margin:7px 5px 0 0}
 
 /* user panel */
-.panel {float:right;margin:20px 20px 0;padding-right:20px;border-right:dotted 1px #336600;overflow: hidden;}
-.panel h4 {font-size: 14px;color:#fff;text-shadow:0 1px 0 #000;letter-spacing: -1px;margin: 0;padding: 0;}
-.panel p {color:#FFCC00;font-size:12px;font-weight:bold;line-height:normal;margin:0;padding:0;text-shadow: 0 1px 0 #000;}
-.panel p a {color: #FFCC00;text-decoration: none;}
-.panel p a:hover {color: #fff;}
-.panel hr {border-bottom-color: #99CC33;border-top-color: #7AA81D;margin: 2px 0;}
-.panel .inlink {background: #285B03;border-radius: 4px;color: #99CC33;display: inline-block;float: left;font-size: 11px;font-weight: bold;margin: 0 5px 0 0;padding: 1px 10px 2px;text-decoration: none;text-shadow: 0 1px 0 #000;}
-.panel .inlink:hover {background: #336600;color:#fff}
-.panel .logout {height:40px;line-height:40px;border-left: 1px dotted #6699CC;color: #fff;display: block;font-size: 11px;font-weight: bold;margin: 15px 0 0 10px;padding: 0 0 0 40px;text-align: center;text-decoration: none;text-shadow: 0 1px 0 #000;background:url(../images/ic-logout.png) no-repeat 10px 50%}
-.panel .logout:hover {color:#FFCC00}
+#header .panel {float:right;margin:20px 20px 0;padding-right:20px;border-right:dotted 1px #336600;overflow: hidden;}
+#header .panel h4 {font-size: 14px;color:#fff;text-shadow:0 1px 0 #000;letter-spacing: -1px;margin: 0;padding: 0;}
+#header .panel p {color:#FFCC00;font-size:12px;font-weight:bold;line-height:normal;margin:0;padding:0;text-shadow: 0 1px 0 #000;}
+#header .panel p a {color: #FFCC00;text-decoration: none;}
+#header .panel p a:hover {color: #fff;}
+#header .panel hr {border-bottom-color: #99CC33;border-top-color: #7AA81D;margin: 2px 0;}
+#header .panel .inlink {background: #285B03;border-radius: 4px;color: #99CC33;display: inline-block;float: left;font-size: 11px;font-weight: bold;margin: 0 5px 0 0;padding: 1px 10px 2px;text-decoration: none;text-shadow: 0 1px 0 #000;}
+#header .panel .inlink:hover {background: #336600;color:#fff}
+#header .panel .logout {height:40px;line-height:40px;border-left: 1px dotted #6699CC;color: #fff;display: block;font-size: 11px;font-weight: bold;margin: 15px 0 0 10px;padding: 0 0 0 40px;text-align: center;text-decoration: none;text-shadow: 0 1px 0 #000;background:url(../images/ic-logout.png) no-repeat 10px 50%}
+#header .panel .logout:hover {color:#FFCC00}
 
 .menu-title {float:left;width:150px;background: url(../images/arrow.gif) no-repeat right center;padding-left:20px;margin:5px 5px 0 0;color:#666633;font-size:14px;font-weight:bold;text-shadow:0 1px 0 #fff;letter-spacing:-1px}
 .submenu {float:left;padding: 0;margin:0;}
