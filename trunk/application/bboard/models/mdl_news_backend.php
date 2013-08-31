@@ -28,9 +28,9 @@ class mdl_news_backend extends CI_Model{
 	
 	function update($id,$data)
 	{
-		$this->db->flush_cache();        $this->db->set('NEWS_TITLE2', $data['NEWS_TITLE']);        $this->db->set('NEWS_BODY', $data['NEWS_BODY']);        //$this->db->set('NEWS_DATETIME',$data['NEWS_DATETIME'] , FALSE);		$this->db->set('NEWS_DATETIME', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['NEWS_DATETIME']).'\', \'YYYY-MM-DD\')', FALSE);        $this->db->set('URL', $data['URL']);        $this->db->set('IMAGE', $data['IMAGE']);        $this->db->set('DESKRIPSI', $data['DESKRIPSI']);
+		/*$this->db->flush_cache();        $this->db->set('NEWS_TITLE', $data['NEWS_TITLE']);        $this->db->set('NEWS_BODY', $data['NEWS_BODY']);*/        //$this->db->set('NEWS_DATETIME',$data['NEWS_DATETIME'] , FALSE);	//	$this->db->set('NEWS_DATETIME', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['NEWS_DATETIME']).'\', \'YYYY-MM-DD\')', FALSE);        /*$this->db->set('URL', $data['URL']);		$this->db->set('NEWS_READ', $data['NEWS_READ']);        $this->db->set('IMAGE', $data['IMAGE']);        $this->db->set('DESKRIPSI', $data['DESKRIPSI']); 
 		$this->db->where('NEWS_ID', $id);
-		$this->db->update('BB_NEWS', $data);
+		$this->db->update('BB_NEWS', $data);*/						$this->db->flush_cache();		$this->db->set('NEWS_TITLE', $data['NEWS_TITLE']);        $this->db->set('NEWS_BODY', $data['NEWS_BODY']);		$this->db->set('NEWS_DATETIME', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['NEWS_DATETIME']).'\', \'YYYY-MM-DD\')', FALSE);		$this->db->set('URL', $data['URL']);        $this->db->set('IMAGE', $data['IMAGE']);        $this->db->set('DESKRIPSI', $data['DESKRIPSI']); 		$this->db->where('NEWS_ID', $id);				$result = $this->db->update('BB_NEWS');				if($result) {			return TRUE;		}else {			return FALSE;		}		
 	}		function get_data_edit($id){		$this->db->select('*');		$this->db->from('BB_NEWS');		$this->db->where('NEWS_ID', $id);		return $this->db->get();	}
 	
 	function delete($id)

@@ -8,8 +8,9 @@ class pengumuman_backend extends MY_Controller
 
 		$this->load->helper('url');
 		$this->load->model('Authentikasi');
-		$this->load->model('mdl_pengumuman', 'pengumuman');
+		$this->load->model('mdl_pengumuman_backend', 'pengumuman');
 		$this->load->library('auth_ad');
+		$this->load->library('fungsi');
 	}
 
 	function index()
@@ -41,23 +42,28 @@ class pengumuman_backend extends MY_Controller
 		$this->open_backend();
 		
 		# get post data
-		$data['NAME'] = $this->input->post('NAME');
-        $data['USERNAME'] = $this->input->post('USERNAME');
-        $data['PASSWORD'] = $this->input->post('PASSWORD');
-		$data['pengumuman_backend_ID'] = $this->input->post('pengumuman_backend_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
-		$data['NIP'] = $this->input->post('NIP');
-		$data['EMAIL'] = $this->input->post('EMAIL');
+		$data['ID_PENGUMUMAN'] = $this->input->post('ID_PENGUMUMAN');
+        $data['JUDUL'] = $this->input->post('JUDUL');
+        $data['ISI'] = $this->input->post('ISI');
+        $data['TANGGAL_PEMBUATAN'] = $this->input->post('TANGGAL_PEMBUATAN');
+        $data['URL'] = $this->input->post('URL');
+        $data['GAMBAR'] = $this->input->post('GAMBAR');
+        $data['EXPIRE'] = $this->input->post('EXPIRE');
+        $data['ATTACHMENT'] = $this->input->post('ATTACHMENT');
+        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+        $data['TANGGAL_MODIFIKASI'] = $this->input->post('TANGGAL_MODIFIKASI');
 		
 		# set rules validation
-		$this->form_validation->set_rules('NAME', 'NAME', 'required');
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
-        $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('pengumuman_backend_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
+		$this->form_validation->set_rules('ID_PENGUMUMAN', 'ID PENGUMUMAN', 'required');
+        $this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+        $this->form_validation->set_rules('ISI', 'ISI', 'required');
+        $this->form_validation->set_rules('TANGGAL_PEMBUATAN', 'TANGGAL PEMBUATAN', 'required');
+        $this->form_validation->set_rules('URL', 'URL', 'required');
+        $this->form_validation->set_rules('GAMBAR', 'GAMBAR', 'required');
+        $this->form_validation->set_rules('EXPIRE', 'EXPIRE', 'required');
+        $this->form_validation->set_rules('ATTACHMENT', 'ATTACHMENT', 'required');
+        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+        $this->form_validation->set_rules('TANGGAL_MODIFIKASI', 'TANGGAL MODIFIKASI', 'required');
         
 		
 		# set message validation
@@ -66,7 +72,7 @@ class pengumuman_backend extends MY_Controller
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('pengumuman_backend/pengumuman_backend_add',$data);
 		}else{
-			$this->pengumuman_backend->insert($data);
+			$this->pengumuman->insert($data);
 			redirect('pengumuman_backend');
 		}
 		
@@ -77,7 +83,7 @@ class pengumuman_backend extends MY_Controller
 		$this->open_backend();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->pengumuman_backend->get_data_edit($id);
+		$data['result'] = $this->pengumuman->get_data_edit($id);
 		
 		$this->load->view('pengumuman_backend/pengumuman_backend_edit', $data);
 		
@@ -88,30 +94,27 @@ class pengumuman_backend extends MY_Controller
 		$this->open_backend();
 		
 		$data['id'] = $this->input->post('id');
-		$data['NAME'] = $this->input->post('NAME');
-        $data['USERNAME'] = $this->input->post('USERNAME');
-        $data['PASSWORD'] = $this->input->post('PASSWORD');
-		$data['pengumuman_backend_ID'] = $this->input->post('pengumuman_backend_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
-		$data['NIP'] = $this->input->post('NIP');
-		$data['EMAIL'] = $this->input->post('EMAIL');
+        $data['JUDUL'] = $this->input->post('JUDUL');
+		$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+        $data['ISI'] = $this->input->post('ISI');
+        $data['URL'] = $this->input->post('URL');
+        $data['GAMBAR'] = $this->input->post('GAMBAR');
+        $data['EXPIRE'] = $this->input->post('EXPIRE');
+        
+        $data['TANGGAL_MODIFIKASI'] = date('m/d/Y');
 		
 		# set rules validation
-		$this->form_validation->set_rules('NAME', 'NAME', 'required');
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
-        $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('pengumuman_backend_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
+        $this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+       
+        
+		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('pengumuman_backend/pengumuman_backend_edit',$data);
 		}else{
-			$this->pengumuman_backend->update($data);
+			$this->pengumuman->update($data['id'],$data);
 			redirect('pengumuman_backend');
 		}
 		
