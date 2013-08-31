@@ -50,7 +50,7 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td><?=$r->NAMA_UPT?></td>
-				<td><?=$r->KODE_DIKLAT?></td>
+				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->KODE_KURIKULUM?></td>
 				<td><?=$r->NAMA_KURIKULUM?></td>
 				<td><?=$r->SKS_TEORI?></td>
