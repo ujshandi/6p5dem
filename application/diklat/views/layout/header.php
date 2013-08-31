@@ -38,7 +38,8 @@
 				//print_r($user);
 			?></a></p>
             <hr>
-            <a href="#" class="inlink">Setting</a> <a href="<?=base_url().'index.php/auth/logout'?>" class="inlink">Logout</a>
+            <!--<a href="#" class="inlink">Setting</a>--> 
+			<a href="<?=base_url().'index.php/auth/logout'?>" class="inlink">Logout</a>
     	</div>
           <!--<div class="usr"><span>welcome user</span>
 		  <a href="#">
@@ -59,7 +60,8 @@
             
 	  <div class="bread">
 		<p id="breadcrumb">
-		<a href="#">Home</a>
+		<a href="<?=base_url()?>">Home</a>
+		Diklat
 		<!--
 		<a href="#">Sub Menu</a>
 		<a href="#">Sub submenu</a>
