@@ -30,37 +30,43 @@
 
 <body>
 <div id="container">
-<div id="header" class="bg_darkred"> 
-    <div class="header-img darkred"> 
+<div id="header" class="bg_grd"> 
+    <div class="header-img grd"> 
       <div id="title">
-        <h3>BPSDM Perhubungan - Kementerian Perhubungan RI</h3>
-        <h2>Sistem Informasi Manajemen SDM Bidang Transportasi</h2>
         <h1>Aplikasi Dashboard Monitoring</h1>
+        <h3>Sistem Informasi Manajemen SDM Bidang Transportasi</h3>
       </div><!-- end title -->
       
       <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"></a></div>
-      <div class="clear"></div>
-      
-	  <!--
-      <div class="bread">
-        <ul class="breadcrumbs">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Dashboard Monitoring</a></li>
-          <li><span>Edit</span></li>
-          <li class="current"><a href="#">Add</a></li>
-        </ul>
-      </div>
-	  -->
-      
+            
       <div class="right">
-          <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
-            <ul class="homout">
-                <li><a href="<?=base_url()?>"><img src="<?=base_url()?>asset/globalstyle/images/icon_home_16x16.png" />HOME</a></li>
-                <li><a href="#"><img src="<?=base_url()?>asset/globalstyle/images/icon_logout_16x16.png" />LOGOUT</a></li>
-            </ul>
+          <div class="panel">
+            <h4>Welcome :</h4>
+            <p><a href="#">
+			<?
+				$user = $this->session->userdata('dataUser');
+				echo $user['USER_NAME'];
+				//print_r($user);
+			?></a></p>
+            <hr>
+            <a href="#" class="inlink">Setting</a> <a href="<?=base_url().'index.php/auth/logout'?>" class="inlink">Logout</a>
+    	</div>
+			
       </div>
+	  <div class="clear"></div>
+            
+	  <div class="bread">
+		<p id="breadcrumb">
+		<a href="<?=base_url()?>">Home</a>
+		Dashboard Monitoring
+		<!--<a href="#">Sub Menu</a>
+		<a href="#">Sub submenu</a>
+		<a href="#">Sub submenu 1</a>
+		You're here-->
+		</p>
+	  </div><!-- end breadcrumbs -->
       
-      <div class="clear"></div>
+	  <div class="clear"></div>
     </div><!-- end image headers -->
     
 </div><!-- end header -->

@@ -40,12 +40,6 @@
             <hr>
             <a href="#" class="inlink">Setting</a> <a href="<?=base_url().'index.php/auth/logout'?>" class="inlink">Logout</a>
     	</div>
-          
-			<?
-				$user = $this->session->userdata('dataUser');
-				echo $user['USER_NAME'];
-				//print_r($user);
-			?>
 			
       </div>
 	  <div class="clear"></div>
