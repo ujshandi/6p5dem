@@ -143,7 +143,6 @@
 			</li>
 	</ol>		
 	</fieldset>
-	<a onClick="ajax_paging();return false;" href="<?php echo site_url();?>/lowongan_kerja_backend/lowongan_kerja_backend/5">3</a>
 	<div id="list_data">
 	
 	</div>
