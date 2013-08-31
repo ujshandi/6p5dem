@@ -102,7 +102,7 @@ class peserta_backend extends My_Controller {
         $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
         $data['NAMA_PENDAFTAR'] = $this->input->post('NAMA_PENDAFTAR');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
+        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
         $data['JK'] = $this->input->post('JK');
         $data['NO_TELP'] = $this->input->post('NO_TELP');
         $data['STATUS_PENDAFTAR'] = $this->input->post('STATUS_PENDAFTAR');
@@ -186,7 +186,7 @@ class peserta_backend extends My_Controller {
         $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
         $data['NAMA_PENDAFTAR'] = $this->input->post('NAMA_PENDAFTAR');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
-        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'mm/dd/yyyy')";
+        $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
         $data['JK'] = $this->input->post('JK');
         $data['NO_TELP'] = $this->input->post('NO_TELP');
         $data['STATUS_PENDAFTAR'] = $this->input->post('STATUS_PENDAFTAR');
