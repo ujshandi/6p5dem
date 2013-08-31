@@ -10,6 +10,7 @@ class news_backend extends MY_Controller
 		$this->load->model('Authentikasi');
 		$this->load->model('mdl_news', 'news');
 		$this->load->model('mdl_news_backend', 'news_backend');
+		$this->load->library('fungsi');
 		$this->load->library('auth_ad');
 	}
 
@@ -84,33 +85,32 @@ class news_backend extends MY_Controller
 	
 	public function proses_edit(){
 		$this->open_backend();
+		$id= $this->input->post('id');
+		# get post data
+        $data['NEWS_TITLE'] = $this->input->post('NEWS_TITLE');
+        $data['NEWS_BODY'] = $this->input->post('NEWS_BODY');
+        //$data['NEWS_DATETIME'] = '\'TO_DATE(\''.$this->fungsi->setUpdateDateToDB($this->input->post('NEWS_DATETIME')).'\', \'SYYYY-MM-DD\')';
+		//$data['NEWS_DATETIME'] = "to_date('".$this->input->post('NEWS_DATETIME')."', 'mm/dd/yyyy')";
+		$data['NEWS_DATETIME'] = $this->input->post('NEWS_DATETIME');
+        $data['URL'] = $this->input->post('URL');
+        $data['IMAGE'] = $this->input->post('IMAGE');
+        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
 		
-		$data['id'] = $this->input->post('id');
-		$data['NAME'] = $this->input->post('NAME');
-        $data['USERNAME'] = $this->input->post('USERNAME');
-        $data['PASSWORD'] = $this->input->post('PASSWORD');
-		$data['news_backend_ID'] = $this->input->post('news_backend_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
-		$data['NIP'] = $this->input->post('NIP');
-		$data['EMAIL'] = $this->input->post('EMAIL');
+	
 		
 		# set rules validation
-		$this->form_validation->set_rules('NAME', 'NAME', 'required');
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
-        $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('news_backend_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
+        $this->form_validation->set_rules('NEWS_TITLE', 'NEWS TITLE', 'required');
+        $this->form_validation->set_rules('NEWS_BODY', 'NEWS BODY', 'required');
+        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('news_backend/news_backend_edit',$data);
 		}else{
-			$this->news_backend->update($data);
-			redirect('news_backend');
+			$this->news_backend->update($id,$data);
+			//redirect('news_backend');
 		}
 		
 		$this->close_backend();
