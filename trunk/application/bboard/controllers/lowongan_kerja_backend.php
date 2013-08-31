@@ -61,7 +61,7 @@ class lowongan_kerja_backend extends MY_Controller {
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/filter_mahli/';
 		//$config['base_url'] = '';
 		$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $mahlicode, $search);
-		$config['per_page'] = '30';
+		$config['per_page'] = '10';
 		$config['num_links'] = '5';
 		//$config['anchor_class'] = 'onClick="ajax_paging()" ';
 		$config['is_ajax_paging']=  TRUE; // default FALSE
@@ -98,7 +98,7 @@ class lowongan_kerja_backend extends MY_Controller {
 		$config['full_tag_open'] = '<p class="pagination">';
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/filter_all/';
 		$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $mahlicode, $search);
-		$config['per_page'] = '30';
+		$config['per_page'] = '10';
 		$config['num_links'] = '5';
 		$config['paging_function'] = 'ajax_paging';
 

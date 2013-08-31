@@ -21,7 +21,7 @@ class pengumuman_backend extends MY_Controller
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/pengumuman_backend/index/';
 		$config['total_rows'] = $this->db->count_all('BB_PENGUMUMAN');
-		$config['per_page'] = '10';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$this->pagination->initialize($config);	
 		
@@ -41,41 +41,42 @@ class pengumuman_backend extends MY_Controller
 	public function proses_add(){
 		$this->open_backend();
 		
-		# get post data
-		$data['ID_PENGUMUMAN'] = $this->input->post('ID_PENGUMUMAN');
-        $data['JUDUL'] = $this->input->post('JUDUL');
-        $data['ISI'] = $this->input->post('ISI');
-        $data['TANGGAL_PEMBUATAN'] = $this->input->post('TANGGAL_PEMBUATAN');
-        $data['URL'] = $this->input->post('URL');
-        $data['GAMBAR'] = $this->input->post('GAMBAR');
-        $data['EXPIRE'] = $this->input->post('EXPIRE');
-        $data['ATTACHMENT'] = $this->input->post('ATTACHMENT');
-        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
-        $data['TANGGAL_MODIFIKASI'] = $this->input->post('TANGGAL_MODIFIKASI');
-		
-		# set rules validation
-		$this->form_validation->set_rules('ID_PENGUMUMAN', 'ID PENGUMUMAN', 'required');
-        $this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
-        $this->form_validation->set_rules('ISI', 'ISI', 'required');
-        $this->form_validation->set_rules('TANGGAL_PEMBUATAN', 'TANGGAL PEMBUATAN', 'required');
-        $this->form_validation->set_rules('URL', 'URL', 'required');
-        $this->form_validation->set_rules('GAMBAR', 'GAMBAR', 'required');
-        $this->form_validation->set_rules('EXPIRE', 'EXPIRE', 'required');
-        $this->form_validation->set_rules('ATTACHMENT', 'ATTACHMENT', 'required');
-        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
-        $this->form_validation->set_rules('TANGGAL_MODIFIKASI', 'TANGGAL MODIFIKASI', 'required');
-        
-		
-		# set message validation
-		$this->form_validation->set_message('required', 'Field %s harus diisi!');
-		
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('pengumuman_backend/pengumuman_backend_add',$data);
-		}else{
-			$this->pengumuman->insert($data);
-			redirect('pengumuman_backend');
+		$config['upload_path'] = './asset/board/upload/pengumuman/';
+		$config['allowed_types'] = 'gif|jpg|png|BMP|';
+		$config['max_size']	= '1000';
+		$config['max_width']  = '800';
+		$config['max_height']  = '800';
+
+		$this->load->library('upload', $config);
+
+		if ( $this->upload->do_upload()){
+			$data['GAMBAR'] =  $this->upload->file_name;
+			# get post data
+			$data['JUDUL'] = $this->input->post('JUDUL');
+			$data['ISI'] = $this->input->post('ISI');
+			$data['TANGGAL_PEMBUATAN'] = date('m/d/Y');
+			$data['URL'] = $this->input->post('URL');
+			$data['EXPIRE'] = $this->input->post('EXPIRE');
+			$data['ATTACHMENT'] = $this->input->post('ATTACHMENT');
+			$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+			$data['TANGGAL_MODIFIKASI'] = date('m/d/Y');
+			
+			# set rules validation
+			$this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+			$this->form_validation->set_rules('ISI', 'ISI', 'required');
+			$this->form_validation->set_rules('URL', 'URL', 'required');
+			
+			
+			# set message validation
+			$this->form_validation->set_message('required', 'Field %s harus diisi!');
+			
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('pengumuman_backend/pengumuman_backend_add',$data);
+			}else{
+				$this->pengumuman->insert($data);
+				redirect('pengumuman_backend');
+			}
 		}
-		
 		$this->close_backend();
 	}
 	
@@ -122,11 +123,11 @@ class pengumuman_backend extends MY_Controller
 	}
 	
 	public function proses_delete($id){
-		if($this->pengumuman_backend->delete($id)){
+		if($this->pengumuman->delete($id)){
 			redirect('pengumuman_backend');
 		}else{
 			// code u/ gagal simpan
-			
+			redirect('pengumuman_backend');
 		}
 	}
 	
