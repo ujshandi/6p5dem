@@ -31,6 +31,26 @@ class lowongan_kerja_backend extends MY_Controller {
 		$this->close_backend();
 	}
 	
+	public function getall(){
+		
+		$ahli_code = $this->input->post('AHLI_CODE');
+		$makra = $this->input->post('MAKRA');
+		$keysearch = $this->input->post('search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/getall/';
+		
+		$config['total_rows'] = $this->lowongan_kerja_backend->get_lowongan_like($ahli_code,$makra,$keysearch,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['result'] = $this->lowongan_kerja_backend->get_lowongan_like($ahli_code,$makra,$keysearch,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);
+	}
+	
 	function search(){
 		$this->open_backend();
 			
