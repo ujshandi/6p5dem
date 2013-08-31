@@ -1,7 +1,7 @@
 <!-- contenna -->
 <script>
 $(function() {
-$( "#TGL_PUBLIKASI" ).datepicker();
+$( "#TGL_PUBLIKASI" ).datepicker({ dateFormat: 'dd-mm-yy' });
 });
 </script>
 

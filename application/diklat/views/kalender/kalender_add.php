@@ -1,8 +1,8 @@
 <!-- contenna -->
 <script>
 $(function() {
-$( "#TGL_AWAL" ).datepicker();
-$( "#TGL_AKHIR" ).datepicker();
+$( "#TGL_AWAL" ).datepicker({ dateFormat: 'dd-mm-yy' });
+$( "#TGL_AKHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 });
 </script>
 

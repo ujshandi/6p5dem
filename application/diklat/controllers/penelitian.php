@@ -102,7 +102,7 @@ class penelitian extends My_Controller {
         $data['IDDOSEN_4'] = $this->input->post('IDDOSEN_4');        
         $data['JUDUL_PENELITIAN'] = $this->input->post('JUDUL_PENELITIAN');
         $data['ABSTRAK'] = $this->input->post('ABSTRAK');
-        $data['TGL_PUBLIKASI'] = "to_date('".$this->input->post('TGL_PUBLIKASI')."', 'mm/dd/yyyy')";
+        $data['TGL_PUBLIKASI'] = "to_date('".$this->input->post('TGL_PUBLIKASI')."', 'dd/mm/yyyy')";
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
@@ -146,7 +146,7 @@ class penelitian extends My_Controller {
         $data['IDDOSEN_4'] = $this->input->post('IDDOSEN_4');        
         $data['JUDUL_PENELITIAN'] = $this->input->post('JUDUL_PENELITIAN');
         $data['ABSTRAK'] = $this->input->post('ABSTRAK');
-        $data['TGL_PUBLIKASI'] = "to_date('".$this->input->post('TGL_PUBLIKASI')."', 'mm/dd/yyyy')";
+        $data['TGL_PUBLIKASI'] = "to_date('".$this->input->post('TGL_PUBLIKASI')."', 'dd/mm/yyyy')";
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
