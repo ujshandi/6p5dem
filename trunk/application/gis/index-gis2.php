@@ -38,7 +38,8 @@
             <h4>Welcome :</h4>
             <p><a href="#"></a></p>
             <hr>
-            <a href="#" class="inlink">Setting</a> <a href="#" class="inlink">Logout</a>
+            <!--<a href="#" class="inlink">Setting</a>--> 
+			<a href="" class="inlink">Logout</a>
     	</div>
 			
       </div>
