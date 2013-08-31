@@ -22,7 +22,7 @@
 		<th>No peserta</th>
 		<th width="15%">Nama peserta</th>
 		<th>Angkatan</th>
-		<th>Status</th>
+		<!--<th>Status</th>-->
 	  </tr>
 		<?
 			$result = $this->mdl_peserta->getPesertaByUPT($opt['value'], 'peserta');
@@ -36,7 +36,7 @@
 					<td><?=$r->NO_PESERTA?></td>
 					<td><?=$r->NAMA_PESERTA?></td>
 					<td><?=$r->THN_ANGKATAN?></td>
-					<td><?=$r->STATUS_PESERTA?></td>
+					<!--<td><?=$r->STATUS_PESERTA?></td>-->
 				</tr>
 		<?
 				$i++;
