@@ -46,7 +46,7 @@ hr {display:inline-block;height:0;width:100%;border-top:solid 1px #ccc;border-bo
 hr.style1 {margin:10px 0;border-top-color:#ddd;border-bottom-color:#fff}
 
 /* Top */
-#wrap{margin:auto;width:940px;padding:20px 15px;background:url(../images/bg.png);box-shadow:0 0 10px rgba(0,0,0,.5);-moz-box-shadow:0 0 10px rgba(0,0,0,.5);-webkit-box-shadow:0 0 10px rgba(0,0,0,.5);border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;-webkit-border-radius:6px 6px 0 0;border:solid 3px rgba(255,255,255,.5);border-bottom:none}
+#wrap{margin:auto;width:940px;padding:20px 15px;background:url(../images/bg.png);box-shadow:0 0 10px rgba(0,0,0,.5);-moz-box-shadow:0 0 10px rgba(0,0,0,.5);-webkit-box-shadow:0 0 10px rgba(0,0,0,.5);border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;-webkit-border-radius:6px 6px 0 0;border:solid 3px rgba(255,255,255,.5);border-bottom:none;min-height:400px;}
 #page_wrap{margin:auto;width:1000px;padding:0 0 40px 0; background-color:#FFFFFF;}
 .center_content{ clear:both; padding:40px 0 0 0;}
 #header{width:100%; height:140px;}
@@ -254,3 +254,59 @@ background: linear-gradient(top, #ff9b19 0%,#ffc339 100%);
 border-color:#FF9900;text-shadow: -1px -1px #FF6600;}
 
 .splash {width:940px;margin:-20px 0 0 0;}
+
+/* table */
+table {background:#FFFFFF;border-collapse:collapse;font-size:12px;text-align:left;max-width:100%;width:100%;border-spacing:0;margin:0;border:0 none;text-shadow:0 1px 0 #fff;border:dotted 1px #ddd;min-height:400px;}
+table tbody tr:nth-child(2n) {background:#EAF9CF}
+table thead {
+background: #f2f6f8;
+background: -moz-linear-gradient(top, #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f6f8), color-stop(50%,#d8e1e7), color-stop(51%,#b5c6d0), color-stop(100%,#e0eff9));
+background: -webkit-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+background: -o-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+background: -ms-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+background: linear-gradient(to bottom, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 );
+border-top:none;border-bottom:solid 3px #b5c6d0;border-left:none;border-right:none}
+table tfoot {background:#f3f3f3;border-top:solid 1px #a8dbeb}
+table th {border:1px solid #b5c6d0;border-top:none;border-bottom:solid 1px #f2f6f8;color:#000033;font-size:13px;font-weight:bold;text-align:center;text-transform:uppercase;padding:10px 8px;}
+table td {border-bottom:1px dotted #999;color:#333;padding:6px 8px;font-size:12px;display:table-cell;}
+table tbody tr:hover td {color:#000;background:#D1E3AE;}
+/* form */
+input[type="text"], input[type="password"], textarea { background-color: white; font-family: inherit; border: 1px solid #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.75); font-size: 12px; margin: 0 0 5px 0; padding: 4px; height: 20px; width: auto; -webkit-transition: all 0.15s linear; -moz-transition: all 0.15s linear; -o-transition: all 0.15s linear; transition: all 0.15s linear; display:inline-block }
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background: #fafafa; outline: none !important; border-color: #888; }
+input[type="text"][disabled], input[type="password"][disabled], textarea[disabled] { background-color: #ddd; }
+textarea { height: auto; }
+select { background-color: white; font-family: inherit; border: 1px solid #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.75); font-size: 12px; margin: 0 0 5px 0; padding: 5px; width: auto; -webkit-transition: all 0.15s linear; -moz-transition: all 0.15s linear; -o-transition: all 0.15s linear; transition: all 0.15s linear; display:inline-block}
+input[type="button"] {margin:0;padding:2px;background:#ececec;border:solid 1px #ccc;border-radius:2px;color:#003366;text-shadow:0 1px 1px #f3f3f3}
+form.sform fieldset {padding:10px;border:dotted 1px #ddd;background:rgba(255,255,255,.5);border-radius:6px;}
+form.sform legend { padding: 0 2px;font-weight: bold;}
+form.sform fieldset ol {margin: 0;padding: 0;list-style-type:none}
+form.sform fieldset li {list-style: none;padding: 5px;margin: 0;}
+form.sform .cell {width:50%;float:left}
+form.sform fieldset fieldset {border: none;margin: 3px 0 0;}
+form.sform fieldset fieldset legend {padding: 0 0 5px;font-weight: normal;}
+form.sform fieldset fieldset label {display: block;width: auto;}
+form.sform em {font-weight: bold;font-style: normal;color: #cc0000;}
+form.sform small {color:#3366CC;font-size:11px;font-weight:bold;padding-left:20px;position:relative}
+form.sform small.notice {color:#990000;}
+form.sform small img {position:absolute;left:0;top:0px}
+form.sform label {display: inline-block;line-height: 1.8;vertical-align: top;width: 170px;text-transform:uppercase;font-size:11px;;font-weight:bold;color:#666;text-shadow:1px 1px 1px #fff}
+form.sform label.nowide {width:100px}
+form.sform fieldset fieldset label {margin-left: 173px;}
+form.sform p {font-size:12px;font-weight:bold;color:#003366;text-shadow:1px 1px 1px #fff;margin:10px 0}
+form.sform span {font-size:11px;font-weight:bold}
+form.sform div {display:inline-block;width:auto}
+div#search_view{
+	width:100%;
+}
+div#usefulinkcontent_left{
+	float:left;
+	width:48%;
+	margin-bottom:10px;
+}
+
+div#usefulinkcontent_right{
+	float:right;
+	width:48%;margin-bottom:10px;
+}
