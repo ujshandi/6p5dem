@@ -185,14 +185,13 @@ class lowongan_kerja_backend extends MY_Controller {
 		$data['LOWONGAN_MAKRA'] = $this->input->post('MAKRA');
         $data['LOWONGAN_TITLE'] = $this->input->post('LOWONGAN_TITLE');
         $data['LOWONGAN_AHLI'] = $this->input->post('AHLI_CODE');
-        $data['LOWONGAN_DATE'] = $this->input->post('LOWONGAN_DATE');
         $data['LOWONGAN_DATE_EXPIRED'] = $this->input->post('LOWONGAN_DATE_EXPIRED');
         $data['LOWONGAN_SUMMARY'] = $this->input->post('LOWONGAN_SUMMARY');
         $data['LOWONGAN_DETAIL'] = $this->input->post('LOWONGAN_DETAIL');
 		
 		# set rules validation
         $this->form_validation->set_rules('LOWONGAN_TITLE', 'LOWONGAN TITLE', 'required');
-        $this->form_validation->set_rules('LOWONGAN_DATE', 'LOWONGAN DATE', 'required');
+
         $this->form_validation->set_rules('LOWONGAN_DATE_EXPIRED', 'LOWONGAN DATE EXPIRED', 'required');
         $this->form_validation->set_rules('LOWONGAN_DETAIL', 'LOWONGAN DETAIL', 'required'); 
 		
