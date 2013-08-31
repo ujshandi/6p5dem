@@ -12,7 +12,7 @@
                         <img height="150px" align="middle" src="<?=base_url()?>asset/dbmon/images/dm.png">
 						<br>
 						<h1 style="font-size:18px;">BPSDM Perhubungan - Kementerian Perhubungan RI</h1>
-				</div>
+					</div>
 					</center>
 
             </div>
