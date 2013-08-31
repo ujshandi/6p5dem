@@ -38,7 +38,7 @@
 				//print_r($user);
 			?></a></p>
             <hr>
-            <!--<a href="#" class="inlink">Setting</a>--> 
+            <a href="<?=base_url().$this->config->item('index_page').'/front'?>" class="inlink">Menu View</a> 
 			<a href="<?=base_url().'index.php/auth/logout'?>" class="inlink">Logout</a>
     	</div>
           <!--<div class="usr"><span>welcome user</span>
