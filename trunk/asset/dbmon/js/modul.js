@@ -24,7 +24,7 @@ if(modul=='sdm_dinas'){
 	});
 	
 	get_chart('fcfchart1','Doughnut3D','all','chart1',850,270);
-	get_chart('fcfchart2','FCF_MSBar2D','campur','chart2',865,500);	
+	get_chart('fcfchart2','FCF_MSBar2D','campur','chart2',865,1500);	
 	//get_chart('fcfchart3','Bar2D','pria','chart3',1000,100);	
 	});
 }
