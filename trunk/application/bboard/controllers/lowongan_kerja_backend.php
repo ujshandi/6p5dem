@@ -1,7 +1,8 @@
 <?php
 
 class lowongan_kerja_backend extends MY_Controller {
-	
+
+	private $pagesize = 20;
 	function __construct(){
 		parent::__construct();
 		
@@ -9,6 +10,7 @@ class lowongan_kerja_backend extends MY_Controller {
 		$this->load->helper('url');
 		$this->load->model('mdl_lowongan_kerja', 'lowongan_kerja');
 		$this->load->library('fungsi');
+		$this->load->model('Authentikasi');
 	}
 	
 	public function index()
@@ -18,7 +20,7 @@ class lowongan_kerja_backend extends MY_Controller {
 		# config pagination
 		/*$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/index/';
 		$config['total_rows'] = $this->lowongan_kerja_backend->getData(true);
-		$config['per_page'] = '10';
+		$config['per_page'] = '30';
 		$config['num_links'] = '5';
 
 		$this->pagination->initialize($config);	
@@ -37,7 +39,7 @@ class lowongan_kerja_backend extends MY_Controller {
 			# config pagination
 			$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/search/';
 			$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $search);
-			$config['per_page'] = '10';
+			$config['per_page'] = '30';
 			$config['num_links'] = '5';
 			
 
@@ -50,15 +52,16 @@ class lowongan_kerja_backend extends MY_Controller {
 	}
 	
 	function filter_mahli(){
-		$mahlicode = $this->input->post('MAHLI_CODE');
+		//$mahlicode = $this->input->post('MAHLI_CODE');
 		$search="";
-			
+		$mahlicode = "";
+		
 		# config pagination
 		$config['full_tag_open'] = '<p class="pagination">';
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/filter_mahli/';
 		//$config['base_url'] = '';
 		$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $mahlicode, $search);
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '5';
 		//$config['anchor_class'] = 'onClick="ajax_paging()" ';
 		$config['is_ajax_paging']=  TRUE; // default FALSE
@@ -70,8 +73,21 @@ class lowongan_kerja_backend extends MY_Controller {
 		$this->pagination->initialize($config);	
 		
 		$data['result'] = $this->lowongan_kerja_backend->getSearchData(false, $mahlicode, $search, $config['per_page'], $this->uri->segment(3));
-		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);
+		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data); 
+		//echo 'segment:' .$this->uri->segment(3);
+		/*
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/filter_mahli/';
+		$config['total_rows'] = $this->lowongan_kerja_backend->get_lowongan_like($mahlicode,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
 		
+		$data['result'] = $this->lowongan_kerja_backend->get_lowongan_like($mahlicode,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);*/
 	}
 	
 	function filter_all(){
@@ -79,14 +95,15 @@ class lowongan_kerja_backend extends MY_Controller {
 		$search = $this->input->post('search');
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/search/';
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lowongan_kerja_backend/filter_all/';
 		$config['total_rows'] = $this->lowongan_kerja_backend->getSearchData(true, $mahlicode, $search);
-		$config['per_page'] = '10';
+		$config['per_page'] = '30';
 		$config['num_links'] = '5';
-		
+		$config['paging_function'] = 'ajax_paging';
 
 		$this->pagination->initialize($config);	
-		
+		$config['full_tag_close'] = '</p>';
 		$data['result'] = $this->lowongan_kerja_backend->getSearchData(false, $mahlicode, $search, $config['per_page'], $this->uri->segment(3));
 		$this->load->view('lowongan_kerja_backend/lowongan_kerja_backend_list', $data);
 		

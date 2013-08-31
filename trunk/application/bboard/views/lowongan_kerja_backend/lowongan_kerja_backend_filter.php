@@ -1,6 +1,9 @@
 <script type="text/javascript">
 	$(document).ready(function() {
+			
+	
 		    var makracode=document.getElementById('MAKRA_CODE').value;
+			
 			$.ajax({
 				 type:'post',
 				 url:'<?php echo site_url(); ?>/lowongan_kerja/get_mahli',
@@ -11,8 +14,8 @@
 					   var mahlicode=document.getElementById('AHLI_CODE').value;
 						$.ajax({
 								type: 'POST',
-								url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/',
-								data: 'MAHLI_CODE=' + mahlicode,
+								url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli',
+								data: $('#lowongan_kerja').serialize(),
 								success: function(data) {
 									$('#list_data').html(data);
 								}
@@ -20,7 +23,7 @@
 							});
 					   
 				 }
-			 });
+			 }); 
 		
 				
 		 $("#MAKRA_CODE").change(function() {
@@ -61,39 +64,26 @@
 				
 
 			});
-		
-		          
-		$("p.pagination a").click(function() {
-				$.ajax({
-				  type: "GET",
-				  url: $(this).attr('href'),
-				  success: function(html){
-					$("#list_data").html(html);
-				  }
-				});               
-				return false;
-			  }); 
+
 		
 		
 		
     }); 
 	
-	ajax_paging = function(){
-			
-			$("p.pagination a").click(function() {
-					
-				var mahlicode=document.getElementById('AHLI_CODE').value;
-				   $.ajax({
-					 type: "POST",
-					 url: $(this).get(),
-					 data: 'MAHLI_CODE=' + mahlicode,
-					 success: function(html){
-							$("#list_data").html(html);
-					  }
-				   });               
-             });    		
-			return false;
-		};
+	function ajaxpaging(param_url){
+
+		if (param_url== null ){
+			param_url='<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/';
+		}
+		$.ajax({
+					type: 'POST',
+					url:'<?php echo site_url();?>/lowongan_kerja_backend/filter_mahli/',
+					data: $('#lowongan_kerja').serialize(),
+					success: function(data) {
+						$('#list_data').html(data);
+					}
+			});
+	}
 	
 		function search_lowongan(){
 		
@@ -143,6 +133,7 @@
 			</li>
 	</ol>		
 	</fieldset>
+	
 	<div id="list_data">
 	
 	</div>

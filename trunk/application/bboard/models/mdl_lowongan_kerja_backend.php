@@ -53,6 +53,20 @@ class mdl_lowongan_kerja_backend extends CI_Model{
 		
 	}
 	
+	function get_lowongan_like($key,$count_data=false,$num=0, $offset=0){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('BB_MLOWONGAN');
+		if ($key!=''){
+				$this->db->like('BB_MLOWONGAN.LOWONGAN_TITLE',$key);
+		}
+		if ($count_data){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
+	
 	function getDataEdit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
