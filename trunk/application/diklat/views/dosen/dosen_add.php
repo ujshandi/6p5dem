@@ -1,7 +1,7 @@
 <!-- contenna -->
 <script>
 $(function() {
-$( "#TGL_LAHIR" ).datepicker();
+$( "#TGL_LAHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 });
 </script>
 

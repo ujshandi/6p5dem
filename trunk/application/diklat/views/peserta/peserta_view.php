@@ -41,6 +41,7 @@
 		</ol>	
 		<br>
 		
+		<!--
 		<table width="100%" border="1" cellspacing="1" cellpadding="1">
 		<tr>
 			<th width="2%">No</th>
@@ -67,7 +68,7 @@
 			}
 		}
 		?>
-	</table>
+	</table> -->
 	<div class="clear">&nbsp;</div>
 	<?=form_close()?>
 </div><!-- end wrap right content-->

@@ -17,7 +17,7 @@
 
 <script>
 $(function() {
-$( "#TGL_LULUS" ).datepicker();
+$( "#TGL_LULUS" ).datepicker({ dateFormat: 'dd-mm-yy' });
 });
 </script>
 
