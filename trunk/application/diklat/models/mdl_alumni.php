@@ -171,7 +171,7 @@ class mdl_alumni extends CI_Model{
 		$this->db->from('DIKLAT_MST_ALUMNI');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		//$this->db->join('DIKLAT_PESERTA_DIKLAT', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_PESERTA_DIKLAT.IDPESERTA');
-		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.IDPESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.NO_PESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
 		$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $upt);
 		$this->db->order_by('NAMA_PESERTA');		
 		return $this->db->get();
