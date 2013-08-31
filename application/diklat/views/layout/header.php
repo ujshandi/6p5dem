@@ -60,10 +60,12 @@
 	  <div class="bread">
 		<p id="breadcrumb">
 		<a href="#">Home</a>
+		<!--
 		<a href="#">Sub Menu</a>
 		<a href="#">Sub submenu</a>
 		<a href="#">Sub submenu 1</a>
 		You're here
+		-->
 		</p>
 	  </div><!-- end breadcrumbs -->
       

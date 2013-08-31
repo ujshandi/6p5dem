@@ -41,6 +41,7 @@
       <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"></a></div>
       <div class="clear"></div>
       
+	  <!--
       <div class="bread">
         <ul class="breadcrumbs">
           <li><a href="#">Home</a></li>
@@ -48,7 +49,8 @@
           <li><span>Edit</span></li>
           <li class="current"><a href="#">Add</a></li>
         </ul>
-      </div><!-- end breadcrumbs -->
+      </div>
+	  -->
       
       <div class="right">
           <div class="usr"><span>welcome user</span><a href="#">Lukito Wibowo</a></div>
@@ -105,9 +107,11 @@
 		</div>  
 	</div>
 </div>
+
 <div id="footer">
     Copyright &copy; 2013 BPSDM Perhubungan - <a href="http://www.dephub.go.id/">Kementerian Perhubungan RI</a>
- </div>
+</div>
+
 	<script>
 	$('#panel_all').css('width',frmWidth-10);
 	$('#panel_all').css('height',frmHeight-167);
