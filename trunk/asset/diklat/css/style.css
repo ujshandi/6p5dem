@@ -170,6 +170,7 @@ a:hover.control {color:#669966;background-color:#f9f9f9;border-color:#669966;box
 .add {background:url(../images/ic-add.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .delete {background:url(../images/ic-delete.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .edit {background:url(../images/ic-edit.png) no-repeat 5px 50%;text-indent:25px;display:block;}
+.view {background:url(../images/view.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .user {background:url(../images/ic-user.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 
 .one { width: 8.33333%!important; }
