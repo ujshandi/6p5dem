@@ -144,8 +144,13 @@ class lowongan_kerja_backend extends MY_Controller {
         $data['LOWONGAN_MAKRA'] = $this->input->post('MAKRA');
         $data['LOWONGAN_TITLE'] = $this->input->post('LOWONGAN_TITLE');
         $data['LOWONGAN_AHLI'] = $this->input->post('AHLI_CODE');
+		
+		/*$data['TANGGAL_MODIFIKASI'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')"; */
+			$data['LOWONGAN_DATE'] = "to_date('".$this->input->post('LOWONGAN_DATE')."', 'dd/mm/yyyy')";
+			$data['LOWONGAN_DATE_EXPIRED'] = "to_date('".$this->input->post('LOWONGAN_DATE_EXPIRED')."', 'dd/mm/yyyy')";
+		/*
         $data['LOWONGAN_DATE'] = $this->input->post('LOWONGAN_DATE');
-        $data['LOWONGAN_DATE_EXPIRED'] = $this->input->post('LOWONGAN_DATE_EXPIRED');
+        $data['LOWONGAN_DATE_EXPIRED'] = $this->input->post('LOWONGAN_DATE_EXPIRED');*/
         $data['LOWONGAN_SUMMARY'] = $this->input->post('LOWONGAN_SUMMARY');
         $data['LOWONGAN_DETAIL'] = $this->input->post('LOWONGAN_DETAIL');
 		
@@ -185,7 +190,7 @@ class lowongan_kerja_backend extends MY_Controller {
 		$data['LOWONGAN_MAKRA'] = $this->input->post('MAKRA');
         $data['LOWONGAN_TITLE'] = $this->input->post('LOWONGAN_TITLE');
         $data['LOWONGAN_AHLI'] = $this->input->post('AHLI_CODE');
-        $data['LOWONGAN_DATE_EXPIRED'] = $this->input->post('LOWONGAN_DATE_EXPIRED');
+		$data['LOWONGAN_DATE_EXPIRED'] = "to_date('".$this->input->post('LOWONGAN_DATE_EXPIRED')."', 'dd/mm/yyyy')";
         $data['LOWONGAN_SUMMARY'] = $this->input->post('LOWONGAN_SUMMARY');
         $data['LOWONGAN_DETAIL'] = $this->input->post('LOWONGAN_DETAIL');
 		

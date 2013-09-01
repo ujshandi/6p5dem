@@ -89,8 +89,12 @@ class mdl_lowongan_kerja_backend extends CI_Model{
         $this->db->set('LOWONGAN_MAKRA', $data['LOWONGAN_MAKRA']);
         $this->db->set('LOWONGAN_TITLE', $data['LOWONGAN_TITLE']);
         $this->db->set('LOWONGAN_AHLI', $data['LOWONGAN_AHLI']);
+		/*
 		$this->db->set('LOWONGAN_DATE', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['LOWONGAN_DATE']).'\', \'YYYY-MM-DD\')', FALSE);
-		$this->db->set('LOWONGAN_DATE_EXPIRED', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['LOWONGAN_DATE_EXPIRED']).'\', \'YYYY-MM-DD\')', FALSE);
+		$this->db->set('LOWONGAN_DATE_EXPIRED', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['LOWONGAN_DATE_EXPIRED']).'\', \'YYYY-MM-DD\')', FALSE);*/
+		$this->db->set('LOWONGAN_DATE', $data['LOWONGAN_DATE'], false);
+		$this->db->set('LOWONGAN_DATE_EXPIRED', $data['LOWONGAN_DATE_EXPIRED'], false);
+		
         $this->db->set('LOWONGAN_SUMMARY', $data['LOWONGAN_SUMMARY']);
         $this->db->set('LOWONGAN_DETAIL', $data['LOWONGAN_DETAIL']);
 
@@ -109,7 +113,9 @@ class mdl_lowongan_kerja_backend extends CI_Model{
         $this->db->set('LOWONGAN_TITLE', $data['LOWONGAN_TITLE']);
         $this->db->set('LOWONGAN_AHLI', $data['LOWONGAN_AHLI']);
 		/*$this->db->set('LOWONGAN_DATE', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['LOWONGAN_DATE']).'\', \'YYYY-MM-DD\')', FALSE); */
-		$this->db->set('LOWONGAN_DATE_EXPIRED', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['LOWONGAN_DATE_EXPIRED']).'\', \'YYYY-MM-DD\')', FALSE);
+		/*$this->db->set('LOWONGAN_DATE_EXPIRED', 'TO_DATE(\''.$this->fungsi->setDateToDB($data['LOWONGAN_DATE_EXPIRED']).'\', \'YYYY-MM-DD\')', FALSE);*/
+		
+		$this->db->set('LOWONGAN_DATE_EXPIRED', $data['LOWONGAN_DATE_EXPIRED'], false);
         $this->db->set('LOWONGAN_SUMMARY', $data['LOWONGAN_SUMMARY']);
         $this->db->set('LOWONGAN_DETAIL', $data['LOWONGAN_DETAIL']);
 

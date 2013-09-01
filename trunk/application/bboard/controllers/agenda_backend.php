@@ -8,8 +8,9 @@ class agenda_backend extends MY_Controller
 
 		$this->load->helper('url');
 		$this->load->model('Authentikasi');
-		$this->load->model('mdl_agenda', 'agenda');
+		$this->load->model('mdl_agenda_backend', 'agenda');
 		$this->load->library('auth_ad');
+		$this->load->library('fungsi');
 	}
 
 	function index()
@@ -56,35 +57,43 @@ class agenda_backend extends MY_Controller
 		$this->open_backend();
 		
 		# get post data
-		$data['NAME'] = $this->input->post('NAME');
-        $data['USERNAME'] = $this->input->post('USERNAME');
-        $data['PASSWORD'] = $this->input->post('PASSWORD');
-		$data['agenda_backend_ID'] = $this->input->post('agenda_backend_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
-		$data['NIP'] = $this->input->post('NIP');
-		$data['EMAIL'] = $this->input->post('EMAIL');
 		
-		# set rules validation
-		$this->form_validation->set_rules('NAME', 'NAME', 'required');
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
-        $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('agenda_backend_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
-        
+		$config['upload_path'] = './asset/board/upload/agenda/';
+		$config['allowed_types'] = 'gif|jpg|png|BMP|';
+		$config['max_size']	= '1000';
+		$config['max_width']  = '800';
+		$config['max_height']  = '800';
+
+		$this->load->library('upload', $config);
+
+		if ( $this->upload->do_upload()){
+			$data['GAMBAR'] =  $this->upload->file_name;
+			$data['JUDUL'] = $this->input->post('JUDUL');
+			$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+			$data['ISI'] = $this->input->post('ISI');
+			$data['TANGGAL_PEMBUATAN'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+			$data['TANGGAL_MODIFIKASI'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+			$data['EXPIRE'] = "to_date('".$this->input->post('EXPIRE')."', 'dd/mm/yyyy')";
+			$data['URL'] = $this->input->post('URL');
+			
+			# set rules validation
+			$this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+			$this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+			$this->form_validation->set_rules('ISI', 'ISI', 'required');
+			
 		
-		# set message validation
-		$this->form_validation->set_message('required', 'Field %s harus diisi!');
-		
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('agenda_backend/agenda_backend_add',$data);
-		}else{
-			$this->agenda_backend->insert($data);
-			redirect('agenda_backend');
+			
+			
+			# set message validation
+			$this->form_validation->set_message('required', 'Field %s harus diisi!');
+			
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('agenda_backend/agenda_backend_add',$data);
+			}else{
+				$this->agenda->insert($data);
+				redirect('agenda_backend');
+			}
 		}
-		
 		$this->close_backend();
 	}
 	
@@ -95,7 +104,7 @@ class agenda_backend extends MY_Controller
 		$this->open_backend();
 		
 		$data['id'] = $id;
-		$data['result'] = $this->agenda_backend->get_data_edit($id);
+		$data['result'] = $this->agenda->get_data_edit($id);
 		
 		$this->load->view('agenda_backend/agenda_backend_edit', $data);
 		
@@ -109,30 +118,27 @@ class agenda_backend extends MY_Controller
 		$this->open_backend();
 		
 		$data['id'] = $this->input->post('id');
-		$data['NAME'] = $this->input->post('NAME');
-        $data['USERNAME'] = $this->input->post('USERNAME');
-        $data['PASSWORD'] = $this->input->post('PASSWORD');
-		$data['agenda_backend_ID'] = $this->input->post('agenda_backend_ID');
-		$data['DEPARTMENT'] = $this->input->post('DEPARTMENT');
-		$data['DESCRIPTION'] = $this->input->post('DESCRIPTION');
-		$data['NIP'] = $this->input->post('NIP');
-		$data['EMAIL'] = $this->input->post('EMAIL');
+		$data['JUDUL'] = $this->input->post('JUDUL');
+        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+        $data['ISI'] = $this->input->post('ISI');
+        $data['TANGGAL_PEMBUATAN'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+        $data['TANGGAL_MODIFIKASI'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+       // $data['EXPIRE'] = $this->input->post('EXPIRE');
+		$data['EXPIRE'] = "to_date('".$this->input->post('EXPIRE')."', 'dd/mm/yyyy')";
+        $data['URL'] = $this->input->post('URL');
+        $data['GAMBAR'] = $this->input->post('GAMBAR');
 		
 		# set rules validation
-		$this->form_validation->set_rules('NAME', 'NAME', 'required');
-        $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
-        $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
-		$this->form_validation->set_rules('agenda_backend_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
+		$this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+		$this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+		$this->form_validation->set_rules('ISI', 'ISI', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('agenda_backend/agenda_backend_edit',$data);
 		}else{
-			$this->agenda_backend->update($data);
+			$this->agenda->update($data['id'],$data);
 			redirect('agenda_backend');
 		}
 		
@@ -143,7 +149,7 @@ class agenda_backend extends MY_Controller
 		if ($this->can_delete() == FALSE){
 			redirect('auth/failed');
 		}
-		if($this->agenda_backend->delete($id)){
+		if($this->agenda->delete($id)){
 			redirect('agenda_backend');
 		}else{
 			// code u/ gagal simpan
