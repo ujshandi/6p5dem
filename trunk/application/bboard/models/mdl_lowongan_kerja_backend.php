@@ -86,6 +86,7 @@ class mdl_lowongan_kerja_backend extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
+        
         $this->db->set('LOWONGAN_MAKRA', $data['LOWONGAN_MAKRA']);
         $this->db->set('LOWONGAN_TITLE', $data['LOWONGAN_TITLE']);
         $this->db->set('LOWONGAN_AHLI', $data['LOWONGAN_AHLI']);
