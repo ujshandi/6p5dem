@@ -204,11 +204,11 @@
 		<!--Link Informasi Kerjasama-->
 			<h2 class="typo">Informasi Kerjasama</h2>
 			<div class="apl_box">
-				<img src="<?=base_url()?>asset/board/asset/frontpage/images/loker.png" class="ic" />
-				<hr class="style1"/>
+				<img src="<?=base_url()?>asset/board/asset/frontpage/images/Kerjasama-HJ.jpg" class="ic" />
+		    <hr class="style1"/>
 				<p align="center"><center><a href="<?php echo site_url() . '/kerjasama/' ?>" class="more_bgcolor more_rounded centered">INFO KERJASAMA</a></center></p>
 			</div>
-		<!--End Link Informasi Kerjasama-->
+	  <!--End Link Informasi Kerjasama-->
     </div>
 	
     
