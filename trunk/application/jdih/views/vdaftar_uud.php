@@ -48,11 +48,11 @@ function t(filee,id){
 var folder 		="<?=$folder?>";
 	$.post('<?=base_url()?>jdih.php/produk_hukum/cek_file',{folder:folder,file:filee,id:id},function(resp){
 		if(resp==1){
-			open_win('<?=$site_adm?>files/<?=$folder?>/'+filee,'Menu Pilihan Proyek');
+			window.location = '<?=base_url()?>file_upload/jdih/'+folder+'/'+filee;
+			//open_win('<?=$site_adm?>files/<?=$folder?>/'+filee,'Menu Pilihan Proyek');
 		}
 	else{	
 			alert(resp);
-			window.location.href('#');
 		}
 	});
 	
