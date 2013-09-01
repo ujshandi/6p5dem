@@ -90,6 +90,7 @@
 				<li><a><input type="checkbox" id="MATRA DARATbox" onClick="boxclick2(this,'MATRA DARAT')">&nbsp;Matra Darat</a></li>
                 <li><a><input type="checkbox" id="MATRA LAUTbox" onClick="boxclick2(this,'MATRA LAUT')">&nbsp;Matra Laut</a></li>
                 <li><a><input type="checkbox" id="MATRA UDARAbox" onClick="boxclick2(this,'MATRA UDARA')">&nbsp;Matra Udara</a></li>
+                <li><a><input type="checkbox" id="MATRA KERETAbox" onClick="boxclick2(this,'MATRA KERETA')">&nbsp;Matra Kereta Api</a></li>
 			</ul>
 		</li>
 		<li>

@@ -272,12 +272,16 @@ function boxclick2xx(box, category){
 function boxclick2(box, category){
   if(box.checked) {
 	if (category == 'MATRA DARAT') {
-	    create_kmlFileDaratOK();
+	    create_kmlFileDaratOK(103);
 		//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';   		  
 	}else if (category == 'MATRA LAUT') {
+	    create_kmlFileDaratOK(104);
 	   // kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';
-		  
 	}else if (category == 'MATRA UDARA') {
+	    create_kmlFileDaratOK(105);
+	    //kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';	  
+	}else if (category == 'MATRA KERETA') {
+	    create_kmlFileDaratOK(111);
 	    //kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';	  
 	}
 	
@@ -309,15 +313,16 @@ function create_kmlFileDarat(){
   });
 }
 
-function create_kmlFileDaratOK(){
+function create_kmlFileDaratOK(kantor){
 	$.jsonp({
-		url: "dataSDMKementerian.php",
+		url: "dataSDMKementerian.php?unitkantor="+kantor,
 		callback: "callback",
 		success: function(data) {
 		$.each(data, function(i, item){
 				var kode = item.kode;
 				var jumlah = item.jumlah;
 				var total = item.total;
+				var nama = item.nama;
 				
 				var low = total/3;
 				var nrm = low + (total/3);
@@ -344,7 +349,10 @@ function create_kmlFileDaratOK(){
 				});	
 				 google.maps.event.addListener(kmlLayers[i], 'click', function(kmlEvent) {
 				    var text = kmlEvent.featureData.description;
-				    var pesan= 'Jumlah SDM: '+jumlah;
+				    var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
+					"<b>"+item.nama+"</b><br/>"+
+					"Jumlah SDM : "+item.jumlah+
+					"</div>";
 					infowindow.close();
 					//window.alert("klik ok");
 					//kmlEvent.featureData.infowindow.replace("");
@@ -354,7 +362,7 @@ function create_kmlFileDaratOK(){
 					// if (kmlEvent.featureData && kmlEvent.featureData.description) {
 							infowindow.setOptions({ "position": kmlEvent.latLng,
 								"pixelOffset": kmlEvent.pixelOffset,
-							"content": 'Jumlah SDM: '+jumlah });
+							"content": pesan });
 						infowindow.open(map);
 					//}
 				});
