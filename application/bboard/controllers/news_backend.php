@@ -55,7 +55,8 @@ class news_backend extends MY_Controller
 			$data['NEWS_ID'] = $this->input->post('NEWS_ID');
 			$data['NEWS_TITLE'] = $this->input->post('NEWS_TITLE');
 			$data['NEWS_BODY'] = $this->input->post('NEWS_BODY');
-			$data['NEWS_DATETIME'] = $this->input->post('NEWS_DATETIME');
+			
+			$data['NEWS_DATETIME'] = "to_date('".$this->input->post('NEWS_DATETIME')."', 'dd/mm/yyyy')";
 			$data['NEWS_READ'] = $this->input->post('NEWS_READ');
 			$data['URL'] = $this->input->post('URL');
 			$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
@@ -97,7 +98,8 @@ class news_backend extends MY_Controller
 		
         $data['NEWS_TITLE'] = $this->input->post('NEWS_TITLE');
         $data['NEWS_BODY'] = $this->input->post('NEWS_BODY');
-		$data['NEWS_DATETIME'] = $this->input->post('NEWS_DATETIME');
+		
+		$data['NEWS_DATETIME'] = "to_date('".$this->input->post('NEWS_DATETIME')."', 'dd/mm/yyyy')";
 		$data['NEWS_READ'] = $this->input->post('NEWS_READ');
         $data['URL'] = $this->input->post('URL');
         $data['IMAGE'] = $this->input->post('IMAGE');

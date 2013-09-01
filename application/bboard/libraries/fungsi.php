@@ -724,6 +724,12 @@ function array_delete(&$ary,$key_to_be_deleted)
 		return $this->bulan4($tgl[1]).'/'.$tgl[0].'/20'.$tgl[2];
 	}
 	
+	function setDBToDateNormal($d){
+		$tgl = explode('-', $d);
+		
+		return $tgl[1].'/'.$tgl[0].'/20'.$tgl[2];
+	}
+	
 	function setUpdateDateToDB($d){
 		$tgl = explode('/', $d);
 		return $tgl[2].'-'.$tgl[0].'-'.$tgl[1];

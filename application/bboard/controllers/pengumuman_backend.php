@@ -54,12 +54,13 @@ class pengumuman_backend extends MY_Controller
 			# get post data
 			$data['JUDUL'] = $this->input->post('JUDUL');
 			$data['ISI'] = $this->input->post('ISI');
-			$data['TANGGAL_PEMBUATAN'] = date('m/d/Y');
+			
 			$data['URL'] = $this->input->post('URL');
-			$data['EXPIRE'] = $this->input->post('EXPIRE');
 			$data['ATTACHMENT'] = $this->input->post('ATTACHMENT');
 			$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
-			$data['TANGGAL_MODIFIKASI'] = date('m/d/Y');
+			$data['TANGGAL_MODIFIKASI'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+			$data['EXPIRE'] = "to_date('".$this->input->post('EXPIRE')."', 'dd/mm/yyyy')";
+			$data['TANGGAL_PEMBUATAN'] = "to_date('".$this->input->post('TANGGAL_PEMBUATAN')."', 'dd/mm/yyyy')";
 			
 			# set rules validation
 			$this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
@@ -100,12 +101,13 @@ class pengumuman_backend extends MY_Controller
         $data['ISI'] = $this->input->post('ISI');
         $data['URL'] = $this->input->post('URL');
         $data['GAMBAR'] = $this->input->post('GAMBAR');
-        $data['EXPIRE'] = $this->input->post('EXPIRE');
-        
-        $data['TANGGAL_MODIFIKASI'] = date('m/d/Y');
-		
+    
+		$data['TANGGAL_MODIFIKASI'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+		$data['EXPIRE'] = "to_date('".$this->input->post('EXPIRE')."', 'dd/mm/yyyy')";
+
 		# set rules validation
         $this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
        
         
 		
