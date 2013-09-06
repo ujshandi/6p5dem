@@ -15,6 +15,9 @@
 <script type="text/javascript" src="<?=base_url()?>asset/board/asset/frontpage/js/jquery.simpleCalendar.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<?=base_url()?>asset/board/asset/frontpage/js/custom.js"></script>
 <script type="text/javascript" charset="utf-8" src="<?=base_url()?>asset/board/asset/frontpage/js/app.js"></script>
+
+<link href="<?=base_url()?>asset/globalstyle/css/jquery-ui-datepicker/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-ui-1.10.3.custom.js"></script>
 <script type='text/javascript'>
 	function show(page,div){
 		do_scroll(0);
@@ -57,6 +60,7 @@
 	
 	$(document).ready(function () {
 		load("news/index","#infos2");
+		$( "#calenderme").datepicker({dateFormat : 'dd-mm-yy'});
 	});
 	
 	$(document).ready(function () {
@@ -147,26 +151,10 @@
                 <div>
                     <span>15 Pebruari 2013 | 09:39 WIB</span>
                     <h5><a href="#">Lorem Ipsum sim dolor met</a></h5>
-                    <img src="images/pic-small.jpg" />
+                    <!--<img src="images/pic-small.jpg" />-->
                     <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
                 </div>
             </li> 
-            <li>
-                <div>
-                    <span>15 Pebruari 2013 | 09:39 WIB</span>
-                    <h5><a href="#">Lorem Ipsum sim dolor met</a></h5>
-                    <img src="images/pic-small.jpg" />
-                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
-                </div>
-            </li> 
-            <li>
-                <div>
-                    <span>15 Pebruari 2013 | 09:39 WIB</span>
-                    <h5><a href="#">Lorem Ipsum sim dolor met</a></h5>
-                    <img src="images/pic-small.jpg" />
-                    <h6><a href="#">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, consectetur, adipisci velit</a></h6>
-                </div>
-            </li>   
         </ul>
     </div><!--end infos2-->
 
@@ -237,13 +225,13 @@
         </ul>
     </div>
     
-    <div class="section_14">
+    <div class="section_14" id="calenderme">
     	<h2>Calender</h2>
 		
         <hr/>
         <p></p>
         <hr/>
-        <div id="calendar_box"></div>
+        <!--<div id="calendar_box"></div>-->
     </div>
 	<div class="section_14">
     	<!--<h2>Polling</h2>
@@ -267,7 +255,6 @@
 				<p align="center"><center><a href="<?php echo site_url() . '/alumni_frontpage/' ?>" class="more_bgcolor more_rounded centered">LIHAT</a></center></p>
 			</div>
 		</h2>
-        <div id="calendar_box"></div>
     </div>
 	
 	<div class="clear"></div> 
