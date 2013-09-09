@@ -25,21 +25,6 @@
 	<fieldset>
 	<ol>
 		<li>
-			<!--filter lama -->
-			UPT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
-			<select name="kode_upt">
-				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
-			</select>
-			&nbsp;&nbsp;
-			<br>
-			DIKLAT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-			<select name="kode_diklat">
-				<?=$this->mdl_diklat->getOptionDIKLAT(array('value'=>$kode_diklat))?>
-			</select>
-			&nbsp;&nbsp;
-			
-			<br>
-			
 			<!-- cainned combobox-->
 			UPT	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
 				<select name="KODE_UPT" id="KODE_UPT">
@@ -48,7 +33,7 @@
 			<br>			
 			DIKLAT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
-					<option value="">--Pilih--</option>        	
+					<?=$this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$kode_upt, 'value'=>$kode_diklat));?>        	
 				</select>
 			&nbsp;&nbsp;
 			<br>
