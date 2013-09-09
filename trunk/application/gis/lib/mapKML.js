@@ -301,6 +301,32 @@ function boxclick2(box, category){
 	if (!box.checked) infowindow.close();
 }
 
+function boxclick3(box, category){
+  if(box.checked) {
+	if (category == 'DINAS PROVINSI') {
+	    create_kmlDinas();
+		//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';   		  
+	}else if (category == 'DINAS KABUPATEN') {
+	    create_kmlDinas();
+	   // kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';
+	}
+	
+	var kmlOptions = {
+       suppressInfoWindows: false
+    };
+    //kmlLayer = new google.maps.KmlLayer(kmlLayer01URL, kmlOptions);
+    //kmlLayer.setMap(map);
+	 
+  }
+  else {
+	for (i in kmlLayers) {
+				kmlLayers[i].setMap(null);
+			}
+  }  
+	document.getElementById(category+"box").checked = box.checked;
+	if (!box.checked) infowindow.close();
+}
+
 function create_kmlLayer(kmlURL,kmlOptions){
    kmlLayer = new google.maps.KmlLayer(kmlURL, kmlOptions);
 }
@@ -311,6 +337,70 @@ function create_kmlFileDarat(){
   $('#resultMsg').load('createKmlDarat.php', function() {
   //alert('Load was performed.');
   });
+}
+
+function create_kmlDinas(kantor){
+	$.jsonp({
+		url: "dataSDMDinas.php",
+		callback: "callback",
+		success: function(data) {
+		$.each(data, function(i, item){
+				var kode = item.kode;
+				var jumlah = item.jumlah;
+				var total = item.total;
+				var nama = item.nama;
+				
+				var low = total/3;
+				var nrm = low + (total/3);
+				var hi  = nrm + (total/3);
+				var color = 'green';
+				
+				if(jumlah<low){ color = 'red'}
+				else if(jumlah<nrm){ color = 'yellow'}
+				else { color = 'green'}
+				
+				//alert(total/3 + ' ' + jumlah + ' ' + color);
+				//window.alert("kode: "+kode+"jumlah: "+jumlah);
+				//window.alert(i);
+				//var kmlOptions = {suppressInfoWindows: false};
+				//kmlLayerURL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+kode+'.kml';
+				//window.alert(kmlLayerURL);
+				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
+                //kmlLayer.setMap(map);
+				 kmlLayers[i] = new google.maps.KmlLayer({
+					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml',
+					suppressInfoWindows: true,
+					preserveViewport: true,
+					map: map
+				});	
+				 google.maps.event.addListener(kmlLayers[i], 'click', function(kmlEvent) {
+				    var text = kmlEvent.featureData.description;
+				    var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
+					"<b>"+item.nama+"</b><br/>"+
+					"Jumlah SDM : "+item.jumlah+
+					"</div>";
+					infowindow.close();
+					//window.alert("klik ok");
+					//kmlEvent.featureData.infowindow.replace("");
+					//infowindow.setContent('testttttt');
+					//infowindow.open(map, kmlLayers[i]);
+					//infowindow.open(map);
+					// if (kmlEvent.featureData && kmlEvent.featureData.description) {
+							infowindow.setOptions({ "position": kmlEvent.latLng,
+								"pixelOffset": kmlEvent.pixelOffset,
+							"content": pesan });
+						infowindow.open(map);
+					//}
+				});
+  
+				 
+				
+			});
+		},
+		error: function() {
+		   alert('Error crete KML, Please check your internet connection!!');
+		}
+	});
 }
 
 function create_kmlFileDaratOK(kantor){
