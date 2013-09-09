@@ -96,8 +96,8 @@
 		<li>
 			<a href="#">Sebaran SDM Kedinasan</a>
 			<ul>
-				<li><a><input type="checkbox" id="pelatihan" onClick="showMark('pelatihan')">&nbsp;Propinsi</a></li>
-                <li><a><input type="checkbox" id="pelatihan" onClick="showMark('pelatihan')">&nbsp;Kabupaten / Kota</a></li>
+				<li><a><input type="checkbox" id="DINAS PROVINSIbox" onClick="boxclick3(this,'DINAS PROVINSI')">&nbsp;Propinsi</a></li>
+                <li><a><input type="checkbox" id="DINAS KABUPATENbox" onClick="boxclick3(this,'DINAS KABUPATEN')">&nbsp;Kabupaten / Kota</a></li>
 			</ul>
 		</li>
 		<li>
