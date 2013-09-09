@@ -11,6 +11,7 @@ class kurikulum extends My_Controller {
 		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_kurikulum');
 		$this->load->model('mdl_satker');
+		$this->load->model('mdl_peserta');
 	}
 	
 	public function index()
@@ -19,6 +20,7 @@ class kurikulum extends My_Controller {
 		
 		# get filter
 		$data['kode_upt'] = $this->session->userdata($this->id.'kode_upt');
+		$data['kode_diklat'] = $this->session->userdata($this->id.'kode_diklat');
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
@@ -64,8 +66,8 @@ class kurikulum extends My_Controller {
 	}
 	
 	public function search(){
-		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('kode_upt'));
-		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('kode_diklat'));
+		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('KODE_UPT'));
+		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('KODE_DIKLAT'));
 		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
 		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
 		
