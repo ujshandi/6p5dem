@@ -29,6 +29,16 @@ class mdl_kurikulum extends CI_Model{
 			}
 		}
 		
+		if(!empty($filter['kode_diklat'])){
+			$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $filter['kode_diklat']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $level['KODE_DIKLAT']);
+			}else if($level['LEVEL'] == 3){
+				$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $level['KODE_DIKLAT']);
+			}
+		}
+		
 		if(!empty($filter['search']))
 			$this->db->like('DIKLAT_MST_KURIKULUM.NAMA_KURIKULUM', $filter['search']);
 		
