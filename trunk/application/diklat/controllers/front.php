@@ -156,4 +156,17 @@ class front extends My_Controller {
 	}
 	
 	
+	public function penelitian($upt=""){
+		$this->load->model('mdl_penelitian');
+		
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('front/penelitian_list', $data);
+		}else{
+			$this->load->view('front/penelitian_list');
+		}
+		$this->closefront();
+	}	
+	
 }

@@ -14,6 +14,7 @@
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/prasarana'?>">Prasarana</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/agenda'?>">Agenda</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/penyuluhan'?>">Penyuluhan</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/penelitian'?>">Penelitian</a></li>
 		</ul><!-- end vmenu -->
 		</div><!-- end wrap left-->
     
