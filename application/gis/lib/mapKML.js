@@ -304,10 +304,10 @@ function boxclick2(box, category){
 function boxclick3(box, category){
   if(box.checked) {
 	if (category == 'DINAS PROVINSI') {
-	    create_kmlDinas();
+	    create_kmlDinas(true);
 		//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';   		  
 	}else if (category == 'DINAS KABUPATEN') {
-	    create_kmlDinas();
+	    create_kmlDinas(false);
 	   // kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';
 	}
 	
@@ -339,7 +339,7 @@ function create_kmlFileDarat(){
   });
 }
 
-function create_kmlDinas(kantor){
+function create_kmlDinas(prov){
 	$.jsonp({
 		url: "dataSDMDinas.php",
 		callback: "callback",
@@ -359,6 +359,12 @@ function create_kmlDinas(kantor){
 				else if(jumlah<nrm){ color = 'yellow'}
 				else { color = 'green'}
 				
+				if(prov){
+					var kmlUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/province/'+color+'/'+kode+'.kml';
+				}else{
+					var kmlUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml';
+				}
+				
 				//alert(total/3 + ' ' + jumlah + ' ' + color);
 				//window.alert("kode: "+kode+"jumlah: "+jumlah);
 				//window.alert(i);
@@ -368,7 +374,7 @@ function create_kmlDinas(kantor){
 				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
                 //kmlLayer.setMap(map);
 				 kmlLayers[i] = new google.maps.KmlLayer({
-					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml',
+					url: kmlUrl,
 					suppressInfoWindows: true,
 					preserveViewport: true,
 					map: map
