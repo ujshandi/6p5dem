@@ -57,7 +57,7 @@
 	  <thead>
 		<th>No</th>
 		<th>UPT</th>
-		<th>Kode Diklat</th>		
+		<th>Diklat</th>		
 		<th>Kode kurikulum</th>
 		<th>Nama kurikulum</th>
 		<th>SKS Teori</th>
