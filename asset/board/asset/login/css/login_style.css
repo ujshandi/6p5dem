@@ -1,6 +1,7 @@
 html,body{height:100%;width:100%;}
 body{text-align: center;min-height:400px;min-width:500px;margin:0 auto;background: #ddd url(../images/tl_page.png) repeat-x center left;}
-#outer {height:100%;width:100%;display:table;vertical-align:middle;background:url(../images/bg_page.png) no-repeat top center;}
+#outer {height:100%;width:100%;display:table;vertical-align:middle;
+background: no-repeat top center;}
 #container{text-align: center;position:relative;vertical-align:middle;display:table-cell;}	
 #inner {width:285px;text-align: center;margin-left:auto;margin-right:auto;}
 .input {background: #fff;box-shadow:0 0 3px rgba(0,0,0,.3) inset;border-radius:4px;font: 12px/14px "Lucida Grande", "Trebuchet MS", Arial, Helvetica, sans-serif;color: #5A698B;margin: 4px 0 5px 0;padding: 5px;border: 1px solid #8595B2;width:180px;}
