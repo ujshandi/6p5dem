@@ -1,11 +1,8 @@
 /* CSS Document */
 
-body{ background-image:url(../images/bg-green.jpg);
-padding:0px;
-margin:0px;
-font-family: Verdana,Arial,Helvetica,sans-serif;
-font-size:8px;
-}
+html{ background:url(../images/bg-green.jpg) repeat-x left top #f3f3f3;}
+body{font-family:Arial, Helvetica, sans-serif;padding:0;font-size:12px;margin:0 auto;color:#5e5e5e;background:url(../images/bg-body.jpg) no-repeat top center}
+
 .footer{font-family:Verdana, Arial, Helvetica, sans-serif;
 font-size:9px;
 color:#FFFFFF;
