@@ -39,7 +39,7 @@
             <p><a href="#"></a></p>
             <hr>
             <!--<a href="#" class="inlink">Setting</a>--> 
-			<a href="" class="inlink">Logout</a>
+			<a href="../../index.php/auth/logout" class="inlink">Logout</a>
     	</div>
 			
       </div>
@@ -47,7 +47,7 @@
       
       <div class="bread">
 		<p id="breadcrumb">
-		<a href="">Home</a>
+		<a href="../../index.php">Home</a>
 		GIS
 		<!--<a href="#">Sub Menu</a>
 		<a href="#">Sub submenu</a>
