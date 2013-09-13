@@ -227,4 +227,74 @@ class produk_hukum extends My_Controller {
 	
 	}
 	
+	function add_hukum(){
+		$data['title'] = 'Tambah Hukum';
+		show('hukum_add', $data);
 	}
+	
+	function proses_insert(){
+		# get pos
+        $data['ID_PRODUK_HUKUM'] 	= $this->input->post('ID_PRODUK_HUKUM');
+        $data['ID_TEMATIK'] 		= $this->input->post('ID_TEMATIK');
+        $data['TAHUN'] 				= $this->input->post('TAHUN');
+        $data['TANGGAL'] 			= date('Y-m-d');
+        $data['JUDUL'] 				= $this->input->post('JUDUL');
+        $data['DESKRIPSI'] 			= $this->input->post('DESKRIPSI');
+		
+		# validasi
+        $this->form_validation->set_rules('ID_PRODUK_HUKUM', 'ID PRODUK HUKUM', 'required');
+        $this->form_validation->set_rules('ID_TEMATIK', 'ID TEMATIK', 'required');
+        $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required|numeric');
+        $this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+        $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+		
+		// set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			show('hukum_add', $data);
+		}else{
+			# --
+			$error='';
+			$result=true;
+			$extensi = '';
+			
+			# load
+			$this->load->helper('file');
+			
+			# get file
+			$fupload = $_FILES['datafile'];
+			$nama = $_FILES['datafile']['name'];
+			$extensi = $_FILES['datafile']['type'];
+			
+			/*# cek extensi file
+			$allowedExtensions = array("xls");
+
+			if (!in_array(end(explode(".", 
+				strtolower($nama))), 
+				$allowedExtensions)) { 
+				
+				$this->import_gagal('File yang disuport hanya Excel (xls)');
+				return;
+			} */
+				  
+			# proses upload
+			if(isset($fupload)){
+				$lokasi_file 	= $fupload['tmp_name'];
+				$direktori		= "upload/jdih/$nama";
+			
+				if(move_uploaded_file($lokasi_file, $direktori)){ // proses upload
+				
+					$data['FILE'] 				= $nama;
+				
+					$this->mjdih->insert($data);
+					redirect('home');
+				}else{
+					//$this->import_gagal('File gagal diupload');
+					echo 'file gagal diupload';
+				}
+			}
+		}
+	}
+	
+}

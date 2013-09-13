@@ -56,22 +56,13 @@
  </TD>
 	</TR>-->
 	<TR>
-		<TD class="kanan">Fans Pages</TD>
+		<TD class="kanan">Menu Admin</TD>
 	</TR>
 	<TR>
 		<TD>
-		<div class="facebook-holder"><?=fbfanpage(234, 600, true)?></div>
-			 </TD>
-	</TR>
-	
-	<TR>
-		<TD class="kanan">Statistik Pengunjung</TD>
-	</TR>
-	
-	<TR>
-		<TD><br />
-		<div align="center">
-		<a href="http://s10.flagcounter.com/more/8X6N"><img src="http://s10.flagcounter.com/count/8X6N/bg_FFFFFF/txt_000000/border_CCCCCC/columns_1/maxflags_5/viewers_0/labels_0/pageviews_0/flags_0/" alt="free counters" border="0"></a></div><br />
+			<ul class="tmo_list">
+				<li><a href="<?=base_url().$this->config->item('index_page').'/produk_hukum/add_hukum'?>">Tambah Produk Hukum</a></li>
+			</ul>
 		</TD>
 	</TR>
 </TABLE>
