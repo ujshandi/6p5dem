@@ -130,4 +130,71 @@
 		return $this->db->query($sql)->result_array();
 	}
 	
+	function insert($data){
+		$this->db->flush_cache();
+        $this->db->set('ID_PRODUK_HUKUM', $data['ID_PRODUK_HUKUM']);
+        $this->db->set('ID_TEMATIK', $data['ID_TEMATIK']);
+        $this->db->set('TAHUN', $data['TAHUN']);
+        //$this->db->set('TANGGAL', "to_date('".$data['TANGGAL']."', 'dd/mm/yyyy')", false);
+		$this->db->set('TANGGAL', $data['TANGGAL']);
+        $this->db->set('JUDUL', $data['JUDUL']);
+        $this->db->set('DESKRIPSI', $data['DESKRIPSI']);
+        $this->db->set('FILE', $data['FILE']);
+        $this->db->set('APPROVAL', 'Y');
+        $this->db->set('USER_ID', '');
+        $this->db->set('STATUS', '0');
+
+        $result = $this->db->insert('JDIH_D_PRODUK_HUKUM');
+
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	
+	function getOptionProdukHukum($d=""){
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('JDIH_M_PRODUK_HUKUM');
+		$this->db->order_by('NAMA_PRODUK_HUKUM');
+		
+		$res = $this->db->get();
+		
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res->result() as $r){
+				if(trim($r->ID) == trim($value)){
+						$out .= '<option value="'.$r->ID.'" selected="selected">'.$r->NAMA_PRODUK_HUKUM.'</option>';
+				}else{
+						$out .= '<option value="'.$r->ID.'">'.$r->NAMA_PRODUK_HUKUM.'</option>';
+				}
+		}
+		
+		return $out;
+	}
+	
+	function getOptionTematik($d=""){
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('JDIH_M_TEMATIK');
+		$this->db->order_by('TEMATIK');
+		
+		$res = $this->db->get();
+		
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res->result() as $r){
+				if(trim($r->ID) == trim($value)){
+						$out .= '<option value="'.$r->ID.'" selected="selected">'.$r->TEMATIK.'</option>';
+				}else{
+						$out .= '<option value="'.$r->ID.'">'.$r->TEMATIK.'</option>';
+				}
+		}
+		
+		return $out;
+	}
+	
 }
