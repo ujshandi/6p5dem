@@ -1,11 +1,17 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Menu</h1>
 	<hr/>
+	<?php
+	/*
 	<a href="<?=base_url().$this->config->item('index_page').'/menu/add'?>" class="control"><span class="add">Tambah Data</span></a>
+	 */
+		if ($number_ai==null) $i=1 ; else $i= $number_ai;
+	?>
 	<table width="100%">
 		<thead>
 			<tr>
 				
+				<th align="left" valign="top" scope="col">NO</th>
 				<th align="left" valign="top" scope="col">MENU ID</th>
 				<th align="left" valign="top" scope="col">MENU NAME</th>
 				<th align="left" valign="top" scope="col">MENU URL</th>
@@ -18,6 +24,7 @@
 			<?php foreach($results->result() as $row) {?>
 			<tr>
 				
+				<td align="left" valign="top"><?=$i?> </td>
 				<td align="left" valign="top"><?=$row->MENU_ID?> </td>
 				<td align="left" valign="top"><?=$row->MENU_NAME?> </td>
 				<td align="left" valign="top"><?=$row->MENU_URL?> </td>
@@ -30,7 +37,7 @@
 					<span class="delete">hapus</span></a>
 				</td>
 			</tr>
-			<?php } ?>
+			<?php $i++;} ?>
 		</tbody>
 	</table>
 	<div class="clear">&nbsp;</div>
