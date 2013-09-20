@@ -15,6 +15,8 @@ class MY_Pagination extends CI_Pagination
 	 * @access	public
 	 * @return	string
 	 */
+	 var $use_page_numbers	= FALSE;
+	 
 	function create_ajax_links($target)
 	{
 		// If our item count or per-page total is zero there is no need to continue.
@@ -34,6 +36,17 @@ class MY_Pagination extends CI_Pagination
 
 		// Determine the current page number.
 		$CI =& get_instance();
+		
+		// Set the base page index for starting page number
+		if ($this->use_page_numbers)
+		{
+			$base_page = 1;
+		}
+		else
+		{
+			$base_page = 0;
+		}
+		
 
 		if ($CI->config->item('enable_query_strings') === TRUE OR $this->page_query_string === TRUE)
 		{

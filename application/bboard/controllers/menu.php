@@ -21,11 +21,12 @@ class menu extends MY_Controller
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/menu/index/';
 		$config['total_rows'] = $this->db->count_all('MENU');
-		$config['per_page'] = '30';
+		$config['per_page'] = '20';
 		$config['num_links'] = '3';
 		$this->pagination->initialize($config);	
 		
 		$data['results'] = $this->menu->getItem($config['per_page'], $this->uri->segment(3));
+		$data['number_ai'] = $this->uri->segment(3);
 		$this->load->view('menu/menu_list', $data);
 		
 		$this->close_backend();
