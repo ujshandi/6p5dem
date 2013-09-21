@@ -121,7 +121,8 @@ grid_na=$('#data_na').datagrid({
 function download_na(filee,id,folder){
 	
 	folder = "upload/jdih";
-	open_win('<?=base_url()?>'+folder+'/'+filee,'Menu Pilihan Proyek');
+	window.location.href='<?=base_url()?>'+folder+'/'+filee;
+	//open_win('<?=base_url()?>'+folder+'/'+filee,'Menu Pilihan Proyek');
 	/*
 	$.post('<?=base_url()?>jdih.php/produk_hukum/cek_file',{folder:folder,file:filee,id:id},function(resp){
 		if(resp==1){
