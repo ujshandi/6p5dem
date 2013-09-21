@@ -67,6 +67,39 @@
 					WHERE A.KODEKANTOR='".$p2."'";
 					
 			break;
+			
+			// SDM BUMN
+			case "data_sdm_bumn":
+				if($p2=='all3'){
+					$sql="SELECT MATRA.*, 
+						(SELECT count(*) FROM SDM_PEG_BUMN WHERE KODEMATRA = MATRA.KODEMATRA) as JUMLAH_SDM 
+						FROM MATRA ORDER BY KODEMATRA";
+				}
+				else{
+					$sql="SELECT MATRA.*, 
+						(SELECT count(*) FROM SDM_PEG_BUMN WHERE KODEMATRA = MATRA.KODEMATRA AND JENIS_KELAMIN = 'laki-Laki') 
+						as JUMLAH_SDM_PRIA,
+						(SELECT count(*) FROM SDM_PEG_BUMN WHERE KODEMATRA = MATRA.KODEMATRA AND JENIS_KELAMIN = 'Perempuan') 
+						as JUMLAH_SDM_WANITA  
+						
+						FROM MATRA ORDER BY KODEMATRA";
+				}
+				
+				//return $this->db->query($sql)->result_array(); 
+			break;
+			
+			case "data_sdm_bumn":
+					$where='';
+					if($p3!=''){
+						$where .=" AND JENIS_KELAMIN='".($p3=='W' ? 'Perempuan' : 'laki-Laki')."'";
+					}
+					$sql="SELECT A.*,
+					(SELECT count(*) FROM SDM_PEG_BUMN WHERE KODEBUMN = A.KODEBUMN ".$where.") as JUMLAH_SDM 
+					FROM SDM_BUMN A
+					WHERE A.KODEMATRA='".$p2."'";
+					
+			break;
+			
 			case "get_DIKLAT":
 				$where ="";
 				$flag=$this->input->post('flag');
