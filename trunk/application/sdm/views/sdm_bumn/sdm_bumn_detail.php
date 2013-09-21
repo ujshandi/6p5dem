@@ -83,7 +83,7 @@ ul.tabs li a.active {
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 <h1 class="heading">Detail Data Pegawai Non Aparatur</h1>
-	<?=form_open('sdm_bumn/search', array('class'=>'sform'))?>
+	<?=form_open('sdm_bumn', array('class'=>'sform'))?>
 	<hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>
@@ -127,7 +127,7 @@ ul.tabs li a.active {
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->AGAMA?></td>
 		</tr>
 		<tr>
-			<td width="125">Status</td>
+			<td width="125">Menikah</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->STATUS?></td>
 		</tr>
 		<tr>
@@ -139,8 +139,8 @@ ul.tabs li a.active {
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->ALAMAT?></td>
 		</tr>
 		<tr>
-			<td width="125">Matra</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMAMATRA?></td>
+			<td width="125">Unit Kerja</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->SATKER?></td>
 		</tr>
 		<tr>
 			<td width="125">BUMN</td>
@@ -148,7 +148,11 @@ ul.tabs li a.active {
 		</tr>
 		<tr>
 			<td width="125">Jabatan</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA_JABATAN?></td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JABATAN?></td>
+		</tr>
+		<tr>
+			<td width="125">Status Pegawai</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->STATUS_PEG?></td>
 		</tr>
 	</table>
 		</div>  

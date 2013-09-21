@@ -4,6 +4,119 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 	}
+	
+	// tes tes
+	
+	function getDataTes($num=0, $offset=0, $filter){
+		// yanto
+		//$level = get_level();
+		
+		# get data
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEGAWAI');
+		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		$this->db->limit($num, $offset);
+		$this->db->order_by('UNITKANTOR');
+		// yanto
+		if(!empty($filter['kodekantor'])){
+			$this->db->where('UNITKANTOR', $filter['kodekantor']);
+		}
+		
+		if(!empty($filter['kodeunit'])){
+			$this->db->where('KERJAUNIT', $filter['kodeunit']);
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		
+		#get count
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEGAWAI');
+		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('UNITKANTOR');
+		
+		// yanto
+		if(!empty($filter['kodekantor'])){
+			$this->db->where('UNITKANTOR', $filter['kodekantor']);
+		}
+		
+		if(!empty($filter['kodeunit'])){
+			$this->db->where('KERJAUNIT', $filter['kodeunit']);
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
+	}
+	
+	function getOptionSatkerByKantor($d){
+	
+		$value = isset($d['value'])?$d['value']:'';
+		$KODEKANTOR = isset($d['KODEKANTOR'])?$d['KODEKANTOR']:'';
+		
+		$this->db->flush_cache();
+		$this->db->where('KODEKANTOR', $KODEKANTOR==0?'':$KODEKANTOR);
+		$result = $this->db->get('SDM_UNITKERJA');
+		
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($result->result() as $r){
+				if(trim($r->KODEUNIT) == trim($value)){
+						$out .= '<option value="'.$r->KODEUNIT.'" selected="selected">'.$r->NAMAPENUH.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEUNIT.'">'.$r->NAMAPENUH.'</option>';
+				}
+		}
+		//$out .= '</select>';
+		
+		return $out;
+	
+	}
+	
+	function getOptionKantorChild($d=""){
+		
+		// yanto
+		//$level = get_level();
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('SDM_KANTOR');
+		$this->db->order_by('KODEKANTOR');
+		
+		//yanto
+		/*$out = '';
+		if($level['LEVEL'] == 2){ // induk upt
+			$this->db->where('KODE_INDUK', $level['KODE_UPT']);
+		}else if($level['LEVEL'] == 3){ // upt
+			$this->db->where('KODE_UPT', $level['KODE_UPT']);
+		}*/
+		
+		$res = $this->db->get();
+		
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res->result() as $r){
+				if(trim($r->KODEKANTOR) == trim($value)){
+						$out .= '<option value="'.$r->KODEKANTOR.'" selected="selected">'.$r->NAMAPENUH.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEKANTOR.'">'.$r->NAMAPENUH.'</option>';
+				}
+		}
+		
+		return $out;
+	}
+	
+	// end tes tes
 
 	// --- penyesuaian dengan pusdatin
 	public function getkantor(){

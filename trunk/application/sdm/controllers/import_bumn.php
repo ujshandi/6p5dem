@@ -51,7 +51,7 @@ class Import_bumn extends MY_Controller {
 				
 				#data pendukung
 				//$dt_golongan = $this->mdl_import->getGolongan();
-				$dt_jabatan = $this->mdl_import_bumn->getJabatan();
+				//$dt_jabatan = $this->mdl_import_bumn->getJabatan();
 				$dt_bumn = $this->mdl_import_bumn->getbumn();
 				$dt_matra = $this->mdl_import_bumn->getmatra();
 				
@@ -67,27 +67,30 @@ class Import_bumn extends MY_Controller {
 					
 					// data
 					$data_tmp[$x]['NIK'] 				= $this->excel->val($i, 1);
-					$data_tmp[$x]['NAMA_PEGAWAI'] 		= $this->excel->val($i, 2);
-					$data_tmp[$x]['TEMPAT_LAHIR'] 		= $this->excel->val($i, 3);
+					$data_tmp[$x]['NAMA'] 				= $this->excel->val($i, 2);
+					$data_tmp[$x]['TMPT_LAHIR'] 		= $this->excel->val($i, 3);
 					$data_tmp[$x]['TGL_LAHIR'] 			= $this->excel->val($i, 4);
-					$data_tmp[$x]['JENIS_KELAMIN'] 		= $this->excel->val($i, 5);
-					$data_tmp[$x]['AGAMA'] 				= $this->excel->val($i, 6);
+					$data_tmp[$x]['JABATAN']	 		= $this->excel->val($i, 5);
+					$data_tmp[$x]['STATUS_PEG'] 				= $this->excel->val($i, 6);
 					//$data_tmp[$x]['TAHUN_PENGANGKATAN'] = $this->excel->val($i, 7);
-					$data_tmp[$x]['ALAMAT'] 			= $this->excel->val($i, 7);
-					$data_tmp[$x]['STATUS_PERKAWINAN'] 	= $this->excel->val($i, 8);
-					$data_tmp[$x]['KETERANGAN'] 		= $this->excel->val($i, 9);
-					$data_tmp[$x]['JUMLAH_ANAK'] 		= $this->excel->val($i, 10);
-					$data_tmp[$x]['KODEMATRA'] 			= $this->matra($this->excel->val($i, 11), $dt_matra);
-					$data_tmp[$x]['KODEBUMN'] 			= $this->bumn($this->excel->val($i, 12), $dt_bumn);
-					$data_tmp[$x]['ID_JABATAN'] 		= $this->jabatan($this->excel->val($i, 13), $dt_jabatan);
+					$data_tmp[$x]['JENIS_KELAMIN']		= $this->excel->val($i, 7);
+					$data_tmp[$x]['AGAMA']			 	= $this->excel->val($i, 8);
+					$data_tmp[$x]['TMT'] 				= $this->excel->val($i, 9);
+					$data_tmp[$x]['ALAMAT'] 			= $this->excel->val($i, 10);
+					$data_tmp[$x]['STATUS'] 			= $this->excel->val($i, 11);
+					$data_tmp[$x]['JML_ANAK'] 			= $this->excel->val($i, 12);
+					$data_tmp[$x]['GOLONGAN'] 			= $this->excel->val($i, 13);
+					$data_tmp[$x]['SATKER'] 			= $this->excel->val($i, 14);
+					$data_tmp[$x]['KODEMATRA'] 			= $this->excel->val($i, 15);
+					$data_tmp[$x]['KODEBUMN'] 			= $this->excel->val($i, 16);
 					//$data_tmp[$x]['ID_GOLONGAN'] 		= $this->golongan($this->excel->val($i, 15), $dt_golongan);
 					//$data_tmp[$x]['TMT_GOLONGAN'] 		= $this->excel->val($i, 16);
 					//$data_tmp[$x]['TMT_JABATAN'] 		= $this->excel->val($i, 17);
 					
-					$data_tmp[$x]['LENGKAP'] = TRUE;
+					//$data_tmp[$x]['LENGKAP'] = TRUE;
 					
 					// cek data
-					if($data_tmp[$x]['KODEMATRA'] == ""){
+					/*if($data_tmp[$x]['KODEMATRA'] == ""){
 						$data_tmp[$x]['LENGKAP'] = FALSE;
 						$komplite = FALSE;
 					}
@@ -99,7 +102,7 @@ class Import_bumn extends MY_Controller {
 						$data_tmp[$x]['LENGKAP'] = FALSE;
 						$komplite = FALSE;
 					}
-				
+					*/
 					$x++;
 				}
 				
@@ -108,10 +111,7 @@ class Import_bumn extends MY_Controller {
 				if (!$result){
 					$this->import_gagal('Eksekusi gagal');
 				}else{
-					if(!$komplite){ // jika ada data yg tidak lengkap
-						redirect('import_bumn/verifikasi');
-					}else{
-						redirect('import_bumn/import_sukses');
+					redirect('import_bumn/import_sukses');
 					}
 				}
 				
@@ -124,9 +124,8 @@ class Import_bumn extends MY_Controller {
 			}
 		}
 		
-	}
 	
-	private function matra($matra, $data_matra){
+	/*private function matra($matra, $data_matra){
 		$matra = strtoupper($matra);
 		$matra = trim($matra);
 		$matra = str_replace(' ', '', $matra);
@@ -164,7 +163,7 @@ class Import_bumn extends MY_Controller {
 		}
 		
 		return '';
-	}
+	}*/
 	
 	function import_sukses(){
 		redirect('sdm_bumn/search');
@@ -179,7 +178,7 @@ class Import_bumn extends MY_Controller {
 		$this->close();
 	}
 	
-	public function verifikasi_proses(){
+	/*public function verifikasi_proses(){
 		#GET DATA
 		$data = $this->input->post('data');
 		
@@ -191,7 +190,7 @@ class Import_bumn extends MY_Controller {
 		}else{
 			redirect('import_bumn/import_sukses');
 		}
-	}
+	}*/
 	
 	function import_gagal($pesan){
 		$data['title']	='IMPORT DATA';

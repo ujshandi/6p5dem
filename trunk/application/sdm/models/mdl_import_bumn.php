@@ -18,30 +18,34 @@ class mdl_import_bumn extends CI_Model
 			$this->db->flush_cache();
 			
 			$this->db->set('NIK', 				$data[$i]['NIK']);
-			$this->db->set('NAMA', 				$data[$i]['NAMA_PEGAWAI']);
-			$this->db->set('TMPT_LAHIR', 		$data[$i]['TEMPAT_LAHIR']);
-			$this->db->set('TGL_LAHIR', 		'TO_TIMESTAMP(\''.$data[$i]['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
+			$this->db->set('NAMA', 				str_replace("'", "", $data[$i]['NAMA']));
+			$this->db->set('TMPT_LAHIR', 		$data[$i]['TMPT_LAHIR']);
+			$this->db->set('TGL_LAHIR', 		'TO_DATE(\''.$data[$i]['TGL_LAHIR'].'\', \'DD-MM-YYYY\')', FALSE);
 			$this->db->set('JENIS_KELAMIN', 	$data[$i]['JENIS_KELAMIN']);
 			$this->db->set('AGAMA', 			$data[$i]['AGAMA']);
-			//$this->db->set('TMT',				$data[$i]['TAHUN_PENGANGKATAN']);
+			$this->db->set('TMT',				$data[$i]['TMT']);
 			$this->db->set('ALAMAT', 			$data[$i]['ALAMAT']);
-			$this->db->set('STATUS', 			$data[$i]['STATUS_PERKAWINAN']);
-			$this->db->set('KETERANGAN', 		$data[$i]['KETERANGAN']);
-			$this->db->set('JML_ANAK', 			$data[$i]['JUMLAH_ANAK']);
+			$this->db->set('STATUS', 			$data[$i]['STATUS']);
+			$this->db->set('GOLONGAN',	 		$data[$i]['GOLONGAN']);
+			$this->db->set('JML_ANAK', 			$data[$i]['JML_ANAK']);
 			$this->db->set('KODEMATRA', 		$data[$i]['KODEMATRA']);
 			$this->db->set('KODEBUMN', 			$data[$i]['KODEBUMN']);
-			$this->db->set('ID_JABATAN', 		$data[$i]['ID_JABATAN']);
+			$this->db->set('JABATAN', 			$data[$i]['JABATAN']);
+			$this->db->set('SATKER', 			$data[$i]['SATKER']);
+			$this->db->set('STATUS_PEG', 		$data[$i]['STATUS_PEG']);
+			
+			//$data_tmp[$x]['JABATAN'] 			= $this->excel->val($i, 13);
 			//$this->db->set('ID_GOLONGAN', 		$data[$i]['ID_GOLONGAN']);
 			//$this->db->set('TMT_GOLONGAN', 		$data[$i]['TMT_GOLONGAN']);
 			//$this->db->set('TMT_JABATAN', 		$data[$i]['TMT_JABATAN']);
 			
 			//$this->db->set('userid', 		$data[$i]['kodeprovin']);
 			
-			if($data[$i]['LENGKAP'] == TRUE){
+			//if($data[$i]['LENGKAP'] == TRUE){
 				$this->db->insert('SDM_PEG_BUMN');
-			}else{
-				$this->db->insert('SDM_PEG_BUMN_TEMP');
-			}
+			//}else{
+				//$this->db->insert('SDM_PEG_BUMN_TEMP');
+			//}
 			
 		}
 		
@@ -56,7 +60,7 @@ class mdl_import_bumn extends CI_Model
 			$this->db->flush_cache();
 			
 			$this->db->set('NIK', 				$data[$i]['NIK']);
-			$this->db->set('NAMA', 				$data[$i]['NAMA']);
+			$this->db->set('NAMA', 				str_replace("'", "", $data[$x]['NAMAMATRA']));
 			$this->db->set('TMPT_LAHIR', 		$data[$i]['TMPT_LAHIR']);
 			$this->db->set('TGL_LAHIR', 		'TO_TIMESTAMP(\''.$this->getDate($data[$i]['TGL_LAHIR']).'\', \'YYYY-MM-DD\')', FALSE);
 			$this->db->set('JENIS_KELAMIN', 	$data[$i]['JENIS_KELAMIN']);

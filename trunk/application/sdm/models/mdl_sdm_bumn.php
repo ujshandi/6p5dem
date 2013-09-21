@@ -1,11 +1,131 @@
 <?php
-class Mdl_Sdm_bumn extends CI_Model{
+class Mdl_Sdm_Bumn extends CI_Model{
 		
 	public function __construct(){
 		parent::__construct();
 	}
 	
-	public function getmatra(){
+	// tes tes
+	
+	function getDataTes($num=0, $offset=0, $filter){
+		// yanto
+		//$level = get_level();
+		
+		# get data
+		$this->db->flush_cache();
+		//$this->db->select('*');
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_BUMN');
+		//$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_DINAS.ID_GOLONGAN');
+		//$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
+		$this->db->limit($num, $offset);
+		//$this->db->order_by('KODEPROVIN');
+		// yanto
+		if(!empty($filter['kodematra'])){
+			$this->db->where('KODEMATRA', $filter['kodematra']);
+		}
+		
+		if(!empty($filter['kodebumn'])){
+			$this->db->where('KODEBUMN', $filter['kodebumn']);
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		
+		#get count
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_BUMN');
+		//$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_DINAS.ID_GOLONGAN');
+		//$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
+		//$this->db->limit($num, $offset);
+		//$this->db->order_by('KODEPROVIN');
+		
+		// yanto
+		if(!empty($filter['kodematra'])){
+			$this->db->where('KODEMATRA', $filter['kodematra']);
+		}
+		
+		if(!empty($filter['kodebumn'])){
+			$this->db->where('KODEBUMN', $filter['kodebumn']);
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
+	}
+	
+	function getOptionBumnByMatra($d){
+	
+		$value = isset($d['value'])?$d['value']:'';
+		$KODEMATRA = isset($d['KODEMATRA'])?$d['KODEMATRA']:'';
+		
+		$this->db->flush_cache();
+		if($KODEMATRA != ''){
+			$this->db->where('KODEMATRA', $KODEMATRA);
+		}
+		
+		$result = $this->db->get('SDM_BUMN');
+		
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($result->result() as $r){
+				if(trim($r->KODEBUMN) == trim($value)){
+						$out .= '<option value="'.$r->KODEBUMN.'" selected="selected">'.$r->NAMA_BUMN.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEBUMN.'">'.$r->NAMA_BUMN.'</option>';
+				}
+		}
+		//$out .= '</select>';
+		
+		return $out;
+	
+	}
+	
+	function getOptionMatraChild($d=""){
+		
+		// yanto
+		//$level = get_level();
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('MATRA');
+		$this->db->order_by('KODEMATRA');
+		
+		//yanto
+		/*$out = '';
+		if($level['LEVEL'] == 2){ // induk upt
+			$this->db->where('KODE_INDUK', $level['KODE_UPT']);
+		}else if($level['LEVEL'] == 3){ // upt
+			$this->db->where('KODE_UPT', $level['KODE_UPT']);
+		}*/
+		
+		$res = $this->db->get();
+		
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res->result() as $r){
+				if(trim($r->KODEMATRA) == trim($value)){
+						$out .= '<option value="'.$r->KODEMATRA.'" selected="selected">'.$r->NAMAMATRA.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEMATRA.'">'.$r->NAMAMATRA.'</option>';
+				}
+		}
+		
+		return $out;
+	}
+	
+	// end tes tes
+	
+	//end filter dan paginasi baru
+	
+	
+	public function getmatra2(){
 		$result = array();
 		$this->db->select('*');
 		$this->db->from('MATRA');
@@ -48,7 +168,7 @@ class Mdl_Sdm_bumn extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('SDM_PEG_BUMN');
 		//$this->db->join('SDM_BUMN', 'SDM_BUMN.KODEBUMN = SDM_PEG_BUMN.KODEBUMN');
-		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_BUMN.ID_JABATAN');
+		//$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_BUMN.ID_JABATAN');
 		
 		if($e1 != '0'){
 			$this->db->where('KODEMATRA', $e1);	
@@ -65,11 +185,9 @@ class Mdl_Sdm_bumn extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('SDM_PEG_BUMN');
 		$this->db->join('SDM_BUMN', 'SDM_BUMN.KODEBUMN = SDM_PEG_BUMN.KODEBUMN');
-		$this->db->join('MATRA', 'SDM_BUMN.KODEMATRA = SDM_PEG_BUMN.KODEMATRA');
-		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_BUMN.ID_JABATAN');
+		//$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
 		$this->db->where('ID_PEG_BUMN', $id);
 		return $this->db->get();
-		
 	}
 	
 	public function get_data_duk_detail_diklat($id){

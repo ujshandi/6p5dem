@@ -83,7 +83,7 @@ ul.tabs li a.active {
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 <h1 class="heading">Detail Data Pegawai</h1>
-	<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
+	<?=form_open('sdm_dinas', array('class'=>'sform'))?>
 	<hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>

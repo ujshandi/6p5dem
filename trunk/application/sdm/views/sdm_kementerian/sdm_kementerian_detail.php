@@ -84,7 +84,7 @@ ul.tabs {
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 <h1 class="heading">Detail Data Pegawai</h1>
-	<?=form_open('sdm_kementerian/search_new', array('class'=>'sform'))?>
+	<?=form_open('sdm_kementerian', array('class'=>'sform'))?>
 	<hr/>
 			<li><input class="greenbutton" type="submit" value="Back" style="float:left"/></li>
 <?=form_close()?>
