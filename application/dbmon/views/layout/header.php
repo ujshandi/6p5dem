@@ -82,7 +82,7 @@
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="chart_organisation" style="width:250px" 
 						onClick="loadUrl(this, 'get_form/sdm_kementerian');" >Komposisi SDM Kementrian</a>
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="shape_square_delete" style="width:250px" 
-						onClick="loadUrl(this, 'get_form/sdm_non_aparatur');" >Komposisi SDM Non-Aparatur</a>
+						onClick="loadUrl(this, 'get_form/sdm_bumn');" >Komposisi SDM BUMN</a>
 				</div>
 				
 				<div title="Dashboard Monitoring Diklat" iconCls="chart_pie" style="padding:5px;">
