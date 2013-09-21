@@ -141,7 +141,7 @@ ul.tabs {
 		</tr>
 		<tr>
 			<td width="125">TMT Golongan</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTGOLONGAN?></td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTGOLONG?></td>
 		</tr>
 		<tr>
 			<td width="125">Jabatan</td>
