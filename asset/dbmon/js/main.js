@@ -58,6 +58,22 @@ function get_chart2(id,type_chart,mod,render_id,lebar_na,tinggi_na){
 	});
 }
 
+// sdm BUMN
+function get_chart3(id,type_chart,mod,render_id,lebar_na,tinggi_na){
+	post['kat']=mod;
+	$("#"+render_id).html("").addClass("loading");
+	$.post(host+'dashboard/get_datagrap',post,function(r){
+			//r = eval('('+r+')');
+			if(FusionCharts(id)){FusionCharts(id).dispose();}
+			id = new FusionCharts(site+"asset/dbmon/swf/"+type_chart+".swf", id, frmWidth-lebar_na, (mod=='campur3' ? tinggi_na : frmHeight-tinggi_na));
+			id.setDataXML(r);
+			id.render(render_id);
+			 $("#"+render_id).removeClass("loading");
+	});
+}
+
+// end sdm BUMN
+
 var container3;
 function mywindow(html,judul,width,height){
     container3 = "win"+Math.floor(Math.random()*9999);
@@ -99,6 +115,23 @@ function get_data_kab(kd_prov,flag_kelamin,w,h,url_na){
 
 	$.post(url,post_na,function(resp){
 		mywindow(resp,'LIST DATA PER KABUPATEN',frmWidth-w,frmHeight-h);
+		winLoadingClose();
+	});
+	
+}
+
+// teS BUMN
+function get_data_bumn(KODEMATRA,flag_kelamin,w,h,url_na){
+	loadingna()
+	var url=host+'dashboard/'+url_na;
+	var post_na={};
+	post_na['kd_matra']=kd_matra;
+	if(flag_kelamin!=''){	
+		post_na['flag_kelamin']=flag_kelamin;
+	}
+
+	$.post(url,post_na,function(resp){
+		mywindow(resp,'LIST DATA PER BUMN',frmWidth-w,frmHeight-h);
 		winLoadingClose();
 	});
 	

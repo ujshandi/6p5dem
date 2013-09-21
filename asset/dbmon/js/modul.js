@@ -59,6 +59,39 @@ if(modul=='sdm_kementerian'){
 	});
 }
 
+// Sdm BUMN
+
+if(modul=='sdm_bumn'){
+	$(document).ready(function(){
+	$('#panelsMom1').css('height', tinggi+'px');
+	$('#panelsMom1').css('width', lebar-290+'px');
+	
+	$('#kat').css('width', lebar2+'px');	
+	$('#all3').css('width', lebar2+'px');	
+	$('#kat').css('height', tinggi+'px');	
+	$('#all3').css('height', tinggi+'px');	
+	
+	$('#chart1').panel({
+		width: lebar2,
+		height: frmHeight-220,
+		title: 'Komposisi SDM Non Aparatur BUMN (%)',
+		html: "<div id='chart1'></div>"
+	});
+	$('#chart2').panel({
+		width: lebar2,
+		height: frmHeight-220,
+		title: 'Komposisi SDM BUMN Pria & Wanita',
+		html: "<div id='chart2'></div>"
+	});
+	
+	get_chart3('fcfchart1','Doughnut3D','all3','chart1',850,270);
+	get_chart3('fcfchart2','FCF_MSBar2D','campur3','chart2',865,500);	
+	//get_chart('fcfchart3','Bar2D','pria','chart3',1000,100);	
+	});
+}
+
+// End sdm bumn
+
 if(modul=='mon_diklat'){
 	var induk_upt
 	var program_upt
