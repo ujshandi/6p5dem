@@ -58,7 +58,7 @@ class mdl_import extends CI_Model
 			$this->db->set('NIP', 				$data[$i]['NIP']);
 			$this->db->set('NAMA', 				$data[$i]['NAMA']);
 			$this->db->set('TMPT_LAHIR', 		$data[$i]['TMPT_LAHIR']);
-			$this->db->set('TGL_LAHIR', 		'TO_TIMESTAMP(\''.$this->getDate($data[$i]['TGL_LAHIR']).'\', \'YYYY-MM-DD\')', FALSE);
+			$this->db->set('TGL_LAHIR', 		'TO_TIMESTAMP(\''.$this->getDate($data[$i]['TGL_LAHIR']).'\', \'DD-MM-YYYY\')', FALSE);
 			$this->db->set('JENIS_KELAMIN', 	$data[$i]['JENIS_KELAMIN']);
 			$this->db->set('AGAMA', 			$data[$i]['AGAMA']);
 			$this->db->set('TMT',				$data[$i]['TMT']);

@@ -4,6 +4,121 @@ class Mdl_Sdm_Dinas extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 	}
+	
+	// tes tes
+	
+	function getDataTes($num=0, $offset=0, $filter){
+		// yanto
+		//$level = get_level();
+		
+		# get data
+		$this->db->flush_cache();
+		//$this->db->select('*');
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_DINAS');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_DINAS.ID_GOLONGAN');
+		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
+		$this->db->limit($num, $offset);
+		$this->db->order_by('KODEPROVIN');
+		// yanto
+		if(!empty($filter['kodeprovin'])){
+			$this->db->where('KODEPROVIN', $filter['kodeprovin']);
+		}
+		
+		if(!empty($filter['kodekabup'])){
+			$this->db->where('KODEKABUP', $filter['kodekabup']);
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		
+		#get count
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('SDM_PEG_DINAS');
+		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_DINAS.ID_GOLONGAN');
+		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
+		//$this->db->limit($num, $offset);
+		$this->db->order_by('KODEPROVIN');
+		
+		// yanto
+		if(!empty($filter['kodeprovin'])){
+			$this->db->where('KODEPROVIN', $filter['kodeprovin']);
+		}
+		
+		if(!empty($filter['kodekabup'])){
+			$this->db->where('KODEKABUP', $filter['kodekabup']);
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		$tmp['row_count'] = $this->db->get()->num_rows();
+		
+		return $tmp;
+	}
+	
+	function getOptionKabupByProvin($d){
+	
+		$value = isset($d['value'])?$d['value']:'';
+		$KODEPROVIN = isset($d['KODEPROVIN'])?$d['KODEPROVIN']:'';
+		
+		$this->db->flush_cache();
+		$this->db->where('KODEPROVIN', $KODEPROVIN==0?'':$KODEPROVIN);
+		$result = $this->db->get('SDM_KABUPATEN');
+		
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($result->result() as $r){
+				if(trim($r->KODEKABUP) == trim($value)){
+						$out .= '<option value="'.$r->KODEKABUP.'" selected="selected">'.$r->NAMAKABUP.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEKABUP.'">'.$r->NAMAKABUP.'</option>';
+				}
+		}
+		//$out .= '</select>';
+		
+		return $out;
+	
+	}
+	
+	function getOptionProvinChild($d=""){
+		
+		// yanto
+		//$level = get_level();
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('SDM_PROVINSI');
+		$this->db->order_by('KODEPROVIN');
+		
+		//yanto
+		/*$out = '';
+		if($level['LEVEL'] == 2){ // induk upt
+			$this->db->where('KODE_INDUK', $level['KODE_UPT']);
+		}else if($level['LEVEL'] == 3){ // upt
+			$this->db->where('KODE_UPT', $level['KODE_UPT']);
+		}*/
+		
+		$res = $this->db->get();
+		
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res->result() as $r){
+				if(trim($r->KODEPROVIN) == trim($value)){
+						$out .= '<option value="'.$r->KODEPROVIN.'" selected="selected">'.$r->NAMAPROVIN.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEPROVIN.'">'.$r->NAMAPROVIN.'</option>';
+				}
+		}
+		
+		return $out;
+	}
+	
+	// end tes tes
+
 
 	public function getprovin(){
 		$result = array();
@@ -36,7 +151,8 @@ class Mdl_Sdm_Dinas extends CI_Model{
 		$this->db->order_by('KODE_DIKLAT','ASC');
 		$array_keys_values = $this->db->get();
     	foreach ($array_keys_values->result() as $row)
-        {
+     
+	 {
             $result[0]= '-Pilih Diklat-';
             $result[$row->KODE_DIKLAT]= $row->NAMA_DIKLAT;
         }

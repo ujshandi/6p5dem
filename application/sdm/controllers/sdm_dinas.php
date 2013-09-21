@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Sdm_dinas extends My_Controller {
-	
+	var $id = 'sdm_dinas';
 	function __construct(){
 		parent::__construct();
 		$this->load->library('excel');
@@ -12,6 +12,51 @@ class Sdm_dinas extends My_Controller {
 	{
 		$this->open();
 		
+		# get filter
+		$data['kodeprovin'] = $this->session->userdata($this->id.'kodeprovin');
+		$data['kodekabup'] = $this->session->userdata($this->id.'kodekabup');
+		$data['search'] = $this->session->userdata($this->id.'search');
+		$data['numrow'] = $this->session->userdata($this->id.'numrow');
+		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
+		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
+		
+		# get data
+		$result = $this->mdl_sdm_dinas->getDataTes($data['numrow'], $offset, $data);
+		
+		# config pagination
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_dinas/index/';
+		$config['per_page'] = $data['numrow'];
+		$config['num_links'] = '10';
+		$config['uri_segment'] = '3';
+		$config['full_tag_open'] = '';
+		$config['full_tag_close'] = '';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="javascript:void(0)" class="current">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+
+		$config['total_rows'] = $result['row_count'];
+
+		$this->pagination->initialize($config);	
+		
+		$data['curcount'] = $offset+1;
+		$data['result'] = $result['row_data'];
+		
+		$this->load->view('sdm_dinas/dinas_list', $data);
+		
+		/*
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_dinas/index/';
 		$config['total_rows'] = $this->db->count_all('SDM_PEG_DINAS');
@@ -22,9 +67,23 @@ class Sdm_dinas extends My_Controller {
 		
 		$data['option_provin'] = $this->mdl_sdm_dinas->getprovin();
 		$this->load->view('sdm_dinas/sdm_dinas', $data);
-		
+		*/
 		
 		$this->close();
+	}
+	
+	// tambahan dikit tes tes
+	function getKabup(){
+		echo $this->mdl_sdm_dinas->getOptionKabupByProvin(array('KODEPROVIN'=>$this->input->post('KODEPROVIN')));
+	}
+	
+	public function search(){
+		$this->session->set_userdata($this->id.'kodeprovin', $this->input->post('KODEPROVIN'));
+		$this->session->set_userdata($this->id.'kodekabup', $this->input->post('KODEKABUP'));
+		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
+		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
+		
+		redirect('sdm_dinas');
 	}
     
 	
@@ -44,7 +103,7 @@ class Sdm_dinas extends My_Controller {
             }
     }
 
-    public function search()
+    public function search2()
 	{	
 		$this->open();
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_dinas/index/';
@@ -58,7 +117,9 @@ class Sdm_dinas extends My_Controller {
 		$e2 = $this->input->post('KODEKABUP');
 		
 		$data['option_provin'] = $this->mdl_sdm_dinas->getprovin();
-		$data['option_kabupkota'] = $this->mdl_sdm_dinas->getkabupkota();
+		$data['option_
+		
+		kabupkota'] = $this->mdl_sdm_dinas->getkabupkota();
 
 		$data['result'] = $this->mdl_sdm_dinas->get_data($e1, $e2);
 		
