@@ -5,11 +5,19 @@ class Sdm_bumn extends My_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->library('excel');
+		$this->load->model('Authentikasi');
 		$this->load->model('mdl_sdm_bumn');
 	}
 	
 	public function index()
 	{
+		$data['can_view'] 	= $this->can_view();
+
+		$data['can_insert'] = $this->can_insert();
+
+		$data['can_update'] = $this->can_update();
+
+		$data['can_delete'] = $this->can_delete();
 		$this->open();
 		
 		# get filter

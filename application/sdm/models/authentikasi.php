@@ -131,10 +131,17 @@ class Authentikasi extends CI_Model{
    }
    
    function getUserPrivelege($usergroup){
+      		$sql = " SELECT a.MENU_ID, a.MENU_URL, b.PRIVILEGE FROM SDM_MENU a,SDM_USER_GROUP_MENU b WHERE a.MENU_ID = b.MENU_ID AND b.USER_GROUP_ID = '".$usergroup."' ORDER BY a.MENU_ID";												
+		     //$sql ="SELECT * FROM USER_GROUP_MENU";
+		return $this->db->query($sql);		
+   
+   }
+   
+  /* function getUserPrivelege($usergroup){
 		$this->db->flush_cache();
 		$this->db->select('a.MENU_ID, a.MENU_URL, b.PRIVILEGE');
 		$this->db->from('SDM_MENU a,SDM_USER_GROUP_MENU b');
-		$this->db->where('a.MENU_ID', 'b.MENU_ID');
+		$this->db->where('a.MENU_ID = b.MENU_ID');
 		$this->db->where('b.USER_GROUP_ID', $usergroup);
 		$this->db->order_by('a.MENU_ID', 'ASC');
 		
@@ -142,7 +149,7 @@ class Authentikasi extends CI_Model{
 		//return $this->db->query($sql);		
 		
 		return $this->db->get();
-   }
+   }*/
    
    
 }

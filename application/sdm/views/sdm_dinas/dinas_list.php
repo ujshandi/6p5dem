@@ -19,7 +19,13 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Pegawai Dinas</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/sdm_dinas/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('sdm_dinas/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -78,18 +84,36 @@
 				<td width='15%'><?=$r->NAMA_JABATAN?></td>
 				<td width='5%'><?=$r->NAMA_GOLONGAN?></td>
 				<td width='8%'>
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/sdm_dinas/add_diklat/'.$r->ID_PEG_DINAS?>">
 						<img src="<?=base_url()?>asset/globalstyle/images/ic-add.png" />&nbsp;
 					</a>
+					<?php
+					}
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/sdm_dinas/edit/'.$r->ID_PEG_DINAS?>">
 						<img src="<?=base_url()?>asset/globalstyle/images/ic-edit.png" />&nbsp; 
 					</a>
+					<?php
+					}
+						if ($can_view==true){
+							?>
 					<a href="<?=site_url().'/sdm_dinas/detail/'.$r->ID_PEG_DINAS?>">
 						<img src="<?=base_url()?>asset/globalstyle/images/check.png" />&nbsp;
 					</a>
-					<a href="<?=site_url().'/sdm_dinas/detail/'.$r->ID_PEG_DINAS?>">
+					<?php
+					}
+						if ($can_delete==true){
+							?>
+					<a href="<?=site_url().'/sdm_dinas/delete/'.$r->ID_PEG_DINAS?>">
 						<img src="<?=base_url()?>asset/globalstyle/images/ic-delete.png" />
 					</a>
+					<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

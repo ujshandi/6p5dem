@@ -6,7 +6,7 @@ class MY_Controller extends CI_Controller{
 		parent::__construct();
 		//$this->output->enable_profiler(true);
 		# cek login
-			if (is_login() == FALSE){			redirect(base_url() . 'index.php/auth');		}		
+			if (is_login() == FALSE){			redirect(base_url() . 'index.php/auth');		}				$this->set_privilage();
 		# set privilage
 		//$this->set_privilage();
 		

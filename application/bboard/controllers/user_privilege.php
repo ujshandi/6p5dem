@@ -316,6 +316,58 @@ class user_privilege extends MY_Controller
 		$this->close_backend();
 	}
 	
+	public function proses_edit_sdm(){
+		$this->open_backend();
+		
+		# get post data
+		
+		$data['ID'] = $this->input->post('ID');
+		$MENU = $this->input->post('MENU');
+		
+		foreach ($MENU  as $value){
+			/*echo $value['MENU_ID'] .'-'. $value['HAKAKSES0'] . '-' . $value['HAKAKSES1'] . '-' . $value['HAKAKSES2'] . '-' . $value['HAKAKSES3'] . '-' . $value['HAKAKSES4'] . '<br/>';
+			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];*/
+			
+			if (isset($value['HAKAKSES0'])){
+				$HAKAKSES0 = '1';
+			}else{
+				$HAKAKSES0 = '0';
+			}
+			
+			if (isset($value['HAKAKSES1'])){
+				$HAKAKSES1 = '1';
+			}else{
+				$HAKAKSES1 = '0';
+			}
+			if (isset($value['HAKAKSES2'])){
+				$HAKAKSES2 = '1';
+			}else{
+				$HAKAKSES2 = '0';
+			}
+			
+			if (isset($value['HAKAKSES3'])){
+				$HAKAKSES3 = '1';
+			}else{
+				$HAKAKSES3 = '0';
+			}
+			
+			if (isset($value['HAKAKSES4'])){
+				$HAKAKSES4 = '1';
+			}else{
+				$HAKAKSES4 = '0';
+			}
+			
+			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];
+			$data['PRIVILEGE']=$HAKAKSES0.$HAKAKSES1.$HAKAKSES2.$HAKAKSES3.$HAKAKSES4;
+			$this->user_privilege->update_sdm($data);
+		}
+		
+        
+		redirect('user_privilege');
+		
+		$this->close_backend();
+	}
+	
 	public function proses_delete($id){
 		if($this->user_privilege->delete($id)){
 			redirect('user_privilege');
@@ -330,6 +382,18 @@ class user_privilege extends MY_Controller
 		$user_group_id=$this->input->post('USER_GROUP_ID');
 		if($this->user_privilege->hapus_modul($id)){
 			redirect('user_privilege/load_edit/' . $user_group_id . '');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	
+	//SDM
+	public function hapus_modul_sdm(){
+		$id=$this->uri->segment(3);
+		$user_group_id=$this->input->post('USER_GROUP_ID');
+		if($this->user_privilege->hapus_modul_sdm($id)){
+			redirect('user_privilege/load_edit_sdm/' . $user_group_id . '');
 		}else{
 			// code u/ gagal simpan
 			
