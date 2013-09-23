@@ -20,17 +20,40 @@ class menu extends MY_Controller
 		
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/menu/index/';
+		/*
 		$config['total_rows'] = $this->db->count_all('MENU');
 		$config['per_page'] = '20';
 		$config['num_links'] = '3';
 		$this->pagination->initialize($config);	
 		
 		$data['results'] = $this->menu->getItem($config['per_page'], $this->uri->segment(3));
-		$data['number_ai'] = $this->uri->segment(3);
-		$this->load->view('menu/menu_list', $data);
+		$data['number_ai'] = $this->uri->segment(3); */
+		/*$this->load->view('menu/menu_tabbed', $data); */
+		$this->load->view('menu/menu_tabbed');
 		
 		$this->close_backend();
 		
+	}
+	
+	/*start bboard*/
+	public function bboard_getall(){
+		
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/menu/bboard_getall/';
+		
+		$config['total_rows'] = $this->menu->get_menu_bboard_like($keysearch_users,true);
+		
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->menu->get_menu_bboard_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$data['number_ai'] = $this->uri->segment(3);
+		$this->load->view('menu/menu_bboard_list', $data);
 	}
 	
 	public function add(){
@@ -75,24 +98,142 @@ class menu extends MY_Controller
 		$this->close_backend();
 	}
 	
-	public function edit($id){
-		$this->open_backend();
+	public function edit_bboard($id){
 		
 		$data['id'] = $id;
-		$data['result'] = $this->menu->get_data_edit($id);
+		$data['result'] = $this->menu->get_data_edit_bboard($id);
 		
-		$this->load->view('menu/menu_edit', $data);
+		$this->load->view('menu/menu_edit_bboard', $data);
 		
-		$this->close_backend();
 	}
 	
-	public function proses_edit(){
+	public function proses_edit_bboard(){
+		
+		
+		$data['ID'] = $this->input->post('ID');
+        $data['MENU_NAME'] = $this->input->post('MENU_NAME');
+        $data['MENU_URL'] = $this->input->post('MENU_URL');
+        $data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+        
+	
+		
+		# set rules validation
+		$this->form_validation->set_rules('MENU_NAME', 'MENU_NAME', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('menu/menu_edit_bboard',$data);
+		}else{
+			$this->menu->update_bboard($data);
+			redirect('menu/bboard_getall');
+		}
+		
+	}
+	
+	public function proses_delete_bboard($id){
+		if($this->menu->delete_bboard($id)){
+			redirect('menu/bboard_getall');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	
+	/*end bboard*/
+	
+	/*start sdm*/
+	public function sdm_getall(){
+		
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/menu/bboard_getall/';
+		
+		$config['total_rows'] = $this->menu->get_menu_sdm_like($keysearch_users,true);
+		
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->menu->get_menu_sdm_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$data['number_ai'] = $this->uri->segment(3);
+		$this->load->view('menu/menu_sdm_list', $data);
+	}
+	public function edit_sdm($id){
+	
+		$data['id'] = $id;
+		$data['result'] = $this->menu->get_data_edit_sdm($id);
+		$this->load->view('menu/menu_edit_sdm', $data);
+		
+	}
+	public function proses_edit_sdm(){
+		
+		$data['ID'] = $this->input->post('ID');
+        $data['MENU_NAME'] = $this->input->post('MENU_NAME');
+        $data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+        /*$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID'); */
+		
+		# set rules validation
+		$this->form_validation->set_rules('MENU_NAME', 'MENU_NAME', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('menu/menu_edit',$data);
+		}else{
+			$this->menu->update_sdm($data);
+			redirect('menu/sdm_getall');
+		}
+		
+	}
+	
+	public function proses_delete_sdm($id){
+		if($this->menu->delete_sdm($id)){
+			redirect('menu/sdm_getall');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	/*end sdm*/
+	
+	/*start diklat*/
+	public function diklat_getall(){
+		
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/menu/bboard_getall/';
+		
+		$config['total_rows'] = $this->menu->get_menu_diklat_like($keysearch_users,true);
+		
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->menu->get_menu_diklat_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$data['number_ai'] = $this->uri->segment(3);
+		$this->load->view('menu/menu_diklat_list', $data);
+	}
+	public function edit_diklat($id){
+	
+		$data['id'] = $id;
+		$data['result'] = $this->menu->get_data_edit_diklat($id);
+		$this->load->view('menu/menu_edit_diklat', $data);
+		
+	}
+	public function proses_edit_diklat(){
 		$this->open_backend();
 		
-		echo '-' .$data['ID'] = $this->input->post('ID');
-        echo '-' .$data['MENU_NAME'] = $this->input->post('MENU_NAME');
-        echo '-' .$data['MENU_URL'] = $this->input->post('MENU_URL');
-        echo '-' .$data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+		$data['ID'] = $this->input->post('ID');
+        $data['MENU_NAME'] = $this->input->post('MENU_NAME');
+        $data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+        /*$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID'); */
         
 	
 		
@@ -104,21 +245,22 @@ class menu extends MY_Controller
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('menu/menu_edit',$data);
 		}else{
-			$this->menu->update($data);
-			redirect('menu');
+			$this->menu->update_diklat($data);
+			redirect('menu/diklat_getall');
 		}
 		
 		$this->close_backend();
 	}
 	
-	public function proses_delete($id){
-		if($this->menu->delete($id)){
-			redirect('menu');
+	public function proses_delete_diklat($id){
+		if($this->menu->delete_diklat($id)){
+			redirect('menu/diklat_getall');
 		}else{
 			// code u/ gagal simpan
 			
 		}
 	}
+	/*end diklat*/
 	
 }
 
