@@ -270,59 +270,53 @@ function boxclick2xx(box, category){
 }
 
 function boxclick2(box, category){
-  if(box.checked) {
-	if (category == 'MATRA DARAT') {
-	    create_kmlFileDaratOK(103);
-		//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';   		  
-	}else if (category == 'MATRA LAUT') {
-	    create_kmlFileDaratOK(104);
-	   // kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';
-	}else if (category == 'MATRA UDARA') {
-	    create_kmlFileDaratOK(105);
-	    //kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';	  
-	}else if (category == 'MATRA KERETA') {
-	    create_kmlFileDaratOK(111);
-	    //kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';	  
+	if(box.checked) {
+		if (category == 'MATRA DARAT') {
+			create_kmlFileDaratOK(103);
+			//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';   		  
+		}else if (category == 'MATRA LAUT') {
+			create_kmlFileDaratOK(104);
+		   // kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';
+		}else if (category == 'MATRA UDARA') {
+			create_kmlFileDaratOK(105);
+			//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';	  
+		}else if (category == 'MATRA KERETA') {
+			create_kmlFileDaratOK(111);
+			//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';	  
+		}
+
+		var kmlOptions = {
+		   suppressInfoWindows: false
+		};
+		//kmlLayer = new google.maps.KmlLayer(kmlLayer01URL, kmlOptions);
+		//kmlLayer.setMap(map);
 	}
-	
-	var kmlOptions = {
-       suppressInfoWindows: false
-    };
-    //kmlLayer = new google.maps.KmlLayer(kmlLayer01URL, kmlOptions);
-    //kmlLayer.setMap(map);
-	 
-  }
-  else {
-	for (i in kmlLayers) {
-				kmlLayers[i].setMap(null);
-			}
-  }  
+	else {
+		for (i in kmlLayers) {
+			kmlLayers[i].setMap(null);
+		}
+	}  
 	document.getElementById(category+"box").checked = box.checked;
 	if (!box.checked) infowindow.close();
 }
 
 function boxclick3(box, category){
-  if(box.checked) {
-	if (category == 'DINAS PROVINSI') {
-	    create_kmlDinas(true);
-		//kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';   		  
-	}else if (category == 'DINAS KABUPATEN') {
-	    create_kmlDinas(false);
-	   // kmlLayer01URL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/bandung.kml';
+	if(box.checked) {
+		if (category == 'DINAS PROVINSI') {
+			create_kmlDinas(true);  		  
+		}else if (category == 'DINAS KABUPATEN') {
+			create_kmlDinas(false);
+		}
+
+		var kmlOptions = {
+		   suppressInfoWindows: false
+		};
 	}
-	
-	var kmlOptions = {
-       suppressInfoWindows: false
-    };
-    //kmlLayer = new google.maps.KmlLayer(kmlLayer01URL, kmlOptions);
-    //kmlLayer.setMap(map);
-	 
-  }
-  else {
-	for (i in kmlLayers) {
-				kmlLayers[i].setMap(null);
-			}
-  }  
+	else {
+		for (i in kmlLayers) {
+			kmlLayers[i].setMap(null);
+		}
+	}  
 	document.getElementById(category+"box").checked = box.checked;
 	if (!box.checked) infowindow.close();
 }
@@ -341,7 +335,7 @@ function create_kmlFileDarat(){
 
 function create_kmlDinas(prov){
 	$.jsonp({
-		url: "dataSDMDinas.php",
+		url: "dataSDMDinas.php?prov="+prov,
 		callback: "callback",
 		success: function(data) {
 		$.each(data, function(i, item){
@@ -364,7 +358,6 @@ function create_kmlDinas(prov){
 				}else{
 					var kmlUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml';
 				}
-				
 				//alert(total/3 + ' ' + jumlah + ' ' + color);
 				//window.alert("kode: "+kode+"jumlah: "+jumlah);
 				//window.alert(i);
@@ -373,13 +366,13 @@ function create_kmlDinas(prov){
 				//window.alert(kmlLayerURL);
 				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
                 //kmlLayer.setMap(map);
-				 kmlLayers[i] = new google.maps.KmlLayer({
+				kmlLayers[i] = new google.maps.KmlLayer({
 					url: kmlUrl,
 					suppressInfoWindows: true,
 					preserveViewport: true,
 					map: map
 				});	
-				 google.maps.event.addListener(kmlLayers[i], 'click', function(kmlEvent) {
+				google.maps.event.addListener(kmlLayers[i], 'click', function(kmlEvent) {
 				    var text = kmlEvent.featureData.description;
 				    var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
 					"<b>"+item.nama+"</b><br/>"+
@@ -392,15 +385,13 @@ function create_kmlDinas(prov){
 					//infowindow.open(map, kmlLayers[i]);
 					//infowindow.open(map);
 					// if (kmlEvent.featureData && kmlEvent.featureData.description) {
-							infowindow.setOptions({ "position": kmlEvent.latLng,
-								"pixelOffset": kmlEvent.pixelOffset,
-							"content": pesan });
-						infowindow.open(map);
+					infowindow.setOptions({ "position": kmlEvent.latLng,
+						"pixelOffset": kmlEvent.pixelOffset,
+						"content": pesan });
+					infowindow.open(map);
 					//}
 				});
-  
-				 
-				
+  			
 			});
 		},
 		error: function() {
@@ -437,13 +428,13 @@ function create_kmlFileDaratOK(kantor){
 				//window.alert(kmlLayerURL);
 				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
                 //kmlLayer.setMap(map);
-				 kmlLayers[i] = new google.maps.KmlLayer({
+				kmlLayers[i] = new google.maps.KmlLayer({
 					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml',
 					suppressInfoWindows: true,
 					preserveViewport: true,
 					map: map
 				});	
-				 google.maps.event.addListener(kmlLayers[i], 'click', function(kmlEvent) {
+				google.maps.event.addListener(kmlLayers[i], 'click', function(kmlEvent) {
 				    var text = kmlEvent.featureData.description;
 				    var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
 					"<b>"+item.nama+"</b><br/>"+
@@ -456,15 +447,13 @@ function create_kmlFileDaratOK(kantor){
 					//infowindow.open(map, kmlLayers[i]);
 					//infowindow.open(map);
 					// if (kmlEvent.featureData && kmlEvent.featureData.description) {
-							infowindow.setOptions({ "position": kmlEvent.latLng,
-								"pixelOffset": kmlEvent.pixelOffset,
-							"content": pesan });
-						infowindow.open(map);
+					infowindow.setOptions({ "position": kmlEvent.latLng,
+						"pixelOffset": kmlEvent.pixelOffset,
+						"content": pesan });
+					infowindow.open(map);
 					//}
 				});
   
-				 
-				
 			});
 		},
 		error: function() {
