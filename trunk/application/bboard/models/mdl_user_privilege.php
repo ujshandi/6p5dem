@@ -258,6 +258,20 @@ class mdl_user_privilege extends CI_Model{
 		}
 	}
 	
+	function update_sdm($data){
+		
+		$this->db->set('PRIVILEGE', $data['PRIVILEGE']);
+		$this->db->where('USER_GROUP_MENU_ID', $data['USER_GROUP_MENU_ID']);
+		$result = $this->db->update('SDM_USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
 	function delete($data){
 		$this->db->flush_cache();
 		$this->db->where('USER_GROUP_MENU_ID', $data['id']);
@@ -275,6 +289,20 @@ class mdl_user_privilege extends CI_Model{
 		$this->db->flush_cache();
 		$this->db->where('USER_GROUP_MENU_ID', $id);
 		$result = $this->db->delete('USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	// SDM
+	function hapus_modul_sdm($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_GROUP_MENU_ID', $id);
+		$result = $this->db->delete('SDM_USER_GROUP_MENU');
 		
 		if($result) {
 			return TRUE;
