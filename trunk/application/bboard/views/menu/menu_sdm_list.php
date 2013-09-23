@@ -1,6 +1,4 @@
-<div class="wrap_right bgcontent">
-	<h1 class="heading">Data Menu</h1>
-	<hr/>
+
 	<?php
 	/*
 	<a href="<?=base_url().$this->config->item('index_page').'/menu/add'?>" class="control"><span class="add">Tambah Data</span></a>
@@ -31,15 +29,13 @@
 				<td align="left" valign="top"><?=$row->USER_GROUP_ID?> </td>
 				<td align="left" valign="top"><?=$row->PRIVILEGE?> </td>
 				<td align="left" valign="top" class="table-actions">
-						<a href="<?=site_url().'/menu/edit/'.$row->MENU_ID?>" class="control" >
-					<span class="edit">edit</span></a> |
-						<a href="<?=site_url().'/menu/proses_delete/'.$row->MENU_ID?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
-					<span class="delete">hapus</span></a>
+					<a href="javascript:void(0);" onclick="edit_menu_sdm(<?=$row->MENU_ID?>)" class="control" ><span class="edit">edit</span></a> 
+					|
+					<a href="javascript:void(0);" onclick="hapus_menu_sdm(<?=$row->MENU_ID?>)" class="control" ><span class="delete">hapus</span></a> 
 				</td>
 			</tr>
 			<?php $i++;} ?>
 		</tbody>
 	</table>
 	<div class="clear">&nbsp;</div>
-	<?=$this->pagination->create_links()?>
-</div>
+	<?=$this->pagination->create_ajax_links('ajaxpaging_sdm');?>
