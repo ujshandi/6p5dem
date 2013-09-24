@@ -518,18 +518,22 @@ class Users extends MY_Controller
 	
 	function get_induk_upt(){
 		$level_id=$this->input->post('level_id');
+		$kode_upt= $this->input->post('kode_upt');
 		$data['level_id'] = $level_id;
+		$data['kode_upt'] = $kode_upt;
 		if ($level_id=='2'){ /*induk upt -> tbl mst_induk_upt */
-			$data['results']=$this->users->get_induk_upt();
+			/*$data['results']=$this->users->get_induk_upt($kode_upt); */
 			
-			//upt darat,laut.udara
+			/*upt darat,laut.udara */
+			$this->load->view('users/get_induk_upt', $data);
 		}elseif($level_id=='3'){ /*upt ->induk upt dan master upt*/
-			$data['results']=$this->users->get_induk_upt();
+			/*$data['results']=$this->users->get_upt($kode_upt); */
+			$this->load->view('users/get_upt', $data);
 		}else{
 			$data['results'] = "";
 		}
 		
-		$this->load->view('users/get_induk_upt', $data);
+		
 	}
 	
 	function get_upt(){

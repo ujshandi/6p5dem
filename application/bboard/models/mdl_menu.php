@@ -98,7 +98,7 @@ class mdl_menu extends CI_Model{
 	function delete_bboard($data){
 		$this->db->flush_cache();
 		$this->db->where('MENU_ID', $data['id']);
-		$result = $this->db->delete('MENU2');
+		$result = $this->db->delete('MENU');
 		
 		if($result) {
 			return TRUE;

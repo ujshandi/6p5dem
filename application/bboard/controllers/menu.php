@@ -132,7 +132,8 @@ class menu extends MY_Controller
 	}
 	
 	public function proses_delete_bboard($id){
-		if($this->menu->delete_bboard($id)){
+		$data['id'] = $id;
+		if($this->menu->delete_bboard($data)){
 			redirect('menu/bboard_getall');
 		}else{
 			// code u/ gagal simpan
