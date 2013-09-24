@@ -68,31 +68,29 @@ class agenda_backend extends MY_Controller
 
 		if ( $this->upload->do_upload()){
 			$data['GAMBAR'] =  $this->upload->file_name;
-			$data['JUDUL'] = $this->input->post('JUDUL');
-			$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
-			$data['ISI'] = $this->input->post('ISI');
-			$data['TANGGAL_PEMBUATAN'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
-			$data['TANGGAL_MODIFIKASI'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
-			$data['EXPIRE'] = "to_date('".$this->input->post('EXPIRE')."', 'dd/mm/yyyy')";
-			$data['URL'] = $this->input->post('URL');
-			
-			# set rules validation
-			$this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
-			$this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
-			$this->form_validation->set_rules('ISI', 'ISI', 'required');
-			
+		}
+		$data['JUDUL'] = $this->input->post('JUDUL');
+		$data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+		$data['ISI'] = $this->input->post('ISI');
+		$data['TANGGAL_PEMBUATAN'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+		$data['TANGGAL_MODIFIKASI'] = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
+		$data['EXPIRE'] = "to_date('".$this->input->post('EXPIRE')."', 'dd/mm/yyyy')";
+		$data['URL'] = $this->input->post('URL');
 		
-			
-			
-			# set message validation
-			$this->form_validation->set_message('required', 'Field %s harus diisi!');
-			
-			if ($this->form_validation->run() == FALSE){
-				$this->load->view('agenda_backend/agenda_backend_add',$data);
-			}else{
-				$this->agenda->insert($data);
-				redirect('agenda_backend');
-			}
+		# set rules validation
+		$this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
+		$this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+		$this->form_validation->set_rules('ISI', 'ISI', 'required');
+				
+		
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('agenda_backend/agenda_backend_add',$data);
+		}else{
+			$this->agenda->insert($data);
+			redirect('agenda_backend');
 		}
 		$this->close_backend();
 	}

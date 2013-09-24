@@ -100,12 +100,12 @@ class mdl_users extends CI_Model{
 	
 	function get_item_diklat($key,$count_data=false,$num=0, $offset=0){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('DIKLAT_USERS.*,DIKLAT_USER_GROUP.USER_GROUP_NAME');
 		$this->db->from('DIKLAT_USERS');
 		if ($key!=''){
 				$this->db->like('USERNAME',$key);
 		}
-		
+		$this->db->join('DIKLAT_USER_GROUP','DIKLAT_USER_GROUP.USER_GROUP_ID=DIKLAT_USERS.USER_GROUP_ID');
 		if ($count_data){
 			return $this->db->count_all_results();
 		}
@@ -610,11 +610,11 @@ class mdl_users extends CI_Model{
     }
 	
 	
-	function get_induk_upt(){
+	function get_induk_upt($upt){
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_INDUKUPT');
-		
+		$this->db->where('KODE_INDUK', $upt);
 		return $this->db->get();
 	}
 	
@@ -684,5 +684,48 @@ class mdl_users extends CI_Model{
 		$this->db->from('SDM_KABUPATEN');
 		$this->db->where('KODEPROVIN', $kodeprovin);
 		return $this->db->get();
+	}
+	
+	function get_group_diklat_mst_indukupt($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('DIKLAT_MST_INDUKUPT');
+		
+		$res = $this->db->get();
+
+		$out = '';
+		foreach($res->result() as $r){
+			if($r->KODE_INDUK == trim($value)){
+				$out .= '<option value="'.$r->KODE_INDUK.'" selected="selected">'.$r->NAMA_INDUK.'</option>';
+			}else{
+				$out .= '<option value="'.$r->KODE_INDUK.'">'.$r->NAMA_INDUK.'</option>';
+			}
+		}		
+		return $out;
+	}
+	function get_group_diklat_mst_upt($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('DIKLAT_MST_UPT');
+		
+		$res = $this->db->get();
+
+		$out = '';
+		foreach($res->result() as $r){
+			if($r->KODE_UPT == trim($value)){
+				$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
+			}else{
+				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
+			}
+		}		
+		return $out;
 	}
 }

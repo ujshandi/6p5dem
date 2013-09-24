@@ -1,22 +1,38 @@
 <script type="text/javascript">
 	var url='<?php echo site_url();?>/users/';
-	
+	$("#tampil_induk_upt").empty();
+	$("#tampil_upt").empty();
+	var level_id = $("#LEVEL_ID").val();
+	var var_kode_upt = $("#VAR_KODE_UPT").val();
+	var data = { 'level_id': level_id, 'kode_upt': var_kode_upt};
+	if (level_id!='1'){
+		$.ajax({
+			 type:'post',
+			 url:url + 'get_induk_upt',
+			 data:data,
+			 success:function(data){
+				   $("#tampil_induk_upt").html(data);
+			 }
+		 });    
+	}
 	$(document).ready(function() {	
+		
 		$("#LEVEL_ID").change(function() {
-			var level_id = $("#LEVEL_ID").val();
-			var var_kode_upt = $("#VAR_KODE_UPT").val();
+			var level_id2 = $("#LEVEL_ID").val();
+			var data = { 'level_id': level_id2, 'kode_upt': var_kode_upt};
+			
 			$("#tampil_induk_upt").empty();
 			$("#tampil_upt").empty();
 			if (level_id!='1'){
 				$.ajax({
 					 type:'post',
 					 url:url + 'get_induk_upt',
-					 data:'level_id='+level_id + 'kode_upt=' + var_kode_upt,
+					 data:data,
 					 success:function(data){
 						   $("#tampil_induk_upt").html(data);
 					 }
 				 });    
-			}
+			} 
 		});
 	});
 </script>
