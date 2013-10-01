@@ -130,17 +130,20 @@ class Authentikasi extends CI_Model{
    }
    
    function getUserPrivelege($usergroup){
+		
+		/*
 		$this->db->flush_cache();
 		$this->db->select('a.MENU_ID, a.MENU_URL, b.PRIVILEGE');
 		$this->db->from('KOPETEN_MENU a,KOPETEN_USER_GROUP_MENU b');
 		$this->db->where('a.MENU_ID', 'b.MENU_ID');
 		$this->db->where('b.USER_GROUP_ID', $usergroup);
 		$this->db->order_by('a.MENU_ID', 'ASC');
+		*/
+      	
+		$sql = " SELECT a.MENU_ID, a.MENU_URL, b.PRIVILEGE FROM KOPETEN_MENU a,KOPETEN_USER_GROUP_MENU b WHERE a.MENU_ID = b.MENU_ID AND b.USER_GROUP_ID = '".$usergroup."' ORDER BY a.MENU_ID";											
+		return $this->db->query($sql);		
 		
-      	//$sql = " SELECT a.MENU_ID, a.MENU_URL, b.PRIVILEGE FROM MENU a,USER_GROUP_MENU b WHERE a.MENU_ID = b.MENU_ID AND b.USER_GROUP_ID = '".$usergroup."' ORDER BY a.MENU_ID";												
-		//return $this->db->query($sql);		
-		
-		return $this->db->get();
+		//return $this->db->get();
    }
    
    
