@@ -151,6 +151,22 @@ class Users extends MY_Controller
 		$this->load->view('users/users_list_kopeten', $data);
 	}
 	
+	public function get_users_jdih(){
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_jdih/';
+		$config['total_rows'] = $this->users->get_item_jdih($keysearch_users,true);
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '5';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->users->get_item_diklat($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$this->load->view('users/users_list_jdih', $data);
+	}
+	
 	public function proses_add(){
 		//$this->open_backend();
 		
@@ -514,6 +530,51 @@ class Users extends MY_Controller
 			redirect('users/get_users_kopeten');
 		}
 		
+	}
+	
+	public function add_jdih(){
+
+		
+		$data['results'] = $this->users->get_allitem_jdih();
+		
+		$this->load->view('users/users_add_jdih', $data);
+	}
+	
+	public function proses_add_jdih(){
+		# get post data
+        $USER_ID = $this->input->post('USER_ID');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$data['LEVEL'] = $this->input->post('LEVEL_ID');
+		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
+		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
+		$results=$this->users->get_item_by_username($USER_ID);
+		$data['USER_ID']=$USER_ID;
+		$data['USERNAME']=$results->row()->USERNAME;
+		$data['NAME']=$results->row()->NAME;
+		$data['PASSWORD']=$results->row()->PASSWORD;
+		$data['DEPARTMENT']=$results->row()->DEPARTMENT;
+		$data['POSITION']=$results->row()->POSITION;
+		$data['DESCRIPTION']=$results->row()->DESCRIPTION;
+		$data['NIP']=$results->row()->NIP;
+		$data['EMAIL']=$results->row()->EMAIL;
+		
+		
+		# set rules validation
+		
+        $this->form_validation->set_rules('USER_ID', 'USER_ID', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
+        
+		
+		# set message validation 
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_add_jdih',$data);
+		}else{
+			$this->users->insert_jdih($data);
+			redirect('users/get_users_jdih');
+		}
 	}
 	
 	function get_induk_upt(){

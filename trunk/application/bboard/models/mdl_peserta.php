@@ -301,5 +301,37 @@ class mdl_peserta extends CI_Model{
 	    return $this->db->trans_status();
 	}
 	
+	function insert_setting_pendaftaran($data){
+		$this->db->flush_cache();
+		$this->db->set('KODE_UPT', $data['value_upt']);
+		$this->db->set('PERIODE_AWAL', $data['periode_awal'], false);
+		$this->db->set('PERIODE_AKHIR', $data['periode_akhir'], false);
+		$result = $this->db->insert('BB_SETTING_PENDAFTARAN');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	function get_setting_pendaftaran($num=0, $offset=0){
+		$this->db->flush_cache();
+		$this->db->select('BB_SETTING_PENDAFTARAN.*, DIKLAT_MST_UPT.NAMA_UPT');
+		$this->db->from('BB_SETTING_PENDAFTARAN');
+		$this->db->join('DIKLAT_MST_UPT', 'BB_SETTING_PENDAFTARAN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->limit($num, $offset);
+		$this->db->order_by('PERIODE_AWAL');
+		
+		/*
+		if(!empty($filter['search']))
+			$this->db->like('BB_SETTING_PENDAFTARAN.NAMA_UPT', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		$tmp['row_count'] = $this->db->get()->num_rows(); */
+		
+		return $this->db->get();
+	}
+	
 }
 ?>
