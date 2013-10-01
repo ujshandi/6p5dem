@@ -1,8 +1,7 @@
-
- <div id="content" class="page-blue">
+  <div id="content">
     <div id="contentwrap">
-	<div class="wrap_left bgtrans">
-			<h2 class="heading">Menu Kopetensi</h2>
+    	<div class="wrap_left bgtrans">
+        <h2 class="heading">Basis Data Kompetensi</h2>
 			<hr/>
 			<ul id="vmenu">
 				<? echo $menuUser ?>
