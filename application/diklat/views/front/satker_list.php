@@ -4,15 +4,12 @@
 	<hr/>
 	<?=form_open('front/satker')?>
 		<br>
-		<input type="submit" value="Proses" class="control">
 	<?=form_close()?>
 	
 		<br>
 		<table width="100%" border="1" cellspacing="1" cellpadding="1">
 	  <tr>
 		<th>NO</th>
-		<th width="20%">Kode Induk</th>
-		<!--<th width="15%">DIKLAT</th>-->
 		<th>Nama Satuan Kerja</th>
 	   </tr>
 		<?
@@ -22,7 +19,6 @@
 				foreach($result->result() as $r){?>
 				<tr class='gradeC'>
 					<td width='2%'><?=$i?></td>
-					<td><?=$r->KODE_INDUK?></td>
 					<td><?=$r->NAMA_INDUK?></td>
 				</tr>
 		<?

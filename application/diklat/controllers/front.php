@@ -197,4 +197,17 @@ class front extends My_Controller {
 		$this->closefront();
 	}	
 	
+	public function jenis_sarpras(){
+		$this->load->model('mdl_jenis_sarpras');
+		
+		$this->openfront();
+		//if($upt != ""){
+			//$data['KODE_UPT'] = $upt;
+			//$this->load->view('front/jenis_sarpras_list', $data);
+		//}else{
+			$this->load->view('front/jenis_sarpras_list');
+		//}
+		$this->closefront();
+	}
+	
 }
