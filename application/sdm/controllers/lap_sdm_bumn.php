@@ -10,7 +10,7 @@ class Lap_sdm_bumn extends My_Controller{
     function index(){
 		$this->open();
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lap_sdm_bumn/index/';
-		$data['option_matra'] = $this->mdl_sdm_bumn->getmatra();
+		$data['option_matra'] = $this->mdl_sdm_bumn->getmatra2();
 		$this->load->view('laporan/sdm_laporan_bumn',$data);
 		$this->close();
 	}
