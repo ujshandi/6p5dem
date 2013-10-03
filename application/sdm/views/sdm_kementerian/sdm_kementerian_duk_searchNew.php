@@ -51,7 +51,7 @@
 			<td width='5%'><?=$row->NIP?></td>
 			<td width='20%'><?=$row->NAMA?></td>
 			<td width='3%' align="center"><?=$row->NAMA_GOLONGAN?></td>
-			<td width='5%' align="center"><?=$row->TMTGOLONGAN?></td>
+			<td width='5%' align="center"><?=$row->TMTGOLONG?></td>
 			<td width='20%'><?=$row->JABATAN?></td>
 			<td width='5%' align="center"><?=$row->TMTJABATAN?></td>
 			<td width='5%' align="center"><?=$row->TMTPNS?></td>
