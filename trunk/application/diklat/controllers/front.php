@@ -182,8 +182,10 @@ class front extends My_Controller {
 		$this->closefront();
 	}	
 	
-	public function upt($satker=""){
+	public function upt(){
 		$this->load->model('mdl_upt');
+		
+		$satker = $this->input->post('KODE_INDUK');
 		
 		$this->openfront();
 		if($satker != ""){
