@@ -16,11 +16,14 @@ class mdl_alumni_front extends CI_Model{
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_ALUMNI.ID_ALUMNI');
 		
-		//filter
-		if(!empty($filter['kode_upt']))
+		// yanto
+		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}
+		
 		if(!empty($filter['search']))
-			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', strtoupper($filter['search']));
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
+		//echo $filter['search'];
 		
 		$tmp['row_data'] = $this->db->get();
 		
@@ -35,11 +38,13 @@ class mdl_alumni_front extends CI_Model{
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_ALUMNI.ID_ALUMNI');
 		
-		//filter
-		if(!empty($filter['kode_upt']))
+		// yanto
+		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}
+		
 		if(!empty($filter['search']))
-			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', strtoupper($filter['search']));
+			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
 		
 		$tmp['row_count'] = $this->db->get()->num_rows();
 		

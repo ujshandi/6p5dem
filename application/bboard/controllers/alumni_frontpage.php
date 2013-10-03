@@ -35,28 +35,28 @@ class Alumni_frontpage extends My_Frontpage {
 		$result = $this->mdl_alumni_front->getData($data['numrow'], $offset, $data);
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/alumni_frontpage/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/alumni_front/index/';
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
 		$config['uri_segment'] = '3';
-		// $config['full_tag_open'] = '';
-		// $config['full_tag_close'] = '';
-		// $config['num_tag_open'] = '<li>';
-		// $config['num_tag_close'] = '</li>';
-		// $config['cur_tag_open'] = '<li class="active"><a href="javascript:void(0)" class="current">';
-		// $config['cur_tag_close'] = '</a></li>';
-		// $config['prev_link'] = 'Prev';
-		// $config['prev_tag_open'] = '<li>';
-		// $config['prev_tag_close'] = '</li>';
-		// $config['next_link'] = 'Next';
-		// $config['next_tag_open'] = '<li>';
-		// $config['next_tag_close'] = '</li>';
-		// $config['last_link'] = 'Last';
-		// $config['last_tag_open'] = '<li>';
-		// $config['last_tag_close'] = '</li>';
-		// $config['first_link'] = 'First';
-		// $config['first_tag_open'] = '<li>';
-		// $config['first_tag_close'] = '</li>';
+		$config['full_tag_open'] = '';
+		$config['full_tag_close'] = '';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="javascript:void(0)" class="current">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
 
 		$config['total_rows'] = $result['row_count'];
 
