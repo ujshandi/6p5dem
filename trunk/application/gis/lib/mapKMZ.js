@@ -493,12 +493,12 @@ function create_kmlFileDaratOK(kantor){
 				//window.alert("kode: "+kode+"jumlah: "+jumlah);
 				//window.alert(i);
 				//var kmlOptions = {suppressInfoWindows: false};
-				//kmlLayerURL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+kode+'.kml';
+				//kmlLayerURL = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml';
 				//window.alert(kmlLayerURL);
 				//kmlLayer = new google.maps.KmlLayer(kmlLayerURL, kmlOptions);
                 //kmlLayer.setMap(map);
 				kmlLayers[i] = new google.maps.KmlLayer({
-					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml',
+					url: 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kmz/'+color+'/'+kode+'.kmz',
 					suppressInfoWindows: true,
 					preserveViewport: true,
 					map: map
