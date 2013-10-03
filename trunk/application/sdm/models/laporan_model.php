@@ -69,7 +69,7 @@ class Laporan_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('SDM_PEG_BUMN');
 		//$this->db->join('SDM_BUMN', 'SDM_BUMN.KODEBUMN = SDM_PEG_BUMN.KODEBUMN');
-		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_BUMN.ID_JABATAN');
+		//$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_BUMN.ID_JABATAN');
 		
 		$this->db->where('KODEMATRA', $matra);
 		$this->db->where('KODEBUMN', $bumn);	
@@ -82,7 +82,7 @@ class Laporan_model extends CI_Model{
 			$data[$i][1] = $r->NIK;
 			$data[$i][2] = $r->NAMA;
 			$data[$i][3] = $r->ALAMAT;
-			$data[$i][4] = $r->NAMA_JABATAN;
+			$data[$i][4] = $r->JABATAN;
 			//$data[$i][5] = $r->NAMA_BUMN;
 			$i++;
 		}
@@ -116,7 +116,7 @@ class Laporan_model extends CI_Model{
 			$pdfdata[$i][2] = $row->NAMA;
 			$pdfdata[$i][3] = $row->JALAN;
 			$pdfdata[$i][4] = $row->NAMA_GOLONGAN;
-			$pdfdata[$i][5] = $row->TMTGOLONGAN;
+			$pdfdata[$i][5] = $row->TMTGOLONG;
 			$pdfdata[$i][6] = $row->JABATAN;
 			$pdfdata[$i][7] = $row->TMTJABATAN;
 			$pdfdata[$i][8] = $row->TMTPNS;
