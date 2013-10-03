@@ -267,5 +267,17 @@ class mdl_upt extends CI_Model{
 		return $out;
 	}
 	
+	function getUptBySATKER($satker){
+		$this->db->flush_cache();
+		$this->db->select('');
+		$this->db->from('DIKLAT_MST_UPT "a"');
+		$this->db->join('DIKLAT_MST_INDUKUPT "b"', 'b.KODE_INDUK = a.KODE_INDUK');
+		$this->db->where('"a".KODE_INDUK', $satker);
+		//$this->db->order_by('DIKLAT_MST_INDUKUPT.NAMA_INDUK');
+		
+		return $this->db->get();
+		
+	}
+	
 }
 ?>
