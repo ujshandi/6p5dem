@@ -156,5 +156,16 @@ class mdl_satker extends CI_Model{
 		return $this->db->get();
 	}
 	
+	function getSatker(){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_INDUKUPT');
+		$this->db->where('KODE_INDUK');
+		$this->db->order_by('NAMA_INDUK');
+		
+		return $this->db->get();
+		
+	}
+	
 }
 ?>

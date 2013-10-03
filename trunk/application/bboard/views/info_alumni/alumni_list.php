@@ -62,6 +62,13 @@
 	  </tbody>
 	</table>
 	
-          	 <?=$this->pagination->create_links()?>
+          	<div class="clearfix">&nbsp;</div>        
+        <div class="paging right">
+          <ul>
+            <li class="active">
+				 <li><?=$this->pagination->create_links()?></li>
+          </ul>
+        </div><!--end pagination-->
+	<div class="clearfix"></div>
         
 </div><!-- end wrap right content-->

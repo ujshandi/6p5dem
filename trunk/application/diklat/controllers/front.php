@@ -169,4 +169,30 @@ class front extends My_Controller {
 		$this->closefront();
 	}	
 	
+	public function satker(){
+		$this->load->model('mdl_satker');
+		
+		$this->openfront();
+		//if($upt != ""){
+			//$data['KODE_UPT'] = $upt;
+			//$this->load->view('front/satker_list', $data);
+		//}else{
+			$this->load->view('front/satker_list');
+		//}
+		$this->closefront();
+	}	
+	
+	public function upt($satker=""){
+		$this->load->model('mdl_upt');
+		
+		$this->openfront();
+		if($satker != ""){
+			$data['KODE_INDUK'] = $satker;
+			$this->load->view('front/upt_list', $data);
+		}else{
+			$this->load->view('front/upt_list');
+		}
+		$this->closefront();
+	}	
+	
 }
