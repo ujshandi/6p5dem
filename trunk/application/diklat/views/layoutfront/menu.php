@@ -12,11 +12,6 @@
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/prasarana'?>">Prasarana</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/penyuluhan'?>">Penyuluhan</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/penelitian'?>">Penelitian</a></li>
-			<li><a href="<?=base_url().$this->config->item('index_page').'/front/diklat_darat'?>">Diklat Darat</a></li>
-			<li><a href="<?=base_url().$this->config->item('index_page').'/front/diklat_laut'?>">Diklat Laut</a></li>
-			<li><a href="<?=base_url().$this->config->item('index_page').'/front/diklat_udara'?>">Diklat Udara</a></li>
-			<li><a href="<?=base_url().$this->config->item('index_page').'/front/diklat_aparatur'?>">Diklat Aparatur</a></li>
-			<li><a href="<?=base_url().$this->config->item('index_page').'/front/diklat_sekretariat'?>">Diklat Sekretariat</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/program'?>">Program</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/kurikulum'?>">Kurikulum</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/dosen'?>">Dosen</a></li>

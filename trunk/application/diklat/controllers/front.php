@@ -210,4 +210,19 @@ class front extends My_Controller {
 		$this->closefront();
 	}
 	
+	public function program(){
+		$this->load->model('mdl_program');
+		
+		$satker = $this->input->post('KODE_INDUK');
+		
+		$this->openfront();
+		if($satker != ""){
+			$data['KODE_INDUK'] = $satker;
+			$this->load->view('front/program_list', $data);
+		}else{
+			$this->load->view('front/program_list');
+		}
+		$this->closefront();
+	}	
+	
 }

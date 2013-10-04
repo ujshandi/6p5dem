@@ -158,22 +158,10 @@ class mdl_satker extends CI_Model{
 	
 	function getSatker(){
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_MST_INDUKUPT.*');
+		$this->db->select('DIKLAT_MST_INDUKUPT.*', false);
 		$this->db->from('DIKLAT_MST_INDUKUPT');
 		//$this->db->where('KODE_INDUK');
 		$this->db->order_by('NAMA_INDUK');
-		
-		return $this->db->get();
-		
-	}
-	
-	function getKalenderByUPT($upt){
-		$this->db->flush_cache();		
-		$this->db->select('DIKLAT_KALENDER.*, DIKLAT_MST_UPT.NAMA_UPT', false);
-		$this->db->from('DIKLAT_KALENDER');
-		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_KALENDER.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $upt);
-		$this->db->order_by('DIKLAT_MST_UPT.NAMA_UPT');
 		
 		return $this->db->get();
 		

@@ -142,5 +142,6 @@ class mdl_diklat_darat extends CI_Model{
 		// return $out;
 	// }
 	
+
 }
 ?>
