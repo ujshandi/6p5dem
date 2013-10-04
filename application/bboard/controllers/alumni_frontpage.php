@@ -22,7 +22,6 @@ class Alumni_frontpage extends My_Frontpage {
 	
 	public function index()
 	{
-		
 		$this->open();
 		
 		# get filter
@@ -36,7 +35,7 @@ class Alumni_frontpage extends My_Frontpage {
 		$result = $this->mdl_alumni_front->getData($data['numrow'], $offset, $data);
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/alumni_front/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/alumni_frontpage/index/';
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
 		$config['uri_segment'] = '3';
