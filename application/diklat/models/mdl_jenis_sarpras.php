@@ -117,5 +117,16 @@ class mdl_jenis_sarpras extends CI_Model{
 		return $out;
 	}
 	
+		function getJenisSarpras(){
+		//	get data
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_SARPRAS.*', false);
+		$this->db->from('DIKLAT_MST_SARPRAS');
+		$this->db->order_by('ID_SARPRAS');	
+		
+		return $this->db->get();
+	}
+	
+	
 }
 ?>

@@ -1,0 +1,34 @@
+<!-- contenna -->
+<div class="wrap_right bgcontent">
+	<h1 class="heading">Data Jenis Sarana Prasarana</h1>
+	<hr/>
+	<?=form_open('front/jenis_sarpras')?>
+		<br>
+	<?=form_close()?>
+	
+		<br>
+		<table width="100%" border="1" cellspacing="1" cellpadding="1">
+	  <tr>
+		<th>NO</th>
+		<th>Nama Sarana Prasarana</th>
+		<th>Jenis</th>
+	   </tr>
+		<?
+			$result = $this->mdl_jenis_sarpras->getJenisSarpras();
+			if($result->num_rows() > 0){
+				$i=1;
+				foreach($result->result() as $r){?>
+				<tr class='gradeC'>
+					<td width='2%'><?=$i?></td>
+					<td><?=$r->NAMA_SARPRAS?></td>
+					<td><?=$r->JENIS?></td>
+				</tr>
+		<?
+				$i++;
+			}
+		}
+		?>
+	</table>
+	
+	<div class="clear">&nbsp;</div>
+</div><!-- end wrap right content-->
