@@ -22,6 +22,7 @@ class Alumni_frontpage extends My_Frontpage {
 	
 	public function index()
 	{
+		
 		$this->open();
 		
 		# get filter
