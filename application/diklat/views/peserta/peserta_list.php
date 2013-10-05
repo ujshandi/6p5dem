@@ -3,8 +3,8 @@
 	<h1 class="heading">Data Peserta</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add'?>" class="control"> <span class="add">Tambah Registrasi Peserta</span></a>
-	
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add_lulus1'?>" class="control"> <span class="add">Tambah Peserta Lulus Diklat</span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta/upload'?>" class="control"> <span class="add">Upload Data</span></a>
 	
 	<?=form_open('peserta/search', array('class'=>'sform'))?>
 	<fieldset>

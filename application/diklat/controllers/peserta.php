@@ -231,4 +231,102 @@ class peserta extends My_Controller {
 		echo $this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$this->input->post('KODE_UPT')));
 	}
 	
+	function upload(){
+		$this->open();
+		$this->load->view('peserta/peserta_upload');
+		$this->close();
+	}
+	
+	function proses_upload(){
+		# --
+		$error='';
+		$result=true;
+		$extensi = '';
+		
+		# load
+		$this->load->helper('file');
+		
+		# get file
+		$fupload = $_FILES['datafile'];
+		$nama = $_FILES['datafile']['name'];
+		$extensi = $_FILES['datafile']['type'];
+		
+		# cek extensi file
+		$allowedExtensions = array("xls");
+
+		if (!in_array(end(explode(".", 
+			strtolower($nama))), 
+			$allowedExtensions)) { 
+			
+			//$this->import_gagal('File yang disupport hanya Excel (xls)');
+			echo 'File yang disupport hanya Excel (xls)';
+			return;
+		} 
+			  
+		# proses upload
+		if(isset($fupload)){
+			$lokasi_file 	= $fupload['tmp_name'];
+			$direktori		= "upload/$nama";
+		
+			if(move_uploaded_file($lokasi_file, $direktori)){ // proses upload
+				
+				#data pendukung
+				$KODE_INDUK = $this->input->post('KODE_INDUKUPT');
+				$KODE_UPT = $this->input->post('KODE_UPT');
+				$KODE_DIKLAT = $this->input->post('KODE_DIKLAT');
+				
+				# load librari
+				$this->load->library('excel');
+				$this->excel->setOutputEncoding('CP1251');
+				$this->excel->read($direktori); // baca file
+			
+				# baca file excel
+				$x=0;
+				$komplite = TRUE;
+				for($i=2, $n=$this->excel->rowcount(0); $i<= $n; $i++){
+					if($this->excel->val($i, 1) != ''){
+						// data
+						$data_tmp[$x]['NO_PESERTA'] 		= $this->excel->val($i, 1);
+						$data_tmp[$x]['NAMA_PESERTA'] 		= $this->excel->val($i, 2);
+						$data_tmp[$x]['TGL_MASUK'] 			= $this->excel->val($i, 3);
+						$data_tmp[$x]['TGL_LULUS'] 			= $this->excel->val($i, 4);
+						$data_tmp[$x]['THN_ANGKATAN'] 		= $this->excel->val($i, 5);
+						$data_tmp[$x]['TEMPAT_LAHIR'] 		= $this->excel->val($i, 6);
+						$data_tmp[$x]['TGL_LAHIR'] 			= $this->excel->val($i, 7);
+						$data_tmp[$x]['JK'] 				= $this->excel->val($i, 8);
+						$data_tmp[$x]['STATUS_PESERTA'] 	= $this->excel->val($i, 9);
+						$data_tmp[$x]['KETERANGAN'] 		= $this->excel->val($i, 10);
+						
+						$data_tmp[$x]['KODE_UPT'] 			= $KODE_UPT;
+						$data_tmp[$x]['KODE_DIKLAT'] 		= $KODE_DIKLAT;
+						
+						$x++;
+					}
+				}
+				
+				# eksekusi query
+				$result = $this->mdl_peserta->importData($data_tmp);
+				if (!$result){
+					//$this->import_gagal('Eksekusi gagal');
+					echo 'Import data gagal';
+				}else{
+					redirect('peserta');
+				}
+				
+				# clear folder temporari
+				//delete_files('restore');
+				
+			}else{
+				//$this->import_gagal('File gagal diupload');
+				echo 'Import data gagal';
+			}
+		}
+		
+	}
+	
+	function getUpt(){
+		$KODE_INDUKUPT = $this->input->post('KODE_INDUKUPT');
+		echo $this->mdl_upt->getOptionUPT(array('KODE_INDUKUPT'=>$KODE_INDUKUPT));
+	}
+	
 }

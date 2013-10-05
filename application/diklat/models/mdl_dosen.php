@@ -219,5 +219,32 @@ class mdl_dosen extends CI_Model{
 		
 	}
 	
+	public function importData($data){
+		$this->db->trans_start();
+		
+		for($i=0, $c=count($data); $i<$c; $i++){
+			$this->db->flush_cache();
+			
+			$this->db->set('NIP', 				$data[$i]['NIP']);
+			$this->db->set('NAMADOSEN', 		$data[$i]['NAMADOSEN']);
+			$this->db->set('TEMPAT_LAHIR', 		$data[$i]['TEMPAT_LAHIR']);
+			//$this->db->set('TGL_LAHIR', 		"TO_TIMESTAMP('".$data[$i]['TGL_LAHIR']."', 'YYYY-MM-DD')", FALSE);
+			$this->db->set('TGL_LAHIR', 		$data[$i]['TGL_LAHIR']);
+			$this->db->set('JK', 				$data[$i]['JK']);
+			$this->db->set('STATUS', 			$data[$i]['STATUS']);
+			$this->db->set('TAHUN', 			$data[$i]['TAHUN']);
+			$this->db->set('PENDIDIKAN', 		$data[$i]['PENDIDIKAN']);
+			$this->db->set('JENIS_DOSEN', 		$data[$i]['JENIS_DOSEN']);
+			$this->db->set('KODE_UPT', 			$data[$i]['KODE_UPT']);
+			
+			//$this->db->set('TGL_LAHIR', 		'TO_TIMESTAMP(\''.$data[$i]['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
+			
+			$this->db->insert('DIKLAT_MST_DOSEN');
+		}
+		
+		$this->db->trans_complete();
+	    return $this->db->trans_status();
+	}
+	
 }
 ?>
