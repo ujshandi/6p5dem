@@ -325,5 +325,34 @@ class mdl_peserta extends CI_Model{
 	    return $this->db->trans_status();
 	}
 	
+	public function importData($data){
+		$this->db->trans_start();
+		
+		for($i=0, $c=count($data); $i<$c; $i++){
+			$this->db->flush_cache();
+			
+			$this->db->set('NO_PESERTA', 		$data[$i]['NO_PESERTA']);
+			$this->db->set('NAMA_PESERTA', 		$data[$i]['NAMA_PESERTA']);
+			$this->db->set('TGL_MASUK', 		"TO_TIMESTAMP('".$data[$i]['TGL_MASUK']."', 'YYYY-MM-DD')", FALSE);
+			$this->db->set('TGL_LULUS', 		"TO_TIMESTAMP('".$data[$i]['TGL_LULUS']."', 'YYYY-MM-DD')", FALSE);
+			$this->db->set('THN_ANGKATAN', 		$data[$i]['THN_ANGKATAN']);
+			$this->db->set('TEMPAT_LAHIR', 		$data[$i]['TEMPAT_LAHIR']);
+			$this->db->set('TGL_LAHIR', 		"TO_TIMESTAMP('".$data[$i]['TGL_LAHIR']."', 'YYYY-MM-DD')", FALSE);
+			$this->db->set('JK', 				$data[$i]['JK']);
+			$this->db->set('STATUS_PESERTA', 	$data[$i]['STATUS_PESERTA']);
+			$this->db->set('KETERANGAN', 		$data[$i]['KETERANGAN']);
+			
+			$this->db->set('KODE_UPT', 			$data[$i]['KODE_UPT']);
+			$this->db->set('KODE_DIKLAT', 		$data[$i]['KODE_DIKLAT']);
+			
+			//$this->db->set('TGL_LAHIR', 		'TO_TIMESTAMP(\''.$data[$i]['TGL_LAHIR'].'\', \'YYYY-MM-DD HH24:MI:SS\')', FALSE);
+			
+			$this->db->insert('DIKLAT_MST_PESERTA');
+		}
+		
+		$this->db->trans_complete();
+	    return $this->db->trans_status();
+	}
+	
 }
 ?>

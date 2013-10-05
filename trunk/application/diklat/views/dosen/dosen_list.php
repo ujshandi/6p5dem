@@ -3,6 +3,7 @@
 	<h1 class="heading">Data Dosen</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/dosen/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/dosen/upload'?>" class="control"> <span class="add">Upload Data </span></a>
 	
 	<?=form_open('dosen/search', array('class'=>'sform'))?>
 	<fieldset>

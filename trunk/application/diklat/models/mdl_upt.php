@@ -105,6 +105,7 @@ class mdl_upt extends CI_Model{
 		$level = get_level();
 		
 		$value = isset($d['value'])?$d['value']:'';
+		$KODE_INDUKUPT = isset($d['KODE_INDUKUPT'])?$d['KODE_INDUKUPT']:'';
 		
 		$this->db->flush_cache();
 		$this->db->from('DIKLAT_MST_UPT');
@@ -116,6 +117,10 @@ class mdl_upt extends CI_Model{
 			$this->db->where('KODE_INDUK', $level['KODE_UPT']);
 		}else if($level['LEVEL'] == 3){ // upt
 			$this->db->where('KODE_UPT', $level['KODE_UPT']);
+		}
+		
+		if($KODE_INDUKUPT != ''){
+			$this->db->where('KODE_INDUK', $KODE_INDUKUPT);
 		}
 		
 		$res = $this->db->get();
