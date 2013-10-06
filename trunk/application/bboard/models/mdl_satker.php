@@ -97,14 +97,20 @@ class mdl_satker extends CI_Model{
 			// $id = isset($d['id'])?$d['id']:'';
 			// $class = isset($d['class'])?$d['class']:'';
 			$value = isset($d['value'])?$d['value']:'';
+			$date_now = "to_date('".date('d/m/Y')."', 'dd/mm/yyyy')";
 			
 			$this->db->flush_cache();
-			$this->db->from('DIKLAT_MST_UPT');
-			$this->db->order_by('URUTAN');
+			
+			$this->db->select('distinct(BB_SETTING_PENDAFTARAN.KODE_UPT),DIKLAT_MST_UPT.NAMA_UPT');
+			$this->db->from('BB_SETTING_PENDAFTARAN');
+			$this->db->join('DIKLAT_MST_UPT','BB_SETTING_PENDAFTARAN.KODE_UPT=DIKLAT_MST_UPT.KODE_UPT');
+			$this->db->where('PERIODE_AWAL <=',$date_now, false);
+			$this->db->where('PERIODE_AKHIR >=',$date_now, false);
 			
 			$res = $this->db->get();
 			
 			//$out = '<select name="'.$name.'" id="'.$id.'">';
+			
 			$out .= '<option value="" selected="selected">-- Pilih --</option>';
 			foreach($res->result() as $r){
 					if(trim($r->KODE_UPT) == trim($value)){
