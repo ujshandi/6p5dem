@@ -5,6 +5,7 @@ class front extends My_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('mdl_satker');
+		
 	}
 	
 	public function index()
