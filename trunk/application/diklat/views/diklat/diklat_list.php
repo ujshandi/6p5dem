@@ -98,6 +98,8 @@ ul.tabs li a.active {
 		document.getElementById('tab_5').className = '';          
 		document.getElementById(new_tab).className = 'active';        
 	}  
+	
+	//tabSwitch('tab_1', 'content_1');
 </script> 
 
 <!-- contenna -->
@@ -126,19 +128,19 @@ ul.tabs li a.active {
 				<?=$this->mdl_diklat->getContenttabDiklat(3);?>
 			</div>
 			
-			<div id="content_2" class="content">
+			<div id="content_2" class="content" style="display:none;">
 				<?=$this->mdl_diklat->getContenttabDiklat(4);?>
 			</div>
 			
-			<div id="content_3" class="content">
+			<div id="content_3" class="content" style="display:none;">
 				<?=$this->mdl_diklat->getContenttabDiklat(5);?>
 			</div>
 			
-			<div id="content_4" class="content">
+			<div id="content_4" class="content" style="display:none;">
 				<?=$this->mdl_diklat->getContenttabDiklat(2);?>
 			</div>
 			
-			<div id="content_5" class="content">
+			<div id="content_5" class="content" style="display:none;">
 				<?=$this->mdl_diklat->getContenttabDiklat(1);?>
 			</div>
 			

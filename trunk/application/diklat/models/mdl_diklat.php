@@ -146,10 +146,10 @@ class mdl_diklat extends CI_Model{
 					$r_prog = $this->getProgramByUPT($kodeinduk);
 					$c_prog = 1;
 					$c_upt = 1;
-					$c_diklat = 1;
+					$c_diklat = 'a';
 					foreach($r_prog->result() as $prog){
 						$out .= '<tr>
-								<td width="12" align="left" valign="top">'.$c_prog.'.</td>
+								<td width="12" align="left" valign="top">'.$this->romanNumerals($c_prog).'.</td>
 								<td colspan="3" align="left" valign="top">'.$prog->NAMA_PROGRAM.'</td>
 							  </tr>';
 						
@@ -163,7 +163,7 @@ class mdl_diklat extends CI_Model{
 										<td colspan="2" align="left" valign="top">'.$upt->NAMA_UPT.'</td>
 									 </tr>';
 							 
-							$c_diklat = 1;
+							$c_diklat = 'a';
 							$r_diklat = $this->getDiklatByProgramAndUPT($prog->KODE_PROGRAM, $upt->KODE_UPT);
 							foreach($r_diklat->result() as $dik){
 								$out .= '<tr>
@@ -185,6 +185,43 @@ class mdl_diklat extends CI_Model{
 		$out .= '</table>';
 		
 		return $out;
+	}
+	
+	function romanNumerals($num) 
+	{
+		$n = intval($num);
+		$res = '';
+
+		/*** roman_numerals array  ***/
+		$roman_numerals = array(
+					'M'  => 1000,
+					'CM' => 900,
+					'D'  => 500,
+					'CD' => 400,
+					'C'  => 100,
+					'XC' => 90,
+					'L'  => 50,
+					'XL' => 40,
+					'X'  => 10,
+					'IX' => 9,
+					'V'  => 5,
+					'IV' => 4,
+					'I'  => 1);
+
+		foreach ($roman_numerals as $roman => $number) 
+		{
+			/*** divide to get  matches ***/
+			$matches = intval($n / $number);
+
+			/*** assign the roman char * $matches ***/
+			$res .= str_repeat($roman, $matches);
+
+			/*** substract from the number ***/
+			$n = $n % $number;
+		}
+
+		/*** return the res ***/
+		return $res;
 	}
 	
 }
