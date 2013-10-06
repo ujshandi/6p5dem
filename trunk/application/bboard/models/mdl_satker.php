@@ -79,7 +79,7 @@ class mdl_satker extends CI_Model{
 		
 		$res = $this->db->get();
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '';//'<select name="'.$name.'" id="'.$id.'">';
 		foreach($res->result() as $r){
 			if($r->KODE_INDUK == trim($value)){
 				$out .= '<option value="'.$r->KODE_INDUK.'" selected="selected">'.$r->NAMA_INDUK.'</option>';
@@ -87,7 +87,7 @@ class mdl_satker extends CI_Model{
 				$out .= '<option value="'.$r->KODE_INDUK.'">'.$r->NAMA_INDUK.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
