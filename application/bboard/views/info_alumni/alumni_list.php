@@ -11,7 +11,7 @@
 		<li>
 			UPT : 
 			<select name="kode_upt">
-				<?=$this->mdl_satker->getOptionSatker(array('value'=>$kode_upt))?>
+				<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 			</select>
 			&nbsp;&nbsp;
 			NAMA ALUMNI :
