@@ -1,6 +1,6 @@
 <!-- page content -->
 	<div class="wrap_right bgcontent">
-	<h1 class="heading">Daftar Kompetensi Perhubungan Matra Udara</h1>
+	<h1 class="heading">Daftar Kompetensi Perhubungan Matra Darat</h1>
     <hr/>
 	<?=form_open('kopetensi_udara/search')?>
 	<div id="kategori">
