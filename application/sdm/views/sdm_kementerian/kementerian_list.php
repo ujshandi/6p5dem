@@ -27,7 +27,7 @@
 	<ol>
 		<li>
 			<!-- cainned combobox-->
-			KANTOR	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			ESELON I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 				<select name="KODEKANTOR" id="KODEKANTOR">
 					<?=$this->mdl_sdm_kementerian->getOptionKantorChild(array('value'=>$kodekantor))?>
 				</select>
@@ -59,7 +59,7 @@
 		<th>No</th>
 		<th>Nip</th>
 		<th>Nama</th>
-		<th>Alamat</th>
+		<th>Eselon</th>
 		<th>Jabatan</th>
 		<th>Golongan</th>
 		<th>aksi</th>
@@ -73,7 +73,7 @@
 				<td width='5%'><?=$i?></td>
 				<td width='5%'><?=$r->NIP?></td>
 				<td width='20%'><?=$r->NAMA?></td>
-				<td width='10%'><?=$r->NAMAKABUP?></td>
+				<td width='5%'><?=$r->NAMA_ESELON?></td>
 				<td width='20%'><?=$r->JABATAN?></td>
 				<td width='3%'><?=$r->NAMA_GOLONGAN?></td>
 				<td width='5%'>

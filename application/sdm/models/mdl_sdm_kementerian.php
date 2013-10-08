@@ -13,12 +13,13 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		
 		# get data
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('NIP,NAMA,ESELON,NAMA_ESELON,JABATAN,NAMA_GOLONGAN');
 		$this->db->from('SDM_PEGAWAI');
 		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
 		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		$this->db->join('SDM_ESELON', 'SDM_ESELON.KODEESELON = SDM_PEGAWAI.ESELON');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('UNITKANTOR');
+		$this->db->order_by('ESELON ASC');
 		// yanto
 		if(!empty($filter['kodekantor'])){
 			$this->db->where('UNITKANTOR', $filter['kodekantor']);
@@ -39,8 +40,9 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		$this->db->from('SDM_PEGAWAI');
 		$this->db->join('SDM_KABUPATEN', 'SDM_KABUPATEN.KODEKABUP = SDM_PEGAWAI.KABALAMAT');
 		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
+		//$this->db->join('SDM_ESELON', 'SDM_ESELON.KODEESELON = SDM_PEGAWAI.ESELON');
 		//$this->db->limit($num, $offset);
-		$this->db->order_by('UNITKANTOR');
+		//$this->db->order_by('ESELON');
 		
 		// yanto
 		if(!empty($filter['kodekantor'])){
@@ -177,12 +179,15 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 	
 	public function get_data_detail_new($id){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('NIP,NAMA,ESELON,NAMA_ESELON,JABATAN,TMTJABATAN,NAMA_GOLONGAN,TMTGOLONG,TAHUNJANG,TMTPNS,TINGKATDIK,SEKOLAH,JURUSAN,JENJANG');
 		$this->db->from('SDM_PEGAWAI');
 		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEGAWAI.GOLONGAN');
-		$this->db->join('SDM_AGAMA', 'SDM_AGAMA.KODEAGAMA = SDM_PEGAWAI.AGAMA');
-		$this->db->join('SDM_KAWIN', 'SDM_KAWIN.KODEKAWIN = SDM_PEGAWAI.PERKAWINAN');
-		$this->db->join('SDM_KELAMIN', 'SDM_KELAMIN.KODEKELAMIN = SDM_PEGAWAI.KELAMIN');
+		$this->db->join('SDM_ESELON', 'SDM_ESELON.KODEESELON = SDM_PEGAWAI.ESELON');
+		//$this->db->join('SDM_AGAMA', 'SDM_AGAMA.KODEAGAMA = SDM_PEGAWAI.AGAMA');
+		//$this->db->join('SDM_KAWIN', 'SDM_KAWIN.KODEKAWIN = SDM_PEGAWAI.PERKAWINAN');
+		//$this->db->join('SDM_KELAMIN', 'SDM_KELAMIN.KODEKELAMIN = SDM_PEGAWAI.KELAMIN');
+		$this->db->join('SDM_DIKLAT_JENJANG', 'SDM_DIKLAT_JENJANG.KODEJENJANG = SDM_PEGAWAI.JENJANG');
+		$this->db->join('SDM_TINGKAT_DIDIK', 'SDM_TINGKAT_DIDIK.KODETINDIK = SDM_PEGAWAI.TINGKATDIK');
 		$this->db->where('NIP', $id);
 		return $this->db->get();	
 	}
