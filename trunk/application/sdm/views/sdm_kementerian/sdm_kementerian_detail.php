@@ -112,28 +112,8 @@ ul.tabs {
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA?></td>
 		</tr>
 		<tr>
-			<td width="125">Tempat Lahir</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMPLAHIR?></td>
-		</tr>
-		<tr>
-			<td width="125">Tanggal Lahir</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TGL_LAHIR?></td>
-		</tr>  
-		<tr>
-			<td width="125">Jenis Kelamin</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->KELAMIN?></td>
-		</tr>
-		<tr>
-			<td width="125">Agama</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->AGAMA?></td>
-		</tr>
-		<tr>
-			<td width="125">Perkawinan</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->KAWIN?></td>
-		</tr>
-		<tr>
-			<td width="125">Alamat</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JALAN?></td>
+			<td width="125">Eselon</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NAMA_ESELON?></td>
 		</tr>
 		<tr>
 			<td width="125">Golongan</td>
@@ -160,21 +140,13 @@ ul.tabs {
         <div id="content_2" class="content">
 		<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
 		<tr>
-			<td><h2>Jenjang S1</h2></td>
-			<td width="159" bgcolor="#FFFFFF"></td>
+			<td><h2>Pendidikan Terakhir</h2></td>
+			<td bgcolor="#FFFFFF"></td>
 		</tr>
 		<tr>
-			<td width="125">Nama Sekolah</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->SEKOLAH_S1?></td>
+			<td>Tindakat Pendidikan</td>
+			<td bgcolor="#FFFFFF"><?=$result1->row()->TINGKATDIK?></td>
 		</tr>
-		<tr>
-			<td width="125">Jurusan</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->S11?></td>
-		</tr>
-		<tr>
-			<td><h2>Jenjang S2</h2></td>
-			<td width="159" bgcolor="#FFFFFF"></td>
-		</tr>  
 		<tr>
 			<td width="125">Nama Sekolah</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->SEKOLAH?></td>
@@ -182,6 +154,18 @@ ul.tabs {
 		<tr>
 			<td width="125">Jurusan</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JURUSAN?></td>
+		</tr>
+		<tr>
+			<td>Diklat Jenjang</td>
+			<td bgcolor="#FFFFFF"></td>
+		</tr>
+		<tr>
+			<td width="125">Nama Diklat</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JENJANG?></td>
+		</tr>
+		<tr>
+			<td width="125">Tahun Diklat</td>
+			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TAHUNJANG?></td>
 		</tr>
 	</table>	
 		</div>       
