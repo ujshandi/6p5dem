@@ -7,7 +7,7 @@ $( "#TGL_AKHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Kelender</h1>
+	<h1 class="heading">Data Kegiatan</h1>
 	<hr/>
 	<?=form_open('kalender/proses_add', array('class'=>'sform'))?>
 	<fieldset>

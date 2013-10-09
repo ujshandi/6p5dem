@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Kalender</h1>
+	<h1 class="heading">Data Kegiatan</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/kalender/add'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<?=form_open('kalender/search', array('class'=>'sform'))?>
@@ -43,9 +43,9 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td width ="27%"><?=$r->NAMA_UPT?></td>
-				<td><?=$r->TGL_AWAL?></td>
-				<td><?=$r->TGL_AKHIR?></td>
-				<td width ="27%"><?=$r->KEGIATAN->load()?></td>
+				<td width ="10%"><?=$r->TGL_AWAL?></td>
+				<td width ="10%"><?=$r->TGL_AKHIR?></td>
+				<td width ="30%"><?=$r->KEGIATAN->load()?></td>
 				<td >
 					<a href="<?=site_url().'/kalender/edit/'.$r->IDKALENDER?>" class="control" >
 						<span class="edit">edit</span></a> |
