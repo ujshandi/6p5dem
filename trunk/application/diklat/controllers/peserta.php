@@ -101,6 +101,7 @@ class peserta extends My_Controller {
         $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
         $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
         $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
+        $data['DAERAH'] = $this->input->post('DAERAH');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
         $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
         $data['JK'] = $this->input->post('JK');
@@ -114,6 +115,7 @@ class peserta extends My_Controller {
         $this->form_validation->set_rules('KODE_DIKLAT', 'DIKLAT', 'required');
         $this->form_validation->set_rules('NO_PESERTA', 'NO PESERTA', 'required');
         $this->form_validation->set_rules('NAMA_PESERTA', 'NAMA PESERTA', 'required');
+        $this->form_validation->set_rules('DAERAH', 'DAERAH', 'required');
         $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
         $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
@@ -186,22 +188,24 @@ class peserta extends My_Controller {
 		
 		$data['id'] = $this->input->post('id');
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
-        $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
+		$data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
         $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
         $data['NAMA_PESERTA'] = $this->input->post('NAMA_PESERTA');
+        $data['DAERAH'] = $this->input->post('DAERAH');
         $data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
         $data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
         $data['JK'] = $this->input->post('JK');
         $data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'dd/mm/yyyy')";
         $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
         $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
-        $data['KETERANGAN'] = $this->input->post('KETERANGAN');	
+        $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
         $this->form_validation->set_rules('KODE_DIKLAT', 'DIKLAT', 'required');
         $this->form_validation->set_rules('NO_PESERTA', 'NO PESERTA', 'required');
         $this->form_validation->set_rules('NAMA_PESERTA', 'NAMA PESERTA', 'required');
+        $this->form_validation->set_rules('DAERAH', 'DAERAH', 'required');
         $this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
         $this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
@@ -290,6 +294,7 @@ class peserta extends My_Controller {
 						// data
 						$data_tmp[$x]['NO_PESERTA'] 		= $this->excel->val($i, 1);
 						$data_tmp[$x]['NAMA_PESERTA'] 		= $this->excel->val($i, 2);
+						$data_tmp[$x]['DAERAH'] 			= $this->excel->val($i, 2);
 						$data_tmp[$x]['TGL_MASUK'] 			= $this->excel->val($i, 3);
 						$data_tmp[$x]['TGL_LULUS'] 			= $this->excel->val($i, 4);
 						$data_tmp[$x]['THN_ANGKATAN'] 		= $this->excel->val($i, 5);

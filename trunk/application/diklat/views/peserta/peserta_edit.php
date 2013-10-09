@@ -44,7 +44,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li>
 				<label for="">UPT<em>*</em></label>
-				<select name="KODE_UPT" id="KODE_UPT">
+				<select name="KODE_UPT" id="KODE_DIKLAT">
 					<?php 
 						$opti['value'] = $result->row()->KODE_UPT;
 						echo $this->mdl_satker->getOptionUPTChild($opti);
@@ -65,6 +65,8 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			<li><label for="">NOMOR INDUK <em>*</em></label> <input name="NO_PESERTA" value="<?=$result->row()->NO_PESERTA?>" type="text" class="two"/></li>
 			
 			<li><label for="">NAMA PESERTA <em>*</em></label> <input name="NAMA_PESERTA" value="<?=$result->row()->NAMA_PESERTA?>" type="text" class="three"/></li>
+			
+			<li><label for="">DAERAH <em>*</em></label> <input name="DAERAH" value="<?=$result->row()->DAERAH?>" type="text" class="three"/></li>
 			
 			<li><label for="">TEMPAT LAHIR<em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=$result->row()->TEMPAT_LAHIR?>" type="text" class="three"/></li>
 			
