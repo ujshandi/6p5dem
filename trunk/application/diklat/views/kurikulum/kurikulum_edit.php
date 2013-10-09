@@ -56,7 +56,7 @@
 			<li><label for="">NAMA KURIKULUM <em>*</em></label> <input name="NAMA_KURIKULUM" value="<?=$result->row()->NAMA_KURIKULUM?>" type="text" class="five"/></li>
 			<li><label for="">SKS TEORI <em>*</em></label> <input name="SKS_TEORI" value="<?=$result->row()->SKS_TEORI?>" type="text" class="five"/></li>
 			<li><label for="">SKS PRAKTEK <em>*</em></label> <input name="SKS_PRAKTEK" value="<?=$result->row()->SKS_PRAKTEK?>" type="text" class="five"/></li>
-			<li><label for="">JAM <em>*</em></label> <input name="JAM" value="<?=$result->row()->JAM?>" type="text" class="five"/></li>
+			<li><label for="">JAM PELAJARAN <em>*</em></label> <input name="JAM" value="<?=$result->row()->JAM?>" type="text" class="five"/></li>
 			<li><label for="">SEMESTER <em>*</em></label> <input name="SEMESTER" value="<?=$result->row()->SEMESTER?>" type="text" class="five"/></li>
 			
 			<div class="clearfix">&nbsp;</div>

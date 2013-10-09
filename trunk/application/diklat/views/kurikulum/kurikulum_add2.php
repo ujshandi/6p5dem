@@ -24,7 +24,7 @@
 				<th width="10%" scope="col">SKS Teori</th>
 				<th width="10%" scope="col">SKS Praktek</th>
 				<th width="10%" scope="col">Semester</th>
-				<th width="20%" scope="col">Jml Jam</th>
+				<th width="20%" scope="col">Jml Jam Pelajaran</th>
 			</tr>
 			<?for($i=0; $i<$JUMLAH; $i++){?>
 			<tr>

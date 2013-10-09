@@ -62,7 +62,7 @@
 		<th>Nama kurikulum</th>
 		<th>SKS Teori</th>
 		<th>SKS Praktek</th>
-		<th>jam</th>
+		<th>Jam Pelajaran</th>
 		<th>Semester</th>
 		<th width="140px">aksi</th>
 	  </thead>
