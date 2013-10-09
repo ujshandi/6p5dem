@@ -7,20 +7,24 @@
 		
 		<!--<input type="submit" value="back" class="control">-->
 		<ol>			
-			<li><label for="" >UPT : <em> </em></label>
+			<li><label for="" >UPT			: <em> </em></label>
 					<strong><?=$result->row()->NAMA_UPT?></strong>
 			</li>
 			<br>
-			<li><label for="" >DIKLAT : <em> </em></label>
+			<li><label for="" >DIKLAT		: <em> </em></label>
 				<strong><?=$result->row()->NAMA_DIKLAT?></strong>
 			</li>
 			<br>
-			<li><label for="" >NMOR INDUK : <em> </em></label>
+			<li><label for="" >NMOR INDUK	: <em> </em></label>
 				<strong><?=$result->row()->NO_PESERTA?></strong>
 			</li>
 			<br>
 			<li><label for="" >NAMA PESERTA : <em></em></label>
 				<strong><?=$result->row()->NAMA_PESERTA?></strong>
+			</li>
+			<br>
+			<li><label for="" >DAERAH		: <em></em></label>
+				<strong><?=$result->row()->DAERAH?></strong>
 			</li>
 			<br>
 			<li><label for="" >TEMPAT_LAHIR : <em></em></label>
@@ -35,7 +39,7 @@
 				<strong><?=$result->row()->JK?></strong>
 			</li>
 			<br>
-			<li><label for="" >STATUS : <em></em></label>
+			<li><label for="" >STATUS		: <em></em></label>
 				<strong><?=$result->row()->STATUS_PESERTA?></strong>
 			</li>
 		</ol>	

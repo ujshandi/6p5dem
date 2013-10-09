@@ -33,11 +33,13 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th width="15%">Nama Pengajar</th>
-		<th width="15%">Status Pengajar</th>
-		<th width="10%">Jenis Pengajar</th>
+		<th width="10%">Nama Pengajar</th>
+		<th width="10%">Status Pengajar</th>
+		<th width="7%">Jenis Pengajar</th>
+		<th width="8%">Jurusan</th>
+		<th width="10%">Kelompok Matakuliah</th>
 		<th width="5%">Thn Mulai Mengajar</th>
-		<th width="20%">UPT</th>
+		<th width="15%">UPT</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -50,6 +52,8 @@
 				<td><?=$r->NAMADOSEN?></td>
 				<td><?=$r->STATUS?></td>
 				<td><?=$r->JENIS_DOSEN?></td>
+				<td><?=$r->JURUSAN?></td>
+				<td><?=$r->KELOMPOK_MATKUL?></td>
 				<td><?=$r->TAHUN?></td>
 				<td><?=$r->NAMA_UPT?></td>
 				<td >
