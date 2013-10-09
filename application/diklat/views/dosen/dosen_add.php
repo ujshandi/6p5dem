@@ -48,6 +48,10 @@ $( "#TGL_LAHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">Pendidikan <em>*</em></label> <textarea name="PENDIDIKAN" class="five"><?=set_value('PENDIDIKAN')?></textarea></li>
 			
+			<li><label for="">Jurusan <em>*</em></label> <input name="JURUSAN" value="<?=set_value('JURUSAN')?>" type="text" class="four"/></li>			
+			
+			<li><label for="">Kelompok Matakuliah <em>*</em></label> <input name="KELOMPOK_MATKUL" value="<?=set_value('KELOMPOK_MATKUL')?>" type="text" class="five"/></li>		
+			
 			<li><label for="">Jenis Pengajar <em>*</em></label> <select id="JENIS_DOSEN" name="JENIS_DOSEN">
 			<option value="">- Pilih Jenis Pengajar -</option>
 			<option value="Tetap">Dosen</option>

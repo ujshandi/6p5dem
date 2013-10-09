@@ -92,6 +92,8 @@ class mdl_dosen extends CI_Model{
 		$this->db->set('STATUS', $data['STATUS']);
 		$this->db->set('TAHUN', $data['TAHUN']);
 		$this->db->set('PENDIDIKAN', $data['PENDIDIKAN']);
+		$this->db->set('JURUSAN', $data['JURUSAN']);
+		$this->db->set('KELOMPOK_MATKUL', $data['KELOMPOK_MATKUL']);
 		$this->db->set('JENIS_DOSEN', $data['JENIS_DOSEN']);
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 
@@ -115,7 +117,9 @@ class mdl_dosen extends CI_Model{
 		$this->db->set('JK', $data['JK']);
 		$this->db->set('STATUS', $data['STATUS']);
 		$this->db->set('TAHUN', $data['TAHUN']);
-		$this->db->set('PENDIDIKAN', $data['PENDIDIKAN']);
+		$this->db->set('PENDIDIKAN', $data['PENDIDIKAN']);		
+		$this->db->set('JURUSAN', $data['JURUSAN']);
+		$this->db->set('KELOMPOK_MATKUL', $data['KELOMPOK_MATKUL']);
 		$this->db->set('JENIS_DOSEN', $data['JENIS_DOSEN']);
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
 
@@ -234,6 +238,8 @@ class mdl_dosen extends CI_Model{
 			$this->db->set('STATUS', 			$data[$i]['STATUS']);
 			$this->db->set('TAHUN', 			$data[$i]['TAHUN']);
 			$this->db->set('PENDIDIKAN', 		$data[$i]['PENDIDIKAN']);
+			$this->db->set('JURUSAN', 			$data[$i]['JURUSAN']);
+			$this->db->set('KELOMPOK_MATKUL', 	$data[$i]['KELOMPOK_MATKUL']);
 			$this->db->set('JENIS_DOSEN', 		$data[$i]['JENIS_DOSEN']);
 			$this->db->set('KODE_UPT', 			$data[$i]['KODE_UPT']);
 			
