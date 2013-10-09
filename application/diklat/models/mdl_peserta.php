@@ -90,6 +90,7 @@ class mdl_peserta extends CI_Model{
         $this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
         $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
         $this->db->set('NAMA_PESERTA', $data['NAMA_PESERTA']);
+        $this->db->set('DAERAH', $data['DAERAH']);
         $this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
         $this->db->set('JK', $data['JK']);
@@ -123,6 +124,7 @@ class mdl_peserta extends CI_Model{
         $this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
         $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
         $this->db->set('NAMA_PESERTA', $data['NAMA_PESERTA']);
+		$this->db->set('DAERAH', $data['DAERAH']);
         $this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
         $this->db->set('JK', $data['JK']);
@@ -341,6 +343,7 @@ class mdl_peserta extends CI_Model{
 			
 			$this->db->set('NO_PESERTA', 		$data[$i]['NO_PESERTA']);
 			$this->db->set('NAMA_PESERTA', 		$data[$i]['NAMA_PESERTA']);
+			$this->db->set('DAERAH', 			$data[$i]['DAERAH']);
 			$this->db->set('TGL_MASUK', 		"TO_TIMESTAMP('".$data[$i]['TGL_MASUK']."', 'YYYY-MM-DD')", FALSE);
 			$this->db->set('TGL_LULUS', 		"TO_TIMESTAMP('".$data[$i]['TGL_LULUS']."', 'YYYY-MM-DD')", FALSE);
 			$this->db->set('THN_ANGKATAN', 		$data[$i]['THN_ANGKATAN']);

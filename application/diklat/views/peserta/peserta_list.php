@@ -19,7 +19,7 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta</h1>
 	<hr/>
-	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add'?>" class="control"> <span class="add">Tambah Registrasi Peserta</span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add'?>" class="control"> <span class="add">Tambah Peserta Diklat</span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add_lulus1'?>" class="control"> <span class="add">Tambah Peserta Lulus Diklat</span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/upload'?>" class="control"> <span class="add">Upload Data</span></a>
 	
@@ -58,10 +58,11 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th width="22%">UPT</th>
-		<th width="12%">Diklat</th>
-		<th>No peserta</th>
+		<th width="15%">UPT</th>
+		<th width="10%">Diklat</th>
+		<th width="9%">No Peserta / NIP</th>
 		<th width="12%">Nama peserta</th>
+		<th width="10%">Daerah</th>
 		<th>Angkatan</th>
 		<th>Status</th>
 		<th>aksi</th>
@@ -79,6 +80,7 @@
 				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->NO_PESERTA?></td>
 				<td><?=$r->NAMA_PESERTA?></td>
+				<td><?=$r->DAERAH?></td>
 				<td><?=$r->THN_ANGKATAN?></td>
 				<td><?=$r->STATUS_PESERTA?></td>
 				<td >
