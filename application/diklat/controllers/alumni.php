@@ -127,15 +127,17 @@ class alumni extends My_Controller {
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
         $data['TGL_LULUS'] = "to_date('".$this->input->post('TGL_LULUS')."', 'dd/mm/yyyy')";
+		$data['THN_ANGKATAN'] 	= $this->input->post('THN_ANGKATAN');
         $data['KERJA'] = $this->input->post('KERJA');
         $data['INSTANSI'] = $this->input->post('INSTANSI');
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
         $this->form_validation->set_rules('NO_PESERTA', 'PESERTA', 'required');
-        $this->form_validation->set_rules('TGL_LULUS', 'KODE INDUK', 'required');
-        $this->form_validation->set_rules('KERJA', 'TEMPAT KERJA', 'required');
-        $this->form_validation->set_rules('INSTANSI', 'INSTANSI', 'required');
+        $this->form_validation->set_rules('TGL_LULUS', 'TANGGAL LULUS', 'required');
+        $this->form_validation->set_rules('THN_ANGKATAN', 'TAHUN ANGKATAN', 'required');
+        $this->form_validation->set_rules('KERJA', 'STATUS KERJA', 'required');
+        //$this->form_validation->set_rules('INSTANSI', 'INSTANSI', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
