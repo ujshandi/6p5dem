@@ -137,10 +137,6 @@ ul.tabs {
 			<td width="125">TMT Jabatan</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTJABATAN?></td>
 		</tr>
-		<tr>
-			<td width="125">TMT PNS</td>
-			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTPNS?></td>
-		</tr>
 	</table>
 		</div>  
         <div id="content_2" class="content">
