@@ -104,6 +104,12 @@ ul.tabs {
         <div id="content_1" class="content">
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
 		<tr>
+			<td width="159" bgcolor="#FFFFFF">
+				<img width="80px" src="http://sik.dephub.go.id/photo/<?=$result1->row()->NIP ?>.jpg" />
+			</td>
+			<td width="125"></td>
+		</tr>
+		<tr>
 			<td width="125">NIP</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->NIP?></td>
 		</tr>
@@ -156,7 +162,7 @@ ul.tabs {
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->JURUSAN?></td>
 		</tr>
 		<tr>
-			<td>Diklat Jenjang</td>
+			<td><h2>Diklat Jenjang</h2></td>
 			<td bgcolor="#FFFFFF"></td>
 		</tr>
 		<tr>
