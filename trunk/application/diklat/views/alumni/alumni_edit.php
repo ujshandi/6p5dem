@@ -61,6 +61,8 @@ $( "#TGL_LULUS" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">TANGGAL LULUS <em>*</em></label> <input name="TGL_LULUS" id="TGL_LULUS" value="<?=$result->row()->TGL_LULUS?>" type="text" class="one"/></li>
 			
+			<li><label for="">TAHUN ANGKATAN <em>*</em></label> <input name="THN_ANGKATAN" id="THN_ANGKATAN" value="<?=$result->row()->THN_ANGKATAN?>" type="text" class="one"/></li>
+			
 			<li><label for="">STATUS ALUMNI<em>*</em></label>
 				<?php 
 					$opti['name'] = 'KERJA';

@@ -39,6 +39,7 @@
 		<th>STATUS</th>
 		<th>TEMPAT BEKERJA</th>
 		<th>PERIODE LULUS</th>
+		<th>TAHUN ANGKATAN</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -57,6 +58,7 @@
 				<td><?=$r->KERJA?></td>
 				<td><?=$r->INSTANSI?></td>
 				<td><?=$r->TGL_LULUS?></td>
+				<td><?=$r->THN_ANGKATAN?></td>
 				<td >
 					<a href="<?=site_url().'/alumni/edit/'.$r->ID_ALUMNI?>" class="control" >
 						<span class="edit">edit</span></a> |
