@@ -56,7 +56,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">NAMA PESERTA <em>*</em></label> <input name="NAMA_PESERTA" value="<?=set_value('NAMA_PESERTA')?>" type="text" class="three"/></li>
 			
-			<li><label for="">DAERAH <em>*</em></label> <input name="DAERAH" value="<?=set_value('DAERAH')?>" type="text" class="three"/></li>
+			<li><label for="">DAERAH PESERTA<em>*</em></label> <input name="DAERAH" value="<?=set_value('DAERAH')?>" type="text" class="three"/></li>
 			
 			<li><label for="">TEMPAT LAHIR<em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="three"/></li>
 			
@@ -99,7 +99,6 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			<option value="">- Pilih Status Peserta -</option>
 			<option value="Registrasi">Registrasi</option>
 			<option value="Drop Out">Drop Out</option>
-			<option value="Lulus">Lulus</option>
 			</select></li>
 			
 			<li><label for="">KETERANGAN <em>*</em></label> <textarea name="KETERANGAN" class="five"><?=set_value('KETERANGAN')?></textarea></li>

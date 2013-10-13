@@ -40,7 +40,7 @@
 			</li>
 			<br>
 			<li><label for="" >UPT : <em></em></label>
-				<strong><?=$result->row()->KODE_UPT?></strong>
+				<strong><?=$result->row()->NAMA_UPT?></strong>
 			</li>
 		</ol>	
 		<br>

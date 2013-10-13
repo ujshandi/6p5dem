@@ -184,7 +184,7 @@ class mdl_peserta extends CI_Model{
 		$class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
-		$res = array('Registrasi','Drop Out', 'Lulus');
+		$res = array('Registrasi','Drop Out');
 		
 		$out = '<select name="'.$name.'" id="'.$id.'">';
 		foreach($res as $r){
