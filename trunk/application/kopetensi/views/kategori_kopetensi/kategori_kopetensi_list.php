@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Kategori Kopetensi</h1>
+	<h1 class="heading">Data Kategori Kompetensi</h1>
 	<hr/>
 	<?=form_open('kategori_kopetensi')?>
 	<li><div id="matra"><label>Matra   :</label>
