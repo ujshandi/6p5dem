@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Tingkat Kopetensi</h1>
+	<h1 class="heading">Data Tingkat Kompetensi</h1>
 	<hr/>
 	<li style="float:left">
 	<a href="<?=base_url().$this->config->item('index_page').'/tingkat_kopetensi/add'?>" class="control"> <span class="add">Tambah Data</span></a>
