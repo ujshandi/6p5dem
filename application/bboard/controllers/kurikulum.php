@@ -7,70 +7,50 @@ class kurikulum extends My_Frontpage {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('mdl_kurikulum');
+		$this->load->model('mdl_satker');
 	}
 	
-	public function index()
+	public function index($upt="")
 	{
+		//redirect('kurikulum');
+		$this->load->model('mdl_kurikulum');
+		$this->load->model('mdl_program');
+		$this->load->model('mdl_satker');
+		
 		$this->open();
-		
-		# get filter
-		$data['kode_upt'] = $this->session->userdata($this->id.'kode_upt');
-		$data['kode_diklat'] = $this->session->userdata($this->id.'kode_diklat');
-		$data['search'] = $this->session->userdata($this->id.'search');
-		$data['numrow'] = $this->session->userdata($this->id.'numrow');
-		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
-		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
-		
-		# get data
-		$result = $this->mdl_kurikulum->getData($data['numrow'], $offset, $data);
-		
-		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/kurikulum/index/';
-		$config['per_page'] = $data['numrow'];
-		$config['num_links'] = '10';
-		$config['uri_segment'] = '3';
-		$config['full_tag_open'] = '';
-		$config['full_tag_close'] = '';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a href="javascript:void(0)" class="current">';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['prev_link'] = 'Prev';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['next_link'] = 'Next';
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
-		$config['last_link'] = 'Last';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-		$config['first_link'] = 'First';
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
-
-		$config['total_rows'] = $result['row_count'];
-
-		$this->pagination->initialize($config);	
-		
-		$data['curcount'] = $offset+1;
-		$data['result'] = $result['row_data'];
-		
-		$this->load->view('kurikulum/kurikulum_list', $data);
-		
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('kurikulum/kurikulum_list', $data);
+		}else{
+			$this->load->view('kurikulum/kurikulum_list');
+		}
 		$this->close();
 	}
 	
-	public function search(){
-		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('KODE_UPT'));
-		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('KODE_DIKLAT'));
-		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
-		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
+	/* public function kurikulum($upt=""){
+		$this->load->model('mdl_kurikulum');
+		$this->load->model('mdl_program');
 		
-		redirect('kurikulum');
-	}
+		$this->openfront();
+		if($upt != ""){
+			$data['KODE_UPT'] = $upt;
+			$this->load->view('kurikulum_list', $data);
+		}else{
+			$this->load->view('kurikulum_list');
+		}
+		$this->closefron t();
+	}  */
 	
-	function getDiklat(){
-		echo $this->mdl_kurikulum->getOptionDiklatByUPT(array('KODE_UPT'=>$this->input->post('KODE_UPT')));
+	public function kurikulum_detail($diklat, $upt){
+		$this->load->model('mdl_kurikulum');
+		$this->load->model('mdl_program');
+		
+		$this->open();
+		$data['diklat'] = $this->mdl_program->getDiklatbyId($diklat, $upt);
+		$data['upt'] = $this->mdl_satker->getUPTById($upt);
+		$data['kurikulum'] = $this->mdl_kurikulum->getKurikulumByDiklat($diklat);
+		$this->load->view('kurikulum/kurikulum_list_detail', $data);
+		$this->close();
 	}
 	
 }

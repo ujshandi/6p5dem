@@ -7,7 +7,7 @@ class mdl_kurikulum extends CI_Model{
 	
 	function getData($num=0, $offset=0, $filter){
 		// yanto
-		//$level = get_level();
+		$level = get_level();
 		
 		# get data
 		$this->db->flush_cache();
@@ -21,13 +21,13 @@ class mdl_kurikulum extends CI_Model{
 		// yanto
 		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
-		}/*else{
+		}else{
 			if($level['LEVEL'] == 2){
 				$this->db->where('DIKLAT_MST_UPT.KODE_INDUK', $level['KODE_UPT']);
 			}else if($level['LEVEL'] == 3){
 				$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $level['KODE_UPT']);
 			}
-		}*/
+		}
 		
 		if(!empty($filter['kode_diklat'])){
 			$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $filter['kode_diklat']);
@@ -49,13 +49,13 @@ class mdl_kurikulum extends CI_Model{
 		// yanto
 		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
-		}/*else{
+		}else{
 			if($level['LEVEL'] == 2){
 				$this->db->where('DIKLAT_MST_UPT.KODE_INDUK', $level['KODE_UPT']);
 			}else if($level['LEVEL'] == 3){
 				$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $level['KODE_UPT']);
 			}
-		}*/
+		}
 		
 		if(!empty($filter['kode_diklat'])){
 			$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $filter['kode_diklat']);
@@ -69,63 +69,123 @@ class mdl_kurikulum extends CI_Model{
 		return $tmp;
 	}
 	
-	function getOptionDiklatByUPT($d){
-	
-		$value = isset($d['value'])?$d['value']:'';
-		$KODE_UPT = isset($d['KODE_UPT'])?$d['KODE_UPT']:'';
-		
+	function getDataEdit($id){
 		$this->db->flush_cache();
-		$this->db->where('KODE_UPT', $KODE_UPT==0?'':$KODE_UPT);
-		$result = $this->db->get('DIKLAT_MST_DIKLAT');
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_KURIKULUM');
+		$this->db->where('KODE_KURIKULUM', $id);
 		
-		//$out = '<select name="'.$name.'" id="'.$id.'">';
-		$out = '<option value="" selected="selected">-- Pilih --</option>';
-		foreach($result->result() as $r){
-				if(trim($r->KODE_DIKLAT) == trim($value)){
-						$out .= '<option value="'.$r->KODE_DIKLAT.'" selected="selected">'.$r->NAMA_DIKLAT.'</option>';
-				}else{
-						$out .= '<option value="'.$r->KODE_DIKLAT.'">'.$r->NAMA_DIKLAT.'</option>';
-				}
+		return $this->db->get();
+	}
+
+	function insert($kd_diklat, $kd_upt, $data){
+		$this->db->trans_start();
+		
+		foreach($data as $r){
+			$this->db->flush_cache();
+			$this->db->set('KODE_KURIKULUM', $r['KODE_KURIKULUM']);
+			$this->db->set('NAMA_KURIKULUM', $r['NAMA_KURIKULUM']);
+			$this->db->set('SKS_TEORI', $r['SKS_TEORI']);
+			$this->db->set('SKS_PRAKTEK', $r['SKS_PRAKTEK']);
+			$this->db->set('JAM', $r['JAM']);
+			$this->db->set('SEMESTER', $r['SEMESTER']);
+			$this->db->set('KODE_DIKLAT', $kd_diklat);
+			$this->db->set('KODE_UPT', $kd_upt);
+
+			$result = $this->db->insert('DIKLAT_MST_KURIKULUM');
 		}
-		//$out .= '</select>';
 		
-		return $out;
-	
+		// $errNo   = $this->db->_error_number();
+	    // $errMess = $this->db->_error_message();
+		// $error = $errMess;
+		
+		//var_dump($errMess);die;
+	    //log_message("error", "Problem Inserting to : ".$errMess." (".$errNo.")"); 
+		
+		//return
+		$this->db->trans_complete();
+	    return $this->db->trans_status();
 	}
 	
-	function getOptionUPTChild($d=""){
-		
-		// yanto
-		//$level = get_level();
-		
-		$value = isset($d['value'])?$d['value']:'';
-		
+	function update($data){
 		$this->db->flush_cache();
+        $this->db->set('KODE_KURIKULUM', $data['KODE_KURIKULUM']);
+        $this->db->set('NAMA_KURIKULUM', $data['NAMA_KURIKULUM']);
+        $this->db->set('SKS_TEORI', $data['SKS_TEORI']);
+		$this->db->set('SKS_PRAKTEK', $data['SKS_PRAKTEK']);
+		$this->db->set('JAM', $data['JAM']);
+		$this->db->set('SEMESTER', $data['SEMESTER']);
+		$this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
+		$this->db->set('KODE_UPT', $data['KODE_UPT']);
+		
+		$this->db->where('KODE_KURIKULUM', $data['id']);
+		
+		$result = $this->db->update('DIKLAT_MST_KURIKULUM');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function delete($id){
+		$this->db->flush_cache();
+		$this->db->where('KODE_KURIKULUM', $id);
+		$result = $this->db->delete('DIKLAT_MST_KURIKULUM');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function getProgram($kode_upt){
+		// get kode induk upt
+		$this->db->flush_cache();
+		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_UPT');
-		$this->db->order_by('URUTAN');
+		$this->db->where('KODE_UPT', $kode_upt);
+		$row = $this->db->get()->row_array();
+		$kode_induk = $row['KODE_INDUK'];
 		
-		//yanto
-		$out = '';
-		// if($level['LEVEL'] == 2){ // induk upt
-			// $this->db->where('KODE_INDUK', $level['KODE_UPT']);
-		// }else if($level['LEVEL'] == 3){ // upt
-			// $this->db->where('KODE_UPT', $level['KODE_UPT']);
-		// }
+		// query ke program
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_PROGRAM');
+		$this->db->where('KODE_INDUK', $kode_induk);
+		$this->db->order_by('KODE_PROGRAM');
 		
-		$res = $this->db->get();
+		return $this->db->get();
 		
-		$out = '<option value="" selected="selected">-- Pilih --</option>';
-		foreach($res->result() as $r){
-				if(trim($r->KODE_UPT) == trim($value)){
-						$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
-				}else{
-						$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
-				}
-		}
-		
-		return $out;
 	}
 	
+	function getDiklat($kode_program, $kode_upt){
+		// query ke program
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_DIKLAT');
+		$this->db->where('KODE_PROGRAM', $kode_program);
+		$this->db->where('KODE_UPT', $kode_upt);
+		$this->db->order_by('KODE_DIKLAT');
+		
+		return $this->db->get();
+	}
+	
+	function getKurikulumByDiklat($id){
+		$this->db->flush_cache();
+		$this->db->select('"a"."KODE_KURIKULUM", "a"."NAMA_KURIKULUM", "a".SKS_TEORI, "a".SKS_PRAKTEK, "a".JAM, "a".SEMESTER, ("a"."SKS_TEORI"+"a"."SKS_PRAKTEK") AS JUMLAH');
+		$this->db->from('DIKLAT_MST_KURIKULUM "a"');
+		//$this->db->join('DIKLAT_MST_DIKLAT "b"', 'b.KODE_DIKLAT = a.KODE_DIKLAT');
+		//$this->db->join('DIKLAT_MST_UPT "c"', 'c.KODE_UPT = b.KODE_UPT');
+		$this->db->where('a.KODE_DIKLAT', $id);
+		
+		return $this->db->get();
+		
+	}
 	
 }
 ?>
