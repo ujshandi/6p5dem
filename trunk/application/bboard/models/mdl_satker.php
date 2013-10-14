@@ -123,6 +123,39 @@ class mdl_satker extends CI_Model{
 			
 			return $out;
 	}
+	
+	function getOptionUPTChilds($d=""){
+		
+		// yanto
+		$level = get_level();
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('DIKLAT_MST_UPT');
+		$this->db->order_by('URUTAN');
+		
+		//yanto
+		$out = '';
+		if($level['LEVEL'] == 2){ // induk upt
+			$this->db->where('KODE_INDUK', $level['KODE_UPT']);
+		}else if($level['LEVEL'] == 3){ // upt
+			$this->db->where('KODE_UPT', $level['KODE_UPT']);
+		}
+		
+		$res = $this->db->get();
+		
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res->result() as $r){
+				if(trim($r->KODE_UPT) == trim($value)){
+						$out .= '<option value="'.$r->KODE_UPT.'" selected="selected">'.$r->NAMA_UPT.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
+				}
+		}
+		
+		return $out;
+	}
 
 	
 	function getUPTById($id){
