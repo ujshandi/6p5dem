@@ -240,6 +240,7 @@ class produk_hukum extends My_Controller {
         $data['TANGGAL'] 			= date('Y-m-d');
         $data['JUDUL'] 				= $this->input->post('JUDUL');
         $data['DESKRIPSI'] 			= $this->input->post('DESKRIPSI');
+        $data['STATUS'] 			= $this->input->post('STATUS');
 		
 		# validasi
         $this->form_validation->set_rules('ID_PRODUK_HUKUM', 'ID PRODUK HUKUM', 'required');
@@ -247,6 +248,7 @@ class produk_hukum extends My_Controller {
         $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required|numeric');
         $this->form_validation->set_rules('JUDUL', 'JUDUL', 'required');
         $this->form_validation->set_rules('DESKRIPSI', 'DESKRIPSI', 'required');
+        $this->form_validation->set_rules('STATUS', 'STATUS', 'required');
 		
 		// set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
