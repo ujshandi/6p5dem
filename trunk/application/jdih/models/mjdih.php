@@ -142,7 +142,7 @@
         $this->db->set('FILE', $data['FILE']);
         $this->db->set('APPROVAL', 'Y');
         $this->db->set('USER_ID', '');
-        $this->db->set('STATUS', '0');
+        $this->db->set('STATUS', $data['STATUS']);
 
         $result = $this->db->insert('JDIH_D_PRODUK_HUKUM');
 
@@ -193,6 +193,21 @@
 						$out .= '<option value="'.$r->ID.'">'.$r->TEMATIK.'</option>';
 				}
 		}
+		
+		return $out;
+	}
+	
+	function getOptionStatus($d=""){
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		
+		
+		$out  = '<option value="" selected="selected">-- Pilih --</option>';
+		$out .= '<option value="Berlaku" '.($value=="Berlaku"?'selected="selected"':'').'>Berlaku</option>';
+		$out .= '<option value="Tidak Berlaku" '.($value=="Tidak Berlaku"?'selected="selected"':'').'>Tidak Berlaku</option>';
+		$out .= '<option value="Diperbaharui" '.($value=="Diperbaharui"?'selected="selected"':'').'>Diperbaharui</option>';
+				
 		
 		return $out;
 	}

@@ -78,6 +78,15 @@ font-weight:bold;
 		</td>
 	  </tr>
 	  <tr>
+		<td>Status</td>
+		<td>:</td>
+		<td>
+			<select name="STATUS">
+				<?=$this->mjdih->getOptionStatus(array('value'=>set_value('STATUS')));?>
+			</select>
+		</td>
+	  </tr>
+	  <tr>
 		<td>Judul</td>
 		<td>:</td>
 		<td><input type="text" name="JUDUL" id="textfield" size="50" value="<?=set_value('JUDUL')?>"/></td>

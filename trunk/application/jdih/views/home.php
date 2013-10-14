@@ -101,9 +101,14 @@ grid_na=$('#data_na').datagrid({
 			
 				columns:[[
 					{field:'ck', checkbox:true},
-					{field:'JUDUL' ,title:'Produk Hukum', width:490, sortable:true,align:'left'
+					{field:'JUDUL' ,title:'Produk Hukum', width:400, sortable:true,align:'left'
 						,formatter:function(value,rowData,rowindex){
 							return '<span style="color:navy; font-weight:bold">'+rowData.JUDUL+'</span><br><span style="font-size:10px;"><i>'+rowData.DESKRIPSI+"</i></span>"
+						}
+					},
+					{field:'STATUS' ,title:'Status', width:90, sortable:true,align:'left'
+						,formatter:function(value,rowData,rowindex){
+							return '<span style="color:navy; font-weight:bold">'+rowData.STATUS+'</span>'+""
 						}
 					},
 					{field:'FILE' ,title:'Download', width:100, sortable:true,align:'center'
