@@ -84,7 +84,7 @@ class mdl_diklat_front extends CI_Model{
 	
 	function getContenttabDiklat($kodeinduk){
 		$out = '';
-		$out .= '<table width="100%" border="1" cellspacing="1" cellpadding="1">';
+		$out .= '<table width="100%" border="0" cellspacing="1" cellpadding="1">';
 				
 					# get program
 					$r_prog = $this->getProgramByUPT($kodeinduk);

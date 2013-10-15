@@ -31,7 +31,7 @@
 							echo 	'<tr>
 										<td align="left" valign="top"></td>
 										<td width="1%" align="left" valign="top">'.$id.'</td>
-										<td width="98%" align="left" valign="top"><a href="'.base_url().$this->config->item('index_page').'/front/kurikulum_detail/'.$dik->KODE_DIKLAT.'/'.$opt['value'].'">'.$dik->NAMA_DIKLAT.'</a></td>
+										<td width="98%" align="left" valign="top"><a href="'.base_url().$this->config->item('index_page').'/kurikulum/kurikulum_detail/'.$dik->KODE_DIKLAT.'/'.$opt['value'].'">'.$dik->NAMA_DIKLAT.'</a></td>
 									</tr>';
 							$id++;
 						}

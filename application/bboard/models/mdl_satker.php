@@ -5,68 +5,6 @@ class mdl_satker extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0){
-		$this->db->flush_cache();
-		$this->db->select('*');
-		$this->db->from('DIKLAT_MST_INDUKUPT');
-		$this->db->limit($num, $offset);
-		$this->db->order_by('KODE_INDUK');
-		
-		return $this->db->get();
-		
-	}
-	
-	function getDataEdit($id){
-		$this->db->flush_cache();
-		$this->db->select('*');
-		$this->db->from('DIKLAT_MST_INDUKUPT');
-		$this->db->where('KODE_INDUK', $id);
-		
-		return $this->db->get();
-	}
-
-	function insert($data){
-		$this->db->flush_cache();
-		$this->db->set('KODE_INDUK', $data['kode_induk']);
-		$this->db->set('NAMA_INDUK', $data['nama_induk']);
-		$result = $this->db->insert('DIKLAT_MST_INDUKUPT');
-		
-		if($result) {
-			return TRUE;
-		}else {
-			return FALSE;
-		}
-		
-	}
-	
-	function update($data){
-		$this->db->flush_cache();
-		$this->db->set('KODE_INDUK', $data['kode_induk']);
-		$this->db->set('NAMA_INDUK', $data['nama_induk']);
-		$this->db->where('KODE_INDUK', $data['id']);
-		$result = $this->db->update('DIKLAT_MST_INDUKUPT');
-		
-		if($result) {
-			return TRUE;
-		}else {
-			return FALSE;
-		}
-		
-	}
-	
-	function delete($data){
-		$this->db->flush_cache();
-		$this->db->where('KODE_INDUK', $data['id']);
-		$result = $this->db->delete('DIKLAT_MST_INDUKUPT');
-		
-		if($result) {
-			return TRUE;
-		}else {
-			return FALSE;
-		}
-		
-	}
-	
 	function getOptionSatker($d=""){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
@@ -126,22 +64,13 @@ class mdl_satker extends CI_Model{
 	
 	function getOptionUPTChilds($d=""){
 		
-		// yanto
-		$level = get_level();
-		
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
 		$this->db->from('DIKLAT_MST_UPT');
 		$this->db->order_by('URUTAN');
 		
-		//yanto
 		$out = '';
-		if($level['LEVEL'] == 2){ // induk upt
-			$this->db->where('KODE_INDUK', $level['KODE_UPT']);
-		}else if($level['LEVEL'] == 3){ // upt
-			$this->db->where('KODE_UPT', $level['KODE_UPT']);
-		}
 		
 		$res = $this->db->get();
 		

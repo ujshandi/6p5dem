@@ -16,7 +16,7 @@
 		if($upt->num_rows() > 0){
 	?>
 	
-	<a href="<?=base_url().$this->config->item('index_page').'/front/kurikulum/'.$upt->row()->KODE_UPT?>" class="control">&nbsp;&nbsp;&nbsp;Kembali</span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/kurikulum/kurikulum/'.$upt->row()->KODE_UPT?>" class="control">&nbsp;&nbsp;&nbsp;Kembali</span></a>
 	<br>
 	<br>
 	<h2 class="heading">Deskripsi Kurikulum</h2>
@@ -61,7 +61,7 @@
 		
 	<h2 class="heading">Daftar Kurikulum</h2>
 	<hr/>
-	<table width="100%" border="1" cellspacing="1" cellpadding="1">
+	<table width="100%" border="0" cellspacing="1" cellpadding="1">
 		<tr>
 			<th width="67" scope="col">NO</th>
 			<th width="715" scope="col">Nama Matakuliah</th>
