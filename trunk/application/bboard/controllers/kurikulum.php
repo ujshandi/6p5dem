@@ -6,16 +6,14 @@ class kurikulum extends My_Frontpage {
 	
 	function __construct(){
 		parent::__construct();
+		
 		$this->load->model('mdl_kurikulum');
 		$this->load->model('mdl_satker');
+		$this->load->model('mdl_program');
 	}
 	
 	public function index($upt="")
 	{
-		//redirect('kurikulum');
-		$this->load->model('mdl_kurikulum');
-		$this->load->model('mdl_program');
-		$this->load->model('mdl_satker');
 		
 		$this->open();
 		if($upt != ""){
