@@ -288,4 +288,89 @@ if(modul=='mon_diklat_upt'){
 		
 	});
 }
+// revisi FGD	
+if(modul=='mon_diklat_diklat'){
+	var upt
+	var diklat
+	var tahun_mulai
+	var tahun_akhir
+	var buka=0;
+	var buka2=0;
+	
+	$('#cari').linkbutton({  
+		iconCls: 'icon-search' ,
+		text:'Cari'
+	});  
+	fillCombo(host+'dashboard/get_combo_diklat/DIKLAT_MST_UPT','DIKLAT_MST_UPT');
+	$('#DIKLAT_MST_UPT').die();
+	$('#DIKLAT_MST_UPT').change(function(){
+		$('#DIKLAT_MST_DIKLAT').empty();
+		fillCombo(host+'dashboard/get_combo_diklat/DIKLAT_MST_DIKLAT','DIKLAT_MST_DIKLAT',$('#DIKLAT_MST_UPT').val());
+		
+	});
+	
+	$('#tab_na').tabs({
+				height: frmHeight-350,
+				width: frmWidth-303,
+				plain: false
+	});	
+	
+	
+	
+	$('#tab_na').tabs('add',{
+		title: 'GRAFIK '+flag.toUpperCase(),
+		iconCls:'chart_bar_link',
+		content:'<div id="isi_grafik" style="padding:5px;"></div>'
+	});	
+	
+	$('#cari').bind('click',function(){
+		 upt=$('#DIKLAT_MST_UPT').val();
+		 diklat=$('#DIKLAT_MST_DIKLAT').val();
+		 tahun_mulai=$('#TAHUN_FROM').val();
+		 tahun_akhir=$('#TAHUN_TO').val();
+		
+		
+		buka=0;buka2=0;
+		$('#tab_na').tabs('select','DATA '+flag.toUpperCase());
+		if(upt==''){
+			$.messager.alert("Pencarian","Pilih UPT",'warning');	
+		}
+		else if(diklat==''){
+			$.messager.alert("Pencarian","Pilih DIKLAT",'warning');	
+		}
+		else if(tahun_mulai==''){
+			$.messager.alert("Pencarian","Pilih Tahun Mulai",'warning');	
+		}
+		else if(tahun_akhir==''){
+			$.messager.alert("Pencarian","Pilih Tahun Akhir",'warning');	
+		}
+		else{
+			
+			if(parseInt(tahun_akhir) < parseInt(tahun_mulai)){
+				$.messager.alert("Pencarian","Range Tahun Akhir Salah (Lebih Besar Dari Tahun Awal)",'warning');	
+				buka=1;
+				buka2=1;
+			}	
+			else{
+				console.log(tahun_akhir+'->'+tahun_mulai)
+				post['upt']=upt;
+				post['diklat']=diklat;
+				post['tahun_mulai']=tahun_mulai;
+				post['tahun_akhir']=tahun_akhir;
+				post['flag']=flag;
+				$("#isi_data").html("").addClass("loading");
+					$.post(host+'dashboard/get_form/data_list_diklat',post,function (html){
+							$("#isi_data").html(html).removeClass("loading");
+					});
+					
+				$("#isi_grafik").html("").addClass("loading");
+					$.post(host+'dashboard/get_form/data_grafik_diklat',post,function (html){
+							$("#isi_grafik").html(html).removeClass("loading");
+					});
+				
+			}
+		}
+		
+	});
+}
 	
