@@ -221,11 +221,15 @@ function markerInit(){
 				var point = new google.maps.LatLng(lat,lng);
 				var tipe = item.tipe;
 				var picture = item.picture;
+				var alumni_url = getBaseUrl()+"/index.php/alumni_frontpage/hid_filter/";
 				if (!item.picture) picture = 'images/img/no.gif';
 				var html = "<div style='min-height:100px;'>Keterangan : <br/>"+
 					"<b>"+item.content+"</b><br/>"+
-					"Jumlah Peserta : "+item.peserta+"<br/>"+
-					"Jumlah Alumni : "+item.alumni+
+					"Jumlah Peserta : "+item.peserta+" (<a href='#'>detail</a>)"+"<br/>"+
+					"Jumlah Alumni : "+item.alumni+" (<a href='"+alumni_url+item.kodeupt+"' target='_blank')'>detail</a>)"+"<br/>"+
+					"Jumlah Dosen : "+item.dosen+" (<a href='#'>detail</a>)"+"<br/>"+
+					"Jumlah Instruktur : "+item.instruktur+" (<a href='#'>detail</a>)"+"<br/>"+
+					"Jumlah Widyaiswara : "+item.widyaiswara+" (<a href='#'>detail</a>)"+
 					"</div>";
 				marker = createMarker(point,tipe,html);
 			});
@@ -462,3 +466,23 @@ function create_kmlFileDaratOK(kantor){
 	});
 }
 
+// function detailAlumni(kodeupt){
+	// var url = getBaseUrl()+"/index.php/alumni_frontpage/hid_filter";
+	// // $.post(url, { kodeupt: kodeupt, search: '', numrow: '30' }, function(data) {
+		// // location = url;
+	// // });
+	// //crossDomainPost(url, kodeurl, '', 30);
+	// window.location.replace(url+'/'+kodeupt);
+// }
+
+function getBaseUrl(){
+	pathArray = window.location.href.split( '/' );
+	protocol = pathArray[0];
+	host = pathArray[2];
+	url = protocol + '//' + host;
+	var loc = window.location.pathname;
+	var base_dir = loc.substring(0, loc.lastIndexOf('/')).substring(0, loc.lastIndexOf('/'));
+	base_dir = base_dir.substring(0, base_dir.lastIndexOf('/'));
+	base_dir = base_dir.substring(0, base_dir.lastIndexOf('/'));
+	return (url + base_dir);
+}

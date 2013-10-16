@@ -100,13 +100,13 @@
                 <li><a><input type="checkbox" id="DINAS KABUPATENbox" onClick="boxclick3(this,'DINAS KABUPATEN')">&nbsp;Kabupaten / Kota</a></li>
 			</ul>
 		</li>
-		<li>
+		<!--<li>
 			<a href="#">Sebaran Alumni Diklat</a>
 			<ul>
 				<li><a><input type="checkbox" id="pelatihan" onClick="showMark('pelatihan')">&nbsp;Propinsi</a></li>
                 <li><a><input type="checkbox" id="pelatihan" onClick="showMark('pelatihan')">&nbsp;Kabupaten / Kota</a></li>
 			</ul>
-		</li>
+		</li>-->
 		</form>
 	</ul><!-- end vmenu -->
     </div><!-- end wrap left-->

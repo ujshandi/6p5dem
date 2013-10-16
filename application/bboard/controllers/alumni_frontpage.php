@@ -78,6 +78,15 @@ class Alumni_frontpage extends My_Frontpage {
 		redirect('alumni_frontpage');
 	}
 	
+	public function hid_filter($kodeupt){
+		$this->session->set_userdata($this->id.'kode_upt', $kodeupt);
+		$this->session->set_userdata($this->id.'search', '');
+		$this->session->set_userdata($this->id.'numrow', 30);
+		
+		//echo $kodeupt;
+		redirect('alumni_frontpage');
+	}
+	
 	/*public function add_alumni1(){
 		$this->open();		
 		$this->load->view('alumni/alumni_add1');
