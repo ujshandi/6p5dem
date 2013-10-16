@@ -147,7 +147,7 @@ class Users extends MY_Controller
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
 		
-		$data['results'] = $this->users->get_item_diklat($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$data['results'] = $this->users->get_item_kopeten($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
 		$this->load->view('users/users_list_kopeten', $data);
 	}
 	
@@ -163,7 +163,7 @@ class Users extends MY_Controller
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
 		
-		$data['results'] = $this->users->get_item_diklat($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$data['results'] = $this->users->get_item_jdih($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
 		$this->load->view('users/users_list_jdih', $data);
 	}
 	
@@ -369,6 +369,34 @@ class Users extends MY_Controller
 		
 	}
 	
+	public function edit_jdih($id){
+		$data['id'] = $id;
+		$results = $this->users->get_data_edit_jdih($id);
+		$data['USERNAME']=$results->row()->USERNAME;
+		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
+		$data['LEVEL']=$results->row()->LEVEL;
+		$this->load->view('users/users_edit_jdih', $data);
+	}
+	
+	public function proses_edit_jdih(){
+		$data['USERNAME'] = $this->input->post('USERNAME');
+		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+		$data['LEVEL'] = $this->input->post('LEVEL');
+	
+		$this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
+		$this->form_validation->set_rules('USER_GROUP_ID', 'USER_GROUP_ID', 'required');
+		
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('users/users_edit_jdih',$data);
+		}else{
+			$this->users->update_jdih($data);
+			redirect('users/get_users_jdih');
+		}
+		
+	}
+	
 	public function proses_delete($id){
 		if($this->users->delete($id)){
 			redirect('users');
@@ -382,6 +410,36 @@ class Users extends MY_Controller
 		
 		if($this->users->delete_sdm($id)){
 			redirect('users/get_users_sdm');
+		}else{
+			 echo 'Gagal Simpan';
+		}
+	
+	}
+	
+	public function proses_delete_diklat($id){
+		
+		if($this->users->delete_diklat($id)){
+			redirect('users/get_users_diklat');
+		}else{
+			 echo 'Gagal Simpan';
+		}
+	
+	}
+	
+	public function proses_delete_kopeten($id){
+		
+		if($this->users->delete_kopeten($id)){
+			redirect('users/get_users_kopeten');
+		}else{
+			 echo 'Gagal Simpan';
+		}
+	
+	}
+	
+	public function proses_delete_jdih($id){
+		
+		if($this->users->delete_jdih($id)){
+			redirect('users/get_users_jdih');
 		}else{
 			 echo 'Gagal Simpan';
 		}
@@ -544,9 +602,7 @@ class Users extends MY_Controller
 		# get post data
         $USER_ID = $this->input->post('USER_ID');
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
-		$data['LEVEL'] = $this->input->post('LEVEL_ID');
-		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
-		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
+		$data['LEVEL'] = $this->input->post('LEVEL');
 		$results=$this->users->get_item_by_username($USER_ID);
 		$data['USER_ID']=$USER_ID;
 		$data['USERNAME']=$results->row()->USERNAME;

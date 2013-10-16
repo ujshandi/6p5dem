@@ -55,7 +55,7 @@ class mdl_users extends CI_Model{
 		$this->db->join('SDM_USER_GROUP','SDM_USER_GROUP.USER_GROUP_ID=SDM_USERS.USER_GROUP_ID');
 		
 		if ($key!=''){
-				$this->db->like('USERNAME',$key);
+				$this->db->like('SDM_USERS.USERNAME',$key);
 		}
 		
 		if ($count_data){
@@ -73,7 +73,7 @@ class mdl_users extends CI_Model{
 		$this->db->join('JDIH_USER_GROUP','JDIH_USER_GROUP.USER_GROUP_ID=JDIH_USERS.USER_GROUP_ID');
 		
 		if ($key!=''){
-				$this->db->like('USERNAME',$key);
+				$this->db->like('JDIH_USERS.USERNAME',$key);
 		}
 		
 		if ($count_data){
@@ -91,7 +91,7 @@ class mdl_users extends CI_Model{
 		$this->db->join('KOPETEN_USER_GROUP','KOPETEN_USER_GROUP.USER_GROUP_ID=KOPETEN_USERS.USER_GROUP_ID');
 		
 		if ($key!=''){
-				$this->db->like('USERNAME',$key);
+				$this->db->like('KOPETEN_USERS.USERNAME',$key);
 		}
 		
 		if ($count_data){
@@ -291,6 +291,7 @@ class mdl_users extends CI_Model{
 		$this->db->set('DESCRIPTION', $data['DESCRIPTION']);
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
+		$this->db->set('LEVEL', $data['LEVEL']);
 		$this->db->set('STAT', 'A');
 		
 		$result = $this->db->insert('JDIH_USERS');
@@ -386,6 +387,54 @@ class mdl_users extends CI_Model{
 		}
 	}
 	
+	function delete_diklat($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_ID', $id);
+		$result = $this->db->delete('DIKLAT_USERS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	
+	function delete_kopeten($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_ID', $id);
+		$result = $this->db->delete('KOPETEN_USERS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	
+	function delete_jdih($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_ID', $id);
+		$result = $this->db->delete('JDIH_USERS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	
+	function jdih_kopeten($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_ID', $id);
+		$result = $this->db->delete('JDIH_USERS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	
 	function get_data_edit_kopeten($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
@@ -402,6 +451,32 @@ class mdl_users extends CI_Model{
 		
 		$this->db->where('USERNAME', $data['USERNAME']);
 		$result = $this->db->update('KOPETEN_USERS');
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	
+	
+	
+	function get_data_edit_jdih($id){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('JDIH_USERS');
+		$this->db->where('USER_ID', $id);
+		
+		return $this->db->get();
+	}
+	
+
+	function update_jdih($data){
+		$this->db->set('USERNAME', $data['USERNAME']);
+		$this->db->set('USER_GROUP_ID', $data['USER_GROUP_ID']);
+		$this->db->set('LEVEL', $data['LEVEL']);
+		
+		$this->db->where('USERNAME', $data['USERNAME']);
+		$result = $this->db->update('JDIH_USERS');
 		if($result) {
 			return TRUE;
 		}else {
@@ -826,6 +901,16 @@ class mdl_users extends CI_Model{
 				$out .= '<option value="'.$r->KODE_UPT.'">'.$r->NAMA_UPT.'</option>';
 			}
 		}		
+		return $out;
+	}
+	
+	function get_level_jdih($d=""){
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$out .= '<option value="1" '.($value=="1"?'selected="selected"':'').'>Administrasi</option>';
+		$out .= '<option value="2" '.($value=="2"?'selected="selected"':'').'>Umum</option>';
+				
 		return $out;
 	}
 }
