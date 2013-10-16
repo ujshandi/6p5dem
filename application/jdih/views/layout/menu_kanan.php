@@ -61,7 +61,22 @@
 	<TR>
 		<TD>
 			<ul class="tmo_list">
-				<li><a href="<?=base_url().$this->config->item('index_page').'/produk_hukum/add_hukum'?>">Tambah Produk Hukum</a></li>
+				<?php
+					$data_sess = $this->session->userdata('dataUser');	
+					$data['USER_NAME'] = $data_sess['USER_NAME'];
+					$results=$this->mjdih->get_level_jdih($data);
+					if (isset($results)){
+						if (isset($results->row()->LEVEL)){
+							if ($results->row()->LEVEL=='1'){
+								?>
+									<li><a href="<?=base_url().$this->config->item('index_page').'/produk_hukum/add_hukum'?>">Tambah Produk Hukum</a></li>
+								<?php
+							}
+						}
+					}
+					
+				?>
+				
 			</ul>
 		</TD>
 	</TR>

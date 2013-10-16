@@ -212,4 +212,13 @@
 		return $out;
 	}
 	
+	function get_level_jdih($data){
+		$this->db->flush_cache();
+		$this->db->select('JDIH_USERS.LEVEL');
+		$this->db->where('USERNAME',$data['USER_NAME']);
+		$this->db->from('JDIH_USERS');
+		
+		return $this->db->get();
+	}
+	
 }
