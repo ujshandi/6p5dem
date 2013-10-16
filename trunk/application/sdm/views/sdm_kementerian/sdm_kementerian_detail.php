@@ -103,6 +103,7 @@ ul.tabs {
           
         <div id="content_1" class="content">
 			<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
+		<?if($result1->num_rows() > 0){?>
 		<tr>
 			<td width="159" bgcolor="#FFFFFF">
 				<img width="80px" src="http://sik.dephub.go.id/photo/<?=$result1->row()->NIP ?>.jpg" />
@@ -137,10 +138,16 @@ ul.tabs {
 			<td width="125">TMT Jabatan</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TMTJABATAN?></td>
 		</tr>
+		<?}else{?>
+				<tr>
+					<td align="left" valign="top" colspan="7"><h1>Maaf... Ada Kesalahan!! Data Tidak Ditemukan/Tidak Dapat Di Tampilkan.</h1></td>
+				</tr>
+		<?}?>
 	</table>
 		</div>  
         <div id="content_2" class="content">
 		<table class="box-table-a" width="100%" border="1" bordercolor="#FFFFFF">
+		<?if($result1->num_rows() > 0){?>
 		<tr>
 			<td><h2>Pendidikan Terakhir</h2></td>
 			<td bgcolor="#FFFFFF"></td>
@@ -169,6 +176,11 @@ ul.tabs {
 			<td width="125">Tahun Diklat</td>
 			<td width="159" bgcolor="#FFFFFF"><?=$result1->row()->TAHUNJANG?></td>
 		</tr>
+		<?}else{?>
+				<tr>
+					<td align="left" valign="top" colspan="7"><h1>Maaf... Ada Kesalahan!! Data Tidak Ditemukan/Tidak Dapat Di Tampilkan.</h1></td>
+				</tr>
+		<?}?>
 	</table>	
 		</div>       
     </div>  
