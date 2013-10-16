@@ -11,7 +11,6 @@ class Login extends CI_Controller {
 				redirect(base_url().'home');
 			}
 		} */
-		
 	}
 	
 	public function index($err_msg = '',$user_name='')
@@ -25,7 +24,6 @@ class Login extends CI_Controller {
 	//	$this->template->set_template('login');
 		//$this->template->write_view('content','home',$data,TRUE);
 		//$this->template->render();
-		
 		$this->load->view('security/login_v',$data);
 	}
 	
