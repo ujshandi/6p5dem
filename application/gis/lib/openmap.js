@@ -1,6 +1,7 @@
 var mapPanel;
 var map, lyrLine, zoom;
 var points = [];
+var shpLayers=[];
 var map, zoom;
 var myPoint, pointLayer, center;
 var bounds = new OpenLayers.Bounds();
@@ -138,7 +139,7 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 		}
 	}
 
-	function mainCategoryInit(){
+	function mainCategoryInitasli(){
 			$.jsonp({
 				url: "getmarkdemo.php",
 				callback: "callback",
@@ -166,6 +167,38 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 			});
 	}
 	
+	function mainCategoryInit(){
+			$.jsonp({
+				url: "dataOracletest.php",
+				callback: "callback",
+				success: function(data) {
+					points = [];
+					pointLayer.destroyFeatures();
+					$.each(data, function(i, item){									
+						var lat = item.lat;
+				        var lng = item.lng;
+				        var point = new google.maps.LatLng(lat,lng);
+				        var tipe = item.tipe;
+						//var nama = item.tipe;
+						var tema = tipe;
+						var nama = item.nama;
+				        var picture = item.picture;
+				        if (!item.picture) picture = 'images/img/no.gif';
+						var html = "<div style='min-height:100px;'>Keterangan : <br/>"+
+					"<b>"+item.nama+"</b><br/>"+
+					//"Jumlah Peserta : "+item.peserta+"<br/>"+
+					//"Jumlah Alumni : "+item.alumni+
+					"</div>";
+						addMarker(lng, lat, html, nama, tema);
+					});	
+				},
+				error: function() {
+				
+				}
+			});
+	}
+	
+	
 	function addMarker(lon, lat, html, nama, tema) {
 		myPoint = new OpenLayers.Geometry.Point(lon,lat).transform( map.displayProjection,  map.projection);
 		bounds.extend(myPoint);
@@ -181,15 +214,15 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 		sampleStyle.fontSize = "12px";
 		sampleStyle.labelAlign = "lt";
 		sampleStyle.cursor= "pointer";
-		sampleStyle.graphicTitle=tema;
+		sampleStyle.graphicTitle=nama;
 		sampleStyle.graphicName="square";
-		sampleStyle.label=tema;
+		sampleStyle.label=nama;
 		sampleStyle.labelXOffset=10;
 		sampleStyle.labelYOffset=12;
 		sampleStyle.fontFamily="verdana";
-		if (tema == "Bimbingan Teknis"){
+		if (tema == "UPT PERHUBUNGAN DARAT"){
 			sampleStyle.externalGraphic = "images/symbol/SDall.png";
-		}else if (tema == "Diklat"){
+		}else if (tema == "UPT PERHUBUNGAN LAUT"){
 			sampleStyle.externalGraphic = "images/symbol/SMPall.png";
 		}else{
 			sampleStyle.externalGraphic = "images/symbol/PTall.png";
@@ -205,7 +238,7 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 		myPointFeature.attributes = {
 			name: html	
 		};
-		myPointFeature.type = nama; 
+		myPointFeature.type = tema; 
 		pointLayer.addFeatures( [ myPointFeature ] );
 	}
 	
@@ -239,6 +272,8 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 	
 	$(function(){
 		mainCategoryInit();
+		//markerInit()
+		
 	});
 	/*
 	map.events.register('zoomend', this, function() {
@@ -250,3 +285,92 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 		console.log(map.getZoom);
 	});
 	*/
+	
+		function boxclick(box, category) {
+		if (document.getElementById(category).checked) {
+			for (i=0;i<=pointLayer.features.length - 1;i++) {
+				if(pointLayer.features[i].type == category) {
+					pointLayer.features[i].style.display = 'block';
+					pointLayer.redraw();
+				}
+			}	
+		} else {
+			for (i=0;i<=pointLayer.features.length - 1;i++) {
+				if(pointLayer.features[i].type == category) {
+					pointLayer.features[i].style.display = 'none';
+					pointLayer.redraw();
+				}	
+			}
+		}
+	}
+	
+	
+	
+	function boxclick2(box, category){
+	if(box.checked) {
+		if (category == 'MATRA DARAT') {
+			create_kmlFileDaratOK(103);  
+		}else if (category == 'MATRA LAUT') {
+			create_kmlFileDaratOK(104); 
+		}else if (category == 'MATRA UDARA') {
+			create_kmlFileDaratOK(105);	
+		}else if (category == 'MATRA KERETA') {
+			create_kmlFileDaratOK(111);	
+		}
+	}
+	else {
+		for (i in shpLayers) {
+			shpLayers[i].setVisibility(false);
+		}
+	}  
+	document.getElementById(category+"box").checked = box.checked;
+	if (!box.checked) infowindow.close();
+}
+
+function create_kmlFileDaratOK(kantor){
+	$.jsonp({
+		//url: "dataSDMKementerian.php?unitkantor="+kantor,
+		url: "dataSDMDinastest.php",
+		callback: "callback",
+		success: function(data) {
+		$.each(data, function(i, item){
+		
+				var kode = item.kode;				
+				var jumlah = item.jumlah;
+				var total = item.total;
+				var nama = item.nama;
+				
+				var low = total/3;
+				var nrm = low + (total/3);
+				var hi  = nrm + (total/3);
+				var color = 'green';
+				
+				if(jumlah<low){ color = 'red'}
+				else if(jumlah<nrm){ color = 'yellow'}
+				else { color = 'green'}
+			 	
+				  var red = {
+                strokeColor: "#800000",
+                strokeOpacity: 1,
+                strokeWidth: 2,
+                fillColor: "#FF0000",
+                fillOpacity: 0.7
+            };
+				shpLayers[i] = new OpenLayers.Layer.WMS( 
+				    "admKecBandung", 
+					"http://localhost:8090/geoserver/wms", 
+					{layers: 'indo_kab_region_KODE__'+kode, transparent: true, format:'image/png'}, 
+					{opacity: 0.8,singleTile: true }
+				);
+				
+				map.addLayer(shpLayers[i]);							 
+				//var centerlonlat = new OpenLayers.LonLat( 107.623701, -6.909812 );
+				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
+				 
+			});
+		},
+		error: function() {
+		   alert('Error crete SHP, Please check your internet connection!!');
+		}
+	});
+}
