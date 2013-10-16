@@ -20,6 +20,7 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		$this->db->join('SDM_ESELON', 'SDM_ESELON.KODEESELON = SDM_PEGAWAI.ESELON');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('ESELON ASC');
+		$this->db->order_by('ID_GOLONGAN ASC');
 		// yanto
 		if(!empty($filter['kodekantor'])){
 			$this->db->where('UNITKANTOR', $filter['kodekantor']);
@@ -43,7 +44,7 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		$this->db->join('SDM_ESELON', 'SDM_ESELON.KODEESELON = SDM_PEGAWAI.ESELON');
 		//$this->db->limit($num, $offset);
 		$this->db->order_by('ESELON ASC');
-		
+		$this->db->order_by('ID_GOLONGAN ASC');
 		// yanto
 		if(!empty($filter['kodekantor'])){
 			$this->db->where('UNITKANTOR', $filter['kodekantor']);
