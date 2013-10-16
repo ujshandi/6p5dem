@@ -10,6 +10,9 @@ class home extends My_Controller {
 		$this->load->model('mjdih');
 		//$this->load->library(array('pagination','flexigrid'));
 	//	
+		if(!$this->session->userdata('login') == TRUE){
+			redirect(base_url().'index.php/auth/login');
+		}
 	}
 	
 	function index()
