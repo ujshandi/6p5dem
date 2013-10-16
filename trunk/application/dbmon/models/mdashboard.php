@@ -146,18 +146,76 @@
 				return $this->db->query($sql2)->result_array(); 
 					
 			break;
+			// DIKLAT UPT
+			case "get_DIKLAT_GRAP_UPT":
+				$where ="";
+				$flag=$this->input->post('flag');
+				
+				if($flag){
+					if($flag=='peserta'){$where .=" AND STATUS_PESERTA='Registrasi'";}
+					if($flag=='alumni'){$where .=" AND STATUS_PESERTA='Lulus'";}
+				}
+				$sql="SELECT B.KODE_UPT,B.NAMA_UPT,";
+				for($i=$p3;$i<=$p4;$i++){
+					$sql .="(SELECT COUNT(KODE_UPT) AS NILAI 
+							FROM DIKLAT_MST_PESERTA WHERE KODE_UPT=B.KODE_UPT AND THN_ANGKATAN='".$i."' ".$where.")AS JUMLAH_".$i." ";
+					if($i!=$p4){$sql .=',';}
+				}
+				$sql .="FROM DIKLAT_MST_UPT B
+						WHERE B.KODE_UPT = '".$p2."'";
+						
+				$sql2="SELECT ";
+					for($i=$p3;$i<=$p4;$i++){
+						$sql2.=($i!=$p4 ? $i.',SUM(JUMLAH_'.$i.')AS JML_'.$i.',':$i.',SUM(JUMLAH_'.$i.')AS JML_'.$i);
+					}	
+				$sql2 .=" FROM (".$sql.")";	
+				
+				return $this->db->query($sql2)->result_array(); 
+					
+			break;
+			// REVISI FGD
+			case "get_DIKLAT_GRAP_DIKLAT":
+				$where ="";
+				$flag=$this->input->post('flag');
+				
+				if($flag){
+					if($flag=='peserta'){$where .=" AND STATUS_PESERTA='Registrasi'";}
+					if($flag=='alumni'){$where .=" AND STATUS_PESERTA='Lulus'";}
+				}
+				$sql="SELECT B.KODE_DIKLAT,B.NAMA_DIKLAT,";
+				for($i=$p3;$i<=$p4;$i++){
+					$sql .="(SELECT COUNT(KODE_DIKLAT) AS NILAI 
+							FROM DIKLAT_MST_PESERTA WHERE KODE_DIKLAT=B.KODE_DIKLAT AND THN_ANGKATAN='".$i."' ".$where.")AS JUMLAH_".$i." ";
+					if($i!=$p4){$sql .=',';}
+				}
+				$sql .="FROM DIKLAT_MST_DIKLAT B
+						WHERE B.KODE_DIKLAT = '".$p2."'";
+						
+				$sql2="SELECT ";
+					for($i=$p3;$i<=$p4;$i++){
+						$sql2.=($i!=$p4 ? $i.',SUM(JUMLAH_'.$i.')AS JML_'.$i.',':$i.',SUM(JUMLAH_'.$i.')AS JML_'.$i);
+					}	
+				$sql2 .=" FROM (".$sql.")";	
+				
+				return $this->db->query($sql2)->result_array(); 
+					
+			break;
 			case "get_upt":
 				$sql="SELECT A.KODE_UPT,A.NAMA_UPT FROM DIKLAT_MST_UPT A WHERE A.KODE_INDUK=".$p2;
 					
 			break;
-			
+			case "get_diklat":
+				$sql="SELECT B.KODE_DIKLAT,B.NAMA_DIKLAT FROM DIKLAT_MST_DIKLAT B WHERE B.KODE_UPT=".$p2;
+					
+			break;
 			
 		}
 		
 		return $this->db->query($sql)->result_array(); 
 	}
 	
-		
+	// END REVISI FGD	
+	
 	function get_data_grid($p1="",$p2="",$p3="",$p4=""){
 		switch ($p1){
 			case "data_diklat":
@@ -222,5 +280,13 @@
 		//echo $sql;
 		return $this->db->query($sql)->result_array();
 	}
-	
+	//revisi FGD
+	function isi_combo_diklat($table,$field_id,$field_display){
+		$where=" WHERE 1=1 ";
+		$v=$this->input->post('v');
+		if($v){if($table=='DIKLAT_MST_DIKLAT')$where .=" AND KODE_UPT='".$v."'";}
+		$sql="select ".$field_id." as id_na ,".$field_display." as text from ".$table.$where;
+		//echo $sql;
+		return $this->db->query($sql)->result_array();
+	}
 }
