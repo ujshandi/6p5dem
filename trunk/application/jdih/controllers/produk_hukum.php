@@ -7,10 +7,13 @@ class produk_hukum extends My_Controller {
 		
 		parent::__construct();
 		//	$this->load->library(array('pagination','filedownload'));
-			$this->load->helper(array('url','form','download'));
-			$this->CI = & get_instance(); 
-			$this->load->model('mjdih');
-			
+		$this->load->helper(array('url','form','download'));
+		$this->CI = & get_instance(); 
+		$this->load->model('mjdih');
+		
+		if(!$this->session->userdata('login') == TRUE){
+			redirect(base_url().'index.php/auth/login');
+		}
 	}
 	
 	function peraturan($p1="")
