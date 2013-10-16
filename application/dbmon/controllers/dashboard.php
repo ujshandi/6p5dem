@@ -47,6 +47,12 @@ class dashboard extends My_Controller {
 				$mod="mon_diklat_upt";
 			
 			break;
+			case 'mon_diklat_diklat':
+				$data['title']='Komposisi Peserta Diklat';
+				$data['flag']=$p2;
+				$mod="mon_diklat_diklat";
+			
+			break;
 			
 			case "data_list":
 				$mod="data_list";
@@ -123,6 +129,9 @@ class dashboard extends My_Controller {
 			break;
 			case "data_grafik_upt":
 				$mod="data_grafik_upt";
+			break;
+			case "data_grafik_diklat":
+				$mod="data_grafik_diklat";
 			break;
 			default:$mod='under';
 		}
@@ -241,6 +250,50 @@ class dashboard extends My_Controller {
 			
 			$xml .="</chart>";
 			break;
+			// diklat UPT
+			case "diklat_upt":
+				$data['induk_upt']	 =$this->input->post('induk_upt');
+				$data['upt'] =$this->input->post('upt');
+				$data['tahun_akhir'] =$this->input->post('tahun_akhir');
+				$data['tahun_mulai'] =$this->input->post('tahun_mulai');
+				$data_diklat=$this->mdashboard->get_data('get_DIKLAT_GRAP_UPT',$data['upt'],$data['tahun_mulai'],$data['tahun_akhir']);
+				
+				
+				
+				$xml="<chart caption='Jumlah ".($this->input->post('flag')=='peserta' ? 'Peserta' : 'Lulusan')." Pendidikan Dan Pelatihan' subcaption='Tahun ".$data['tahun_mulai']." sampai ".$data['tahun_akhir']."' xAxisName='Tahun' yAxisName='Orang' numberPrefix='' showLabels='1' showColumnShadow='1' animation='1' showAlternateHGridColor='1' AlternateHGridColor='ff5904' divLineColor='ff5904' divLineAlpha='20' alternateHGridAlpha='5' canvasBorderColor='666666' baseFontColor='666666' lineColor='FF5904' lineAlpha='85' showValues='1' rotateValues='1' valuePosition='auto' canvaspadding='8'>";
+				//print_r($data_diklat);
+				for($i=$data['tahun_mulai'];$i<=$data['tahun_akhir'];$i++){		
+					$xml .="<set label='".$i."' value='".$data_diklat[0]['JML_'.$i]."' />";
+					
+				}		
+				
+			
+			$xml .="</chart>";
+			break;
+			
+			
+			//revisi FGD
+			break;
+			case "diklat_diklat":
+				$data['upt']	 =$this->input->post('upt');
+				$data['diklat'] =$this->input->post('diklat');
+				$data['tahun_akhir'] =$this->input->post('tahun_akhir');
+				$data['tahun_mulai'] =$this->input->post('tahun_mulai');
+				$data_diklat_diklat=$this->mdashboard->get_data('get_DIKLAT_GRAP_DIKLAT',$data['diklat'],$data['tahun_mulai'],$data['tahun_akhir']);
+				
+				
+				
+				$xml="<chart caption='Jumlah ".($this->input->post('flag')=='peserta' ? 'Peserta' : 'Lulusan')." Pendidikan Dan Pelatihan' subcaption='Tahun ".$data['tahun_mulai']." sampai ".$data['tahun_akhir']."' xAxisName='Tahun' yAxisName='Orang' numberPrefix='' showLabels='1' showColumnShadow='1' animation='1' showAlternateHGridColor='1' AlternateHGridColor='ff5904' divLineColor='ff5904' divLineAlpha='20' alternateHGridAlpha='5' canvasBorderColor='666666' baseFontColor='666666' lineColor='FF5904' lineAlpha='85' showValues='1' rotateValues='1' valuePosition='auto' canvaspadding='8'>";
+				//print_r($data_diklat);
+				for($i=$data['tahun_mulai'];$i<=$data['tahun_akhir'];$i++){		
+					$xml .="<set label='".$i."' value='".$data_diklat_diklat[0]['JML_'.$i]."' />";
+					
+				}		
+				
+			
+			$xml .="</chart>";
+			break;
+			//END
 			
 			case "data_kab":
 				$kd_prov=$this->input->post('kd_prov');
@@ -443,4 +496,28 @@ class dashboard extends My_Controller {
 		
 	}
 	
+	// revisi FGD
+	function get_combo_diklat($p1,$valfilter="",$val="",$val2=""){
+		$optTemp =""; 
+		switch($p1){
+				case 'DIKLAT_MST_UPT':
+					$rec=$this->mdashboard->isi_combo_diklat('DIKLAT_MST_UPT','KODE_UPT','NAMA_UPT');
+				break;
+				
+				case 'DIKLAT_MST_DIKLAT':
+					$rec=$this->mdashboard->isi_combo_diklat('DIKLAT_MST_DIKLAT','KODE_DIKLAT','NAMA_DIKLAT');
+				break;
+		}
+		//print_r($rec);
+		$optTemp .= "<option value=''>-- Pilih --</option>";			
+			foreach($rec as $v=>$k)
+			{
+				if($this->input->post("v") == $k['ID_NA'])
+					$optTemp .= "<option selected value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+				else 
+					$optTemp .= "<option value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+			}
+			echo $optTemp;	
+		
+	}
 }
