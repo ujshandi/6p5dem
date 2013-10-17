@@ -359,7 +359,7 @@ function create_kmlFileDaratOK(kantor){
 				shpLayers[i] = new OpenLayers.Layer.WMS( 
 				    "admKecBandung", 
 					"http://localhost:8090/geoserver/wms", 
-					{layers: 'indo_kab_region_KODE__'+kode, transparent: true, format:'image/png'}, 
+					{layers: 'indo_kab_region_KODE__'+kode, transparent: true, format:'image/png',styles:color}, 
 					{opacity: 0.8,singleTile: true }
 				);
 				
