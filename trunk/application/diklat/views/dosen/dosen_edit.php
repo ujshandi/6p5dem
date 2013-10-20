@@ -53,9 +53,9 @@ $( "#TGL_LAHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">Pendidikan <em>*</em></label> <textarea name="PENDIDIKAN" class="five"><?=ReadCLOB($result->row()->PENDIDIKAN)?></textarea></li>
 			
-			<li><label for="">Jurusan <em>*</em></label> <input name="JURUSAN" value="<?=$result->row()->JURUSAN?>" type="text" class="four"/></li>			
+			<!--<li><label for="">Jurusan <em>*</em></label> <input name="JURUSAN" value="<?=$result->row()->JURUSAN?>" type="text" class="four"/></li>			
 			
-			<li><label for="">Kelompok Matakuliah <em>*</em></label> <input name="KELOMPOK_MATKUL" value="<?=$result->row()->KELOMPOK_MATKUL?>" type="text" class="five"/></li>		
+			<li><label for="">Kelompok Matakuliah <em>*</em></label> <input name="KELOMPOK_MATKUL" value="<?=$result->row()->KELOMPOK_MATKUL?>" type="text" class="five"/></li>		-->
 			
 			<li><label for="">Jenis Pengajar <em>*</em></label>
 				<?php 
