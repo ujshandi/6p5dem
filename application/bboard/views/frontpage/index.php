@@ -263,7 +263,7 @@
 			<div class="apl_box">
 				<img src="<?=base_url()?>asset/board/asset/frontpage/images/diklat.png" class="ic" />
 		    <hr class="style1"/>
-				<p align="center"><center><a href="<?php echo site_url() . '/diklat/' ?>" class="more_bgcolor more_rounded centered">INFO DIKLAT</a></center></p>
+				<p align="center"><center><a href="<?php echo site_url() . '/diklat/' ?>" class="more_bgcolor more_rounded centered">LIHAT</a></center></p>
 			</div>
 	  <!--End Link Informasi Diklat-->
 	  
@@ -272,7 +272,7 @@
 			<div class="apl_box">
 				<img src="<?=base_url()?>asset/board/asset/frontpage/images/kurikulum.png" class="ic" />
 		    <hr class="style1"/>
-				<p align="center"><center><a href="<?php echo site_url() . '/kurikulum/' ?>" class="more_bgcolor more_rounded centered">INFO KURIKULUM</a></center></p>
+				<p align="center"><center><a href="<?php echo site_url() . '/kurikulum/' ?>" class="more_bgcolor more_rounded centered">LIHAT</a></center></p>
 			</div>
 	  <!--End Link Informasi Kurikulum-->
     </div>
