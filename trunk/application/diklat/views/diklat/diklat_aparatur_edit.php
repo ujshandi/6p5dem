@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Diklat Aparatur</h1>
+	<h1 class="heading">Edit Data Diklat Aparatur</h1>
 	<hr/>
 	<?=form_open('diklat_aparatur/proses_edit', array('class'=>'sform'))?>
 	<fieldset>

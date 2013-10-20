@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Tambah Kurikulum (2)</h1>
+	<h1 class="heading">Tambah Kurikulum</h1>
 	<hr/>
 	<?=form_open('kurikulum/proses_add', array('class'=>'sform'))?>
 	<fieldset>

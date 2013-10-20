@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Satuan Kerja</h1>
+	<h1 class="heading">Edit Data Satuan Kerja</h1>
 	<hr/>
 	<?=form_open('satker/proses_edit', array('class'=>'sform'))?>
 	<fieldset>

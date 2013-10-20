@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Program</h1>
+	<h1 class="heading">Edit Data Program</h1>
 	<hr/>
 	<?=form_open('program/proses_edit', array('class'=>'sform'))?>
 	<fieldset>

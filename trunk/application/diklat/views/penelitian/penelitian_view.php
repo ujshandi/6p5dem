@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Penelitian</h1>
+	<h1 class="heading">Data Penelitian Detail</h1>
 	<hr/>
 	<?=form_open('penelitian/proses_add_lulus', array('class'=>'sform'))?>
 		<br>

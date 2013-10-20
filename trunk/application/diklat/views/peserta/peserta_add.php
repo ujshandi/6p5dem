@@ -23,7 +23,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Peserta</h1>
+	<h1 class="heading">Tambah Data Peserta</h1>
 	<hr/>
 	<?=form_open('peserta/proses_add', array('class'=>'sform'))?>
 	<fieldset>

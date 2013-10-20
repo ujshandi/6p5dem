@@ -22,7 +22,7 @@ $( "#TGL_LULUS" ).datepicker({ dateFormat: 'dd-mm-yy' });
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Alumni</h1>
+	<h1 class="heading">Edit Data Alumni</h1>
 	<hr/>
 	<?=form_open('alumni/proses_edit', array('class'=>'sform'))?>
 	<fieldset>
