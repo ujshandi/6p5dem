@@ -169,27 +169,30 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 	
 	function mainCategoryInit(){
 			$.jsonp({
-				url: "dataOracletest.php",
+				url: "dataOracle.php",
 				callback: "callback",
 				success: function(data) {
 					points = [];
 					pointLayer.destroyFeatures();
 					$.each(data, function(i, item){									
 						var lat = item.lat;
-				        var lng = item.lng;
-				        var point = new google.maps.LatLng(lat,lng);
-				        var tipe = item.tipe;
-						//var nama = item.tipe;
-						var tema = tipe;
-						var nama = item.nama;
-				        var picture = item.picture;
-				        if (!item.picture) picture = 'images/img/no.gif';
+						var lng = item.lng;
+						var point = new google.maps.LatLng(lat,lng);
+						var tipe = item.tipe;
+						var picture = item.picture;
+						var alumni_url = getBaseUrl()+"/index.php/alumni_frontpage/hid_filter/";
+						var peserta_url = getBaseUrl()+"/index.php/peserta_frontpage/hid_filter/";
+						var dosen_url = getBaseUrl()+"/index.php/dosen_frontpage/hid_filter/";
+						if (!item.picture) picture = 'images/img/no.gif';
 						var html = "<div style='min-height:100px;'>Keterangan : <br/>"+
-					"<b>"+item.nama+"</b><br/>"+
-					//"Jumlah Peserta : "+item.peserta+"<br/>"+
-					//"Jumlah Alumni : "+item.alumni+
-					"</div>";
-						addMarker(lng, lat, html, nama, tema);
+							"<b>"+item.content+"</b><br/>"+
+							"Jumlah Peserta : "+item.peserta+" (<a href="+peserta_url+item.kodeupt+" target='_blank'>detail</a>)"+"<br/>"+
+							"Jumlah Alumni : "+item.alumni+" (<a href='"+alumni_url+item.kodeupt+"' target='_blank')'>detail</a>)"+"<br/>"+
+							"Jumlah Dosen : "+item.dosen+" (<a href='"+dosen_url+item.kodeupt+"/Dosen' target='_blank')'>detail</a>)"+"<br/>"+
+							"Jumlah Instruktur : "+item.instruktur+" (<a href='"+dosen_url+item.kodeupt+"/Instruktur' target='_blank')'>detail</a>)"+"<br/>"+
+							"Jumlah Widyaiswara : "+item.widyaiswara+" (<a href='"+dosen_url+item.kodeupt+"/Widyaiswara' target='_blank')'>detail</a>)"+
+							"</div>";
+						addMarker(lng, lat, html, '', tipe);
 					});	
 				},
 				error: function() {
@@ -286,7 +289,8 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 	});
 	*/
 	
-		function boxclick(box, category) {
+	function boxclick(box, category) {
+		//alert(category);
 		if (document.getElementById(category).checked) {
 			for (i=0;i<=pointLayer.features.length - 1;i++) {
 				if(pointLayer.features[i].type == category) {
@@ -330,7 +334,7 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 function create_kmlFileDaratOK(kantor){
 	$.jsonp({
 		//url: "dataSDMKementerian.php?unitkantor="+kantor,
-		url: "dataSDMDinastest.php",
+		url: "dataSDMKementerian.php?unitkantor="+kantor,
 		callback: "callback",
 		success: function(data) {
 		$.each(data, function(i, item){
@@ -349,21 +353,48 @@ function create_kmlFileDaratOK(kantor){
 				else if(jumlah<nrm){ color = 'yellow'}
 				else { color = 'green'}
 			 	
-				  var red = {
-                strokeColor: "#800000",
-                strokeOpacity: 1,
-                strokeWidth: 2,
-                fillColor: "#FF0000",
-                fillOpacity: 0.7
-            };
-				shpLayers[i] = new OpenLayers.Layer.WMS( 
-				    "admKecBandung", 
-					"http://localhost:8090/geoserver/wms", 
-					{layers: 'indo_kab_region_KODE__'+kode, transparent: true, format:'image/png',styles:color}, 
-					{opacity: 0.8,singleTile: true }
-				);
+				var red = {
+					strokeColor: "#800000",
+					strokeOpacity: 1,
+					strokeWidth: 2,
+					fillColor: "#FF0000",
+					fillOpacity: 0.7
+				};
 				
-				map.addLayer(shpLayers[i]);							 
+				var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
+					"<b>"+item.nama+"</b><br/>"+
+					"Jumlah SDM : "+item.jumlah+
+					"</div>";
+				
+				shpLayers[i] = new OpenLayers.Layer.WMS( 
+					"Indo Kab Reg "+kode, 
+					"http://localhost:8090/geoserver/bpsdm_gis/wms?", 
+					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png',styles:color}, 
+					{opacity: 0.8,singleTile: true,isBaseLayer:false}
+				);
+							
+				map.addLayer(shpLayers[i]);	
+				
+				info = new OpenLayers.Control.WMSGetFeatureInfo({
+					url: 'http://localhost:8090/geoserver/bpsdm_gis/wms?', 
+					title: 'Identify features by clicking',
+					queryVisible: true,
+					eventListeners: {
+						getfeatureinfo: function(event) {
+							map.addPopup(new OpenLayers.Popup.FramedCloud("popup",
+								map.getLonLatFromPixel(event.xy),
+								null,
+								"<div style='font-size:.8em'>Feature: </div>",
+								null,
+								true
+							));
+						}
+					}
+				});
+				map.addControl(info);
+				info.activate();
+				map.addControl(new OpenLayers.Control.LayerSwitcher());
+				//alert(kode);
 				//var centerlonlat = new OpenLayers.LonLat( 107.623701, -6.909812 );
 				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
 				 
@@ -373,4 +404,16 @@ function create_kmlFileDaratOK(kantor){
 		   alert('Error crete SHP, Please check your internet connection!!');
 		}
 	});
+}
+
+function getBaseUrl(){
+	pathArray = window.location.href.split( '/' );
+	protocol = pathArray[0];
+	host = pathArray[2];
+	url = protocol + '//' + host;
+	var loc = window.location.pathname;
+	var base_dir = loc.substring(0, loc.lastIndexOf('/')).substring(0, loc.lastIndexOf('/'));
+	base_dir = base_dir.substring(0, base_dir.lastIndexOf('/'));
+	base_dir = base_dir.substring(0, base_dir.lastIndexOf('/'));
+	return (url + base_dir);
 }
