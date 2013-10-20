@@ -331,6 +331,27 @@ function boxclick2(box, category){
 	if (!box.checked) infowindow.close();
 }
 
+function boxclick3(box, category){
+	if(box.checked) {
+		if (category == 'DINAS PROVINSI') {
+			create_kmlDinas(true);  		  
+		}else if (category == 'DINAS KABUPATEN') {
+			create_kmlDinas(false);
+		}
+
+		var kmlOptions = {
+		   suppressInfoWindows: false
+		};
+	}
+	else {
+		for (i in shpLayers) {
+			shpLayers[i].setVisibility(false);
+		}
+	}  
+	document.getElementById(category+"box").checked = box.checked;
+	if (!box.checked) infowindow.close();
+}
+
 function create_kmlFileDaratOK(kantor){
 	var info = new Array();
 	$.jsonp({
@@ -421,4 +442,47 @@ function getBaseUrl(){
 	base_dir = base_dir.substring(0, base_dir.lastIndexOf('/'));
 	base_dir = base_dir.substring(0, base_dir.lastIndexOf('/'));
 	return (url + base_dir);
+}
+
+function create_kmlDinas(prov){
+	$.jsonp({
+		url: "dataSDMDinas.php?prov="+prov,
+		callback: "callback",
+		success: function(data) {
+		$.each(data, function(i, item){
+				var kode = item.kode;
+				var jumlah = item.jumlah;
+				var total = item.total;
+				var nama = item.nama;
+				
+				var low = total/3;
+				var nrm = low + (total/3);
+				var hi  = nrm + (total/3);
+				var color = 'green';
+				
+				if(jumlah<low){ color = 'red'}
+				else if(jumlah<nrm){ color = 'yellow'}
+				else { color = 'green'}
+				
+				if(prov){
+					var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/province/'+color+'/'+kode+'.kml';
+				}else{
+					var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml';
+				}
+				
+				shpLayers[i] = new OpenLayers.Layer.WMS( 
+					"Indo Kab Reg "+kode, 
+					"http://localhost:8090/geoserver/bpsdm_gis/wms", 
+					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png',styles:color}, 
+					{opacity: 0.8,singleTile: false,isBaseLayer:false}
+				);
+  			
+				map.addLayer(shpLayers[i]);	
+				//alert(kode);
+			});
+		},
+		error: function() {
+		   alert('Error crete SHP, Please check your internet connection!!');
+		}
+	});
 }
