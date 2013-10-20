@@ -11,7 +11,7 @@ class mdl_peserta_front extends CI_Model{
 		$this->db->select('DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.*, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_PESERTA');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PESERTA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_ALUMNI', 'DIKLAT_MST_PESERTA.NO_PESERTA = DIKLAT_MST_ALUMNI.NO_PESERTA');
+		//$this->db->join('DIKLAT_MST_ALUMNI', 'DIKLAT_MST_PESERTA.NO_PESERTA = DIKLAT_MST_ALUMNI.NO_PESERTA');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		$this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_PESERTA.IDPESERTA');
@@ -33,7 +33,7 @@ class mdl_peserta_front extends CI_Model{
 		$this->db->select('DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.*, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
 		$this->db->from('DIKLAT_MST_PESERTA');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PESERTA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
-		$this->db->join('DIKLAT_MST_ALUMNI', 'DIKLAT_MST_PESERTA.NO_PESERTA = DIKLAT_MST_ALUMNI.NO_PESERTA');
+		//$this->db->join('DIKLAT_MST_ALUMNI', 'DIKLAT_MST_PESERTA.NO_PESERTA = DIKLAT_MST_ALUMNI.NO_PESERTA');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		// $this->db->limit($num, $offset);
 		$this->db->order_by('DIKLAT_MST_PESERTA.IDPESERTA');

@@ -56,11 +56,12 @@ class mdl_diklat_front extends CI_Model{
 		//$level = get_level();
 		
 		$this->db->flush_cache();
-		$this->db->select('a.KODE_PROGRAM, b.KODE_UPT, b.NAMA_UPT');
+		$this->db->select('a.KODE_PROGRAM, b.KODE_UPT, b.NAMA_UPT, b.URUTAN');
 		$this->db->from('DIKLAT_MST_DIKLAT "a"');
 		$this->db->join('DIKLAT_MST_UPT "b"', 'b.KODE_UPT = a.KODE_UPT');
-		$this->db->group_by('a.KODE_PROGRAM, b.KODE_UPT, b.NAMA_UPT');
+		$this->db->group_by('a.KODE_PROGRAM, b.KODE_UPT, b.NAMA_UPT, b.URUTAN');
 		$this->db->where('a.KODE_PROGRAM', $id);
+		$this->db->order_by('"b"."URUTAN"', 'ASC');
 		
 		// if($level['LEVEL'] == 2){
 			// $this->db->where('b.KODE_INDUK', $level['KODE_UPT']);
