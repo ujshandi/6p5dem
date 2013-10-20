@@ -7,7 +7,7 @@ $( "#TGL_LAHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 <!-- contenna -->
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Dosen</h1>
+	<h1 class="heading">Edit Data Dosen</h1>
 	<hr/>
 	<?=form_open('dosen/proses_edit', array('class'=>'sform'))?>
 	<fieldset>

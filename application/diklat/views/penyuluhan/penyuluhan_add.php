@@ -6,7 +6,7 @@ $( "#TANGGAL" ).datepicker();
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Penyuluhan</h1>
+	<h1 class="heading">Tambah Data Penyuluhan</h1>
 	<hr/>
 	<?=form_open('penyuluhan/proses_add', array('class'=>'sform'))?>
 	<fieldset>

@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Peserta</h1>
+	<h1 class="heading">Data Peserta Detail</h1>
 	<hr/>
 	<?=form_open('peserta/proses_add_lulus', array('class'=>'sform'))?>
 		<br>

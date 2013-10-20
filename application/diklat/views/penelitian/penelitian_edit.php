@@ -22,7 +22,7 @@ $( "#TGL_PUBLIKASI" ).datepicker({ dateFormat: 'dd-mm-yy' });
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Penelitian</h1>
+	<h1 class="heading">Edit Data Penelitian</h1>
 	<hr/>
 	<?=form_open('penelitian/proses_edit', array('class'=>'sform'))?>
 	<fieldset>

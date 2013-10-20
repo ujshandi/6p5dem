@@ -16,7 +16,7 @@
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Alumni</h1>
+	<h1 class="heading">Tambah Data Alumni</h1>
 	<hr/>
 	<?=form_open('alumni/proses_add_alumni1', array('class'=>'sform'))?>
 	<fieldset>

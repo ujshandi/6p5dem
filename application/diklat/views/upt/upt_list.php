@@ -29,9 +29,9 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
+		<th width="20%">Induk UPT</th>
 		<th>Kode UPT</th>
-		<th width="35%">Nama UPT</th>
-		<th width="20%">Satker</th>
+		<th width="35%">Nama UPT</th>		
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -41,9 +41,9 @@
 		?>
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
-				<td ><?=$r->KODE_UPT?></td>
-				<td ><?=$r->NAMA_UPT?></td>
 				<td ><?=$r->NAMA_INDUK?></td>
+				<td ><?=$r->KODE_UPT?></td>
+				<td ><?=$r->NAMA_UPT?></td>				
 				<td >
 					<a href="<?=site_url().'/upt/edit/'.$r->KODE_UPT?>" class="control" >
 						<span class="edit">edit</span></a> |

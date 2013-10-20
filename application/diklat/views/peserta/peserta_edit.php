@@ -24,7 +24,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Peserta</h1>
+	<h1 class="heading">Edit Data Peserta</h1>
 	<hr/>
 	<?=form_open('peserta/proses_edit', array('class'=>'sform'))?>
 	<fieldset>

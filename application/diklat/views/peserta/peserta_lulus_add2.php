@@ -16,7 +16,7 @@
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Peserta</h1>
+	<h1 class="heading">Tambah Data Peserta Lulus Diklat</h1>
 	<hr/>
 	<?=form_open('peserta/proses_add_lulus', array('class'=>'sform'))?>
 	<fieldset>

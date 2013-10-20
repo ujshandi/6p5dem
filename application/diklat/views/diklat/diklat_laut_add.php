@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Diklat Laut</h1>
+	<h1 class="heading">Tambah Data Diklat Laut</h1>
 	<hr/>
 	<?=form_open('diklat_laut/proses_add', array('class'=>'sform'))?>
 	<fieldset>

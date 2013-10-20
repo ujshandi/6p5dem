@@ -6,7 +6,7 @@ $( "#TGL_LAHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Dosen</h1>
+	<h1 class="heading">Tambah Data Dosen</h1>
 	<hr/>
 	<?=form_open('dosen/proses_add', array('class'=>'sform'))?>
 	<fieldset>
