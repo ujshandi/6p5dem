@@ -24,6 +24,7 @@ class peserta extends My_Controller {
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
 		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
 		
+		
 		# get data
 		$result = $this->mdl_peserta->getData($data['numrow'], $offset, $data);
 		
@@ -57,6 +58,7 @@ class peserta extends My_Controller {
 		
 		$data['curcount'] = $offset+1;
 		$data['result'] = $result['row_data'];
+		$data['jumlah'] = $result['row_count'];
 		
 		$this->load->view('peserta/peserta_list', $data);
 		
@@ -64,7 +66,7 @@ class peserta extends My_Controller {
 	}
 	
 	public function search(){
-		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('kode_upt'));
+		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('KODE_UPT'));
 		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('KODE_DIKLAT'));
 		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
 		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));

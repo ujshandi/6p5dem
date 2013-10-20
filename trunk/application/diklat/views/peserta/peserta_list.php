@@ -15,6 +15,7 @@
 </script>
 
 
+
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta</h1>
@@ -50,6 +51,8 @@
 				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
 			</select>
 			<input type="submit" name="submit" value="Proses" />
+			<br>
+			JUMLAH PESERTA &nbsp;&nbsp;&nbsp;: <?echo $jumlah;?>
 		</li>
 	</ol>		
 	</fieldset>
