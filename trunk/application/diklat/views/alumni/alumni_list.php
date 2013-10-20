@@ -1,3 +1,19 @@
+<script>
+    $(document).ready(function(){
+        $("#KODE_UPT").change(function(){
+            var KODE_UPT = $("#KODE_UPT").val();
+            $.ajax({
+               type : "POST",
+               url  : "<?=base_url().$this->config->item('index_page');?>/peserta/getDiklat",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#KODE_DIKLAT").html(data);
+               }
+            });
+        });
+    });
+</script>
+
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Alumni</h1>
@@ -8,12 +24,19 @@
 	<fieldset>
 	<ol>
 		<li>
-			UPT : 
-			<select name="kode_upt">
-				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
-			</select>
+			<!-- cainned combobox-->
+			UPT	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+				<select name="KODE_UPT" id="KODE_UPT">
+					<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+				</select>
+			<br>			
+			DIKLAT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+					<?=$this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$kode_upt, 'value'=>$kode_diklat));?>        	
+				</select>
 			&nbsp;&nbsp;
-			NAMA ALUMNI :
+			<br>
+			NAMA ALUMNI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			&nbsp;&nbsp;
 			<select name="numrow">
@@ -24,6 +47,8 @@
 				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
 			</select>
 			<input type="submit" name="submit" value="Proses" />
+			<br>
+			JUMLAH ALUMNI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?echo $jumlah;?>
 		</li>
 	</ol>		
 	</fieldset>
