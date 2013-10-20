@@ -218,7 +218,7 @@ class mdl_users extends CI_Model{
 		$this->db->set('NIP', $data['NIP']);
 		$this->db->set('EMAIL', $data['EMAIL']);
 		$this->db->set('LEVEL', $data['LEVEL']);
-		$this->db->set('KODEPROVIN', $data['KODEPROVIN']);
+		//$this->db->set('KODEPROVIN', $data['KODEPROVIN']);
 		$this->db->set('KODEKABUP', $data['KODEKABUP']);
 		
 		$result = $this->db->insert('SDM_USERS');
