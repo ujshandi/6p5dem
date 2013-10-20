@@ -217,7 +217,7 @@ class Users extends MY_Controller
         $USER_ID = $this->input->post('USER_ID');
 		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
 		$data['LEVEL'] = $this->input->post('LEVEL_ID');
-		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
+		//$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
 		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
 		$results=$this->users->get_item_by_username($USER_ID);
 		$data['USER_ID']=$USER_ID;
