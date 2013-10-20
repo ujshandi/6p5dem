@@ -310,7 +310,7 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 	
 	
 	
-	function boxclick2(box, category){
+function boxclick2(box, category){
 	if(box.checked) {
 		if (category == 'MATRA DARAT') {
 			create_kmlFileDaratOK(103);  
@@ -332,6 +332,7 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 }
 
 function create_kmlFileDaratOK(kantor){
+	var info = new Array();
 	$.jsonp({
 		//url: "dataSDMKementerian.php?unitkantor="+kantor,
 		url: "dataSDMKementerian.php?unitkantor="+kantor,
@@ -353,13 +354,13 @@ function create_kmlFileDaratOK(kantor){
 				else if(jumlah<nrm){ color = 'yellow'}
 				else { color = 'green'}
 			 	
-				var red = {
-					strokeColor: "#800000",
-					strokeOpacity: 1,
-					strokeWidth: 2,
-					fillColor: "#FF0000",
-					fillOpacity: 0.7
-				};
+				// var red = {
+					// strokeColor: "#800000",
+					// strokeOpacity: 1,
+					// strokeWidth: 2,
+					// fillColor: "#FF0000",
+					// fillOpacity: 0.7
+				// };
 				
 				var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
 					"<b>"+item.nama+"</b><br/>"+
@@ -368,37 +369,41 @@ function create_kmlFileDaratOK(kantor){
 				
 				shpLayers[i] = new OpenLayers.Layer.WMS( 
 					"Indo Kab Reg "+kode, 
-					"http://localhost:8090/geoserver/bpsdm_gis/wms?", 
+					"http://localhost:8090/geoserver/bpsdm_gis/wms", 
 					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png',styles:color}, 
-					{opacity: 0.8,singleTile: true,isBaseLayer:false}
+					{opacity: 0.8,singleTile: false,isBaseLayer:false}
 				);
 							
 				map.addLayer(shpLayers[i]);	
-				
-				info = new OpenLayers.Control.WMSGetFeatureInfo({
-					url: 'http://localhost:8090/geoserver/bpsdm_gis/wms?', 
-					title: 'Identify features by clicking',
-					queryVisible: true,
-					eventListeners: {
-						getfeatureinfo: function(event) {
-							map.addPopup(new OpenLayers.Popup.FramedCloud("popup",
-								map.getLonLatFromPixel(event.xy),
-								null,
-								"<div style='font-size:.8em'>Feature: </div>",
-								null,
-								true
-							));
-						}
-					}
-				});
-				map.addControl(info);
-				info.activate();
-				map.addControl(new OpenLayers.Control.LayerSwitcher());
 				//alert(kode);
 				//var centerlonlat = new OpenLayers.LonLat( 107.623701, -6.909812 );
 				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
 				 
 			});
+			var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
+					"<b>NAMA</b><br/>"+
+					"Jumlah SDM : 0"+
+					"</div>";
+					
+			info = new OpenLayers.Control.WMSGetFeatureInfo({
+				url: 'http://localhost:8090/geoserver/bpsdm_gis/wms', 
+				title: 'Identify features by clicking',
+				queryVisible: true,
+				eventListeners: {
+					getfeatureinfo: function(event) {
+						map.addPopup(new OpenLayers.Popup.FramedCloud(
+							"popup", 
+							map.getLonLatFromPixel(event.xy),
+							null,
+							pesan,
+							null,
+							true
+						));
+					}
+				}
+			});
+			map.addControl(info);
+			info.activate();
 		},
 		error: function() {
 		   alert('Error crete SHP, Please check your internet connection!!');

@@ -140,7 +140,7 @@
     <div class="clearfix"></div>
     </div><!-- end content wrap -->
   </div><!-- end content -->
-  
+  <div id="nodelist"></div>
   <div id="footer">
     Copyright &copy; 2013 BPSDM Perhubungan - <a href="http://www.dephub.go.id/">Kementerian Perhubungan RI</a>
   </div><!-- end footer -->
