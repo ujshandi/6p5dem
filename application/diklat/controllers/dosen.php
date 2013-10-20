@@ -102,8 +102,8 @@ class dosen extends My_Controller {
 		$data['STATUS'] = $this->input->post('STATUS');
 		$data['TAHUN'] = $this->input->post('TAHUN');
 		$data['PENDIDIKAN'] = $this->input->post('PENDIDIKAN');
-		$data['JURUSAN'] = $this->input->post('JURUSAN');
-		$data['KELOMPOK_MATKUL'] = $this->input->post('KELOMPOK_MATKUL');
+		//$data['JURUSAN'] = $this->input->post('JURUSAN');
+		//$data['KELOMPOK_MATKUL'] = $this->input->post('KELOMPOK_MATKUL');
 		$data['JENIS_DOSEN'] = $this->input->post('JENIS_DOSEN');
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
@@ -117,8 +117,8 @@ class dosen extends My_Controller {
 		$this->form_validation->set_rules('STATUS', 'STATUS', 'required');
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
 		$this->form_validation->set_rules('PENDIDIKAN', 'PENDIDIKAN', 'required');
-		$this->form_validation->set_rules('JURUSAN', 'JURUSAN', 'required');
-		$this->form_validation->set_rules('KELOMPOK_MATKUL', 'KELOMPOK_MATKUL', 'required');
+		//$this->form_validation->set_rules('JURUSAN', 'JURUSAN', 'required');
+		//$this->form_validation->set_rules('KELOMPOK_MATKUL', 'KELOMPOK_MATKUL', 'required');
 		$this->form_validation->set_rules('JENIS_DOSEN', 'JENIS DOSEN', 'required');
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		//$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
@@ -160,8 +160,8 @@ class dosen extends My_Controller {
 		$data['STATUS'] = $this->input->post('STATUS');
 		$data['TAHUN'] = $this->input->post('TAHUN');
 		$data['PENDIDIKAN'] = $this->input->post('PENDIDIKAN');
-		$data['JURUSAN'] = $this->input->post('JURUSAN');
-		$data['KELOMPOK_MATKUL'] = $this->input->post('KELOMPOK_MATKUL');
+		//$data['JURUSAN'] = $this->input->post('JURUSAN');
+		//$data['KELOMPOK_MATKUL'] = $this->input->post('KELOMPOK_MATKUL');
 		$data['JENIS_DOSEN'] = $this->input->post('JENIS_DOSEN');
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
@@ -175,8 +175,8 @@ class dosen extends My_Controller {
 		$this->form_validation->set_rules('STATUS', 'STATUS', 'required');
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
 		$this->form_validation->set_rules('PENDIDIKAN', 'PENDIDIKAN', 'required');
-		$this->form_validation->set_rules('JURUSAN', 'JURUSAN', 'required');
-		$this->form_validation->set_rules('KELOMPOK_MATKUL', 'KELOMPOK_MATKUL', 'required');
+		//$this->form_validation->set_rules('JURUSAN', 'JURUSAN', 'required');
+		//$this->form_validation->set_rules('KELOMPOK_MATKUL', 'KELOMPOK_MATKUL', 'required');
 		$this->form_validation->set_rules('JENIS_DOSEN', 'JENIS DOSEN', 'required');
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		# set message validation
@@ -262,8 +262,8 @@ class dosen extends My_Controller {
 						$data_tmp[$x]['STATUS'] 		= $this->excel->val($i, 6);
 						$data_tmp[$x]['TAHUN'] 			= $this->excel->val($i, 7);
 						$data_tmp[$x]['PENDIDIKAN'] 	= $this->excel->val($i, 8);
-						$data_tmp[$x]['JURUSAN'] 		= $this->excel->val($i, 8);
-						$data_tmp[$x]['KELOMPOK_MATKUL']= $this->excel->val($i, 8);
+						//$data_tmp[$x]['JURUSAN'] 		= $this->excel->val($i, 8);
+						//$data_tmp[$x]['KELOMPOK_MATKUL']= $this->excel->val($i, 8);
 						$data_tmp[$x]['JENIS_DOSEN'] 	= $this->excel->val($i, 9);
 						$data_tmp[$x]['KODE_UPT'] 		= $KODE_UPT;
 						
