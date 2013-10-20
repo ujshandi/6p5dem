@@ -20,7 +20,7 @@
 		<td><input class="greenbutton" type="submit" value="TAMPILKAN" style="float:LEFT"/></td>
     <?=form_close() ?>
 	<li style="float:RIGHT">
-	<a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add'?>" class="control"> <span class="add">Tambah Data</span></a>
+	<!--a href="<?=base_url().$this->config->item('index_page').'/sdm_kementerian/add'?>" class="control"> <span class="add">Tambah Data</span></a-->
 	</li>
 	<hr/>
 	<table width="100%">
