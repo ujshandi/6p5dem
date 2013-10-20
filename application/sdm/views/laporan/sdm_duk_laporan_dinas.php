@@ -1,6 +1,6 @@
 <!-- page content -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Print Laporan DUK Aparatur Kementerian</h1> 
+	<h1 class="heading">Print Laporan DUK Aparatur Dinas</h1> 
  <?php echo form_open('lap_duk_sdm_dinas/pdf', array('target'=>'_blank')); ?>
     <div id="provin">
    Provinsi : <br/>
