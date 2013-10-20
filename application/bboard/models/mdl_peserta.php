@@ -229,7 +229,7 @@ class mdl_peserta extends CI_Model{
 		$KODE_UPT = isset($d['KODE_UPT'])?$d['KODE_UPT']:'';
 		
 		$this->db->flush_cache();
-		$this->db->where('KODE_UPT', $KODE_UPT);
+		$this->db->where('KODE_UPT', $KODE_UPT==0?'':$KODE_UPT);
 		$result = $this->db->get('DIKLAT_MST_DIKLAT');
 		
 		//$out = '<select name="'.$name.'" id="'.$id.'">';

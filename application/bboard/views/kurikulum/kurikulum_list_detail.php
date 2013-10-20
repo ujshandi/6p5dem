@@ -1,3 +1,4 @@
+
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 	<?php
@@ -68,7 +69,7 @@
 			<th width="84" scope="col">Teori</th>
 			<th width="96" scope="col">Praktek</th>
 			<th width="69" scope="col">Jumlah</th>
-			<th width="82" scope="col">Jam</th>
+			<th width="82" scope="col">Jam Belajar</th>
 			<th width="80" scope="col">Semester</th>
 		</tr>
 		<?

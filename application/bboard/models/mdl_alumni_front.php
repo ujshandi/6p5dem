@@ -21,6 +21,10 @@ class mdl_alumni_front extends CI_Model{
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
 		}
 		
+		if(!empty($filter['kode_diklat'])){
+			$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $filter['kode_diklat']);
+		}
+		
 		if(!empty($filter['search']))
 			$this->db->like('DIKLAT_MST_PESERTA.NAMA_PESERTA', $filter['search']);
 		//echo $filter['search'];
@@ -41,6 +45,10 @@ class mdl_alumni_front extends CI_Model{
 		// yanto
 		if(!empty($filter['kode_upt'])){
 			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}
+		
+		if(!empty($filter['kode_diklat'])){
+			$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $filter['kode_diklat']);
 		}
 		
 		if(!empty($filter['search']))

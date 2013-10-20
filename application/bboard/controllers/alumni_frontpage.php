@@ -26,6 +26,7 @@ class Alumni_frontpage extends My_Frontpage {
 		
 		# get filter
 		$data['kode_upt'] = $this->session->userdata($this->id.'kode_upt');
+		$data['kode_diklat'] = $this->session->userdata($this->id.'kode_diklat');
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
@@ -64,6 +65,7 @@ class Alumni_frontpage extends My_Frontpage {
 		
 		$data['curcount'] = $offset+1;
 		$data['result'] = $result['row_data'];
+		$data['jumlah'] = $result['row_count'];
 		
 		$this->load->view('info_alumni/alumni_list', $data);
 		
@@ -71,7 +73,8 @@ class Alumni_frontpage extends My_Frontpage {
 	}
 	
 	public function search(){
-		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('kode_upt'));
+		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('KODE_UPT'));
+		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('KODE_DIKLAT'));
 		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
 		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
 		
