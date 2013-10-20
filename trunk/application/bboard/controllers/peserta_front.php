@@ -57,8 +57,10 @@ class peserta_front extends MY_Frontpage {
 		$this->close();
 	}
 	
+	
 	function getDiklat(){
 		echo $this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$this->input->post('KODE_UPT')));
 	}
+
 	
 }
