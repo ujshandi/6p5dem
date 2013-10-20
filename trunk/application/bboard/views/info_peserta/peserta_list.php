@@ -1,8 +1,8 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Informasi Data Alumni</h1>
+	<h1 class="heading">Informasi Data Peserta</h1>
 	<hr/>
-	<a href="<?=site_url();?>" class="greenbutton">Back</a>
+	<!--<a href="<?=site_url();?>" class="greenbutton">Back</a>-->
 	<br>
 	<br>
 	<?=form_open('peserta_frontpage/search', array('class'=>'sform'))?>
