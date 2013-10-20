@@ -71,8 +71,8 @@ class mdl_diklat_kopetensi extends CI_Model{
 	function getDataEdit($id){
 		$this->db->flush_cache();
 		$this->db->select('*');
-		$this->db->from('DIKLAT_MST_DIKLAT');
-		$this->db->where('KODE_DIKLAT', $id);
+		$this->db->from('KOPETEN_DIKLAT');
+		$this->db->where('KOPETEN_DIKLAT_ID', $id);
 		
 		return $this->db->get();
 	}
@@ -97,15 +97,15 @@ class mdl_diklat_kopetensi extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
+        $this->db->set('KODE_STANDAR_UDARA', $data['KODE_STANDAR_UDARA']);
         $this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
-        $this->db->set('NAMA_DIKLAT', $data['NAMA_DIKLAT']);
-        $this->db->set('KODE_PROGRAM', $data['KODE_PROGRAM']);
-        $this->db->set('KODE_UPT', $data['KODE_UPT']);
-        $this->db->set('KODE_INDUK', $data['KODE_INDUK']);
+        //$this->db->set('KODE_PROGRAM', $data['KODE_PROGRAM']);
+        //$this->db->set('KODE_UPT', $data['KODE_UPT']);
+        $//this->db->set('KODE_INDUK', $data['KODE_INDUK']);
 
-		$this->db->where('KODE_DIKLAT', $data['id']);
+		$this->db->where('KOPETEN_DIKLAT_ID', $data['id']);
 		
-		$result = $this->db->update('DIKLAT_MST_DIKLAT');
+		$result = $this->db->update('KOPETEN_DIKLAT');
 		
 		if($result) {
 			return TRUE;
@@ -217,6 +217,36 @@ class mdl_diklat_kopetensi extends CI_Model{
 		}
 		
 		return $out;
+	}
+	
+	function getkopetensi(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('KOPETEN_STDR_UDARA');
+		$this->db->order_by('KODE_STANDAR_UDARA','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Kopetensi-';
+            $result[$row->KODE_STANDAR_UDARA]= $row->NAMA_STANDAR;
+        }
+ 
+        return $result;
+	}
+	
+	function getdiklat(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_DIKLAT');
+		$this->db->order_by('KODE_DIKLAT','ASC');
+		$array_keys_values = $this->db->get();
+    	foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Diklat-';
+            $result[$row->KODE_DIKLAT]= $row->NAMA_DIKLAT;
+        }
+ 
+        return $result;
 	}
 }
 ?>

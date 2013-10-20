@@ -111,8 +111,10 @@ class diklat_kopetensi extends My_Controller {
 		$this->open();
 		
 		$data['id'] = $id;
+		$data['option_kopetensi'] = $this->mdl_diklat_kopetensi->getkopetensi();
+		$data['option_diklat'] = $this->mdl_diklat_kopetensi->getdiklat();
 		$data['result'] = $this->mdl_diklat_kopetensi->getDataEdit($id);
-		$this->load->view('diklat_kopetensi/diklat_kopetensi_edit', $data);
+		$this->load->view('kopetensi_diklat/diklat_kopetensi_edit', $data);
 		
 		$this->close();
 	}
@@ -122,14 +124,14 @@ class diklat_kopetensi extends My_Controller {
 		
 		$data['id'] = $this->input->post('id');
 		//$data['KODE_UPT'] = $this->input->post('KODE_UPT');
-        $data['KODE_STANDAR_UDARA'] = $this->input->post('KODE_STADAR_UDARA');
+        $data['KODE_STANDAR_UDARA'] = $this->input->post('KODE_STANDAR_UDARA');
         $data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
         //$data['NAMA_DIKLAT'] = $this->input->post('NAMA_DIKLAT');
         //$data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
 		
 		# set rules validation
 		//$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
-        $this->form_validation->set_rules('KODE_STADAR_UDARA', 'KOMPETENSI', 'required');
+        $this->form_validation->set_rules('KODE_STANDAR_UDARA', 'KOMPETENSI', 'required');
         $this->form_validation->set_rules('KODE_DIKLAT', 'KODE DIKLAT', 'required');
         //$this->form_validation->set_rules('NAMA_DIKLAT', 'NAMA DIKLAT', 'required');
 		
@@ -137,7 +139,7 @@ class diklat_kopetensi extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('diklat_kopetensi/diklat_kopetensi_add',$data);
+			$this->load->view('diklat_kopetensi/diklat_kopetensi_edit',$data);
 		}else{
 			$this->mdl_diklat_kopetensi->insert($data);
 			redirect('diklat_kopetensi');
