@@ -83,7 +83,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">TANGGAL MASUK<em>*</em></label> <input name="TGL_MASUK" value="<?=$result->row()->TGL_MASUK?>" type="text" class="one" id="TGL_MASUK"/></li>
 			
-			<li><label for="">TAHUN <em>*</em></label>
+			<li><label for="">TAHUN ANGKATAN<em>*</em></label>
 				<?php 
 					$opti['id'] = 'THN_ANGKATAN';
 					$opti['name'] = 'THN_ANGKATAN';
