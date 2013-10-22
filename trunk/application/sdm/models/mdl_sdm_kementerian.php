@@ -30,10 +30,13 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 			$this->db->where('KERJAUNIT', $filter['kodeunit']);
 		}
 		
+		$this->db->where('PENSIUN IS NULL');
+		
 		if(!empty($filter['search']))
 			$this->db->like('NAMA', $filter['search']);
 		
 		$tmp['row_data'] = $this->db->get();
+		
 		
 		#get count
 		$this->db->flush_cache();
@@ -53,6 +56,8 @@ class Mdl_Sdm_Kementerian extends CI_Model{
 		if(!empty($filter['kodeunit'])){
 			$this->db->where('KERJAUNIT', $filter['kodeunit']);
 		}
+		
+		$this->db->where('PENSIUN IS NULL');
 		
 		if(!empty($filter['search']))
 			$this->db->like('NAMA', $filter['search']);
