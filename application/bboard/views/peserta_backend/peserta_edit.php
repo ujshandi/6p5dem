@@ -47,7 +47,7 @@ $( "#TGL_MASUK" ).datepicker();
 				<select name="KODE_UPT" id="KODE_UPT">
 					<?php 
 						$opti['value'] = $result->row()->KODE_UPT;
-						echo $this->mdl_satker->getOptionUPTChild($opti);
+						echo $this->mdl_upt->getOptionUPT($opti);
 					?>
 				</select>
 			</li>
