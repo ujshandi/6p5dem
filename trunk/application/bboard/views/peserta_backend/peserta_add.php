@@ -42,7 +42,7 @@ $( "#TGL_MASUK" ).datepicker();
 			<li>
 				<label for="">UPT<em>*</em></label>
 				<select name="KODE_UPT" id="KODE_UPT">
-					<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+					<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 				</select>
 			</li>
 			

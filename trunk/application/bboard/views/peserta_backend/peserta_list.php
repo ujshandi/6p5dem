@@ -12,7 +12,7 @@
 		<li>
 			UPT : 
 			<select name="kode_upt">
-				<?=$this->mdl_satker->getOptionUPTChild(array('value'=>$kode_upt))?>
+				<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 			</select>
 			&nbsp;&nbsp;
 			NAMA PENDAFTAR :
