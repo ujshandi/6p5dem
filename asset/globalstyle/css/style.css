@@ -205,6 +205,10 @@ a:hover.control {color:#669966;background-color:#f9f9f9;border-color:#669966;box
 .edit {background:url(../images/ic-edit.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .view {background:url(../images/view.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 .user {background:url(../images/ic-user.png) no-repeat 5px 50%;text-indent:25px;display:block;}
+.upload {background:url(../images/ic-upload.png) no-repeat 5px 50%;text-indent:25px;display:block;}
+.search {background:url(../images/search.png) no-repeat 5px 50%;text-indent:25px;display:block;}
+.export {background:url(../images/ic-export.png) no-repeat 5px 50%;text-indent:25px;display:block;}
+.pdf {background:url(../images/pdf.png) no-repeat 5px 50%;text-indent:25px;display:block;}
 
 .one { width: 8.33333%!important; }
 .two { width: 16.66667%!important; }
