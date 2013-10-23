@@ -7,7 +7,7 @@
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/satker'?>">Satuan Kerja</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/upt'?>">UPT</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/jenis_sarpras'?>">Jenis Sarana Prasarana</a></li>
-			<li><a href="<?=base_url().$this->config->item('index_page').'/front/agenda'?>">Kalender Akademik</a></li>
+			<li><a href="<?=base_url().$this->config->item('index_page').'/front/agenda'?>">Kegiatan</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/sarana'?>">Sarana</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/prasarana'?>">Prasarana</a></li>
 			<li><a href="<?=base_url().$this->config->item('index_page').'/front/penyuluhan'?>">Penyuluhan</a></li>
