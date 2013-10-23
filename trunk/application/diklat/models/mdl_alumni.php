@@ -237,5 +237,44 @@ class mdl_alumni extends CI_Model{
 		return $out;
 	}
 	
+	function get_pdf($filter){
+		# get data
+		$this->db->flush_cache();
+		$this->db->select('DIKLAT_MST_ALUMNI.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_PESERTA.NAMA_PESERTA, DIKLAT_MST_PESERTA.STATUS_PESERTA, DIKLAT_MST_DIKLAT.NAMA_DIKLAT', false);
+		$this->db->from('DIKLAT_MST_ALUMNI');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_ALUMNI.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->join('DIKLAT_MST_PESERTA', 'DIKLAT_MST_ALUMNI.NO_PESERTA = DIKLAT_MST_PESERTA.NO_PESERTA');
+		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		$this->db->order_by('DIKLAT_MST_ALUMNI.ID_ALUMNI');
+		
+		// yanto
+		if(!empty($filter['kode_upt'])){
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}
+		if(!empty($filter['kode_diklat'])){
+			$this->db->where('DIKLAT_MST_DIKLAT.KODE_DIKLAT', $filter['kode_diklat']);
+		}
+		
+		// proses
+		$result = $this->db->get();
+		
+		$i=0;
+		foreach($result->result() as $row){
+			$pdfdata[$i][0] = $i +1;
+			$pdfdata[$i][1] = $row->NO_PESERTA;
+			$pdfdata[$i][2] = $row->NAMA_PESERTA;
+			$pdfdata[$i][3] = $row->KERJA;
+			$pdfdata[$i][4] = $row->INSTANSI;
+			$pdfdata[$i][5] = $row->TGL_LULUS;
+			$pdfdata[$i][6] = $row->THN_ANGKATAN;
+			$pdfdata[$i][7] = $row->NAMA_UPT;
+			$pdfdata[$i][8] = $row->NAMA_DIKLAT;
+			$i++;
+		}
+		
+		return $pdfdata;
+		
+	}
+	
 }
 ?>

@@ -5,7 +5,7 @@ class MY_Controller extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->output->enable_profiler(false);		
+		//$this->output->enable_profiler(true);		
 		
 		// jika belum login
 		if (is_login() == FALSE){

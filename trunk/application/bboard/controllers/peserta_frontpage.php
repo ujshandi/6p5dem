@@ -13,8 +13,6 @@ class Peserta_frontpage extends My_Frontpage {
 		$this->load->library('pagination');
 		$this->load->model('mdl_peserta_front');
 		$this->load->helper('url');
-
-		
 	}
 	
 	function test(){

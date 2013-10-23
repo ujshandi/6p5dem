@@ -22,7 +22,8 @@
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add'?>" class="control"> <span class="add">Tambah Peserta Diklat</span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add_lulus1'?>" class="control"> <span class="add">Tambah Peserta Lulus Diklat</span></a>
-	<a href="<?=base_url().$this->config->item('index_page').'/peserta/upload'?>" class="control"> <span class="add">Upload Data</span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta/upload'?>" class="control"> <span class="upload">Upload Data</span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/peserta/pdf'?>" class="control" target="_blank"> <span class="pdf">Export Ke PDF</span></a>
 	
 	<?=form_open('peserta/search', array('class'=>'sform'))?>
 	<fieldset>
