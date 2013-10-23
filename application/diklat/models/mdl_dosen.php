@@ -252,5 +252,40 @@ class mdl_dosen extends CI_Model{
 	    return $this->db->trans_status();
 	}
 	
+	function get_pdf($filter){
+		#get data
+		$this->db->flush_cache();
+		$this->db->select('*', false);
+		$this->db->from('DIKLAT_MST_DOSEN');
+		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_DOSEN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
+		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
+		
+		// yanto
+		if(!empty($filter['kode_upt'])){
+			$this->db->where('DIKLAT_MST_UPT.KODE_UPT', $filter['kode_upt']);
+		}
+		
+		// proses
+		$result = $this->db->get();
+		
+		$i=0;
+		foreach($result->result() as $row){
+			$pdfdata[$i][0] = $i +1;
+			$pdfdata[$i][1] = $row->NIP;
+			$pdfdata[$i][2] = $row->NAMADOSEN;
+			$pdfdata[$i][3] = $row->TEMPAT_LAHIR;
+			$pdfdata[$i][4] = $row->TGL_LAHIR;
+			$pdfdata[$i][5] = $row->JK;
+			$pdfdata[$i][6] = $row->STATUS;
+			$pdfdata[$i][7] = ReadCLOB($row->PENDIDIKAN);
+			$pdfdata[$i][8] = $row->JENIS_DOSEN;
+			$pdfdata[$i][9] = $row->NAMA_UPT;
+			$i++;
+		}
+		
+		return $pdfdata;
+		
+	}
+	
 }
 ?>

@@ -19,6 +19,7 @@
 	<h1 class="heading">Data Alumni</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/alumni/add_alumni1'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/alumni/pdf'?>" class="control" target="_blank"> <span class="pdf">Export Ke PDF </span></a>
 	
 	<?=form_open('alumni/search', array('class'=>'sform'))?>
 	<fieldset>
