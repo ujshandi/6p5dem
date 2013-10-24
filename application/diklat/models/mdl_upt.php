@@ -52,11 +52,10 @@ class mdl_upt extends CI_Model{
 
 	function insert($data){
 		$this->db->flush_cache();
+		$this->db->set('KODE_INDUK', $data['KODE_INDUK']);
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
-        //$this->db->set('KODE_ASAL', $data['KODE_ASAL']);
         $this->db->set('NAMA_UPT', $data['NAMA_UPT']);
-        $this->db->set('KODE_INDUK', $data['KODE_INDUK']);
-        $this->db->set('URUTAN', $data['URUTAN']);
+        //$this->db->set('URUTAN', $data['URUTAN']);
 
 		$result = $this->db->insert('DIKLAT_MST_UPT');
 
@@ -69,11 +68,10 @@ class mdl_upt extends CI_Model{
 	
 	function update($data){
 		$this->db->flush_cache();
-        $this->db->set('KODE_UPT', $data['KODE_UPT']);
-        //$this->db->set('KODE_ASAL', $data['KODE_ASAL']);
-        $this->db->set('NAMA_UPT', $data['NAMA_UPT']);
-        $this->db->set('KODE_INDUK', $data['KODE_INDUK']);
-        $this->db->set('URUTAN', $data['URUTAN']);
+		$this->db->set('KODE_INDUK', $data['KODE_INDUK']);
+        $this->db->set('KODE_UPT', $data['KODE_UPT']);        
+		$this->db->set('NAMA_UPT', $data['NAMA_UPT']);
+        //$this->db->set('URUTAN', $data['URUTAN']);
 
 		$this->db->where('KODE_UPT', $data['id']);
 		

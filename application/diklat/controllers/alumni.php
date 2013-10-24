@@ -85,19 +85,18 @@ class alumni extends My_Controller {
 		
 		$data['KODE_UPT'] 		= $this->input->post('KODE_UPT');
 		$data['KODE_DIKLAT'] 	= $this->input->post('KODE_DIKLAT');
-		$data['THN_ANGKATAN'] 	= $this->input->post('THN_ANGKATAN');
 		$data['TGL_LULUS'] 		= $this->input->post('TGL_LULUS');
 		$data['KERJA'] 			= $this->input->post('KERJA');
 		$data['INSTANSI'] 		= $this->input->post('INSTANSI');
 	
-		if($data['KODE_DIKLAT'] == '' || $data['THN_ANGKATAN'] == '0'){
+		if($data['KODE_DIKLAT'] == ''){
 			//redirect('alumni/add_alumni1');
 		}
 		
 		
 		$data['UPT'] = $this->mdl_upt->getDataEdit($data['KODE_UPT']);
 		$data['DIKLAT'] = $this->mdl_diklat->getDataEdit($data['KODE_DIKLAT']);
-		$data['data'] = $this->mdl_peserta->getPesertaRegister($data['KODE_UPT'], $data['KODE_DIKLAT'], $data['THN_ANGKATAN'], $data['TGL_LULUS'], $data['KERJA'], $data['INSTANSI']);
+		$data['data'] = $this->mdl_peserta->getPesertaRegister($data['KODE_UPT'], $data['KODE_DIKLAT'], $data['TGL_LULUS'], $data['KERJA'], $data['INSTANSI']);
 		
 		$this->load->view('alumni/alumni_add2', $data);
 		$this->close();
@@ -130,7 +129,6 @@ class alumni extends My_Controller {
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['NO_PESERTA'] = $this->input->post('NO_PESERTA');
         $data['TGL_LULUS'] = "to_date('".$this->input->post('TGL_LULUS')."', 'dd/mm/yyyy')";
-		$data['THN_ANGKATAN'] 	= $this->input->post('THN_ANGKATAN');
         $data['KERJA'] = $this->input->post('KERJA');
         $data['INSTANSI'] = $this->input->post('INSTANSI');
 		
@@ -138,7 +136,6 @@ class alumni extends My_Controller {
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
         $this->form_validation->set_rules('NO_PESERTA', 'PESERTA', 'required');
         $this->form_validation->set_rules('TGL_LULUS', 'TANGGAL LULUS', 'required');
-        $this->form_validation->set_rules('THN_ANGKATAN', 'TAHUN ANGKATAN', 'required');
         $this->form_validation->set_rules('KERJA', 'STATUS KERJA', 'required');
         //$this->form_validation->set_rules('INSTANSI', 'INSTANSI', 'required');
 		# set message validation
@@ -199,14 +196,14 @@ class alumni extends My_Controller {
 		$this->our_pdf->setXY($posX,$posY);
 		$this->our_pdf->setFillColor(255,255,255);
 		
-		$this->our_pdf->SetWidths(array(10,20,35,25,40,20,20,50,50));
-		 $this->our_pdf->SetAligns(array("C","C","C","C","C","C","C","C","C"));
-		$this->our_pdf->Row(array('No.','No.Peserta','Nama','Status','Tempat Bekerja','Periode Lulus','Thn. Angkatan','UPT','DIKLAT'));
+		$this->our_pdf->SetWidths(array(10,20,35,25,40,20,50,50));
+		 $this->our_pdf->SetAligns(array("C","C","C","C","C","C","C","C"));
+		$this->our_pdf->Row(array('No.','No.Peserta','Nama','Status','Tempat Bekerja','Periode Lulus','UPT','DIKLAT'));
 		
 		$posY = 27;
 		
 		// content
-		$this->our_pdf->SetAligns(array("C","C","L","L","L","L","L","L","L"));
+		$this->our_pdf->SetAligns(array("C","C","L","L","L","L","L","L"));
 		$this->our_pdf->setFillColor(255,255,255);
 		$this->our_pdf->setFont('arial','',9);	
 		$this->our_pdf->setXY($posX,$posY);
@@ -220,8 +217,7 @@ class alumni extends My_Controller {
 										$pdfdata[$i][4],
 										$pdfdata[$i][5],
 										$pdfdata[$i][6],
-										$pdfdata[$i][7],
-										$pdfdata[$i][8]
+										$pdfdata[$i][7]
 								)); 
 		}
 		

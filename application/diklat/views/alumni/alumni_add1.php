@@ -50,18 +50,7 @@ $( "#TGL_LULUS" ).datepicker({ dateFormat: 'dd-mm-yy' });
 					<option value="">--Pilih--</option>        	
 				</select>
 			</li>
-			
-			<li><label for="">TAHUN ANGKATAN<em>*</em></label>
-				<select id="THN_ANGKATAN" name="THN_ANGKATAN">
-					<option value="0">-- PILIH --</option>
-					<?
-						$date = date('Y');
-						for($i=$date, $c=$date-15; $i>$c; $i--){
-							echo '<option value="'.$i.'">'.$i.'</option>';
-						}
-					?>
-				</select>
-			</li>
+
 			
 			<li><label for="">PERIODE / TANGGAL LULUS<em>*</em></label> <input name="TGL_LULUS" value="<?=set_value('TGL_LULUS')?>" type="text" class="one" id="TGL_LULUS"/>
 			</li>

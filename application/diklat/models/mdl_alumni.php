@@ -80,7 +80,6 @@ class mdl_alumni extends CI_Model{
 		$this->db->set('KODE_UPT', $data['KODE_UPT']);
         $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
         $this->db->set('TGL_LULUS', $data['TGL_LULUS'], false);
-        $this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN'], false);
         $this->db->set('KERJA', $data['KERJA']);
         $this->db->set('INSTANSI', $data['INSTANSI']);
         
@@ -109,7 +108,6 @@ class mdl_alumni extends CI_Model{
 		$this->db->flush_cache();
         $this->db->set('NO_PESERTA', $data['NO_PESERTA']);
         $this->db->set('TGL_LULUS', $data['TGL_LULUS'], false);
-		$this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN'], false);
         $this->db->set('KERJA', $data['KERJA']);
         $this->db->set('INSTANSI', $data['INSTANSI']);
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
@@ -195,7 +193,6 @@ class mdl_alumni extends CI_Model{
 			$this->db->flush_cache();
 			$this->db->set('NO_PESERTA', $r['NO_PESERTA']);
 			$this->db->set('TGL_LULUS', "to_date('".$r['TGL_LULUS']."', 'mm/dd/yyyy')", FALSE);
-			$this->db->set('THN_ANGKATAN', $r['THN_ANGKATAN']);
 			$this->db->set('KERJA', $r['KERJA']);
 			$this->db->set('INSTANSI', $r['INSTANSI']);
 			$this->db->set('KODE_UPT', $r['KODE_UPT']);
@@ -266,9 +263,8 @@ class mdl_alumni extends CI_Model{
 			$pdfdata[$i][3] = $row->KERJA;
 			$pdfdata[$i][4] = $row->INSTANSI;
 			$pdfdata[$i][5] = $row->TGL_LULUS;
-			$pdfdata[$i][6] = $row->THN_ANGKATAN;
-			$pdfdata[$i][7] = $row->NAMA_UPT;
-			$pdfdata[$i][8] = $row->NAMA_DIKLAT;
+			$pdfdata[$i][6] = $row->NAMA_UPT;
+			$pdfdata[$i][7] = $row->NAMA_DIKLAT;
 			$i++;
 		}
 		
