@@ -82,7 +82,7 @@ class upt extends My_Controller {
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['NAMA_UPT'] = $this->input->post('NAMA_UPT');
         $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
-        $data['URUTAN'] = $this->input->post('URUTAN');
+        //$data['URUTAN'] = $this->input->post('URUTAN');
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
@@ -119,7 +119,7 @@ class upt extends My_Controller {
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['NAMA_UPT'] = $this->input->post('NAMA_UPT');
         $data['KODE_INDUK'] = $this->input->post('KODE_INDUK');
-        $data['URUTAN'] = $this->input->post('URUTAN');
+       // $data['URUTAN'] = $this->input->post('URUTAN');
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
