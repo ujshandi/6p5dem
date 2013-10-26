@@ -45,7 +45,7 @@
 				</select>
 			</li>
 			
-			<li><label for="">TAHUN <em>*</em></label>
+			<li><label for="">TAHUN ANGKATAN<em>*</em></label>
 			<select id="THN_ANGKATAN" name="THN_ANGKATAN">
 			<option value="0">-- PILIH --</option>
 			<?
