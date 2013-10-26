@@ -67,7 +67,7 @@
 		<th width="9%">No Peserta / NIP</th>
 		<th width="12%">Nama peserta</th>
 		<th width="10%">Daerah Peserta</th>
-		<th>Angkatan</th>
+		<th>Tahun Angkatan</th>
 		<th>Status</th>
 		<th>aksi</th>
 	  </thead>

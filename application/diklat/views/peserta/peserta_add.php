@@ -70,7 +70,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">TANGGAL MASUK<em>*</em></label> <input name="TGL_MASUK" value="<?=set_value('TGL_MASUK')?>" type="text" class="one" id="TGL_MASUK"/></li>
 			
-			<li><label for="">TAHUN ANGKATAN<em>*</em></label> <select id="THN_ANGKATAN" name="THN_ANGKATAN">
+			<li><label for="">TAHUN MASUK<em>*</em></label> <select id="THN_ANGKATAN" name="THN_ANGKATAN">
 			<option value="">- Pilih Tahun -</option>
 			<option value="2000">2000</option>
 			<option value="2001">2001</option>
