@@ -310,6 +310,21 @@ class mdl_peserta extends CI_Model{
 		return $this->db->get();
 		
 	}
+	
+	function getPesertaLulus($upt, $diklat, $tahun){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_MST_PESERTA');
+		$this->db->where('THN_ANGKATAN', $tahun);
+		$this->db->where('KODE_UPT', $upt);
+		$this->db->where('KODE_DIKLAT', $diklat);
+		$this->db->where('STATUS_PESERTA', 'Lulus');
+		
+		$this->db->order_by('NAMA_PESERTA');
+		
+		return $this->db->get();
+		
+	}
 
 	function UpdatePesertaRegister($data){
 		$this->db->trans_start();

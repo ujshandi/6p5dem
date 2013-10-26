@@ -93,10 +93,9 @@ class alumni extends My_Controller {
 			//redirect('alumni/add_alumni1');
 		}
 		
-		
 		$data['UPT'] = $this->mdl_upt->getDataEdit($data['KODE_UPT']);
 		$data['DIKLAT'] = $this->mdl_diklat->getDataEdit($data['KODE_DIKLAT']);
-		$data['data'] = $this->mdl_peserta->getPesertaRegister($data['KODE_UPT'], $data['KODE_DIKLAT'], $data['TGL_LULUS'], $data['KERJA'], $data['INSTANSI']);
+		$data['data'] = $this->mdl_peserta->getPesertaLulus($data['KODE_UPT'], $data['KODE_DIKLAT'], substr($data['TGL_LULUS'],6,4));                                                    
 		
 		$this->load->view('alumni/alumni_add2', $data);
 		$this->close();
