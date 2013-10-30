@@ -28,6 +28,7 @@
     });
 </script>
 
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Upload Data Peserta</h1>
 	<hr/>

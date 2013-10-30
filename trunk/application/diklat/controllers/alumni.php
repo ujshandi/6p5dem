@@ -85,7 +85,8 @@ class alumni extends My_Controller {
 		
 		$data['KODE_UPT'] 		= $this->input->post('KODE_UPT');
 		$data['KODE_DIKLAT'] 	= $this->input->post('KODE_DIKLAT');
-		$data['TGL_LULUS'] 		= $this->input->post('TGL_LULUS');
+		//$data['TGL_LULUS'] 		= $this->input->post('TGL_LULUS');
+		$data['TGL_LULUS'] = "to_date('".$this->input->post('TGL_AKHIR')."', 'dd/mm/yyyy')";
 		$data['KERJA'] 			= $this->input->post('KERJA');
 		$data['INSTANSI'] 		= $this->input->post('INSTANSI');
 	
