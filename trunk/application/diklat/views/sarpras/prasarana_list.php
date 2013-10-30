@@ -17,11 +17,9 @@
 			<input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" />
 			&nbsp;&nbsp;
 			<select name="numrow">
-				<option value="30" <?=$numrow==30?'Selected="selected"':''?>>30</option>
+				<option value="10" <?=$numrow==10?'Selected="selected"':''?>>10</option>
+				<option value="25" <?=$numrow==25?'Selected="selected"':''?>>25</option>
 				<option value="50" <?=$numrow==50?'Selected="selected"':''?>>50</option>
-				<option value="75" <?=$numrow==75?'Selected="selected"':''?>>75</option>
-				<option value="100" <?=$numrow==100?'Selected="selected"':''?>>100</option>
-				<option value="200" <?=$numrow==200?'Selected="selected"':''?>>200</option>
 			</select>
 			<input type="submit" name="submit" value="Proses" />
 		</li>

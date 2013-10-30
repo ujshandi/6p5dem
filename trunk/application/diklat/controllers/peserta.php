@@ -22,7 +22,7 @@ class peserta extends My_Controller {
 		$data['kode_diklat'] = $this->session->userdata($this->id.'kode_diklat');
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
-		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
+		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:10;
 		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
 		
 		
