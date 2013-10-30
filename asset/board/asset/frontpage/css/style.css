@@ -117,6 +117,7 @@ html[xmlns] .slides {display: block;}
 .section_12{ width:440px; float:left; margin:0 0 20px 20px;}
 .section_13{ width:280px; float:left; margin:0 0 20px 20px;}
 .section_14{ width:210px; float:left; margin:0 0 20px 20px;}
+.section_15{ width:210px; float:right; margin:0 0 20px 20px;}
 .section_23{ width:600px; float:left; margin:0 0 20px 20px;}
 
 .one { width: 8.33333%!important; }
@@ -269,7 +270,17 @@ border-color:#FF9900;text-shadow: -1px -1px #FF6600;}
 .splash {width:940px;margin:-20px 0 0 0;}
 
 /* table */
-table {background:#FFFFFF;border-collapse:collapse;font-size:12px;text-align:left;max-width:100%;width:100%;border-spacing:0;margin:0;border:0 none;text-shadow:0 1px 0 #fff;border:dotted 1px #ddd;min-height:400px;}
+table {
+	background:#FFFFFF;
+	border-collapse:collapse;
+	font-size:12px;
+	text-align:left;
+	max-width:100%;width:100%;
+	border-spacing:0;margin:0;border:0 none;
+	text-shadow:0 1px 0 #fff;
+	border:dotted 1px #ddd;
+	/*min-height:400px;*/
+	}
 table tbody tr:nth-child(2n) {background:#EAF9CF}
 table thead {
 background: #f2f6f8;
