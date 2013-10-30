@@ -35,6 +35,7 @@
 	  <thead>
 		<th>No</th>
 		<th width="10%">Nama Pengajar</th>
+		<th>Foto</th>
 		<th width="17%">Status Pengajar</th>
 		<th width="7%">Jenis Pengajar</th>
 		<!--<th width="8%">Jurusan</th>
@@ -51,6 +52,7 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td><?=$r->NAMADOSEN?></td>
+				<td style="vertical-align:middle"><img width ="75px" src='<?=base_url()?>file_upload/diklat/<?=$r->FOTO_DOSEN?>' alt='<?=$r->FOTO_DOSEN?>'/></td>
 				<td><?=$r->STATUS?></td>
 				<td><?=$r->JENIS_DOSEN?></td>
 				<!--<td><?=$r->JURUSAN?></td>
