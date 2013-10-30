@@ -16,6 +16,7 @@
 <script type="text/javascript" charset="utf-8" src="<?=base_url()?>asset/board/asset/frontpage/js/custom.js"></script>
 <script type="text/javascript" charset="utf-8" src="<?=base_url()?>asset/board/asset/frontpage/js/app.js"></script>
 
+
 <link href="<?=base_url()?>asset/globalstyle/css/jquery-ui-datepicker/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="<?=base_url()?>asset/globalstyle/js/jquery-ui-datepicker/jquery-ui-1.10.3.custom.js"></script>
 <script type='text/javascript'>
@@ -235,7 +236,7 @@
         <hr/>
         <!--<div id="calendar_box"></div>-->
     </div>
-	<div class="section_14">
+	<div class="section_15">
     	<!--<h2>Polling</h2>
 		
         <hr/>
