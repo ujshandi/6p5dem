@@ -92,10 +92,18 @@ class dosen extends My_Controller {
 	public function proses_add(){
 		$this->open();
 		
-		# get post data
-		//$data['IDDOSEN'] = $this->input->post('IDDOSEN');
+		$config['upload_path'] = './file_upload/diklat/';
+		$config['allowed_types'] = 'gif|jpg|png|BMP|';
+		$config['max_size']	= '1000';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( $this->upload->do_upload()){
+		$data['FOTO_DOSEN'] =  $this->upload->file_name;
         $data['NIP'] = $this->input->post('NIP');
-        $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');
+        $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');		
 		$data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
 		$data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
 		$data['JK'] = $this->input->post('JK');
@@ -133,6 +141,9 @@ class dosen extends My_Controller {
 			$this->mdl_dosen->insert($data);
 			redirect('dosen');
 		}
+	}else{
+		echo $this->upload->display_errors();
+	}
 		
 		$this->close();
 	}
@@ -149,11 +160,20 @@ class dosen extends My_Controller {
 	
 	public function proses_edit(){
 		$this->open();
-		
+		$config['upload_path'] = './file_upload/diklat/';
+		$config['allowed_types'] = 'gif|jpg|png|BMP|';
+		$config['max_size']	= '1000';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( $this->upload->do_upload()){
+		$data['FOTO_DOSEN'] =  $this->upload->file_name;
 		$data['id'] = $this->input->post('id');
 		//$data['IDDOSEN'] = $this->input->post('IDDOSEN');
         $data['NIP'] = $this->input->post('NIP');
-        $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');
+        $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');		
 		$data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
 		$data['TGL_LAHIR'] = "to_date('".$this->input->post('TGL_LAHIR')."', 'dd/mm/yyyy')";
 		$data['JK'] = $this->input->post('JK');
@@ -187,6 +207,9 @@ class dosen extends My_Controller {
 		}else{
 			$this->mdl_dosen->update($data);
 			redirect('dosen');
+		}
+		}else{
+			echo $this->upload->display_errors();
 		}
 		
 		$this->close();
