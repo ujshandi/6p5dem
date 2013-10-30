@@ -9,7 +9,7 @@ $( "#TGL_LAHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Edit Data Dosen</h1>
 	<hr/>
-	<?=form_open_multipart('dosen/proses_edit', array('class'=>'sform'))?>
+	<?=form_open('dosen/proses_edit', array('class'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -28,8 +28,6 @@ $( "#TGL_LAHIR" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			<li><label for="">NIP <em>*</em></label> <input name="NIP" value="<?=$result->row()->NIP?>" type="text" class="two"/></li>
 			
 			<li><label for="">Nama Dosen <em>*</em></label> <input name="NAMADOSEN" value="<?=$result->row()->NAMADOSEN?>" type="text" class="three"/></li>
-			
-			<li><label for="">Foto Dosen <em>*</em></label> <input name="userfile" value="<?=$result->row()->FOTO_DOSEN?>" type="file" class="five"/></li>
 			
 			<li><label for="">Tempat Lahir <em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=$result->row()->TEMPAT_LAHIR?>" type="text" class="two"/></li>
 			
