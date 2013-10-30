@@ -47,7 +47,7 @@ $( "#TGL_PUBLIKASI" ).datepicker({ dateFormat: 'dd-mm-yy' });
 				</select>
 			</li>
 			
-			<li><label for="">DOSEN <em>*</em></label>
+			<li><label for="">DOSEN 1<em>*</em></label>
 				<div id="IDDOSEN">
 				<?php
 					$opt['name'] = 'IDDOSEN';
@@ -59,7 +59,7 @@ $( "#TGL_PUBLIKASI" ).datepicker({ dateFormat: 'dd-mm-yy' });
 				</div>
 			</li>
 			
-			<li><label for="">DOSEN <em> </em></label>
+			<li><label for="">DOSEN 2<em> </em></label>
 				<div id="IDDOSEN">
 				<select name="IDDOSEN">
 					<option value="">--Pilih--</option>        	
@@ -67,7 +67,7 @@ $( "#TGL_PUBLIKASI" ).datepicker({ dateFormat: 'dd-mm-yy' });
 				</div>
 			</li>
 			
-			<li><label for="">DOSEN <em> </em></label>
+			<li><label for="">DOSEN 3<em> </em></label>
 				<div id="IDDOSEN">
 				<select name="IDDOSEN">
 					<option value="">--Pilih--</option>        	
@@ -75,7 +75,7 @@ $( "#TGL_PUBLIKASI" ).datepicker({ dateFormat: 'dd-mm-yy' });
 				</div>
 			</li>
 			
-			<li><label for="">DOSEN <em> </em></label>
+			<li><label for="">DOSEN 4<em> </em></label>
 				<div id="IDDOSEN">
 				<select name="IDDOSEN">
 					<option value="">--Pilih--</option>        	
