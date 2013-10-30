@@ -20,6 +20,13 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
                }
             });
         });
+		
+		$("#TGL_MASUK").change(function(){
+			var tahun = $("#TGL_MASUK").val();
+			//alert(tahun.substring(6));
+			$("#THN_ANGKATAN").val(tahun.substring(6));
+		});
+		
     });
 </script>
 
@@ -85,12 +92,12 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			<li><label for="">TANGGAL MASUK<em>*</em></label> <input name="TGL_MASUK" value="<?=$result->row()->TGL_MASUK?>" type="text" class="one" id="TGL_MASUK"/></li>
 			
 			<li><label for="">TAHUN ANGKATAN<em>*</em></label>
+				<select name="THN_ANGKATAN" id="THN_ANGKATAN">
 				<?php 
-					$opti['id'] = 'THN_ANGKATAN';
-					$opti['name'] = 'THN_ANGKATAN';
 					$opti['value'] = $result->row()->THN_ANGKATAN;
 					echo $this->mdl_peserta->getOptionTahun($opti);
 				?>
+				</select>
 			</li>
 			
 			<li><label for="">STATUS PESERTA <em>*</em></label>
