@@ -11,19 +11,19 @@
 				<strong><?=$result->row()->KODE_UPT?></strong>
 			</li>
 			<br>
-			<li><label for="" >DOSEN : <em> </em></label>
+			<li><label for="" >DOSEN 1: <em> </em></label>
 					<strong><?=$result->row()->IDDOSEN_1?></strong>
 			</li>
 			<br>
-			<li><label for="" >DOSEN : <em> </em></label>
+			<li><label for="" >DOSEN 2: <em> </em></label>
 					<strong><?=$result->row()->IDDOSEN_2?></strong>
 			</li>
 			<br>
-			<li><label for="" >DOSEN : <em> </em></label>
+			<li><label for="" >DOSEN 3: <em> </em></label>
 					<strong><?=$result->row()->IDDOSEN_3?></strong>
 			</li>
 			<br>
-			<li><label for="" >DOSEN : <em> </em></label>
+			<li><label for="" >DOSEN 4: <em> </em></label>
 					<strong><?=$result->row()->IDDOSEN_4?></strong>
 			</li>
 			<br>

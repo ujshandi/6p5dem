@@ -75,25 +75,25 @@ $( "#TGL_PUBLIKASI" ).datepicker({ dateFormat: 'dd-mm-yy' });
 				</select>
 			</li>
 			
-			<li><label for="">DOSEN <em>*</em></label>
+			<li><label for="">DOSEN 1<em>*</em></label>
 				<select name="IDDOSEN_1" id="IDDOSEN_1">
 					<option value="">--Pilih--</option>        	
 				</select>
 			</li>
 			
-			<li><label for="">DOSEN <em> </em></label>
+			<li><label for="">DOSEN 2<em> </em></label>
 				<select name="IDDOSEN_2" id="IDDOSEN_2">
 					<option value="">--Pilih--</option>        	
 				</select>
 			</li>
 			
-			<li><label for="">DOSEN <em> </em></label>
+			<li><label for="">DOSEN 3<em> </em></label>
 				<select name="IDDOSEN_3" id="IDDOSEN_3">
 					<option value="">--Pilih--</option>        	
 				</select>
 			</li>
 			
-			<li><label for="">DOSEN <em> </em></label>
+			<li><label for="">DOSEN 4<em> </em></label>
 				<select name="IDDOSEN_4" id="IDDOSEN_4">
 					<option value="">--Pilih--</option>        	
 				</select>
