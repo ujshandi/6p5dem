@@ -19,7 +19,7 @@ class diklat_sekretariat extends My_Controller {
 		# get filter		
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
-		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
+		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:10;
 		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
 		
 		# get data

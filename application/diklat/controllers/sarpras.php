@@ -15,7 +15,7 @@ class sarpras extends My_Controller {
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sarpras/index/';
 		$config['total_rows'] = $this->db->count_all('DIKLAT_SARANA');
-		$config['per_page'] = '30';
+		$config['per_page'] = '10';
 		$config['num_links'] = '3';
 		// $config['uri_segment'] = '3';
 		// $config['full_tag_open'] = '';
