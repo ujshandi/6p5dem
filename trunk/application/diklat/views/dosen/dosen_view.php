@@ -14,9 +14,6 @@
 			<li><label for="" >NAMA PENGAJAR : <em> </em></label>
 					<strong><?=$result->row()->NAMADOSEN?></strong>
 			</li>
-			<li><label for="" >FOTO DOSEN : <em> </em></label>
-				<strong><?=base_url()?>file_upload/diklat/<?=$result->FOTO_DOSEN?></strong>
-			</li>
 			<br>
 			<li><label for="" >TEMPAT LAHIR : <em> </em></label>
 				<strong><?=$result->row()->TEMPAT_LAHIR?></strong>
