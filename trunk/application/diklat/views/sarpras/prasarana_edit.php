@@ -28,7 +28,7 @@
 				</select>
 			</li>
 			
-			<li><label for="">TAHUN <em>*</em></label> <input name="TAHUN" value="<?=$result->row()->TAHUN?>" type="text" class="one"/></li>
+			<li><label for="">TAHUN PENGADAAN<em>*</em></label> <input name="TAHUN" value="<?=$result->row()->TAHUN?>" type="text" class="one"/></li>
 			
 			<li>
 				<label for="">NAMA PRASARANA<em>*</em></label>

@@ -36,7 +36,7 @@
 		<th>Nama Prasarana</th>
 		<th>Jumlah</th>
 		<th>Kapasitas</th>
-		<th>Tahun</th>
+		<th>Tahun Pengadaan</th>
 		<th>Foto</th>
 		<th>aksi</th>
 	  </thead>
