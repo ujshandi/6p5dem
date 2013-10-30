@@ -219,6 +219,7 @@ class peserta extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_peserta->getDataEdit($data['id']);
 			$this->load->view('peserta/peserta_edit',$data);
 		}else{
 			$this->mdl_peserta->update($data);

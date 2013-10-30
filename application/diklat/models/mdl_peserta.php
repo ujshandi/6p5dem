@@ -201,14 +201,11 @@ class mdl_peserta extends CI_Model{
 	}
 	
 	function getOptionTahun($d=""){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$res = array(2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020);
 		
-		$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '';//'<select name="'.$name.'" id="'.$id.'">';
 		foreach($res as $r){
 			if($r == trim($value)){
 				$out .= '<option value="'.$r.'" selected="selected">'.$r.'</option>';
@@ -216,7 +213,7 @@ class mdl_peserta extends CI_Model{
 				$out .= '<option value="'.$r.'">'.$r.'</option>';
 			}
 		}
-		$out .= '</select>';
+		//$out .= '</select>';
 		
 		return $out;
 	}
