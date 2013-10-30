@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class peserta extends My_Controller {
 	
 	var $id = 'peserta';

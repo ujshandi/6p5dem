@@ -1,4 +1,5 @@
 <!-- contenna -->
+
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta Detail</h1>
 	<hr/>

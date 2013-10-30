@@ -15,7 +15,6 @@
 </script>
 
 
-
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta</h1>

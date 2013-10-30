@@ -138,7 +138,7 @@ class jenis_sarpras extends My_Controller {
 		if($this->mdl_jenis_sarpras->delete($id)){
 			redirect('jenis_sarpras');
 		}else{
-			// code u/ gagal simpan
+			//code u/ gagal simpan
 		}
 	}
 	

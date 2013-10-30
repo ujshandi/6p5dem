@@ -1,4 +1,5 @@
 <?
+
 class mdl_peserta extends CI_Model{
 	
 	function __construct(){
