@@ -190,14 +190,16 @@ class mdl_alumni extends CI_Model{
 		$this->db->trans_start();
 		
 		foreach($data as $r){
-			$this->db->flush_cache();
-			$this->db->set('NO_PESERTA', $r['NO_PESERTA']);
-			$this->db->set('TGL_LULUS', "to_date('".$r['TGL_LULUS']."', 'mm/dd/yyyy')", FALSE);
-			$this->db->set('KERJA', $r['KERJA']);
-			$this->db->set('INSTANSI', $r['INSTANSI']);
-			$this->db->set('KODE_UPT', $r['KODE_UPT']);
-			
-			$result = $this->db->insert('DIKLAT_MST_ALUMNI');
+			if(isset($r['NO_PESERTA'])){
+				$this->db->flush_cache();
+				$this->db->set('NO_PESERTA', $r['NO_PESERTA']);
+				$this->db->set('TGL_LULUS', "to_date('".$r['TGL_LULUS']."', 'dd/mm/yyyy')", FALSE);
+				$this->db->set('KERJA', $r['KERJA']);
+				$this->db->set('INSTANSI', $r['INSTANSI']);
+				$this->db->set('KODE_UPT', $r['KODE_UPT']);
+				
+				$result = $this->db->insert('DIKLAT_MST_ALUMNI');
+			}
 		}
 		
 		// $errNo   = $this->db->_error_number();
