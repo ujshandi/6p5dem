@@ -265,7 +265,7 @@ class user_privilege extends MY_Controller
 	}
 	
 	public function proses_edit_diklat(){
-		$this->open_backend();
+		/*$this->open_backend(); */
 		
 		# get post data
 		
@@ -311,9 +311,9 @@ class user_privilege extends MY_Controller
 		}
 		
         
-		redirect('user_privilege');
+		redirect('user_privilege/get_all_diklat');
 		
-		$this->close_backend();
+		/*$this->close_backend();*/
 	}
 	
 	public function proses_edit_sdm(){
