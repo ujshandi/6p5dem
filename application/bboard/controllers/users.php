@@ -254,6 +254,13 @@ class Users extends MY_Controller
 		
 		$data['id'] = $id;
 		$data['result'] = $this->users->get_data_edit($id);
+		$data['NAME']=$data['result']->row()->NAME;
+		$data['USERNAME']=$data['result']->row()->USERNAME;
+		$data['PASSWORD']=$data['result']->row()->PASSWORD;
+		$data['USER_GROUP_ID']=$data['result']->row()->USER_GROUP_ID;
+		$data['EMAIL']=$data['result']->row()->EMAIL;
+		$data['NIP']=$data['result']->row()->NIP;
+		$data['NIP']=$data['result']->row()->NIP;
 		
 		$this->load->view('users/users_edit', $data);
 		
@@ -267,7 +274,7 @@ class Users extends MY_Controller
 		$data['USER_GROUP_ID']=$results->row()->USER_GROUP_ID;
 		$data['LEVEL_ID']=$results->row()->LEVEL;
 		$data['KODEPROVIN']=$results->row()->KODEPROVIN;
-		$data['KODEKABUP']=$results->row()->KODEKABUP;
+		$data['EMAIL']=$results->row()->EMAIL;
 		
 		$this->load->view('users/users_edit_sdm', $data);
 		
@@ -279,6 +286,7 @@ class Users extends MY_Controller
 		//$this->open_backend();
 		
 		$data['ID'] = $this->input->post('ID');
+		$data['id'] = $data['ID'];
 		$data['NAME'] = $this->input->post('NAME');
         $data['USERNAME'] = $this->input->post('USERNAME');
 	
@@ -296,9 +304,9 @@ class Users extends MY_Controller
         $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
 		/*$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required'); */
-		$this->form_validation->set_rules('NIP', 'NIP', 'required');
+		/*$this->form_validation->set_rules('NIP', 'NIP', 'required'); */
 		/*$this->form_validation->set_rules('KODE_UPT', 'KODE_UPT', 'required');*/
-		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
+		/*$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email'); */
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
