@@ -295,9 +295,9 @@ class Users extends MY_Controller
         $this->form_validation->set_rules('USERNAME', 'USERNAME', 'required');
         $this->form_validation->set_rules('PASSWORD', 'PASSWORD', 'required');
 		$this->form_validation->set_rules('USER_GROUP_ID', 'USER GROUP', 'required');
-		$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required');
+		/*$this->form_validation->set_rules('DEPARTMENT', 'DEPARTMENT', 'required'); */
 		$this->form_validation->set_rules('NIP', 'NIP', 'required');
-		$this->form_validation->set_rules('KODE_UPT', 'KODE_UPT', 'required');
+		/*$this->form_validation->set_rules('KODE_UPT', 'KODE_UPT', 'required');*/
 		$this->form_validation->set_rules('EMAIL', 'EMAIL', 'required|valid_email');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
