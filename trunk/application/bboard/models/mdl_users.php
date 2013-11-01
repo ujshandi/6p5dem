@@ -362,9 +362,9 @@ class mdl_users extends CI_Model{
 		}
 	}
 	
-	function delete($data){
+	function delete($id){
 		$this->db->flush_cache();
-		$this->db->where('USER_ID', $data['id']);
+		$this->db->where('USER_ID', $id);
 		$result = $this->db->delete('USERS');
 		
 		if($result) {
