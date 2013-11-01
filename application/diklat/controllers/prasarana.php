@@ -171,7 +171,7 @@ class prasarana extends My_Controller {
 			redirect('prasarana');
 		}
 		}else{
-			echo $this->upload->display_errors();
+			//echo $this->upload->display_errors();
 		}
 		
 		$this->close();
