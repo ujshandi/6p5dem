@@ -215,6 +215,23 @@ class mdl_user_privilege extends CI_Model{
 		return $this->db->get();
 	}
 	
+	function get_data_edit_kopeten($id){
+		$this->db->flush_cache();
+		$this->db->select('KOPETEN_USER_GROUP_MENU.USER_GROUP_MENU_ID,
+							KOPETEN_USER_GROUP_MENU.USER_GROUP_ID,
+							KOPETEN_USER_GROUP_MENU.PRIVILEGE,
+							KOPETEN_USER_GROUP_MENU.MENU_ID,
+							KOPETEN_MENU.MENU_NAME, 
+							KOPETEN_USER_GROUP.USER_GROUP_NAME');
+		$this->db->from('KOPETEN_USER_GROUP_MENU');
+		$this->db->join('KOPETEN_MENU','KOPETEN_MENU.MENU_ID=KOPETEN_USER_GROUP_MENU.MENU_ID');
+		$this->db->join('KOPETEN_USER_GROUP','KOPETEN_USER_GROUP.USER_GROUP_ID=KOPETEN_USER_GROUP_MENU.USER_GROUP_ID');
+		/*$this->db->where('KOPETEN_USER_GROUP_MENU.USER_GROUP_ID', $id); */
+
+		
+		return $this->db->get();
+	}
+	
 	function get_data_edit_sdm($id){
 		$this->db->flush_cache();
 		$this->db->select('SDM_USER_GROUP_MENU.USER_GROUP_MENU_ID,
@@ -257,7 +274,17 @@ class mdl_user_privilege extends CI_Model{
 			return FALSE;
 		}
 	}
-	
+	function update_kopeten($data){
+		$this->db->set('PRIVILEGE', $data['PRIVILEGE']);
+		$this->db->where('USER_GROUP_MENU_ID', $data['USER_GROUP_MENU_ID']);
+		$result = $this->db->update('KOPETEN_USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
 	function update_sdm($data){
 		
 		$this->db->set('PRIVILEGE', $data['PRIVILEGE']);
