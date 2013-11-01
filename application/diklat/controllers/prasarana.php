@@ -99,10 +99,10 @@ class prasarana extends My_Controller {
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
 		$this->form_validation->set_rules('ID_SARPRAS', 'NAMA PRASARANA', 'required');
-		$this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-		$this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
+		//$this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
+		//$this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
 		//$this->form_validation->set_rules('GAMBAR_PRASARANA', 'GAMBAR_PRASARANA', 'required');
-		$this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
+		//$this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -158,9 +158,9 @@ class prasarana extends My_Controller {
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
 		$this->form_validation->set_rules('ID_SARPRAS', 'NAMA PRASARANA', 'required');
-		$this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
-		$this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
-		$this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
+		//$this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
+		//$this->form_validation->set_rules('KAPASITAS', 'KAPASITAS', 'required');
+		//$this->form_validation->set_rules('DESKRIPSI_PRASARANA', 'DESKRIPSI_PRASARANA', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
