@@ -212,6 +212,12 @@ class user_privilege extends MY_Controller
 		$this->load->view('user_privilege/user_privilege_edit_sdm', $data);
 	}
 	
+	public function load_edit_kopeten($id){
+		$data['id'] = $id;
+		$data['results'] = $this->user_privilege->get_data_edit_kopeten($id);
+		$this->load->view('user_privilege/user_privilege_edit_kopeten', $data);
+	}
+	
 	public function proses_edit(){
 		$this->open_backend();
 		
@@ -314,6 +320,56 @@ class user_privilege extends MY_Controller
 		redirect('user_privilege/get_all_diklat');
 		
 		/*$this->close_backend();*/
+	}
+	
+	public function proses_edit_kopeten(){
+
+		
+		# get post data
+		
+		$data['ID'] = $this->input->post('ID');
+		$MENU = $this->input->post('MENU');
+		
+		foreach ($MENU  as $value){
+			
+			if (isset($value['HAKAKSES0'])){
+				$HAKAKSES0 = '1';
+			}else{
+				$HAKAKSES0 = '0';
+			}
+			
+			if (isset($value['HAKAKSES1'])){
+				$HAKAKSES1 = '1';
+			}else{
+				$HAKAKSES1 = '0';
+			}
+			if (isset($value['HAKAKSES2'])){
+				$HAKAKSES2 = '1';
+			}else{
+				$HAKAKSES2 = '0';
+			}
+			
+			if (isset($value['HAKAKSES3'])){
+				$HAKAKSES3 = '1';
+			}else{
+				$HAKAKSES3 = '0';
+			}
+			
+			if (isset($value['HAKAKSES4'])){
+				$HAKAKSES4 = '1';
+			}else{
+				$HAKAKSES4 = '0';
+			}
+			
+			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];
+			$data['PRIVILEGE']=$HAKAKSES0.$HAKAKSES1.$HAKAKSES2.$HAKAKSES3.$HAKAKSES4;
+			$this->user_privilege->update_kopeten($data);
+			echo $data['USER_GROUP_MENU_ID'] . '-'. $data['PRIVILEGE'];
+		}
+		
+        
+		redirect('user_privilege/get_all_kopeten');
+
 	}
 	
 	public function proses_edit_sdm(){
