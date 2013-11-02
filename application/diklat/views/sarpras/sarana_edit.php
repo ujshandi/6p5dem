@@ -27,13 +27,7 @@
 				</select>
 			</li>
 			
-			<li><label for="">TAHUN <em>*</em></label>
-				<?php 
-					$opti['name'] = 'TAHUN';
-					$opti['value'] = $result->row()->TAHUN;
-					echo $this->mdl_sarana->getOptionTahun($opti);
-				?>
-			</li>
+			<li><label for="">TAHUN <em>*</em></label> <input name="TAHUN" value="<?=$result->row()->TAHUN?>" type="text" class="one"/></li>
 			
 			<li><label for="">Nama Sarana <em>*</em></label>
 				<?php 

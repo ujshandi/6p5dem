@@ -89,7 +89,7 @@ class sarana extends My_Controller {
 		
 		# set rules validation
         $this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
-        $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
+        //$this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
         $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		
 		# set message validation
@@ -126,7 +126,7 @@ class sarana extends My_Controller {
 		
 		# set rules validation
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
-        $this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
+        //$this->form_validation->set_rules('JUMLAH', 'JUMLAH', 'required');
         $this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
