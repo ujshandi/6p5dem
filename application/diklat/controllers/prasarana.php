@@ -144,7 +144,8 @@ class prasarana extends My_Controller {
 
 		$this->load->library('upload', $config);
 		
-		$data['GAMBAR_PRASARANA'] =  $this->upload->file_name;			
+		$data['GAMBAR_PRASARANA'] =  $this->upload->file_name;
+		$data['id'] = $this->input->post('id');		
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		$data['TAHUN'] = $this->input->post('TAHUN');
 		$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
