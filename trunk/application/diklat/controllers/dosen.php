@@ -181,6 +181,7 @@ class dosen extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_dosen->getDataEdit($data['id']);
 			$this->load->view('dosen/dosen_edit',$data);
 		}else{
 			$this->mdl_dosen->update($data);

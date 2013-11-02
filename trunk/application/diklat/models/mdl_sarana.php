@@ -76,6 +76,7 @@ class mdl_sarana extends CI_Model{
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);
+        $this->db->set('DESKRIPSI', $data['DESKRIPSI']);
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
 
         $result = $this->db->insert('DIKLAT_MST_SARANA');
@@ -93,6 +94,7 @@ class mdl_sarana extends CI_Model{
         $this->db->set('ID_SARPRAS', $data['ID_SARPRAS']);
         $this->db->set('TAHUN', $data['TAHUN']);
         $this->db->set('JUMLAH', $data['JUMLAH']);
+        $this->db->set('DESKRIPSI', $data['DESKRIPSI']);
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
 
 		$this->db->where('ID_SARANA', $data['id']);
@@ -149,7 +151,7 @@ class mdl_sarana extends CI_Model{
 		
 		$this->db->flush_cache();
 		$this->db->from('DIKLAT_MST_SARPRAS');
-		$this->db->order_by('ID_SARPRAS');	
+		$this->db->order_by('NAMA_SARPRAS');	
 		$this->db->where('JENIS', 'Sarana');
 		
 		$res = $this->db->get();

@@ -85,6 +85,7 @@ class sarana extends My_Controller {
         $data['TAHUN'] = $this->input->post('TAHUN');
 		$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
         $data['JUMLAH'] = $this->input->post('JUMLAH');
+        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
         
 		
 		# set rules validation
@@ -123,6 +124,7 @@ class sarana extends My_Controller {
         $data['TAHUN'] = $this->input->post('TAHUN');
 		$data['ID_SARPRAS'] = $this->input->post('ID_SARPRAS');
         $data['JUMLAH'] = $this->input->post('JUMLAH');
+        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
 		
 		# set rules validation
 		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
@@ -132,6 +134,7 @@ class sarana extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_sarana->getDataEdit($data['id']);
 			$this->load->view('sarpras/sarana_edit',$data);
 		}else{
 			$this->mdl_sarana->update($data);

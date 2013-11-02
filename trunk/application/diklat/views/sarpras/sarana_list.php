@@ -34,6 +34,7 @@
 		<th>Nama Sarana</th>
 		<th>Jumlah</th>
 		<th>Tahun</th>
+		<th>Deskripsi</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -49,6 +50,7 @@
 				<td><?=$r->NAMA_SARPRAS?></td>
 				<td><?=$r->JUMLAH?></td>
 				<td><?=$r->TAHUN?></td>
+				<td><?=$r->DESKRIPSI?></td>
 				<td >
 					<a href="<?=site_url().'/sarana/edit/'.$r->ID_SARANA?>" class="control" >
 						<span class="edit">edit</span></a> |
