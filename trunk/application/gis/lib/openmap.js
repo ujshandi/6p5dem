@@ -401,30 +401,31 @@ function create_kmlFileDaratOK(kantor){
 				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
 				 
 			});
-			var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
-					"<b>NAMA</b><br/>"+
-					"Jumlah SDM : 0"+
-					"</div>";
+			// var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
+					// "<b>NAMA</b><br/>"+
+					// "Jumlah SDM : 0"+
+					// "</div>";
 					
-			info = new OpenLayers.Control.WMSGetFeatureInfo({
-				url: 'http://localhost:8090/geoserver/bpsdm_gis/wms', 
-				title: 'Identify features by clicking',
-				queryVisible: true,
-				eventListeners: {
-					getfeatureinfo: function(event) {
-						map.addPopup(new OpenLayers.Popup.FramedCloud(
-							"popup", 
-							map.getLonLatFromPixel(event.xy),
-							null,
-							pesan,
-							null,
-							true
-						));
-					}
-				}
-			});
-			map.addControl(info);
-			info.activate();
+			// info = new OpenLayers.Control.WMSGetFeatureInfo({
+				// url: 'http://localhost:8090/geoserver/wms', 
+				// layerUrls: ['http://localhost:8090/geoserver/bpsdm_gis/wms'],
+				// title: 'Identify features by clicking',
+				// queryVisible: true,
+				// eventListeners: {
+					// getfeatureinfo: function(event) {
+						// map.addPopup(new OpenLayers.Popup.FramedCloud(
+							// "popup", 
+							// map.getLonLatFromPixel(event.xy),
+							// null,
+							// event.text,
+							// null,
+							// true
+						// ));
+					// }
+				// }
+			// });
+			// map.addControl(info);
+			// info.activate();
 		},
 		error: function() {
 		   alert('Error crete SHP, Please check your internet connection!!');
@@ -464,11 +465,11 @@ function create_kmlDinas(prov){
 				else if(jumlah<nrm){ color = 'yellow'}
 				else { color = 'green'}
 				
-				if(prov){
-					var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/province/'+color+'/'+kode+'.kml';
-				}else{
-					var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml';
-				}
+				// if(prov){
+					// var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/province/'+color+'/'+kode+'.kml';
+				// }else{
+					// var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml';
+				// }
 				
 				shpLayers[i] = new OpenLayers.Layer.WMS( 
 					"Indo Kab Reg "+kode, 
