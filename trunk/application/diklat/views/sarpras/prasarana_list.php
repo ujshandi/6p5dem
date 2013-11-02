@@ -1,6 +1,6 @@
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Praprasarana</h1>
+	<h1 class="heading">Data Prasarana</h1>
 	<hr/>
 	<a href="<?=base_url().$this->config->item('index_page').'/prasarana/add'?>" class="control"> <span class="add">Tambah Data Prasarana</span></a>
 	
@@ -30,18 +30,18 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th>UPT</th>
+		<th width='18%'>UPT</th>
 		<th>Nama Prasarana</th>
-		<th>Jumlah</th>
+		<th >Jml</th>
 		<th>Kapasitas</th>
 		<th>Tahun Pengadaan</th>
-		<th>Foto</th>
+		<th>Deskripsi</th>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
 	  
 		<?
-		$i=1;
+		$i=$curcount;
 		foreach($result->result() as $r){
 		?>
 		
@@ -52,7 +52,7 @@
 				<td style="vertical-align:middle"><?=$r->JUMLAH?></td>
 				<td style="vertical-align:middle"><?=$r->KAPASITAS?></td>
 				<td style="vertical-align:middle"><?=$r->TAHUN?></td>
-				<td style="vertical-align:middle"><img width ="75px" src='<?=base_url()?>file_upload/diklat/<?=$r->GAMBAR_PRASARANA?>' alt='<?=$r->GAMBAR_PRASARANA?>'/></td>
+				<td style="vertical-align:middle"><?=$r->DESKRIPSI_PRASARANA?></td>
 				<td style="vertical-align:middle">
 					<a href="<?=site_url().'/prasarana/edit/'.$r->ID_PRASARANA?>" class="control" >
 						<span class="edit">edit</span></a> |					
