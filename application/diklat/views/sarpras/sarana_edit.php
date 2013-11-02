@@ -38,7 +38,7 @@
 			</li>
 			
 			<li><label for="">JUMLAH<em>*</em></label> <input name="JUMLAH" value="<?=$result->row()->JUMLAH?>" type="text" class="five"/></li>
-			
+			<li><label for="">DESKRIPSI <em>*</em></label><textarea name="DESKRIPSI" class="five"><?=$result->row()->DESKRIPSI?></textarea></li>
 			
 			<div class="clearfix">&nbsp;</div>
 			<hr/>
