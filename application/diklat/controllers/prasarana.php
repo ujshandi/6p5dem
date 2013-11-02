@@ -50,7 +50,7 @@ class prasarana extends My_Controller {
 		$config['first_tag_close'] = '</li>';
 
 		$config['total_rows'] = $result['row_count'];
-
+		
 		$this->pagination->initialize($config);	
 		
 		$data['curcount'] = $offset+1;
@@ -143,8 +143,7 @@ class prasarana extends My_Controller {
 		$config['max_height']  = '768';
 
 		$this->load->library('upload', $config);
-
-		if ( $this->upload->do_upload()){
+		
 		$data['GAMBAR_PRASARANA'] =  $this->upload->file_name;			
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		$data['TAHUN'] = $this->input->post('TAHUN');
@@ -170,6 +169,9 @@ class prasarana extends My_Controller {
 			$this->mdl_prasarana->update($data);
 			redirect('prasarana');
 		}
+		
+		if ( $this->upload->do_upload()){
+		
 		}else{
 			//echo $this->upload->display_errors();
 		}
