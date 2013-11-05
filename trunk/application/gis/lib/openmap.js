@@ -366,9 +366,9 @@ function create_kmlFileDaratOK(kantor){
 				var total = item.total;
 				var nama = item.nama;
 				
-				var low = total/3;
-				var nrm = low + (total/3);
-				var hi  = nrm + (total/3);
+				var low = total/4;
+				var nrm = low + low;
+				var hi  = nrm + low;
 				var color = 'green';
 				
 				if(jumlah<low){ color = 'red'}
@@ -456,9 +456,9 @@ function create_kmlDinas(prov){
 				var total = item.total;
 				var nama = item.nama;
 				
-				var low = total/3;
-				var nrm = low + (total/3);
-				var hi  = nrm + (total/3);
+				var low = total/4;
+				var nrm = low + low;
+				var hi  = nrm + low;
 				var color = 'green';
 				
 				if(jumlah<low){ color = 'red'}
