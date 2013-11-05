@@ -32,7 +32,7 @@ class front extends My_Controller {
 		$this->load->model('mdl_program');
 		
 		$this->openfront();
-		$data['diklat'] = $this->mdl_program->getDiklatbyId($diklat, $upt);
+		$data['diklat'] = $this->mdl_program->getDiklatbyId($diklat);
 		$data['upt'] = $this->mdl_satker->getUPTById($upt);
 		$data['kurikulum'] = $this->mdl_kurikulum->getKurikulumByDiklat($diklat);
 		$this->load->view('front/kurikulum_list_detail', $data);
