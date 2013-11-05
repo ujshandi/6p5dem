@@ -136,9 +136,9 @@ class diklat_udara extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('diklat/diklat_udara_add',$data);
+			$this->load->view('diklat/diklat_udara_edit',$data);
 		}else{
-			$this->mdl_diklat_udara->insert($data);
+			$this->mdl_diklat_udara->update($data);
 			redirect('diklat_udara');
 		}
 		

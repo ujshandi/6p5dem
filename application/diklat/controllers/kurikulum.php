@@ -150,16 +150,17 @@ class kurikulum extends My_Controller {
 		# set rules validation
 		$this->form_validation->set_rules('KODE_KURIKULUM', 'KODE KURIKULUM', 'required');
         $this->form_validation->set_rules('NAMA_KURIKULUM', 'NAMA KURIKULUM', 'required');
-        $this->form_validation->set_rules('SKS_TEORI', 'SKS TEORI', 'required');
-		$this->form_validation->set_rules('SKS_PRAKTEK', 'SKS PRAKTEK', 'required');
-		$this->form_validation->set_rules('JAM', 'JAM', 'required');
-		$this->form_validation->set_rules('SEMESTER', 'SEMSTER', 'required');
+        // $this->form_validation->set_rules('SKS_TEORI', 'SKS TEORI', 'required');
+		// $this->form_validation->set_rules('SKS_PRAKTEK', 'SKS PRAKTEK', 'required');
+		// $this->form_validation->set_rules('JAM', 'JAM', 'required');
+		// $this->form_validation->set_rules('SEMESTER', 'SEMSTER', 'required');
 		$this->form_validation->set_rules('KODE_DIKLAT', 'KODE DIKLAT', 'required');
 		$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_kurikulum->getDataEdit($data['id']);
 			$this->load->view('kurikulum/kurikulum_edit',$data);
 		}else{
 			$this->mdl_kurikulum->update($data);

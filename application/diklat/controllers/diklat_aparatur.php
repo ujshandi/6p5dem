@@ -135,9 +135,9 @@ class diklat_aparatur extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('diklat_aparatur/diklat_aparatur_add',$data);
+			$this->load->view('diklat_aparatur/diklat_aparatur_edit',$data);
 		}else{
-			$this->mdl_diklat_aparatur->insert($data);
+			$this->mdl_diklat_aparatur->update($data);
 			redirect('diklat_aparatur');
 		}
 		
