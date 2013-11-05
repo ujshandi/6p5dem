@@ -13,12 +13,28 @@
             });
         });
     });
+	
+	function CA()
+	{
+		var cIdx = 'NO_PESERTA'; //manggil id chekbok
+		//alert(counterIdx);
+		var cControl = 'control';		
+		for (var i=0;i < document.sform.elements.length;i++)
+		{
+			var e = document.sform.elements[i];
+			if ((e.id == cIdx) && (e.id != cControl) && (e.type=='checkbox'))
+			{
+				e.checked = document.getElementById(cControl).checked;
+			}
+		}
+	}
+	
 </script>
 
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Tambah Data Alumni</h1>
 	<hr/>
-	<?=form_open('alumni/proses_add_alumni1', array('class'=>'sform'))?>
+	<?=form_open('alumni/proses_add_alumni1', array('class'=>'sform', 'id'=>'sform', 'name'=>'sform'))?>
 	<fieldset>
 		<?php 
 			if(validation_errors())
@@ -41,7 +57,7 @@
 			</li>
 			<table width="69%" border="1" cellspacing="1" cellpadding="1">
 				<tr>
-					<th width="3%" scope="col">&nbsp;</th>
+					<th width="3%" scope="col"><input type="checkbox" name="control" id="control" onclick="CA(0)" checked="checked" /></th>
 					<th width="10%" scope="col">Nomor Peserta</th>
 					<th width="30%" scope="col">Nama Peserta</th>
 					<th width="25%" scope="col">Status Alumni</th>
@@ -52,7 +68,7 @@
 					foreach($data->result() as $r){
 				?>
 				<tr>
-					<td><input name="DATA[<?=$i?>][NO_PESERTA]" type="checkbox"  value="<?=$r->NO_PESERTA?>" checked="checked" /></td>
+					<td><input name="DATA[<?=$i?>][NO_PESERTA]" type="checkbox" id="NO_PESERTA"  value="<?=$r->NO_PESERTA?>" checked="checked" /></td>
 					<td><?=$r->NO_PESERTA?></td>
 					<td>
 						<?=$r->NAMA_PESERTA?>
