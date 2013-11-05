@@ -135,9 +135,9 @@ class diklat_darat extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('diklat_darat/diklat_darat_add',$data);
+			$this->load->view('diklat_darat/diklat_darat_edit',$data);
 		}else{
-			$this->mdl_diklat_darat->insert($data);
+			$this->mdl_diklat_darat->update($data);
 			redirect('diklat_darat');
 		}
 		
