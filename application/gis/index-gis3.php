@@ -1,3 +1,6 @@
+<?php
+ header("Access-Control-Allow-Origin: *");
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,7 +14,6 @@
 	<script type="text/javascript" src="ext-3.4.0/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="ext-3.4.0/ext-all.js"></script>
     <link rel="stylesheet" type="text/css" href="ext-3.4.0/resources/css/ext-all.css" />
-    <link rel="stylesheet" type="text/css" href="ext-3.4.0/examples/shared/examples.css" />
     <script type="text/javascript" src="lib/en/lib/OpenLayers.js"></script>
     <script type="text/javascript" src="lib/script/GeoExt.js"></script>
     <script src="http://maps.google.com/maps/api/js?v=3.5&amp;sensor=false"></script>

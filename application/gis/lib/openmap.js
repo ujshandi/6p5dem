@@ -180,17 +180,17 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 						var point = new google.maps.LatLng(lat,lng);
 						var tipe = item.tipe;
 						var picture = item.picture;
-						var alumni_url = getBaseUrl()+"/index.php/alumni_frontpage/hid_filter/";
+						var alumni_url = getBaseUrl()+"/index.php/alumni2_frontpage/hid_filter/";
 						var peserta_url = getBaseUrl()+"/index.php/peserta_frontpage/hid_filter/";
 						var dosen_url = getBaseUrl()+"/index.php/dosen_frontpage/hid_filter/";
 						if (!item.picture) picture = 'images/img/no.gif';
 						var html = "<div style='min-height:100px;'>Keterangan : <br/>"+
-							"<b>"+item.content+"</b><br/>"+
-							"Jumlah Peserta : "+item.peserta+" (<a href="+peserta_url+item.kodeupt+" target='_blank'>detail</a>)"+"<br/>"+
-							"Jumlah Alumni : "+item.alumni+" (<a href='"+alumni_url+item.kodeupt+"' target='_blank')'>detail</a>)"+"<br/>"+
-							"Jumlah Dosen : "+item.dosen+" (<a href='"+dosen_url+item.kodeupt+"/Dosen' target='_blank')'>detail</a>)"+"<br/>"+
-							"Jumlah Instruktur : "+item.instruktur+" (<a href='"+dosen_url+item.kodeupt+"/Instruktur' target='_blank')'>detail</a>)"+"<br/>"+
-							"Jumlah Widyaiswara : "+item.widyaiswara+" (<a href='"+dosen_url+item.kodeupt+"/Widyaiswara' target='_blank')'>detail</a>)"+
+							"<b>"+item.content+"</b>"+" (<a href='#' onclick='openWindow(\""+peserta_url+item.kodeupt+"\")'>detail</a>)"+"<br/>"+
+							"Jumlah Peserta : "+item.peserta+"<br/>"+
+							"Jumlah Alumni : "+item.alumni+"<br/>"+
+							"Jumlah Dosen : "+item.dosen+"<br/>"+
+							"Jumlah Instruktur : "+item.instruktur+"<br/>"+
+							"Jumlah Widyaiswara : "+item.widyaiswara+
 							"</div>";
 						addMarker(lng, lat, html, '', tipe);
 					});	
@@ -354,6 +354,7 @@ function boxclick3(box, category){
 
 function create_kmlFileDaratOK(kantor){
 	var info = new Array();
+	var detail = new Array();
 	$.jsonp({
 		//url: "dataSDMKementerian.php?unitkantor="+kantor,
 		url: "dataSDMKementerian.php?unitkantor="+kantor,
@@ -394,18 +395,36 @@ function create_kmlFileDaratOK(kantor){
 					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png',styles:color}, 
 					{opacity: 0.8,singleTile: false,isBaseLayer:false}
 				);
+				
+				detail[i] = pesan;
 							
 				map.addLayer(shpLayers[i]);	
 				//alert(kode);
 				//var centerlonlat = new OpenLayers.LonLat( 107.623701, -6.909812 );
 				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
-				 
+				
 			});
-			// var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
-					// "<b>NAMA</b><br/>"+
-					// "Jumlah SDM : 0"+
-					// "</div>";
+			// var queryableMapLayers = shpLayers;
+			
+			// var info = new OpenLayers.Control.WMSGetFeatureInfo({
+			  // url: 'http://localhost:8090/geoserver/wms' // Your WMS server url here,
+			  // drillDown: false, // Or true if you want drill down (see the docs)
+			  // hover: false, // Or true if you want but bear in mind this could get chatty
+			  // layers: queryableMapLayers,
+			  // eventListeners: {
+				// getfeatureinfo: function (event) {
+				  // // Code here if you want to process the results
+				// },
+				// beforegetfeatureinfo: function(event) {
+				  // // Code here to set the content of queryableMapLayers
+				  // // The event object will contain xy of mouse click
 					
+				// },
+				// nogetfeatureinfo: function(event) {
+				  // // Code here if no queryable layers are found
+				// }
+			  // } 
+			// });
 			// info = new OpenLayers.Control.WMSGetFeatureInfo({
 				// url: 'http://localhost:8090/geoserver/wms', 
 				// layerUrls: ['http://localhost:8090/geoserver/bpsdm_gis/wms'],
@@ -413,6 +432,7 @@ function create_kmlFileDaratOK(kantor){
 				// queryVisible: true,
 				// eventListeners: {
 					// getfeatureinfo: function(event) {
+						// console.log(event);
 						// map.addPopup(new OpenLayers.Popup.FramedCloud(
 							// "popup", 
 							// map.getLonLatFromPixel(event.xy),
@@ -433,6 +453,16 @@ function create_kmlFileDaratOK(kantor){
 	});
 }
 
+function showInfo(evt) {
+	if (evt.features && evt.features.length) {
+		 highlightLayer.destroyFeatures();
+		 highlightLayer.addFeatures(evt.features);
+		 highlightLayer.redraw();
+	} else {
+		document.getElementById('responseText').innerHTML = evt.text;
+	}
+}
+	
 function getBaseUrl(){
 	pathArray = window.location.href.split( '/' );
 	protocol = pathArray[0];
@@ -459,11 +489,10 @@ function create_kmlDinas(prov){
 				var low = total/4;
 				var nrm = low + low;
 				var hi  = nrm + low;
-				var color = 'green';
 				
-				if(jumlah<low){ color = 'red'}
-				else if(jumlah<nrm){ color = 'yellow'}
-				else { color = 'green'}
+				if(jumlah<low){ color = "red";}
+				else if(jumlah<nrm){ color = "yellow";}
+				else { color = "green";}
 				
 				// if(prov){
 					// var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/province/'+color+'/'+kode+'.kml';
@@ -474,16 +503,44 @@ function create_kmlDinas(prov){
 				shpLayers[i] = new OpenLayers.Layer.WMS( 
 					"Indo Kab Reg "+kode, 
 					"http://localhost:8090/geoserver/bpsdm_gis/wms", 
-					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png',styles:color}, 
+					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png', styles:color}, 
 					{opacity: 0.8,singleTile: false,isBaseLayer:false}
 				);
   			
 				map.addLayer(shpLayers[i]);	
 				//alert(kode);
 			});
+					
+			info = new OpenLayers.Control.WMSGetFeatureInfo({
+				url: 'http://localhost:8090/geoserver/wms', 
+				layerUrls: ['http://localhost:8090/geoserver/bpsdm_gis/wms'],
+				title: 'Identify features by clicking',
+				infoFormat: 'text/html',
+				queryVisible: true,
+				eventListeners: {
+					getfeatureinfo: function(event) {
+						console.log(event); 
+						map.addPopup(new OpenLayers.Popup.FramedCloud(
+							"popup", 
+							map.getLonLatFromPixel(event.xy),
+							null,
+							event.text,
+							null,
+							true
+						));
+					}
+				}
+			});
+			
+			map.addControl(info);
+			info.activate();
 		},
 		error: function() {
 		   alert('Error crete SHP, Please check your internet connection!!');
 		}
 	});
+}
+
+function openWindow(url){
+    window.open(url,'popUpWindow','height=700,width=1024,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
 }
