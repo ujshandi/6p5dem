@@ -404,48 +404,6 @@ function create_kmlFileDaratOK(kantor){
 				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
 				
 			});
-			// var queryableMapLayers = shpLayers;
-			
-			// var info = new OpenLayers.Control.WMSGetFeatureInfo({
-			  // url: 'http://localhost:8090/geoserver/wms' // Your WMS server url here,
-			  // drillDown: false, // Or true if you want drill down (see the docs)
-			  // hover: false, // Or true if you want but bear in mind this could get chatty
-			  // layers: queryableMapLayers,
-			  // eventListeners: {
-				// getfeatureinfo: function (event) {
-				  // // Code here if you want to process the results
-				// },
-				// beforegetfeatureinfo: function(event) {
-				  // // Code here to set the content of queryableMapLayers
-				  // // The event object will contain xy of mouse click
-					
-				// },
-				// nogetfeatureinfo: function(event) {
-				  // // Code here if no queryable layers are found
-				// }
-			  // } 
-			// });
-			// info = new OpenLayers.Control.WMSGetFeatureInfo({
-				// url: 'http://localhost:8090/geoserver/wms', 
-				// layerUrls: ['http://localhost:8090/geoserver/bpsdm_gis/wms'],
-				// title: 'Identify features by clicking',
-				// queryVisible: true,
-				// eventListeners: {
-					// getfeatureinfo: function(event) {
-						// console.log(event);
-						// map.addPopup(new OpenLayers.Popup.FramedCloud(
-							// "popup", 
-							// map.getLonLatFromPixel(event.xy),
-							// null,
-							// event.text,
-							// null,
-							// true
-						// ));
-					// }
-				// }
-			// });
-			// map.addControl(info);
-			// info.activate();
 		},
 		error: function() {
 		   alert('Error crete SHP, Please check your internet connection!!');
@@ -476,6 +434,7 @@ function getBaseUrl(){
 }
 
 function create_kmlDinas(prov){
+	var pesan = new Array();
 	$.jsonp({
 		url: "dataSDMDinas.php?prov="+prov,
 		callback: "callback",
@@ -506,6 +465,10 @@ function create_kmlDinas(prov){
 					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png', styles:color}, 
 					{opacity: 0.8,singleTile: false,isBaseLayer:false}
 				);
+				
+				pesan[i] = new Array(2);
+				pesan[i][0] = kode;
+				pesan[i][1] = "<div style='min-height:100px;'>Keterangan : <br/>"+"<b>"+item.nama+"</b><br/>"+"Jumlah SDM : "+item.jumlah+"</div>";
   			
 				map.addLayer(shpLayers[i]);	
 				//alert(kode);
@@ -520,14 +483,26 @@ function create_kmlDinas(prov){
 				eventListeners: {
 					getfeatureinfo: function(event) {
 						console.log(event); 
-						map.addPopup(new OpenLayers.Popup.FramedCloud(
-							"popup", 
-							map.getLonLatFromPixel(event.xy),
-							null,
-							event.text,
-							null,
-							true
-						));
+						el = document.createElement('p');
+						el.innerHTML = event.text;
+						if(el.querySelector('caption.featureInfo') != null){
+							var lid = el.querySelector('caption.featureInfo').innerText;
+							var msg = '';
+							for (var i=0;i<pesan.length;i++)
+							{ 
+								if(pesan[i][0]==lid){
+									msg = pesan[i][1];
+								}
+							}
+							map.addPopup(new OpenLayers.Popup.FramedCloud(
+								"popup", 
+								map.getLonLatFromPixel(event.xy),
+								null,
+								msg,
+								null,
+								true
+							));
+						}
 					}
 				}
 			});
