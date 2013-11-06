@@ -83,7 +83,7 @@ class Dosen_frontpage extends My_Frontpage {
 	public function hid_filter($kodeupt, $jenis_dosen){
 		$this->session->set_userdata($this->id.'kode_upt', $kodeupt);
 		$this->session->set_userdata($this->id.'search', '');
-		$this->session->set_userdata($this->id.'numrow', 30);
+		$this->session->set_userdata($this->id.'numrow', 10);
 		$this->session->set_userdata($this->id.'jenis_dosen', $jenis_dosen);
 		
 		//echo $kodeupt;

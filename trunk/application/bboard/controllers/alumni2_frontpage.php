@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Peserta_frontpage extends My_Frontpage {
+class Alumni2_frontpage extends My_Frontpage {
 
-	var $id = 'peserta';
+	var $id = 'alumni2';
 	
 	function __construct(){
 		parent::__construct();
@@ -11,8 +11,9 @@ class Peserta_frontpage extends My_Frontpage {
 		$this->load->model('mdl_diklat');
 		$this->load->model('mdl_peserta');
 		$this->load->library('pagination');
-		$this->load->model('mdl_peserta_front');
+		$this->load->model('mdl_alumni_front');
 		$this->load->helper('url');
+		
 	}
 	
 	function test(){
@@ -25,16 +26,17 @@ class Peserta_frontpage extends My_Frontpage {
 		
 		# get filter
 		$data['kode_upt'] = $this->session->userdata($this->id.'kode_upt');
+		$data['kode_diklat'] = $this->session->userdata($this->id.'kode_diklat');
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
 		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
 		
 		# get data
-		$result = $this->mdl_peserta_front->getData($data['numrow'], $offset, $data);
+		$result = $this->mdl_alumni_front->getData($data['numrow'], $offset, $data);
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/peserta_frontpage/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/alumni_frontpage/index/';
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
 		$config['uri_segment'] = '3';
@@ -63,18 +65,20 @@ class Peserta_frontpage extends My_Frontpage {
 		
 		$data['curcount'] = $offset+1;
 		$data['result'] = $result['row_data'];
+		$data['jumlah'] = $result['row_count'];
 		
-		$this->load->view('info_peserta/peserta_list', $data);
+		$this->load->view('info_alumni/alumni2_list', $data);
 		
 		$this->close();
 	}
 	
 	public function search(){
-		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('kode_upt'));
+		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('KODE_UPT'));
+		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('KODE_DIKLAT'));
 		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
 		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
 		
-		redirect('peserta_frontpage');
+		redirect('alumni2_frontpage');
 	}
 	
 	public function hid_filter($kodeupt){
@@ -83,7 +87,7 @@ class Peserta_frontpage extends My_Frontpage {
 		$this->session->set_userdata($this->id.'numrow', 10);
 		
 		//echo $kodeupt;
-		redirect('peserta_frontpage');
+		redirect('alumni2_frontpage');
 	}
 	
 	/*public function add_alumni1(){

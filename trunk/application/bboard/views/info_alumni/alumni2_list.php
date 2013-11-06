@@ -1,3 +1,19 @@
+<script>
+    $(document).ready(function(){
+        $("#KODE_UPT").change(function(){
+            var KODE_UPT = $("#KODE_UPT").val();
+            $.ajax({
+               type : "POST",
+               url  : "<?=base_url().$this->config->item('index_page');?>/peserta_front/getDiklat",
+               data : "KODE_UPT=" + KODE_UPT,
+               success: function(data){
+                   $("#KODE_DIKLAT").html(data);
+               }
+            });
+        });
+    });
+</script>
+
 <style>
 	.bgtrans {background:#fff;background:rgba(255,255,255,.8);border:solid 1px #ececec;padding:15px 10px;border-radius:4px;}
 
@@ -20,33 +36,38 @@
 
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 align="center" class="heading">Informasi Data <?=$jenis_dosen?></h1>
+	<h1 align="center" class="heading">Informasi Data Alumni</h1>
 	<h1 align="center" class="heading"><?=$this->mdl_upt->getUPTNameByKode($kode_upt);?></h1>
 	<hr/>
 	<div id="lmenu" class="bgtrans">
 		<ul id="vmenu">
 			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/peserta_frontpage/hid_filter/<?php echo $kode_upt;?>">Data Peserta</a></li>
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/alumni2_frontpage/hid_filter/<?php echo $kode_upt;?>">Data Alumni</a></li>
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Dosen" <?=$jenis_dosen=='Dosen'?'class="active"':''?>>Data Dosen</a></li>
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Instruktur" <?=$jenis_dosen=='Instruktur'?'class="active"':''?>>Data Instruktur</a></li>
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Widyaiswara" <?=$jenis_dosen=='Widyaiswara'?'class="active"':''?>>Data Widyaiswara</a></li>
+			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/alumni2_frontpage/hid_filter/<?php echo $kode_upt;?>" class="active">Data Alumni</a></li>
+			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Dosen">Data Dosen</a></li>
+			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Instruktur">Data Instruktur</a></li>
+			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Widyaiswara">Data Widyaiswara</a></li>
 		</ul><!-- end vmenu -->
 	</div>	
 	<br>
-	<?=form_open('dosen_frontpage/search', array('class'=>'sform'))?>
+	<?=form_open('alumni_frontpage/search', array('class'=>'sform'))?>
 	<fieldset>
 	<ol>
-		<li>
-			<table>
+		<li><table>
 			<!-- cainned combobox-->
 			<tr>
 			<td>UPT : </td><td>
 				<select name="KODE_UPT" id="KODE_UPT">
 					<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 				</select></td>
-			</tr>	
+			</tr>			
 			<tr>
-			<td>NAMA <?=strtoupper($jenis_dosen)?> : </td>
+			<td>DIKLAT : </td><td>
+				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+					<?=$this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$kode_upt, 'value'=>$kode_diklat));?>        	
+				</select></td>
+			</tr>
+			<tr>
+			<td>NAMA ALUMNI : </td>
 			<td><input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" style="width:300px"/></td>
 			</tr>
 			<tr>
@@ -70,10 +91,10 @@
 	  <thead>
 		<th>NO</th>
 		<th width="20%">UPT</th>
-		<th width="15%">NIP</th>
-		<th width="15%">NAMA DOSEN</th>
-		<th>JENIS DOSEN</th>
-		<th>STATUS</th>
+		<th width="15%">DIKLAT</th>
+		<th>NO PESERTA</th>
+		<th width="15%">NAMA PESERTA</th>
+		<th>TEMPAT BEKERJA</th>
 	  </thead>
 	  <tbody>
 	  
@@ -85,10 +106,10 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td width='15%'><?=$r->NAMA_UPT?></td>
-				<td width='10%'><?=$r->NIP?></td>
-				<td width='25%'><?=$r->NAMADOSEN?></td>
-				<td width='10%'><?=$r->JENIS_DOSEN?></td>
-				<td width='15%'><?=$r->STATUS?></td>
+				<td width='15%'><?=$r->NAMA_DIKLAT?></td>
+				<td width='10%'><?=$r->NO_PESERTA?></td>
+				<td width='20%'><?=$r->NAMA_PESERTA?></td>
+				<td width='15%'><?=$r->INSTANSI?></td>
 			</tr>
 		<?
 		$i++;
