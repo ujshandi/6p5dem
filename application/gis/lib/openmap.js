@@ -542,5 +542,9 @@ function create_kmlDinas(prov){
 }
 
 function openWindow(url){
-    window.open(url,'popUpWindow','height=700,width=1024,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+	var w = 1024;
+	var h = 685;
+	var left = (screen.width/2)-(w/2);
+	var top = (screen.height/2)-(h/2);
+    window.open(url,'popUpWindow','height='+h+',width='+w+',left='+left+',top='+top+',resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes');
 }
