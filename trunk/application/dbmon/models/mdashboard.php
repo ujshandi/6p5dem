@@ -25,6 +25,31 @@
 				//return $this->db->query($sql)->result_array(); 
 			break;
 			
+			//pendidikan
+			case "data_sdm_pendidikan":
+				if($p2=='pend'){
+					$sql="
+						SELECT SDM_PENDIDIKAN.JUMLAH as JUMLAH_SDM, SDM_KANTOR.NAMAKANTOR
+						FROM SDM_PENDIDIKAN
+						INNER JOIN SDM_KANTOR
+						ON SDM_KANTOR.KODEKANTOR=SDM_PENDIDIKAN.KODEKANTOR
+						WHERE SDM_PENDIDIKAN.TAHUN = '2013'";
+				}
+					
+			break;
+			
+			case "data_sdm_pendidikan_dinas":
+				if($p2=='pend_din'){
+					$sql="
+						SELECT SDM_PENDIDIKAN_DINAS.JUMLAH as JUMLAH_SDM, SDM_PROVINSI.NAMAPROVIN
+						FROM SDM_PENDIDIKAN_DINAS
+						INNER JOIN SDM_PROVINSI
+						ON SDM_PROVINSI.KODEPROVIN=SDM_PENDIDIKAN_DINAS.KODEPROVIN
+						ORDER BY SDM_PENDIDIKAN_DINAS.KODEPROVIN";
+				}
+					
+			break;
+			//end
 			case "data_sdm_kab":
 					$where='';
 					if($p3!=''){
@@ -289,4 +314,9 @@
 		//echo $sql;
 		return $this->db->query($sql)->result_array();
 	}
+	//end
+	#####
+	//pendidikan
+	
+	//end
 }

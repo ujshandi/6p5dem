@@ -53,7 +53,29 @@ class dashboard extends My_Controller {
 				$mod="mon_diklat_diklat";
 			
 			break;
+			//pendidikan
+			case 'mon_pendidikan':
+				$data['title']='Pendidikan Bidang Transportasi';
+				//$mod="sdm_prov";
+				$mod="mon_pendidikan";
 			
+			break;
+			
+			case 'mon_pendidikan_dinas':
+				$data['title']='Pendidikan Bidang Transportasi';
+				//$mod="sdm_prov";
+				$mod="mon_pendidikan_dinas";
+			
+			break;
+			
+			/*case 'mon_jenjang_pendidikan':
+				$data['title']='Pendidikan Bidang Transportasi';
+				//$mod="sdm_prov";
+				$mod="mon_pendidikan2";
+			
+			break;*/
+			
+			//end
 			case "data_list":
 				$mod="data_list";
 				$data['induk_upt']	 =$this->input->post('induk_upt');
@@ -205,6 +227,58 @@ class dashboard extends My_Controller {
 			$xml .='</chart>';
 			
 			break;
+			//pendidikan
+			case "pend":
+				//$kd_prov=$this->input->post('kd_prov');
+				//$flag_kelamin=$this->input->post('flag_kelamin');
+				$data=$this->mdashboard->get_data('data_sdm_pendidikan',$kat);
+			//	print_r($data);
+				$xml="<chart yAxisName='Jumlah' showLegend='0' labelDisplay='ROTATE' numDivLines='5' slantLabels='1' numberPrefix='' showBorder='0' imageSave='1' exportHandler=''>";
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAKANTOR'].'" value="'.$v['JUMLAH_SDM'].'" />';
+				}
+				
+			
+			$xml .='</chart>';
+				###
+				/*$data=$this->mdashboard->get_data('data_sdm',$kat);
+			//	print_r($data);
+				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAPROVIN'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_kab("'.$v["KODEPROVIN"].'","",300,200,"get_detail/data_kab/Doughnut3D")\' />';
+				}
+				
+			
+			$xml .='</chart>';*/
+			
+			break;
+			
+			case "pend_din":
+				//$kd_prov=$this->input->post('kd_prov');
+				//$flag_kelamin=$this->input->post('flag_kelamin');
+				$data=$this->mdashboard->get_data('data_sdm_pendidikan_dinas',$kat);
+			//	print_r($data);
+				$xml="<chart yAxisName='Jumlah' showLegend='0' labelDisplay='ROTATE' numDivLines='5' slantLabels='1' numberPrefix='' showBorder='0' imageSave='1' exportHandler=''>";
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAPROVIN'].'" value="'.$v['JUMLAH_SDM'].'" />';
+				}
+				
+			
+			$xml .='</chart>';
+				###
+				/*$data=$this->mdashboard->get_data('data_sdm',$kat);
+			//	print_r($data);
+				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAPROVIN'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_kab("'.$v["KODEPROVIN"].'","",300,200,"get_detail/data_kab/Doughnut3D")\' />';
+				}
+				
+			
+			$xml .='</chart>';*/
+			
+			break;
+			//end
+			
 			//---- kementerian
 			case "all2":
 				$data=$this->mdashboard->get_data('data_sdm_kementerian',$kat);
@@ -520,4 +594,28 @@ class dashboard extends My_Controller {
 			echo $optTemp;	
 		
 	}
+	//end
+	###
+	//pendidikan
+	function get_combo_eselon($p1,$valfilter="",$val="",$val2=""){
+		$optTemp =""; 
+		switch($p1){
+				case 'SDM_KANTOR':
+					$rec=$this->mdashboard->isi_combo_eselon('SDM_KANTOR','KODEKANTOR','NAMAKANTOR');
+				break;
+		}
+		//print_r($rec);
+		$optTemp .= "<option value=''>-- Pilih --</option>";			
+			foreach($rec as $v=>$k)
+			{
+				if($this->input->post("v") == $k['ID_NA'])
+					$optTemp .= "<option selected value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+				else 
+					$optTemp .= "<option value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+			}
+			echo $optTemp;	
+		
+	}
+	
+	//end
 }

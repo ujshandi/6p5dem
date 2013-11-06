@@ -99,10 +99,14 @@
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="status_offline" style="width:250px" 
 						onClick="loadUrl(this, 'get_form/mon_diklat_diklat/alumni');" >Komposisi Alumni Berdasarkan DIKLAT</a>
 				</div>
-				<div title="Dashboard Monitoring Kompetensi" iconCls="chart_curve" style="padding:5px;">
+				<div title="Dashboard Monitoring Pendidikan" iconCls="chart_curve" style="padding:5px;">
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 
-						onClick="loadUrl(this, 'get_form/kopetensi');" style="width:250px" >Komposisi Kopetensi</a>
+						onClick="loadUrl(this, 'get_form/mon_pendidikan');" style="width:250px" >Komposisi Pendidikan Kementerian</a>
 					
+					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 
+						onClick="loadUrl(this, 'get_form/mon_pendidikan_dinas');" style="width:250px" >Komposisi pendidikan SDM dinas</a>
+					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 
+						onClick="loadUrl(this, 'get_form/mon_jenjang_pendidikan');" style="width:250px" >Komposisi Jenjang pendidikan Kementerian</a>
 				</div>
 			</div>
 				
