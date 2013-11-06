@@ -41,10 +41,10 @@
 	<hr/>
 	<div id="lmenu" class="bgtrans">
 		<ul id="vmenu">
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/peserta_frontpage/hid_filter/<?php echo $kode_upt;?>">Data Peserta</a></li>
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/alumni2_frontpage/hid_filter/<?php echo $kode_upt;?>" class="active">Data Alumni</a></li>
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Dosen">Data Dosen</a></li>
-			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Instruktur">Data Instruktur</a></li>
+			<li><a href="<?=base_url()?>/index.php/peserta_frontpage/hid_filter/<?php echo $kode_upt;?>">Data Peserta</a></li>
+			<li><a href="<?=base_url()?>/index.php/alumni2_frontpage/hid_filter/<?php echo $kode_upt;?>" class="active">Data Alumni</a></li>
+			<li><a href="<?=base_url()?>/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Dosen">Data Dosen</a></li>
+			<li><a href="<?=base_url()?>/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Instruktur">Data Instruktur</a></li>
 			<li><a href="http://localhost:81/stef.com/bpsdm_new/index.php/dosen_frontpage/hid_filter/<?php echo $kode_upt;?>/Widyaiswara">Data Widyaiswara</a></li>
 		</ul><!-- end vmenu -->
 	</div>	
