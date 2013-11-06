@@ -49,17 +49,18 @@
 		</ul><!-- end vmenu -->
 	</div>	
 	<br>
-	<?=form_open('alumni_frontpage/search', array('class'=>'sform'))?>
+	<?=form_open('alumni2_frontpage/search', array('class'=>'sform'))?>
 	<fieldset>
 	<ol>
 		<li><table>
 			<!-- cainned combobox-->
-			<tr>
+			<!--<tr>
 			<td>UPT : </td><td>
 				<select name="KODE_UPT" id="KODE_UPT">
 					<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 				</select></td>
-			</tr>			
+			</tr>		-->
+			<input type='hidden' id="KODE_UPT" name="KODE_UPT" value="<?=$kode_upt?>" />
 			<tr>
 			<td>DIKLAT : </td><td>
 				<select name="KODE_DIKLAT" id="KODE_DIKLAT">

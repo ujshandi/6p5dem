@@ -39,12 +39,13 @@
 		<li>
 			<table>
 			<!-- cainned combobox-->
-			<tr>
+			<!-- <tr>
 			<td>UPT : </td><td>
 				<select name="KODE_UPT" id="KODE_UPT">
 					<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 				</select></td>
-			</tr>	
+			</tr>	-->
+			<input type='hidden' id="KODE_UPT" name="KODE_UPT" value="<?=$kode_upt?>" />
 			<tr>
 			<td>NAMA <?=strtoupper($jenis_dosen)?> : </td>
 			<td><input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" style="width:300px"/></td>
