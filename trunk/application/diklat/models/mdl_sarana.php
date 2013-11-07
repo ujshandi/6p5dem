@@ -5,10 +5,18 @@ class mdl_sarana extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0, $filter){
+	//function getData($num=0, $offset=0, $filter){
+	
+	##sorting
+	function getData($num=0, $offset=0, $filter,$sort_by, $sort_order){
 		// yanto
 		$level = get_level();
 		
+		##sorting
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('NAMA_SARPRAS', 'JUMLAH', 'TAHUN');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'NAMA_SARPRAS';
+		##
 		# get data
 		$this->db->flush_cache();
 		$this->db->select('DIKLAT_MST_SARANA.*, DIKLAT_MST_UPT.NAMA_UPT, DIKLAT_MST_SARPRAS.NAMA_SARPRAS', false);
@@ -16,7 +24,12 @@ class mdl_sarana extends CI_Model{
 		$this->db->join('DIKLAT_MST_SARPRAS', 'DIKLAT_MST_SARANA.ID_SARPRAS = DIKLAT_MST_SARPRAS.ID_SARPRAS');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_SARANA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
+		
+		##sorting
+		$this->db->order_by($sort_by, $sort_order);
+		##
+		
+		//$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
 		
 		// yanto
 		if(!empty($filter['kode_upt'])){

@@ -115,22 +115,22 @@ class dosen extends My_Controller {
 		$data['JENIS_DOSEN'] = $this->input->post('JENIS_DOSEN');
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
 		
-		# set rules validation
+	 	# set rules validation
 		//$this->form_validation->set_rules('IDDOSEN', 'ID DOSEN', 'required');
-        $this->form_validation->set_rules('NIP', 'NIP', 'required');
+        //$this->form_validation->set_rules('NIP', 'NIP', 'required');
         $this->form_validation->set_rules('NAMADOSEN', 'NAMA DOSEN', 'required');
-		$this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
-		$this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
+		//$this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
+		//$this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
 		$this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
 		$this->form_validation->set_rules('STATUS', 'STATUS', 'required');
-		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
-		$this->form_validation->set_rules('PENDIDIKAN', 'PENDIDIKAN', 'required');
+		//$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
+		//$this->form_validation->set_rules('PENDIDIKAN', 'PENDIDIKAN', 'required');
 		//$this->form_validation->set_rules('JURUSAN', 'JURUSAN', 'required');
 		//$this->form_validation->set_rules('KELOMPOK_MATKUL', 'KELOMPOK_MATKUL', 'required');
 		$this->form_validation->set_rules('JENIS_DOSEN', 'JENIS DOSEN', 'required');
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
 		//$this->form_validation->set_rules('KODE_UPT', 'KODE UPT', 'required');
-        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required');
+        //$this->form_validation->set_rules('URUTAN', 'URUTAN', 'required'); 
 		
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
@@ -187,14 +187,14 @@ class dosen extends My_Controller {
 		
 		# set rules validation
 		//$this->form_validation->set_rules('IDDOSEN', 'ID DOSEN', 'required');
-        $this->form_validation->set_rules('NIP', 'NIP', 'required');
+        //$this->form_validation->set_rules('NIP', 'NIP', 'required');
         $this->form_validation->set_rules('NAMADOSEN', 'NAMA DOSEN', 'required');
-		$this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
-		$this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
+		//$this->form_validation->set_rules('TEMPAT_LAHIR', 'TEMPAT LAHIR', 'required');
+		//$this->form_validation->set_rules('TGL_LAHIR', 'TANGGAL LAHIR', 'required');
 		$this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
 		$this->form_validation->set_rules('STATUS', 'STATUS', 'required');
-		$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
-		$this->form_validation->set_rules('PENDIDIKAN', 'PENDIDIKAN', 'required');
+		//$this->form_validation->set_rules('TAHUN', 'TAHUN', 'required');
+		//$this->form_validation->set_rules('PENDIDIKAN', 'PENDIDIKAN', 'required');
 		//$this->form_validation->set_rules('JURUSAN', 'JURUSAN', 'required');
 		//$this->form_validation->set_rules('KELOMPOK_MATKUL', 'KELOMPOK_MATKUL', 'required');
 		$this->form_validation->set_rules('JENIS_DOSEN', 'JENIS DOSEN', 'required');

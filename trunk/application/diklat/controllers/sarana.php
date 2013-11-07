@@ -11,7 +11,7 @@ class sarana extends My_Controller {
 		$this->load->model('mdl_sarana');
 	}
 
-	public function index()
+	public function index($sort_by ='NAMA,JUMLAH,TAHUN',$sort_order ='ASC')
 	{
 		$this->open();
 		
@@ -23,7 +23,10 @@ class sarana extends My_Controller {
 		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
 		
 		# get data
-		$result = $this->mdl_sarana->getData($data['numrow'], $offset, $data);
+		//$result = $this->mdl_sarana->getData($data['numrow'], $offset, $data);
+		
+		##sorting
+		$result = $this->mdl_sarana->getData($data['numrow'], $offset, $data, $sort_by, $sort_order);
 		
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sarana/index/';
@@ -56,6 +59,15 @@ class sarana extends My_Controller {
 		$data['curcount'] = $offset+1;
 		
 		$data['result'] = $result['row_data'];
+		##sorting
+		$data['fields'] = array (
+			'NAMA_SARPRAS' => 'NAMA SARANA',
+			'JUMLAH' => 'JUMLAH',
+			'TAHUN' => 'TAHUN'
+		);
+		$data['sort_by'] = $sort_by;
+		$data['sort_order'] = $sort_order;
+		##
 		
 		$this->load->view('sarpras/sarana_list', $data);
 		
