@@ -34,7 +34,7 @@
 
 	<style>
 		.peeek-loading {
-		  background-color: rgba(56,211,104,0.5);
+		  background-color: rgba(56,211,104,0.7);
 		  overflow: hidden;
 		  position: absolute;
 		  top: 0;
