@@ -24,7 +24,7 @@
 				<strong><?=$result->row()->NAMA_PESERTA?></strong>
 			</li>
 			<br>
-			<li><label for="" >DAERAH		: <em></em></label>
+			<li><label for="" >TEMPAT DIKLAT : <em></em></label>
 				<strong><?=$result->row()->DAERAH?></strong>
 			</li>
 			<br>
