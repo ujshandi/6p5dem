@@ -31,9 +31,15 @@
 	  <thead>
 		<th>No</th>
 		<th>UPT</th>
-		<th>Nama Sarana</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/sarana/index/$field_name/".
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
+		<!--th>Nama Sarana</th>
 		<th>Jumlah</th>
-		<th>Tahun</th>
+		<th>Tahun</th-->
 		<th>Deskripsi</th>
 		<th>aksi</th>
 	  </thead>
@@ -47,9 +53,11 @@
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
 				<td width="25%"><?=$r->NAMA_UPT?></td>
-				<td><?=$r->NAMA_SARPRAS?></td>
-				<td><?=$r->JUMLAH?></td>
-				<td><?=$r->TAHUN?></td>
+				<?php foreach ($fields as $field_name => $field_display): ?>
+				<td>
+					<?php echo $r->$field_name; ?>
+				</td>
+				<?php endforeach ?>
 				<td><?=$r->DESKRIPSI?></td>
 				<td >
 					<a href="<?=site_url().'/sarana/edit/'.$r->ID_SARANA?>" class="control" >

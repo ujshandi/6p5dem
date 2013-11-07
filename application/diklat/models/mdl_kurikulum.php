@@ -170,7 +170,8 @@ class mdl_kurikulum extends CI_Model{
 		$this->db->from('DIKLAT_MST_DIKLAT');
 		$this->db->where('KODE_PROGRAM', $kode_program);
 		$this->db->where('KODE_UPT', $kode_upt);
-		$this->db->order_by('KODE_DIKLAT');
+		//$this->db->order_by('KODE_DIKLAT');
+		$this->db->order_by('NAMA_DIKLAT');
 		
 		return $this->db->get();
 	}
