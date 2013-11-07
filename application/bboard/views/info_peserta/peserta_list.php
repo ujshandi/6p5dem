@@ -45,7 +45,7 @@
 					<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 				</select></td>
 			</tr>-->	
-			<input type='hidden' id="KODE_UPT" name="KODE_UPT" value="<?=$kode_upt?>" />
+			<input type="hidden" id="kode_upt" name="kode_upt" value="<?=$kode_upt?>" />
 			<tr>
 			<td>NAMA PESERTA : </td>
 			<td><input type="textfield" name="search" value="<?=!empty($search)?$search:''?>" style="width:300px"/></td>
