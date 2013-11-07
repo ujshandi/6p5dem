@@ -354,6 +354,7 @@ function boxclick3(box, category){
 
 function create_kmlFileDaratOK(kantor){
 	var pesan = new Array();
+	var notYet = (3381,3382,3383,3285,3405,3530,3581,3601,3602,3603,3604,3671,3672,5272,5310,5313,5314,5315,5401,5402,5403,5404,5405,5406,5407,5408,5409,5410,5411,5412,5481,6101,6103,6107,6108,6181,6206,6207,6208,6209,6210,6211,6212,6213,6310,6311,6381,6402,6403,6404,6405,6406,6407,6408,6409,6471,6472,6481,6482,7105,7106,7174,7205,7206,7207,7208,7209,7281,7322,7323,7324,7325,7381,7382,7405,7481,7482,7501,7502,7503,7504,7505,8105,8106,8181,8201,8202,8203,8204,8205,8206,8207,8208,8209,8210,8211,8212,8213,8214,8215,8216,8217,8218,8219,8220,8221,8222,8223,8224,8225,8271,8272,8701,8702,8703,8704,8705,8706,8771,8772,1109,1110,1111,1112,1113,1114,1115,1116,1181,1182,1212,1213,1214,1215,1216,1281,1282,1283,1309,1381,1401,1402,1403,1404,1405,1406,1407,1408,1409,1410,1471,1472,1481,1482,1506,1507,1508,1509,1510,1511,1609,1672,1681,1682,1683,1684,1704,1705,1706,1805,1806,1807,1881,1901,1902,1903,1904,1905,1906,1971,2001,2002,2003,2071,2072,3176,3276,3281,3282,3283,3284,3285,3286,3304,3326);
 	$.jsonp({
 		//url: "dataSDMKementerian.php?unitkantor="+kantor,
 		url: "dataSDMKementerian.php?unitkantor="+kantor,
@@ -382,23 +383,33 @@ function create_kmlFileDaratOK(kantor){
 					// fillColor: "#FF0000",
 					// fillOpacity: 0.7
 				// };
+				var exe = true;
 				
-				shpLayers[i] = new OpenLayers.Layer.WMS( 
-					"Indo Kab Reg "+kode, 
-					"http://localhost:8090/geoserver/bpsdm_gis/wms", 
-					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png',styles:color}, 
-					{opacity: 0.8,singleTile: false,isBaseLayer:false}
-				);
+				for (var j=0;j<notYet.length;j++)
+				{ 
+					if(notYet[j]==kode){
+						exe = false;
+						alert('Error: Layer '+kode+' Not Found');
+					}
+				}
 				
-				pesan[i] = new Array(2);
-				pesan[i][0] = kode;
-				pesan[i][1] = "<div style='min-height:100px;'>Keterangan : <br/>"+"<b>"+item.nama+"</b><br/>"+"Jumlah SDM : "+item.jumlah+"</div>";
-							
-				map.addLayer(shpLayers[i]);	
-				//alert(kode);
-				//var centerlonlat = new OpenLayers.LonLat( 107.623701, -6.909812 );
-				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
-				
+				if(exe){
+					shpLayers[i] = new OpenLayers.Layer.WMS( 
+						"Indo Kab Reg "+kode, 
+						"http://localhost:8090/geoserver/bpsdm_gis/wms", 
+						{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png',styles:color}, 
+						{opacity: 0.8,singleTile: false,isBaseLayer:false}
+					);
+					
+					pesan[i] = new Array(2);
+					pesan[i][0] = kode;
+					pesan[i][1] = "<div style='min-height:100px;'>Keterangan : <br/>"+"<b>"+item.nama+"</b><br/>"+"Jumlah SDM : "+item.jumlah+"</div>";
+								
+					map.addLayer(shpLayers[i]);	
+					//alert(kode);
+					//var centerlonlat = new OpenLayers.LonLat( 107.623701, -6.909812 );
+					//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
+				}
 			});
 					
 			info = new OpenLayers.Control.WMSGetFeatureInfo({
@@ -467,6 +478,8 @@ function getBaseUrl(){
 
 function create_kmlDinas(prov){
 	var pesan = new Array();
+	var notYet = (3381,3382,3383,3285,3405,3530,3581,3601,3602,3603,3604,3671,3672,5272,5310,5313,5314,5315,5401,5402,5403,5404,5405,5406,5407,5408,5409,5410,5411,5412,5481,6101,6103,6107,6108,6181,6206,6207,6208,6209,6210,6211,6212,6213,6310,6311,6381,6402,6403,6404,6405,6406,6407,6408,6409,6471,6472,6481,6482,7105,7106,7174,7205,7206,7207,7208,7209,7281,7322,7323,7324,7325,7381,7382,7405,7481,7482,7501,7502,7503,7504,7505,8105,8106,8181,8201,8202,8203,8204,8205,8206,8207,8208,8209,8210,8211,8212,8213,8214,8215,8216,8217,8218,8219,8220,8221,8222,8223,8224,8225,8271,8272,8701,8702,8703,8704,8705,8706,8771,8772,1109,1110,1111,1112,1113,1114,1115,1116,1181,1182,1212,1213,1214,1215,1216,1281,1282,1283,1309,1381,1401,1402,1403,1404,1405,1406,1407,1408,1409,1410,1471,1472,1481,1482,1506,1507,1508,1509,1510,1511,1609,1672,1681,1682,1683,1684,1704,1705,1706,1805,1806,1807,1881,1901,1902,1903,1904,1905,1906,1971,2001,2002,2003,2071,2072,3176,3276,3281,3282,3283,3284,3285,3286,3304,3326);
+	
 	$.jsonp({
 		url: "dataSDMDinas.php?prov="+prov,
 		callback: "callback",
@@ -485,24 +498,29 @@ function create_kmlDinas(prov){
 				else if(jumlah<nrm){ color = "yellow";}
 				else { color = "green";}
 				
-				// if(prov){
-					// var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/province/'+color+'/'+kode+'.kml';
-				// }else{
-					// var shpUrl = 'http://6p5dem.googlecode.com/svn/trunk/application/gis/kml/'+color+'/'+kode+'.kml';
-				// }
+				var exe = true;
 				
-				shpLayers[i] = new OpenLayers.Layer.WMS( 
-					"Indo Kab Reg "+kode, 
-					"http://localhost:8090/geoserver/bpsdm_gis/wms", 
-					{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png', styles:color}, 
-					{opacity: 0.8,singleTile: false,isBaseLayer:false}
-				);
+				for (var j=0;j<notYet.length;j++)
+				{ 
+					if(notYet[j]==kode){
+						exe = false;
+					}
+				}
 				
-				pesan[i] = new Array(2);
-				pesan[i][0] = kode;
-				pesan[i][1] = "<div style='min-height:100px;'>Keterangan : <br/>"+"<b>"+item.nama+"</b><br/>"+"Jumlah SDM : "+item.jumlah+"</div>";
-  			
-				map.addLayer(shpLayers[i]);	
+				if(exe){
+					shpLayers[i] = new OpenLayers.Layer.WMS( 
+						"Indo Kab Reg "+kode, 
+						"http://localhost:8090/geoserver/bpsdm_gis/wms", 
+						{workspace: 'bpsdm_gis',layers: kode, transparent: true, format:'image/png', styles:color}, 
+						{opacity: 0.8,singleTile: false,isBaseLayer:false}
+					);
+					
+					pesan[i] = new Array(2);
+					pesan[i][0] = kode;
+					pesan[i][1] = "<div style='min-height:100px;'>Keterangan : <br/>"+"<b>"+item.nama+"</b><br/>"+"Jumlah SDM : "+item.jumlah+"</div>";
+				
+					map.addLayer(shpLayers[i]);	
+				}
 				//alert(kode);
 			});
 					
