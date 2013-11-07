@@ -64,7 +64,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">NAMA PESERTA <em>*</em></label> <input name="NAMA_PESERTA" value="<?=set_value('NAMA_PESERTA')?>" type="text" class="three"/></li>
 			
-			<li><label for="">DAERAH PESERTA<em>*</em></label> <input name="DAERAH" value="<?=set_value('DAERAH')?>" type="text" class="three"/></li>
+			<li><label for="">TEMPAT DIKLAT<em>*</em></label> <input name="DAERAH" value="<?=set_value('DAERAH')?>" type="text" class="three"/></li>
 			
 			<li><label for="">TEMPAT LAHIR<em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=set_value('TEMPAT_LAHIR')?>" type="text" class="three"/></li>
 			

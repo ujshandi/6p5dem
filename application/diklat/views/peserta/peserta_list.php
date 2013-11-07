@@ -61,10 +61,10 @@
 		<th>No</th>
 		<th width="15%">UPT</th>
 		<th width="10%">Diklat</th>
-		<th width="9%">No Peserta / NIP</th>
+		<th width="13%">No Peserta / NIP</th>
 		<th width="12%">Nama peserta</th>
-		<th width="10%">Daerah Peserta</th>
-		<th>Tahun Angkatan</th>
+		<!--<th width="8%">Daerah Peserta</th>-->
+		<th width="5%">Tahun Angkatan</th>
 		<th>Status</th>
 		<th>aksi</th>
 	  </thead>
@@ -81,7 +81,7 @@
 				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->NO_PESERTA?></td>
 				<td><?=$r->NAMA_PESERTA?></td>
-				<td><?=$r->DAERAH?></td>
+				<!--<td><?=$r->DAERAH?></td>-->
 				<td><?=$r->THN_ANGKATAN?></td>
 				<td><?=$r->STATUS_PESERTA?></td>
 				<td >

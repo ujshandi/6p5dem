@@ -74,7 +74,7 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			
 			<li><label for="">NAMA PESERTA <em>*</em></label> <input name="NAMA_PESERTA" value="<?=$result->row()->NAMA_PESERTA?>" type="text" class="three"/></li>
 			
-			<li><label for="">DAERAH PESERTA<em>*</em></label> <input name="DAERAH" value="<?=$result->row()->DAERAH?>" type="text" class="three"/></li>
+			<li><label for="">TEMPAT DIKLAT<em>*</em></label> <input name="DAERAH" value="<?=$result->row()->DAERAH?>" type="text" class="three"/></li>
 			
 			<li><label for="">TEMPAT LAHIR<em>*</em></label> <input name="TEMPAT_LAHIR" value="<?=$result->row()->TEMPAT_LAHIR?>" type="text" class="three"/></li>
 			
