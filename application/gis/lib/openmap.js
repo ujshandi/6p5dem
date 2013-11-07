@@ -353,8 +353,7 @@ function boxclick3(box, category){
 }
 
 function create_kmlFileDaratOK(kantor){
-	var info = new Array();
-	var detail = new Array();
+	var pesan = new Array();
 	$.jsonp({
 		//url: "dataSDMKementerian.php?unitkantor="+kantor,
 		url: "dataSDMKementerian.php?unitkantor="+kantor,
@@ -384,11 +383,6 @@ function create_kmlFileDaratOK(kantor){
 					// fillOpacity: 0.7
 				// };
 				
-				var pesan= "<div style='min-height:100px;'>Keterangan : <br/>"+
-					"<b>"+item.nama+"</b><br/>"+
-					"Jumlah SDM : "+item.jumlah+
-					"</div>";
-				
 				shpLayers[i] = new OpenLayers.Layer.WMS( 
 					"Indo Kab Reg "+kode, 
 					"http://localhost:8090/geoserver/bpsdm_gis/wms", 
@@ -396,7 +390,9 @@ function create_kmlFileDaratOK(kantor){
 					{opacity: 0.8,singleTile: false,isBaseLayer:false}
 				);
 				
-				detail[i] = pesan;
+				pesan[i] = new Array(2);
+				pesan[i][0] = kode;
+				pesan[i][1] = "<div style='min-height:100px;'>Keterangan : <br/>"+"<b>"+item.nama+"</b><br/>"+"Jumlah SDM : "+item.jumlah+"</div>";
 							
 				map.addLayer(shpLayers[i]);	
 				//alert(kode);
@@ -404,6 +400,42 @@ function create_kmlFileDaratOK(kantor){
 				//centerlonlat=centerlonlat.transform(map.displayProjection, map.projection);
 				
 			});
+					
+			info = new OpenLayers.Control.WMSGetFeatureInfo({
+				url: 'http://localhost:8090/geoserver/wms', 
+				layerUrls: ['http://localhost:8090/geoserver/bpsdm_gis/wms'],
+				title: 'Identify features by clicking',
+				infoFormat: 'text/html',
+				queryVisible: true,
+				eventListeners: {
+					getfeatureinfo: function(event) {
+						console.log(event); 
+						el = document.createElement('p');
+						el.innerHTML = event.text;
+						if(el.querySelector('caption.featureInfo') != null){
+							var lid = el.getElementsByTagName("caption")[0].firstChild.data;
+							var msg = '';
+							for (var i=0;i<pesan.length;i++)
+							{ 
+								if(pesan[i][0]==lid){
+									msg = pesan[i][1];
+								}
+							}
+							map.addPopup(new OpenLayers.Popup.FramedCloud(
+								"popup", 
+								map.getLonLatFromPixel(event.xy),
+								null,
+								msg,
+								null,
+								true
+							));
+						}
+					}
+				}
+			});
+			
+			map.addControl(info);
+			info.activate();
 		},
 		error: function() {
 		   alert('Error crete SHP, Please check your internet connection!!');
@@ -486,7 +518,7 @@ function create_kmlDinas(prov){
 						el = document.createElement('p');
 						el.innerHTML = event.text;
 						if(el.querySelector('caption.featureInfo') != null){
-							var lid = el.querySelector('caption.featureInfo').innerText;
+							var lid = el.getElementsByTagName("caption")[0].firstChild.data;
 							var msg = '';
 							for (var i=0;i<pesan.length;i++)
 							{ 

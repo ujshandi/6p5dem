@@ -20,8 +20,8 @@
 
 <!-- contenna -->
 <div class="wrap_right bgcontent">
-	<h1 align="center" class="heading">Informasi Data Peserta</h1>
-	<h1 align="center" class="heading"><?=$this->mdl_upt->getUPTNameByKode($kode_upt);?></h1>
+	<h3 align="center" class="heading">Informasi Data Peserta</h3>
+	<h3 align="center" class="heading"><?=$this->mdl_upt->getUPTNameByKode($kode_upt);?></h3>
 	<hr/>
 	<div id="lmenu" class="bgtrans">
 		<ul id="vmenu">
