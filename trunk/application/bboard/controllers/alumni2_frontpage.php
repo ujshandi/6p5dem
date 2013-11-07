@@ -73,8 +73,8 @@ class Alumni2_frontpage extends My_Frontpage {
 	}
 	
 	public function search(){
-		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('KODE_UPT'));
-		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('KODE_DIKLAT'));
+		$this->session->set_userdata($this->id.'kode_upt', $this->input->post('kode_upt'));
+		$this->session->set_userdata($this->id.'kode_diklat', $this->input->post('kode_diklat'));
 		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
 		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
 		

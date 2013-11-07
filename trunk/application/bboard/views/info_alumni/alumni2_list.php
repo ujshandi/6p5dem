@@ -60,10 +60,10 @@
 					<?=$this->mdl_upt->getOptionUPT(array('value'=>$kode_upt))?>
 				</select></td>
 			</tr>		-->
-			<input type='hidden' id="KODE_UPT" name="KODE_UPT" value="<?=$kode_upt?>" />
+			<input type='hidden' id="kode_upt" name="kode_upt" value="<?=$kode_upt?>" />
 			<tr>
 			<td>DIKLAT : </td><td>
-				<select name="KODE_DIKLAT" id="KODE_DIKLAT">
+				<select name="kode_diklat" id="kode_diklat">
 					<?=$this->mdl_peserta->getOptionDiklatByUPT(array('KODE_UPT'=>$kode_upt, 'value'=>$kode_diklat));?>        	
 				</select></td>
 			</tr>

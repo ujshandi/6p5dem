@@ -20,7 +20,7 @@ class mdl_dosen_front extends CI_Model{
 		}
 		
 		if(!empty($filter['search']))
-			$this->db->like('DIKLAT_MST_DOSEN.NAMA_DOSEN', $filter['search']);
+			$this->db->like('DIKLAT_MST_DOSEN.NAMADOSEN', $filter['search']);
 		
 		if(!empty($filter['jenis_dosen']))
 			$this->db->where('DIKLAT_MST_DOSEN.JENIS_DOSEN', $filter['jenis_dosen']);
@@ -43,7 +43,7 @@ class mdl_dosen_front extends CI_Model{
 		}
 		
 		if(!empty($filter['search']))
-			$this->db->like('DIKLAT_MST_DOSEN.NAMA_DOSEN', $filter['search']);
+			$this->db->like('DIKLAT_MST_DOSEN.NAMADOSEN', $filter['search']);
 			
 		if(!empty($filter['jenis_dosen']))
 			$this->db->where('DIKLAT_MST_DOSEN.JENIS_DOSEN', $filter['jenis_dosen']);
