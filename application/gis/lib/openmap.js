@@ -428,7 +428,7 @@ function create_kmlFileDaratOK(kantor){
 				}
 			});
 			
-			map.removeLayer(map.layers[last]);
+			map.removeLayer(shpLayers[last]);
 			shpLayers[last].events.register('loadend', this, hideLoading);
 			map.addLayer(shpLayers[last]);	
 					
@@ -556,7 +556,7 @@ function create_kmlDinas(prov){
 				//alert(kode);
 			});
 					
-			map.removeLayer(map.layers[last]);
+			map.removeLayer(shpLayers[last]);
 			shpLayers[last].events.register('loadend', this, hideLoading);
 			map.addLayer(shpLayers[last]);	
 					
