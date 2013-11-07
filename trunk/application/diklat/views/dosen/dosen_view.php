@@ -6,14 +6,17 @@
 		<br>
 		
 		<!--<input type="submit" value="back" class="control">-->
-		<ol>			
+		<ol>	
+			<img width="100px" src='<?=base_url()?>file_upload/diklat/<?=$result->row()->FOTO_DOSEN?>' />
+			
 			<li><label for="" >NO INDUK : <em> </em></label>
 					<strong><?=$result->row()->NIP?></strong>
 			</li>
 			<br>
 			<li><label for="" >NAMA PENGAJAR : <em> </em></label>
-					<strong><?=$result->row()->NAMADOSEN?></strong>
+					<strong><?=$result->row()->NAMADOSEN?></strong> 
 			</li>
+				
 			<br>
 			<li><label for="" >TEMPAT LAHIR : <em> </em></label>
 				<strong><?=$result->row()->TEMPAT_LAHIR?></strong>
