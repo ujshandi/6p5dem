@@ -343,6 +343,19 @@ class mdl_user_privilege extends CI_Model{
 		
 	}
 	
+	function delete_bboard($data){
+		$this->db->flush_cache();
+		$this->db->where('USER_GROUP_MENU_ID', $data['id']);
+		$result = $this->db->delete('USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
 	function hapus_modul($id){
 		$this->db->flush_cache();
 		$this->db->where('USER_GROUP_MENU_ID', $id);
