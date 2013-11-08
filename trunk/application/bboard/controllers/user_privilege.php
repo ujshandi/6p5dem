@@ -538,6 +538,16 @@ class user_privilege extends MY_Controller
 		}
 	}
 	
+	function proses_delete_bboard(){
+		$data['id']=$this->uri->segment(3);
+		if($this->user_privilege->hapus_modul($data)){
+			redirect('user_privilege/load_edit/' . $data['id'] . '');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	
 }
 
 /* End of file user_privilege.php */

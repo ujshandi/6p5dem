@@ -29,7 +29,7 @@ class agenda_backend extends MY_Controller
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/agenda_backend/index/';
 		$config['total_rows'] = $this->db->count_all('BB_AGENDA');
-		$config['per_page'] = '10';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$this->pagination->initialize($config);	
 		

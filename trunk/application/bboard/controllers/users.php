@@ -26,7 +26,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/index/';
 		$config['total_rows'] = $this->db->count_all('USERS');
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
@@ -45,7 +45,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/index/';
 		$config['total_rows'] = $this->db->count_all('USERS');
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
@@ -69,7 +69,7 @@ class Users extends MY_Controller
 		
 		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
@@ -92,7 +92,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/proses_pencarian/';
 		$config['total_rows'] = $this->users->get_users_like($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['full_tag_close'] = '</p>';
 		$this->pagination->initialize($config);	
@@ -108,7 +108,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_sdm/';
 		$config['total_rows'] = $this->users->get_item_sdm($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
@@ -124,7 +124,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_diklat/';
 		$config['total_rows'] = $this->users->get_item_diklat($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
@@ -140,7 +140,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_kopeten/';
 		$config['total_rows'] = $this->users->get_item_kopeten($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
@@ -156,7 +156,7 @@ class Users extends MY_Controller
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/users/get_users_jdih/';
 		$config['total_rows'] = $this->users->get_item_jdih($keysearch_users,true);
 		$config['full_tag_open'] = '<p class="pagination">';
-		$config['per_page'] = '5';
+		$config['per_page'] = '30';
 		$config['num_links'] = '3';
 		$config['is_ajax_paging']      =  TRUE; // default FALSE
 		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
