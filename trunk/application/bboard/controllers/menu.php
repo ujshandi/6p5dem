@@ -263,6 +263,130 @@ class menu extends MY_Controller
 	}
 	/*end diklat*/
 	
+	/*start kopeten*/
+	public function kopeten_getall(){
+		
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/menu/bboard_getall/';
+		
+		$config['total_rows'] = $this->menu->get_menu_kopeten_like($keysearch_users,true);
+		
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->menu->get_menu_kopeten_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$data['number_ai'] = $this->uri->segment(3);
+		$this->load->view('menu/menu_kopeten_list', $data);
+	}
+	public function edit_kopeten($id){
+	
+		$data['id'] = $id;
+		$data['result'] = $this->menu->get_data_edit_kopeten($id);
+		$this->load->view('menu/menu_edit_kopeten', $data);
+		
+	}
+	public function proses_edit_kopeten(){
+		$this->open_backend();
+		
+		$data['ID'] = $this->input->post('ID');
+        $data['MENU_NAME'] = $this->input->post('MENU_NAME');
+        $data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+        /*$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID'); */
+        
+	
+		
+		# set rules validation
+		$this->form_validation->set_rules('MENU_NAME', 'MENU_NAME', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('menu/menu_edit',$data);
+		}else{
+			$this->menu->update_kopeten($data);
+			redirect('menu/kopeten_getall');
+		}
+		
+		$this->close_backend();
+	}
+	
+	public function proses_delete_kopeten($id){
+		if($this->menu->delete_kopeten($id)){
+			redirect('menu/kopeten_getall');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	/*end kopeten*/
+	
+	
+	/*start jdih*/
+	public function jdih_getall(){
+		
+		$keysearch_users = $this->input->post('txt_search');
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/menu/bboard_getall/';
+		
+		$config['total_rows'] = $this->menu->get_menu_jdih_like($keysearch_users,true);
+		
+		$config['full_tag_open'] = '<p class="pagination">';
+		$config['per_page'] = '30';
+		$config['num_links'] = '3';
+		$config['is_ajax_paging']      =  TRUE; // default FALSE
+		$config['paging_function'] = 'ajax_paging'; // Your jQuery paging
+		$config['full_tag_close'] = '</p>';
+		$this->pagination->initialize($config);	
+		
+		$data['results'] = $this->menu->get_menu_jdih_like($keysearch_users,false,$config['per_page'], $this->uri->segment(3));
+		$data['number_ai'] = $this->uri->segment(3);
+		$this->load->view('menu/menu_jdih_list', $data);
+	}
+	public function edit_jdih($id){
+	
+		$data['id'] = $id;
+		$data['result'] = $this->menu->get_data_edit_jdih($id);
+		$this->load->view('menu/menu_edit_jdih', $data);
+		
+	}
+	public function proses_edit_jdih(){
+		$this->open_backend();
+		
+		$data['ID'] = $this->input->post('ID');
+        $data['MENU_NAME'] = $this->input->post('MENU_NAME');
+        $data['MENU_GROUPING_ID'] = $this->input->post('MENU_GROUPING_ID');
+        /*$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID'); */
+        
+	
+		
+		# set rules validation
+		$this->form_validation->set_rules('MENU_NAME', 'MENU_NAME', 'required');
+		# set message validation
+		$this->form_validation->set_message('required', 'Field %s harus diisi!');
+		
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('menu/menu_edit',$data);
+		}else{
+			$this->menu->update_jdih($data);
+			redirect('menu/jdih_getall');
+		}
+		
+		$this->close_backend();
+	}
+	
+	public function proses_delete_jdih($id){
+		if($this->menu->delete_jdih($id)){
+			redirect('menu/jdih_getall');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	/*end jdih*/
 }
 
 /* End of file menu.php */

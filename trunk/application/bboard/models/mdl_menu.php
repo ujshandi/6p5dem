@@ -304,5 +304,172 @@ class mdl_menu extends CI_Model{
 	
 	/*end diklat*/
 	
+	/*start kopeten*/
+	function get_menu_kopeten_like($key,$count_data=false,$num=0, $offset=0){
+		$this->db->flush_cache();
+		$this->db->select('KOPETEN_USER_GROUP_MENU.*, KOPETEN_MENU.MENU_NAME, KOPETEN_MENU.MENU_URL');
+		$this->db->from('KOPETEN_MENU');
+		$this->db->join('KOPETEN_USER_GROUP_MENU','KOPETEN_MENU.MENU_ID=KOPETEN_USER_GROUP_MENU.MENU_ID');		
+		$this->db->order_by('KOPETEN_MENU.MENU_ID','asc');
+		if ($key!=''){
+				$this->db->like('KOPETEN_MENU.MENU_NAME',$key);
+		}
+		
+		if ($count_data){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
+	
+	function get_data_edit_kopeten($id){
+		$this->db->flush_cache();
+		$this->db->select('KOPETEN_MENU.*,KOPETEN_USER_GROUP_MENU.USER_GROUP_ID');
+		$this->db->from('KOPETEN_MENU');
+		$this->db->join('KOPETEN_USER_GROUP_MENU','KOPETEN_MENU.MENU_ID=KOPETEN_USER_GROUP_MENU.MENU_ID');	
+		$this->db->where('KOPETEN_MENU.MENU_ID', $id);
+		
+		return $this->db->get();
+	}
+	
+
+	function update_kopeten($data){
+		$this->db->flush_cache();
+        
+        $this->db->set('MENU_NAME', $data['MENU_NAME']);
+        $this->db->set('MENU_GROUPING_ID', $data['MENU_GROUPING_ID']);
+        $this->db->set('STAT', 'A');
+		$this->db->where('MENU_ID', $data['ID']);
+		$result = $this->db->update('KOPETEN_MENU');
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function delete_kopeten($data){
+		$this->db->flush_cache();
+		$this->db->where('MENU_ID', $data['id']);
+		$result = $this->db->delete('KOPETEN_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function get_user_group_kopeten($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('KOPETEN_USER_GROUP');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->USER_GROUP_ID == trim($value)){
+				$out .= '<option value="'.$r->USER_GROUP_ID.'" selected="selected">'.$r->USER_GROUP_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->USER_GROUP_ID.'">'.$r->USER_GROUP_NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
+	
+	/*end kopeten*/
+	
+	
+	/*start jdih*/
+	function get_menu_jdih_like($key,$count_data=false,$num=0, $offset=0){
+		$this->db->flush_cache();
+		$this->db->select('JDIH_MENU_F.MENU_NAME, JDIH_MENU_F.MENU_URL, JDIH_MENU_F.MENU_ID');
+		$this->db->from('JDIH_MENU_F');
+		$this->db->order_by('JDIH_MENU_F.MENU_ID','asc');
+		if ($key!=''){
+				$this->db->like('JDIH_MENU_F.MENU_NAME',$key);
+		}
+		
+		if ($count_data){
+			return $this->db->count_all_results();
+		}
+		$this->db->limit($num, $offset);
+		return $this->db->get();
+	}
+	
+	function get_data_edit_jdih($id){
+		$this->db->flush_cache();
+		$this->db->select('JDIH_MENU.*,JDIH_USER_GROUP_MENU.USER_GROUP_ID');
+		$this->db->from('JDIH_MENU');
+		$this->db->join('JDIH_USER_GROUP_MENU','JDIH_MENU.MENU_ID=JDIH_USER_GROUP_MENU.MENU_ID');	
+		$this->db->where('JDIH_MENU.MENU_ID', $id);
+		
+		return $this->db->get();
+	}
+	
+
+	function update_jdih($data){
+		$this->db->flush_cache();
+        
+        $this->db->set('MENU_NAME', $data['MENU_NAME']);
+        $this->db->set('MENU_GROUPING_ID', $data['MENU_GROUPING_ID']);
+        $this->db->set('STAT', 'A');
+		$this->db->where('MENU_ID', $data['ID']);
+		$result = $this->db->update('JDIH_MENU');
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function delete_jdih($data){
+		$this->db->flush_cache();
+		$this->db->where('MENU_ID', $data['id']);
+		$result = $this->db->delete('JDIH_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function get_user_group_jdih($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('JDIH_USER_GROUP');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->USER_GROUP_ID == trim($value)){
+				$out .= '<option value="'.$r->USER_GROUP_ID.'" selected="selected">'.$r->USER_GROUP_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->USER_GROUP_ID.'">'.$r->USER_GROUP_NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
+	
+	/*end jdih*/
 
 }
