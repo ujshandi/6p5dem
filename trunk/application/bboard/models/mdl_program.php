@@ -43,9 +43,9 @@ class mdl_program extends CI_Model{
 	
 	function getDiklatbyId($id){
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('a.*, b.*, a.KODE_DIKLAT as KODE_DIKLAT2');
 		$this->db->from('DIKLAT_MST_DIKLAT "a"');
-		$this->db->join('DIKLAT_DETAIL_DIKLAT "b"', 'b.KODE_DIKLAT = a.KODE_DIKLAT');
+		$this->db->join('DIKLAT_DETAIL_DIKLAT "b"', 'b.KODE_DIKLAT = a.KODE_DIKLAT', 'LEFT');
 		$this->db->where('a.KODE_DIKLAT', $id);
 		
 		return $this->db->get();

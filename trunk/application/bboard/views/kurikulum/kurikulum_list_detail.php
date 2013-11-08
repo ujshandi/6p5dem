@@ -1,4 +1,3 @@
-
 <!-- contenna -->
 <div class="wrap_right bgcontent">
 	<?php
@@ -30,19 +29,19 @@
 			  </tr>
 			  <tr>
 				<td align="left" valign="top">Kode</td>
-				<td align="left" valign="top"><?=$diklat->row()->KODE_DIKLAT.' - '.$diklat->row()->NAMA_DIKLAT?></td>
+				<td align="left" valign="top"><?=$diklat->row()->KODE_DIKLAT2.' - '.$diklat->row()->NAMA_DIKLAT?></td>
 			  </tr>
 			  <tr>
 				<td align="left" valign="top">Deskripsi</td>
-				<td align="left" valign="top"><?=$diklat->row()->DESKRIPSI->load()?></td>
+				<td align="left" valign="top"><?=ReadCLOB($diklat->row()->DESKRIPSI)?></td>
 			  </tr>
 			  <tr>
 				<td align="left" valign="top">Tujuan</td>
-				<td align="left" valign="top"><?=$diklat->row()->TUJUAN->load()?></td>
+				<td align="left" valign="top"><?=ReadCLOB($diklat->row()->TUJUAN)?></td>
 			  </tr>
 			  <tr>
 				<td align="left" valign="top">Peluang Kerja</td>
-				<td align="left" valign="top"><?=$diklat->row()->PELUANG->load()?></td>
+				<td align="left" valign="top"><?=ReadCLOB($diklat->row()->PELUANG)?></td>
 			  </tr>
 			  <tr>
 				<td align="left" valign="top">Lama Pendidikan</td>
@@ -50,7 +49,7 @@
 			  </tr>
 			  <tr>
 				<td align="left" valign="top">Syarat</td>
-				<td align="left" valign="top"><?=$diklat->row()->SYARAT->load()?></td>
+				<td align="left" valign="top"><?=ReadCLOB($diklat->row()->SYARAT)?></td>
 			  </tr>
 		    <?}else{?>
 				<tr>
@@ -73,7 +72,7 @@
 			<th width="80" scope="col">Semester</th>
 		</tr>
 		<?
-		if($diklat->num_rows() > 0){
+		if($kurikulum->num_rows() > 0){
 			$i=1;
 			foreach($kurikulum->result() as $r){
 		?>
