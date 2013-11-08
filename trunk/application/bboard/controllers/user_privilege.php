@@ -364,7 +364,7 @@ class user_privilege extends MY_Controller
 			$data['USER_GROUP_MENU_ID'] = $value['USER_GROUP_MENU_ID'];
 			$data['PRIVILEGE']=$HAKAKSES0.$HAKAKSES1.$HAKAKSES2.$HAKAKSES3.$HAKAKSES4;
 			$this->user_privilege->update_kopeten($data);
-			echo $data['USER_GROUP_MENU_ID'] . '-'. $data['PRIVILEGE'];
+			/*echo $data['USER_GROUP_MENU_ID'] . '-'. $data['PRIVILEGE']; */
 		}
 		
         
