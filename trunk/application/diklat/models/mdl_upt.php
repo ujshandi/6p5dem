@@ -282,5 +282,15 @@ class mdl_upt extends CI_Model{
 		
 	}
 	
+	function getUPTNameByKode($kode_upt=""){
+		$this->db->flush_cache();
+		$this->db->from('DIKLAT_MST_UPT');
+		$this->db->order_by('URUTAN');
+		$this->db->where('KODE_UPT', $kode_upt);
+		
+		$res = $this->db->get()->row();
+		
+		return $res->NAMA_UPT;
+	}
 }
 ?>

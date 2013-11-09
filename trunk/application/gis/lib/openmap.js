@@ -186,13 +186,14 @@ var kmlFar = new OpenLayers.Layer.Vector("KML", {strategies: [new OpenLayers.Str
 						var dosen_url = getBaseUrl()+"/index.php/dosen_frontpage/hid_filter/";
 						if (!item.picture) picture = 'images/img/no.gif';
 						var html = "<div style='min-height:100px;'>Keterangan : <br/>"+
-							"<b>"+item.content+"</b>"+" (<a href='#' onclick='openWindow(\""+peserta_url+item.kodeupt+"\")'>detail</a>)"+"<br/>"+
-							"Jumlah Peserta : "+item.peserta+"<br/>"+
-							"Jumlah Alumni : "+item.alumni+"<br/>"+
-							"Jumlah Dosen : "+item.dosen+"<br/>"+
-							"Jumlah Instruktur : "+item.instruktur+"<br/>"+
-							"Jumlah Widyaiswara : "+item.widyaiswara+
-							"</div>";
+							"<span style='font-size:12px'><b>"+item.content+"</b>"+" (<a href='#' onclick='openWindow(\""+peserta_url+item.kodeupt+"\")'>DETAIL</a>)</span>"+"<br/>"+
+							"<table class='count'>"+
+							"<tr><td width='35%'>Jumlah Peserta </td><td>: "+item.peserta+"</td width='65%'></tr>"+
+							"<tr><td>Jumlah Alumni </td><td>: "+item.alumni+"</td></tr>"+
+							"<tr><td>Jumlah Dosen </td><td>: "+item.dosen+"</td></tr>"+
+							"<tr><td>Jumlah Instruktur </td><td>: "+item.instruktur+"</td></tr>"+
+							"<tr><td>Jumlah Widyaiswara </td><td>: "+item.widyaiswara+
+							"</table></div>";
 						addMarker(lng, lat, html, '', tipe);
 					});	
 				},

@@ -365,7 +365,18 @@ class peserta extends My_Controller {
 		$this->our_pdf->setFont('arial','B',12);
 		$posY = 11;
 		$posX = 10;
-		$this->our_pdf->text($posX,$posY,'Laporan Data Peserta');
+		$midX = 150;
+		$title = 'Laporan Data Peserta';
+		$title2 = ($data['kode_upt']!='')?$this->mdl_upt->getUPTNameByKode($data['kode_upt']):'';
+		$title3 = ($data['kode_diklat']!='')?$this->mdl_diklat->getDiklatNameByKode($data['kode_diklat']):'';
+		$textPosX = $midX - ($this->our_pdf->GetStringWidth($title) / 2);
+		$this->our_pdf->text($textPosX,$posY,$title);
+		$posY += 6;
+		$textPosX = $midX - ($this->our_pdf->GetStringWidth($title2) / 2);
+		$this->our_pdf->text($textPosX,$posY,$title2);
+		$posY += 6;
+		$textPosX = $midX - ($this->our_pdf->GetStringWidth($title3) / 2);
+		$this->our_pdf->text($textPosX,$posY,$title3);
 		
 		// setting coloumn
 		$this->our_pdf->setFont('Arial','B',9);
@@ -373,31 +384,60 @@ class peserta extends My_Controller {
 		$this->our_pdf->setXY($posX,$posY);
 		$this->our_pdf->setFillColor(255,255,255);
 		
-		$this->our_pdf->SetWidths(array(10,20,35,25,20,20,20,30,50,50));
-		 $this->our_pdf->SetAligns(array("C","C","C","C","C","C","C","C","C","C"));
-		$this->our_pdf->Row(array('No.','No.Peserta','Nama','Tgl Masuk','Thn Angkatan','Tmp Lahir','TglLahir','JK','UPT','DIKLAT'));
-		
-		$posY = 27;
-		
-		// content
-		$this->our_pdf->SetAligns(array("C","C","L","L","L","L","L","L","L","L"));
-		$this->our_pdf->setFillColor(255,255,255);
-		$this->our_pdf->setFont('arial','',9);	
-		$this->our_pdf->setXY($posX,$posY);
-		
-		$this->our_pdf->setFont('arial','',9);
-		for ($i=0;$i<count($pdfdata);$i++){
-			$this->our_pdf->Row(array(	$pdfdata[$i][0],
-										$pdfdata[$i][1],
-										$pdfdata[$i][2],
-										$pdfdata[$i][3],
-										$pdfdata[$i][4],
-										$pdfdata[$i][5],
-										$pdfdata[$i][6],
-										$pdfdata[$i][7],
-										$pdfdata[$i][8],
-										$pdfdata[$i][9]
-								)); 
+		if($data['kode_diklat']==''){
+			$this->our_pdf->SetWidths(array(10,20,35,25,20,20,20,30,50,50));
+			$this->our_pdf->SetAligns(array("C","C","C","C","C","C","C","C","C","C"));
+			$this->our_pdf->Row(array('No.','No.Peserta','Nama','Tgl Masuk','Thn Angkatan','Tmp Lahir','TglLahir','JK','UPT','DIKLAT'));
+			
+			$posY = 39;
+			
+			// content
+			$this->our_pdf->SetAligns(array("C","C","L","L","L","L","L","L","L","L"));
+			$this->our_pdf->setFillColor(255,255,255);
+			$this->our_pdf->setFont('arial','',9);	
+			$this->our_pdf->setXY($posX,$posY);
+			
+			$this->our_pdf->setFont('arial','',9);
+			for ($i=0;$i<count($pdfdata);$i++){
+				$this->our_pdf->Row(array(	$pdfdata[$i][0],
+											$pdfdata[$i][1],
+											$pdfdata[$i][2],
+											$pdfdata[$i][3],
+											$pdfdata[$i][4],
+											$pdfdata[$i][5],
+											$pdfdata[$i][6],
+											$pdfdata[$i][7],
+											$pdfdata[$i][8],
+											$pdfdata[$i][9]
+									)); 
+			}
+		}
+		else{
+			$this->our_pdf->SetWidths(array(10,40,75,30,30,30,30,30));//,50,50
+			$this->our_pdf->SetAligns(array("C","C","C","C","C","C","C","C"));//,"C","C"
+			$this->our_pdf->Row(array('No.','No.Peserta','Nama','Tgl Masuk','Thn Angkatan','Tmp Lahir','TglLahir','JK'));//,'UPT','DIKLAT'
+			
+			$posY = 34;
+			
+			// content
+			$this->our_pdf->SetAligns(array("C","C","L","L","L","L","L","L"));//,"L","L"
+			$this->our_pdf->setFillColor(255,255,255);
+			$this->our_pdf->setFont('arial','',9);	
+			$this->our_pdf->setXY($posX,$posY);
+			
+			$this->our_pdf->setFont('arial','',9);
+			for ($i=0;$i<count($pdfdata);$i++){
+				$this->our_pdf->Row(array(	$pdfdata[$i][0],
+											$pdfdata[$i][1],
+											$pdfdata[$i][2],
+											$pdfdata[$i][3],
+											$pdfdata[$i][4],
+											$pdfdata[$i][5],
+											$pdfdata[$i][6],
+											$pdfdata[$i][7]
+									)); 
+			}
+			//,$pdfdata[$i][8],$pdfdata[$i][9]
 		}
 		
 		$this->our_pdf->AliasNbPages();
