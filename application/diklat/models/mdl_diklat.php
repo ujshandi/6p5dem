@@ -224,5 +224,15 @@ class mdl_diklat extends CI_Model{
 		return $res;
 	}
 	
+	function getDiklatNameByKode($kode_diklat=""){
+		$this->db->flush_cache();
+		$this->db->from('DIKLAT_MST_DIKLAT');
+		$this->db->where('KODE_DIKLAT', $kode_diklat);
+		
+		$res = $this->db->get()->row();
+		
+		return $res->NAMA_DIKLAT;
+	}
+	
 }
 ?>

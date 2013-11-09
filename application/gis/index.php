@@ -33,6 +33,23 @@
 </script>
 
 	<style>
+		table.count {
+			border:none;
+		}
+		
+		table.count td{
+			font-size:11px;
+			background-color:#fff;
+			border:none;
+			padding:2px;
+		}
+		
+		table.count tr:hover td{
+			background-color:#fff;
+		}
+	</style>
+	
+	<style>
 		.peeek-loading {
 		  background-color: rgba(56,211,104,0.7);
 		  overflow: hidden;
