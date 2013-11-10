@@ -31,11 +31,13 @@
 	  <thead>
 		<th>No</th>
 		<th width="20%">UPT</th>
-		<th>DOSEN</th>
-		<th>Judul Penelitian</th>
-		<th>Abstrak</th>
-		<th>Tanggal Publikasi</th>
-		
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/penelitian/index/$field_name/". ##sorting
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
+		<th>Abstrak</th>		
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -55,8 +57,8 @@
 				<td >
 					<!--<a href="<?=site_url().'/penelitian/view/'.$r->ID_PENELITIAN?>" class="control" >
 						<span class="view">view</span></a> |-->
-					<!--<a href="<?=site_url().'/penelitian/edit/'.$r->ID_PENELITIAN?>" class="control" >
-						<span class="edit">edit</span></a> | -->
+					<a href="<?=site_url().'/penelitian/edit/'.$r->ID_PENELITIAN?>" class="control" >
+						<span class="edit">edit</span></a> | 
 					<a href="<?=site_url().'/penelitian/proses_delete/'.$r->ID_PENELITIAN?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
 				</td>

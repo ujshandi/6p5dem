@@ -59,13 +59,12 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th width="15%">UPT</th>
-		<th width="10%">Diklat</th>
-		<th width="13%">No Peserta / NIP</th>
-		<th width="12%">Nama peserta</th>
-		<!--<th width="8%">Daerah Peserta</th>-->
-		<th width="5%">Tahun Angkatan</th>
-		<th>Status</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/peserta/index/$field_name/".
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -81,7 +80,6 @@
 				<td><?=$r->NAMA_DIKLAT?></td>
 				<td><?=$r->NO_PESERTA?></td>
 				<td><?=$r->NAMA_PESERTA?></td>
-				<!--<td><?=$r->DAERAH?></td>-->
 				<td><?=$r->THN_ANGKATAN?></td>
 				<td><?=$r->STATUS_PESERTA?></td>
 				<td >

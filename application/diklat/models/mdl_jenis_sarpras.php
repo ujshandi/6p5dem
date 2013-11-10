@@ -5,13 +5,17 @@ class mdl_jenis_sarpras extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0, $filter){
+	function getData($num=0, $offset=0, $filter,$sort_by, $sort_order){
 		//	get data
 		$this->db->flush_cache();
 		$this->db->select('*');
 		$this->db->from('DIKLAT_MST_SARPRAS');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('ID_SARPRAS');
+		//$this->db->order_by('ID_SARPRAS');
+		
+		##sorting
+		$this->db->order_by($sort_by, $sort_order);
+		##
 		
 		//if(!empty($filter['kode_induk']))
 			//$this->db->where('DIKLAT_MST_INDUKUPT.KODE_INDUK', $filter['kode_induk']);

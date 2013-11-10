@@ -5,17 +5,21 @@ class mdl_kalender extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0, $filter){
+	function getData($num=0, $offset=0, $filter,$sort_by, $sort_order){
 		// yanto
 		$level = get_level();
 		
 		// get data
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_KALENDER.*, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->select('DIKLAT_KALENDER.IDKALENDER, DIKLAT_KALENDER.TGL_AWAL, DIKLAT_KALENDER.TGL_AKHIR, DIKLAT_KALENDER.KEGIATAN,  DIKLAT_MST_UPT.NAMA_UPT', false);
 		$this->db->from('DIKLAT_KALENDER');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_KALENDER.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
+		//$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
+		
+		##sorting
+		$this->db->order_by($sort_by, $sort_order);
+		##
 		
 		// yanto
 		if(!empty($filter['kode_upt'])){
@@ -35,7 +39,7 @@ class mdl_kalender extends CI_Model{
 		
 		// get count
 		$this->db->flush_cache();
-		$this->db->select('DIKLAT_KALENDER.*, DIKLAT_MST_UPT.NAMA_UPT', false);
+		$this->db->select('DIKLAT_KALENDER.IDKALENDER, DIKLAT_KALENDER.TGL_AWAL, DIKLAT_KALENDER.TGL_AKHIR, DIKLAT_KALENDER.KEGIATAN,  DIKLAT_MST_UPT.NAMA_UPT', false);
 		$this->db->from('DIKLAT_KALENDER');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_KALENDER.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		//$this->db->limit($num, $offset);

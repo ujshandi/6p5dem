@@ -28,8 +28,12 @@
 	  <thead>
 		<th>No</th>
 		<th>UPT</th>
-		<th>Periode Awal</th>
-		<th>Periode Akhir</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/kalender/index/$field_name/". ##sorting
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th>Kegiatan</th>
 		<th>aksi</th>
 	  </thead>

@@ -31,9 +31,12 @@
 	  <thead>
 		<th width="2%">No</th>
 		<th width="20%">UPT</th>
-		<th>Nama Penyuluhan</th>
-		<th>Peserta</th>
-		<th>Tempat</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/penyuluhan/index/$field_name/". ##sorting
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th>Tanggal</th>
 		<th>aksi</th>
 	  </thead>

@@ -32,13 +32,12 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th width="10%">Nama Pengajar</th>
-		<th width="17%">Status Pengajar</th>
-		<th width="7%">Jenis Pengajar</th>
-		<!--<th width="8%">Jurusan</th>
-		<th width="10%">Kelompok Matakuliah</th>-->
-		<th width="5%">Thn Mulai Mengajar</th>
-		<th width="25%">UPT</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/dosen/index/$field_name/".
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>
@@ -51,8 +50,6 @@
 				<td><?=$r->NAMADOSEN?></td>
 				<td><?=$r->STATUS?></td>
 				<td><?=$r->JENIS_DOSEN?></td>
-				<!--<td><?=$r->JURUSAN?></td>
-				<td><?=$r->KELOMPOK_MATKUL?></td>-->
 				<td><?=$r->TAHUN?></td>
 				<td><?=$r->NAMA_UPT?></td>
 				<td >

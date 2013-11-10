@@ -5,7 +5,7 @@ class mdl_dosen extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0, $filter){
+	function getData($num=0, $offset=0, $filter,$sort_by, $sort_order){
 		// yanto
 		$level = get_level();
 		
@@ -15,7 +15,9 @@ class mdl_dosen extends CI_Model{
 		$this->db->from('DIKLAT_MST_DOSEN');
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_DOSEN.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('DIKLAT_MST_UPT.KODE_UPT');
+		##sorting
+		$this->db->order_by($sort_by, $sort_order);
+		##
 		
 		// yanto
 		if(!empty($filter['kode_upt'])){

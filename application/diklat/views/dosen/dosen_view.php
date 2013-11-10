@@ -9,41 +9,41 @@
 		<ol>	
 			<img width="100px" src='<?=base_url()?>file_upload/diklat/<?=$result->row()->FOTO_DOSEN?>' />
 			
-			<li><label for="" >NO INDUK : <em> </em></label>
-					<strong><?=$result->row()->NIP?></strong>
+			<li><label for="" >NO INDUK  <em> </em></label>
+					<strong>: <?=$result->row()->NIP?></strong>
 			</li>
 			<br>
-			<li><label for="" >NAMA PENGAJAR : <em> </em></label>
-					<strong><?=$result->row()->NAMADOSEN?></strong> 
+			<li><label for="" >NAMA PENGAJAR <em> </em></label>
+					<strong>: <?=$result->row()->NAMADOSEN?></strong> 
 			</li>
 				
 			<br>
-			<li><label for="" >TEMPAT LAHIR : <em> </em></label>
+			<li><label for="" >TEMPAT LAHIR <em> </em></label>
 				<strong><?=$result->row()->TEMPAT_LAHIR?></strong>
 			</li>
 			<br>
 			<li><label for="" >TANGGAL LAHIR : <em></em></label>
-				<strong><?=$result->row()->TGL_LAHIR?></strong>
+				<strong>: <?=$result->row()->TGL_LAHIR?></strong>
 			</li>
 			<br>
-			<li><label for="" >STATUS PENGAJAR : <em></em></label>
-				<strong><?=$result->row()->STATUS?></strong>
+			<li><label for="" >STATUS PENGAJAR <em></em></label>
+				<strong>: <?=$result->row()->STATUS?></strong>
 			</li>
 			<br>
-			<li><label for="" >TAHUN MULAI MENGAJAR : <em></em></label>
-				<strong><?=$result->row()->TAHUN?></strong>
+			<li><label for="" >TAHUN MULAI MENGAJAR <em></em></label>
+				<strong>: <?=$result->row()->TAHUN?></strong>
 			</li>
 			<br>
-			<li><label for="" >PENDIDIKAN : <em></em></label>
-				<strong><?=ReadCLOB($result->row()->PENDIDIKAN)?></strong>
+			<li><label for="" >PENDIDIKAN <em></em></label>
+				<strong>: <?=ReadCLOB($result->row()->PENDIDIKAN)?></strong>
 			</li>
 			<br>
-			<li><label for="" >JENIS PENGAJAR : <em></em></label>
-				<strong><?=$result->row()->JENIS_DOSEN?></strong>
+			<li><label for="" >JENIS PENGAJAR <em></em></label>
+				<strong>: <?=$result->row()->JENIS_DOSEN?></strong>
 			</li>
 			<br>
-			<li><label for="" >UPT : <em></em></label>
-				<strong><?=$result->row()->NAMA_UPT?></strong>
+			<li><label for="" >UPT <em></em></label>
+				<strong>: <?=$result->row()->NAMA_UPT?></strong>
 			</li>
 		</ol>	
 		<br>
