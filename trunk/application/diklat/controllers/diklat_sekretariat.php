@@ -12,7 +12,7 @@ class diklat_sekretariat extends My_Controller {
 		$this->load->model('mdl_diklat_sekretariat');
 	}
 	
-	public function index()
+	public function index($sort_by ='KODE_DIKLAT', $sort_order ='ASC') ##sorting
 	{
 		$this->open();
 		
@@ -20,16 +20,27 @@ class diklat_sekretariat extends My_Controller {
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:10;
-		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
+		$offset = ($this->uri->segment(5))?$this->uri->segment(5):0; ##sorting
+		
+		##sorting
+		$data['fields'] = array (
+			'KODE_DIKLAT' => 'KODE',
+			'NAMA_DIKLAT' => 'NAMA DIKLAT',
+			'NAMA_PROGRAM' => 'PROGRAM',
+			'NAMA_INDUK' => 'SATKER',
+		);
+		$data['sort_by'] = $sort_by;
+		$data['sort_order'] = $sort_order;
+		##
 		
 		# get data
-		$result = $this->mdl_diklat_sekretariat->getData($data['numrow'], $offset, $data);
+		$result = $this->mdl_diklat_sekretariat->getData($data['numrow'], $offset, $data, $sort_by, $sort_order);
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/diklat_sekretariat/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/diklat_sekretariat/index/'."$sort_by/$sort_order"; ##sorting
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
-		$config['uri_segment'] = '3';
+		$config['uri_segment'] = '5'; ##sorting
 		$config['full_tag_open'] = '';
 		$config['full_tag_close'] = '';
 		$config['num_tag_open'] = '<li>';

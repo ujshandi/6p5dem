@@ -23,8 +23,12 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th>Nama Sarana Prasarana</th>
-		<th>Jenis</th>
+	<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/jenis_sarpras/index/$field_name/".
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>

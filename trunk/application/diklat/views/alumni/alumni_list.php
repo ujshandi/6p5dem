@@ -56,15 +56,12 @@
 	<table width="100%">
 	  <thead>
 		<th>NO</th>
-		<th width="20%">UPT</th>
-		<th width="15%">DIKLAT</th>
-		<th>NO PESERTA</th>
-		<th width="15%">NAMA ALUMNI</th>
-		<th>STATUS</th>
-		<th>TEMPAT BEKERJA</th>
-		<th>PERIODE LULUS</th>
-		<th>TAHUN ANGKATAN</th>
-		
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/alumni/index/$field_name/". ##sorting
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>

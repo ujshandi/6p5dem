@@ -6,7 +6,7 @@ class mdl_peserta extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0, $filter){
+	function getData($num=0, $offset=0, $filter,$sort_by, $sort_order){
 		// yanto
 		$level = get_level();
 		
@@ -17,7 +17,10 @@ class mdl_peserta extends CI_Model{
 		$this->db->join('DIKLAT_MST_UPT', 'DIKLAT_MST_PESERTA.KODE_UPT = DIKLAT_MST_UPT.KODE_UPT');
 		$this->db->join('DIKLAT_MST_DIKLAT', 'DIKLAT_MST_PESERTA.KODE_DIKLAT = DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('IDPESERTA');
+		
+		##sorting
+		$this->db->order_by($sort_by, $sort_order);
+		##
 		
 		// yanto
 		if(!empty($filter['kode_upt'])){

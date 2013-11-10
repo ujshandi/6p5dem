@@ -54,14 +54,12 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th>UPT</th>
-		<th>Diklat</th>		
-		<th>Kode kurikulum</th>
-		<th>Nama kurikulum</th>
-		<th>SKS Teori</th>
-		<th>SKS Praktek</th>
-		<th>Jam Pelajaran</th>
-		<th>Semester</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/kurikulum/index/$field_name/". ##sorting
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th width="140px">aksi</th>
 	  </thead>
 	  <tbody>

@@ -5,7 +5,7 @@ class mdl_diklat_sekretariat extends CI_Model{
 		parent::__construct();
 	}
 	
-	function getData($num=0, $offset=0, $filter){
+	function getData($num=0, $offset=0, $filter,$sort_by, $sort_order){
 		// yanto
 		$level = get_level();
 		
@@ -16,7 +16,9 @@ class mdl_diklat_sekretariat extends CI_Model{
 		$this->db->join('DIKLAT_MST_PROGRAM', 'DIKLAT_MST_DIKLAT.KODE_PROGRAM = DIKLAT_MST_PROGRAM.KODE_PROGRAM');
 		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_DIKLAT.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		##sorting
+		$this->db->order_by($sort_by, $sort_order);
+		##
 		
 		$this->db->where('DIKLAT_MST_DIKLAT.KODE_INDUK', '1');
 		
@@ -39,7 +41,7 @@ class mdl_diklat_sekretariat extends CI_Model{
 		$this->db->join('DIKLAT_MST_PROGRAM', 'DIKLAT_MST_DIKLAT.KODE_PROGRAM = DIKLAT_MST_PROGRAM.KODE_PROGRAM');
 		$this->db->join('DIKLAT_MST_INDUKUPT', 'DIKLAT_MST_DIKLAT.KODE_INDUK = DIKLAT_MST_INDUKUPT.KODE_INDUK');
 		//$this->db->limit($num, $offset);
-		$this->db->order_by('DIKLAT_MST_DIKLAT.KODE_DIKLAT');
+		//$this->db->order_by('DIKLAT_MST_DIKLAT.KODE_DIKLAT');
 		
 		$this->db->where('DIKLAT_MST_DIKLAT.KODE_INDUK', '1');
 		

@@ -8,40 +8,40 @@
 		
 		<!--<input type="submit" value="back" class="control">-->
 		<ol>			
-			<li><label for="" >UPT			: <em> </em></label>
-					<strong><?=$result->row()->NAMA_UPT?></strong>
+			<li><label for="" >UPT			<em> </em></label>
+					<strong>: <?=$result->row()->NAMA_UPT?></strong>
 			</li>
 			<br>
-			<li><label for="" >DIKLAT		: <em> </em></label>
-				<strong><?=$result->row()->NAMA_DIKLAT?></strong>
+			<li><label for="" >DIKLAT		<em> </em></label>
+				<strong>: <?=$result->row()->NAMA_DIKLAT?></strong>
 			</li>
 			<br>
-			<li><label for="" >NMOR INDUK	: <em> </em></label>
-				<strong><?=$result->row()->NO_PESERTA?></strong>
+			<li><label for="" >NMOR INDUK	<em> </em></label>
+				<strong>: <?=$result->row()->NO_PESERTA?></strong>
 			</li>
 			<br>
-			<li><label for="" >NAMA PESERTA : <em></em></label>
-				<strong><?=$result->row()->NAMA_PESERTA?></strong>
+			<li><label for="" >NAMA PESERTA <em></em></label>
+				<strong>: <?=$result->row()->NAMA_PESERTA?></strong>
 			</li>
 			<br>
-			<li><label for="" >TEMPAT DIKLAT : <em></em></label>
-				<strong><?=$result->row()->DAERAH?></strong>
+			<li><label for="" >TEMPAT DIKLAT <em></em></label>
+				<strong>: <?=$result->row()->DAERAH?></strong>
 			</li>
 			<br>
-			<li><label for="" >TEMPAT_LAHIR : <em></em></label>
-				<strong><?=$result->row()->TEMPAT_LAHIR?></strong>
+			<li><label for="" >TEMPAT_LAHIR <em></em></label>
+				<strong>: <?=$result->row()->TEMPAT_LAHIR?></strong>
 			</li>
 			<br>
-			<li><label for="" >TANGGAL LAHIR : <em></em></label>
-				<strong><?=$result->row()->TGL_LAHIR?></strong>
+			<li><label for="" >TANGGAL LAHIR <em></em></label>
+				<strong>: <?=$result->row()->TGL_LAHIR?></strong>
 			</li>
 			<br>
-			<li><label for="" >JENIS KELAMIN : <em></em></label>
-				<strong><?=$result->row()->JK?></strong>
+			<li><label for="" >JENIS KELAMIN <em></em></label>
+				<strong>: <?=$result->row()->JK?></strong>
 			</li>
 			<br>
-			<li><label for="" >STATUS		: <em></em></label>
-				<strong><?=$result->row()->STATUS_PESERTA?></strong>
+			<li><label for="" >STATUS		<em></em></label>
+				<strong>: <?=$result->row()->STATUS_PESERTA?></strong>
 			</li>
 		</ol>	
 		<br>

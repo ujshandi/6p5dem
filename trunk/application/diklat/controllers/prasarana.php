@@ -11,7 +11,7 @@ class prasarana extends My_Controller {
 		$this->load->model('mdl_prasarana');
 	}
 	
-	public function index()
+	public function index($sort_by ='NAMA,JUMLAH,KAPASITAS, TAHUN',$sort_order ='ASC')
 	{
 		$this->open();
 		
@@ -20,16 +20,19 @@ class prasarana extends My_Controller {
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:10;
-		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
+		$offset = ($this->uri->segment(3))?$this->uri->segment(5):0;
 		
 		# get data
-		$result = $this->mdl_prasarana->getData($data['numrow'], $offset, $data);
+		//$result = $this->mdl_prasarana->getData($data['numrow'], $offset, $data);
+		
+		##sorting
+		$result = $this->mdl_prasarana->getData($data['numrow'], $offset, $data, $sort_by, $sort_order);
 		
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/prasarana/index/';
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
-		$config['uri_segment'] = '3';
+		$config['uri_segment'] = '5';
 		$config['full_tag_open'] = '';
 		$config['full_tag_close'] = '';
 		$config['num_tag_open'] = '<li>';
@@ -55,6 +58,16 @@ class prasarana extends My_Controller {
 		
 		$data['curcount'] = $offset+1;
 		$data['result'] = $result['row_data'];
+		##sorting
+		$data['fields'] = array (
+			'NAMA_SARPRAS' => 'NAMA SARANA',
+			'JUMLAH' => 'JUMLAH',
+			'KAPASITAS' => 'KAPASITAS',
+			'TAHUN' => 'TAHUN'
+		);
+		$data['sort_by'] = $sort_by;
+		$data['sort_order'] = $sort_order;
+		##
 		
 		$this->load->view('sarpras/prasarana_list', $data);
 		

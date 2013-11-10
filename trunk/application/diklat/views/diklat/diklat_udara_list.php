@@ -24,10 +24,12 @@
 	<table width="100%">
 	  <thead>
 		<th>No</th>
-		<th>Kode</th>
-		<th width="25%">Nama</th>
-		<th>Program</th>
-		<th width="21%">Satker</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/diklat_udara/index/$field_name/". ##sorting
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		<th>aksi</th>
 	  </thead>
 	  <tbody>

@@ -9,7 +9,7 @@ class jenis_sarpras extends My_Controller {
 		$this->load->model('mdl_jenis_sarpras');
 	}
 	
-	public function index()
+	public function index($sort_by ='NAMA_SARPRAS', $sort_order ='ASC') ##sorting
 	{
 		$this->open();
 		
@@ -18,16 +18,25 @@ class jenis_sarpras extends My_Controller {
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:10;
-		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
+		$offset = ($this->uri->segment(5))?$this->uri->segment(5):0; ##sorting
 		
-		# get data
-		$result = $this->mdl_jenis_sarpras->getData($data['numrow'], $offset, $data);
+			##sorting
+		$data['fields'] = array (
+			'NAMA_SARPRAS' => 'SARANA PRASARANA',
+			'JENIS' => 'JENIS'			
+		);
+		$data['sort_by'] = $sort_by;
+		$data['sort_order'] = $sort_order;
+		##
+		
+		##sorting
+		$result = $this->mdl_jenis_sarpras->getData($data['numrow'], $offset, $data, $sort_by, $sort_order);
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/jenis_sarpras/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/jenis_sarpras/index/'."$sort_by/$sort_order"; ##sorting
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
-		$config['uri_segment'] = '3';
+		$config['uri_segment'] = '5';
 		$config['full_tag_open'] = '';
 		$config['full_tag_close'] = '';
 		$config['num_tag_open'] = '<li>';

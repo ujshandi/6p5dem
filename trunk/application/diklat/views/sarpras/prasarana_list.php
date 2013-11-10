@@ -31,10 +31,16 @@
 	  <thead>
 		<th>No</th>
 		<th width='18%'>UPT</th>
-		<th>Nama Prasarana</th>
+		<?php foreach ($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("/prasarana/index/$field_name/".
+			(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'), $field_display); ?>
+		</th>
+		<?php endforeach; ?>
+		<!--<th>Nama Prasarana</th>
 		<th >Jml</th>
 		<th>Kapasitas</th>
-		<th>Tahun Pengadaan</th>
+		<th>Tahun Pengadaan</th>-->
 		<th>Deskripsi</th>
 		<th>aksi</th>
 	  </thead>
