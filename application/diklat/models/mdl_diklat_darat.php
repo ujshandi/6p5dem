@@ -144,6 +144,55 @@ class mdl_diklat_darat extends CI_Model{
 		// return $out;
 	// }
 	
+	//yan
+	function detail_diklat_exist($kode_diklat){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_DETAIL_DIKLAT');
+		$this->db->where('KODE_DIKLAT', $kode_diklat);
+		
+		$res = $this->db->get();
+		
+		if($res->num_rows() > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+	
+	function get_detail_diklat($kode_diklat){
+		$this->db->flush_cache();
+		$this->db->select('*');
+		$this->db->from('DIKLAT_DETAIL_DIKLAT');
+		$this->db->where('KODE_DIKLAT', $kode_diklat);
+		
+		return $this->db->get();
+		
+	}
+	
+	function insert_detail($data){
+		$this->db->flush_cache();
+		
+        $this->db->set('DESKRIPSI', $data['DESKRIPSI']);
+        $this->db->set('TUJUAN', $data['TUJUAN']);
+        $this->db->set('PELUANG', $data['PELUANG']);
+        $this->db->set('LAMA', $data['LAMA']);
+        $this->db->set('SYARAT', $data['SYARAT']);
+
+		if($data['action'] == 'insert'){
+			$this->db->set('KODE_DIKLAT', $data['KODE_DIKLAT']);
+			$result = $this->db->insert('DIKLAT_DETAIL_DIKLAT');
+		}else{
+			$this->db->where('KODE_DIKLAT', $data['KODE_DIKLAT']);
+			$result = $this->db->update('DIKLAT_DETAIL_DIKLAT');
+		}
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
 
 }
 ?>

@@ -11,7 +11,7 @@ class sarana extends My_Controller {
 		$this->load->model('mdl_sarana');
 	}
 
-	public function index($sort_by ='NAMA,JUMLAH,TAHUN',$sort_order ='ASC')
+	public function index($sort_by ='NAMA,JUMLAH,TAHUN', $sort_order ='ASC') ##sorting
 	{
 		$this->open();
 		
@@ -20,19 +20,29 @@ class sarana extends My_Controller {
 		$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:10;
-		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
+		$offset = ($this->uri->segment(5))?$this->uri->segment(5):0; ##sorting
 		
 		# get data
 		//$result = $this->mdl_sarana->getData($data['numrow'], $offset, $data);
 		
 		##sorting
+		$data['fields'] = array (
+			'NAMA_SARPRAS' => 'NAMA SARANA',
+			'JUMLAH' => 'JUMLAH',
+			'TAHUN' => 'TAHUN'
+		);
+		$data['sort_by'] = $sort_by;
+		$data['sort_order'] = $sort_order;
+		##
+		
+		##sorting
 		$result = $this->mdl_sarana->getData($data['numrow'], $offset, $data, $sort_by, $sort_order);
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sarana/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sarana/index/'."$sort_by/$sort_order";
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
-		$config['uri_segment'] = '3';
+		$config['uri_segment'] = '5'; ##sorting
 		$config['full_tag_open'] = '';
 		$config['full_tag_close'] = '';
 		$config['num_tag_open'] = '<li>';
@@ -59,15 +69,6 @@ class sarana extends My_Controller {
 		$data['curcount'] = $offset+1;
 		
 		$data['result'] = $result['row_data'];
-		##sorting
-		$data['fields'] = array (
-			'NAMA_SARPRAS' => 'NAMA SARANA',
-			'JUMLAH' => 'JUMLAH',
-			'TAHUN' => 'TAHUN'
-		);
-		$data['sort_by'] = $sort_by;
-		$data['sort_order'] = $sort_order;
-		##
 		
 		$this->load->view('sarpras/sarana_list', $data);
 		

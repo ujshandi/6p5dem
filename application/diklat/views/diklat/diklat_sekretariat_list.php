@@ -46,6 +46,8 @@
 				<td><?=$r->NAMA_PROGRAM?></td>
 				<td><?=$r->NAMA_INDUK?></td>
 				<td >
+					<a href="<?=site_url().'/diklat_sekretariat/add_detail/'.$r->KODE_DIKLAT?>" class="control" >
+						<span class="view">Detail</span></a> |
 					<a href="<?=site_url().'/diklat_sekretariat/edit/'.$r->KODE_DIKLAT?>" class="control" >
 						<span class="edit">edit</span></a> |
 					<a href="<?=site_url().'/diklat_sekretariat/proses_delete/'.$r->KODE_DIKLAT?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
