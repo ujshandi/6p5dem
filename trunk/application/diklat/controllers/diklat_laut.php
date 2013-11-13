@@ -163,4 +163,49 @@ class diklat_laut extends My_Controller {
 		}
 	}
 	
+	//yan
+	public function add_detail($kode_diklat){
+		$this->open();
+		
+		if($this->mdl_diklat_laut->detail_diklat_exist($kode_diklat)){
+			$data['action'] = 'update';
+			$data['result'] = $this->mdl_diklat_laut->get_detail_diklat($kode_diklat);
+
+			$data['DESKRIPSI'] = ReadCLOB($data['result']->row()->DESKRIPSI);
+			$data['TUJUAN'] = ReadCLOB($data['result']->row()->TUJUAN);
+			$data['PELUANG'] = ReadCLOB($data['result']->row()->PELUANG);
+			$data['LAMA'] = $data['result']->row()->LAMA;
+			$data['SYARAT'] = ReadCLOB($data['result']->row()->SYARAT);
+		}else{
+			$data['action'] = 'insert';
+			
+			$data['DESKRIPSI'] = '';
+			$data['TUJUAN'] = '';
+			$data['PELUANG'] = '';
+			$data['LAMA'] = '';
+			$data['SYARAT'] = '';
+		}
+		
+		$data['kode_diklat'] = $kode_diklat;
+		$data['diklat'] = $this->mdl_diklat_laut->getDataEdit($kode_diklat);
+		
+		$this->load->view('diklat/diklat_laut_detail', $data);
+		
+		$this->close();
+	}
+	
+	public function proses_detail(){
+		$data['action'] = $this->input->post('action');
+		$data['KODE_DIKLAT'] = $this->input->post('KODE_DIKLAT');
+        $data['DESKRIPSI'] = $this->input->post('DESKRIPSI');
+        $data['TUJUAN'] = $this->input->post('TUJUAN');
+        $data['PELUANG'] = $this->input->post('PELUANG');
+        $data['LAMA'] = $this->input->post('LAMA');
+        $data['SYARAT'] = $this->input->post('SYARAT');
+		
+		$this->mdl_diklat_laut->insert_detail($data);
+		redirect('diklat_laut');
+		
+	}
+	
 }
