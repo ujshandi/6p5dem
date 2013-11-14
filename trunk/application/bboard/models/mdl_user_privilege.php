@@ -253,6 +253,13 @@ class mdl_user_privilege extends CI_Model{
 		return $this->db->get();
 	}
 	
+	function get_user_group_kopeten_by($id){
+		$this->db->select('KOPETEN_USER_GROUP.*');
+		$this->db->from('KOPETEN_USER_GROUP');
+		$this->db->where('KOPETEN_USER_GROUP.USER_GROUP_ID', $id); 
+		return $this->db->get();
+	}
+	
 	function get_user_group_sdm_by($id){
 		$this->db->select('SDM_USER_GROUP.*');
 		$this->db->from('SDM_USER_GROUP');
@@ -271,7 +278,7 @@ class mdl_user_privilege extends CI_Model{
 		$this->db->from('KOPETEN_USER_GROUP_MENU');
 		$this->db->join('KOPETEN_MENU','KOPETEN_MENU.MENU_ID=KOPETEN_USER_GROUP_MENU.MENU_ID');
 		$this->db->join('KOPETEN_USER_GROUP','KOPETEN_USER_GROUP.USER_GROUP_ID=KOPETEN_USER_GROUP_MENU.USER_GROUP_ID');
-		/*$this->db->where('KOPETEN_USER_GROUP_MENU.USER_GROUP_ID', $id); */
+		$this->db->where('KOPETEN_USER_GROUP_MENU.USER_GROUP_ID', $id); 
 
 		
 		return $this->db->get();
@@ -388,6 +395,32 @@ class mdl_user_privilege extends CI_Model{
 		$this->db->flush_cache();
 		$this->db->where('USER_GROUP_MENU_ID', $id);
 		$result = $this->db->delete('SDM_USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function hapus_modul_diklat($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_GROUP_MENU_ID', $id);
+		$result = $this->db->delete('DIKLAT_USER_GROUP_MENU');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function hapus_modul_kopeten($id){
+		$this->db->flush_cache();
+		$this->db->where('USER_GROUP_MENU_ID', $id);
+		$result = $this->db->delete('KOPETEN_USER_GROUP_MENU');
 		
 		if($result) {
 			return TRUE;
@@ -668,7 +701,7 @@ class mdl_user_privilege extends CI_Model{
 		return $out;
 	}
 	
-	function get_menu_kopeten_by($d="",$arr_added_menu){
+	function get_menu_kopeten_by($d=""){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
 		$class = isset($d['class'])?$d['class']:'';

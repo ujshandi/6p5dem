@@ -219,6 +219,7 @@ class user_privilege extends MY_Controller
 	public function load_edit_kopeten($id){
 		$data['id'] = $id;
 		$data['results'] = $this->user_privilege->get_data_edit_kopeten($id);
+		$data['results_by'] = $this->user_privilege->get_user_group_kopeten_by($id);
 		$this->load->view('user_privilege/user_privilege_edit_kopeten', $data);
 	}
 	
@@ -447,8 +448,10 @@ class user_privilege extends MY_Controller
 	public function add_kopeten(){
 		$data['user_group_id'] = $this->input->post('USER_GROUP_ID');
 		$menu = $this->input->post('MENU');
-		foreach ($menu  as $value){
-			$data['arr_added_menu'][] = $value['MENU_ID'];
+		if (($menu)>0){
+			foreach ($menu  as $value){
+				$data['arr_added_menu'][] = $value['MENU_ID'];
+			}
 		}
 		$this->load->view('user_privilege/user_privilege_add_kopeten', $data);
 	}
@@ -543,6 +546,28 @@ class user_privilege extends MY_Controller
 		$user_group_id=$this->input->post('USER_GROUP_ID');
 		if($this->user_privilege->hapus_modul_sdm($id)){
 			redirect('user_privilege/load_edit_sdm/' . $user_group_id . '');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	
+	public function hapus_modul_diklat(){
+		$id=$this->uri->segment(3);
+		$user_group_id=$this->input->post('USER_GROUP_ID');
+		if($this->user_privilege->hapus_modul_diklat($id)){
+			redirect('user_privilege/load_edit_diklat/' . $user_group_id . '');
+		}else{
+			// code u/ gagal simpan
+			
+		}
+	}
+	
+	public function hapus_modul_kopeten(){
+		$id=$this->uri->segment(3);
+		$user_group_id=$this->input->post('USER_GROUP_ID');
+		if($this->user_privilege->hapus_modul_kopeten($id)){
+			redirect('user_privilege/load_edit_kopeten/' . $user_group_id . '');
 		}else{
 			// code u/ gagal simpan
 			
