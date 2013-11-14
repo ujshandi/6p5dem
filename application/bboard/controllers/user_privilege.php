@@ -116,9 +116,9 @@ class user_privilege extends MY_Controller
         $hakakses4 = $this->input->post('HAKAKSES4')=='1'?'1':'0';
         $hakakses5 = $this->input->post('HAKAKSES5')=='1'?'1':'0';
 		
-		$data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
-        $data['MENU_ID'] = $this->input->post('MENU_ID');
-        $data['PRIVILEGE'] = $hakakses1.$hakakses2.$hakakses3.$hakakses4.$hakakses5;
+		echo $data['USER_GROUP_ID'] = $this->input->post('USER_GROUP_ID');
+        echo $data['MENU_ID'] = $this->input->post('MENU_ID');
+        echo $data['PRIVILEGE'] = $hakakses1.$hakakses2.$hakakses3.$hakakses4.$hakakses5;
 		
 		# set rules validation
 		
@@ -133,7 +133,7 @@ class user_privilege extends MY_Controller
 			echo 'Data Gagal Disimpan';
 		}else{
 			$this->user_privilege->insert($data);
-			redirect('user_privilege/load_edit/' . $data['USER_GROUP_ID'] . '');
+			redirect('user_privilege/edit_bboard/' . $data['USER_GROUP_ID'] . ''); 
 		}
 		
 		//$this->close_backend();
@@ -143,8 +143,10 @@ class user_privilege extends MY_Controller
 		//$this->open_backend();
 		$data['user_group_id'] = $this->input->post('USER_GROUP_ID');
 		$menu = $this->input->post('MENU');
-		foreach ($menu  as $value){
-			$data['arr_added_menu'][] = $value['MENU_ID'];
+		if (($menu)>0){
+			foreach ($menu  as $value){
+				$data['arr_added_menu'][] = $value['MENU_ID'];
+			}
 		}
 		$this->load->view('user_privilege/user_privilege_add_sdm', $data);
 		//$this->close_backend();
@@ -203,12 +205,14 @@ class user_privilege extends MY_Controller
 	public function load_edit_diklat($id){
 		$data['id'] = $id;
 		$data['results'] = $this->user_privilege->get_data_edit_diklat($id);
+		$data['results_by'] = $this->user_privilege->get_user_group_diklat_by($id);
 		$this->load->view('user_privilege/user_privilege_edit_diklat', $data);
 	}
 	
 	public function load_edit_sdm($id){
 		$data['id'] = $id;
 		$data['results'] = $this->user_privilege->get_data_edit_sdm($id);
+		$data['results_by'] = $this->user_privilege->get_user_group_sdm_by($id);
 		$this->load->view('user_privilege/user_privilege_edit_sdm', $data);
 	}
 	
@@ -373,7 +377,7 @@ class user_privilege extends MY_Controller
 	}
 	
 	public function proses_edit_sdm(){
-		$this->open_backend();
+		/*$this->open_backend(); */
 		
 		# get post data
 		
@@ -419,17 +423,24 @@ class user_privilege extends MY_Controller
 		}
 		
         
-		redirect('user_privilege');
+		redirect('user_privilege/get_all_sdm');
 		
-		$this->close_backend();
+		/*$this->close_backend(); */
 	}
 	
 	public function add_diklat(){
+		
 		$data['user_group_id'] = $this->input->post('USER_GROUP_ID');
 		$menu = $this->input->post('MENU');
-		foreach ($menu  as $value){
-			$data['arr_added_menu'][] = $value['MENU_ID'];
+		
+		
+		if (($menu)>0){
+			foreach ($menu  as $value){
+				$data['arr_added_menu'][] = $value['MENU_ID'];
+			}
+			
 		}
+		
 		$this->load->view('user_privilege/user_privilege_add_diklat', $data);
 	}
 	
@@ -519,7 +530,7 @@ class user_privilege extends MY_Controller
 		$id=$this->uri->segment(3);
 		$user_group_id=$this->input->post('USER_GROUP_ID');
 		if($this->user_privilege->hapus_modul($id)){
-			redirect('user_privilege/load_edit/' . $user_group_id . '');
+			redirect('user_privilege/edit_bboard/' . $user_group_id . '');
 		}else{
 			// code u/ gagal simpan
 			
@@ -539,12 +550,12 @@ class user_privilege extends MY_Controller
 	}
 	
 	function proses_delete_bboard(){
-		$data['id']=$this->uri->segment(3);
-		if($this->user_privilege->hapus_modul($data)){
-			redirect('user_privilege/load_edit/' . $data['id'] . '');
+		$id=$this->uri->segment(3);
+		if($this->user_privilege->delete_bboard($id)){
+			redirect('user_privilege/get_all_bboard/');
 		}else{
 			// code u/ gagal simpan
-			
+			echo "Gagal Menghapus Data";
 		}
 	}
 	

@@ -241,8 +241,22 @@ class mdl_user_privilege extends CI_Model{
 		$this->db->from('DIKLAT_USER_GROUP_MENU');
 		$this->db->join('DIKLAT_MENU','DIKLAT_MENU.MENU_ID=DIKLAT_USER_GROUP_MENU.MENU_ID');
 		$this->db->join('DIKLAT_USER_GROUP','DIKLAT_USER_GROUP.USER_GROUP_ID=DIKLAT_USER_GROUP_MENU.USER_GROUP_ID');
-		/*$this->db->where('DIKLAT_USER_GROUP_MENU.USER_GROUP_ID', $id); */
+		$this->db->where('DIKLAT_USER_GROUP_MENU.USER_GROUP_ID', $id); 
 		
+		return $this->db->get();
+	}
+	
+	function get_user_group_diklat_by($id){
+		$this->db->select('DIKLAT_USER_GROUP.*');
+		$this->db->from('DIKLAT_USER_GROUP');
+		$this->db->where('DIKLAT_USER_GROUP.USER_GROUP_ID', $id); 
+		return $this->db->get();
+	}
+	
+	function get_user_group_sdm_by($id){
+		$this->db->select('SDM_USER_GROUP.*');
+		$this->db->from('SDM_USER_GROUP');
+		$this->db->where('SDM_USER_GROUP.USER_GROUP_ID', $id); 
 		return $this->db->get();
 	}
 	
@@ -343,9 +357,9 @@ class mdl_user_privilege extends CI_Model{
 		
 	}
 	
-	function delete_bboard($data){
+	function delete_bboard($id){
 		$this->db->flush_cache();
-		$this->db->where('USER_GROUP_MENU_ID', $data['id']);
+		$this->db->where('USER_GROUP_MENU_ID2', $id);
 		$result = $this->db->delete('USER_GROUP_MENU');
 		
 		if($result) {
@@ -601,6 +615,31 @@ class mdl_user_privilege extends CI_Model{
 		return $out;
 	}
 	
+	function get_menu_sdm_by($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('SDM_MENU');
+		$this->db->order_by('MENU_ID');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->MENU_ID == trim($value)){
+				$out .= '<option value="'.$r->MENU_ID.'" selected="selected">'.$r->MENU_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->MENU_ID.'">'.$r->MENU_NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
+	
 	function get_menu_kopeten($d="",$arr_added_menu){
 		$name = isset($d['name'])?$d['name']:'';
 		$id = isset($d['id'])?$d['id']:'';
@@ -614,6 +653,30 @@ class mdl_user_privilege extends CI_Model{
 		}
 		$this->db->order_by('MENU_ID');
 		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->MENU_ID == trim($value)){
+				$out .= '<option value="'.$r->MENU_ID.'" selected="selected">'.$r->MENU_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->MENU_ID.'">'.$r->MENU_NAME.'</option>';
+			}
+		}
+		$out .= '</select>';
+		
+		return $out;
+	}
+	
+	function get_menu_kopeten_by($d="",$arr_added_menu){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('KOPETEN_MENU');
+		$this->db->order_by('MENU_ID');
 		$res = $this->db->get();
 		
 		$out = '<select name="'.$name.'" id="'.$id.'">';
@@ -664,8 +727,9 @@ class mdl_user_privilege extends CI_Model{
 		$value = isset($d['value'])?$d['value']:'';
 		
 		$this->db->flush_cache();
+		
 		$this->db->from('DIKLAT_MENU');
-		if (count($arr_added_menu)>0){
+		if (isset($arr_added_menu)){
 			$this->db->where_not_in('MENU_ID' ,  $arr_added_menu);
 		}
 		$this->db->order_by('MENU_ID');
@@ -680,7 +744,33 @@ class mdl_user_privilege extends CI_Model{
 				$out .= '<option value="'.$r->MENU_ID.'">'.$r->MENU_NAME.'</option>';
 			}
 		}
-		$out .= '</select>';
+		$out .= '</select>'; 
+		
+		return $out;
+	}
+	
+	function get_menu_diklat_by($d=""){
+		$name = isset($d['name'])?$d['name']:'';
+		$id = isset($d['id'])?$d['id']:'';
+		$class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		
+		$this->db->from('DIKLAT_MENU');
+		$this->db->order_by('MENU_ID');
+		
+		$res = $this->db->get();
+		
+		$out = '<select name="'.$name.'" id="'.$id.'">';
+		foreach($res->result() as $r){
+			if($r->MENU_ID == trim($value)){
+				$out .= '<option value="'.$r->MENU_ID.'" selected="selected">'.$r->MENU_NAME.'</option>';
+			}else{
+				$out .= '<option value="'.$r->MENU_ID.'">'.$r->MENU_NAME.'</option>';
+			}
+		}
+		$out .= '</select>'; 
 		
 		return $out;
 	}
