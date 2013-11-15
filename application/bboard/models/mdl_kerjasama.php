@@ -21,7 +21,7 @@ class mdl_kerjasama extends CI_Model{
 
 	function insert($data)
 	{
-		$this->db->flush_cache();		        $this->db->set('NAMA_PENYEDIA_JASA', $data['NAMA_PENYEDIA_JASA']);        $this->db->set('JENIS_KERJASAMA', $data['JENIS_KERJASAMA']);        $this->db->set('BIDANG', $data['MAKRA_CODE']);        $this->db->set('PERIODE_AWAL', $data['PERIODE_AWAL'], false);        $this->db->set('PERIODE_AKHIR', $data['PERIODE_AKHIR'], false);         $this->db->insert('BB_INFORMASI_KERJASAMA');				if($result) {			return TRUE;		}else {			return FALSE;		}
+		$this->db->flush_cache();		        $this->db->set('NAMA_PENYEDIA_JASA', $data['NAMA_PENYEDIA_JASA']);        $this->db->set('JENIS_KERJASAMA', $data['JENIS_KERJASAMA']);        $this->db->set('BIDANG', $data['MAKRA_CODE']);        $this->db->set('PERIODE_AWAL', $data['PERIODE_AWAL'], false);        $this->db->set('PERIODE_AKHIR', $data['PERIODE_AKHIR'], false);         $result = $this->db->insert('BB_INFORMASI_KERJASAMA');				if($result) {			return TRUE;		}else {			return FALSE;		}
 		
 	}			function get_data_edit($id){		$this->db->flush_cache();		$this->db->select('*');		$this->db->from('BB_INFORMASI_KERJASAMA');		$this->db->where('ID_KERJASAMA', $data['id']);				return $this->db->get();	}
 		function getDataEdit($id){		$this->db->flush_cache();		$this->db->select('*');		$this->db->from('BB_INFORMASI_KERJASAMA');		$this->db->where('ID_KERJASAMA', $id);				return $this->db->get();	}	
