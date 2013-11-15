@@ -16,7 +16,7 @@
 </script>
 
 <div class="wrap_right bgcontent">
-	<h1 class="heading">Data Pendaftar</h1>
+	<h1 class="heading">Data Pendaftar Taruna</h1>
 	<hr/>
 	<?=form_open('peserta_backend/proses_add_lulus', array('class'=>'sform'))?>
 	<fieldset>

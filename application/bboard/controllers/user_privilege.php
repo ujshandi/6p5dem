@@ -570,7 +570,7 @@ class user_privilege extends MY_Controller
 			redirect('user_privilege/load_edit_kopeten/' . $user_group_id . '');
 		}else{
 			// code u/ gagal simpan
-			
+			redirect('user_privilege/load_edit_kopeten/' . $user_group_id . '');
 		}
 	}
 	
