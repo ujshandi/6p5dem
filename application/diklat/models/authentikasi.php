@@ -139,11 +139,26 @@ class Authentikasi extends CI_Model{
    
    }
    
-   function getUserPrivelege($usergroup){
-      		$sql = " SELECT a.MENU_ID, a.MENU_URL, b.PRIVILEGE FROM MENU a,USER_GROUP_MENU b WHERE a.MENU_ID = b.MENU_ID AND b.USER_GROUP_ID = '".$usergroup."' ORDER BY a.MENU_ID";												
-		     //$sql ="SELECT * FROM USER_GROUP_MENU";
-		return $this->db->query($sql);		
-   
+   function getUserPrivelege($username){
+		
+		//get user group
+		$this->db->flush_cache();
+		$this->db->select('USER_GROUP_ID');
+		$this->db->from('DIKLAT_USERS');
+		$this->db->where('USERNAME', $username);
+		
+		$usergroup = $this->db->get()->row()->USER_GROUP_ID;
+		
+		$sql  = " SELECT a.PRIVILEGE, b.MENU_ID, b.MENU_URL ";
+		$sql .= " FROM DIKLAT_USER_GROUP_MENU a ";
+		$sql .= " INNER JOIN DIKLAT_MENU b ON b.MENU_ID = a.MENU_ID ";
+		$sql .= " WHERE a.USER_GROUP_ID = '$usergroup' ";
+		$sql .= " ORDER BY b.MENU_ID ";
+		// $sql  = " SELECT a.MENU_ID, a.MENU_URL, b.PRIVILEGE ";
+		// $sql .= " FROM DIKLAT_MENU a, DIKLAT_USER_GROUP_MENU b "; //yanto
+		// $sql .= " WHERE a.MENU_ID = b.MENU_ID AND b.USER_GROUP_ID = '".$usergroup."' ORDER BY a.MENU_ID";
+		//  echo $sql;
+		return $this->db->query($sql);
    }
    
     // Cek data user sesuai data di active directory
