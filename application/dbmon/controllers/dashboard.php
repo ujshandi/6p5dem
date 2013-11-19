@@ -30,6 +30,14 @@ class dashboard extends My_Controller {
 				$mod="sdm_kementerian";
 				
 			break;
+			case 'sdm_bumn_ver2':
+				$data['title']='Kementerian Perhubungan';
+				$mod="sdm_bumn_ver2";
+			break;
+			case 'jenjang_pend':
+				$data['title']='Kementerian Perhubungan';
+				$mod="jenjang_pend";
+			break;
 			case 'sdm_bumn':
 				$data['title']='Kementerian Perhubungan';
 				$mod="sdm_bumn";
@@ -155,6 +163,12 @@ class dashboard extends My_Controller {
 			case "data_grafik_diklat":
 				$mod="data_grafik_diklat";
 			break;
+			case "data_grafik_bumn2":
+				$mod="data_grafik_bumn2";
+			break;
+			case "data_grafik_jenjang":
+				$mod="data_grafik_jenjang";
+			break;
 			default:$mod='under';
 		}
 		
@@ -208,11 +222,11 @@ class dashboard extends My_Controller {
 	}
 	
 	function get_datagrap(){
-	$kat=$this->input->post('kat');
-	$kom=$this->input->post('kom');
-	$prov=$this->input->post('prov');
-	$kantor=$this->input->post('kantor');
-	$matra=$this->input->post('matra');
+		$kat=$this->input->post('kat');
+		$kom=$this->input->post('kom');
+		$prov=$this->input->post('prov');
+		$kantor=$this->input->post('kantor');
+		$matra=$this->input->post('matra');
 
 		switch($kat){
 			case "all":
@@ -251,6 +265,48 @@ class dashboard extends My_Controller {
 			
 			$xml .='</chart>';*/
 			
+			break;
+			case "bumn2":
+				$data['matra']	 =$this->input->post('matra');
+				$data['tahun'] =$this->input->post('tahun');
+				//$kd_prov=$this->input->post('kd_prov');
+				//$flag_kelamin=$this->input->post('flag_kelamin');
+				$data=$this->mdashboard->get_data('data_sdm_bumn_ver2',$data['matra'],$data['tahun']);
+			//	print_r($data);
+				$xml="<chart yAxisName='Jumlah' showLegend='0' labelDisplay='ROTATE' numDivLines='5' slantLabels='1' numberPrefix='' showBorder='0' imageSave='1' exportHandler=''>";
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMABUMN'].'" value="'.$v['JUMLAHSDM'].'" />';
+				}
+				
+			
+			$xml .='</chart>';
+				###
+				/*$data=$this->mdashboard->get_data('data_sdm',$kat);
+			//	print_r($data);
+				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAPROVIN'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_kab("'.$v["KODEPROVIN"].'","",300,200,"get_detail/data_kab/Doughnut3D")\' />';
+				}
+				
+			
+			$xml .='</chart>';*/
+			break;
+			
+			//JENJANG
+			case "jenjang":
+				
+				
+				$data['kantor']	 =$this->input->post('kantor');
+				$data['satker'] =$this->input->post('satker');
+				$data=$this->mdashboard->get_data('data_jenjang_pend',$data['kantor'],$data['satker']);
+			//	print_r($data);
+				$xml="<chart yAxisName='Jumlah' showLegend='0' labelDisplay='ROTATE' numDivLines='5' slantLabels='1' numberPrefix='' showBorder='0' imageSave='1' exportHandler=''>";
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['TINGKATDIK'].'" value="'.$v['JUMLAHSDM'].'" />';
+				}
+				
+			
+			$xml .='</chart>';
 			break;
 			
 			case "pend_din":
@@ -305,6 +361,21 @@ class dashboard extends My_Controller {
 			$xml .='</chart>';
 			
 			break;
+			
+			//BUMN versi 2
+			// case "all3_ver2":
+				// $data=$this->mdashboard->get_data('data_sdm_bumn_ver2',$kat);
+			// //	print_r($data);
+				// $xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
+				// foreach ($data as $x=>$v){
+					// $xml .='<set label="'.$v['NAMABUMN'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_bumn_ver2("'.$v["KODEBUMN"].'","",300,200,"get_detail/data_bumn/Doughnut3D")\' />';
+				// }
+				
+			
+			// $xml .='</chart>';
+			
+			// break;
+			
 			case "diklat":
 				$data['induk_upt']	 =$this->input->post('induk_upt');
 				$data['program_upt'] =$this->input->post('program_upt');
@@ -314,7 +385,7 @@ class dashboard extends My_Controller {
 				
 				
 				
-				$xml="<chart caption='Jumlah ".($this->input->post('flag')=='peserta' ? 'Peserta' : 'Lulusan')." Pendidikan Dan Pelatihan' subcaption='Tahun ".$data['tahun_mulai']." sampai ".$data['tahun_akhir']."' xAxisName='Tahun' yAxisName='Orang' numberPrefix='' showLabels='1' showColumnShadow='1' animation='1' showAlternateHGridColor='1' AlternateHGridColor='ff5904' divLineColor='ff5904' divLineAlpha='20' alternateHGridAlpha='5' canvasBorderColor='666666' baseFontColor='666666' lineColor='FF5904' lineAlpha='85' showValues='1' rotateValues='1' valuePosition='auto' canvaspadding='8'>";
+				$xml="<chart caption='Jumlah ".($this->input->post('flag')=='peserta' ? 'Peserta' : 'Lulusan')." PendPendidikan Dan Pelatihan' subcaption='Tahun ".$data['tahun_mulai']." sampai ".$data['tahun_akhir']."' xAxisName='Tahun' yAxisName='Orang' numberPrefix='' showLabels='1' showColumnShadow='1' animation='1' showAlternateHGridColor='1' AlternateHGridColor='ff5904' divLineColor='ff5904' divLineAlpha='20' alternateHGridAlpha='5' canvasBorderColor='666666' baseFontColor='666666' lineColor='FF5904' lineAlpha='85' showValues='1' rotateValues='1' valuePosition='auto' canvaspadding='8'>";
 				//print_r($data_diklat);
 				for($i=$data['tahun_mulai'];$i<=$data['tahun_akhir'];$i++){		
 					$xml .="<set label='".$i."' value='".$data_diklat[0]['JML_'.$i]."' />";
@@ -532,6 +603,16 @@ class dashboard extends My_Controller {
 				case 'DIKLAT_MST_PROGRAM':
 					$rec=$this->mdashboard->isi_combo('DIKLAT_MST_PROGRAM','KODE_PROGRAM','NAMA_PROGRAM');
 				break;
+				
+				case 'MATRA':
+					$rec=$this->mdashboard->isi_combo('MATRA','KODEMATRA','NAMAMATRA');
+				break;
+				case 'SDM_KANTOR':
+					$rec=$this->mdashboard->isi_combo('SDM_KANTOR','KODEKANTOR','NAMAPENUH');
+				break;
+				case 'SDM_UNITKERJA':
+					$rec=$this->mdashboard->isi_combo_satker('SDM_UNITKERJA','KODEUNIT','NAMAPENUH');
+				break;
 		}
 		//print_r($rec);
 		$optTemp .= "<option value=''>-- Pilih --</option>";			
@@ -618,4 +699,25 @@ class dashboard extends My_Controller {
 	}
 	
 	//end
+	##combo matra
+	function get_combo_matra($p1,$valfilter="",$val="",$val2=""){
+		$optTemp =""; 
+		switch($p1){
+				case 'MATRA':
+					$rec=$this->mdashboard->isi_combo_matra('MATRA','KODEMATRA','NAMAMATRA');
+				break;
+		}
+		//print_r($rec);
+		$optTemp .= "<option value=''>-- Pilih --</option>";			
+			foreach($rec as $v=>$k)
+			{
+				if($this->input->post("v") == $k['ID_NA'])
+					$optTemp .= "<option selected value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+				else 
+					$optTemp .= "<option value='".$k['ID_NA']."'>".$k['TEXT']."</option>";
+			}
+			echo $optTemp;	
+	
+		
+	}
 }
