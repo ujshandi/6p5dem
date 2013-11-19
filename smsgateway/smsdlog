@@ -1,0 +1,185 @@
+Mon 2010/05/17 08:07:55 gammu-smsd-inject[3376]: Warning: No PIN code in smsdrc file
+Mon 2010/05/17 08:07:55 gammu-smsd-inject[3376]: Connected to Database: smsd on localhost
+Mon 2010/05/17 08:07:55 gammu-smsd-inject[3376]: Written message with ID 43
+Mon 2010/05/17 08:10:43 gammu-smsd-inject[1840]: Connected to Database: smsd on localhost
+Mon 2010/05/17 08:10:43 gammu-smsd-inject[1840]: Written message with ID 44
+Mon 2010/05/17 08:32:20 gammu-smsd-inject[2812]: Connected to Database: smsd on localhost
+Mon 2010/05/17 08:32:20 gammu-smsd-inject[2812]: Written message with ID 48
+Fri 2010/05/28 14:13:13 gammu-smsd-inject[3056]: Connected to Database: v2 on localhost
+Fri 2010/05/28 14:13:13 gammu-smsd-inject[3056]: Written message with ID 1
+Mon 2010/05/31 05:51:40 gammu-smsd-inject[644]: Connected to Database: smsgammu on localhost
+Mon 2010/05/31 05:51:40 gammu-smsd-inject[644]: Written message with ID 1
+Mon 2010/05/31 05:55:36 gammu-smsd-inject[208]: Connected to Database: smsgammu on localhost
+Mon 2010/05/31 05:55:36 gammu-smsd-inject[208]: Written message with ID 2
+Wed 2010/09/22 16:37:17 gammu-smsd-inject[2156]: Connected to Database: xxx on localhost
+Wed 2010/09/22 16:37:17 gammu-smsd-inject[2156]: Written message with ID 1
+Thu 2010/09/30 06:42:57 gammu-smsd-inject[3392]: Connected to Database: phpsms on localhost
+Thu 2010/09/30 06:42:57 gammu-smsd-inject[3392]: Written message with ID 3166
+Thu 2010/09/30 07:44:18 gammu-smsd-inject[3604]: Connected to Database: phpsms on localhost
+Thu 2010/09/30 07:44:18 gammu-smsd-inject[3604]: Written message with ID 3167
+Thu 2010/09/30 07:49:10 gammu-smsd-inject[3440]: Connected to Database: phpsms on localhost
+Thu 2010/09/30 07:49:10 gammu-smsd-inject[3440]: Written message with ID 3168
+Thu 2010/09/30 07:54:48 gammu-smsd-inject[3716]: Connected to Database: phpsms on localhost
+Thu 2010/09/30 07:54:48 gammu-smsd-inject[3716]: Written message with ID 3169
+Fri 2010/10/01 06:47:21 gammu-smsd-inject[2568]: Connected to Database: phpsms on localhost
+Fri 2010/10/01 06:47:21 gammu-smsd-inject[2568]: Written message with ID 3334
+Fri 2010/10/01 06:49:23 gammu-smsd-inject[2248]: Connected to Database: phpsms on localhost
+Fri 2010/10/01 06:49:23 gammu-smsd-inject[2248]: Written message with ID 3335
+Fri 2010/10/01 07:46:36 gammu-smsd-inject[3448]: Connected to Database: phpsms on localhost
+Fri 2010/10/01 07:46:36 gammu-smsd-inject[3448]: Written message with ID 3336
+Wed 2010/10/06 08:42:11 gammu-smsd-inject[3968]: Connected to Database: phpsms on localhost
+Wed 2010/10/06 08:42:11 gammu-smsd-inject[3968]: Written message with ID 3341
+Wed 2010/10/06 08:44:26 gammu-smsd-inject[3796]: Connected to Database: phpsms on localhost
+Wed 2010/10/06 08:44:26 gammu-smsd-inject[3796]: Written message with ID 3342
+Thu 2010/10/07 08:22:49 gammu-smsd-inject[1424]: Connected to Database: phpsms on localhost
+Thu 2010/10/07 08:22:49 gammu-smsd-inject[1424]: Written message with ID 3343
+Thu 2010/10/07 08:27:09 gammu-smsd-inject[3620]: Connected to Database: phpsms on localhost
+Thu 2010/10/07 08:27:09 gammu-smsd-inject[3620]: Written message with ID 3344
+Thu 2010/10/07 21:31:41 gammu-smsd-inject[3140]: Connected to Database: phpsms on localhost
+Thu 2010/10/07 21:31:41 gammu-smsd-inject[3140]: Written message with ID 3345
+Sat 2010/10/09 06:55:48 gammu-smsd-inject[2644]: Connected to Database: phpsms on localhost
+Sat 2010/10/09 06:55:48 gammu-smsd-inject[2644]: Written message with ID 3346
+Sat 2010/10/09 07:00:13 gammu-smsd-inject[2924]: Connected to Database: phpsms on localhost
+Sat 2010/10/09 07:00:13 gammu-smsd-inject[2924]: Written message with ID 3347
+Mon 2010/10/11 08:02:25 gammu-smsd-inject[4056]: Connected to Database: phpsms on localhost
+Mon 2010/10/11 08:02:25 gammu-smsd-inject[4056]: Written message with ID 3348
+Mon 2010/10/11 08:09:40 gammu-smsd-inject[2852]: Connected to Database: phpsms on localhost
+Mon 2010/10/11 08:09:40 gammu-smsd-inject[2852]: Written message with ID 3349
+Thu 2010/10/14 14:36:14 gammu-smsd-inject[1724]: Connected to Database: phpsmsupdate on localhost
+Thu 2010/10/14 14:36:14 gammu-smsd-inject[1724]: Written message with ID 77
+Thu 2010/10/21 05:04:26 gammu-smsd-inject[1660]: Connected to Database: gampsms on localhost
+Thu 2010/10/21 05:04:26 gammu-smsd-inject[1660]: Written message with ID 1
+Thu 2010/10/21 05:04:46 gammu-smsd-inject[1816]: Connected to Database: gampsms on localhost
+Thu 2010/10/21 05:04:46 gammu-smsd-inject[1816]: Written message with ID 2
+Thu 2010/10/21 05:35:35 gammu-smsd-inject[3404]: Connected to Database: gampsms on localhost
+Thu 2010/10/21 05:35:35 gammu-smsd-inject[3404]: Written message with ID 1
+Thu 2010/10/21 05:35:51 gammu-smsd-inject[3648]: Connected to Database: gampsms on localhost
+Thu 2010/10/21 05:35:51 gammu-smsd-inject[3648]: Written message with ID 2
+Mon 2010/11/22 06:43:08 gammu-smsd-inject[2024]: Connected to Database: gammux on localhost
+Mon 2010/11/22 06:43:08 gammu-smsd-inject[2024]: Written message with ID 1
+Tue 2010/11/23 07:59:41 gammu-smsd-inject[3472]: Connected to Database: gammutest on localhost
+Tue 2010/11/23 07:59:41 gammu-smsd-inject[3472]: Written message with ID 1
+Tue 2010/11/23 08:05:05 gammu-smsd-inject[3760]: Connected to Database: gammutest on localhost
+Tue 2010/11/23 08:05:05 gammu-smsd-inject[3760]: Written message with ID 2
+Thu 2010/11/25 05:35:41 gammu-smsd-inject[2436]: Connected to Database: sms_service on localhost
+Thu 2010/11/25 05:35:41 gammu-smsd-inject[2436]: Written message with ID 103
+Fri 2010/11/26 06:23:30 gammu-smsd-inject[2020]: Connected to Database: sms_service on localhost
+Fri 2010/11/26 06:23:30 gammu-smsd-inject[2020]: Written message with ID 122
+Fri 2010/11/26 06:24:15 gammu-smsd-inject[2860]: Connected to Database: sms_service on localhost
+Fri 2010/11/26 06:24:15 gammu-smsd-inject[2860]: Written message with ID 123
+Fri 2010/11/26 06:25:09 gammu-smsd-inject[2164]: Connected to Database: sms_service on localhost
+Fri 2010/11/26 06:25:09 gammu-smsd-inject[2164]: Written message with ID 124
+Fri 2010/11/26 06:25:18 gammu-smsd-inject[3084]: Connected to Database: sms_service on localhost
+Fri 2010/11/26 06:25:18 gammu-smsd-inject[3084]: Written message with ID 125
+Sat 2010/11/27 09:09:43 gammu-smsd-inject[2536]: Connected to Database: gammutest on localhost
+Sat 2010/11/27 09:09:43 gammu-smsd-inject[2536]: Written message with ID 3
+Sat 2010/11/27 09:26:32 gammu-smsd-inject[1188]: Connected to Database: gammutest on localhost
+Sat 2010/11/27 09:26:32 gammu-smsd-inject[1188]: Written message with ID 4
+Sat 2010/11/27 09:29:15 gammu-smsd-inject[2360]: Connected to Database: gammutest on localhost
+Sat 2010/11/27 09:29:15 gammu-smsd-inject[2360]: Written message with ID 5
+Sat 2010/11/27 09:32:04 gammu-smsd-inject[2072]: Connected to Database: testgammu on localhost
+Sat 2010/11/27 09:32:04 gammu-smsd-inject[2072]: Written message with ID 1
+Sun 2010/11/28 13:34:06 gammu-smsd-inject[3884]: Connected to Database: testgammu on localhost
+Sun 2010/11/28 13:34:06 gammu-smsd-inject[3884]: Written message with ID 2
+Mon 2010/11/29 05:12:06 gammu-smsd-inject[3232]: Connected to Database: testgammu on localhost
+Mon 2010/11/29 05:12:06 gammu-smsd-inject[3232]: Written message with ID 3
+Mon 2010/11/29 05:24:08 gammu-smsd-inject[2360]: Connected to Database: gammutest on localhost
+Mon 2010/11/29 05:24:08 gammu-smsd-inject[2360]: Written message with ID 1
+Mon 2010/11/29 13:04:13 gammu-smsd-inject[1704]: Connected to Database: gammutest on localhost
+Mon 2010/11/29 13:04:13 gammu-smsd-inject[1704]: Written message with ID 2
+Mon 2010/11/29 13:11:36 gammu-smsd-inject[3696]: Connected to Database: gammutest on localhost
+Mon 2010/11/29 13:11:36 gammu-smsd-inject[3696]: Written message with ID 3
+Fri 2012/04/27 00:08:23 gammu-smsd-inject[4792]: DataBase structures are from higher Gammu version
+Fri 2012/04/27 00:08:23 gammu-smsd-inject[4792]: Please update this client application
+Fri 2012/04/27 09:00:40 gammu-smsd-inject[4620]: Connected to Database: sms on localhost
+Fri 2012/04/27 09:00:40 gammu-smsd-inject[4620]: Written message with ID 22
+Fri 2012/04/27 09:25:19 gammu-smsd-inject[5936]: Connected to Database: sms on localhost
+Fri 2012/04/27 09:25:19 gammu-smsd-inject[5936]: Written message with ID 60
+Mon 2012/04/30 12:55:41 gammu-smsd-inject[14948]: Connected to Database: sms on localhost
+Mon 2012/04/30 12:55:41 gammu-smsd-inject[14948]: Written message with ID 74
+Mon 2012/06/04 11:37:39 gammu-smsd-inject[82700]: Connected to Database: sms on localhost
+Mon 2012/06/04 11:37:39 gammu-smsd-inject[82700]: Written message with ID 101
+Mon 2012/07/30 11:13:23 gammu-smsd-inject[212240]: Connected to Database: sms on localhost
+Mon 2012/07/30 11:13:23 gammu-smsd-inject[212240]: Written message with ID 168
+Mon 2012/07/30 11:13:37 gammu-smsd-inject[211076]: Connected to Database: sms on localhost
+Mon 2012/07/30 11:13:37 gammu-smsd-inject[211076]: Written message with ID 169
+Mon 2012/07/30 11:15:03 gammu-smsd-inject[209164]: Connected to Database: sms on localhost
+Mon 2012/07/30 11:15:03 gammu-smsd-inject[209164]: Written message with ID 170
+Mon 2012/07/30 11:19:22 gammu-smsd-inject[211056]: Connected to Database: sms on localhost
+Mon 2012/07/30 11:19:22 gammu-smsd-inject[211056]: Written message with ID 171
+Mon 2012/07/30 11:28:56 gammu-smsd-inject[209652]: Connected to Database: sms on localhost
+Mon 2012/07/30 11:28:56 gammu-smsd-inject[209652]: Written message with ID 173
+Mon 2012/07/30 11:29:42 gammu-smsd-inject[209704]: Connected to Database: sms on localhost
+Mon 2012/07/30 11:29:42 gammu-smsd-inject[209704]: Written message with ID 174
+Mon 2012/07/30 11:32:39 gammu-smsd-inject[211648]: Connected to Database: sms on localhost
+Mon 2012/07/30 11:32:39 gammu-smsd-inject[211648]: Written message with ID 176
+Mon 2012/07/30 12:45:37 gammu-smsd-inject[214296]: Connected to Database: sms on localhost
+Mon 2012/07/30 12:45:37 gammu-smsd-inject[214296]: Written message with ID 217
+Fri 2012/11/30 17:23:46 gammu-smsd-inject[38000]: Connected to Database: sms on localhost
+Fri 2012/11/30 17:23:46 gammu-smsd-inject[38000]: Written message with ID 596
+Fri 2012/11/30 17:24:31 gammu-smsd-inject[37368]: Connected to Database: sms on localhost
+Fri 2012/11/30 17:24:31 gammu-smsd-inject[37368]: Written message with ID 597
+Fri 2012/11/30 17:26:57 gammu-smsd-inject[37680]: Connected to Database: sms on localhost
+Fri 2012/11/30 17:26:57 gammu-smsd-inject[37680]: Written message with ID 598
+Fri 2012/11/30 17:27:11 gammu-smsd-inject[37608]: Connected to Database: sms on localhost
+Fri 2012/11/30 17:27:11 gammu-smsd-inject[37608]: Written message with ID 600
+Fri 2012/11/30 17:27:23 gammu-smsd-inject[37788]: Connected to Database: sms on localhost
+Fri 2012/11/30 17:27:23 gammu-smsd-inject[37788]: Written message with ID 617
+Thu 2013/01/10 10:40:13 gammu-smsd-inject[57084]: Connected to Database: sms on localhost
+Thu 2013/01/10 10:40:13 gammu-smsd-inject[57084]: Written message with ID 884
+Tue 2013/02/12 17:37:30 gammu-smsd-inject[5056]: DataBase structures are from higher Gammu version
+Tue 2013/02/12 17:37:30 gammu-smsd-inject[5056]: Please update this client application
+Tue 2013/02/12 17:38:05 gammu-smsd-inject[4416]: DataBase structures are from higher Gammu version
+Tue 2013/02/12 17:38:05 gammu-smsd-inject[4416]: Please update this client application
+Tue 2013/02/12 17:40:13 gammu-smsd-inject[6024]: DataBase structures are from higher Gammu version
+Tue 2013/02/12 17:40:13 gammu-smsd-inject[6024]: Please update this client application
+Tue 2013/02/12 17:47:56 gammu-smsd-inject[5876]: DataBase structures are from higher Gammu version
+Tue 2013/02/12 17:47:56 gammu-smsd-inject[5876]: Please update this client application
+Tue 2013/02/12 17:48:21 gammu-smsd-inject[2076]: DataBase structures are from higher Gammu version
+Tue 2013/02/12 17:48:21 gammu-smsd-inject[2076]: Please update this client application
+Tue 2013/02/12 17:48:44 gammu-smsd-inject[4192]: DataBase structures are from higher Gammu version
+Tue 2013/02/12 17:48:44 gammu-smsd-inject[4192]: Please update this client application
+Wed 2013/02/13 12:59:37 gammu-smsd-inject[2380]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 12:59:37 gammu-smsd-inject[2380]: Please update this client application
+Wed 2013/02/13 13:00:09 gammu-smsd-inject[1848]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 13:00:09 gammu-smsd-inject[1848]: Please update this client application
+Wed 2013/02/13 13:00:38 gammu-smsd-inject[4356]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 13:00:38 gammu-smsd-inject[4356]: Please update this client application
+Wed 2013/02/13 13:01:10 gammu-smsd-inject[3860]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 13:01:10 gammu-smsd-inject[3860]: Please update this client application
+Wed 2013/02/13 16:43:12 gammu-smsd-inject[4896]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 16:43:12 gammu-smsd-inject[4896]: Please update this client application
+Wed 2013/02/13 17:08:02 gammu-smsd-inject[6000]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 17:08:02 gammu-smsd-inject[6000]: Please update this client application
+Wed 2013/02/13 17:08:41 gammu-smsd-inject[5032]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 17:08:41 gammu-smsd-inject[5032]: Please update this client application
+Wed 2013/02/13 17:09:00 gammu-smsd-inject[1628]: DataBase structures are from higher Gammu version
+Wed 2013/02/13 17:09:00 gammu-smsd-inject[1628]: Please update this client application
+Mon 2013/02/25 14:11:19 gammu-smsd-inject[5804]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:11:19 gammu-smsd-inject[5804]: Please update this client application
+Mon 2013/02/25 14:14:02 gammu-smsd-inject[1584]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:14:02 gammu-smsd-inject[1584]: Please update this client application
+Mon 2013/02/25 14:16:12 gammu-smsd-inject[4436]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:16:12 gammu-smsd-inject[4436]: Please update this client application
+Mon 2013/02/25 14:17:31 gammu-smsd-inject[4440]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:17:31 gammu-smsd-inject[4440]: Please update this client application
+Mon 2013/02/25 14:17:42 gammu-smsd-inject[4752]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:17:42 gammu-smsd-inject[4752]: Please update this client application
+Mon 2013/02/25 14:17:50 gammu-smsd-inject[1640]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:17:50 gammu-smsd-inject[1640]: Please update this client application
+Mon 2013/02/25 14:18:01 gammu-smsd-inject[5880]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:18:01 gammu-smsd-inject[5880]: Please update this client application
+Mon 2013/02/25 14:19:28 gammu-smsd-inject[2388]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:19:28 gammu-smsd-inject[2388]: Please update this client application
+Mon 2013/02/25 14:20:55 gammu-smsd-inject[2292]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:20:55 gammu-smsd-inject[2292]: Please update this client application
+Mon 2013/02/25 14:21:26 gammu-smsd-inject[4028]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:21:26 gammu-smsd-inject[4028]: Please update this client application
+Mon 2013/02/25 14:25:18 gammu-smsd-inject[5828]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:25:18 gammu-smsd-inject[5828]: Please update this client application
+Mon 2013/02/25 14:25:30 gammu-smsd-inject[208]: DataBase structures are from higher Gammu version
+Mon 2013/02/25 14:25:30 gammu-smsd-inject[208]: Please update this client application
+Fri 2013/09/27 22:36:11 gammu-smsd-inject[3784]: DataBase structures are from higher Gammu version
+Fri 2013/09/27 22:36:11 gammu-smsd-inject[3784]: Please update this client application
+Fri 2013/09/27 22:50:52 gammu-smsd-inject[3336]: Connected to Database: gammu on localhost
+Fri 2013/09/27 22:50:52 gammu-smsd-inject[3336]: Written message with ID 1
