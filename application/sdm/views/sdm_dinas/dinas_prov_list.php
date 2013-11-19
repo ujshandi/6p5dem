@@ -22,7 +22,7 @@
 	<?php
 	if ($can_insert== TRUE){
 	?>
-	<a href="<?=base_url().$this->config->item('index_page').'/sdm_dinas/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/sdm_dinas/add_prov'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<?php
 	}
 	?>
@@ -39,7 +39,7 @@
 			<br>			
 			KABUPATEN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<select name="KODEKABUP" id="KODEKABUP">
-					<?=$this->mdl_sdm_dinas->getOptionKabupByProvin(array('KODEPROVIN'=>$kodeprovin, 'value'=>$kodekabup));?>        	
+					<?=$this->mdl_sdm_dinas->getOptionKabupChild(array('value'=>$kodekabup));?>        	
 				</select>
 			&nbsp;&nbsp;
 			<br>

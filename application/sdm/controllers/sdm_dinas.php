@@ -9,8 +9,11 @@ class Sdm_dinas extends My_Controller {
 		$this->load->model('mdl_sdm_dinas');
 	}
 	
-	public function index()
+	public function index($sort_by ='NIP,TMT,NAMA',$sort_order ='ASC')
 	{
+		$level = $this->Authentikasi->get_level();
+		
+		
 		$data['can_view'] 	= $this->can_view();
 
 		$data['can_insert'] = $this->can_insert();
@@ -18,6 +21,7 @@ class Sdm_dinas extends My_Controller {
 		$data['can_update'] = $this->can_update();
 
 		$data['can_delete'] = $this->can_delete();
+		
 		$this->open();
 		
 		# get filter
@@ -29,7 +33,7 @@ class Sdm_dinas extends My_Controller {
 		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
 		
 		# get data
-		$result = $this->mdl_sdm_dinas->getDataTes($data['numrow'], $offset, $data);
+		$result = $this->mdl_sdm_dinas->getDataTes($data['numrow'], $offset, $data, $sort_by, $sort_order);
 		
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_dinas/index/';
@@ -62,8 +66,25 @@ class Sdm_dinas extends My_Controller {
 		$data['curcount'] = $offset+1;
 		$data['result'] = $result['row_data'];
 		
-		$this->load->view('sdm_dinas/dinas_list', $data);
-		
+		$data['fields'] = array (
+			'NIP' => 'NIP',
+			'NAMA' => 'NAMA',
+			'ALAMAT' => 'ALAMAT',
+			'TMT' => 'TMT',
+			'NAMA_GOLONGAN' => 'GOLONGAN',
+			'NAMA_JABATAN' => 'JABATAN'
+		);
+		$data['sort_by'] = $sort_by;
+		$data['sort_order'] = $sort_order;
+		###
+		if($level['LEVEL'] == 2){ // induk upt
+			$this->load->view('sdm_dinas/dinas_prov_list', $data);
+		}else if($level['LEVEL'] == 3){ // upt
+			$this->load->view('sdm_dinas/dinas_kab_list', $data);
+		}else{		
+			$this->load->view('sdm_dinas/dinas_list', $data);
+		}
+		###
 		/*
 		# config pagination
 		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_dinas/index/';
@@ -299,8 +320,26 @@ class Sdm_dinas extends My_Controller {
 		$this->close();
 	}
 	
+	public function add_prov(){
+		$this->open();
+		$data['option_golongan'] = $this->mdl_sdm_dinas->getgolongan();
+		$data['option_jabatan'] = $this->mdl_sdm_dinas->getjabatan();
+		$data['option_provin'] = $this->mdl_sdm_dinas->getOptionProvinChild();
+		$this->load->view('sdm_dinas/dinas_add',$data);
+		$this->close();
+	}
+	public function add_kab(){
+		$this->open();
+		$data['option_golongan'] = $this->mdl_sdm_dinas->getgolongan();
+		$data['option_jabatan'] = $this->mdl_sdm_dinas->getjabatan();
+		$data['option_provin'] = $this->mdl_sdm_dinas->getOptionProvinChild();
+		$this->load->view('sdm_dinas/dinas_add_kab',$data);
+		$this->close();
+	}
+	
 	public function proses_add(){
 		$this->open();
+		$level = $this->Authentikasi->get_level();
 		//$data['ID_PEG_DINAS'] = $this->input->post('ID_PEG_DINAS');
 		$data['KODEPROVIN'] = $this->input->post('KODEPROVIN');
 		$data['KODEKABUP'] = $this->input->post('KODEKABUP');
@@ -321,6 +360,7 @@ class Sdm_dinas extends My_Controller {
 		$data['TMT_JABATAN'] = $this->input->post('TMT_JABATAN');
 		$data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		$data['STATUS_PEG'] = $this->input->post('STATUS_PEG');
+		
 		# set rules validation
 		$this->form_validation->set_rules('NIP', 'NIP', 'required');
 		$this->form_validation->set_rules('NAMA', 'NAMA', 'required');
@@ -346,6 +386,14 @@ class Sdm_dinas extends My_Controller {
 		}
 		
 		$this->close();
+	}
+	
+	public function proses_delete($id){
+		if($this->mdl_sdm_dinas->delete($id)){
+			redirect('sdm_dinas');
+		}else{
+			// code u/ gagal simpan
+		}
 	}
 }
 ?>

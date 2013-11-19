@@ -130,8 +130,21 @@ class Authentikasi extends CI_Model{
    
    }
    
-   function getUserPrivelege($usergroup){
-      		$sql = " SELECT a.MENU_ID, a.MENU_URL, b.PRIVILEGE FROM SDM_MENU a,SDM_USER_GROUP_MENU b WHERE a.MENU_ID = b.MENU_ID AND b.USER_GROUP_ID = '".$usergroup."' ORDER BY a.MENU_ID";												
+   function getUserPrivelege($username){
+      	
+		$this->db->flush_cache();
+		$this->db->select('USER_GROUP_ID');
+		$this->db->from('SDM_USERS');
+		$this->db->where('USERNAME', $username);
+		
+		$usergroup = $this->db->get()->row()->USER_GROUP_ID;
+		
+		$sql  = " SELECT a.PRIVILEGE, b.MENU_ID, b.MENU_URL ";
+		$sql .= " FROM SDM_USER_GROUP_MENU a ";
+		$sql .= " INNER JOIN SDM_MENU b ON b.MENU_ID = a.MENU_ID ";
+		$sql .= " WHERE a.USER_GROUP_ID = '$usergroup' ";
+		$sql .= " ORDER BY b.MENU_ID ";
+		//$sql = " SELECT a.MENU_ID, a.MENU_URL, b.PRIVILEGE FROM SDM_MENU a,SDM_USER_GROUP_MENU b WHERE a.MENU_ID = b.MENU_ID AND b.USER_GROUP_ID = '".$usergroup."' ORDER BY a.MENU_ID";												
 		     //$sql ="SELECT * FROM USER_GROUP_MENU";
 		return $this->db->query($sql);		
    
@@ -151,6 +164,21 @@ class Authentikasi extends CI_Model{
 		return $this->db->get();
    }*/
    
+   public function get_level(){
+		$user = $this->session->userdata("dataUser");
+		
+		$this->db->select("LEVEL, KODEKABUP, KODEPROVIN");
+		$this->db->from("SDM_USERS");
+		$this->db->where("USERNAME", $user['USER_NAME']);
+		
+		$res = $this->db->get();
+		
+		$ret['LEVEL'] = $res->row()->LEVEL;
+		$ret['KODEPROVIN'] = $res->row()->KODEPROVIN;
+		$ret['KODEKABUP'] = $res->row()->KODEKABUP;
+		
+		return $ret;
+	}
    
 }
 ?>

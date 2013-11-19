@@ -1,18 +1,3 @@
-<script>
-    $(document).ready(function(){
-        $("#KODEPROVIN").change(function(){
-            var KODEPROVIN = $("#KODEPROVIN").val();
-            $.ajax({
-               type : "POST",
-               url  : "<?=base_url().$this->config->item('index_page');?>/sdm_dinas/getKabup",
-               data : "KODEPROVIN=" + KODEPROVIN,
-               success: function(data){
-                   $("#KODEKABUP").html(data);
-               }
-            });
-        });
-    });
-</script>
 
 <div class="wrap_right bgcontent">
 <h1 class="heading">Tambah Data Pegawai Dinas</h1>
@@ -48,11 +33,12 @@
 							<select name="KODEPROVIN" id="KODEPROVIN">
 								<?=$this->mdl_sdm_dinas->getOptionProvinChild(array('value'=>$kodeprovin))?>
 							</select>
+							<br>
+					<li><label>Kabupaten <em>*</em></label> 
+							<select name="KODEKABUP" id="KODEKABUP">
+								<?=$this->mdl_sdm_dinas->getOptionKabupChild(array('value'=>$kodekabup))?>        	
+							</select>
 							<br>			
-					<li><div id="kabupkota"><label>Kabupaten/Kota <em>*</em></label>
-						<?php
-							echo form_dropdown("KODEKABUP",array('0'=>'Pilih Provinsi Dahulu'),'',"id='KODEKABUP'",$this->input->post('KODEKABUP'));
-						?></div>
 					<li><label for="">alamat sesuai identitas <em>*</em></label> <input name="ALAMAT" value="<?=set_value('ALAMAT')?>" type="text" class="eight"/></li>
 					<li><label for="">Status Perkawinan <em>*</em></label> <select name="STATUS">
 								<option value="Lajang">Lajang</option>
@@ -89,23 +75,3 @@
 		$( "#TGL_LAHIR" ).datepicker();
 		});
 </script>
-<script type="text/javascript">
-        $("#KODEPROVIN").change(function(){
-                var selectValues = $("#KODEPROVIN").val();
-                if (selectValues == 0){
-                    var msg = "Kabupaten/Kota :<br><select name=\"KODEKABUP\" disabled><option value=\"0\">Pilih Provinsi Dahulu</option></select>";
-                    $('#kabupkota').html(msg);
-                }else{
-                    var KODEPROVIN = {KODEPROVIN:$("#KODEPROVIN").val()};
-                    $('#KODEKABUP').attr("disabled",true);
-                    $.ajax({
-                            type: "POST",
-                            url : "<?php echo site_url('sdm_dinas/select_kabupkota2')?>",
-                            data: KODEPROVIN,
-                            success: function(msg){
-                                $('#kabupkota').html(msg);
-                            }
-                    });
-                }
-        });
-    </script>

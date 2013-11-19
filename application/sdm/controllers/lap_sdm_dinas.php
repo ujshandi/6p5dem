@@ -4,14 +4,21 @@ class Lap_sdm_dinas extends My_Controller{
 	function __construct(){
 		parent:: __construct();
 		$this->load->model('mdl_sdm_dinas');
+		$this->load->model('mdl_import_dinas');
 		//$this->output->enable_profiler(TRUE);
 	}
  
     function index(){
+		$level = $this->Authentikasi->get_level();
 		$this->open();
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/lap_sdm_dinas/index/';
-		$data['option_provin'] = $this->mdl_sdm_dinas->getprovin();
-		$this->load->view('laporan/sdm_laporan_dinas',$data);
+		if($level['LEVEL'] == 2){ // induk upt
+			$this->load->view('laporan/sdm_laporan_dinas');
+		}else if($level['LEVEL'] == 3){ // upt
+			$this->load->view('laporan/sdm_laporan_dinas_kab');
+		}else{		
+			$this->load->view('laporan/sdm_laporan_dinas');
+		}
+		//$this->load->view('import/import_dinas_view');
 		$this->close();
 	}
  
@@ -40,7 +47,21 @@ class Lap_sdm_dinas extends My_Controller{
 		$this->our_pdf->setFont('arial','B',12);
 		$posY = 11;
 		$posX = 10;
-		$this->our_pdf->text($posX,$posY,'Laporan SDM Aparatur Dinas');
+		$midX = 150;
+		$title = 'Laporan SDM Aparatur Dinas';
+		$textPosX = $midX - ($this->our_pdf->GetStringWidth($title) / 2);
+		$this->our_pdf->text($textPosX,$posY,$title);
+		$posY += 6;
+		/*$title2 = 'aaa';//($data['kode_upt']!='')?$this->mdl_upt->getUPTNameByKode($data['kode_upt']):'';
+		$textPosX = $midX - ($this->our_pdf->GetStringWidth($title2) / 2);
+		$this->our_pdf->text($textPosX,$posY,$title2);
+		$posY += 6;*/
+		//$textPosX = $midX - ($this->our_pdf->GetStringWidth($title2) / 2);
+		//$this->our_pdf->text($textPosX,$posY,$title2);
+		//$posY += 6;
+		//$textPosX = $midX - ($this->our_pdf->GetStringWidth($title3) / 2);
+		//$this->our_pdf->text($textPosX,$posY,$title3);
+		//$this->our_pdf->text($posX,$posY,'Laporan SDM Aparatur Dinas');
 		
 		// setting coloumn
 		$this->our_pdf->setFont('Arial','B',9);
@@ -48,11 +69,10 @@ class Lap_sdm_dinas extends My_Controller{
 		$this->our_pdf->setXY($posX,$posY);
 		$this->our_pdf->setFillColor(255,255,255);
 		
-		$this->our_pdf->SetWidths(array(10,30,55,100,40,40));
+		$this->our_pdf->SetWidths(array(10,40,55,100,40,40));
 		 $this->our_pdf->SetAligns(array("C","C","C","C","C","C"));
 		$this->our_pdf->Row(array('No.','NIP','Nama','Alamat','Jabatan','Golongan'));
-		
-		$posY = 22;
+		$posY += 5;
 		
 		// content
 		$this->our_pdf->SetAligns(array("C","C","L","L","L","L"));
@@ -68,6 +88,11 @@ class Lap_sdm_dinas extends My_Controller{
 		$this->our_pdf->AliasNbPages();
 		$this->our_pdf->Output("SDM_Dinas.pdf","I");
 		
+	}
+	
+	function getKabup(){
+		//$KODEPROVIN = $this->input->post('KODEPROVIN');
+		echo $this->mdl_import_dinas->getOptionKabup(array('KODEPROVIN'=>$this->input->post('KODEPROVIN')));
 	}
  
 }
