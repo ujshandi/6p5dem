@@ -57,66 +57,6 @@ if(modul=='mon_pendidikan_dinas'){
 	//get_chart('fcfchart3','Bar2D','pria','chart3',1000,100);	
 	});
 }
-/*
-if(modul=='mon_jenjang_pendidikan'){
-	//var upt
-	var eselon
-	var tahun
-	var buka=0;
-	var buka2=0;
-	
-	$('#cari').linkbutton({  
-		iconCls: 'icon-search' ,
-		text:'Cari'
-	});  
-	fillCombo(host+'dashboard/get_combo_eselon/SDM_KANTOR','SDM_KANTOR');
-	$('#SDM_KANTOR').die();
-	
-	$('#tab_na').tabs({
-				height: frmHeight-350,
-				width: frmWidth-303,
-				plain: false
-	});	
-	
-	
-	
-	$('#tab_na').tabs('add',{
-		title: 'GRAFIK '+flag.toUpperCase(),
-		iconCls:'chart_bar_link',
-		content:'<div id="isi_grafik" style="padding:5px;"></div>'
-	});	
-	
-	$('#cari').bind('click',function(){
-		 eselon=$('#SDM_KANTOR').val();
-		 tahun=$('#TAHUN_FROM').val();
-		 
-		buka=0;buka2=0;
-		$('#tab_na').tabs('select','DATA '+flag.toUpperCase());
-		if(eselon==''){
-			$.messager.alert("Pencarian","Pilih Eselon",'warning');	
-		}
-		else if(tahun==''){
-			$.messager.alert("Pencarian","Pilih Tahun",'warning');	
-		}
-		else{
-				post['eselon']=eselon;
-				post['tahun']=tahun;
-				post['flag']=flag;
-				$("#isi_data").html("").addClass("loading");
-					$.post(host+'dashboard/get_form/data_list_diklat',post,function (html){
-							$("#isi_data").html(html).removeClass("loading");
-					});
-					
-				$("#isi_grafik").html("").addClass("loading");
-					$.post(host+'dashboard/get_form/data_grafik_pendidikan2',post,function (html){
-							$("#isi_grafik").html(html).removeClass("loading");
-					});
-				
-			}
-		}
-		
-	});
-}*/
 
 //end
 if(modul=='sdm_dinas'){
@@ -209,7 +149,113 @@ if(modul=='sdm_bumn'){
 	});
 }
 
-// End sdm bumn
+//BUMN_VER2
+if(modul=='sdm_bumn_ver2'){
+	var matra
+	var tahun
+	var buka=0;
+	var buka2=0;
+	
+	$('#cari').linkbutton({  
+		iconCls: 'icon-search' ,
+		text:'Cari'
+	});  
+	fillCombo(host+'dashboard/get_combo/MATRA','MATRA');
+	
+	$('#tab_na').tabs({
+		height: frmHeight-350,
+		width: frmWidth-303,
+		plain: false
+	});	
+	
+	$('#tab_na').tabs('add',{
+		title: 'GRAFIK ',
+		iconCls:'chart_bar_link',
+		content:'<div id="isi_grafik" style="padding:5px;"></div>'
+	});	
+	
+	$('#cari').bind('click',function(){
+		 matra=$('#MATRA').val();
+		 tahun=$('#TAHUN_FROM').val();
+		
+		buka=0;buka2=0;
+		$('#tab_na').tabs('select','DATA ');
+		if(matra==''){
+			$.messager.alert("Pencarian","Pilih Matra",'warning');	
+		}
+		else if(tahun==''){
+			$.messager.alert("Pencarian","Pilih Tahun",'warning');	
+		}
+		else{
+			post['matra']=matra;
+			post['tahun']=tahun;
+				
+			$("#isi_grafik").html("").addClass("loading");
+				$.post(host+'dashboard/get_form/data_grafik_bumn2',post,function (html){
+						$("#isi_grafik").html(html).removeClass("loading");
+				});
+		}
+		
+	});
+	// get_chart('fcfchart3','Column3D','bumn2','chart1',328,248);
+}
+
+//JENJANG PENDIDIKAN
+if(modul=='jenjang_pend'){
+	var kantor
+	var satker
+	var buka=0;
+	var buka2=0;
+	
+	$('#cari').linkbutton({  
+		iconCls: 'icon-search' ,
+		text:'Cari'
+	});  
+	//fillCombo(host+'dashboard/get_combo/SDM_KANTOR','SDM_KANTOR');
+	fillCombo(host+'dashboard/get_combo/SDM_KANTOR','SDM_KANTOR');
+	$('#SDM_KANTOR').die();
+	$('#SDM_KANTOR').change(function(){
+		$('#SDM_UNITKERJA').empty();
+		fillCombo(host+'dashboard/get_combo/SDM_UNITKERJA','SDM_UNITKERJA',$('#SDM_KANTOR').val());
+		
+	});
+	$('#tab_na').tabs({
+		height: frmHeight-350,
+		width: frmWidth-303,
+		plain: false
+	});	
+	
+	$('#tab_na').tabs('add',{
+		title: 'GRAFIK ',
+		iconCls:'chart_bar_link',
+		content:'<div id="isi_grafik" style="padding:5px;"></div>'
+	});	
+	
+	$('#cari').bind('click',function(){
+		 kantor=$('#SDM_KANTOR').val();
+		 satker=$('#SDM_UNITKERJA').val();
+		
+		buka=0;buka2=0;
+		$('#tab_na').tabs('select','DATA ');
+		if(kantor==''){
+			$.messager.alert("Pencarian","Pilih Eselon",'warning');	
+		}
+		else if(satker==''){
+			$.messager.alert("Pencarian","Pilih Unit Kerja",'warning');	
+		}
+		else{
+			post['kantor']=kantor;
+			post['satker']=satker;
+				
+			$("#isi_grafik").html("").addClass("loading");
+				$.post(host+'dashboard/get_form/data_grafik_jenjang',post,function (html){
+						$("#isi_grafik").html(html).removeClass("loading");
+				});
+		}
+		
+	});
+	// get_chart('fcfchart3','Column3D','bumn2','chart1',328,248);
+}
 
 if(modul=='mon_diklat'){
 	var induk_upt
@@ -293,26 +339,6 @@ if(modul=='mon_diklat'){
 							$("#isi_grafik").html(html).removeClass("loading");
 					});
 				
-				/*$('#tab_na').tabs({
-					onSelect: function(title){
-						switch(title){
-							case "DATA "+flag.toUpperCase():
-								if(buka==0){
-									
-									buka=1
-								}
-							break;
-							case "GRAFIK "+flag.toUpperCase():
-								if(buka2==0){
-									
-									buka2=1
-								}
-							break;
-							
-							
-						}
-					}
-				});*/
 				
 				
 				
