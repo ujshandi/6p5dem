@@ -3,6 +3,7 @@
 	include "layout/header.php";
 	include "layout/menu.php";
 	
+	
 	$menu=$_GET['m'];
 	switch ($menu){
 		case 'setting_gammurc':
@@ -33,7 +34,7 @@
 			include('step8.php');
 			break;
 		default:	
-			include('content.php');
+			include('layout/content.php');
 	}
 	
 	include "layout/footer.php";

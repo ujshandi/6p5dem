@@ -112,6 +112,13 @@ CREATE TABLE `sentitems` (
   PRIMARY KEY (`ID`, `SequencePosition`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(30) NOT NULL,
+  `number` varchar(17) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 CREATE INDEX sentitems_date ON sentitems(DeliveryDateTime);
 CREATE INDEX sentitems_tpmr ON sentitems(TPMR);
 CREATE INDEX sentitems_dest ON sentitems(DestinationNumber);
