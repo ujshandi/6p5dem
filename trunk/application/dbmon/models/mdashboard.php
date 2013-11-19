@@ -113,6 +113,49 @@
 				//return $this->db->query($sql)->result_array(); 
 			break;
 			
+			case "data_sdm_bumn_ver2":
+				$sql="
+					SELECT SDM_PEG_BUMN_VER2.JUMLAHSDM as JUMLAHSDM, SDM_BUMN.NAMA_BUMN as NAMABUMN
+					FROM SDM_PEG_BUMN_VER2
+					INNER JOIN SDM_BUMN
+					ON SDM_BUMN.KODEBUMN=SDM_PEG_BUMN_VER2.KODEBUMN";
+					$where='';
+					if($p2!=''){ $sql .= " WHERE SDM_PEG_BUMN_VER2.KODEMATRA = '$p2'"; $where='WHERE';}
+					if($p3!=''){
+						$where=($where!='')?' AND':' WHERE';
+						$sql .= $where." SDM_PEG_BUMN_VER2.TAHUN = '$p3'";
+					}					
+			break;
+			
+			case "data_jenjang_pend":
+				
+				$this->db->flush_cache();
+				$this->db->select('COUNT("a".Nama) AS JUMLAHSDM, "b".TINGKATDIK as TINGKATDIK');
+				$this->db->from('SDM_PEGAWAI "a"');
+				$this->db->join('SDM_TINGKAT_DIDIK "b"', 'b.KODETINDIK = a.TINGKATDIK');
+				if($p2!=''){ $this->db->where('"a".UNITKANTOR', $p2); }
+				if($p3!=''){ $this->db->where('"a".KERJAUNIT', $p3); }
+				$this->db->where('"a".PENSIUN IS NULL');
+				$this->db->group_by('"b".TINGKATDIK');
+				
+				return $this->db->get()->result_array(); 
+				/*
+				$sql="
+					SELECT COUNT(a.Nama) AS JML, a.TINGKATDIK
+					FROM SDM_PEGAWAI a
+					INNER JOIN SDM_TINGKAT_DIDIK b ON b.KODETINDIK=a.TINGKATDIK ";
+					$where='';
+					if($p2!=''){ $sql .= " WHERE SDM_PEGAWAI.UNITKANTOR = '$p2'"; $where='WHERE';}
+					if($p3!=''){
+						$where=($where!='')?' AND':' WHERE';
+						$sql .= $where." SDM_PEGAWAI.KERJAUNIT = '$p3'";
+					}
+					$where .= ' SDM_PEGAWAI.PENSIUN IS NULL ';
+					$sql .= $where;
+					$sql .= " GROUP BY b.TINGKATDIK ";
+				*/
+			break;
+			
 			case "data_sdm_bumn":
 					$where='';
 					if($p3!=''){
@@ -314,8 +357,19 @@
 		//echo $sql;
 		return $this->db->query($sql)->result_array();
 	}
+	//
+	function isi_combo_satker($table,$field_id,$field_display){
+		$where=" WHERE 1=1 ";
+		$v=$this->input->post('v');
+		if($v){if($table=='SDM_UNITKERJA')$where .=" AND KODEKANTOR='".$v."'";}
+		$sql="select ".$field_id." as id_na ,".$field_display." as text from ".$table.$where;
+		//echo $sql;
+		return $this->db->query($sql)->result_array();
+	}
 	//end
+	
 	#####
+	
 	//pendidikan
 	
 	//end

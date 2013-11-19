@@ -77,12 +77,14 @@
 		<div data-options="region:'west',title:'Main Menu',split:true" id="menu" >
 		  	<div id="accordionMenu" fit="true" class="easyui-accordion" >	
 				<div title="Dashboard Monitoring SDM" iconCls="chart_bar" style="padding:5px;">
-					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="shape_move_backwards" 
-						onClick="loadUrl(this, 'get_form/sdm_dinas');" style="width:250px" >Komposisi SDM Dinas</a>
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="chart_organisation" style="width:250px" 
 						onClick="loadUrl(this, 'get_form/sdm_kementerian');" >Komposisi SDM Kementrian</a>
+					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="shape_move_backwards" 
+						onClick="loadUrl(this, 'get_form/sdm_dinas');" style="width:250px" >Komposisi SDM Dinas</a>
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="shape_square_delete" style="width:250px" 
 						onClick="loadUrl(this, 'get_form/sdm_bumn');" >Komposisi SDM BUMN</a>
+					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="shape_square_delete" style="width:250px" 
+						onClick="loadUrl(this, 'get_form/sdm_bumn_ver2');" >Komposisi SDM BUMN_VER2</a>
 				</div>
 				
 				<div title="Dashboard Monitoring Diklat" iconCls="chart_pie" style="padding:5px;">
@@ -101,12 +103,12 @@
 				</div>
 				<div title="Dashboard Monitoring Pendidikan" iconCls="chart_curve" style="padding:5px;">
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 
+						onClick="loadUrl(this, 'get_form/jenjang_pend');" style="width:250px" >Komposisi Jenjang Pendidikan Kementerian</a>
+					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 
 						onClick="loadUrl(this, 'get_form/mon_pendidikan');" style="width:250px" >Komposisi Pendidikan Kementerian</a>
 					
 					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 
 						onClick="loadUrl(this, 'get_form/mon_pendidikan_dinas');" style="width:250px" >Komposisi pendidikan SDM dinas</a>
-					<a href="#" plain="true" class="easyui-linkbutton btn-main-menu" iconCls="book_addresses" 
-						onClick="loadUrl(this, 'get_form/mon_jenjang_pendidikan');" style="width:250px" >Komposisi Jenjang pendidikan Kementerian</a>
 				</div>
 			</div>
 				
