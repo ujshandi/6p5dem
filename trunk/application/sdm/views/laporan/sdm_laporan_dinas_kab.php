@@ -1,20 +1,4 @@
 <!-- page content -->
-<script>
-    $(document).ready(function(){
-        $("#KODEPROVIN").change(function(){
-            var KODEPROVIN = $("#KODEPROVIN").val();
-            $.ajax({
-               type : "POST",
-               url  : "<?=base_url().$this->config->item('index_page');?>/lap_sdm_dinas/getKabup",
-               data : "KODEPROVIN=" + KODEPROVIN,
-               success: function(data){
-                   $("#KODEKABUP").html(data);
-               }
-            });
-        });
-		
-    });
-</script>
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Print Laporan Aparatur Dinas</h1>
 	<hr/>
@@ -28,11 +12,12 @@
 			</li>
 			<li><label for="">KABUPATEN<em>*</em></label>
 				<select name="KODEKABUP" id="KODEKABUP">
-					<option value="">--Pilih--</option>        	
+					<?=$this->mdl_sdm_dinas->getOptionKabupChild()?>        	
 				</select>
 			</li>
 		</ol>
 	<hr/>
+ 
     <td></td>
 		<td><input class="greenbutton" type="submit" value="TAMPILKAN" style="float:LEFT"/></td>
  	<hr/>

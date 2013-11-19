@@ -5,15 +5,24 @@ class Import_dinas extends MY_Controller {
 	function __construct()
 	{
 		parent::__construct();	
-		
+		$this->load->model('Authentikasi');
+		$this->load->model('mdl_sdm_dinas');
 		$this->load->model('mdl_import_dinas');
 		$this->load->helper('form');
 		
 	}
 	
 	function index(){
+		$level = $this->Authentikasi->get_level();
 		$this->open();
-		$this->load->view('import/import_dinas_view');
+		if($level['LEVEL'] == 2){ // induk upt
+			$this->load->view('import/import_dinas_view');
+		}else if($level['LEVEL'] == 3){ // upt
+			$this->load->view('import/import_dinas_kab_view');
+		}else{		
+			$this->load->view('import/import_dinas_view');
+		}
+		//$this->load->view('import/import_dinas_view');
 		$this->close();
 	}
 	

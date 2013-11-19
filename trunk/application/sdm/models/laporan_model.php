@@ -164,7 +164,30 @@ class Laporan_model extends CI_Model{
 		return $pdfdata;
 		
 	}
-
+	
+	function getOptionKabup($d){
+	
+		$value = isset($d['value'])?$d['value']:'';
+		$KODEPROVIN = isset($d['KODEPROVIN'])?$d['KODEPROVIN']:'';
+		
+		$this->db->flush_cache();
+		$this->db->where('KODEPROVIN', $KODEPROVIN==0?'':$KODEPROVIN);
+		$result = $this->db->get('SDM_KABUPATEN');
+		
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($result->result() as $r){
+				if(trim($r->KODEKABUP) == trim($value)){
+						$out .= '<option value="'.$r->KODEKABUP.'" selected="selected">'.$r->NAMAKABUP.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEKABUP.'">'.$r->NAMAKABUP.'</option>';
+				}
+		}
+		//$out .= '</select>';
+		
+		return $out;
+	
+	}
 	
 }
 ?>

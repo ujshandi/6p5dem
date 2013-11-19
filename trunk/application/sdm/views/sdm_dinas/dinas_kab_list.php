@@ -1,19 +1,3 @@
-<script>
-    $(document).ready(function(){
-        $("#KODEPROVIN").change(function(){
-            var KODEPROVIN = $("#KODEPROVIN").val();
-            $.ajax({
-               type : "POST",
-               url  : "<?=base_url().$this->config->item('index_page');?>/sdm_dinas/getKabup",
-               data : "KODEPROVIN=" + KODEPROVIN,
-               success: function(data){
-                   $("#KODEKABUP").html(data);
-               }
-            });
-        });
-    });
-</script>
-
 
 <!-- contenna -->
 <div class="wrap_right bgcontent">
@@ -22,7 +6,7 @@
 	<?php
 	if ($can_insert== TRUE){
 	?>
-	<a href="<?=base_url().$this->config->item('index_page').'/sdm_dinas/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<a href="<?=base_url().$this->config->item('index_page').'/sdm_dinas/add_kab'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<?php
 	}
 	?>
@@ -39,7 +23,7 @@
 			<br>			
 			KABUPATEN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<select name="KODEKABUP" id="KODEKABUP">
-					<?=$this->mdl_sdm_dinas->getOptionKabupByProvin(array('KODEPROVIN'=>$kodeprovin, 'value'=>$kodekabup));?>        	
+					<?=$this->mdl_sdm_dinas->getOptionKabupChild(array('value'=>$kodekabup));?>        	
 				</select>
 			&nbsp;&nbsp;
 			<br>

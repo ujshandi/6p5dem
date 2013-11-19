@@ -28,11 +28,14 @@ class mdl_import_bumn extends CI_Model
 			$this->db->set('STATUS', 			$data[$i]['STATUS']);
 			$this->db->set('GOLONGAN',	 		$data[$i]['GOLONGAN']);
 			$this->db->set('JML_ANAK', 			$data[$i]['JML_ANAK']);
-			$this->db->set('KODEMATRA', 		$data[$i]['KODEMATRA']);
-			$this->db->set('KODEBUMN', 			$data[$i]['KODEBUMN']);
+			//$this->db->set('KODEMATRA', 		$data[$i]['KODEMATRA']);
+			//$this->db->set('KODEBUMN', 			$data[$i]['KODEBUMN']);
 			$this->db->set('JABATAN', 			$data[$i]['JABATAN']);
 			$this->db->set('SATKER', 			$data[$i]['SATKER']);
 			$this->db->set('STATUS_PEG', 		$data[$i]['STATUS_PEG']);
+			
+			$this->db->set('KODEMATRA', 		$data[$i]['KODEMATRA']);
+			$this->db->set('KODEBUMN',	 		$data[$i]['KODEBUMN']);
 			
 			//$data_tmp[$x]['JABATAN'] 			= $this->excel->val($i, 13);
 			//$this->db->set('ID_GOLONGAN', 		$data[$i]['ID_GOLONGAN']);
@@ -219,6 +222,56 @@ class mdl_import_bumn extends CI_Model
 		return $str;
 	}
 	
+	// filter baru
+	function getOptionMatra($d=""){
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('MATRA');
+		$this->db->order_by('KODEMATRA');
+		
+		$res = $this->db->get();
+		
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="">--- Semua ---</option>';
+		foreach($res->result() as $r){
+			if($r->KODEMATRA == trim($value)){
+				$out .= '<option value="'.$r->KODEMATRA.'" selected="selected">'.$r->NAMAMATRA.'</option>';
+			}else{
+				$out .= '<option value="'.$r->KODEMATRA.'">'.$r->NAMAMATRA.'</option>';
+			}
+		}
+		//$out .= '</select>';
+		
+		return $out;
+	}
+	
+	function getOptionBumn($d){
+	
+		$value = isset($d['value'])?$d['value']:'';
+		$KODEMATRA = isset($d['KODEMATRA'])?$d['KODEMATRA']:'';
+		
+		$this->db->flush_cache();
+		$this->db->where('KODEMATRA',$KODEMATRA);
+		$result = $this->db->get('SDM_BUMN');
+		
+		//$out = '<select name="'.$name.'" id="'.$id.'">';
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($result->result() as $r){
+				if(trim($r->KODEBUMN) == trim($value)){
+						$out .= '<option value="'.$r->KODEBUMN.'" selected="selected">'.$r->NAMA_BUMN.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEBUMN.'">'.$r->NAMA_BUMN.'</option>';
+				}
+		}
+		//$out .= '</select>';
+		
+		return $out;
+	
+	}
 	
 }
 ?>

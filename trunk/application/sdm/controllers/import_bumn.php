@@ -38,7 +38,8 @@ class Import_bumn extends MY_Controller {
 			strtolower($nama))), 
 			$allowedExtensions)) { 
 			
-			$this->import_gagal('File yang disuport hanya Excel (xls)');
+			//$this->import_gagal('File yang disuport hanya Excel (xls)');
+			echo 'File yang di suport hanya Escel (xls)';
 			return;
 		} 
 			  
@@ -52,8 +53,13 @@ class Import_bumn extends MY_Controller {
 				#data pendukung
 				//$dt_golongan = $this->mdl_import->getGolongan();
 				//$dt_jabatan = $this->mdl_import_bumn->getJabatan();
-				$dt_bumn = $this->mdl_import_bumn->getbumn();
-				$dt_matra = $this->mdl_import_bumn->getmatra();
+				
+				//tambahan filter
+				$KODEMATRA  = $this->input->post('KODEMATRA');
+				$KODEBUMN	= $this->input->post('KODEBUMN');
+				// end tambahan filter
+				//$dt_bumn = $this->mdl_import_bumn->getbumn();
+				//$dt_matra = $this->mdl_import_bumn->getmatra();
 				
 				# load librari
 				$this->load->library('excel');
@@ -81,12 +87,16 @@ class Import_bumn extends MY_Controller {
 					$data_tmp[$x]['JML_ANAK'] 			= $this->excel->val($i, 12);
 					$data_tmp[$x]['GOLONGAN'] 			= $this->excel->val($i, 13);
 					$data_tmp[$x]['SATKER'] 			= $this->excel->val($i, 14);
-					$data_tmp[$x]['KODEMATRA'] 			= $this->excel->val($i, 15);
-					$data_tmp[$x]['KODEBUMN'] 			= $this->excel->val($i, 16);
+					//$data_tmp[$x]['KODEMATRA'] 			= $this->excel->val($i, 15);
+					//$data_tmp[$x]['KODEBUMN'] 			= $this->excel->val($i, 16);
 					//$data_tmp[$x]['ID_GOLONGAN'] 		= $this->golongan($this->excel->val($i, 15), $dt_golongan);
 					//$data_tmp[$x]['TMT_GOLONGAN'] 		= $this->excel->val($i, 16);
 					//$data_tmp[$x]['TMT_JABATAN'] 		= $this->excel->val($i, 17);
 					
+					//tambahan filter
+					$data_tmp[$x]['KODEMATRA'] 			= $KODEMATRA;
+					$data_tmp[$x]['KODEBUMN'] 			= $KODEBUMN;
+					//end tambah filter
 					//$data_tmp[$x]['LENGKAP'] = TRUE;
 					
 					// cek data
@@ -109,8 +119,10 @@ class Import_bumn extends MY_Controller {
 				# eksekusi query
 				$result = $this->mdl_import_bumn->importData($data_tmp);
 				if (!$result){
-					$this->import_gagal('Eksekusi gagal');
+					//$this->import_gagal('Eksekusi gagal');
+					echo 'Import Data Gagal';
 				}else{
+				
 					redirect('import_bumn/import_sukses');
 					}
 				}
@@ -120,7 +132,8 @@ class Import_bumn extends MY_Controller {
 				
 				
 			}else{
-				$this->import_gagal('File gagal diupload');
+				echo 'Import Data Gagal';
+				//$this->import_gagal('File gagal diupload');
 			}
 		}
 		
@@ -201,5 +214,9 @@ class Import_bumn extends MY_Controller {
 		$this->load->view('container/template',$data);
 	}
 	
+	function getBumn(){
+		//$KODEPROVIN = $this->input->post('KODEPROVIN');
+		echo $this->mdl_import_bumn->getOptionBumn(array('KODEMATRA'=>$this->input->post('KODEMATRA')));
+	}
 }
 ?>

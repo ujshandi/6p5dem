@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sdm_bumn extends My_Controller {
-	var $id = 'sdm_bumn';
+class sdm_bumn_ver2 extends My_Controller {
+	var $id = 'sdm_bumn_ver2';
 	function __construct(){
 		parent::__construct();
 		$this->load->library('excel');
 		$this->load->model('Authentikasi');
-		$this->load->model('mdl_sdm_bumn');
+		$this->load->model('mdl_sdm_bumn_ver2');
 	}
 	
 	public function index()
@@ -24,16 +24,16 @@ class Sdm_bumn extends My_Controller {
 		# get filter
 		$data['kodematra'] = $this->session->userdata($this->id.'kodematra');
 		$data['kodebumn'] = $this->session->userdata($this->id.'kodebumn');
-		$data['search'] = $this->session->userdata($this->id.'search');
+		//$data['search'] = $this->session->userdata($this->id.'search');
 		$data['numrow'] = $this->session->userdata($this->id.'numrow');
 		$data['numrow'] = !empty($data['numrow'])?$data['numrow']:30;
 		$offset = ($this->uri->segment(3))?$this->uri->segment(3):0;
 		
 		# get data
-		$result = $this->mdl_sdm_bumn->getDataTes($data['numrow'], $offset, $data);
+		$result = $this->mdl_sdm_bumn_ver2->getDataTes($data['numrow'], $offset, $data);
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn_ver2/index/';
 		$config['per_page'] = $data['numrow'];
 		$config['num_links'] = '10';
 		$config['uri_segment'] = '3';
@@ -63,7 +63,7 @@ class Sdm_bumn extends My_Controller {
 		$data['curcount'] = $offset+1;
 		$data['result'] = $result['row_data'];
 		
-		$this->load->view('sdm_bumn/bumn_list', $data);
+		$this->load->view('sdm_bumn_ver2/bumn_list', $data);
 		
 		/*
 		# config pagination
@@ -83,16 +83,16 @@ class Sdm_bumn extends My_Controller {
 	
 	// tambahan dikit tes tes
 	function getBumn(){
-		echo $this->mdl_sdm_bumn->getOptionBumnByMatra(array('KODEMATRA'=>$this->input->post('KODEMATRA')));
+		echo $this->mdl_sdm_bumn_ver2->getOptionBumnByMatra(array('KODEMATRA'=>$this->input->post('KODEMATRA')));
 	}
 	
 	public function search(){
 		$this->session->set_userdata($this->id.'kodematra', $this->input->post('KODEMATRA'));
 		$this->session->set_userdata($this->id.'kodebumn', $this->input->post('KODEBUMN'));
-		$this->session->set_userdata($this->id.'search', $this->input->post('search'));
+		//$this->session->set_userdata($this->id.'search', $this->input->post('search'));
 		$this->session->set_userdata($this->id.'numrow', $this->input->post('numrow'));
 		
-		redirect('sdm_bumn');
+		redirect('sdm_bumn_ver2');
 	}
 	
 	// end filtering dan paginasi baru
@@ -102,15 +102,15 @@ class Sdm_bumn extends My_Controller {
 		$this->open();
 		
 		# config pagination
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn_ver2/index/';
 		$config['total_rows'] = $this->db->count_all('SDM_PEG_BUMN');
 		$config['per_page'] = '10';
 		$config['num_links'] = '3';
 
 		$this->pagination->initialize($config);	
 		
-		$data['option_matra'] = $this->mdl_sdm_bumn->getmatra();
-		$this->load->view('sdm_bumn/sdm_bumn', $data);
+		$data['option_matra'] = $this->mdl_sdm_bumn_ver2->getmatra();
+		$this->load->view('sdm_bumn_ver2/sdm_bumn_ver2', $data);
 		
 		$this->close();
 	}
@@ -118,23 +118,23 @@ class Sdm_bumn extends My_Controller {
 	public function select_bumn(){
     			
 			if('IS_AJAX') {
-            $data['option_bumn'] = $this->mdl_sdm_bumn->getbumn();
-       		$this->load->view('sdm_bumn/bumn',$data);
+            $data['option_bumn'] = $this->mdl_sdm_bumn_ver2->getbumn();
+       		$this->load->view('sdm_bumn_ver2/bumn',$data);
             }
     }
 	
 	public function select_bumn2(){
     			
 			if('IS_AJAX') {
-            $data['option_bumn'] = $this->mdl_sdm_bumn->getbumn();
-       		$this->load->view('sdm_bumn/bumn2',$data);
+            $data['option_bumn'] = $this->mdl_sdm_bumn_ver2->getbumn();
+       		$this->load->view('sdm_bumn_ver2/bumn2',$data);
             }
     }
 	
 	public function search2()
 	{	
 		$this->open();
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn/index/';
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn_ver2/index/';
 		$config['total_rows'] = $this->db->count_all('SDM_PEG_BUMN');
 		$config['per_page'] = '10';
 		$config['num_links'] = '3';
@@ -144,34 +144,34 @@ class Sdm_bumn extends My_Controller {
 		$e1 = $this->input->post('KODEMATRA');
 		$e2 = $this->input->post('KODEBUMN');
 		
-		$data['option_matra'] = $this->mdl_sdm_bumn->getmatra();
-		$data['option_bumn'] = $this->mdl_sdm_bumn->getbumn();
+		$data['option_matra'] = $this->mdl_sdm_bumn_ver2->getmatra();
+		$data['option_bumn'] = $this->mdl_sdm_bumn_ver2->getbumn();
 
-		$data['result'] = $this->mdl_sdm_bumn->get_data($e1, $e2);
+		$data['result'] = $this->mdl_sdm_bumn_ver2->get_data($e1, $e2);
 		
 		
-		$this->load->view('sdm_bumn/sdm_bumn_search',$data);
+		$this->load->view('sdm_bumn_ver2/sdm_bumn_ver2_search',$data);
 		$this->close();
 	}
 	
 	public function detail($id){
 		$this->open();
-		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn/index/';		
+		$config['base_url'] = base_url().'/'.$this->config->item('index_page').'/sdm_bumn_ver2/index/';		
 		//$data['ID_PEG_BUMN'] = $id;
-		$data['result1'] = $this->mdl_sdm_bumn->get_data_duk_detail($id);
-		$data['result2'] = $this->mdl_sdm_bumn->get_data_duk_detail_diklat($id);
-		$data['result3'] = $this->mdl_sdm_bumn->get_data_duk_detail_pendidikan($id);
-		$this->load->view('sdm_bumn/sdm_bumn_detail', $data);
+		$data['result1'] = $this->mdl_sdm_bumn_ver2->get_data_duk_detail($id);
+		$data['result2'] = $this->mdl_sdm_bumn_ver2->get_data_duk_detail_diklat($id);
+		$data['result3'] = $this->mdl_sdm_bumn_ver2->get_data_duk_detail_pendidikan($id);
+		$this->load->view('sdm_bumn_ver2/sdm_bumn_ver2_detail', $data);
 		$this->close();
 	}
 	
 	public function add_diklat($id){
 		$this->open();
 		
-		$data['result'] = $this->mdl_sdm_bumn->getData1($id);
-		$data['option_jenjang'] = $this->mdl_sdm_bumn->getjenjang();
-		$data['option_diklat'] = $this->mdl_sdm_bumn->getdiklat();
-		$this->load->view('sdm_bumn/diklat_add',$data);
+		$data['result'] = $this->mdl_sdm_bumn_ver2->getData1($id);
+		$data['option_jenjang'] = $this->mdl_sdm_bumn_ver2->getjenjang();
+		$data['option_diklat'] = $this->mdl_sdm_bumn_ver2->getdiklat();
+		$this->load->view('sdm_bumn_ver2/diklat_add',$data);
 		$this->close();
 	}
 	
@@ -188,10 +188,10 @@ class Sdm_bumn extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('sdm_bumn/diklat_add',$data);
+			$this->load->view('sdm_bumn_ver2/diklat_add',$data);
 		}else{
-			$this->mdl_sdm_bumn->insert_diklat($data);
-			redirect('sdm_bumn/search');
+			$this->mdl_sdm_bumn_ver2->insert_diklat($data);
+			redirect('sdm_bumn_ver2/search');
 		}
 		
 		$this->close();
@@ -212,10 +212,10 @@ class Sdm_bumn extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('sdm_bumn/diklat_add',$data);
+			$this->load->view('sdm_bumn_ver2/diklat_add',$data);
 		}else{
-			$this->mdl_sdm_bumn->insert_pendidikan($data);
-			redirect('sdm_bumn');
+			$this->mdl_sdm_bumn_ver2->insert_pendidikan($data);
+			redirect('sdm_bumn_ver2');
 		}
 		
 		$this->close();
@@ -225,10 +225,10 @@ class Sdm_bumn extends My_Controller {
 		$this->open();
 		
 		$data['ID_PEG_BUMN'] = $id;
-		//$data['option_golongan'] = $this->mdl_sdm_bumn->getgolongan();
-		$data['option_jabatan'] = $this->mdl_sdm_bumn->getjabatan();
-		$data['result'] = $this->mdl_sdm_bumn->getDataEdit($id);
-		$this->load->view('sdm_bumn/sdm_bumn_edit', $data);
+		//$data['option_golongan'] = $this->mdl_sdm_bumn_ver2->getgolongan();
+		$data['option_jabatan'] = $this->mdl_sdm_bumn_ver2->getjabatan();
+		$data['result'] = $this->mdl_sdm_bumn_ver2->getDataEdit($id);
+		$this->load->view('sdm_bumn_ver2/sdm_bumn_ver2_edit', $data);
 		
 		$this->close();
 	}
@@ -256,10 +256,10 @@ class Sdm_bumn extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('sdm_bumn/sdm_bumn_edit',$data);
+			$this->load->view('sdm_bumn_ver2/sdm_bumn_ver2_edit',$data);
 		}else{
-			$this->mdl_sdm_bumn->update($data);
-			redirect('sdm_bumn');
+			$this->mdl_sdm_bumn_ver2->update($data);
+			redirect('sdm_bumn_ver2');
 		}
 		
 		$this->close();
@@ -268,9 +268,9 @@ class Sdm_bumn extends My_Controller {
 	public function add(){
 		$this->open();
 		//$data['option_golongan'] = $this->mdl_sdm_dinas->getgolongan();
-		$data['option_jabatan'] = $this->mdl_sdm_bumn->getjabatan();
-		$data['option_matra'] = $this->mdl_sdm_bumn->getmatra();
-		$this->load->view('sdm_bumn/bumn_add',$data);
+		//$data['option_jabatan'] = $this->mdl_sdm_bumn_ver2->getjabatan();
+		$data['option_matra'] = $this->mdl_sdm_bumn_ver2->getmatra2();
+		$this->load->view('sdm_bumn_ver2/bumn_add',$data);
 		$this->close();
 	}
 	
@@ -279,9 +279,10 @@ class Sdm_bumn extends My_Controller {
 		//$data['ID_PEG_DINAS'] = $this->input->post('ID_PEG_DINAS');
 		$data['KODEMATRA'] = $this->input->post('KODEMATRA');
 		$data['KODEBUMN'] = $this->input->post('KODEBUMN');
-		$data['NIK'] = $this->input->post('NIK');
-		$data['NAMA'] = $this->input->post('NAMA');
-		$data['ALAMAT'] = $this->input->post('ALAMAT');
+		$data['TAHUN'] = $this->input->post('TAHUN');
+		$data['JUMLAHSDM'] = $this->input->post('JUMLAHSDM');
+		$data['PEND_TRANSPORTASI'] = $this->input->post('PEND_TRANSPORTASI');
+		/*$data['ALAMAT'] = $this->input->post('ALAMAT');
 		$data['JENIS_KELAMIN'] = $this->input->post('JENIS_KELAMIN');
 		$data['AGAMA'] = $this->input->post('AGAMA');
 		$data['STATUS'] = $this->input->post('STATUS');
@@ -308,11 +309,10 @@ class Sdm_bumn extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('sdm_bumn/bumn_add',$data);
-		}else{
-			$this->mdl_sdm_bumn->insert($data);
-			redirect('sdm_bumn');
-		}
+			$this->load->view('sdm_bumn_ver2/bumn_add',$data);
+		}else{ */
+			$this->mdl_sdm_bumn_ver2->insert($data);
+			redirect('sdm_bumn_ver2');
 		
 		$this->close();
 	}

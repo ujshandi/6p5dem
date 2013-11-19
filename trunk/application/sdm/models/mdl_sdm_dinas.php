@@ -7,22 +7,60 @@ class Mdl_Sdm_Dinas extends CI_Model{
 	
 	// tes tes
 	
-	function getDataTes($num=0, $offset=0, $filter){
+	function getDataTes($num=0, $offset=0, $filter, $sort_by, $sort_order){
 		// yanto
-		//$level = get_level();
+		$level = $this->Authentikasi->get_level();
+
 		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('NIP', 'NAMA', 'ALAMAT', 'ID_GOLONGAN','ID_JABATAN');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'NIP';
 		# get data
 		$this->db->flush_cache();
 		//$this->db->select('*');
-		$this->db->select('*');
+		$this->db->select('*',FALSE);
 		$this->db->from('SDM_PEG_DINAS');
 		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_DINAS.ID_GOLONGAN');
 		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
 		$this->db->limit($num, $offset);
-		$this->db->order_by('KODEPROVIN');
+		$this->db->order_by($sort_by, $sort_order);
 		// yanto
 		if(!empty($filter['kodeprovin'])){
 			$this->db->where('KODEPROVIN', $filter['kodeprovin']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('KODEPROVIN', $level['KODEPROVIN']);
+			}else if($level['LEVEL']==3){
+				$this->db->where('KODEPROVIN', $level['KODEPROVIN']);
+			}
+		}
+		
+		/*if(!empty($filter['kodeprovin'])){
+			$this->db->where('KODEPROVIN', $filter['kodeprovin']);
+		}*/
+		
+		if(!empty($filter['kodekabup'])){
+			$this->db->where('KODEKABUP', $filter['kodekabup']);
+		}else{
+			if($level['LEVEL'] == 3){
+				$this->db->where('KODEKABUP', $level['KODEKABUP']);
+			}
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		$tmp['row_data'] = $this->db->get();
+		
+		
+		/*if(!empty($filter['kodeprovin'])){
+			$this->db->where('KODEKABUP', $filter['kodeprovin']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('KODEPROVIN', $level['KODEKABUP']);
+			}else if($level['LEVEL'] == 3){
+				$this->db->where('KODEKABUP', $level['KODEKABUP']);
+			}
 		}
 		
 		if(!empty($filter['kodekabup'])){
@@ -32,11 +70,11 @@ class Mdl_Sdm_Dinas extends CI_Model{
 		if(!empty($filter['search']))
 			$this->db->like('NAMA', $filter['search']);
 		
-		$tmp['row_data'] = $this->db->get();
+		$tmp['row_data'] = $this->db->get();*/
 		
 		#get count
 		$this->db->flush_cache();
-		$this->db->select('*');
+		$this->db->select('*',FALSE);
 		$this->db->from('SDM_PEG_DINAS');
 		$this->db->join('SDM_GOLONGAN', 'SDM_GOLONGAN.ID_GOLONGAN = SDM_PEG_DINAS.ID_GOLONGAN');
 		$this->db->join('SDM_JABATAN', 'SDM_JABATAN.ID_JABATAN = SDM_PEG_DINAS.ID_JABATAN');
@@ -46,6 +84,37 @@ class Mdl_Sdm_Dinas extends CI_Model{
 		// yanto
 		if(!empty($filter['kodeprovin'])){
 			$this->db->where('KODEPROVIN', $filter['kodeprovin']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('KODEPROVIN', $level['KODEPROVIN']);
+			}else if($level['LEVEL']==3){
+				$this->db->where('KODEPROVIN', $level['KODEPROVIN']);
+			}
+		}
+		
+		/*if(!empty($filter['kodeprovin'])){
+			$this->db->where('KODEPROVIN', $filter['kodeprovin']);
+		}*/
+		
+		if(!empty($filter['kodekabup'])){
+			$this->db->where('KODEKABUP', $filter['kodekabup']);
+		}else{
+			if($level['LEVEL'] == 3){
+				$this->db->where('KODEKABUP', $level['KODEKABUP']);
+			}
+		}
+		
+		if(!empty($filter['search']))
+			$this->db->like('NAMA', $filter['search']);
+		
+		/*if(!empty($filter['kodeprovin'])){
+			$this->db->where('KODEKABUP', $filter['kodeprovin']);
+		}else{
+			if($level['LEVEL'] == 2){
+				$this->db->where('KODEPROVIN', $level['KODEKABUP']);
+			}else if($level['LEVEL'] == 3){
+				$this->db->where('KODEKABUP', $level['KODEKABUP']);
+			}
 		}
 		
 		if(!empty($filter['kodekabup'])){
@@ -54,6 +123,7 @@ class Mdl_Sdm_Dinas extends CI_Model{
 		
 		if(!empty($filter['search']))
 			$this->db->like('NAMA', $filter['search']);
+		*/
 		
 		$tmp['row_count'] = $this->db->get()->num_rows();
 		
@@ -84,10 +154,39 @@ class Mdl_Sdm_Dinas extends CI_Model{
 	
 	}
 	
+	function getOptionKabupChild($d=""){
+		
+		$level = $this->Authentikasi->get_level();
+		
+		$value = isset($d['value'])?$d['value']:'';
+		
+		$this->db->flush_cache();
+		$this->db->from('SDM_KABUPATEN');
+		$this->db->order_by('KODEKABUP');
+		
+		//yanto
+		$out = '';
+		if($level['LEVEL'] == 3){ // induk upt
+			$this->db->where('KODEKABUP', $level['KODEKABUP']);
+		}
+		
+		$res = $this->db->get();
+		
+		$out = '<option value="" selected="selected">-- Pilih --</option>';
+		foreach($res->result() as $r){
+				if(trim($r->KODEKABUP) == trim($value)){
+						$out .= '<option value="'.$r->KODEKABUP.'" selected="selected">'.$r->NAMAKABUP.'</option>';
+				}else{
+						$out .= '<option value="'.$r->KODEKABUP.'">'.$r->NAMAKABUP.'</option>';
+				}
+		}
+		
+		return $out;
+	}
+	
 	function getOptionProvinChild($d=""){
 		
-		// yanto
-		//$level = get_level();
+		$level = $this->Authentikasi->get_level();
 		
 		$value = isset($d['value'])?$d['value']:'';
 		
@@ -96,12 +195,12 @@ class Mdl_Sdm_Dinas extends CI_Model{
 		$this->db->order_by('KODEPROVIN');
 		
 		//yanto
-		/*$out = '';
+		$out = '';
 		if($level['LEVEL'] == 2){ // induk upt
-			$this->db->where('KODE_INDUK', $level['KODE_UPT']);
-		}else if($level['LEVEL'] == 3){ // upt
-			$this->db->where('KODE_UPT', $level['KODE_UPT']);
-		}*/
+			$this->db->where('KODEPROVIN', $level['KODEPROVIN']);
+		}else if ($level['LEVEL']==3){
+			$this->db->where('KODEPROVIN', $level['KODEPROVIN']);
+		}
 		
 		$res = $this->db->get();
 		
@@ -383,6 +482,19 @@ class Mdl_Sdm_Dinas extends CI_Model{
 		$this->db->set('KETERANGAN', $data['KETERANGAN']);
 		
 		$result = $this->db->insert('SDM_PEG_DINAS');
+		
+		if($result) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+		
+	}
+	
+	function delete($id){
+		$this->db->flush_cache();
+		$this->db->where('ID_PEG_DINAS', $id);
+		$result = $this->db->delete('SDM_PEG_DINAS');
 		
 		if($result) {
 			return TRUE;
