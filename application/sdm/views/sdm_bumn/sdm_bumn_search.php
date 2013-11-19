@@ -43,7 +43,7 @@
 				<td width='8%'><?=$row->NIK?></td>
 				<td width='15%'><?=$row->NAMA?></td>
 				<td width='15%'><?=$row->ALAMAT?></td>
-				<td width='15%'><?=$row->NAMA_JABATAN?></td>
+				<td width='15%'><?=$row->JABATAN?></td>
 				<td width='8%'>
 					<a href="<?=site_url().'/sdm_bumn/add_diklat/'.$row->ID_PEG_BUMN?>">
 						<img src="<?=base_url()?>asset/globalstyle/images/ic-add.png" />&nbsp;
@@ -54,7 +54,7 @@
 					<a href="<?=site_url().'/sdm_bumn/detail/'.$row->ID_PEG_BUMN?>">
 						<img src="<?=base_url()?>asset/globalstyle/images/check.png" />&nbsp;
 					</a>
-					<a href="<?=site_url().'/sdm_bumn/detail/'.$row->ID_PEG_BUMN?>">
+					<a href="<?=site_url().'/sdm_bumn/delete/'.$row->ID_PEG_BUMN?>">
 						<img src="<?=base_url()?>asset/globalstyle/images/ic-delete.png" />
 					</a>
 				</td>
