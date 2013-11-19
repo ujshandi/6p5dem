@@ -1,5 +1,5 @@
 <div class="wrap_right bgcontent">
-<h1 class="heading">Install Database</h1>
+<h1 class="heading">Konfigurasi MySQL</h1>
 <hr/>
 <fieldset>
 <?php
@@ -35,16 +35,24 @@
   }
 ?> 
 
-<p>Masukkan konfigurasi koneksi MySQL!</p>
 
-<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
-<table>
- <tr><td>USERNAME</td><td>:</td><td><input type="text" name="username"></td></tr>
- <tr><td>PASSWORD</td><td>:</td><td><input type="password" name="password"></td></tr>
- <tr><td>NAMA DATABASE YG AKAN DIBUAT UNTUK GAMMU</td><td>:</td><td><input type="text" name="db"></td></tr>
- <tr><td></td><td></td><td><input type="submit" name="submit" value="INSTALL"></td></tr>
-</table>
-
+<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>" class="sform">
+	<ol>
+		<li>
+			<label for="">USERNAME <em>*</em></label> 
+			<input name="username" value="" type="text" class="four"/>
+		</li>
+		<li>
+			<label for="">PASSWORD <em>*</em></label> 
+			<input name="password" value="" type="password" class="four"/>
+		</li>
+		<li>
+			<label for="">NAMA DATABASE <em>*</em></label> 
+			<input name="db" value="" type="text" class="four"/>
+		</li>
+		
+		<li><input type="submit" name="submit" class="greenbutton" value="INSTALL"></li>
+	</ol>
 </form>
 </fieldset>
 </div>
