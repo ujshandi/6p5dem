@@ -2,9 +2,15 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Dosen</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/dosen/add'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/dosen/upload'?>" class="control"> <span class="upload">Upload Data </span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/dosen/pdf'?>" class="control" target="_blank"> <span class="pdf">Export Ke PDF </span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('dosen/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -53,12 +59,26 @@
 				<td><?=$r->TAHUN?></td>
 				<td><?=$r->NAMA_UPT?></td>
 				<td >
+				<?php
+						if ($can_view==true){
+							?>
 					<a href="<?=site_url().'/dosen/view/'.$r->IDDOSEN?>" class="control" >
 						<span class="view">view</span></a> |
+				<?php
+					}
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/dosen/edit/'.$r->IDDOSEN?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/dosen/proses_delete/'.$r->IDDOSEN?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

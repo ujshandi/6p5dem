@@ -2,7 +2,13 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Sarana</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/sarana/add'?>" class="control"> <span class="add">Tambah Data Sarana</span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('sarana/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -60,10 +66,20 @@
 				<?php endforeach ?>
 				<td><?=$r->DESKRIPSI?></td>
 				<td >
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/sarana/edit/'.$r->ID_SARANA?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/sarana/proses_delete/'.$r->ID_SARANA?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+				}
+				?>
 				</td>
 			</tr>
 		<?

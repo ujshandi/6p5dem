@@ -18,8 +18,14 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Alumni</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/alumni/add_alumni1'?>" class="control"> <span class="add">Tambah Data </span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/alumni/pdf'?>" class="control" target="_blank"> <span class="pdf">Export Ke PDF </span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('alumni/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -83,10 +89,20 @@
 				<td><?=$r->THN_ANGKATAN?></td>
 				
 				<td >
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/alumni/edit/'.$r->ID_ALUMNI?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/alumni/proses_delete/'.$r->ID_ALUMNI?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

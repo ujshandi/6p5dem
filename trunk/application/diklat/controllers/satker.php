@@ -11,6 +11,15 @@ class satker extends My_Controller {
 	
 	public function index()
 	{
+		
+		$data['can_view'] 	= $this->can_view();
+
+		$data['can_insert'] = $this->can_insert();
+
+		$data['can_update'] = $this->can_update();
+
+		$data['can_delete'] = $this->can_delete();
+		
 		$this->open();
 		
 		# get filter

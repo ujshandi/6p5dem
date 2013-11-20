@@ -2,7 +2,14 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Kegiatan</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/kalender/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<?php
+	}
+	?>
+	
 	<?=form_open('kalender/search', array('class'=>'sform'))?>
 	<fieldset>
 	<ol>
@@ -49,10 +56,20 @@
 				<td width ="10%"><?=$r->TGL_AKHIR?></td>
 				<td width ="30%"><?=$r->KEGIATAN->load()?></td>
 				<td >
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/kalender/edit/'.$r->IDKALENDER?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/kalender/proses_delete/'.$r->IDKALENDER?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

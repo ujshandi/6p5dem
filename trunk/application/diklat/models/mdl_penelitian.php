@@ -112,14 +112,14 @@ class mdl_penelitian extends CI_Model{
 		$this->db->flush_cache();
         $this->db->set('JUDUL_PENELITIAN', $data['JUDUL_PENELITIAN']);
         $this->db->set('ABSTRAK', $data['ABSTRAK']);
-        $this->db->set('TGL_PUBLIKASI', $data['TGL_PUBLIKASI']);
+        $this->db->set('TGL_PUBLIKASI', $data['TGL_PUBLIKASI'], false);
         $this->db->set('KODE_UPT', $data['KODE_UPT']);
         $this->db->set('IDDOSEN_1', $data['IDDOSEN_1']);
         $this->db->set('IDDOSEN_2', $data['IDDOSEN_2']);
         $this->db->set('IDDOSEN_3', $data['IDDOSEN_3']);
         $this->db->set('IDDOSEN_4', $data['IDDOSEN_4']);
 
-		$this->db->where('ID_PENELITIAN', $data['id']);
+		$this->db->where('ID_PENELITIAN', $data['ID_PENELITIAN']);
 		
 		$result = $this->db->update('DIKLAT_PENELITIAN');
 		
@@ -155,9 +155,9 @@ class mdl_penelitian extends CI_Model{
 	}
 	
 	function getOptionDosentByUPT($d){
-		$name = isset($d['name'])?$d['name']:'';
-		$id = isset($d['id'])?$d['id']:'';
-		$class = isset($d['class'])?$d['class']:'';
+		// $name = isset($d['name'])?$d['name']:'';
+		// $id = isset($d['id'])?$d['id']:'';
+		// $class = isset($d['class'])?$d['class']:'';
 		$value = isset($d['value'])?$d['value']:'';
 		$KODE_UPT = isset($d['KODE_UPT'])?$d['KODE_UPT']:'';
 		
