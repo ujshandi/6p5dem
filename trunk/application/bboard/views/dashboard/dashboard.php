@@ -76,7 +76,7 @@
       <img src="<?=base_url()?>asset/board/asset/frontpage/images/icon8.png" alt="" title="" border="0" class="feat_thumb" />
       <div class="feat_details">
       <h4>SMS Gateway</h4>
-      <a href="<?php echo site_url();?>/backend" class="inlink clear">ENTER</a>
+      <a href="smsgateway" class="inlink clear">ENTER</a>
       <p>Pengelolaan SMS Gateway.</p>
       </div>
     </div>
