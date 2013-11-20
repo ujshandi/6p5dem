@@ -2,7 +2,13 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Prasarana</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/prasarana/add'?>" class="control"> <span class="add">Tambah Data Prasarana</span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('prasarana/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -60,10 +66,20 @@
 				<td style="vertical-align:middle"><?=$r->TAHUN?></td>
 				<td style="vertical-align:middle"><?=$r->DESKRIPSI_PRASARANA?></td>
 				<td style="vertical-align:middle">
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/prasarana/edit/'.$r->ID_PRASARANA?>" class="control" >
-						<span class="edit">edit</span></a> |					
+						<span class="edit">edit</span></a> |	
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/prasarana/proses_delete/'.$r->ID_PRASARANA?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+				}
+				?>
 				</td>
 			</tr>
 		<?

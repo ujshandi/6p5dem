@@ -2,7 +2,13 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Penelitian</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/penelitian/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('penelitian/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -57,10 +63,20 @@
 				<td >
 					<!--<a href="<?=site_url().'/penelitian/view/'.$r->ID_PENELITIAN?>" class="control" >
 						<span class="view">view</span></a> |-->
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/penelitian/edit/'.$r->ID_PENELITIAN?>" class="control" >
 						<span class="edit">edit</span></a> | 
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/penelitian/proses_delete/'.$r->ID_PENELITIAN?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

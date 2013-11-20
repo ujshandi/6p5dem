@@ -2,7 +2,13 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Diklat Sekretariat</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/diklat_sekretariat/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('diklat_sekretariat/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -46,12 +52,26 @@
 				<td><?=$r->NAMA_PROGRAM?></td>
 				<td><?=$r->NAMA_INDUK?></td>
 				<td >
+				<?php
+						if ($can_view==true){
+						?>
 					<a href="<?=site_url().'/diklat_sekretariat/add_detail/'.$r->KODE_DIKLAT?>" class="control" >
 						<span class="view">Detail</span></a> |
+				<?php
+					}
+						if ($can_update==true){
+						?>
 					<a href="<?=site_url().'/diklat_sekretariat/edit/'.$r->KODE_DIKLAT?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+						?>
 					<a href="<?=site_url().'/diklat_sekretariat/proses_delete/'.$r->KODE_DIKLAT?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

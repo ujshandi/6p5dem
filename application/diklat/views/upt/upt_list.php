@@ -2,7 +2,14 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data UPT</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/upt/add'?>"class="control"> <span class="add">Tambah Data</span></a>
+	<?php
+	}
+	?>
+	
 	<?=form_open('upt/search', array('class'=>'sform'))?>
 	<fieldset>
 	<ol>
@@ -47,10 +54,20 @@
 				<td ><?=$r->KODE_UPT?></td>
 				<td ><?=$r->NAMA_UPT?></td>				
 				<td >
+				<?php
+					if ($can_update==true){
+						?>
 					<a href="<?=site_url().'/upt/edit/'.$r->KODE_UPT?>" class="control" >
-						<span class="edit">edit</span></a> |
+						<span class="edit">edit</span></a> | 
+				<?php
+					}
+					if ($can_delete==true){
+						?>
 					<a href="<?=site_url().'/upt/proses_delete/'.$r->KODE_UPT?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')"class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

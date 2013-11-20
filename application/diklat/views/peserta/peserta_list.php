@@ -19,10 +19,16 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Peserta</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add'?>" class="control"> <span class="add">Tambah Peserta Diklat</span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/add_lulus1'?>" class="control"> <span class="add">Tambah Peserta Lulus Diklat</span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/upload'?>" class="control"> <span class="upload">Upload Data</span></a>
 	<a href="<?=base_url().$this->config->item('index_page').'/peserta/pdf'?>" class="control" target="_blank"> <span class="pdf">Export Ke PDF</span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('peserta/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -83,12 +89,26 @@
 				<td><?=$r->THN_ANGKATAN?></td>
 				<td><?=$r->STATUS_PESERTA?></td>
 				<td >
+				<?php
+					}
+						if ($can_view==true){
+							?>
 					<a href="<?=site_url().'/peserta/view/'.$r->IDPESERTA?>" class="control" >
 						<span class="view">view</span></a> |
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/peserta/edit/'.$r->IDPESERTA?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/peserta/proses_delete/'.$r->IDPESERTA?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

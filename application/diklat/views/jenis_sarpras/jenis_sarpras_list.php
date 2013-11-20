@@ -2,7 +2,14 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Sarana Prasarana</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/jenis_sarpras/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<?php
+	}
+	?>
+	
 	<?=form_open('jenis_sarpras/search', array('class'=>'sform'))?>
 	<fieldset>
 	<ol>
@@ -41,10 +48,20 @@
 				<td><?=$r->NAMA_SARPRAS?></td>
 				<td><?=$r->JENIS?></td>
 				<td>
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/jenis_sarpras/edit/'.$r->ID_SARPRAS?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/jenis_sarpras/proses_delete/'.$r->ID_SARPRAS?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+					<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

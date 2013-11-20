@@ -14,6 +14,15 @@ class penelitian extends My_Controller {
 	
 	public function index($sort_by ='JUDUL_PENELITIAN', $sort_order ='ASC') ##sorting
 	{
+	
+		$data['can_view'] 	= $this->can_view();
+
+		$data['can_insert'] = $this->can_insert();
+
+		$data['can_update'] = $this->can_update();
+
+		$data['can_delete'] = $this->can_delete();
+	
 		$this->open();
 		
 		# get filter
@@ -137,7 +146,7 @@ class penelitian extends My_Controller {
 	public function edit($id){
 		$this->open();
 		
-		$data['id'] = $id;
+		$data['ID_PENELITIAN'] = $id;
 		$data['result'] = $this->mdl_penelitian->getDataEdit($id);
 		$this->load->view('penelitian/penelitian_edit', $data);
 		
@@ -147,7 +156,7 @@ class penelitian extends My_Controller {
 	public function proses_edit(){
 		$this->open();
 		
-		$data['id'] = $this->input->post('id');
+		$data['ID_PENELITIAN'] = $this->input->post('ID_PENELITIAN');
 		# get post data
 		$data['KODE_UPT'] = $this->input->post('KODE_UPT');
         $data['IDDOSEN_1'] = $this->input->post('IDDOSEN_1');
@@ -160,10 +169,10 @@ class penelitian extends My_Controller {
 		
 		# set rules validation
 		$this->form_validation->set_rules('KODE_UPT', 'UPT', 'required');
-        $this->form_validation->set_rules('IDDOSEN_1', 'DOSEN', 'required');
-        $this->form_validation->set_rules('JUDUL_PENELITIAN', 'KODE INDUK', 'required');
-        $this->form_validation->set_rules('ABSTRAK', 'ABSTRAK', 'required');
-        $this->form_validation->set_rules('TGL_PUBLIKASI', 'TANGGAL PUBLIKASI', 'required');
+        // $this->form_validation->set_rules('IDDOSEN_1', 'DOSEN', 'required');
+        // $this->form_validation->set_rules('JUDUL_PENELITIAN', 'KODE INDUK', 'required');
+        // $this->form_validation->set_rules('ABSTRAK', 'ABSTRAK', 'required');
+        // $this->form_validation->set_rules('TGL_PUBLIKASI', 'TANGGAL PUBLIKASI', 'required');
 		
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		

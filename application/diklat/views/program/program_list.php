@@ -2,7 +2,13 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data program</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/program/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('program/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -50,10 +56,20 @@
 				<td><?=$r->NAMA_PROGRAM?></td>
 				<td><?=$r->NAMA_INDUK?></td>
 				<td >
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/program/edit/'.$r->KODE_PROGRAM?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/program/proses_delete/'.$r->KODE_PROGRAM?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?

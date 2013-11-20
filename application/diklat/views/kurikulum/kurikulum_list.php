@@ -19,7 +19,13 @@
 <div class="wrap_right bgcontent">
 	<h1 class="heading">Data Kurikulum</h1>
 	<hr/>
+	<?php
+	if ($can_insert== TRUE){
+	?>
 	<a href="<?=base_url().$this->config->item('index_page').'/kurikulum/add'?>" class="control"> <span class="add">Tambah Data </span></a>
+	<?php
+	}
+	?>
 	
 	<?=form_open('kurikulum/search', array('class'=>'sform'))?>
 	<fieldset>
@@ -78,10 +84,20 @@
 				<td><?=$r->JAM?></td>
 				<td><?=$r->SEMESTER?></td>				
 				<td >
+				<?php
+						if ($can_update==true){
+							?>
 					<a href="<?=site_url().'/kurikulum/edit/'.$r->KODE_KURIKULUM?>" class="control" >
 						<span class="edit">edit</span></a> |
+				<?php
+					}
+						if ($can_delete==true){
+							?>
 					<a href="<?=site_url().'/kurikulum/proses_delete/'.$r->KODE_KURIKULUM?>" OnClick="return confirm('Apakah anda benar akan menghapus data?')" class="control">
 						<span class="delete">hapus</span></a>
+				<?php
+					}
+					?>
 				</td>
 			</tr>
 		<?
