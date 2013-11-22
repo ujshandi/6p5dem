@@ -31,13 +31,32 @@ mysql_select_db($db);
 
 $query = "SELECT * FROM inbox ORDER BY ID DESC";
 $hasil = mysql_query($query) or die(mysql_error());
-echo "<table border='1'>";
-echo "<tr><th>ReceivingDateTime</th><th>SenderNumber</th><th>TextDecoded</th><th>Phone ID</th></tr>";
-while ($data = mysql_fetch_array($hasil))
-{
-   echo "<tr><td>".$data['ReceivingDateTime']."</td><td>".$data['SenderNumber']."</td><td>".$data['TextDecoded']."</td><td>".$data['RecipientID']."</td></tr>";
-}
-
-echo "</table>";
-
+	
 ?>
+
+	<table width="100%">
+		  <thead>
+			<tr>
+				<th align="left" valign="top" scope="col">ReceivingDateTime</th>
+				<th align="left" valign="top" scope="col">SenderNumber</th>
+				<th align="left" valign="top" scope="col">TextDecoded</th>
+				<th align="left" valign="top" scope="col">Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			while ($data = mysql_fetch_array($hasil))
+			{
+			?>
+			<tr>
+				<td align="left" valign="top"><?=$data['ReceivingDateTime']?> </td>
+				<td align="left" valign="top"><?=$data['SenderNumber']?> </td>
+				<td align="left" valign="top"><?=$data['TextDecoded']?> </td>
+				<td align="center" valign="top"></td>
+			</tr>
+			<?php
+			}
+			?>
+		</tbody>
+	</table>	
+
