@@ -25,9 +25,7 @@ if ($handle) {
     }
     fclose($handle);
 }
-
-mysql_connect('localhost', $user, $pass);
-mysql_select_db($db);
+include('db.php');
 
 $query = "SELECT * FROM inbox ORDER BY ID DESC";
 $hasil = mysql_query($query) or die(mysql_error());
