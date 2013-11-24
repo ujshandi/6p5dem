@@ -183,3 +183,7 @@ Fri 2013/09/27 22:36:11 gammu-smsd-inject[3784]: DataBase structures are from hi
 Fri 2013/09/27 22:36:11 gammu-smsd-inject[3784]: Please update this client application
 Fri 2013/09/27 22:50:52 gammu-smsd-inject[3336]: Connected to Database: gammu on localhost
 Fri 2013/09/27 22:50:52 gammu-smsd-inject[3336]: Written message with ID 1
+Sun 2013/11/24 14:28:03 gammu-smsd-inject[7108]: Connected to Database: gammu on localhost
+Sun 2013/11/24 14:28:03 gammu-smsd-inject[7108]: Written message with ID 2
+Sun 2013/11/24 14:28:38 gammu-smsd-inject[5676]: Connected to Database: gammu on localhost
+Sun 2013/11/24 14:28:38 gammu-smsd-inject[5676]: Written message with ID 3

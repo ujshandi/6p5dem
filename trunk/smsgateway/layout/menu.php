@@ -33,7 +33,8 @@
 				<li>
 					<li><a href="#">KONTAK</a>
 					<ul>
-						<li><a href="index.php?m=add_number">KONTAK NOMER</a></li>
+						<li><a href="index.php?m=contact_add">TAMBAH KONTAK</a></li>
+						<li><a href="index.php?m=contact_list">KONTAK NOMER</a></li>
 					</ul>
 					</li>
 				</li>

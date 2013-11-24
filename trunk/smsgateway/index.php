@@ -33,6 +33,12 @@
 		case 'receive_sms':
 			include('step8.php');
 			break;
+		case 'contact_add':
+			include('contact_add.php');
+			break;
+		case 'contact_list':
+			include('contact_list.php');
+			break;
 		default:	
 			include('layout/content.php');
 	}
