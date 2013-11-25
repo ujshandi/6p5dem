@@ -90,12 +90,12 @@
 				<td><?=$r->STATUS_PESERTA?></td>
 				<td >
 				<?php
-					}
 						if ($can_view==true){
 							?>
 					<a href="<?=site_url().'/peserta/view/'.$r->IDPESERTA?>" class="control" >
 						<span class="view">view</span></a> |
 				<?php
+					}
 						if ($can_update==true){
 							?>
 					<a href="<?=site_url().'/peserta/edit/'.$r->IDPESERTA?>" class="control" >
