@@ -32,7 +32,7 @@
             <p><a href="#">
 			<? /*$user = $this->session->userdata('dataUser'); echo $user['USER_NAME']; */ ?></a></p>
             <hr>
-            <a href="#" class="inlink">Logout</a>
+            <a href="../index.php/auth/logout" class="inlink"" >Logout</a>
     	</div>
       </div>
 	  
@@ -40,7 +40,7 @@
             
 	  <div class="bread">
 		<p id="breadcrumb">
-		<a href="#">Home</a>
+		<a href="../index.php">Home</a>
 		SMS Gateway
 		</p>
 	  </div><!-- end breadcrumbs -->
