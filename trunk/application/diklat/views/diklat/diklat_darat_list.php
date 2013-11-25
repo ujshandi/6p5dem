@@ -47,9 +47,9 @@
 		
 			<tr class='gradeC'>
 				<td width='2%'><?=$i?></td>
-				<td><?=$r->KODE_DIKLAT?></td>
-				<td><?=$r->NAMA_DIKLAT?></td>
-				<td><?=$r->NAMA_PROGRAM?></td>
+				<td width='10%'><?=$r->KODE_DIKLAT?></td>
+				<td width='18%'><?=$r->NAMA_DIKLAT?></td>
+				<td width='20%'><?=$r->NAMA_PROGRAM?></td>
 				<td><?=$r->NAMA_INDUK?></td>
 				<td >
 				<?php
