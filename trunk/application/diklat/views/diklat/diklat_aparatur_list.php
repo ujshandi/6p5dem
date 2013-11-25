@@ -53,12 +53,13 @@
 				<td><?=$r->NAMA_INDUK?></td>
 				<td >
 				<?php
-					}
+					
 						if ($can_view==true){
 							?>
 					<a href="<?=site_url().'/diklat_aparatur/add_detail/'.$r->KODE_DIKLAT?>" class="control" >
 						<span class="view">Detail</span></a> |
 				<?php
+				}
 						if ($can_update==true){
 							?>
 					<a href="<?=site_url().'/diklat_aparatur/edit/'.$r->KODE_DIKLAT?>" class="control" >
