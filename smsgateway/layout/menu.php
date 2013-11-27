@@ -4,6 +4,8 @@
         <h2 class="heading">SMS Gateway</h2>
         <hr/>
         <ul id="vmenu">
+		<!-- tutup aja - seting pakai command line aja -->
+				<!--
 				<li>
 				<a href="#">SETTING</a>
 					<ul>
@@ -22,6 +24,7 @@
 					</ul>
 					</li>
 				</li>
+				-->
 				<li>
 					<li><a href="#">SMS</a>
 					<ul>
