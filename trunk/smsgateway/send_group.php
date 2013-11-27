@@ -10,13 +10,13 @@
 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>" class="sform">
 <ol>
 	<li>
-		<label for="">No Hp Tujuan <em>*</em></label> 
-		<select name="nohp" id="nohp">
+		<label for="">Kirim ke Group <em>*</em></label> 
+		<select name="groupID" id="groupID">
 			<?php
-				$sql="select * from pbk";
+				$sql="select * from pbk_groups";
 				$query=mysql_query($sql);
 				while($rows=mysql_fetch_array($query)){
-					echo "<option value=" . $rows['Number'] . ">" . $rows['Name'] .'-'. $rows['Number'] . "</option>";
+					echo "<option value=" . $rows['ID'] . ">" . $rows['Name'] . "</option>";
 				}
 			?>
 		</select>
@@ -42,13 +42,20 @@
 <?php
   if (isset($_POST['submit']))
   {
-   $nohp = $_POST['nohp'];
+   $groupID = $_POST['groupID'];
    $sms = $_POST['sms'];
    $phone = $_POST['phoneid'];
    
    echo "<b>Status :</b><br>";
    echo "<pre>";
-   passthru('gammu-smsd-inject -c '.$phone.' TEXT '.$nohp.' -text "'.$sms.'"');
+   
+	$query_pbk=mysql_query("select * from pbk where GroupID=" . $groupID . "");
+	//echo $query_pbk . "<br/>";
+	while($rows_pbk=mysql_fetch_array($query_pbk)){
+		//echo 'gammu-smsd-inject -c '.$phone.' TEXT '.$rows_pbk['Number'].' -text "'.$sms.'"';
+		passthru('gammu-smsd-inject -c '.$phone.' TEXT '.$rows_pbk['Number'].' -text "'.$sms.'"');
+	}
+   
    echo "</pre>";
    
   // echo 'gammu-smsd-inject -c '.$phone.' TEXT '.$nohp.' -text "'.$sms.'"';

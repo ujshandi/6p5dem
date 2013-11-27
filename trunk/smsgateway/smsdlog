@@ -236,3 +236,13 @@ Tue 2013/11/26 15:38:13 gammu-smsd-inject[4328]: Using generic SQL for ODBC, thi
 Tue 2013/11/26 15:38:13 gammu-smsd-inject[4328]: Connected to Database: gammu on localhost
 Tue 2013/11/26 15:38:13 gammu-smsd-inject[4328]: Connected to Database native_mysql: gammu on localhost
 Tue 2013/11/26 15:38:13 gammu-smsd-inject[4328]: Written message with ID 280
+Wed 2013/11/27 17:46:06 gammu-smsd-inject[3280]: mysql service is deprecated. Please use SQL service with correct driver.
+Wed 2013/11/27 17:46:06 gammu-smsd-inject[3280]: Using generic SQL for ODBC, this might fail. In such case please set SQL configuration option.
+Wed 2013/11/27 17:46:06 gammu-smsd-inject[3280]: Connected to Database: gammu on localhost
+Wed 2013/11/27 17:46:06 gammu-smsd-inject[3280]: Database structure is from older Gammu version
+Wed 2013/11/27 17:46:06 gammu-smsd-inject[3280]: Please update database, you can find SQL scripts in documentation
+Wed 2013/11/27 17:46:12 gammu-smsd-inject[4644]: mysql service is deprecated. Please use SQL service with correct driver.
+Wed 2013/11/27 17:46:12 gammu-smsd-inject[4644]: Using generic SQL for ODBC, this might fail. In such case please set SQL configuration option.
+Wed 2013/11/27 17:46:12 gammu-smsd-inject[4644]: Connected to Database: gammu on localhost
+Wed 2013/11/27 17:46:12 gammu-smsd-inject[4644]: Database structure is from older Gammu version
+Wed 2013/11/27 17:46:12 gammu-smsd-inject[4644]: Please update database, you can find SQL scripts in documentation

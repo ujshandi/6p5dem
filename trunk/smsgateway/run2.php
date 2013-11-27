@@ -1,4 +1,5 @@
 <?php
+include('function.php');
 $handle = @fopen("smsdrc1", "r");
 if ($handle) {
     while (!feof($handle)) {
@@ -35,9 +36,9 @@ $hasil = mysql_query($query) or die(mysql_error());
 	<table width="100%">
 		  <thead>
 			<tr>
-				<th align="left" valign="top" scope="col">ReceivingDateTime</th>
-				<th align="left" valign="top" scope="col">SenderNumber</th>
-				<th align="left" valign="top" scope="col">TextDecoded</th>
+				<th align="left" valign="top" scope="col">Tanggal Terima SMS</th>
+				<th align="left" valign="top" scope="col">Pengirim</th>
+				<th align="left" valign="top" scope="col">SMS</th>
 				<th align="left" valign="top" scope="col">Aksi</th>
 			</tr>
 		</thead>
@@ -47,7 +48,15 @@ $hasil = mysql_query($query) or die(mysql_error());
 			{
 			?>
 			<tr>
-				<td align="left" valign="top"><?=$data['ReceivingDateTime']?> </td>
+				<td align="left" valign="top">
+					<?php
+						$arr_datetime=explode(" ", $data['ReceivingDateTime']);
+						$arr_date = explode("-",$arr_datetime[0]);
+						echo $date_indo = $arr_date[2] . '-' . $arr_date[1] . '-' . $arr_date[0];
+						
+						echo ' ' . $arr_datetime[1];
+					?> 
+				</td>
 				<td align="left" valign="top"><?=$data['SenderNumber']?> </td>
 				<td align="left" valign="top"><?=$data['TextDecoded']?> </td>
 				<td align="center" valign="top"></td>
