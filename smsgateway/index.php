@@ -28,7 +28,7 @@
 			include('step9.php');
 			break;
 		case 'send_sms':
-			include('step7.php');
+			include('send_group.php');
 			break;
 		case 'receive_sms':
 			include('step8.php');
@@ -38,6 +38,9 @@
 			break;
 		case 'contact_list':
 			include('contact_list.php');
+			break;
+		case 'group_add':
+			include('group_add.php');
 			break;
 		default:	
 			include('layout/content.php');

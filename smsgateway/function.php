@@ -67,4 +67,11 @@ function service3($x)
    return $string;
 }
 
+
+function mysql_to_indo($datetime_mysql){
+	$date_indo = '';
+	$arr_date[] = explode(' ',$datetime_mysql);
+	$date_indo = $arr_date[0];
+	return $date_indo;
+}
 ?>

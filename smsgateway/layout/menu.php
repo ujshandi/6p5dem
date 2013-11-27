@@ -28,16 +28,17 @@
 				<li>
 					<li><a href="#">SMS</a>
 					<ul>
-						<li><a href="index.php?m=send_sms">KIRIM SMS</a></li>
-						<li><a href="index.php?m=receive_sms">TERIMA SMS</a></li>
+						<li><a href="?m=send_sms">KIRIM SMS</a></li>
+						<li><a href="?m=receive_sms">TERIMA SMS</a></li>
 					</ul>
 					</li>
 				</li>
 				<li>
 					<li><a href="#">KONTAK</a>
 					<ul>
-						<li><a href="index.php?m=contact_add">TAMBAH KONTAK</a></li>
-						<li><a href="index.php?m=contact_list">KONTAK NOMER</a></li>
+						<li><a href="?m=group_add">TAMBAH GROUP</a></li>
+						<li><a href="?m=contact_add">TAMBAH KONTAK</a></li>
+						<li><a href="?m=contact_list">KONTAK NOMER</a></li>
 					</ul>
 					</li>
 				</li>
