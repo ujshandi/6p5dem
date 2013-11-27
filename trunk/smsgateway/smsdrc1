@@ -1,6 +1,6 @@
 [gammu]
 # isikan no port di bawah ini
-port = com12:
+port = com16:
 # isikan jenis connection di bawah ini
 connection = at115200
 
