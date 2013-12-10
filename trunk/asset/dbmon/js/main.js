@@ -81,6 +81,7 @@ function mywindow(html,judul,width,height){
     container3 = "#"+container3;
     $(container3).html(html);
     $(container3).css('padding','5px');
+    $(container3).css('text-align','center');
     $(container3).window({
        title:judul,
        width:width,
@@ -114,7 +115,23 @@ function get_data_kab(kd_prov,flag_kelamin,w,h,url_na){
 	}
 
 	$.post(url,post_na,function(resp){
-		mywindow(resp,'LIST DATA PER KABUPATEN',frmWidth-w,frmHeight-h);
+		mywindow(resp,'LIST DATA PER KABUPATEN',frmWidth,frmHeight);
+		winLoadingClose();
+	});
+	
+}
+
+function get_data_satker(kd_kantor,flag_kelamin,w,h,url_na){
+	loadingna()
+	var url=host+'dashboard/'+url_na;
+	var post_na={};
+	post_na['kd_kantor']=kd_kantor;
+	if(flag_kelamin!=''){	
+		post_na['flag_kelamin']=flag_kelamin;
+	}
+
+	$.post(url,post_na,function(resp){
+		mywindow(resp,'LIST DATA PER UNIT KERJA',frmWidth,frmHeight);
 		winLoadingClose();
 	});
 	

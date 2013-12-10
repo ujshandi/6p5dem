@@ -192,6 +192,15 @@ class dashboard extends My_Controller {
 				$data['chart']=$p2;
 				
 			break;
+			
+			case 'data_satker':
+				$data['kd_kantor']=$this->input->post('kd_kantor');
+				$data['flag_kelamin']=$this->input->post('flag_kelamin');
+				$data['chart']=$p2;
+				$data['title']='Data ';
+				$data['chart']=$p2;
+				
+			break;
 			//tes BUMN
 			case 'data_bumn':
 				$data['kd_matra']=$this->input->post('kd_matra');
@@ -205,27 +214,13 @@ class dashboard extends My_Controller {
 		}
 		$this->load->view('dashboard/'.$p1, $data);
 	}
-	//kementerian
-	function get_detail2($p1="",$p2=""){
-		switch ($p1){
-			case 'data_satker':
-				$data['kd_kantor']=$this->input->post('kd_kantor');
-				$data['flag_kelamin']=$this->input->post('flag_kelamin');
-				$data['chart']=$p2;
-				$data['title']='Data ';
-				$data['chart']=$p2;
-				
-			break;
-			
-		}
-		$this->load->view('dashboard/'.$p1, $data);
-	}
+	
 	
 	function get_datagrap(){
 		$kat=$this->input->post('kat');
 		$kom=$this->input->post('kom');
 		$prov=$this->input->post('prov');
-		$kantor=$this->input->post('kantor');
+		$kantor=$this->input->post('kd_kantor');
 		$matra=$this->input->post('matra');
 
 		switch($kat){
@@ -234,7 +229,20 @@ class dashboard extends My_Controller {
 			//	print_r($data);
 				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
 				foreach ($data as $x=>$v){
-					$xml .='<set label="'.$v['NAMAPROVIN'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_kab("'.$v["KODEPROVIN"].'","",300,200,"get_detail/data_kab/Doughnut3D")\' />';
+					$xml .='<set label="'.$v['NAMAPROVIN'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_kab("'.$v["KODEPROVIN"].'","",500,200,"get_detail/data_kab/Doughnut3D")\' />';
+				}
+				
+			
+			$xml .='</chart>';
+			
+			break;
+			
+			case "all2":
+				$data=$this->mdashboard->get_data('data_sdm_kementerian',$kat);
+			//	print_r($data);
+				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
+				foreach ($data as $x=>$v){
+					$xml .='<set label="'.$v['NAMAPENUH'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_satker("'.$v["KODEKANTOR"].'","",300,200,"get_detail/data_satker/Doughnut3D")\' />';
 				}
 				
 			
@@ -335,19 +343,6 @@ class dashboard extends My_Controller {
 			break;
 			//end
 			
-			//---- kementerian
-			case "all2":
-				$data=$this->mdashboard->get_data('data_sdm_kementerian',$kat);
-			//	print_r($data);
-				$xml='<chart caption="" showLegend="0" bgAlpha="30,100" bgAngle="100" pieYScale="50" startingAngle="100"  smartLineColor="7D8892" smartLineThickness="2">';
-				foreach ($data as $x=>$v){
-					$xml .='<set label="'.$v['NAMAPENUH'].'" value="'.$v['JUMLAH_SDM'].'" isSliced="1" link=\'JavaScript:get_data_satker("'.$v["UNITKANTOR"].'","",300,200,"get_detail2/data_satker/Doughnut3D")\' />';
-				}
-				
-			
-			$xml .='</chart>';
-			
-			break;
 			// --- BUMN
 			case "all3":
 				$data=$this->mdashboard->get_data('data_sdm_bumn',$kat);
@@ -546,8 +541,8 @@ class dashboard extends My_Controller {
 					  alternateHGridColor='f8f8f8' alternateHGridAlpha='60' ><categories>"; 
 				foreach ($data as $x=>$v){
 					$xml .="<category name='".$v["NAMAPENUH"]."' />";
-					$xml_pria .="<set value='".$v["JUMLAH_SDM_PRIA"]."' link=\"JavaScript:get_data_satker('".$v["KODEKANTOR"]."','P',300,200,'get_detail2/data_satker/Column3D')\" />";
-					$xml_wanita .="<set value='".$v["JUMLAH_SDM_WANITA"]."' link=\"JavaScript:get_data_satker('".$v["KODEKANTOR"]."','W',300,200,'get_detail2/data_satker/Column3D')\" />";
+					$xml_pria .="<set value='".$v["JUMLAH_SDM_PRIA"]."' link=\"JavaScript:get_data_satker('".$v["KODEKANTOR"]."','1',300,200,'get_detail/data_satker/Column3D')\" />";
+					$xml_wanita .="<set value='".$v["JUMLAH_SDM_WANITA"]."' link=\"JavaScript:get_data_satker('".$v["KODEKANTOR"]."','2',300,200,'get_detail/data_satker/Column3D')\" />";
 				}
 					$xml_pria .="</dataset>";
 					$xml_wanita .="</dataset>";
