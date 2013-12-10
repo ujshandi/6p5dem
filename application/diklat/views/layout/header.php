@@ -22,8 +22,10 @@
 <div id="header" class="bg_grd"> 
     <div class="header-img grd"> 
       <div id="title">
+		<!--
         <h1>Aplikasi Basis Data Diklat</h1>
         <h3>Sistem Informasi Manajemen SDM Bidang Transportasi</h3>
+		-->
       </div><!-- end title -->
       
       <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"></a></div>

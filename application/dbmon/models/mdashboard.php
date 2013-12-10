@@ -25,6 +25,25 @@
 				//return $this->db->query($sql)->result_array(); 
 			break;
 			
+			case "data_sdm_kementerian":
+				if($p2=='all2'){
+					$sql="SELECT SDM_KANTOR.*, 
+						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND PENSIUN IS NULL) as JUMLAH_SDM 
+						FROM SDM_KANTOR ORDER BY KODEKANTOR";
+				}
+				else{
+					$sql="SELECT SDM_KANTOR.*, 
+						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND PENSIUN IS NULL AND KELAMIN = '1') 
+						as JUMLAH_SDM_PRIA,
+						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND PENSIUN IS NULL AND KELAMIN = '2') 
+						as JUMLAH_SDM_WANITA  
+						
+						FROM SDM_KANTOR ORDER BY KODEKANTOR";
+				}
+				
+				//return $this->db->query($sql)->result_array(); 
+			break;
+			
 			//pendidikan
 			case "data_sdm_pendidikan":
 				if($p2=='pend'){
@@ -50,6 +69,11 @@
 					
 			break;
 			//end
+			
+			
+			//kementerian
+			
+			
 			case "data_sdm_kab":
 					$where='';
 					if($p3!=''){
@@ -62,32 +86,13 @@
 					
 			break;
 			
-			//kementerian
-			case "data_sdm_kementerian":
-				if($p2=='all2'){
-					$sql="SELECT SDM_KANTOR.*, 
-						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND PENSIUN IS NULL) as JUMLAH_SDM 
-						FROM SDM_KANTOR ORDER BY KODEKANTOR";
-				}
-				else{
-					$sql="SELECT SDM_KANTOR.*, 
-						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND PENSIUN IS NULL AND KELAMIN = '1') 
-						as JUMLAH_SDM_PRIA,
-						(SELECT count(*) FROM SDM_PEGAWAI WHERE UNITKANTOR = SDM_KANTOR.KODEKANTOR AND PENSIUN IS NULL AND KELAMIN = '2') 
-						as JUMLAH_SDM_WANITA  
-						
-						FROM SDM_KANTOR ORDER BY KODEKANTOR";
-				}
-				
-				//return $this->db->query($sql)->result_array(); 
-			break;
 			case "data_sdm_satker":
 					$where='';
 					if($p3!=''){
-						$where .=" AND KELAMIN='".($p3=='W' ? 'Wanita' : 'Pria')."'";
+						$where .=" AND KELAMIN='".($p3=='2' ? '2' : '1')."'";
 					}
 					$sql="SELECT A.*,
-					(SELECT count(*) FROM SDM_PEGAWAI WHERE KODEUNIT = A.KODEUNIT ".$where.") as JUMLAH_SDM 
+					(SELECT count(*) FROM SDM_PEGAWAI WHERE KERJAUNIT = A.KODEUNIT ".$where.") as JUMLAH_SDM 
 					FROM SDM_UNITKERJA A
 					WHERE A.KODEKANTOR='".$p2."'";
 					

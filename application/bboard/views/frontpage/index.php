@@ -80,11 +80,11 @@
 <div id="header">
     <div class="header_content">
   
-    <div class="logo"><a href="index.html">home</a></div>
+    <div class="logo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"><span>kementerian perhubungan republik indonesia</span></a></div>
     <div class="title"><h1>badan pengembangan sumber daya manusia perhubungan</h1><h2>kementerian perhubungan republik indonesia</h2></div>
     
-    <div class="hublogo"><a href="http://www.dephub.go.id" title="Kementerian Perhubungan RI" target="_blank"><span>kementerian perhubungan republik indonesia</span></a></div>
-    
+    <div class="hublogo"><a href="index.html">&nbsp;</a></div>
+	
     <!--<div class="menu">
         <ul>
             <li class="selected"><a href="index.html">home</a></li>
