@@ -155,6 +155,7 @@ class diklat_sekretariat extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_diklat_sekretariat->getDataEdit($data['id']);
 			$this->load->view('diklat_sekretariat/diklat_sekretariat_edit',$data);
 		}else{
 			$this->mdl_diklat_sekretariat->update($data);

@@ -127,6 +127,7 @@ class satker extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_satker->getDataEdit($data['id']);
 			$this->load->view('satker/satker_edit',$data);
 		}else{
 			$this->mdl_satker->update($data);

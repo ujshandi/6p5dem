@@ -177,6 +177,7 @@ class penelitian extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_penelitian->getDataEdit($data['ID_PENELITIAN']);
 			$this->load->view('penelitian/penelitian_edit',$data);
 		}else{
 			$this->mdl_penelitian->update($data);

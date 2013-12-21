@@ -155,6 +155,7 @@ class diklat_darat extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_diklat_darat->getDataEdit($data['id']);
 			$this->load->view('diklat_darat/diklat_darat_edit',$data);
 		}else{
 			$this->mdl_diklat_darat->update($data);
