@@ -155,6 +155,7 @@ class diklat_laut extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_diklat_laut->getDataEdit($data['id']);
 			$this->load->view('diklat/diklat_laut_edit',$data);
 		}else{
 			$this->mdl_diklat_laut->update($data);

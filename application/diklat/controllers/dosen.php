@@ -122,7 +122,11 @@ class dosen extends My_Controller {
 		$this->load->library('upload', $config);
 
 		if ( $this->upload->do_upload()){
-		$data['FOTO_DOSEN'] =  $this->upload->file_name;
+			$data['FOTO_DOSEN'] =  $this->upload->file_name;
+		}else{
+			$data['FOTO_DOSEN'] =  '';
+		}
+		
         $data['NIP'] = $this->input->post('NIP');
         $data['NAMADOSEN'] = $this->input->post('NAMADOSEN');		
 		$data['TEMPAT_LAHIR'] = $this->input->post('TEMPAT_LAHIR');
@@ -162,9 +166,6 @@ class dosen extends My_Controller {
 			$this->mdl_dosen->insert($data);
 			redirect('dosen');
 		}
-	}else{
-		echo $this->upload->display_errors();
-	}
 		
 		$this->close();
 	}
@@ -190,7 +191,11 @@ class dosen extends My_Controller {
 		$this->load->library('upload', $config);
 
 		if ( $this->upload->do_upload()){
-		$data['FOTO_DOSEN'] =  $this->upload->file_name;
+			$data['FOTO_DOSEN'] =  $this->upload->file_name;
+		}else{
+			$data['FOTO_DOSEN'] =  '';
+		}
+		
 		$data['id'] = $this->input->post('id');
 		//$data['IDDOSEN'] = $this->input->post('IDDOSEN');
         $data['NIP'] = $this->input->post('NIP');
@@ -229,9 +234,6 @@ class dosen extends My_Controller {
 		}else{
 			$this->mdl_dosen->update($data);
 			redirect('dosen');
-		}
-		}else{
-			echo $this->upload->display_errors();
 		}
 		
 		$this->close();

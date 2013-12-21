@@ -143,6 +143,7 @@ class jenis_sarpras extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_jenis_sarpras->getDataEdit($data['id']);
 			$this->load->view('jenis_sarpras/jenis_sarpras_edit',$data);
 		}else{
 			$this->mdl_jenis_sarpras->update($data);

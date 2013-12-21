@@ -88,7 +88,9 @@ class mdl_dosen extends CI_Model{
         //$this->db->set('IDDOSEN', $data['IDDOSEN']);
         $this->db->set('NIP', $data['NIP']);
         $this->db->set('NAMADOSEN', $data['NAMADOSEN']);
-		$this->db->set('FOTO_DOSEN', $data['FOTO_DOSEN']);
+		if($data['FOTO_DOSEN'] != ''){
+			$this->db->set('FOTO_DOSEN', $data['FOTO_DOSEN']);
+		}
 		$this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
 		$this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
 		$this->db->set('JK', $data['JK']);
@@ -115,7 +117,11 @@ class mdl_dosen extends CI_Model{
         //$this->db->set('IDDOSEN', $data['IDDOSEN']);
         $this->db->set('NIP', $data['NIP']);
         $this->db->set('NAMADOSEN', $data['NAMADOSEN']);
-		$this->db->set('FOTO_DOSEN', $data['FOTO_DOSEN']);
+		
+		if($data['FOTO_DOSEN'] != ''){
+			$this->db->set('FOTO_DOSEN', $data['FOTO_DOSEN']);
+		}
+		
 		$this->db->set('TEMPAT_LAHIR', $data['TEMPAT_LAHIR']);
 		$this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
 		$this->db->set('JK', $data['JK']);

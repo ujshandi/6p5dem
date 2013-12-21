@@ -187,6 +187,7 @@ class prasarana extends My_Controller {
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');
 		
 		if ($this->form_validation->run() == FALSE){
+			$data['result'] = $this->mdl_prasarana->getDataEdit($data['id']);
 			$this->load->view('sarpras/prasarana_edit',$data);
 		}else{
 			$this->mdl_prasarana->update($data);
