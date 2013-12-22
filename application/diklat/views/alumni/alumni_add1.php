@@ -17,7 +17,7 @@
 
 <script>
 $(function() {
-$( "#TGL_LULUS" ).datepicker({ dateFormat: 'dd-mm-yy' });
+//$( "#TGL_LULUS" ).datepicker({ dateFormat: 'dd-mm-yy' });
 });
 </script>
 
@@ -52,7 +52,7 @@ $( "#TGL_LULUS" ).datepicker({ dateFormat: 'dd-mm-yy' });
 			</li>
 
 			
-			<li><label for="">PERIODE / TANGGAL LULUS<em>*</em></label> <input name="TGL_LULUS" value="<?=set_value('TGL_LULUS')?>" type="text" class="one" id="TGL_LULUS"/>
+			<li><label for="">TAHUN ANGKATAN<em>*</em></label> <input name="TGL_LULUS" value="<?=set_value('TGL_LULUS')?>" type="text" class="one" id="TGL_LULUS" maxlength="4"/>
 			</li>
 			
 			<div class="clearfix">&nbsp;</div>
