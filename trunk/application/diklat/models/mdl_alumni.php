@@ -201,7 +201,8 @@ class mdl_alumni extends CI_Model{
 			if(isset($r['NO_PESERTA'])){
 				$this->db->flush_cache();
 				$this->db->set('NO_PESERTA', $r['NO_PESERTA']);
-				$this->db->set('TGL_LULUS', "to_date('".$r['TGL_LULUS']."', 'dd/mm/yyyy')", FALSE);
+				//$this->db->set('TGL_LULUS', "to_date('".$r['TGL_LULUS']."', 'dd/mm/yyyy')", FALSE);
+				$this->db->set('TGL_LULUS', $r['TGL_LULUS']);
 				$this->db->set('KERJA', $r['KERJA']);
 				$this->db->set('INSTANSI', $r['INSTANSI']);
 				$this->db->set('KODE_UPT', $r['KODE_UPT']);

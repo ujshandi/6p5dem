@@ -16,7 +16,7 @@
 				<strong>: <?=$result->row()->NAMA_DIKLAT?></strong>
 			</li>
 			<br>
-			<li><label for="" >NMOR INDUK	<em> </em></label>
+			<li><label for="" >NOMOR INDUK	<em> </em></label>
 				<strong>: <?=$result->row()->NO_PESERTA?></strong>
 			</li>
 			<br>

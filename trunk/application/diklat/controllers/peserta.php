@@ -320,7 +320,7 @@ class peserta extends My_Controller {
 						// data
 						$data_tmp[$x]['NO_PESERTA'] 		= $this->excel->val($i, 1);
 						$data_tmp[$x]['NAMA_PESERTA'] 		= $this->excel->val($i, 2);
-						$data_tmp[$x]['DAERAH'] 			= $this->excel->val($i, 2);
+						//$data_tmp[$x]['DAERAH'] 			= $this->excel->val($i, 2);
 						$data_tmp[$x]['TGL_MASUK'] 			= $this->excel->val($i, 3);
 						$data_tmp[$x]['TGL_LULUS'] 			= $this->excel->val($i, 4);
 						$data_tmp[$x]['THN_ANGKATAN'] 		= $this->excel->val($i, 5);

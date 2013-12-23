@@ -19,10 +19,10 @@
 				
 			<br>
 			<li><label for="" >TEMPAT LAHIR <em> </em></label>
-				<strong><?=$result->row()->TEMPAT_LAHIR?></strong>
+				<strong>: <?=$result->row()->TEMPAT_LAHIR?></strong>
 			</li>
 			<br>
-			<li><label for="" >TANGGAL LAHIR : <em></em></label>
+			<li><label for="" >TANGGAL LAHIR  <em></em></label>
 				<strong>: <?=$result->row()->TGL_LAHIR?></strong>
 			</li>
 			<br>
