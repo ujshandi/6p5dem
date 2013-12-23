@@ -85,7 +85,7 @@
 				<td><?=$r->NAMA_PESERTA?></td>
 				<td><?=$r->KERJA?></td>
 				<td><?=$r->INSTANSI?></td>
-				<td><?=$r->TGL_LULUS?></td>
+				<!--<td><?=$r->TGL_LULUS?></td>-->
 				<td><?=$r->THN_ANGKATAN?></td>
 				
 				<td >

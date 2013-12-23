@@ -41,8 +41,7 @@ class alumni extends My_Controller {
 			'NO_PESERTA' => 'NO PESERTA',
 			'NAMA_PESERTA' => 'NAMA ALUMNI',
 			'KERJA' => 'STATUS',
-			'INSTANSI' => 'TEMPAT BEKERJA',
-			'TGL_LULUS' => 'PERIODE LULUS',
+			'INSTANSI' => 'TEMPAT BEKERJA', 
 			'THN_ANGKATAN' => 'TAHUN ANGKATAN',
 		);
 		$data['sort_by'] = $sort_by;
