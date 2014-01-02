@@ -100,6 +100,7 @@ class mdl_peserta extends CI_Model{
         $this->db->set('JK', $data['JK']);
         $this->db->set('TGL_MASUK', $data['TGL_MASUK'], false);
         $this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN']);
+        $this->db->set('ANGKATAN', $data['ANGKATAN']);
         $this->db->set('STATUS_PESERTA', $data['STATUS_PESERTA']);
         $this->db->set('KETERANGAN', $data['KETERANGAN']);
 
@@ -134,6 +135,7 @@ class mdl_peserta extends CI_Model{
         $this->db->set('JK', $data['JK']);
         $this->db->set('TGL_MASUK', $data['TGL_MASUK'], false);
         $this->db->set('THN_ANGKATAN', $data['THN_ANGKATAN']);
+        $this->db->set('ANGKATAN', $data['ANGKATAN']);
         $this->db->set('STATUS_PESERTA', $data['STATUS_PESERTA']);
         $this->db->set('KETERANGAN', $data['KETERANGAN']);
 		$this->db->where('IDPESERTA', $data['id']);
