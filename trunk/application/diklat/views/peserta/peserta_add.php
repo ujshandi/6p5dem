@@ -87,6 +87,8 @@ $( "#TGL_MASUK" ).datepicker({ dateFormat: 'dd-mm-yy' });
 				</select>
 			</li>
 			
+			<li><label for="">ANGKATAN<em>*</em></label> <input name="ANGKATAN" value="<?=set_value('ANGKATAN')?>" type="text" class="three"/></li>
+			
 			<li><label for="">STATUS PESERTA <em>*</em></label> <select id="STATUS_PESERTA" name="STATUS_PESERTA">
 			<option value="">- Pilih Status Peserta -</option>
 			<option value="Registrasi">Registrasi</option>

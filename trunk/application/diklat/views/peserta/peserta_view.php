@@ -40,6 +40,14 @@
 				<strong>: <?=$result->row()->JK?></strong>
 			</li>
 			<br>
+			<li><label for="" >TAHUN MASUK <em></em></label>
+				<strong>: <?=$result->row()->THN_ANGKATAN?></strong>
+			</li>
+			<br>
+			<li><label for="" >ANGKATAN <em></em></label>
+				<strong>: <?=$result->row()->ANGKATAN?></strong>
+			</li>
+			<br>
 			<li><label for="" >STATUS		<em></em></label>
 				<strong>: <?=$result->row()->STATUS_PESERTA?></strong>
 			</li>

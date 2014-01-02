@@ -41,7 +41,8 @@ class peserta extends My_Controller {
 			'NO_PESERTA' => 'NO PESERTA',
 			'NAMA_PESERTA' => 'NAMA PESERTA',
 			'NAMA_DIKLAT' => 'DIKLAT',
-			'THN_ANGKATAN' => 'THN ANGKATAN',
+			'ANGKATAN' => 'THN ANGKATAN',
+			'THN_ANGKATAN' => 'ANGKATAN',
 			'STATUS_PESERTA' => 'STATUS',
 		);
 		$data['sort_by'] = $sort_by;
@@ -132,6 +133,7 @@ class peserta extends My_Controller {
         $data['JK'] = $this->input->post('JK');
         $data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'dd/mm/yyyy')";
         $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
+		$data['ANGKATAN'] = $this->input->post('ANGKATAN');
         $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
@@ -146,6 +148,7 @@ class peserta extends My_Controller {
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
         $this->form_validation->set_rules('TGL_MASUK', 'TANGGAL MASUK', 'required');
         $this->form_validation->set_rules('THN_ANGKATAN', 'TAHUN ANGKATAN', 'required');
+		$this->form_validation->set_rules('ANGKATAN', 'ANGKATAN', 'required');
         $this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
 		
 		# set message validation
@@ -222,6 +225,7 @@ class peserta extends My_Controller {
         $data['JK'] = $this->input->post('JK');
         $data['TGL_MASUK'] = "to_date('".$this->input->post('TGL_MASUK')."', 'dd/mm/yyyy')";
         $data['THN_ANGKATAN'] = $this->input->post('THN_ANGKATAN');
+		$data['ANGKATAN'] = $this->input->post('ANGKATAN');
         $data['STATUS_PESERTA'] = $this->input->post('STATUS_PESERTA');
         $data['KETERANGAN'] = $this->input->post('KETERANGAN');
 		
@@ -236,6 +240,7 @@ class peserta extends My_Controller {
         $this->form_validation->set_rules('JK', 'JENIS KELAMIN', 'required');
         $this->form_validation->set_rules('TGL_MASUK', 'TANGGAL MASUK', 'required');
         $this->form_validation->set_rules('THN_ANGKATAN', 'TAHUN ANGKATAN', 'required');
+        $this->form_validation->set_rules('ANGKATAN', 'ANGKATAN', 'required');
         $this->form_validation->set_rules('STATUS_PESERTA', 'STATUS PESERTA', 'required');
 		# set message validation
 		$this->form_validation->set_message('required', 'Field %s harus diisi!');

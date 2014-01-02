@@ -87,6 +87,7 @@
 				<td><?=$r->NO_PESERTA?></td>
 				<td><?=$r->NAMA_PESERTA?></td>
 				<td><?=$r->THN_ANGKATAN?></td>
+				<td><?=$r->ANGKATAN?></td>
 				<td><?=$r->STATUS_PESERTA?></td>
 				<td >
 				<?php
