@@ -41,7 +41,7 @@ class peserta extends My_Controller {
 			'NO_PESERTA' => 'NO PESERTA',
 			'NAMA_PESERTA' => 'NAMA PESERTA',
 			'NAMA_DIKLAT' => 'DIKLAT',
-			'ANGKATAN' => 'THN ANGKATAN',
+			'ANGKATAN' => 'THN MASUK',
 			'THN_ANGKATAN' => 'ANGKATAN',
 			'STATUS_PESERTA' => 'STATUS',
 		);
